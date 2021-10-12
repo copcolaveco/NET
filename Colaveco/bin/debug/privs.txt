@@ -1,0 +1,1 @@
+GRANT ALL PRIVILEGES ON colaveco.* TO 'root'@'it' IDENTIFIED BY 'root';

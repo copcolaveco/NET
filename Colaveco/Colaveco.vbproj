@@ -1,0 +1,3689 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{877B59AF-221A-449A-8523-7FAD48EC115A}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <StartupObject>Colaveco.My.MyApplication</StartupObject>
+    <RootNamespace>Colaveco</RootNamespace>
+    <AssemblyName>Colaveco</AssemblyName>
+    <FileAlignment>512</FileAlignment>
+    <MyType>WindowsForms</MyType>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <OptionExplicit>On</OptionExplicit>
+    <OptionCompare>Binary</OptionCompare>
+    <OptionStrict>Off</OptionStrict>
+    <OptionInfer>On</OptionInfer>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <ApplicationIcon>icono.ico</ApplicationIcon>
+    <ApplicationManifest>My Project\app.manifest</ApplicationManifest>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <UpgradeBackupLocation />
+    <PublishUrl>C:\Sebastian\Ejecutables\NET\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <AutorunEnabled>true</AutorunEnabled>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DocumentationFile>Colaveco.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DocumentationFile>Colaveco.xml</DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>2ACDC4A64A694B41C643310226CF0B78CC7C7A25</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>Colaveco_ClaveTemporal.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>true</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="adodb, Version=7.0.3300.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Gma.QrCodeNet.Encoding.Net35">
+      <HintPath>..\..\..\..\Downloads\QrCode.Net 0.4 Pre-Release\Gma.QrCodeNet.Encoding.Net35\Gma.QrCodeNet.Encoding.Net35.dll</HintPath>
+    </Reference>
+    <Reference Include="itextsharp, Version=5.4.5.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0" />
+    <Reference Include="MySql.Data, Version=6.2.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\..\..\..\Desktop\jason\Bin\net35\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Design" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Services, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\assembly\GAC_MSIL\System.Web.Services\2.0.0.0__b03f5f7f11d50a3a\System.Web.Services.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms.DataVisualization, Version=3.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Drawing" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Windows.Forms" />
+    <Import Include="System.Linq" />
+    <Import Include="System.Xml.Linq" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicationEvents.vb" />
+    <Compile Include="BentleyDelta\dAnalisisBD.vb" />
+    <Compile Include="BentleyDelta\dAnalisisBD2.vb" />
+    <Compile Include="BentleyDelta\dAnalisisBD_.vb" />
+    <Compile Include="BentleyDelta\dBentleyDelta.vb" />
+    <Compile Include="BentleyDelta\dResultadosBD.vb" />
+    <Compile Include="BentleyDelta\dVMediosBD.vb" />
+    <Compile Include="BentleyDelta\FormBentleyDeltaHistorial.Designer.vb">
+      <DependentUpon>FormBentleyDeltaHistorial.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BentleyDelta\FormBentleyDeltaHistorial.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BentleyDelta\FormBuscarVM.Designer.vb">
+      <DependentUpon>FormBuscarVM.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BentleyDelta\FormBuscarVM.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BentleyDelta\FormControlBD2.Designer.vb">
+      <DependentUpon>FormControlBD2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BentleyDelta\FormControlBD2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BentleyDelta\FormControlBentleyDelta.Designer.vb">
+      <DependentUpon>FormControlBentleyDelta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BentleyDelta\FormControlBentleyDelta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BentleyDelta\FormGraficaControl.Designer.vb">
+      <DependentUpon>FormGraficaControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BentleyDelta\FormGraficaControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BentleyDelta\FormResultadosBD.Designer.vb">
+      <DependentUpon>FormResultadosBD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BentleyDelta\FormResultadosBD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BentleyDelta\FormValoresMediosBD.Designer.vb">
+      <DependentUpon>FormValoresMediosBD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="BentleyDelta\FormValoresMediosBD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BentleyDelta\pAnalisisBD.vb" />
+    <Compile Include="BentleyDelta\pAnalisisBD2.vb" />
+    <Compile Include="BentleyDelta\pAnalisisBD_.vb" />
+    <Compile Include="BentleyDelta\pBentleyDelta.vb" />
+    <Compile Include="BentleyDelta\pResultadosBD.vb" />
+    <Compile Include="BentleyDelta\pVMediosBD.vb" />
+    <Compile Include="CMI\dIndicadores.vb" />
+    <Compile Include="CMI\FormActividades.Designer.vb">
+      <DependentUpon>FormActividades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CMI\FormActividades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMI\FormExportar.Designer.vb">
+      <DependentUpon>FormExportar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CMI\FormExportar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMI\pIndicadores.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_BentleyDelta.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_CMI.vb" />
+    <Compile Include="CMI\dActividades.vb" />
+    <Compile Include="CMI\dDimension.vb" />
+    <Compile Include="CMI\dObjEspecifico.vb" />
+    <Compile Include="CMI\dObjGral.vb" />
+    <Compile Include="CMI\FormCMI.Designer.vb">
+      <DependentUpon>FormCMI.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CMI\FormCMI.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMI\FormDimension.Designer.vb">
+      <DependentUpon>FormDimension.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CMI\FormDimension.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMI\FormObjEspecifico.Designer.vb">
+      <DependentUpon>FormObjEspecifico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CMI\FormObjEspecifico.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMI\FormObjGral.Designer.vb">
+      <DependentUpon>FormObjGral.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CMI\FormObjGral.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CMI\pActividades.vb" />
+    <Compile Include="CMI\pDimension.vb" />
+    <Compile Include="CMI\pObjEspecifico.vb" />
+    <Compile Include="CMI\pObjGral.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_com.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_comuy.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_exe.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_facturacion.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_Florida.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_reloj.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_tools_com.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQL_uy.vb" />
+    <Compile Include="Facturacion\dClient.vb" />
+    <Compile Include="Facturacion\dMovCte.vb" />
+    <Compile Include="Facturacion\dMovCte2.vb" />
+    <Compile Include="Facturacion\pClient.vb" />
+    <Compile Include="Facturacion\pMovCte.vb" />
+    <Compile Include="Facturacion\pMovCte2.vb" />
+    <Compile Include="Gestor\dCelularGestor.vb" />
+    <Compile Include="Gestor\dEmailGestor.vb" />
+    <Compile Include="Gestor\dFrascosGestor.vb" />
+    <Compile Include="Gestor\dMovimientos.vb" />
+    <Compile Include="Gestor\dNotificaciones.vb" />
+    <Compile Include="Gestor\dResultado.vb" />
+    <Compile Include="Gestor\dTelefonoGestor.vb" />
+    <Compile Include="Gestor\dUsuarioGestor.vb" />
+    <Compile Include="Gestor\FormGestor.Designer.vb">
+      <DependentUpon>FormGestor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Gestor\FormGestor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Gestor\FormSubirInformesenMasa.Designer.vb">
+      <DependentUpon>FormSubirInformesenMasa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Gestor\FormSubirInformesenMasa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\dGraficaRC.vb" />
+    <Compile Include="Graficas\FormColavecoSecale.Designer.vb">
+      <DependentUpon>FormColavecoSecale.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormColavecoSecale.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\FormGraficaCL.Designer.vb">
+      <DependentUpon>FormGraficaCL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormGraficaCL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\FormGraficaGrasaProteina.Designer.vb">
+      <DependentUpon>FormGraficaGrasaProteina.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormGraficaGrasaProteina.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\FormGraficasRC.Designer.vb">
+      <DependentUpon>FormGraficasRC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormGraficasRC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\pGraficaRC.vb" />
+    <Compile Include="Importador\dControlAux.vb" />
+    <Compile Include="Importador\dImpCalidad2.vb" />
+    <Compile Include="Importador\pControlAux.vb" />
+    <Compile Include="Importador\pImpCalidad2.vb" />
+    <Compile Include="Interfaz\FormAccionCorrectiva.Designer.vb">
+      <DependentUpon>FormAccionCorrectiva.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAccionCorrectiva.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormActualizarGestor.Designer.vb">
+      <DependentUpon>FormActualizarGestor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormActualizarGestor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAnalisisTercerizados.Designer.vb">
+      <DependentUpon>FormAnalisisTercerizados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAnalisisTercerizados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAnalisisTercerizadoTipo.Designer.vb">
+      <DependentUpon>FormAnalisisTercerizadoTipo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAnalisisTercerizadoTipo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAnalisisUnidad.Designer.vb">
+      <DependentUpon>FormAnalisisUnidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAnalisisUnidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarCliente.Designer.vb">
+      <DependentUpon>FormBuscarCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCargarPedidosAutomaticos.Designer.vb">
+      <DependentUpon>FormCargarPedidosAutomaticos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCargarPedidosAutomaticos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormClienteConvenio.Designer.vb">
+      <DependentUpon>FormClienteConvenio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormClienteConvenio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormClientes.Designer.vb">
+      <DependentUpon>FormClientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormClientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCodigos.Designer.vb">
+      <DependentUpon>FormCodigos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCodigos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoATB.Designer.vb">
+      <DependentUpon>FormCompletoATB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoATB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoATB2.Designer.vb">
+      <DependentUpon>FormCompletoATB2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoATB2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoComboBox.Designer.vb">
+      <DependentUpon>FormCompletoComboBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoComboBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoComboTextBox.Designer.vb">
+      <DependentUpon>FormCompletoComboTextBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoComboTextBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoConclusion.Designer.vb">
+      <DependentUpon>FormCompletoConclusion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoConclusion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoDetalleMuestra.Designer.vb">
+      <DependentUpon>FormCompletoDetalleMuestra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoDetalleMuestra.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoEnvio2.Designer.vb">
+      <DependentUpon>FormCompletoEnvio2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoEnvio2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoLaboratorio.Designer.vb">
+      <DependentUpon>FormCompletoLaboratorio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoLaboratorio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoMemo.Designer.vb">
+      <DependentUpon>FormCompletoMemo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoMemo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoMetodo.Designer.vb">
+      <DependentUpon>FormCompletoMetodo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoMetodo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoMetodo2.Designer.vb">
+      <DependentUpon>FormCompletoMetodo2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoMetodo2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoTercerizado.Designer.vb">
+      <DependentUpon>FormCompletoTercerizado.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoTercerizado.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoTercerizado2.Designer.vb">
+      <DependentUpon>FormCompletoTercerizado2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoTercerizado2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoTextBox.Designer.vb">
+      <DependentUpon>FormCompletoTextBox.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoTextBox.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoTextBox2.Designer.vb">
+      <DependentUpon>FormCompletoTextBox2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoTextBox2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoUnidad.Designer.vb">
+      <DependentUpon>FormCompletoUnidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoUnidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoUnidad2.Designer.vb">
+      <DependentUpon>FormCompletoUnidad2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletoUnidad2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControldeInformesPre.Designer.vb">
+      <DependentUpon>FormControldeInformesPre.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControldeInformesPre.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesEfluentes.Designer.vb">
+      <DependentUpon>FormControlInformesEfluentes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesEfluentes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesNutricion.Designer.vb">
+      <DependentUpon>FormControlInformesNutricion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesNutricion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesSuelos.Designer.vb">
+      <DependentUpon>FormControlInformesSuelos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesSuelos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormConvenios.Designer.vb">
+      <DependentUpon>FormConvenios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormConvenios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCrearInformes.Designer.vb">
+      <DependentUpon>FormCrearInformes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCrearInformes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormDetalleMuestreo.Designer.vb">
+      <DependentUpon>FormDetalleMuestreo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormDetalleMuestreo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEmbarqueCajas.Designer.vb">
+      <DependentUpon>FormEmbarqueCajas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEmbarqueCajas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticas_Calidad.Designer.vb">
+      <DependentUpon>FormEstadisticas_Calidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticas_Calidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormFrascosAguaSinFacturar.Designer.vb">
+      <DependentUpon>FormFrascosAguaSinFacturar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormFrascosAguaSinFacturar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormIngresarUsuario.Designer.vb">
+      <DependentUpon>FormIngresarUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormIngresarUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormListaDePrecios.Designer.vb">
+      <DependentUpon>FormListaDePrecios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormListaDePrecios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMeta.Designer.vb">
+      <DependentUpon>FormMeta.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMeta.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMetodos.Designer.vb">
+      <DependentUpon>FormMetodos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMetodos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNoAtendibles.Designer.vb">
+      <DependentUpon>FormNoAtendibles.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNoAtendibles.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNoticias2.Designer.vb">
+      <DependentUpon>FormNoticias2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNoticias2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNotificaciones.Designer.vb">
+      <DependentUpon>FormNotificaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNotificaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNuevoAnalisis.Designer.vb">
+      <DependentUpon>FormNuevoAnalisis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNuevoAnalisis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInterpretacionesNutricion.Designer.vb">
+      <DependentUpon>FormInterpretacionesNutricion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInterpretacionesNutricion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormObservacionesIT.Designer.vb">
+      <DependentUpon>FormObservacionesIT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormObservacionesIT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormObservacionNutricion.Designer.vb">
+      <DependentUpon>FormObservacionNutricion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormObservacionNutricion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormOtrosLaboratorios.Designer.vb">
+      <DependentUpon>FormOtrosLaboratorios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormOtrosLaboratorios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPaquetes.Designer.vb">
+      <DependentUpon>FormPaquetes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPaquetes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidosPendientes.Designer.vb">
+      <DependentUpon>FormPedidosPendientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidosPendientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidoUrgente.Designer.vb">
+      <DependentUpon>FormPedidoUrgente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidoUrgente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPlanAC.Designer.vb">
+      <DependentUpon>FormPlanAC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPlanAC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPreInforme.Designer.vb">
+      <DependentUpon>FormPreInforme.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPreInforme.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormProlesa.Designer.vb">
+      <DependentUpon>FormProlesa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormProlesa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRangoAcreditacion.Designer.vb">
+      <DependentUpon>FormRangoAcreditacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRangoAcreditacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormReferencias.Designer.vb">
+      <DependentUpon>FormReferencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormReferencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRosaBengalaMarca.Designer.vb">
+      <DependentUpon>FormRosaBengalaMarca.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRosaBengalaMarca.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSeleccionarTipoInforme.Designer.vb">
+      <DependentUpon>FormSeleccionarTipoInforme.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSeleccionarTipoInforme.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitud.Designer.vb">
+      <DependentUpon>FormSolicitud.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitud.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudRodeo.Designer.vb">
+      <DependentUpon>FormSolicitudRodeo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudRodeo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSubirGestor.Designer.vb">
+      <DependentUpon>FormSubirGestor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSubirGestor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="IT\FormPedidosAutomaticos_it.Designer.vb">
+      <DependentUpon>FormPedidosAutomaticos_it.vb</DependentUpon>
+    </Compile>
+    <Compile Include="IT\FormPedidosAutomaticos_it.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\dAccionCorrectiva.vb" />
+    <Compile Include="Logica\dAcreditacion.vb" />
+    <Compile Include="Logica\dAislamientoATB.vb" />
+    <Compile Include="Logica\dAnalisisTercerizado.vb" />
+    <Compile Include="Logica\dAnalisisTercerizadoTipo.vb" />
+    <Compile Include="Logica\dAnalisisUnidad.vb" />
+    <Compile Include="Logica\dAntibioticos.vb" />
+    <Compile Include="Logica\dATB.vb" />
+    <Compile Include="Logica\dCliente.vb" />
+    <Compile Include="Logica\dClienteConvenio.vb" />
+    <Compile Include="Logica\dClientesG2000.vb" />
+    <Compile Include="Logica\dComboResultados.vb" />
+    <Compile Include="Logica\dConclusiones.vb" />
+    <Compile Include="Logica\dControlInformesEfluentes.vb" />
+    <Compile Include="Logica\dControlInformesNutricion.vb" />
+    <Compile Include="Logica\dControlInformesSuelos.vb" />
+    <Compile Include="Logica\dConvenio.vb" />
+    <Compile Include="Logica\dCorreos.vb" />
+    <Compile Include="Logica\dDetalleMuestreo.vb" />
+    <Compile Include="Logica\dEstadisticaCalidad.vb" />
+    <Compile Include="Logica\dGiro.vb" />
+    <Compile Include="Logica\dListaMetodos.vb" />
+    <Compile Include="Logica\dListaPrecios.vb" />
+    <Compile Include="Logica\dMeta.vb" />
+    <Compile Include="Logica\dMicroATB.vb" />
+    <Compile Include="Logica\dNoAtendibles.vb" />
+    <Compile Include="Logica\dNoticias2.vb" />
+    <Compile Include="Logica\dNuevoAnalisis.vb" />
+    <Compile Include="Logica\dNuevoCliente.vb" />
+    <Compile Include="Logica\dNuevoProductor.vb" />
+    <Compile Include="Interfaz\FormCajas.Designer.vb">
+      <DependentUpon>FormCajas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCajas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCaravanasFicha.Designer.vb">
+      <DependentUpon>FormCaravanasFicha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCaravanasFicha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormDesmarcarInformes.Designer.vb">
+      <DependentUpon>FormDesmarcarInformes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormDesmarcarInformes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormFiltrarProductor.Designer.vb">
+      <DependentUpon>FormFiltrarProductor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormFiltrarProductor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidoFrascosFlorida.Designer.vb">
+      <DependentUpon>FormPedidoFrascosFlorida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidoFrascosFlorida.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\dActas.vb" />
+    <Compile Include="Logica\dActasItem.vb" />
+    <Compile Include="Logica\dAgua3.vb" />
+    <Compile Include="Logica\dAmbiental.vb" />
+    <Compile Include="Logica\dAmbientalSolicitud.vb" />
+    <Compile Include="Logica\dAreas.vb" />
+    <Compile Include="Logica\dBacteriologia.vb" />
+    <Compile Include="Logica\dBrucelosis.vb" />
+    <Compile Include="Logica\dCajas.vb" />
+    <Compile Include="Logica\dCalidadAux2.vb" />
+    <Compile Include="Logica\dCalidad_exe.vb" />
+    <Compile Include="Logica\dCancelaCompra.vb" />
+    <Compile Include="Logica\dCancelaLCompra.vb" />
+    <Compile Include="Logica\dCapacitacionCab.vb" />
+    <Compile Include="Logica\dCapacitacionEv.vb" />
+    <Compile Include="Logica\dCapacitacionLin.vb" />
+    <Compile Include="Logica\dCapacitacionTipo.vb" />
+    <Compile Include="Logica\dCaravanas.vb" />
+    <Compile Include="Logica\dCaravanasRfid.vb" />
+    <Compile Include="Logica\dCategoria.vb" />
+    <Compile Include="Logica\dCompras.vb" />
+    <Compile Include="Logica\dComunicacionTecnica.vb" />
+    <Compile Include="Logica\dControldeInformes.vb" />
+    <Compile Include="Logica\dControlGrasaProteina.vb" />
+    <Compile Include="Logica\dControlIbc.vb" />
+    <Compile Include="Logica\dControlInformesFQ.vb" />
+    <Compile Include="Logica\dControlInformesMicro.vb" />
+    <Compile Include="Logica\dControlRespaldos.vb" />
+    <Compile Include="Logica\dCotizacion.vb" />
+    <Compile Include="Logica\dCrioscopia_Control.vb" />
+    <Compile Include="Logica\dCrioscopia_Fichas.vb" />
+    <Compile Include="Logica\dCrioscopia_Medias.vb" />
+    <Compile Include="Logica\dEnviosFlorida.vb" />
+    <Compile Include="Logica\dErroresRobot.vb" />
+    <Compile Include="Logica\dEsporulados.vb" />
+    <Compile Include="Logica\dEstados.vb" />
+    <Compile Include="Logica\dEstadosTipos.vb" />
+    <Compile Include="Logica\dFacturacion.vb" />
+    <Compile Include="Logica\dFrascosDevueltos.vb" />
+    <Compile Include="Logica\dInformeEmpresa.vb" />
+    <Compile Include="Logica\dInformeFrascosRotos.vb" />
+    <Compile Include="Logica\dInformeFrascosxMes.vb" />
+    <Compile Include="Logica\dInhibidoresControl.vb" />
+    <Compile Include="Logica\dInhibidores_obs.vb" />
+    <Compile Include="Logica\dLecturasIbc.vb" />
+    <Compile Include="Logica\dLeucosis.vb" />
+    <Compile Include="Logica\dLineaCompra.vb" />
+    <Compile Include="Logica\dLineaCotizacion.vb" />
+    <Compile Include="Logica\dLocacion.vb" />
+    <Compile Include="Logica\dMaterialReferencia.vb" />
+    <Compile Include="Logica\dMaterialReferenciaAux.vb" />
+    <Compile Include="Logica\dMaterialReferenciaMedias.vb" />
+    <Compile Include="Logica\dMeses.vb" />
+    <Compile Include="Logica\dMicotoxinasLeche.vb" />
+    <Compile Include="Logica\dMoneda.vb" />
+    <Compile Include="Logica\dMorosos.vb" />
+    <Compile Include="Logica\dNoCumple.vb" />
+    <Compile Include="Logica\dNoticias.vb" />
+    <Compile Include="Logica\dNumeracionEnvios.vb" />
+    <Compile Include="Logica\dNutricion.vb" />
+    <Compile Include="Logica\dNutricionAlimento.vb" />
+    <Compile Include="Logica\dNutricionClase.vb" />
+    <Compile Include="Logica\dOtrosLaboratorios.vb" />
+    <Compile Include="Logica\dPal.vb" />
+    <Compile Include="Logica\dPaquetes.vb" />
+    <Compile Include="Logica\dParasitologiaSolicitud.vb" />
+    <Compile Include="Logica\dPedidosFlorida.vb" />
+    <Compile Include="Logica\dPedidosPendientes.vb" />
+    <Compile Include="Logica\dPetriscan.vb" />
+    <Compile Include="Logica\dPetriscanAux.vb" />
+    <Compile Include="Logica\dPlanAC.vb" />
+    <Compile Include="Logica\dPlanillaCapacitacion.vb" />
+    <Compile Include="Logica\dPreinformeCalidad.vb" />
+    <Compile Include="Logica\dPreinformeControl.vb" />
+    <Compile Include="Logica\dPreinformes.vb" />
+    <Compile Include="Logica\dPresentacionUnidades.vb" />
+    <Compile Include="Logica\dProductorEmpresa.vb" />
+    <Compile Include="Logica\dProductos.vb" />
+    <Compile Include="Logica\dProlesa.vb" />
+    <Compile Include="Logica\dProveedores.vb" />
+    <Compile Include="Logica\dPsicrotrofos.vb" />
+    <Compile Include="Logica\dReclamos.vb" />
+    <Compile Include="Logica\dReferencias.vb" />
+    <Compile Include="Logica\dRegistrosAmbientales.vb" />
+    <Compile Include="Logica\dRelSolicitudOtros.vb" />
+    <Compile Include="Logica\dRgLab101.vb" />
+    <Compile Include="Logica\dRgLab31.vb" />
+    <Compile Include="Logica\dRgLab51.vb" />
+    <Compile Include="Logica\dRgLab51_informes.vb" />
+    <Compile Include="Logica\dRgLab58_informes.vb" />
+    <Compile Include="Logica\dRgLab88.vb" />
+    <Compile Include="Logica\dRgLab89.vb" />
+    <Compile Include="Logica\dRosaBengalaDescarte.vb" />
+    <Compile Include="Logica\dSaldos.vb" />
+    <Compile Include="Logica\dSecale.vb" />
+    <Compile Include="Logica\dSectores.vb" />
+    <Compile Include="Logica\dSinaveleFicha.vb" />
+    <Compile Include="Logica\dSinSolicitud.vb" />
+    <Compile Include="Logica\dSinVisualizacion.vb" />
+    <Compile Include="Logica\dSolicitudesIT.vb" />
+    <Compile Include="Logica\dSolicitudNutricion.vb" />
+    <Compile Include="Logica\dSolicitudPAL.vb" />
+    <Compile Include="Logica\dSolicitudRodeo.vb" />
+    <Compile Include="Logica\dSolicitudSuelos.vb" />
+    <Compile Include="Logica\dSolicitudWeb.vb" />
+    <Compile Include="Logica\dSolucionTrabajo.vb" />
+    <Compile Include="Logica\dSolucionTrabajoBajas.vb" />
+    <Compile Include="Logica\dSolucionTrabajoReceta.vb" />
+    <Compile Include="Logica\dSuelos.vb" />
+    <Compile Include="Logica\dTareas.vb" />
+    <Compile Include="Logica\dTiempos.vb" />
+    <Compile Include="Logica\dTipoControl.vb" />
+    <Compile Include="Logica\dUnidades.vb" />
+    <Compile Include="Logica\dValorReferencia.vb" />
+    <Compile Include="Graficas\FormGraficaControlIBC.Designer.vb">
+      <DependentUpon>FormGraficaControlIBC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormGraficaControlIBC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\FormMaterialReferenciaMedias.Designer.vb">
+      <DependentUpon>FormMaterialReferenciaMedias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormMaterialReferenciaMedias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\FormVerMaterialRefMedias.Designer.vb">
+      <DependentUpon>FormVerMaterialRefMedias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormVerMaterialRefMedias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\FormVerValoresIBC.Designer.vb">
+      <DependentUpon>FormVerValoresIBC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormVerValoresIBC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Logica\dNuevoAnalisis_Factura.vb" />
+    <Compile Include="Module2.vb" />
+    <Compile Include="Facturacion\dMovimientos2.vb" />
+    <Compile Include="Persistencia\pAccionCorrectiva.vb" />
+    <Compile Include="Persistencia\pAcreditacion.vb" />
+    <Compile Include="Persistencia\pActas.vb" />
+    <Compile Include="Persistencia\pActasItem.vb" />
+    <Compile Include="Persistencia\pActasItemFecha.vb" />
+    <Compile Include="Persistencia\pAgua3.vb" />
+    <Compile Include="Persistencia\pAislamientoATB.vb" />
+    <Compile Include="Persistencia\pAnalisisTercerizado.vb" />
+    <Compile Include="Persistencia\pAnalisisTercerizadoTipo.vb" />
+    <Compile Include="Persistencia\pAnalisisUnidad.vb" />
+    <Compile Include="Persistencia\pAntibioticos.vb" />
+    <Compile Include="Persistencia\pATB.vb" />
+    <Compile Include="Persistencia\pCajas.vb" />
+    <Compile Include="Persistencia\pCalidadAux2.vb" />
+    <Compile Include="Persistencia\pCaravanas.vb" />
+    <Compile Include="Persistencia\pCaravanasRfid.vb" />
+    <Compile Include="Persistencia\pCliente.vb" />
+    <Compile Include="Persistencia\pClienteConvenio.vb" />
+    <Compile Include="Persistencia\pClientesG2000.vb" />
+    <Compile Include="Persistencia\pComboResultados.vb" />
+    <Compile Include="Persistencia\pComunicacionTecnica.vb" />
+    <Compile Include="Persistencia\pConclusiones.vb" />
+    <Compile Include="Persistencia\pControlGrasaProteina.vb" />
+    <Compile Include="Persistencia\pControlInformesEfluentes.vb" />
+    <Compile Include="Persistencia\pControlInformesFQ.vb" />
+    <Compile Include="Persistencia\pControlInformesMicro.vb" />
+    <Compile Include="Persistencia\pControlInformesNutricion.vb" />
+    <Compile Include="Persistencia\pControlInformesSuelos.vb" />
+    <Compile Include="Persistencia\pConvenio.vb" />
+    <Compile Include="Persistencia\pCorreos.vb" />
+    <Compile Include="Persistencia\pCrioscopia_Control.vb" />
+    <Compile Include="Persistencia\pCrioscopia_Fichas.vb" />
+    <Compile Include="Persistencia\pCrioscopia_Medias.vb" />
+    <Compile Include="Persistencia\pDetalleMuestreo.vb" />
+    <Compile Include="Persistencia\pEnviosFlorida.vb" />
+    <Compile Include="Persistencia\pErroresRobot.vb" />
+    <Compile Include="Persistencia\pEsporulados.vb" />
+    <Compile Include="Persistencia\pEstadisticaCalidad.vb" />
+    <Compile Include="Persistencia\pEstados.vb" />
+    <Compile Include="Persistencia\pEstadosTipos.vb" />
+    <Compile Include="Persistencia\pFacturacion.vb" />
+    <Compile Include="Persistencia\pGiro.vb" />
+    <Compile Include="Persistencia\pInhibidoresControl.vb" />
+    <Compile Include="Persistencia\pListaMetodos.vb" />
+    <Compile Include="Persistencia\pListaPrecios.vb" />
+    <Compile Include="Persistencia\pMeses.vb" />
+    <Compile Include="Persistencia\pMeta.vb" />
+    <Compile Include="Persistencia\pMicotoxinasLeche.vb" />
+    <Compile Include="Persistencia\pMicroATB.vb" />
+    <Compile Include="Persistencia\pMorosos.vb" />
+    <Compile Include="Persistencia\pNoAtendibles.vb" />
+    <Compile Include="Persistencia\pNoticias2.vb" />
+    <Compile Include="Persistencia\pNuevoAnalisis.vb" />
+    <Compile Include="Persistencia\pNuevoAnalisis_Factura.vb" />
+    <Compile Include="Persistencia\pNuevoCliente.vb" />
+    <Compile Include="Persistencia\pNuevoProductor.vb" />
+    <Compile Include="Persistencia\pNutricion.vb" />
+    <Compile Include="Persistencia\pNutricionAlimento.vb" />
+    <Compile Include="Persistencia\pNutricionClase.vb" />
+    <Compile Include="Persistencia\pOtrosLaboratorios.vb" />
+    <Compile Include="Persistencia\pPaquetes.vb" />
+    <Compile Include="Persistencia\pPedidosFlorida.vb" />
+    <Compile Include="Persistencia\pPedidosPendientes.vb" />
+    <Compile Include="Persistencia\pPetriscanAux.vb" />
+    <Compile Include="Persistencia\pPlanAC.vb" />
+    <Compile Include="Persistencia\pPreinformeCalidad.vb" />
+    <Compile Include="Persistencia\pPreinformeControl.vb" />
+    <Compile Include="Persistencia\pPreinformes.vb" />
+    <Compile Include="Persistencia\pProlesa.vb" />
+    <Compile Include="Persistencia\pPsicrotrofos.vb" />
+    <Compile Include="Persistencia\pReferencias.vb" />
+    <Compile Include="Persistencia\pRegistrosAmbientales.vb" />
+    <Compile Include="Persistencia\pRgLab101.vb" />
+    <Compile Include="Persistencia\pRgLab31.vb" />
+    <Compile Include="Persistencia\pRgLab51.vb" />
+    <Compile Include="Persistencia\pRgLab51_informes.vb" />
+    <Compile Include="Persistencia\pRgLab58_informes.vb" />
+    <Compile Include="Persistencia\pRgLab88.vb" />
+    <Compile Include="Persistencia\pRgLab89.vb" />
+    <Compile Include="Persistencia\pRosaBengalaDescarte.vb" />
+    <Compile Include="Persistencia\pSaldos.vb" />
+    <Compile Include="Persistencia\pSecale.vb" />
+    <Compile Include="Persistencia\pSinVisualizacion.vb" />
+    <Compile Include="Persistencia\pSolicitudRodeo.vb" />
+    <Compile Include="Persistencia\pSolicitudWeb.vb" />
+    <Compile Include="Persistencia\pSolucionTrabajo.vb" />
+    <Compile Include="Persistencia\pSolucionTrabajoBajas.vb" />
+    <Compile Include="Persistencia\pSolucionTrabajoReceta.vb" />
+    <Compile Include="Persistencia\pSuelos.vb" />
+    <Compile Include="Persistencia\pBrucelosis.vb" />
+    <Compile Include="Persistencia\pCancelaCompra.vb" />
+    <Compile Include="Persistencia\pCancelaLCompra.vb" />
+    <Compile Include="Persistencia\pCotizacion.vb" />
+    <Compile Include="Persistencia\pLeucosis.vb" />
+    <Compile Include="Persistencia\pLineaCotizacion.vb" />
+    <Compile Include="Persistencia\pMaterialReferenciaAux.vb" />
+    <Compile Include="Persistencia\pNoCumple.vb" />
+    <Compile Include="Persistencia\pPetriscan.vb" />
+    <Compile Include="Persistencia\pPresentacionUnidades.vb" />
+    <Compile Include="Persistencia\pSolicitudNutricion.vb" />
+    <Compile Include="Persistencia\pSolicitudSuelos.vb" />
+    <Compile Include="Logica\dActasItemFecha.vb" />
+    <Compile Include="Interfaz\FormActas.Designer.vb">
+      <DependentUpon>FormActas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormActas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormActasPendientes.Designer.vb">
+      <DependentUpon>FormActasPendientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormActasPendientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAgua2.Designer.vb">
+      <DependentUpon>FormAgua2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAgua2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAsociar.Designer.vb">
+      <DependentUpon>FormAsociar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAsociar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBajaSoluciones.Designer.vb">
+      <DependentUpon>FormBajaSoluciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBajaSoluciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarActas.Designer.vb">
+      <DependentUpon>FormBuscarActas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarActas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarBrucelosisLeche.Designer.vb">
+      <DependentUpon>FormBuscarBrucelosisLeche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarBrucelosisLeche.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarCompras.Designer.vb">
+      <DependentUpon>FormBuscarCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormClientesMorosos.Designer.vb">
+      <DependentUpon>FormClientesMorosos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormClientesMorosos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormComprasInformes.Designer.vb">
+      <DependentUpon>FormComprasInformes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormComprasInformes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormComunicacionTecnica.Designer.vb">
+      <DependentUpon>FormComunicacionTecnica.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormComunicacionTecnica.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormContadorAnalisisEmpresas2.Designer.vb">
+      <DependentUpon>FormContadorAnalisisEmpresas2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormContadorAnalisisEmpresas2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlDeMedios.Designer.vb">
+      <DependentUpon>FormControlDeMedios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlDeMedios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlGrasaProteina.Designer.vb">
+      <DependentUpon>FormControlGrasaProteina.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlGrasaProteina.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesFQ.Designer.vb">
+      <DependentUpon>FormControlInformesFQ.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesFQ.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesMicro.Designer.vb">
+      <DependentUpon>FormControlInformesMicro.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlInformesMicro.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlMuestrasDuplicadas.Designer.vb">
+      <DependentUpon>FormControlMuestrasDuplicadas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlMuestrasDuplicadas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCorreo.Designer.vb">
+      <DependentUpon>FormCorreo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCorreo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCorreoMorosos.Designer.vb">
+      <DependentUpon>FormCorreoMorosos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCorreoMorosos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEnviarMensajes.Designer.vb">
+      <DependentUpon>FormEnviarMensajes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEnviarMensajes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEsporulados.Designer.vb">
+      <DependentUpon>FormEsporulados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEsporulados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticaCompras.Designer.vb">
+      <DependentUpon>FormEstadisticaCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticaCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticaNutricion.Designer.vb">
+      <DependentUpon>FormEstadisticaNutricion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticaNutricion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticaSuelos.Designer.vb">
+      <DependentUpon>FormEstadisticaSuelos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticaSuelos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormHistorialCaja.Designer.vb">
+      <DependentUpon>FormHistorialCaja.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormHistorialCaja.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeAgua.Designer.vb">
+      <DependentUpon>FormInformeAgua.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeAgua.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeAntibiograma.Designer.vb">
+      <DependentUpon>FormInformeAntibiograma.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeAntibiograma.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeBrucelosis.Designer.vb">
+      <DependentUpon>FormInformeBrucelosis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeBrucelosis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeCalidadLeche2.Designer.vb">
+      <DependentUpon>FormInformeCalidadLeche2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeCalidadLeche2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeControlLechero2.Designer.vb">
+      <DependentUpon>FormInformeControlLechero2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeControlLechero2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeLeucosis.Designer.vb">
+      <DependentUpon>FormInformeLeucosis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeLeucosis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeNutricion.Designer.vb">
+      <DependentUpon>FormInformeNutricion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeNutricion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeRCRB.Designer.vb">
+      <DependentUpon>FormInformeRCRB.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeRCRB.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesSubidos.Designer.vb">
+      <DependentUpon>FormInformesSubidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesSubidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeSubproductos.Designer.vb">
+      <DependentUpon>FormInformeSubproductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeSubproductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeSuelos.Designer.vb">
+      <DependentUpon>FormInformeSuelos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeSuelos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormLeucosis.Designer.vb">
+      <DependentUpon>FormLeucosis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormLeucosis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormListadodeCompras.Designer.vb">
+      <DependentUpon>FormListadodeCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormListadodeCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormLocacion.Designer.vb">
+      <DependentUpon>FormLocacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormLocacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeMuestrasDescartadas.Designer.vb">
+      <DependentUpon>FormInformeMuestrasDescartadas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeMuestrasDescartadas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMicotoxinasLeche.Designer.vb">
+      <DependentUpon>FormMicotoxinasLeche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMicotoxinasLeche.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNoCumple.Designer.vb">
+      <DependentUpon>FormNoCumple.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNoCumple.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Persistencia\pCategoria.vb" />
+    <Compile Include="Persistencia\pCompras.vb" />
+    <Compile Include="Persistencia\pControlRespaldos.vb" />
+    <Compile Include="Persistencia\pLineaCompra.vb" />
+    <Compile Include="Persistencia\pLocacion.vb" />
+    <Compile Include="Persistencia\pMoneda.vb" />
+    <Compile Include="Persistencia\pNumeracionEnvios.vb" />
+    <Compile Include="Persistencia\pProductos.vb" />
+    <Compile Include="Persistencia\pProveedores.vb" />
+    <Compile Include="Persistencia\pSectores.vb" />
+    <Compile Include="Persistencia\pTareas.vb" />
+    <Compile Include="Persistencia\pTipoControl.vb" />
+    <Compile Include="Persistencia\pUnidades.vb" />
+    <Compile Include="Interfaz\FormAmbiental.Designer.vb">
+      <DependentUpon>FormAmbiental.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAmbiental.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAutorizarCompra.Designer.vb">
+      <DependentUpon>FormAutorizarCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAutorizarCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBacteriologia.Designer.vb">
+      <DependentUpon>FormBacteriologia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBacteriologia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarCajas.Designer.vb">
+      <DependentUpon>FormBuscarCajas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarCajas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarCapacitacion.Designer.vb">
+      <DependentUpon>FormBuscarCapacitacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarCapacitacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarEmpresa.Designer.vb">
+      <DependentUpon>FormBuscarEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarEmpresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarProducto.Designer.vb">
+      <DependentUpon>FormBuscarProducto.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarProducto.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarProveedor.Designer.vb">
+      <DependentUpon>FormBuscarProveedor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarProveedor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCambiarVMIBC.Designer.vb">
+      <DependentUpon>FormCambiarVMIBC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCambiarVMIBC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCapacitacion.Designer.vb">
+      <DependentUpon>FormCapacitacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCapacitacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCapacitacion2.Designer.vb">
+      <DependentUpon>FormCapacitacion2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCapacitacion2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCategoria.Designer.vb">
+      <DependentUpon>FormCategoria.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCategoria.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletarCompra.Designer.vb">
+      <DependentUpon>FormCompletarCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletarCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompras.Designer.vb">
+      <DependentUpon>FormCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControldeInformes.Designer.vb">
+      <DependentUpon>FormControldeInformes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControldeInformes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlesRealizados.Designer.vb">
+      <DependentUpon>FormControlesRealizados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlesRealizados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlIBC.Designer.vb">
+      <DependentUpon>FormControlIBC.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlIBC.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormControlRespaldos.Designer.vb">
+      <DependentUpon>FormControlRespaldos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormControlRespaldos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCopiarArchivosCalidad.Designer.vb">
+      <DependentUpon>FormCopiarArchivosCalidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCopiarArchivosCalidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticaAntibiograma.Designer.vb">
+      <DependentUpon>FormEstadisticaAntibiograma.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticaAntibiograma.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticasCalidad.Designer.vb">
+      <DependentUpon>FormEstadisticasCalidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticasCalidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticasCalidad_exe.Designer.vb">
+      <DependentUpon>FormEstadisticasCalidad_exe.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadisticasCalidad_exe.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadoSolicitudIT.Designer.vb">
+      <DependentUpon>FormEstadoSolicitudIT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEstadoSolicitudIT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormFrascosSangreSinFacturar.Designer.vb">
+      <DependentUpon>FormFrascosSangreSinFacturar.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormFrascosSangreSinFacturar.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformePAL.Designer.vb">
+      <DependentUpon>FormInformePAL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformePAL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesCapacitacion.Designer.vb">
+      <DependentUpon>FormInformesCapacitacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesCapacitacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormListadoCajasVerdesSinDevolver.Designer.vb">
+      <DependentUpon>FormListadoCajasVerdesSinDevolver.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormListadoCajasVerdesSinDevolver.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormListadoDeSolicitudes.Designer.vb">
+      <DependentUpon>FormListadoDeSolicitudes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormListadoDeSolicitudes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormListadoIngresosSinSolicitud.Designer.vb">
+      <DependentUpon>FormListadoIngresosSinSolicitud.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormListadoIngresosSinSolicitud.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormListarReclamos.Designer.vb">
+      <DependentUpon>FormListarReclamos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormListarReclamos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormListarSolicitudesIT.Designer.vb">
+      <DependentUpon>FormListarSolicitudesIT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormListarSolicitudesIT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNutricion.Designer.vb">
+      <DependentUpon>FormNutricion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNutricion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNutricionAlimento.Designer.vb">
+      <DependentUpon>FormNutricionAlimento.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNutricionAlimento.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNutricionClase.Designer.vb">
+      <DependentUpon>FormNutricionClase.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNutricionClase.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormObservaciones.Designer.vb">
+      <DependentUpon>FormObservaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormObservaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormObservacionesSinVisualizacion.Designer.vb">
+      <DependentUpon>FormObservacionesSinVisualizacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormObservacionesSinVisualizacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidoFrascosWeb.Designer.vb">
+      <DependentUpon>FormPedidoFrascosWeb.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidoFrascosWeb.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPetriscan.Designer.vb">
+      <DependentUpon>FormPetriscan.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPetriscan.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPlanillaCapacitacion.Designer.vb">
+      <DependentUpon>FormPlanillaCapacitacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPlanillaCapacitacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPresentaciones.Designer.vb">
+      <DependentUpon>FormPresentaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPresentaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormProductos.Designer.vb">
+      <DependentUpon>FormProductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormProductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormProveedores.Designer.vb">
+      <DependentUpon>FormProveedores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormProveedores.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPsicrotrofos.Designer.vb">
+      <DependentUpon>FormPsicrotrofos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPsicrotrofos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRecibirCompra.Designer.vb">
+      <DependentUpon>FormRecibirCompra.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRecibirCompra.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormReproducibilidad.Designer.vb">
+      <DependentUpon>FormReproducibilidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormReproducibilidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab101.Designer.vb">
+      <DependentUpon>FormRgLab101.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab101.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab31.Designer.vb">
+      <DependentUpon>FormRgLab31.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab31.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab51.Designer.vb">
+      <DependentUpon>FormRgLab51.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab51.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab51_carga.Designer.vb">
+      <DependentUpon>FormRgLab51_carga.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab51_carga.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab58.Designer.vb">
+      <DependentUpon>FormRgLab58.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab58.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab88.Designer.vb">
+      <DependentUpon>FormRgLab88.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab88.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab89.Designer.vb">
+      <DependentUpon>FormRgLab89.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRgLab89.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormRosaBengalaDescarte.Designer.vb">
+      <DependentUpon>FormRosaBengalaDescarte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormRosaBengalaDescarte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSecale.Designer.vb">
+      <DependentUpon>FormSecale.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSecale.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSeleccionarTecnicoPAL.Designer.vb">
+      <DependentUpon>FormSeleccionarTecnicoPAL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSeleccionarTecnicoPAL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSinaveleFicha.Designer.vb">
+      <DependentUpon>FormSinaveleFicha.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSinaveleFicha.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSinSolicitud.Designer.vb">
+      <DependentUpon>FormSinSolicitud.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSinSolicitud.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSinVisualizacion.Designer.vb">
+      <DependentUpon>FormSinVisualizacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSinVisualizacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitarCotizacion.Designer.vb">
+      <DependentUpon>FormSolicitarCotizacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitarCotizacion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudIT.Designer.vb">
+      <DependentUpon>FormSolicitudIT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudIT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudNutricion.Designer.vb">
+      <DependentUpon>FormSolicitudNutricion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudNutricion.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudPAL.Designer.vb">
+      <DependentUpon>FormSolicitudPAL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudPAL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Conexion_BD\ConexionMySQLExe.vb" />
+    <Compile Include="Persistencia\pAmbiental.vb" />
+    <Compile Include="Persistencia\pAreas.vb" />
+    <Compile Include="Persistencia\pBacteriologia.vb" />
+    <Compile Include="Persistencia\pCalidad_exe.vb" />
+    <Compile Include="Persistencia\pCapacitacionCab.vb" />
+    <Compile Include="Persistencia\pCapacitacionEv.vb" />
+    <Compile Include="Persistencia\pCapacitacionLin.vb" />
+    <Compile Include="Persistencia\pCapacitacionTipo.vb" />
+    <Compile Include="Persistencia\pControldeInformes.vb" />
+    <Compile Include="Persistencia\pControlIbc.vb" />
+    <Compile Include="Persistencia\pInformeEmpresa.vb" />
+    <Compile Include="Graficas\FormValoresEmpresa.Designer.vb">
+      <DependentUpon>FormValoresEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormValoresEmpresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\FormValoresVacaIndividual.Designer.vb">
+      <DependentUpon>FormValoresVacaIndividual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormValoresVacaIndividual.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAnalisis.Designer.vb">
+      <DependentUpon>FormAnalisis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAnalisis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarPedidos.Designer.vb">
+      <DependentUpon>FormBuscarPedidos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarPedidos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarTecnico.Designer.vb">
+      <DependentUpon>FormBuscarTecnico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarTecnico.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletarEnvios.Designer.vb">
+      <DependentUpon>FormCompletarEnvios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletarEnvios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormContadorAnalisisEmpresas.Designer.vb">
+      <DependentUpon>FormContadorAnalisisEmpresas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormContadorAnalisisEmpresas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEliminarControlLechero.Designer.vb">
+      <DependentUpon>FormEliminarControlLechero.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEliminarControlLechero.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEliminarSolicitud.Designer.vb">
+      <DependentUpon>FormEliminarSolicitud.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEliminarSolicitud.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormFrascosDevueltos.Designer.vb">
+      <DependentUpon>FormFrascosDevueltos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormFrascosDevueltos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeFrascosEnviados.Designer.vb">
+      <DependentUpon>FormInformeFrascosEnviados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeFrascosEnviados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeFrascosRotos.Designer.vb">
+      <DependentUpon>FormInformeFrascosRotos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeFrascosRotos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesPendientes.Designer.vb">
+      <DependentUpon>FormInformesPendientes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesPendientes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInhibidores_obs.Designer.vb">
+      <DependentUpon>FormInhibidores_obs.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInhibidores_obs.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMarcarSolicitudSubida.Designer.vb">
+      <DependentUpon>FormMarcarSolicitudSubida.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMarcarSolicitudSubida.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMaterialDeReferencia.Designer.vb">
+      <DependentUpon>FormMaterialDeReferencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMaterialDeReferencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Graficas\FormMaterialdeReferenciaBD.Designer.vb">
+      <DependentUpon>FormMaterialdeReferenciaBD.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Graficas\FormMaterialdeReferenciaBD.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormNoticias.Designer.vb">
+      <DependentUpon>FormNoticias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormNoticias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPal.Designer.vb">
+      <DependentUpon>FormPal.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPal.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormProductorEmpresa.Designer.vb">
+      <DependentUpon>FormProductorEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormProductorEmpresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudSuelos.Designer.vb">
+      <DependentUpon>FormSolicitudSuelos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudSuelos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolucionTrabajo.Designer.vb">
+      <DependentUpon>FormSolucionTrabajo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolucionTrabajo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSubirInformes2.Designer.vb">
+      <DependentUpon>FormSubirInformes2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSubirInformes2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSubirInformesSuelos.Designer.vb">
+      <DependentUpon>FormSubirInformesSuelos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSubirInformesSuelos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSuelos.Designer.vb">
+      <DependentUpon>FormSuelos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSuelos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormTareas.Designer.vb">
+      <DependentUpon>FormTareas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormTareas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormTecnicoProductor.Designer.vb">
+      <DependentUpon>FormTecnicoProductor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormTecnicoProductor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormTiemposEnviosInformes.Designer.vb">
+      <DependentUpon>FormTiemposEnviosInformes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormTiemposEnviosInformes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormUltimasCompras.Designer.vb">
+      <DependentUpon>FormUltimasCompras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormUltimasCompras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormUnidades.Designer.vb">
+      <DependentUpon>FormUnidades.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormUnidades.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormUsuarios.Designer.vb">
+      <DependentUpon>FormUsuarios.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormUsuarios.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormVerResultadosPAL.Designer.vb">
+      <DependentUpon>FormVerResultadosPAL.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormVerResultadosPAL.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBrucelosis.Designer.vb">
+      <DependentUpon>FormBrucelosis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBrucelosis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormVerSolicitudes IT.Designer.vb">
+      <DependentUpon>FormVerSolicitudes IT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormVerSolicitudes IT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pruebas\dFactur.vb" />
+    <Compile Include="Gestor\dFichasenMasa.vb" />
+    <Compile Include="Pruebas\FormClientesPorEmpresa.Designer.vb">
+      <DependentUpon>FormClientesPorEmpresa.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pruebas\FormClientesPorEmpresa.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pruebas\FormEditarNumeroTambo.Designer.vb">
+      <DependentUpon>FormEditarNumeroTambo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pruebas\FormEditarNumeroTambo.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pruebas\FormEnviarCorreoImagenes.Designer.vb">
+      <DependentUpon>FormEnviarCorreoImagenes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pruebas\FormEnviarCorreoImagenes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pruebas\FormPruebas.Designer.vb">
+      <DependentUpon>FormPruebas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pruebas\FormPruebas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormReclamos.Designer.vb">
+      <DependentUpon>FormReclamos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormReclamos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSeleccionarTecnico.Designer.vb">
+      <DependentUpon>FormSeleccionarTecnico.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSeleccionarTecnico.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudAmbiental.Designer.vb">
+      <DependentUpon>FormSolicitudAmbiental.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudAmbiental.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudParasitologia.Designer.vb">
+      <DependentUpon>FormSolicitudParasitologia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudParasitologia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormTiempos.Designer.vb">
+      <DependentUpon>FormTiempos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormTiempos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormValorReferencia.Designer.vb">
+      <DependentUpon>FormValorReferencia.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormValorReferencia.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Persistencia\pAmbientalSolicitud.vb" />
+    <Compile Include="Persistencia\pFrascosDevueltos.vb" />
+    <Compile Include="Persistencia\pInhibidores_obs.vb" />
+    <Compile Include="Persistencia\pLecturasIbc.vb" />
+    <Compile Include="Persistencia\pMaterialReferencia.vb" />
+    <Compile Include="Persistencia\pMaterialReferenciaMedias.vb" />
+    <Compile Include="Persistencia\pNoticias.vb" />
+    <Compile Include="Persistencia\pPal.vb" />
+    <Compile Include="Persistencia\pParasitologiaSolicitud.vb" />
+    <Compile Include="Persistencia\pPlanillaCapacitacion.vb" />
+    <Compile Include="Persistencia\pProductorEmpresa.vb" />
+    <Compile Include="Persistencia\pReclamos.vb" />
+    <Compile Include="Persistencia\pRelSolicitudOtros.vb" />
+    <Compile Include="Persistencia\pSinaveleFicha.vb" />
+    <Compile Include="Persistencia\pSinSolicitud.vb" />
+    <Compile Include="Persistencia\pSolicitudesIT.vb" />
+    <Compile Include="Persistencia\pSolicitudPAL.vb" />
+    <Compile Include="Persistencia\pTiempos.vb" />
+    <Compile Include="Persistencia\pValorReferencia.vb" />
+    <Compile Include="Pruebas\dImpIbc_aux.vb" />
+    <Compile Include="Pruebas\FormRCConvenio.Designer.vb">
+      <DependentUpon>FormRCConvenio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Pruebas\FormRCConvenio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pruebas\pFactur.vb" />
+    <Compile Include="Gestor\pFichasenMasa.vb" />
+    <Compile Include="Pruebas\pImpIbc_aux.vb" />
+    <Compile Include="Reloj\dAutorizaciones.vb" />
+    <Compile Include="Reloj\dFeriados.vb" />
+    <Compile Include="Reloj\dLicenciaAnual.vb" />
+    <Compile Include="Reloj\dLicencias.vb" />
+    <Compile Include="Reloj\dMarcas.vb" />
+    <Compile Include="Reloj\dComunicaciones.vb" />
+    <Compile Include="Reloj\dNotificaciones_reloj.vb" />
+    <Compile Include="Reloj\dTipoAutorizacion.vb" />
+    <Compile Include="Reloj\dTipoMarca.vb" />
+    <Compile Include="Reloj\dUsuarioReloj.vb" />
+    <Compile Include="Reloj\FormAutorizaciones.Designer.vb">
+      <DependentUpon>FormAutorizaciones.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reloj\FormAutorizaciones.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reloj\FormFeriados.Designer.vb">
+      <DependentUpon>FormFeriados.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reloj\FormFeriados.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reloj\FormInformes.Designer.vb">
+      <DependentUpon>FormInformes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reloj\FormInformes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reloj\FormLicenciaAnual.Designer.vb">
+      <DependentUpon>FormLicenciaAnual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reloj\FormLicenciaAnual.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reloj\FormLicencias.Designer.vb">
+      <DependentUpon>FormLicencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reloj\FormLicencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reloj\FormNotificacionesReloj.Designer.vb">
+      <DependentUpon>FormNotificacionesReloj.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reloj\FormNotificacionesReloj.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reloj\FormPlanLicencias.Designer.vb">
+      <DependentUpon>FormPlanLicencias.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reloj\FormPlanLicencias.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reloj\FormReloj.Designer.vb">
+      <DependentUpon>FormReloj.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Reloj\FormReloj.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Reloj\pAutorizaciones.vb" />
+    <Compile Include="Reloj\pFeriados.vb" />
+    <Compile Include="Reloj\pLicenciaAnual.vb" />
+    <Compile Include="Reloj\pLicencias.vb" />
+    <Compile Include="Reloj\pMarcas.vb" />
+    <Compile Include="Reloj\pComunicaciones.vb" />
+    <Compile Include="Reloj\pNotificaciones_reloj.vb" />
+    <Compile Include="Reloj\pTipoAutorizacion.vb" />
+    <Compile Include="Reloj\pTipoMarca.vb" />
+    <Compile Include="Reloj\pUsuarioReloj.vb" />
+    <Compile Include="Service References\ServiceReference1\Reference.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="web\com\dAgroNutricionWeb_com.vb" />
+    <Compile Include="Logica\dAgua.vb" />
+    <Compile Include="Logica\dAguaTratada.vb" />
+    <Compile Include="web\com\dAgroSuelosWeb_com.vb" />
+    <Compile Include="web\com\dAguaWeb_com.vb" />
+    <Compile Include="web\com\dAmbientalWeb_com.vb" />
+    <Compile Include="Logica\dAntibiograma.vb" />
+    <Compile Include="Logica\dAntibiograma2.vb" />
+    <Compile Include="web\com\dAntibiogramaWeb_com.vb" />
+    <Compile Include="Logica\dAspecto.vb" />
+    <Compile Include="Logica\dCalidad.vb" />
+    <Compile Include="Logica\dCalidadSolicitudMuestra.vb" />
+    <Compile Include="web\com\dBrucelosisLecheWeb_com.vb" />
+    <Compile Include="web\com\dCalidadWeb_com.vb" />
+    <Compile Include="Logica\dColor.vb" />
+    <Compile Include="Logica\dControl.vb" />
+    <Compile Include="web\com\dClienteWeb_com.vb" />
+    <Compile Include="web\com\dControlAuxWeb_com.vb" />
+    <Compile Include="web\com\dControlLecheroWeb_com.vb" />
+    <Compile Include="Logica\dControlSolicitud.vb" />
+    <Compile Include="Logica\dDepartamento.vb" />
+    <Compile Include="Logica\dDescarteMuestras.vb" />
+    <Compile Include="Logica\dDureza.vb" />
+    <Compile Include="Logica\dEmpresaT.vb" />
+    <Compile Include="Logica\dEnvioCajas.vb" />
+    <Compile Include="Logica\dEstadoConservacion.vb" />
+    <Compile Include="Logica\dFrascosRotos.vb" />
+    <Compile Include="Logica\dIbc.vb" />
+    <Compile Include="Logica\dInhibidores.vb" />
+    <Compile Include="web\com\dEfluentesWeb_com.vb" />
+    <Compile Include="web\com\dLactometrosWeb_com.vb" />
+    <Compile Include="Logica\dListeriaAmbiental.vb" />
+    <Compile Include="Logica\dListeriaMono.vb" />
+    <Compile Include="Logica\dListeriaSPP.vb" />
+    <Compile Include="Logica\dLocalidad.vb" />
+    <Compile Include="Logica\dMateriaOrganica.vb" />
+    <Compile Include="Logica\dMedios.vb" />
+    <Compile Include="Logica\dMOA24.vb" />
+    <Compile Include="Logica\dMOA48.vb" />
+    <Compile Include="Logica\dMuestraExtraida.vb" />
+    <Compile Include="Logica\dMuestraFueraCondicion.vb" />
+    <Compile Include="Logica\dMuestraNoApta.vb" />
+    <Compile Include="Logica\dMuestras.vb" />
+    <Compile Include="Logica\dMuestrasNoAptas.vb" />
+    <Compile Include="Logica\dOlor.vb" />
+    <Compile Include="web\com\dOtrosServiciosWeb_com.vb" />
+    <Compile Include="web\com\dPalWeb_com.vb" />
+    <Compile Include="web\com\dParasitologiaWeb_com.vb" />
+    <Compile Include="web\com\dPatologiaWeb_com.vb" />
+    <Compile Include="Logica\dPedidos.vb" />
+    <Compile Include="Logica\dPedidosAuto.vb" />
+    <Compile Include="Logica\dProductor.vb" />
+    <Compile Include="Logica\dPedidosWeb.vb" />
+    <Compile Include="web\com\dPedidosWeb_com.vb" />
+    <Compile Include="web\com\dProductorWeb_com.vb" />
+    <Compile Include="Logica\dRelSolicitudCajas.vb" />
+    <Compile Include="Logica\dRelSolicitudMuestras.vb" />
+    <Compile Include="Logica\dResultadoAntibiograma.vb" />
+    <Compile Include="Logica\dSalmonella.vb" />
+    <Compile Include="Logica\dSerologia.vb" />
+    <Compile Include="Logica\dSesion.vb" />
+    <Compile Include="Logica\dSolicitudAnalisis.vb" />
+    <Compile Include="Logica\dSubInforme.vb" />
+    <Compile Include="Logica\dSubproducto2.vb" />
+    <Compile Include="web\com\dSerologiaWeb_com.vb" />
+    <Compile Include="web\com\dSubproductosWeb_com.vb" />
+    <Compile Include="Logica\dTecnica.vb" />
+    <Compile Include="Logica\dTecnicos.vb" />
+    <Compile Include="Logica\dTipoAnalisis.vb" />
+    <Compile Include="Logica\dTipoFicha.vb" />
+    <Compile Include="Logica\dTipoInforme.vb" />
+    <Compile Include="Logica\dTipoPozo.vb" />
+    <Compile Include="Logica\dTipoUsuario.vb" />
+    <Compile Include="Logica\dUltimoNumero.vb" />
+    <Compile Include="Logica\dUsuario.vb" />
+    <Compile Include="Logica\dAgua2.vb" />
+    <Compile Include="Logica\dAnalisis.vb" />
+    <Compile Include="Logica\dTipoAntibiograma.vb" />
+    <Compile Include="Logica\dPseudomonas.vb" />
+    <Compile Include="Logica\dVolumenSiembra.vb" />
+    <Compile Include="Logica\dAutorizacion.vb" />
+    <Compile Include="Logica\dInformacionRetorno.vb" />
+    <Compile Include="Logica\dMotivoDescarte.vb" />
+    <Compile Include="Logica\dNitrato.vb" />
+    <Compile Include="Logica\dNitrito.vb" />
+    <Compile Include="Logica\dSubproducto.vb" />
+    <Compile Include="Logica\dMetodos.vb" />
+    <Compile Include="Logica\dCalidadSolicitud.vb" />
+    <Compile Include="Importador\dImpCalidad.vb" />
+    <Compile Include="Importador\dImpControl.vb" />
+    <Compile Include="Importador\dImpIbc.vb" />
+    <Compile Include="Importador\FormImportador.Designer.vb">
+      <DependentUpon>FormImportador.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Importador\FormImportador.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Importador\pImpCalidad.vb" />
+    <Compile Include="Importador\pImpControl.vb" />
+    <Compile Include="Importador\pImpIbc.vb" />
+    <Compile Include="Interfaz\FormCalidad.Designer.vb">
+      <DependentUpon>FormCalidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCalidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeCalidadLeche.Designer.vb">
+      <DependentUpon>FormInformeCalidadLeche.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeCalidadLeche.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeControlLechero.Designer.vb">
+      <DependentUpon>FormInformeControlLechero.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeControlLechero.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeInhibidores.Designer.vb">
+      <DependentUpon>FormInformeInhibidores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeInhibidores.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInhibidores.Designer.vb">
+      <DependentUpon>FormInhibidores.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInhibidores.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormListarFichas.Designer.vb">
+      <DependentUpon>FormListarFichas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormListarFichas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMuestrasNoAptas.Designer.vb">
+      <DependentUpon>FormMuestrasNoAptas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMuestrasNoAptas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormParatecnicos.Designer.vb">
+      <DependentUpon>FormParatecnicos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormParatecnicos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormParatecnicosControl.Designer.vb">
+      <DependentUpon>FormParatecnicosControl.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormParatecnicosControl.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSincronizaFichaCaravana.Designer.vb">
+      <DependentUpon>FormSincronizaFichaCaravana.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSincronizaFichaCaravana.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudCalidad.Designer.vb">
+      <DependentUpon>FormSolicitudCalidad.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudCalidad.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudCalidadMuestras.Designer.vb">
+      <DependentUpon>FormSolicitudCalidadMuestras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudCalidadMuestras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudControlLechero.Designer.vb">
+      <DependentUpon>FormSolicitudControlLechero.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudControlLechero.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSubirInformes.Designer.vb">
+      <DependentUpon>FormSubirInformes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSubirInformes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="web\com\pAgroNutricionWeb_com.vb" />
+    <Compile Include="web\com\pAgroSuelosWeb_com.vb" />
+    <Compile Include="web\com\pAguaWeb_com.vb" />
+    <Compile Include="web\com\pAmbientalWeb_com.vb" />
+    <Compile Include="web\com\pAntibiogramaWeb_com.vb" />
+    <Compile Include="Persistencia\pCalidadSolicitud.vb" />
+    <Compile Include="Persistencia\pAntibiograma2.vb" />
+    <Compile Include="Interfaz\FormAgua.Designer.vb">
+      <DependentUpon>FormAgua.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAgua.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAntibiograma2.Designer.vb">
+      <DependentUpon>FormAntibiograma2.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAntibiograma2.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormAntibiogramas.Designer.vb">
+      <DependentUpon>FormAntibiogramas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormAntibiogramas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarDescarte.Designer.vb">
+      <DependentUpon>FormBuscarDescarte.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarDescarte.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarMetodos.Designer.vb">
+      <DependentUpon>FormBuscarMetodos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarMetodos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarProductor.Designer.vb">
+      <DependentUpon>FormBuscarProductor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarProductor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarSolicitud.Designer.vb">
+      <DependentUpon>FormBuscarSolicitud.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormBuscarSolicitud.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletarMail.Designer.vb">
+      <DependentUpon>FormCompletarMail.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormCompletarMail.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEmpresaT.Designer.vb">
+      <DependentUpon>FormEmpresaT.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEmpresaT.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormEnvioCajas.Designer.vb">
+      <DependentUpon>FormEnvioCajas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormEnvioCajas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormFrascosRotos.Designer.vb">
+      <DependentUpon>FormFrascosRotos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormFrascosRotos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeEnvioxCliente.Designer.vb">
+      <DependentUpon>FormInformeEnvioxCliente.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformeEnvioxCliente.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesCajas.Designer.vb">
+      <DependentUpon>FormInformesCajas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesCajas.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormLogin.Designer.vb">
+      <DependentUpon>FormLogin.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormLogin.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormInicio.Designer.vb">
+      <DependentUpon>FormInicio.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInicio.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMOA24.Designer.vb">
+      <DependentUpon>FormMOA24.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMOA24.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMOA48.Designer.vb">
+      <DependentUpon>FormMOA48.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMOA48.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormMuestras.Designer.vb">
+      <DependentUpon>FormMuestras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormMuestras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidoFrascos.Designer.vb">
+      <DependentUpon>FormPedidoFrascos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidoFrascos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidosAutomaticos.Designer.vb">
+      <DependentUpon>FormPedidosAutomaticos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPedidosAutomaticos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormProductor.Designer.vb">
+      <DependentUpon>FormProductor.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormProductor.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudAgua.Designer.vb">
+      <DependentUpon>FormSolicitudAgua.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudAgua.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudAnalisis.Designer.vb">
+      <DependentUpon>FormSolicitudAnalisis.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudAnalisis.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudSubproductos.Designer.vb">
+      <DependentUpon>FormSolicitudSubproductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSolicitudSubproductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSubInformes.Designer.vb">
+      <DependentUpon>FormSubInformes.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSubInformes.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormSubproductos.Designer.vb">
+      <DependentUpon>FormSubproductos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormSubproductos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormTecnicos.Designer.vb">
+      <DependentUpon>FormTecnicos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormTecnicos.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormDescarteMuestras.Designer.vb">
+      <DependentUpon>FormDescarteMuestras.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormDescarteMuestras.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Module1.vb" />
+    <Compile Include="Persistencia\pCalidad.vb" />
+    <Compile Include="Persistencia\pCalidadSolicitudMuestra.vb" />
+    <Compile Include="web\com\pBrucelosisLecheWeb_com.vb" />
+    <Compile Include="web\com\pCalidadWeb_com.vb" />
+    <Compile Include="Persistencia\pControl.vb" />
+    <Compile Include="web\com\pClienteWeb_com.vb" />
+    <Compile Include="web\com\pControlAuxWeb_com.vb" />
+    <Compile Include="web\com\pControlLecheroWeb_com.vb" />
+    <Compile Include="Persistencia\pControlSolicitud.vb" />
+    <Compile Include="Persistencia\pIbc.vb" />
+    <Compile Include="Persistencia\pInhibidores.vb" />
+    <Compile Include="web\com\pEfluentesWeb_com.vb" />
+    <Compile Include="web\com\pLactometrosWeb_com.vb" />
+    <Compile Include="Persistencia\pMetodos.vb" />
+    <Compile Include="Persistencia\pAutorizacion.vb" />
+    <Compile Include="Persistencia\pInformacionRetorno.vb" />
+    <Compile Include="Persistencia\pListeriaAmbiental.vb" />
+    <Compile Include="Persistencia\pListeriaMono.vb" />
+    <Compile Include="Persistencia\pListeriaSPP.vb" />
+    <Compile Include="Persistencia\pMedios.vb" />
+    <Compile Include="Persistencia\pMotivoDescarte.vb" />
+    <Compile Include="Persistencia\pAnalisis.vb" />
+    <Compile Include="Persistencia\pAspecto.vb" />
+    <Compile Include="Persistencia\pColor.vb" />
+    <Compile Include="Persistencia\pDescarteMuestras.vb" />
+    <Compile Include="Persistencia\pDureza.vb" />
+    <Compile Include="Persistencia\pMateriaOrganica.vb" />
+    <Compile Include="Persistencia\pMuestraNoApta.vb" />
+    <Compile Include="Persistencia\pMuestrasNoAptas.vb" />
+    <Compile Include="Persistencia\pNitrato.vb" />
+    <Compile Include="Persistencia\pNitrito.vb" />
+    <Compile Include="Persistencia\pOlor.vb" />
+    <Compile Include="web\com\pOtrosServiciosWeb_com.vb" />
+    <Compile Include="web\com\pPalWeb_com.vb" />
+    <Compile Include="web\com\pParasitologiaWeb_com.vb" />
+    <Compile Include="web\com\pPatologiaWeb_com.vb" />
+    <Compile Include="Persistencia\pPedidosWeb.vb" />
+    <Compile Include="web\com\pPedidosWeb_com.vb" />
+    <Compile Include="web\com\pProductorWeb_com.vb" />
+    <Compile Include="Persistencia\pPseudomonas.vb" />
+    <Compile Include="Persistencia\pSalmonella.vb" />
+    <Compile Include="web\com\pSerologiaWeb_com.vb" />
+    <Compile Include="Persistencia\pSubproducto.vb" />
+    <Compile Include="Persistencia\pSubproducto2.vb" />
+    <Compile Include="web\com\pSubproductosWeb_com.vb" />
+    <Compile Include="Persistencia\pTecnica.vb" />
+    <Compile Include="Persistencia\pTipoAntibiograma.vb" />
+    <Compile Include="Persistencia\pAgua2.vb" />
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="Persistencia\pAgua.vb" />
+    <Compile Include="Persistencia\pAguaTratada.vb" />
+    <Compile Include="Persistencia\pAntibiograma.vb" />
+    <Compile Include="Persistencia\pDepartamento.vb" />
+    <Compile Include="Persistencia\pEmpresaT.vb" />
+    <Compile Include="Persistencia\pEnvioCajas.vb" />
+    <Compile Include="Persistencia\pEstadoConservacion.vb" />
+    <Compile Include="Persistencia\pFrascosRotos.vb" />
+    <Compile Include="Persistencia\pLocalidad.vb" />
+    <Compile Include="Persistencia\pMOA24.vb" />
+    <Compile Include="Persistencia\pMOA48.vb" />
+    <Compile Include="Persistencia\pMuestraExtraida.vb" />
+    <Compile Include="Persistencia\pMuestraFueraCondicion.vb" />
+    <Compile Include="Persistencia\pMuestras.vb" />
+    <Compile Include="Persistencia\pPedidos.vb" />
+    <Compile Include="Persistencia\pPedidosAuto.vb" />
+    <Compile Include="Persistencia\pProductor.vb" />
+    <Compile Include="Persistencia\pRelSolicitudCajas.vb" />
+    <Compile Include="Persistencia\pRelSolicitudMuestras.vb" />
+    <Compile Include="Persistencia\pResultadoAntibiograma.vb" />
+    <Compile Include="Persistencia\pSesion.vb" />
+    <Compile Include="Persistencia\pSolicitudAnalisis.vb" />
+    <Compile Include="Persistencia\pSubInforme.vb" />
+    <Compile Include="Persistencia\pTecnicos.vb" />
+    <Compile Include="Persistencia\pTipoAnalisis.vb" />
+    <Compile Include="Persistencia\pTipoFicha.vb" />
+    <Compile Include="Persistencia\pTipoInforme.vb" />
+    <Compile Include="Persistencia\pTipoPozo.vb" />
+    <Compile Include="Persistencia\pTipoUsuario.vb" />
+    <Compile Include="Persistencia\pUltimoNumero.vb" />
+    <Compile Include="Persistencia\pUsuario.vb" />
+    <Compile Include="Persistencia\pVolumenSiembra.vb" />
+    <Compile Include="web\florida\dCajasWeb.vb" />
+    <Compile Include="web\florida\dProductorWeb_Florida.vb" />
+    <Compile Include="web\florida\pCajasWeb.vb" />
+    <Compile Include="web\florida\pProductorWeb_Florida.vb" />
+    <Compile Include="web\uy\dAgroNutricionWeb_uy.vb" />
+    <Compile Include="web\uy\dAguaWeb_uy.vb" />
+    <Compile Include="web\uy\dAmbientalWeb_uy.vb" />
+    <Compile Include="web\uy\dAntibiogramaWeb_uy.vb" />
+    <Compile Include="web\uy\dCalidadWeb_uy.vb" />
+    <Compile Include="web\uy\dControlLecheroWeb_uy.vb" />
+    <Compile Include="web\uy\dLactometrosWeb_uy.vb" />
+    <Compile Include="web\uy\dOtrosServiciosWeb_uy.vb" />
+    <Compile Include="web\uy\dPalWeb_uy.vb" />
+    <Compile Include="web\uy\dParasitologiaWeb_uy.vb" />
+    <Compile Include="web\uy\dPatologiaWeb_uy.vb" />
+    <Compile Include="web\uy\dProductorWeb_uy.vb" />
+    <Compile Include="web\uy\dSerologiaWeb_uy.vb" />
+    <Compile Include="web\uy\dSubproductosWeb_uy.vb" />
+    <Compile Include="web\uy\pAgroNutricionWeb_uy.vb" />
+    <Compile Include="web\uy\pAguaWeb_uy.vb" />
+    <Compile Include="web\uy\pAmbientalWeb_uy.vb" />
+    <Compile Include="web\uy\pAntibiogramaWeb_uy.vb" />
+    <Compile Include="web\uy\pCalidadWeb_uy.vb" />
+    <Compile Include="web\uy\pControlLecheroWeb_uy.vb" />
+    <Compile Include="web\uy\pLactometrosWeb_uy.vb" />
+    <Compile Include="web\uy\pOtrosServiciosWeb_uy.vb" />
+    <Compile Include="web\uy\pPalWeb_uy.vb" />
+    <Compile Include="web\uy\pParasitologiaWeb_uy.vb" />
+    <Compile Include="web\uy\pPatologiaWeb_uy.vb" />
+    <Compile Include="web\uy\pProductorWeb_uy.vb" />
+    <Compile Include="web\uy\pSerologiaWeb_uy.vb" />
+    <Compile Include="web\uy\pSubproductosWeb_uy.vb" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="BentleyDelta\FormBentleyDeltaHistorial.resx">
+      <DependentUpon>FormBentleyDeltaHistorial.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BentleyDelta\FormBuscarVM.resx">
+      <DependentUpon>FormBuscarVM.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BentleyDelta\FormControlBD2.resx">
+      <DependentUpon>FormControlBD2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BentleyDelta\FormControlBentleyDelta.resx">
+      <DependentUpon>FormControlBentleyDelta.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BentleyDelta\FormGraficaControl.resx">
+      <DependentUpon>FormGraficaControl.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BentleyDelta\FormResultadosBD.resx">
+      <DependentUpon>FormResultadosBD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BentleyDelta\FormValoresMediosBD.resx">
+      <DependentUpon>FormValoresMediosBD.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMI\FormActividades.resx">
+      <DependentUpon>FormActividades.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMI\FormCMI.resx">
+      <DependentUpon>FormCMI.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMI\FormDimension.resx">
+      <DependentUpon>FormDimension.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMI\FormExportar.resx">
+      <DependentUpon>FormExportar.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMI\FormObjEspecifico.resx">
+      <DependentUpon>FormObjEspecifico.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="CMI\FormObjGral.resx">
+      <DependentUpon>FormObjGral.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gestor\FormGestor.resx">
+      <DependentUpon>FormGestor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Gestor\FormSubirInformesenMasa.resx">
+      <DependentUpon>FormSubirInformesenMasa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormColavecoSecale.resx">
+      <DependentUpon>FormColavecoSecale.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormGraficaCL.resx">
+      <DependentUpon>FormGraficaCL.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormGraficaControlIBC.resx">
+      <DependentUpon>FormGraficaControlIBC.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormGraficaGrasaProteina.resx">
+      <DependentUpon>FormGraficaGrasaProteina.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormGraficasRC.resx">
+      <DependentUpon>FormGraficasRC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormMaterialReferenciaMedias.resx">
+      <DependentUpon>FormMaterialReferenciaMedias.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormValoresEmpresa.resx">
+      <DependentUpon>FormValoresEmpresa.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormValoresVacaIndividual.resx">
+      <DependentUpon>FormValoresVacaIndividual.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormVerMaterialRefMedias.resx">
+      <DependentUpon>FormVerMaterialRefMedias.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormVerValoresIBC.resx">
+      <DependentUpon>FormVerValoresIBC.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Importador\FormImportador.resx">
+      <DependentUpon>FormImportador.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAccionCorrectiva.resx">
+      <DependentUpon>FormAccionCorrectiva.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormActas.resx">
+      <DependentUpon>FormActas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormActasPendientes.resx">
+      <DependentUpon>FormActasPendientes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormActualizarGestor.resx">
+      <DependentUpon>FormActualizarGestor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAgua.resx">
+      <DependentUpon>FormAgua.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAgua2.resx">
+      <DependentUpon>FormAgua2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAmbiental.resx">
+      <DependentUpon>FormAmbiental.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAnalisis.resx">
+      <DependentUpon>FormAnalisis.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAnalisisTercerizados.resx">
+      <DependentUpon>FormAnalisisTercerizados.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAnalisisTercerizadoTipo.resx">
+      <DependentUpon>FormAnalisisTercerizadoTipo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAnalisisUnidad.resx">
+      <DependentUpon>FormAnalisisUnidad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAntibiograma2.resx">
+      <DependentUpon>FormAntibiograma2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAntibiogramas.resx">
+      <DependentUpon>FormAntibiogramas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAsociar.resx">
+      <DependentUpon>FormAsociar.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormAutorizarCompra.resx">
+      <DependentUpon>FormAutorizarCompra.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBacteriologia.resx">
+      <DependentUpon>FormBacteriologia.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBajaSoluciones.resx">
+      <DependentUpon>FormBajaSoluciones.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBrucelosis.resx">
+      <DependentUpon>FormBrucelosis.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarActas.resx">
+      <DependentUpon>FormBuscarActas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarBrucelosisLeche.resx">
+      <DependentUpon>FormBuscarBrucelosisLeche.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarCajas.resx">
+      <DependentUpon>FormBuscarCajas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarCapacitacion.resx">
+      <DependentUpon>FormBuscarCapacitacion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarCliente.resx">
+      <DependentUpon>FormBuscarCliente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarCompras.resx">
+      <DependentUpon>FormBuscarCompras.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarDescarte.resx">
+      <DependentUpon>FormBuscarDescarte.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarEmpresa.resx">
+      <DependentUpon>FormBuscarEmpresa.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarMetodos.resx">
+      <DependentUpon>FormBuscarMetodos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarPedidos.resx">
+      <DependentUpon>FormBuscarPedidos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarProducto.resx">
+      <DependentUpon>FormBuscarProducto.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarProductor.resx">
+      <DependentUpon>FormBuscarProductor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarProveedor.resx">
+      <DependentUpon>FormBuscarProveedor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarSolicitud.resx">
+      <DependentUpon>FormBuscarSolicitud.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormBuscarTecnico.resx">
+      <DependentUpon>FormBuscarTecnico.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCajas.resx">
+      <DependentUpon>FormCajas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCalidad.resx">
+      <DependentUpon>FormCalidad.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCambiarVMIBC.resx">
+      <DependentUpon>FormCambiarVMIBC.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCapacitacion.resx">
+      <DependentUpon>FormCapacitacion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCapacitacion2.resx">
+      <DependentUpon>FormCapacitacion2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCaravanasFicha.resx">
+      <DependentUpon>FormCaravanasFicha.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCargarPedidosAutomaticos.resx">
+      <DependentUpon>FormCargarPedidosAutomaticos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCategoria.resx">
+      <DependentUpon>FormCategoria.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormClienteConvenio.resx">
+      <DependentUpon>FormClienteConvenio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormClientes.resx">
+      <DependentUpon>FormClientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormClientesMorosos.resx">
+      <DependentUpon>FormClientesMorosos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCodigos.resx">
+      <DependentUpon>FormCodigos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoATB.resx">
+      <DependentUpon>FormCompletoATB.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoATB2.resx">
+      <DependentUpon>FormCompletoATB2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoComboBox.resx">
+      <DependentUpon>FormCompletoComboBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoComboTextBox.resx">
+      <DependentUpon>FormCompletoComboTextBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoConclusion.resx">
+      <DependentUpon>FormCompletoConclusion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoDetalleMuestra.resx">
+      <DependentUpon>FormCompletoDetalleMuestra.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoEnvio2.resx">
+      <DependentUpon>FormCompletoEnvio2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoLaboratorio.resx">
+      <DependentUpon>FormCompletoLaboratorio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoMemo.resx">
+      <DependentUpon>FormCompletoMemo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoMetodo.resx">
+      <DependentUpon>FormCompletoMetodo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoMetodo2.resx">
+      <DependentUpon>FormCompletoMetodo2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoTercerizado.resx">
+      <DependentUpon>FormCompletoTercerizado.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoTercerizado2.resx">
+      <DependentUpon>FormCompletoTercerizado2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoTextBox.resx">
+      <DependentUpon>FormCompletoTextBox.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletarCompra.resx">
+      <DependentUpon>FormCompletarCompra.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletarEnvios.resx">
+      <DependentUpon>FormCompletarEnvios.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletarMail.resx">
+      <DependentUpon>FormCompletarMail.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoTextBox2.resx">
+      <DependentUpon>FormCompletoTextBox2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoUnidad.resx">
+      <DependentUpon>FormCompletoUnidad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompletoUnidad2.resx">
+      <DependentUpon>FormCompletoUnidad2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCompras.resx">
+      <DependentUpon>FormCompras.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormComprasInformes.resx">
+      <DependentUpon>FormComprasInformes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormComunicacionTecnica.resx">
+      <DependentUpon>FormComunicacionTecnica.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormContadorAnalisisEmpresas.resx">
+      <DependentUpon>FormContadorAnalisisEmpresas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormContadorAnalisisEmpresas2.resx">
+      <DependentUpon>FormContadorAnalisisEmpresas2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControldeInformes.resx">
+      <DependentUpon>FormControldeInformes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControldeInformesPre.resx">
+      <DependentUpon>FormControldeInformesPre.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlDeMedios.resx">
+      <DependentUpon>FormControlDeMedios.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlesRealizados.resx">
+      <DependentUpon>FormControlesRealizados.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlGrasaProteina.resx">
+      <DependentUpon>FormControlGrasaProteina.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlIBC.resx">
+      <DependentUpon>FormControlIBC.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlInformesEfluentes.resx">
+      <DependentUpon>FormControlInformesEfluentes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlInformesFQ.resx">
+      <DependentUpon>FormControlInformesFQ.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlInformesMicro.resx">
+      <DependentUpon>FormControlInformesMicro.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlInformesNutricion.resx">
+      <DependentUpon>FormControlInformesNutricion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlInformesSuelos.resx">
+      <DependentUpon>FormControlInformesSuelos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlMuestrasDuplicadas.resx">
+      <DependentUpon>FormControlMuestrasDuplicadas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormControlRespaldos.resx">
+      <DependentUpon>FormControlRespaldos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormConvenios.resx">
+      <DependentUpon>FormConvenios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCopiarArchivosCalidad.resx">
+      <DependentUpon>FormCopiarArchivosCalidad.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCorreo.resx">
+      <DependentUpon>FormCorreo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCorreoMorosos.resx">
+      <DependentUpon>FormCorreoMorosos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormCrearInformes.resx">
+      <DependentUpon>FormCrearInformes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormDescarteMuestras.resx">
+      <DependentUpon>FormDescarteMuestras.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormDesmarcarInformes.resx">
+      <DependentUpon>FormDesmarcarInformes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormDetalleMuestreo.resx">
+      <DependentUpon>FormDetalleMuestreo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEliminarControlLechero.resx">
+      <DependentUpon>FormEliminarControlLechero.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEliminarSolicitud.resx">
+      <DependentUpon>FormEliminarSolicitud.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEmbarqueCajas.resx">
+      <DependentUpon>FormEmbarqueCajas.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEmpresaT.resx">
+      <DependentUpon>FormEmpresaT.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEnviarMensajes.resx">
+      <DependentUpon>FormEnviarMensajes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEnvioCajas.resx">
+      <DependentUpon>FormEnvioCajas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEsporulados.resx">
+      <DependentUpon>FormEsporulados.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEstadisticaAntibiograma.resx">
+      <DependentUpon>FormEstadisticaAntibiograma.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEstadisticaCompras.resx">
+      <DependentUpon>FormEstadisticaCompras.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEstadisticaNutricion.resx">
+      <DependentUpon>FormEstadisticaNutricion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEstadisticasCalidad.resx">
+      <DependentUpon>FormEstadisticasCalidad.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEstadisticasCalidad_exe.resx">
+      <DependentUpon>FormEstadisticasCalidad_exe.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEstadisticaSuelos.resx">
+      <DependentUpon>FormEstadisticaSuelos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEstadisticas_Calidad.resx">
+      <DependentUpon>FormEstadisticas_Calidad.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormEstadoSolicitudIT.resx">
+      <DependentUpon>FormEstadoSolicitudIT.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormFiltrarProductor.resx">
+      <DependentUpon>FormFiltrarProductor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormFrascosAguaSinFacturar.resx">
+      <DependentUpon>FormFrascosAguaSinFacturar.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormFrascosDevueltos.resx">
+      <DependentUpon>FormFrascosDevueltos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormFrascosRotos.resx">
+      <DependentUpon>FormFrascosRotos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormFrascosSangreSinFacturar.resx">
+      <DependentUpon>FormFrascosSangreSinFacturar.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormHistorialCaja.resx">
+      <DependentUpon>FormHistorialCaja.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeAgua.resx">
+      <DependentUpon>FormInformeAgua.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeAntibiograma.resx">
+      <DependentUpon>FormInformeAntibiograma.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeBrucelosis.resx">
+      <DependentUpon>FormInformeBrucelosis.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeCalidadLeche.resx">
+      <DependentUpon>FormInformeCalidadLeche.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeCalidadLeche2.resx">
+      <DependentUpon>FormInformeCalidadLeche2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeControlLechero.resx">
+      <DependentUpon>FormInformeControlLechero.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeControlLechero2.resx">
+      <DependentUpon>FormInformeControlLechero2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeEnvioxCliente.resx">
+      <DependentUpon>FormInformeEnvioxCliente.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeFrascosEnviados.resx">
+      <DependentUpon>FormInformeFrascosEnviados.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeFrascosRotos.resx">
+      <DependentUpon>FormInformeFrascosRotos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeInhibidores.resx">
+      <DependentUpon>FormInformeInhibidores.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeLeucosis.resx">
+      <DependentUpon>FormInformeLeucosis.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeMuestrasDescartadas.resx">
+      <DependentUpon>FormInformeMuestrasDescartadas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeNutricion.resx">
+      <DependentUpon>FormInformeNutricion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformePAL.resx">
+      <DependentUpon>FormInformePAL.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeRCRB.resx">
+      <DependentUpon>FormInformeRCRB.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformesCajas.resx">
+      <DependentUpon>FormInformesCajas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformesCapacitacion.resx">
+      <DependentUpon>FormInformesCapacitacion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformesPendientes.resx">
+      <DependentUpon>FormInformesPendientes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformesSubidos.resx">
+      <DependentUpon>FormInformesSubidos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeSubproductos.resx">
+      <DependentUpon>FormInformeSubproductos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformeSuelos.resx">
+      <DependentUpon>FormInformeSuelos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormIngresarUsuario.resx">
+      <DependentUpon>FormIngresarUsuario.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInhibidores.resx">
+      <DependentUpon>FormInhibidores.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInhibidores_obs.resx">
+      <DependentUpon>FormInhibidores_obs.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInicio.resx">
+      <DependentUpon>FormInicio.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormLeucosis.resx">
+      <DependentUpon>FormLeucosis.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormListaDePrecios.resx">
+      <DependentUpon>FormListaDePrecios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormListadoCajasVerdesSinDevolver.resx">
+      <DependentUpon>FormListadoCajasVerdesSinDevolver.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormListadodeCompras.resx">
+      <DependentUpon>FormListadodeCompras.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormListadoDeSolicitudes.resx">
+      <DependentUpon>FormListadoDeSolicitudes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormListadoIngresosSinSolicitud.resx">
+      <DependentUpon>FormListadoIngresosSinSolicitud.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormListarFichas.resx">
+      <DependentUpon>FormListarFichas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormListarReclamos.resx">
+      <DependentUpon>FormListarReclamos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormListarSolicitudesIT.resx">
+      <DependentUpon>FormListarSolicitudesIT.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormLocacion.resx">
+      <DependentUpon>FormLocacion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormLogin.resx">
+      <DependentUpon>FormLogin.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMarcarSolicitudSubida.resx">
+      <DependentUpon>FormMarcarSolicitudSubida.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMaterialDeReferencia.resx">
+      <DependentUpon>FormMaterialDeReferencia.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Graficas\FormMaterialdeReferenciaBD.resx">
+      <DependentUpon>FormMaterialdeReferenciaBD.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMeta.resx">
+      <DependentUpon>FormMeta.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMetodos.resx">
+      <DependentUpon>FormMetodos.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMicotoxinasLeche.resx">
+      <DependentUpon>FormMicotoxinasLeche.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMOA24.resx">
+      <DependentUpon>FormMOA24.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMOA48.resx">
+      <DependentUpon>FormMOA48.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMuestras.resx">
+      <DependentUpon>FormMuestras.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormMuestrasNoAptas.resx">
+      <DependentUpon>FormMuestrasNoAptas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNoAtendibles.resx">
+      <DependentUpon>FormNoAtendibles.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNoCumple.resx">
+      <DependentUpon>FormNoCumple.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNoticias.resx">
+      <DependentUpon>FormNoticias.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNoticias2.resx">
+      <DependentUpon>FormNoticias2.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNotificaciones.resx">
+      <DependentUpon>FormNotificaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNuevoAnalisis.resx">
+      <DependentUpon>FormNuevoAnalisis.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNutricion.resx">
+      <DependentUpon>FormNutricion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNutricionAlimento.resx">
+      <DependentUpon>FormNutricionAlimento.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormNutricionClase.resx">
+      <DependentUpon>FormNutricionClase.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormObservaciones.resx">
+      <DependentUpon>FormObservaciones.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInterpretacionesNutricion.resx">
+      <DependentUpon>FormInterpretacionesNutricion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormObservacionesIT.resx">
+      <DependentUpon>FormObservacionesIT.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormObservacionesSinVisualizacion.resx">
+      <DependentUpon>FormObservacionesSinVisualizacion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormObservacionNutricion.resx">
+      <DependentUpon>FormObservacionNutricion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormOtrosLaboratorios.resx">
+      <DependentUpon>FormOtrosLaboratorios.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPal.resx">
+      <DependentUpon>FormPal.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPaquetes.resx">
+      <DependentUpon>FormPaquetes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormParatecnicos.resx">
+      <DependentUpon>FormParatecnicos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormParatecnicosControl.resx">
+      <DependentUpon>FormParatecnicosControl.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPedidoFrascos.resx">
+      <DependentUpon>FormPedidoFrascos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPedidoFrascosFlorida.resx">
+      <DependentUpon>FormPedidoFrascosFlorida.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPedidoFrascosWeb.resx">
+      <DependentUpon>FormPedidoFrascosWeb.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPedidosAutomaticos.resx">
+      <DependentUpon>FormPedidosAutomaticos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPedidosPendientes.resx">
+      <DependentUpon>FormPedidosPendientes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPedidoUrgente.resx">
+      <DependentUpon>FormPedidoUrgente.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPetriscan.resx">
+      <DependentUpon>FormPetriscan.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPlanAC.resx">
+      <DependentUpon>FormPlanAC.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPlanillaCapacitacion.resx">
+      <DependentUpon>FormPlanillaCapacitacion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPreInforme.resx">
+      <DependentUpon>FormPreInforme.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPresentaciones.resx">
+      <DependentUpon>FormPresentaciones.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormProductor.resx">
+      <DependentUpon>FormProductor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormProductorEmpresa.resx">
+      <DependentUpon>FormProductorEmpresa.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormProductos.resx">
+      <DependentUpon>FormProductos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormProlesa.resx">
+      <DependentUpon>FormProlesa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormProveedores.resx">
+      <DependentUpon>FormProveedores.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPsicrotrofos.resx">
+      <DependentUpon>FormPsicrotrofos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRangoAcreditacion.resx">
+      <DependentUpon>FormRangoAcreditacion.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRecibirCompra.resx">
+      <DependentUpon>FormRecibirCompra.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormReferencias.resx">
+      <DependentUpon>FormReferencias.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormReproducibilidad.resx">
+      <DependentUpon>FormReproducibilidad.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRgLab101.resx">
+      <DependentUpon>FormRgLab101.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRgLab31.resx">
+      <DependentUpon>FormRgLab31.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRgLab51.resx">
+      <DependentUpon>FormRgLab51.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRgLab51_carga.resx">
+      <DependentUpon>FormRgLab51_carga.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRgLab58.resx">
+      <DependentUpon>FormRgLab58.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRgLab88.resx">
+      <DependentUpon>FormRgLab88.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRgLab89.resx">
+      <DependentUpon>FormRgLab89.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRosaBengalaDescarte.resx">
+      <DependentUpon>FormRosaBengalaDescarte.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormRosaBengalaMarca.resx">
+      <DependentUpon>FormRosaBengalaMarca.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSecale.resx">
+      <DependentUpon>FormSecale.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSeleccionarTipoInforme.resx">
+      <DependentUpon>FormSeleccionarTipoInforme.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSinVisualizacion.resx">
+      <DependentUpon>FormSinVisualizacion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitarCotizacion.resx">
+      <DependentUpon>FormSolicitarCotizacion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitud.resx">
+      <DependentUpon>FormSolicitud.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudNutricion.resx">
+      <DependentUpon>FormSolicitudNutricion.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudRodeo.resx">
+      <DependentUpon>FormSolicitudRodeo.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudSuelos.resx">
+      <DependentUpon>FormSolicitudSuelos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolucionTrabajo.resx">
+      <DependentUpon>FormSolucionTrabajo.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSubirGestor.resx">
+      <DependentUpon>FormSubirGestor.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSubirInformes2.resx">
+      <DependentUpon>FormSubirInformes2.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSubirInformesSuelos.resx">
+      <DependentUpon>FormSubirInformesSuelos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSuelos.resx">
+      <DependentUpon>FormSuelos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormTareas.resx">
+      <DependentUpon>FormTareas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormTecnicoProductor.resx">
+      <DependentUpon>FormTecnicoProductor.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormTiemposEnviosInformes.resx">
+      <DependentUpon>FormTiemposEnviosInformes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormUltimasCompras.resx">
+      <DependentUpon>FormUltimasCompras.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormUnidades.resx">
+      <DependentUpon>FormUnidades.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormUsuarios.resx">
+      <DependentUpon>FormUsuarios.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormVerResultadosPAL.resx">
+      <DependentUpon>FormVerResultadosPAL.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormVerSolicitudes IT.resx">
+      <DependentUpon>FormVerSolicitudes IT.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="IT\FormPedidosAutomaticos_it.resx">
+      <DependentUpon>FormPedidosAutomaticos_it.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pruebas\FormClientesPorEmpresa.resx">
+      <DependentUpon>FormClientesPorEmpresa.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pruebas\FormEditarNumeroTambo.resx">
+      <DependentUpon>FormEditarNumeroTambo.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pruebas\FormEnviarCorreoImagenes.resx">
+      <DependentUpon>FormEnviarCorreoImagenes.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pruebas\FormPruebas.resx">
+      <DependentUpon>FormPruebas.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormReclamos.resx">
+      <DependentUpon>FormReclamos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSeleccionarTecnico.resx">
+      <DependentUpon>FormSeleccionarTecnico.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSeleccionarTecnicoPAL.resx">
+      <DependentUpon>FormSeleccionarTecnicoPAL.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSinaveleFicha.resx">
+      <DependentUpon>FormSinaveleFicha.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSincronizaFichaCaravana.resx">
+      <DependentUpon>FormSincronizaFichaCaravana.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSinSolicitud.resx">
+      <DependentUpon>FormSinSolicitud.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudAgua.resx">
+      <DependentUpon>FormSolicitudAgua.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudAmbiental.resx">
+      <DependentUpon>FormSolicitudAmbiental.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudAnalisis.resx">
+      <DependentUpon>FormSolicitudAnalisis.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudCalidad.resx">
+      <DependentUpon>FormSolicitudCalidad.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudCalidadMuestras.resx">
+      <DependentUpon>FormSolicitudCalidadMuestras.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudControlLechero.resx">
+      <DependentUpon>FormSolicitudControlLechero.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudIT.resx">
+      <DependentUpon>FormSolicitudIT.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudPAL.resx">
+      <DependentUpon>FormSolicitudPAL.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudParasitologia.resx">
+      <DependentUpon>FormSolicitudParasitologia.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSolicitudSubproductos.resx">
+      <DependentUpon>FormSolicitudSubproductos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSubInformes.resx">
+      <DependentUpon>FormSubInformes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSubirInformes.resx">
+      <DependentUpon>FormSubirInformes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormSubproductos.resx">
+      <DependentUpon>FormSubproductos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormTecnicos.resx">
+      <DependentUpon>FormTecnicos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormTiempos.resx">
+      <DependentUpon>FormTiempos.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormValorReferencia.resx">
+      <DependentUpon>FormValorReferencia.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pruebas\FormRCConvenio.resx">
+      <DependentUpon>FormRCConvenio.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reloj\FormAutorizaciones.resx">
+      <DependentUpon>FormAutorizaciones.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reloj\FormFeriados.resx">
+      <DependentUpon>FormFeriados.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reloj\FormInformes.resx">
+      <DependentUpon>FormInformes.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reloj\FormLicenciaAnual.resx">
+      <DependentUpon>FormLicenciaAnual.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reloj\FormLicencias.resx">
+      <DependentUpon>FormLicencias.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reloj\FormNotificacionesReloj.resx">
+      <DependentUpon>FormNotificacionesReloj.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reloj\FormPlanLicencias.resx">
+      <DependentUpon>FormPlanLicencias.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reloj\FormReloj.resx">
+      <DependentUpon>FormReloj.vb</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="ClassDiagram2.cd" />
+    <None Include="ClassDiagram3.cd" />
+    <None Include="Colaveco_ClaveTemporal.pfx" />
+    <None Include="My Project\app.manifest" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\DataSources\ADODB.Connection.datasource" />
+    <None Include="My Project\DataSources\ADODB._ADO.datasource" />
+    <None Include="My Project\DataSources\ADODB._Recordset.datasource" />
+    <None Include="My Project\DataSources\Colaveco.Conectoras.ConexionMySQL.datasource" />
+    <None Include="My Project\DataSources\dActasItem.datasource" />
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="IasHelperLib">
+      <Guid>{6BC096BB-0CE6-11D1-BAAE-00C04FC2E20D}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="Microsoft.Office.Core">
+      <Guid>{2DF8D04C-5BFA-101B-BDE5-00AA0044DE52}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>3</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.2.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 2.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.0">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.0 %28x86%29</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="icono.ico" />
+    <None Include="Resources\Font.bmp" />
+    <None Include="ClassDiagram1.cd" />
+    <None Include="Resources\excel.jpg" />
+    <EmbeddedResource Include="Resources\Roboto-Thin.ttf" />
+    <None Include="Service References\ServiceReference1\Colaveco.ServiceReference1.wsCargoRecuentos_Respuesta.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceReference1\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.vb</LastGenOutput>
+    </None>
+    <None Include="Service References\ServiceReference1\configuration.svcinfo" />
+    <None Include="Service References\ServiceReference1\WSCargaRecuentos.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceReference1\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{967B4E0D-AD0C-4609-AB67-0FA40C0206D8}" />
+    <Service Include="{C0C07587-41A7-46C8-8FBD-3F9C8EBE2DDC}" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reportes\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.VisualBasic.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

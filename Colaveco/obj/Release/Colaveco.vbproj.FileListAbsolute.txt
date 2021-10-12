@@ -1,0 +1,105 @@
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\ResolveAssemblyReference.cache
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarProductor.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormEmpresaT.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormEnvioCajas.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInicio.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormLogin.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormPedidoFrascos.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormProductor.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormTecnicos.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.Resources.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.vbproj.GenerateResource.Cache
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.vbproj.ResolveComReference.cache
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormAgua.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormAntibiogramas.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarDescarte.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarMetodos.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarSolicitud.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormDescarteMuestras.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormFrascosRotos.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformeEnvioxCliente.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformesAntibiograma.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformesCajas.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMOA24.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMOA48.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMuestras.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormPedidosAutomaticos.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudAgua.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudAnalisis.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudSubproductos.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSubInformes.resources
+E:\IT\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSubproductos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\ResolveAssemblyReference.cache
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Interop.IasHelperLib.dll
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.vbproj.ResolveComReference.cache
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.Form1.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormEjemploSQL.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormImportador.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormAgua.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormAnalisis.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormAntibiograma2.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormAntibiogramas.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarDescarte.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarMetodos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarPedidos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarProductor.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormBuscarSolicitud.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormCalidad.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormCompletarEnvios.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormCompletarMail.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormContadorAnalisisEmpresas.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormDescarteMuestras.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormEliminarControlLechero.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormEliminarSolicitud.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormEmpresaT.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormEnvioCajas.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormFrascosDevueltos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormFrascosRotos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformeCalidadLeche.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformeControlLechero.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformeEnvioxCliente.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformeFrascosEnviados.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformeFrascosRotos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformeInhibidores.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformesCajas.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInformesPendientes.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInhibidores.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInhibidores_obs.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormInicio.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormListarFichas.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormLogin.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMarcarSolicitudSubida.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMaterialDeReferencia.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMaterialdeReferenciaBD.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMOA24.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMOA48.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMuestras.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormMuestrasNoAptas.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormNoticias.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormPal.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormParatecnicos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormParatecnicosControl.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormPedidoFrascos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormPedidosAutomaticos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormProductor.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormProductorEmpresa.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormPruebas.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormReclamos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSeleccionarTecnico.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSincronizaFichaCaravana.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudAgua.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudAmbiental.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudAnalisis.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudCalidad.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudCalidadMuestras.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudControlLechero.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudParasitologia.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSolicitudSubproductos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSubInformes.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSubirInformes.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormSubproductos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormTecnicos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormTiempos.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.FormValorReferencia.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.Resources.resources
+E:\Mis Documentos\Dropbox\colaveco\Colaveco NET\Colaveco\Colaveco\obj\Release\Colaveco.vbproj.GenerateResource.Cache

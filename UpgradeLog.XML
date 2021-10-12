@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type='text/xsl' href='_UpgradeReport_Files/UpgradeReport.xslt'?><UpgradeLog>
+<Properties><Property Name="Solution" Value="Colaveco">
+</Property><Property Name="Archivo de la solución" Value="D:\Dropbox\Colaveco NET\Colaveco\Colaveco.sln">
+</Property><Property Name="Date" Value="jueves, 12 de mayo de 2016">
+</Property><Property Name="Time" Value="12:58">
+</Property></Properties><Event ErrorLevel="4" Project="Colaveco" Source="http://go.microsoft.com/fwlink/?LinkId=159919" Description="Advertencia: este proyecto requiere Crystal Reports, que ya no se incluye con Visual Studio. Haga clic aquí para obtener más información.">
+</Event><Event ErrorLevel="0" Project="Colaveco" Source="Colaveco\Colaveco.vbproj" Description="Proyecto convertido correctamente">
+</Event><Event ErrorLevel="3" Project="Colaveco" Source="Colaveco\Colaveco.vbproj" Description="Converted">
+</Event><Event ErrorLevel="0" Project="" Source="Colaveco.sln" Description="La solución se convirtió correctamente">
+</Event><Event ErrorLevel="3" Project="" Source="Colaveco.sln" Description="Converted">
+</Event><Event ErrorLevel="0" Project="Colaveco" Source="Colaveco\Colaveco.vbproj" Description="Examen completo: no es necesario actualizar los archivos de proyecto.">
+</Event><Event ErrorLevel="0" Project="Colaveco" Source="Colaveco\Colaveco.vbproj" Description="Las referencias a Microsoft.VisualBasic.PowerPacks.Vs se actualizaron a Microsoft.VisualBasic.PowerPacks.Vs 10.0.">
+</Event></UpgradeLog>

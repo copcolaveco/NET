@@ -1,0 +1,104 @@
+﻿Public Class FormMOA48
+#Region "Atributos"
+    Private _usuario As dUsuario
+    Public Property Usuario() As dUsuario
+        Get
+            Return _usuario
+        End Get
+        Set(ByVal value As dUsuario)
+            _usuario = value
+        End Set
+    End Property
+#End Region
+#Region "Constructores"
+    Public Sub New(ByVal u As dUsuario)
+
+        ' Llamada necesaria para el Diseñador de Windows Forms.
+        InitializeComponent()
+
+        ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
+        Usuario = u
+        cargarLista()
+        limpiar()
+    End Sub
+
+#End Region
+    Public Sub cargarLista()
+        Dim m As New dMOA48
+        Dim lista As New ArrayList
+        lista = m.listar
+        ListMOA48.Items.Clear()
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                For Each m In lista
+                    ListMOA48.Items.Add(m)
+                Next
+            End If
+        End If
+    End Sub
+
+
+    Private Sub ListMOA48_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListMOA48.SelectedIndexChanged
+        If ListMOA48.SelectedItems.Count = 1 Then
+            Dim moa As dMOA48 = CType(ListMOA48.SelectedItem, dMOA48)
+            TextId.Text = moa.ID
+            TextNombre.Text = moa.NOMBRE
+            TextOrden.Text = moa.ORDEN
+            TextNombre.Focus()
+        End If
+    End Sub
+    Public Sub limpiar()
+        TextId.Text = ""
+        TextNombre.Text = ""
+        TextOrden.Text = ""
+    End Sub
+
+    Private Sub ButtonNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonNuevo.Click
+        cargarLista()
+        limpiar()
+    End Sub
+
+    Private Sub ButtonGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonGuardar.Click
+        Dim nombre As String = TextNombre.Text.Trim
+        Dim orden As Integer = TextOrden.Text.Trim
+        If Not ListMOA48.SelectedItem Is Nothing And TextId.Text.Trim.Length > 0 Then
+            If TextNombre.Text.Trim.Length > 0 Then
+                Dim moa As New dMOA48()
+                Dim id As Long = TextId.Text.Trim
+                moa.ID = id
+                moa.NOMBRE = nombre
+                moa.ORDEN = orden
+                If (moa.modificar(Usuario)) Then
+                    MsgBox("Registro modificado", MsgBoxStyle.Information, "Atención")
+                Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                End If
+            End If
+        Else
+            If TextNombre.Text.Trim.Length > 0 Then
+                Dim moa As New dMOA48()
+                moa.NOMBRE = nombre
+                moa.ORDEN = orden
+                If (moa.guardar(Usuario)) Then
+                    MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
+                Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                End If
+            End If
+        End If
+        limpiar()
+        cargarLista()
+    End Sub
+
+    Private Sub ButtonEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonEliminar.Click
+        If Not ListMOA48.SelectedItem Is Nothing Then
+            Dim m As New dMOA48
+            Dim id As Long = CType(TextId.Text, Long)
+            m.ID = id
+            If (m.eliminar(Usuario)) Then
+                MsgBox("Registro eliminado", MsgBoxStyle.Information, "Atención")
+            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+            End If
+        End If
+        limpiar()
+        cargarLista()
+    End Sub
+End Class

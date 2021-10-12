@@ -1,0 +1,147 @@
+﻿Public Class dInhibidoresControl
+#Region "Atributos"
+    Private m_id As Long
+    Private m_ficha As Long
+    Private m_muestra As String
+    Private m_resultado As Integer
+    Private m_fecha As String
+    Private m_operador As String
+    Private m_marca As Integer
+
+#End Region
+
+#Region "Getters y Setters"
+    Public Property ID() As Long
+        Get
+            Return m_id
+        End Get
+        Set(ByVal value As Long)
+            m_id = value
+        End Set
+    End Property
+    Public Property FICHA() As Long
+        Get
+            Return m_ficha
+        End Get
+        Set(ByVal value As Long)
+            m_ficha = value
+        End Set
+    End Property
+    Public Property MUESTRA() As String
+        Get
+            Return m_muestra
+        End Get
+        Set(ByVal value As String)
+            m_muestra = value
+        End Set
+    End Property
+    Public Property RESULTADO() As Integer
+        Get
+            Return m_resultado
+        End Get
+        Set(ByVal value As Integer)
+            m_resultado = value
+        End Set
+    End Property
+    Public Property FECHA() As String
+        Get
+            Return m_fecha
+        End Get
+        Set(ByVal value As String)
+            m_fecha = value
+        End Set
+    End Property
+    Public Property OPERADOR() As Integer
+        Get
+            Return m_operador
+        End Get
+        Set(ByVal value As Integer)
+            m_operador = value
+        End Set
+    End Property
+    Public Property MARCA() As Integer
+        Get
+            Return m_marca
+        End Get
+        Set(ByVal value As Integer)
+            m_marca = value
+        End Set
+    End Property
+
+
+
+
+#End Region
+
+#Region "Constructores"
+    Public Sub New()
+        m_id = 0
+        m_ficha = 0
+        m_muestra = ""
+        m_resultado = 0
+        m_fecha = ""
+        m_operador = 0
+        m_marca = 0
+    End Sub
+    Public Sub New(ByVal id As Long, ByVal ficha As Long, ByVal muestra As String, ByVal resultado As Integer, ByVal fecha As String, ByVal operador As Integer, ByVal marca As Integer)
+        m_id = id
+        m_ficha = ficha
+        m_muestra = muestra
+        m_resultado = resultado
+        m_fecha = fecha
+        m_operador = operador
+        m_marca = marca
+    End Sub
+#End Region
+
+#Region "Métodos ABM"
+    Public Function guardar(ByVal usuario As dUsuario) As Boolean
+        Dim c As New pInhibidoresControl
+        Return c.guardar(Me, usuario)
+    End Function
+    Public Function modificar(ByVal usuario As dUsuario) As Boolean
+        Dim c As New pInhibidoresControl
+        Return c.modificar(Me, usuario)
+    End Function
+    Public Function eliminar(ByVal usuario As dUsuario) As Boolean
+        Dim c As New pInhibidoresControl
+        Return c.eliminar(Me, usuario)
+    End Function
+    Public Function buscar() As dInhibidoresControl
+        Dim c As New pInhibidoresControl
+        Return c.buscar(Me)
+    End Function
+    Public Function buscarxfichaxmuestra() As dInhibidoresControl
+        Dim c As New pInhibidoresControl
+        Return c.buscarxfichaxmuestra(Me)
+    End Function
+
+#End Region
+
+    Public Overrides Function ToString() As String
+        Return m_muestra
+    End Function
+    Public Function listar() As ArrayList
+        Dim c As New pInhibidoresControl
+        Return c.listar
+    End Function
+    Public Function listarsinmarca() As ArrayList
+        Dim c As New pInhibidoresControl
+        Return c.listarsinmarca
+    End Function
+
+    Public Function listarporid(ByVal texto As Long) As ArrayList
+        Dim c As New pInhibidoresControl
+        Return c.listarporid(texto)
+    End Function
+
+    Public Function listarporsolicitud(ByVal texto As Long) As ArrayList
+        Dim c As New pInhibidoresControl
+        Return c.listarporsolicitud(texto)
+    End Function
+    Public Function marcar() As Boolean
+        Dim c As New pInhibidoresControl
+        Return c.marcar(Me)
+    End Function
+    
+End Class

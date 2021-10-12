@@ -1,0 +1,76 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+Colaveco
+</name>
+</assembly>
+<members>
+<member name="P:Colaveco.ServiceReference1.wsCargoRecuentos.InstalacionID">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos.CodigoAccesso">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos.Recuentos">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos.Modo">
+	<comentarios/>
+</member><member name="T:Colaveco.ServiceReference1.wsCargoRecuentos">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuento_Item.TambCod">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuento_Item.RecuSem">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuento_Item.RecuSemFch">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuento_Item.PruCod">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuento_Item.Recuento">
+	<comentarios/>
+</member><member name="T:Colaveco.ServiceReference1.SDTRecuento_Item">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuentos_Error_Carga_Item.TambCod">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuentos_Error_Carga_Item.RecuSem">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuentos_Error_Carga_Item.PruCod">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuentos_Error_Carga_Item.Err_Codigo">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.SDTRecuentos_Error_Carga_Item.Err_Descripcion">
+	<comentarios/>
+</member><member name="T:Colaveco.ServiceReference1.SDTRecuentos_Error_Carga_Item">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos_Respuesta.InstalacionID">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos_Respuesta.Errores">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos_Respuesta.ErrCod">
+	<comentarios/>
+</member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos_Respuesta.ErrDesc">
+	<comentarios/>
+</member><member name="T:Colaveco.ServiceReference1.wsCargoRecuentos_Respuesta">
+	<comentarios/>
+</member><member name="P:Colaveco.My.Resources.Resources.ResourceManager">
+	<summary>
+  Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+</summary>
+</member><member name="P:Colaveco.My.Resources.Resources.Culture">
+	<summary>
+  Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+  búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
+</summary>
+</member><member name="P:Colaveco.My.Resources.Resources.excel">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Colaveco.My.Resources.Resources.Roboto_Thin">
+	<summary>
+  Busca un recurso adaptado de tipo System.Byte[].
+</summary>
+</member><member name="T:Colaveco.My.Resources.Resources">
+	<summary>
+  Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
+</summary>
+</member>
+</members>
+</doc>

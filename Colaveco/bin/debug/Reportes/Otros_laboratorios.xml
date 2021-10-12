@@ -1,0 +1,51 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Table">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="id" type="xs:int" minOccurs="0" />
+                <xs:element name="nombre" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Table>
+    <id>1</id>
+    <nombre>Ecotech</nombre>
+  </Table>
+  <Table>
+    <id>2</id>
+    <nombre>DILAVE</nombre>
+  </Table>
+  <Table>
+    <id>3</id>
+    <nombre>Lab. Agroindustrial Mercedes</nombre>
+  </Table>
+  <Table>
+    <id>4</id>
+    <nombre>INIA</nombre>
+  </Table>
+  <Table>
+    <id>5</id>
+    <nombre>Lab. Industrial Montevideo S.A.</nombre>
+  </Table>
+  <Table>
+    <id>6</id>
+    <nombre>ARSJ</nombre>
+  </Table>
+  <Table>
+    <id>7</id>
+    <nombre>Laclivet</nombre>
+  </Table>
+  <Table>
+    <id>8</id>
+    <nombre>LATU</nombre>
+  </Table>
+</NewDataSet>

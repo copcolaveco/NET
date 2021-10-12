@@ -1,0 +1,99 @@
+<?xml version="1.0" standalone="yes"?>
+<NewDataSet>
+  <xs:schema id="NewDataSet" xmlns="" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xs:element name="NewDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true">
+      <xs:complexType>
+        <xs:choice minOccurs="0" maxOccurs="unbounded">
+          <xs:element name="Table">
+            <xs:complexType>
+              <xs:sequence>
+                <xs:element name="id" type="xs:int" minOccurs="0" />
+                <xs:element name="nombre" type="xs:string" minOccurs="0" />
+              </xs:sequence>
+            </xs:complexType>
+          </xs:element>
+        </xs:choice>
+      </xs:complexType>
+    </xs:element>
+  </xs:schema>
+  <Table>
+    <id>1</id>
+    <nombre>Artigas</nombre>
+  </Table>
+  <Table>
+    <id>2</id>
+    <nombre>Canelones</nombre>
+  </Table>
+  <Table>
+    <id>3</id>
+    <nombre>Cerro Largo</nombre>
+  </Table>
+  <Table>
+    <id>4</id>
+    <nombre>Colonia</nombre>
+  </Table>
+  <Table>
+    <id>5</id>
+    <nombre>Durazno</nombre>
+  </Table>
+  <Table>
+    <id>6</id>
+    <nombre>Flores</nombre>
+  </Table>
+  <Table>
+    <id>7</id>
+    <nombre>Florida</nombre>
+  </Table>
+  <Table>
+    <id>8</id>
+    <nombre>Lavalleja</nombre>
+  </Table>
+  <Table>
+    <id>9</id>
+    <nombre>Maldonado</nombre>
+  </Table>
+  <Table>
+    <id>10</id>
+    <nombre>Montevideo</nombre>
+  </Table>
+  <Table>
+    <id>11</id>
+    <nombre>Paysandú</nombre>
+  </Table>
+  <Table>
+    <id>12</id>
+    <nombre>Río Negro</nombre>
+  </Table>
+  <Table>
+    <id>13</id>
+    <nombre>Rivera</nombre>
+  </Table>
+  <Table>
+    <id>14</id>
+    <nombre>Rocha</nombre>
+  </Table>
+  <Table>
+    <id>15</id>
+    <nombre>Salto</nombre>
+  </Table>
+  <Table>
+    <id>16</id>
+    <nombre>San José</nombre>
+  </Table>
+  <Table>
+    <id>17</id>
+    <nombre>Soriano</nombre>
+  </Table>
+  <Table>
+    <id>18</id>
+    <nombre>Tacuarembó</nombre>
+  </Table>
+  <Table>
+    <id>19</id>
+    <nombre>Treinta y Tres</nombre>
+  </Table>
+  <Table>
+    <id>999</id>
+    <nombre>No aportado</nombre>
+  </Table>
+</NewDataSet>
