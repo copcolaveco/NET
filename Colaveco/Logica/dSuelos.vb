@@ -352,7 +352,10 @@
         Dim n As New pSuelos
         Return n.listarporfecha(desde, hasta)
     End Function
-
+    Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+        Dim n As New pSuelos
+        Return n.listarxfecha(desde, hasta)
+    End Function
     Public Function listarporsolicitud(ByVal texto As Long) As ArrayList
         Dim n As New pSuelos
         Return n.listarporsolicitud(texto)

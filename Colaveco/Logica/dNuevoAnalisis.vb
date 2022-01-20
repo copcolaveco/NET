@@ -358,8 +358,8 @@
         Dim e As New pNuevoAnalisis
         Return e.listarxfichaxanalisis(ficha, id)
     End Function
-    Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+    Public Function listarxfecha(ByVal desde As String, ByVal hasta As String, ByVal idmuestra As Integer) As ArrayList
         Dim n As New pNuevoAnalisis
-        Return n.listarxfecha(desde, hasta)
+        Return n.listarxfecha(desde, hasta, idmuestra)
     End Function
 End Class

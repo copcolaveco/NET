@@ -326,6 +326,45 @@
             Return Nothing
         End Try
     End Function
+    Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+
+        Dim sql As String = ("select * from nuevoanalisis na inner join solicitudanalisis sa on sa.id = na.ficha inner join muestra m on m.id = sa.idmuestra where na.tipoinforme = 14 and sa.fechaingreso between '" & desde & "' AND '" & hasta & "' AND na.finalizado = 1 order by sa.fechaingreso asc")
+
+        'Dim sql As String = ("select * from nuevoanalisis na inner join solicitudanalisis sa on na.ficha = sa.id where sa.fechaingreso between '" & desde & "' AND '" & hasta & "' AND finalizado=1 order by sa.fechaingreso asc")
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim n As New dNuevoAnalisis
+                    n.ID = CType(unaFila.Item(0), Long)
+                    n.FICHA = CType(unaFila.Item(1), Long)
+                    n.MUESTRA = CType(unaFila.Item(2), String)
+                    n.DETALLEMUESTRA = CType(unaFila.Item(3), String)
+                    n.TIPOINFORME = CType(unaFila.Item(4), Integer)
+                    n.ANALISIS = CType(unaFila.Item(5), Integer)
+                    n.RESULTADO = CType(unaFila.Item(6), String)
+                    n.RESULTADO2 = CType(unaFila.Item(7), String)
+                    n.M = CType(unaFila.Item(8), Integer)
+                    n.METODO = CType(unaFila.Item(9), Integer)
+                    n.UNIDAD = CType(unaFila.Item(10), Integer)
+                    n.ORDEN = CType(unaFila.Item(11), Integer)
+                    n.OPERADOR = CType(unaFila.Item(12), Integer)
+                    n.FECHAPROCESO = CType(unaFila.Item(13), String)
+                    n.FINALIZADO = CType(unaFila.Item(14), Integer)
+                    Lista.Add(n)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
 
     Public Function listarporsolicitud(ByVal texto As Long) As ArrayList
         Dim sql As String = ("SELECT id, ficha, fechaingreso, fechaproceso, muestra, detallemuestra, fosforobray, fosforocitrico, nitratos, phagua, phkci, potasioint, sulfatos, nitrogenovegetal, carbonoorganico, materiaorganica, pmn, calcio, magnesio, sodio, acideztitulable, cic, sb, zinc, operador, marca FROM suelos where ficha = " & texto & " AND marca=0 order by muestra asc")

@@ -22,40 +22,45 @@ Partial Class FormEstadisticaSuelos
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.ButtonListar = New System.Windows.Forms.Button
-        Me.Label2 = New System.Windows.Forms.Label
-        Me.Label1 = New System.Windows.Forms.Label
-        Me.DateHasta = New System.Windows.Forms.DateTimePicker
-        Me.DateDesde = New System.Windows.Forms.DateTimePicker
-        Me.ButtonExportar = New System.Windows.Forms.Button
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView
-        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Ficha = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.FosforoBray = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.FosforoCitrico = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Nitratos = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.pHAgua = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.pHKCI = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PotasioIntercambiable = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Sulfatos = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.NitrogenoVegetal = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CarbonoOrganico = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.MateriaOrganica = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.PMN = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Calcio = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Magnesio = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Sodio = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.AcidezTitulable = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.CIC = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.SB = New System.Windows.Forms.DataGridViewTextBoxColumn
+        Me.ButtonListar = New System.Windows.Forms.Button()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.DateHasta = New System.Windows.Forms.DateTimePicker()
+        Me.DateDesde = New System.Windows.Forms.DateTimePicker()
+        Me.ButtonExportar = New System.Windows.Forms.Button()
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ficha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FosforoBray = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FosforoCitrico = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Nitratos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.pHAgua = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.pHKCI = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PotasioIntercambiable = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sulfatos = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.NitrogenoVegetal = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CarbonoOrganico = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.MateriaOrganica = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.PMN = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Calcio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Magnesio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Sodio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.AcidezTitulable = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.CIC = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.SB = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DtDesde = New System.Windows.Forms.DateTimePicker()
+        Me.DtHasta = New System.Windows.Forms.DateTimePicker()
+        Me.BtnListar2020 = New System.Windows.Forms.Button()
+        Me.BtnExcelExportar = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'ButtonListar
         '
-        Me.ButtonListar.Location = New System.Drawing.Point(234, 26)
+        Me.ButtonListar.Location = New System.Drawing.Point(312, 32)
+        Me.ButtonListar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonListar.Name = "ButtonListar"
-        Me.ButtonListar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonListar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonListar.TabIndex = 20
         Me.ButtonListar.Text = "Listar"
         Me.ButtonListar.UseVisualStyleBackColor = True
@@ -63,43 +68,48 @@ Partial Class FormEstadisticaSuelos
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(118, 13)
+        Me.Label2.Location = New System.Drawing.Point(157, 16)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(35, 13)
+        Me.Label2.Size = New System.Drawing.Size(45, 17)
         Me.Label2.TabIndex = 15
         Me.Label2.Text = "Hasta"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 13)
+        Me.Label1.Location = New System.Drawing.Point(12, 16)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(38, 13)
+        Me.Label1.Size = New System.Drawing.Size(49, 17)
         Me.Label1.TabIndex = 14
         Me.Label1.Text = "Desde"
         '
         'DateHasta
         '
         Me.DateHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateHasta.Location = New System.Drawing.Point(118, 29)
+        Me.DateHasta.Location = New System.Drawing.Point(157, 36)
+        Me.DateHasta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateHasta.Name = "DateHasta"
-        Me.DateHasta.Size = New System.Drawing.Size(100, 20)
+        Me.DateHasta.Size = New System.Drawing.Size(132, 22)
         Me.DateHasta.TabIndex = 13
         '
         'DateDesde
         '
         Me.DateDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateDesde.Location = New System.Drawing.Point(12, 29)
+        Me.DateDesde.Location = New System.Drawing.Point(16, 36)
+        Me.DateDesde.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateDesde.Name = "DateDesde"
-        Me.DateDesde.Size = New System.Drawing.Size(100, 20)
+        Me.DateDesde.Size = New System.Drawing.Size(132, 22)
         Me.DateDesde.TabIndex = 12
         '
         'ButtonExportar
         '
         Me.ButtonExportar.Image = Global.Colaveco.My.Resources.Resources.excel
-        Me.ButtonExportar.Location = New System.Drawing.Point(315, 26)
+        Me.ButtonExportar.Location = New System.Drawing.Point(420, 32)
+        Me.ButtonExportar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonExportar.Name = "ButtonExportar"
-        Me.ButtonExportar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonExportar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonExportar.TabIndex = 22
         Me.ButtonExportar.UseVisualStyleBackColor = True
         '
@@ -107,10 +117,11 @@ Partial Class FormEstadisticaSuelos
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Ficha, Me.FosforoBray, Me.FosforoCitrico, Me.Nitratos, Me.pHAgua, Me.pHKCI, Me.PotasioIntercambiable, Me.Sulfatos, Me.NitrogenoVegetal, Me.CarbonoOrganico, Me.MateriaOrganica, Me.PMN, Me.Calcio, Me.Magnesio, Me.Sodio, Me.AcidezTitulable, Me.CIC, Me.SB})
-        Me.DataGridView1.Location = New System.Drawing.Point(12, 55)
+        Me.DataGridView1.Location = New System.Drawing.Point(16, 125)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(1021, 544)
+        Me.DataGridView1.Size = New System.Drawing.Size(1361, 613)
         Me.DataGridView1.TabIndex = 23
         '
         'Id
@@ -227,11 +238,53 @@ Partial Class FormEstadisticaSuelos
         Me.SB.Name = "SB"
         Me.SB.Width = 55
         '
+        'DtDesde
+        '
+        Me.DtDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtDesde.Location = New System.Drawing.Point(16, 89)
+        Me.DtDesde.Margin = New System.Windows.Forms.Padding(4)
+        Me.DtDesde.Name = "DtDesde"
+        Me.DtDesde.Size = New System.Drawing.Size(132, 22)
+        Me.DtDesde.TabIndex = 24
+        '
+        'DtHasta
+        '
+        Me.DtHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
+        Me.DtHasta.Location = New System.Drawing.Point(156, 89)
+        Me.DtHasta.Margin = New System.Windows.Forms.Padding(4)
+        Me.DtHasta.Name = "DtHasta"
+        Me.DtHasta.Size = New System.Drawing.Size(132, 22)
+        Me.DtHasta.TabIndex = 25
+        '
+        'BtnListar2020
+        '
+        Me.BtnListar2020.Location = New System.Drawing.Point(312, 89)
+        Me.BtnListar2020.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnListar2020.Name = "BtnListar2020"
+        Me.BtnListar2020.Size = New System.Drawing.Size(100, 28)
+        Me.BtnListar2020.TabIndex = 26
+        Me.BtnListar2020.Text = "Listar"
+        Me.BtnListar2020.UseVisualStyleBackColor = True
+        '
+        'BtnExcelExportar
+        '
+        Me.BtnExcelExportar.Image = Global.Colaveco.My.Resources.Resources.excel
+        Me.BtnExcelExportar.Location = New System.Drawing.Point(420, 89)
+        Me.BtnExcelExportar.Margin = New System.Windows.Forms.Padding(4)
+        Me.BtnExcelExportar.Name = "BtnExcelExportar"
+        Me.BtnExcelExportar.Size = New System.Drawing.Size(100, 28)
+        Me.BtnExcelExportar.TabIndex = 27
+        Me.BtnExcelExportar.UseVisualStyleBackColor = True
+        '
         'FormEstadisticaSuelos
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1044, 611)
+        Me.ClientSize = New System.Drawing.Size(1392, 752)
+        Me.Controls.Add(Me.BtnExcelExportar)
+        Me.Controls.Add(Me.BtnListar2020)
+        Me.Controls.Add(Me.DtHasta)
+        Me.Controls.Add(Me.DtDesde)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.ButtonExportar)
         Me.Controls.Add(Me.ButtonListar)
@@ -239,6 +292,7 @@ Partial Class FormEstadisticaSuelos
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DateHasta)
         Me.Controls.Add(Me.DateDesde)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormEstadisticaSuelos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Estadística Suelos"
@@ -273,4 +327,8 @@ Partial Class FormEstadisticaSuelos
     Friend WithEvents AcidezTitulable As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents CIC As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents SB As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DtDesde As System.Windows.Forms.DateTimePicker
+    Friend WithEvents DtHasta As System.Windows.Forms.DateTimePicker
+    Friend WithEvents BtnListar2020 As System.Windows.Forms.Button
+    Friend WithEvents BtnExcelExportar As System.Windows.Forms.Button
 End Class

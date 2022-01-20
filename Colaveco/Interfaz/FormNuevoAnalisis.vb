@@ -283,6 +283,7 @@
                         End If
                     End If
                     fila = fila + 1
+                    columna = 0
                 Next
             End If
         End If

@@ -916,6 +916,9 @@ Public Class FormSincronizaFichaCaravana
                         Else
                             Dim valorurea As Integer
                             valorurea = c.UREA * 0.466
+                            If valorurea > 20 Or valorurea < 9 Then
+                                x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                            End If
                             x1hoja.Cells(fila, columna).formula = FormatNumber(valorurea, 0)
                             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                             x1hoja.Cells(fila, columna).Font.Size = 8
@@ -1232,6 +1235,9 @@ Public Class FormSincronizaFichaCaravana
                             Else
                                 Dim valorurea As Integer
                                 valorurea = c.UREA * 0.466
+                                If valorurea > 20 Or valorurea < 9 Then
+                                    x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                                End If
                                 x1hoja.Cells(fila, columna).formula = FormatNumber(valorurea, 0)
                                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                                 x1hoja.Cells(fila, columna).Font.Size = 8

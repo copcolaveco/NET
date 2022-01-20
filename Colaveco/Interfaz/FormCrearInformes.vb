@@ -1358,7 +1358,7 @@ Public Class FormCrearInformes
         x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
         x1hoja.Cells(fila, columna).Font.Size = 6
         Dim listademetodos As String = ""
-        listademetodos = "RCS: ISO 13366-2 - IDF 148-2:2006 // Grasa, Proteína, Lactosa *: ISO 9622 - IDF141:2013 // Crioscopía*, Urea*, Caseína*: Boletín FIL 393/2003 // Sólidos totales: Boletín FIL 208/1987 // R.Bacteriano Total: Citometría de flujo - PE.LAB.62 // Inhibidores: Delvo Test - PE.LAB.17 // Antibióticos en leche: ROSA Charm* // Psicrótrofos*: FIL 132:2004 mod. // Esporulados Anaerobios*: NMP - CNERNA, 1896 mod. // Aflatoxína M1*: ROSA Charm"
+        listademetodos = "RCS: ISO 13366-2 - IDF 148-2:2006 // Grasa, Proteína, Solidos Totales, Lactosa *: ISO 9622 - IDF141:2013 // Crioscopía*, Urea*, Caseína*: Boletín FIL 393/2003 // R.Bacteriano Total: Citometría de flujo - PE.LAB.62 // Inhibidores: Delvo Test - PE.LAB.17 // Antibióticos en leche: ROSA Charm* // Psicrótrofos*: FIL 132:2004 mod. // Esporulados Anaerobios*: NMP - CNERNA, 1896 mod. // Aflatoxína M1*: ROSA Charm"
         columna = 1
         fila = fila + 2
         '******************************************************************************************************
@@ -1657,6 +1657,9 @@ Public Class FormCrearInformes
                                 x1hoja.Cells(fila, columna).formula = valorurea
                                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                                 x1hoja.Cells(fila, columna).Font.Size = 8
+                                If valorurea > 20 Or valorurea < 9 Then
+                                    x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                                End If
                                 columna = columna + 1
                             Else
                                 x1hoja.Cells(fila, columna).formula = "-"

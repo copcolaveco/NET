@@ -518,6 +518,7 @@ Public Class FormRgLab88
         End If
     End Sub
     Private Sub listarfuerarango()
+
         Dim cc As New dCrioscopia_Control
         Dim lista As New ArrayList
         lista = cc.listarsinmarcar
@@ -532,6 +533,21 @@ Public Class FormRgLab88
                     columna = columna + 1
                     DataGridView2(columna, fila).Value = cc.FICHA
                     columna = columna + 1
+
+                    Dim r As New dRgLab88
+                    Dim lista2 As New ArrayList
+                    lista2 = r.listar
+                    If Not lista Is Nothing Then
+                        If lista.Count > 0 Then
+                            Dim fila2 As Integer = 0
+                            Dim columna2 As Integer = 0
+                            DataGridView1.Rows.Add(lista.Count)
+                            For Each r In lista
+
+                            Next
+                        End If
+                    End If
+
                     DataGridView2(columna, fila).Value = cc.MUESTRA
                     columna = 0
                     fila = fila + 1

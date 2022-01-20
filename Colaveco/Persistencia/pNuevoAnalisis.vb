@@ -989,9 +989,11 @@
             Return Nothing
         End Try
     End Function
-    Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+    Public Function listarxfecha(ByVal desde As String, ByVal hasta As String, ByVal idmuestra As Integer) As ArrayList
 
-        Dim sql As String = ("select * from nuevoanalisis na inner join solicitudanalisis sa on na.ficha = sa.id where sa.fechaingreso between '" & desde & "' AND '" & hasta & "' AND finalizado=1 order by sa.fechaingreso asc")
+        Dim sql As String = ("select * from nuevoanalisis na inner join solicitudanalisis sa on sa.id = na.ficha inner join muestra m on m.id = sa.idmuestra where na.tipoinforme = 13 and sa.fechaingreso between '" & desde & "' AND '" & hasta & "' AND sa.idmuestra = " & idmuestra & " order by sa.fechaingreso asc")
+
+        'Dim sql As String = ("select * from nuevoanalisis na inner join solicitudanalisis sa on na.ficha = sa.id where sa.fechaingreso between '" & desde & "' AND '" & hasta & "' AND finalizado=1 order by sa.fechaingreso asc")
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet

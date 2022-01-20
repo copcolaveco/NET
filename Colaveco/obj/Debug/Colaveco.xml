@@ -6,7 +6,28 @@ Colaveco
 </name>
 </assembly>
 <members>
-<member name="P:Colaveco.ServiceReference1.wsCargoRecuentos.InstalacionID">
+<member name="P:Colaveco.My.Resources.Resources.ResourceManager">
+	<summary>
+  Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
+</summary>
+</member><member name="P:Colaveco.My.Resources.Resources.Culture">
+	<summary>
+  Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
+  búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
+</summary>
+</member><member name="P:Colaveco.My.Resources.Resources.excel">
+	<summary>
+  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+</summary>
+</member><member name="P:Colaveco.My.Resources.Resources.Roboto_Thin">
+	<summary>
+  Busca un recurso adaptado de tipo System.Byte[].
+</summary>
+</member><member name="T:Colaveco.My.Resources.Resources">
+	<summary>
+  Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
+</summary>
+</member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos.InstalacionID">
 	<comentarios/>
 </member><member name="P:Colaveco.ServiceReference1.wsCargoRecuentos.CodigoAccesso">
 	<comentarios/>
@@ -50,27 +71,6 @@ Colaveco
 	<comentarios/>
 </member><member name="T:Colaveco.ServiceReference1.wsCargoRecuentos_Respuesta">
 	<comentarios/>
-</member><member name="P:Colaveco.My.Resources.Resources.ResourceManager">
-	<summary>
-  Devuelve la instancia de ResourceManager almacenada en caché utilizada por esta clase.
-</summary>
-</member><member name="P:Colaveco.My.Resources.Resources.Culture">
-	<summary>
-  Reemplaza la propiedad CurrentUICulture del subproceso actual para todas las
-  búsquedas de recursos mediante esta clase de recurso fuertemente tipado.
-</summary>
-</member><member name="P:Colaveco.My.Resources.Resources.excel">
-	<summary>
-  Busca un recurso adaptado de tipo System.Drawing.Bitmap.
-</summary>
-</member><member name="P:Colaveco.My.Resources.Resources.Roboto_Thin">
-	<summary>
-  Busca un recurso adaptado de tipo System.Byte[].
-</summary>
-</member><member name="T:Colaveco.My.Resources.Resources">
-	<summary>
-  Clase de recurso fuertemente tipado, para buscar cadenas traducidas, etc.
-</summary>
 </member>
 </members>
 </doc>

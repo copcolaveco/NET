@@ -55,8 +55,6 @@ Partial Class FormEstadisticaNutricion
         Me.DateDesde2 = New System.Windows.Forms.DateTimePicker()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.DateHasta2 = New System.Windows.Forms.DateTimePicker()
-        Me.CheckClaseAlimento2 = New System.Windows.Forms.CheckBox()
-        Me.ComboClase2 = New System.Windows.Forms.ComboBox()
         Me.CheckAlimento2 = New System.Windows.Forms.CheckBox()
         Me.ComboAlimento2 = New System.Windows.Forms.ComboBox()
         Me.ButtonListar2 = New System.Windows.Forms.Button()
@@ -320,26 +318,6 @@ Partial Class FormEstadisticaNutricion
         Me.DateHasta2.Size = New System.Drawing.Size(132, 22)
         Me.DateHasta2.TabIndex = 18
         '
-        'CheckClaseAlimento2
-        '
-        Me.CheckClaseAlimento2.AutoSize = True
-        Me.CheckClaseAlimento2.Location = New System.Drawing.Point(301, 96)
-        Me.CheckClaseAlimento2.Margin = New System.Windows.Forms.Padding(4)
-        Me.CheckClaseAlimento2.Name = "CheckClaseAlimento2"
-        Me.CheckClaseAlimento2.Size = New System.Drawing.Size(142, 21)
-        Me.CheckClaseAlimento2.TabIndex = 19
-        Me.CheckClaseAlimento2.Text = "Clase de alimento"
-        Me.CheckClaseAlimento2.UseVisualStyleBackColor = True
-        '
-        'ComboClase2
-        '
-        Me.ComboClase2.FormattingEnabled = True
-        Me.ComboClase2.Location = New System.Drawing.Point(301, 119)
-        Me.ComboClase2.Margin = New System.Windows.Forms.Padding(4)
-        Me.ComboClase2.Name = "ComboClase2"
-        Me.ComboClase2.Size = New System.Drawing.Size(273, 24)
-        Me.ComboClase2.TabIndex = 20
-        '
         'CheckAlimento2
         '
         Me.CheckAlimento2.AutoSize = True
@@ -389,8 +367,6 @@ Partial Class FormEstadisticaNutricion
         Me.Controls.Add(Me.ButtonListar2)
         Me.Controls.Add(Me.ComboAlimento2)
         Me.Controls.Add(Me.CheckAlimento2)
-        Me.Controls.Add(Me.ComboClase2)
-        Me.Controls.Add(Me.CheckClaseAlimento2)
         Me.Controls.Add(Me.DateHasta2)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.DateDesde2)
@@ -432,8 +408,6 @@ Partial Class FormEstadisticaNutricion
     Friend WithEvents DateDesde2 As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents DateHasta2 As System.Windows.Forms.DateTimePicker
-    Friend WithEvents CheckClaseAlimento2 As System.Windows.Forms.CheckBox
-    Friend WithEvents ComboClase2 As System.Windows.Forms.ComboBox
     Friend WithEvents CheckAlimento2 As System.Windows.Forms.CheckBox
     Friend WithEvents ComboAlimento2 As System.Windows.Forms.ComboBox
     Friend WithEvents ButtonListar2 As System.Windows.Forms.Button

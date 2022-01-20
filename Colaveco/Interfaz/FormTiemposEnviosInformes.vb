@@ -97,8 +97,8 @@ Public Class FormTiemposEnviosInformes
         Dim fechasta As String
         Dim fechainicio As Date
         Dim fechafin As Date
-        Dim numeros(200) As Integer
-        For i = 0 To 200
+        Dim numeros(366) As Integer
+        For i = 0 To 366
             numeros(i) = 0
         Next i
         fecdesde = Format(desde, "yyyy-MM-dd")
@@ -2900,8 +2900,8 @@ Public Class FormTiemposEnviosInformes
         Dim fechasta As String
         Dim fechainicio As Date
         Dim fechafin As Date
-        Dim numeros(200) As Integer
-        For i = 0 To 200
+        Dim numeros(400) As Integer
+        For i = 0 To 400
             numeros(i) = 0
         Next i
         fecdesde = Format(desde, "yyyy-MM-dd")
