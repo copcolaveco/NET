@@ -164,23 +164,22 @@ Public Class FormEmbarqueCajas
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         If DataGridView1.Columns(e.ColumnIndex).Name = "Cargada" Then
-            If Usuario.ID = 1 Or Usuario.ID = 3 Or Usuario.ID = 5 Or Usuario.ID = 8 Or Usuario.ID = 38 Or Usuario.ID = 39 Or Usuario.ID = 7 Or Usuario.ID = 31 Or Usuario.ID = 112 Then
-                Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
-                Dim id As Long = 0
-                Dim ec As New dEnvioCajas
-                id = row.Cells("Id").Value
-                ec.ID = id
-                ec = ec.buscar2
-                If Not ec Is Nothing Then
-                    If ec.IDEMPRESA <> 7 And ec.IDEMPRESA <> 13 Then
-                        Dim v As New FormCompletoEnvio2(id, Usuario)
-                        v.ShowDialog()
-                    End If
-                    ec.marcarcargada(Usuario)
+
+            Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+            Dim id As Long = 0
+            Dim ec As New dEnvioCajas
+            id = row.Cells("Id").Value
+            ec.ID = id
+            ec = ec.buscar2
+            If Not ec Is Nothing Then
+                If ec.IDEMPRESA <> 7 And ec.IDEMPRESA <> 13 Then
+                    Dim v As New FormCompletoEnvio2(id, Usuario)
+                    v.ShowDialog()
                 End If
-                listarsincargar()
-                listarcargadas()
+                ec.marcarcargada(Usuario)
             End If
+            listarsincargar()
+            listarcargadas()
         End If
     End Sub
 

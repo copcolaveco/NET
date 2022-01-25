@@ -58,7 +58,7 @@ Partial Class FormEstadisticaSuelos
         'ButtonListar
         '
         Me.ButtonListar.Location = New System.Drawing.Point(312, 32)
-        Me.ButtonListar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonListar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonListar.Name = "ButtonListar"
         Me.ButtonListar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonListar.TabIndex = 20
@@ -89,7 +89,7 @@ Partial Class FormEstadisticaSuelos
         '
         Me.DateHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateHasta.Location = New System.Drawing.Point(157, 36)
-        Me.DateHasta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DateHasta.Margin = New System.Windows.Forms.Padding(4)
         Me.DateHasta.Name = "DateHasta"
         Me.DateHasta.Size = New System.Drawing.Size(132, 22)
         Me.DateHasta.TabIndex = 13
@@ -98,7 +98,7 @@ Partial Class FormEstadisticaSuelos
         '
         Me.DateDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateDesde.Location = New System.Drawing.Point(16, 36)
-        Me.DateDesde.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DateDesde.Margin = New System.Windows.Forms.Padding(4)
         Me.DateDesde.Name = "DateDesde"
         Me.DateDesde.Size = New System.Drawing.Size(132, 22)
         Me.DateDesde.TabIndex = 12
@@ -107,7 +107,7 @@ Partial Class FormEstadisticaSuelos
         '
         Me.ButtonExportar.Image = Global.Colaveco.My.Resources.Resources.excel
         Me.ButtonExportar.Location = New System.Drawing.Point(420, 32)
-        Me.ButtonExportar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonExportar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonExportar.Name = "ButtonExportar"
         Me.ButtonExportar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonExportar.TabIndex = 22
@@ -118,7 +118,7 @@ Partial Class FormEstadisticaSuelos
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Ficha, Me.FosforoBray, Me.FosforoCitrico, Me.Nitratos, Me.pHAgua, Me.pHKCI, Me.PotasioIntercambiable, Me.Sulfatos, Me.NitrogenoVegetal, Me.CarbonoOrganico, Me.MateriaOrganica, Me.PMN, Me.Calcio, Me.Magnesio, Me.Sodio, Me.AcidezTitulable, Me.CIC, Me.SB})
         Me.DataGridView1.Location = New System.Drawing.Point(16, 125)
-        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(1361, 613)
@@ -292,7 +292,7 @@ Partial Class FormEstadisticaSuelos
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DateHasta)
         Me.Controls.Add(Me.DateDesde)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormEstadisticaSuelos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Estadística Suelos"

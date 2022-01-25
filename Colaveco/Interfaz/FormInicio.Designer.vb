@@ -236,7 +236,6 @@ Partial Class FormInicio
         Me.AccionesCorrectivasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.PlanDeAcciónCorrectivaToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SolicitudesParaITToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
-        Me.TiemposDeEnvíosDeInformesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RGLAB31ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RGLAB51ToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RGLAB51informesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -289,6 +288,7 @@ Partial Class FormInicio
         Me.CopiarArchivosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SolicitudesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SubirInformesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ActualizarGestorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.DateFecha = New System.Windows.Forms.DateTimePicker()
         Me.DataGridTareas = New System.Windows.Forms.DataGridView()
         Me.IdTarea = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -372,7 +372,7 @@ Partial Class FormInicio
         Me.NombrePend = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ButtonCrearInformes = New System.Windows.Forms.Button()
-        Me.ActualizarGestorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TimepoDeEnvíoDeInformesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridTareas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -1542,7 +1542,7 @@ Partial Class FormInicio
         '
         'EstadísticasToolStripMenuItem
         '
-        Me.EstadísticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalidadDeLecheToolStripMenuItem1, Me.ComprasToolStripMenuItem2, Me.NutriciónToolStripMenuItem3, Me.SuelosToolStripMenuItem2})
+        Me.EstadísticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalidadDeLecheToolStripMenuItem1, Me.ComprasToolStripMenuItem2, Me.NutriciónToolStripMenuItem3, Me.SuelosToolStripMenuItem2, Me.TimepoDeEnvíoDeInformesToolStripMenuItem})
         Me.EstadísticasToolStripMenuItem.Name = "EstadísticasToolStripMenuItem"
         Me.EstadísticasToolStripMenuItem.Size = New System.Drawing.Size(97, 24)
         Me.EstadísticasToolStripMenuItem.Text = "Estadísticas"
@@ -1550,26 +1550,26 @@ Partial Class FormInicio
         'CalidadDeLecheToolStripMenuItem1
         '
         Me.CalidadDeLecheToolStripMenuItem1.Name = "CalidadDeLecheToolStripMenuItem1"
-        Me.CalidadDeLecheToolStripMenuItem1.Size = New System.Drawing.Size(189, 24)
+        Me.CalidadDeLecheToolStripMenuItem1.Size = New System.Drawing.Size(273, 24)
         Me.CalidadDeLecheToolStripMenuItem1.Text = "Calidad de leche"
         '
         'ComprasToolStripMenuItem2
         '
         Me.ComprasToolStripMenuItem2.Enabled = False
         Me.ComprasToolStripMenuItem2.Name = "ComprasToolStripMenuItem2"
-        Me.ComprasToolStripMenuItem2.Size = New System.Drawing.Size(189, 24)
+        Me.ComprasToolStripMenuItem2.Size = New System.Drawing.Size(273, 24)
         Me.ComprasToolStripMenuItem2.Text = "Compras"
         '
         'NutriciónToolStripMenuItem3
         '
         Me.NutriciónToolStripMenuItem3.Name = "NutriciónToolStripMenuItem3"
-        Me.NutriciónToolStripMenuItem3.Size = New System.Drawing.Size(189, 24)
+        Me.NutriciónToolStripMenuItem3.Size = New System.Drawing.Size(273, 24)
         Me.NutriciónToolStripMenuItem3.Text = "Nutrición"
         '
         'SuelosToolStripMenuItem2
         '
         Me.SuelosToolStripMenuItem2.Name = "SuelosToolStripMenuItem2"
-        Me.SuelosToolStripMenuItem2.Size = New System.Drawing.Size(189, 24)
+        Me.SuelosToolStripMenuItem2.Size = New System.Drawing.Size(273, 24)
         Me.SuelosToolStripMenuItem2.Text = "Suelos"
         '
         'CapacitaciónToolStripMenuItem1
@@ -1587,7 +1587,7 @@ Partial Class FormInicio
         '
         'RegistrosToolStripMenuItem
         '
-        Me.RegistrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ActasToolStripMenuItem, Me.ComprasToolStripMenuItem, Me.ComunicacionesTécnicasToolStripMenuItem, Me.ControlDeMediosToolStripMenuItem, Me.MuestrasDescartadasToolStripMenuItem, Me.ReclamosSugerenciasYNoConformidadesToolStripMenuItem, Me.SolicitudesParaITToolStripMenuItem, Me.TiemposDeEnvíosDeInformesToolStripMenuItem, Me.RGLAB31ToolStripMenuItem, Me.RGLAB51ToolStripMenuItem, Me.RGLAB51informesToolStripMenuItem, Me.RGLAB58informesToolStripMenuItem, Me.RGLAB88PlanillaDiariaDeAnálisisCrióscopoToolStripMenuItem, Me.RGLAB89ControToolStripMenuItem, Me.RGLAB101cargaToolStripMenuItem, Me.ReproducibilidadPanelDeControlToolStripMenuItem, Me.SolucionesDeTrabajoToolStripMenuItem1, Me.RelaciónTécnicoProductorToolStripMenuItem, Me.RGLAB102ResumenControlesBentleyDeltaToolStripMenuItem})
+        Me.RegistrosToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ActasToolStripMenuItem, Me.ComprasToolStripMenuItem, Me.ComunicacionesTécnicasToolStripMenuItem, Me.ControlDeMediosToolStripMenuItem, Me.MuestrasDescartadasToolStripMenuItem, Me.ReclamosSugerenciasYNoConformidadesToolStripMenuItem, Me.SolicitudesParaITToolStripMenuItem, Me.RGLAB31ToolStripMenuItem, Me.RGLAB51ToolStripMenuItem, Me.RGLAB51informesToolStripMenuItem, Me.RGLAB58informesToolStripMenuItem, Me.RGLAB88PlanillaDiariaDeAnálisisCrióscopoToolStripMenuItem, Me.RGLAB89ControToolStripMenuItem, Me.RGLAB101cargaToolStripMenuItem, Me.ReproducibilidadPanelDeControlToolStripMenuItem, Me.SolucionesDeTrabajoToolStripMenuItem1, Me.RelaciónTécnicoProductorToolStripMenuItem, Me.RGLAB102ResumenControlesBentleyDeltaToolStripMenuItem})
         Me.RegistrosToolStripMenuItem.Name = "RegistrosToolStripMenuItem"
         Me.RegistrosToolStripMenuItem.Size = New System.Drawing.Size(82, 24)
         Me.RegistrosToolStripMenuItem.Text = "Registros"
@@ -1702,12 +1702,6 @@ Partial Class FormInicio
         Me.SolicitudesParaITToolStripMenuItem.Name = "SolicitudesParaITToolStripMenuItem"
         Me.SolicitudesParaITToolStripMenuItem.Size = New System.Drawing.Size(399, 24)
         Me.SolicitudesParaITToolStripMenuItem.Text = "Solicitudes para IT"
-        '
-        'TiemposDeEnvíosDeInformesToolStripMenuItem
-        '
-        Me.TiemposDeEnvíosDeInformesToolStripMenuItem.Name = "TiemposDeEnvíosDeInformesToolStripMenuItem"
-        Me.TiemposDeEnvíosDeInformesToolStripMenuItem.Size = New System.Drawing.Size(399, 24)
-        Me.TiemposDeEnvíosDeInformesToolStripMenuItem.Text = "Tiempos de envíos de informes"
         '
         'RGLAB31ToolStripMenuItem
         '
@@ -2025,6 +2019,12 @@ Partial Class FormInicio
         Me.SubirInformesToolStripMenuItem2.Name = "SubirInformesToolStripMenuItem2"
         Me.SubirInformesToolStripMenuItem2.Size = New System.Drawing.Size(291, 24)
         Me.SubirInformesToolStripMenuItem2.Text = "Subir informes"
+        '
+        'ActualizarGestorToolStripMenuItem
+        '
+        Me.ActualizarGestorToolStripMenuItem.Name = "ActualizarGestorToolStripMenuItem"
+        Me.ActualizarGestorToolStripMenuItem.Size = New System.Drawing.Size(291, 24)
+        Me.ActualizarGestorToolStripMenuItem.Text = "Actualizar Gestor"
         '
         'DateFecha
         '
@@ -2700,11 +2700,11 @@ Partial Class FormInicio
         Me.ButtonCrearInformes.Text = "Crear Informes (Nuevo)"
         Me.ButtonCrearInformes.UseVisualStyleBackColor = True
         '
-        'ActualizarGestorToolStripMenuItem
+        'TimepoDeEnvíoDeInformesToolStripMenuItem
         '
-        Me.ActualizarGestorToolStripMenuItem.Name = "ActualizarGestorToolStripMenuItem"
-        Me.ActualizarGestorToolStripMenuItem.Size = New System.Drawing.Size(291, 24)
-        Me.ActualizarGestorToolStripMenuItem.Text = "Actualizar Gestor"
+        Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Name = "TimepoDeEnvíoDeInformesToolStripMenuItem"
+        Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Size = New System.Drawing.Size(273, 24)
+        Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Text = "Timepo de envío de Informes"
         '
         'FormInicio
         '
@@ -2887,7 +2887,6 @@ Partial Class FormInicio
     Friend WithEvents CompletarCapacitaciónToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InformesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MuestrasDescartadasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents TiemposDeEnvíosDeInformesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListadoDeInformesSubidosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CambiarNºTamboHerramientaClientesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
@@ -3111,4 +3110,5 @@ Partial Class FormInicio
     Friend WithEvents PedidosAutomaticosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents CrearPreInforme As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ActualizarGestorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents TimepoDeEnvíoDeInformesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

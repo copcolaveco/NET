@@ -1484,7 +1484,7 @@ Public Class FormInicio
         Dim v As New FormInformeMuestrasDescartadas(Sesion.Usuario)
         v.Show()
     End Sub
-    Private Sub TiemposDeEnvíosDeInformesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TiemposDeEnvíosDeInformesToolStripMenuItem.Click
+    Private Sub TiemposDeEnvíosDeInformesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim v As New FormTiemposEnviosInformes(Sesion.Usuario)
         v.Show()
     End Sub
@@ -10801,6 +10801,11 @@ controltxt:
 
     Private Sub ActualizarGestorToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ActualizarGestorToolStripMenuItem.Click
         Dim v As New FormActualizarGestor(Sesion.Usuario)
+        v.Show()
+    End Sub
+
+    Private Sub TimepoDeEnvíoDeInformesToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TimepoDeEnvíoDeInformesToolStripMenuItem.Click
+        Dim v As New FormTiemposEnviosInformes(Sesion.Usuario)
         v.Show()
     End Sub
 End Class

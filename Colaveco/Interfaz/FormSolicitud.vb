@@ -1247,6 +1247,12 @@ Public Class FormSolicitud
         x1hoja.Cells(fila, columna).rowheight = 2
         fila = fila + 1
         '**********************************************************************************************************
+
+        'Codigo EMPI
+        If codigo <> "" Then
+            observaciones = "Codigo EMPI: (" + codigo + ")"
+        End If
+
         If observaciones <> "" Then
             x1hoja.Cells(fila, columna).formula = "Observaciones:"
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -2607,6 +2613,10 @@ Public Class FormSolicitud
         Dim observaciones As String = TextObservaciones.Text.Trim
         Dim obsinternas As String = TextObsInternas.Text.Trim
         Dim pago As Integer
+
+        If codigo <> "" Then
+            observaciones = "Codigo EMPI: (" + codigo + ")"
+        End If
         If CheckPago.Checked = True Then
             pago = 1
         Else
