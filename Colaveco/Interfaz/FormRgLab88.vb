@@ -542,9 +542,9 @@ Public Class FormRgLab88
                             Dim fila2 As Integer = 0
                             Dim columna2 As Integer = 0
                             DataGridView1.Rows.Add(lista.Count)
-                            For Each r In lista
+                            'For Each r In lista
 
-                            Next
+                            'Next
                         End If
                     End If
 
