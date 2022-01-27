@@ -331,21 +331,30 @@ Public Class FormRgLab88
                                         If arraytext.Length < 39 Then
                                         arraytext = Split(sLine, ";")
                                         End If
-                                        matricula = Trim(arraytext(5))
+                                    matricula = Trim(arraytext(1))
                                         If arraytext.Length <= 13 Then
+                                        If Trim(arraytext(9)) = "" Or Trim(arraytext(9)) = "-" Then
                                             crioscopia = -1
                                         Else
-                                            If Trim(arraytext(17)) = "" Or Trim(arraytext(17)) = "-" Then
-                                                crioscopia = -1
-                                            Else
-                                                Try
-                                                    crioscopia = arraytext(17)
-                                                Catch ex As Exception
-                                                    MsgBox("Error en archivo: " & file.Name & ", línea: " & linea & ", valor: Crioscopía")
-                                                    Exit Sub
-                                                End Try
-                                            End If
+                                            Try
+                                                crioscopia = arraytext(9)
+                                            Catch ex As Exception
+                                                MsgBox("Error en archivo: " & file.Name & ", línea: " & linea & ", valor: Crioscopía")
+                                                Exit Sub
+                                            End Try
                                         End If
+                                    Else
+                                        If Trim(arraytext(9)) = "" Or Trim(arraytext(9)) = "-" Then
+                                            crioscopia = -1
+                                        Else
+                                            Try
+                                                crioscopia = arraytext(9)
+                                            Catch ex As Exception
+                                                MsgBox("Error en archivo: " & file.Name & ", línea: " & linea & ", valor: Crioscopía")
+                                                Exit Sub
+                                            End Try
+                                        End If
+                                    End If
                                         ficha2 = Mid(file.Name, Len(file.Name) - 4, 1)
                                         ficha3 = Mid(file.Name, 1, 1)
                                         If ficha2 = "a" Or ficha2 = "A" Or ficha2 = "b" Or ficha2 = "B" Or ficha2 = "c" Or ficha2 = "C" Or ficha2 = "d" Or ficha2 = "D" Or ficha2 = "e" Or ficha2 = "E" Or ficha2 = "f" Or ficha2 = "F" Or ficha2 = "g" Or ficha2 = "G" Or ficha2 = "h" Or ficha2 = "H" Or ficha2 = "i" Or ficha2 = "I" Or ficha2 = "j" Or ficha2 = "J" Or ficha2 = "k" Or ficha2 = "K" Then
@@ -415,22 +424,22 @@ Public Class FormRgLab88
                                 End If
                                 If Not sLine Is Nothing Then
                                     If linea >= 8 Then
-                                        arraytext = Split(sLine, ";")
+                                    arraytext = Split(sLine, ",")
                                         If arraytext.Length < 39 Then
-                                            arraytext = Split(sLine, ",")
+                                        arraytext = Split(sLine, ";")
                                         End If
-                                        matricula = Trim(arraytext(5))
+                                    matricula = Trim(arraytext(1))
                                         '** IMPORTAR CRIOSCOPIA **************************************************************************
-                                        If Trim(arraytext(15)) = "" Or Trim(arraytext(15)) = "-" Then
-                                            crioscopia = -1
-                                        Else
-                                            Try
-                                                crioscopia = arraytext(15)
-                                            Catch ex As Exception
-                                                MsgBox("Error en archivo: " & file.Name & ", línea: " & linea & ", valor: Crioscopía")
-                                                Exit Sub
-                                            End Try
-                                        End If
+                                    If Trim(arraytext(15)) = "" Or Trim(arraytext(15)) = "-" Then
+                                        crioscopia = -1
+                                    Else
+                                        Try
+                                            crioscopia = arraytext(15)
+                                        Catch ex As Exception
+                                            MsgBox("Error en archivo: " & file.Name & ", línea: " & linea & ", valor: Crioscopía")
+                                            Exit Sub
+                                        End Try
+                                    End If
                                         '***************************************************************************************************
                                         'If arraytext.Length <= 13 Then
 
