@@ -143,4 +143,32 @@
             Return Nothing
         End Try
     End Function
+    Public Function buscarFichaDeHoy() As dRgLab31
+        Dim c As New dRgLab31
+        Try
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL("SELECT id, fecha, hora, equipo, ficha, cantidad, idtipoinforme, operador, temperatura, humedad, eliminado, observaciones FROM rglab31 order by 1 desc limit 1")
+
+            If Ds.Tables(0).Rows.Count > 0 Then
+                Dim unaFila As DataRow
+                unaFila = Ds.Tables(0).Rows(0)
+                c.ID = CType(unaFila.Item(0), Long)
+                c.FECHA = CType(unaFila.Item(1), String)
+                c.HORA = CType(unaFila.Item(2), String)
+                c.EQUIPO = CType(unaFila.Item(3), String)
+                c.FICHA = CType(unaFila.Item(4), Long)
+                c.CANTIDAD = CType(unaFila.Item(5), Integer)
+                c.IDTIPOINFORME = CType(unaFila.Item(6), Integer)
+                c.OPERADOR = CType(unaFila.Item(7), Integer)
+                c.TEMPERATURA = CType(unaFila.Item(8), Double)
+                c.HUMEDAD = CType(unaFila.Item(9), Double)
+                c.ELIMINADO = CType(unaFila.Item(10), Integer)
+                c.OBSERVACIONES = CType(unaFila.Item(11), String)
+                Return c
+            End If
+            Return Nothing
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
 End Class

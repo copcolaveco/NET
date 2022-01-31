@@ -172,6 +172,10 @@
         Dim c As New pRgLab31
         Return c.buscarxficha(Me)
     End Function
+    Public Function buscarFichaDeHoy()
+        Dim c As New pRgLab31
+        Return c.buscarFichaDeHoy()
+    End Function
 
 #End Region
 

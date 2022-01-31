@@ -22,6 +22,7 @@
         cargarCombos()
         cargarComboAnalisis()
         limpiar()
+        CargarTemHum()
 
     End Sub
 
@@ -702,4 +703,19 @@
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         actualizarhora()
     End Sub
+
+    Private Sub CargarTemHum()
+        Dim fecha As DateTime = Now.ToString("dd/MM/yyyy")
+        Dim r31 As New dRgLab31
+        r31 = r31.buscarFichaDeHoy
+        If Not r31 Is Nothing Then
+            If r31.FECHA = fecha Then
+                If IsNumeric(r31.HUMEDAD) Then
+                    TextTemperatura.Text = r31.TEMPERATURA
+                    TextHumedad.Text = r31.HUMEDAD
+                End If
+            End If
+        End If
+    End Sub
+
 End Class

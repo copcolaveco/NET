@@ -428,7 +428,7 @@ Public Class FormRgLab88
                                         If arraytext.Length < 39 Then
                                         arraytext = Split(sLine, ";")
                                         End If
-                                    matricula = Trim(arraytext(1))
+                                    matricula = Trim(arraytext(5))
                                         '** IMPORTAR CRIOSCOPIA **************************************************************************
                                     If Trim(arraytext(15)) = "" Or Trim(arraytext(15)) = "-" Then
                                         crioscopia = -1
