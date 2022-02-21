@@ -6249,3 +6249,4 @@ C:\Sebastian\NET\Colaveco\obj\Debug\Colaveco.FormReloj.resources
 C:\Sebastian\NET\Colaveco\obj\Debug\Colaveco.vbproj.GenerateResource.Cache
 C:\Sebastian\NET\Colaveco\obj\Debug\Colaveco.exe.manifest
 C:\Sebastian\NET\Colaveco\obj\Debug\Colaveco.application
+C:\Sebastian\NET\Colaveco\obj\Debug\Colaveco.MsgForm.resources

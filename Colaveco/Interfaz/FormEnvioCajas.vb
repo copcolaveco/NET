@@ -538,6 +538,16 @@ Public Class FormEnvioCajas
                     Exit For
                 End If
             Next
+
+            For Each et In ComboAgencia.Items
+                If ped.IDAGENCIA = 15 Then
+                    Dim text As String = "ATENCION, RETIRA EN DEPOSITO COLAVECO, ASEGURARSE DE DEJAR EL PEDIDO CORRECTAMENTE"
+                    Dim v As New MsgForm(text)
+                    v.Show()
+                    Exit For
+                End If
+            Next
+
             If ped.IDAGENCIA = 7 Then
                 TextEnvio.Text = "sin comprobante"
             End If

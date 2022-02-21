@@ -305,6 +305,12 @@
     <Compile Include="Importador\dImpCalidad2.vb" />
     <Compile Include="Importador\pControlAux.vb" />
     <Compile Include="Importador\pImpCalidad2.vb" />
+    <Compile Include="Interfaz\MsgForm.Designer.vb">
+      <DependentUpon>MsgForm.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\MsgForm.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaz\FormAccionCorrectiva.Designer.vb">
       <DependentUpon>FormAccionCorrectiva.vb</DependentUpon>
     </Compile>
@@ -677,6 +683,7 @@
     <Compile Include="Interfaz\FormSubirGestor.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaz\FrmMsgBox.vb" />
     <Compile Include="IT\FormPedidosAutomaticos_it.Designer.vb">
       <DependentUpon>FormPedidosAutomaticos_it.vb</DependentUpon>
     </Compile>
@@ -3431,6 +3438,9 @@
     <EmbeddedResource Include="Interfaz\FormVerSolicitudes IT.resx">
       <DependentUpon>FormVerSolicitudes IT.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\MsgForm.resx">
+      <DependentUpon>MsgForm.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="IT\FormPedidosAutomaticos_it.resx">
       <DependentUpon>FormPedidosAutomaticos_it.vb</DependentUpon>

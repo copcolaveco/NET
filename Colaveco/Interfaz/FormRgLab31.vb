@@ -131,24 +131,7 @@
         fec = Format(fecha, "yyyy-MM-dd")
         Dim ra As New dRegistrosAmbientales
         ra = ra.buscarultimofq
-        If Not ra Is Nothing Then
-            If ra.FECHA = fecha Then
-                hora = Mid(ra.HORA, 1, 2)
-                If hora > 12 Then
-                    TextTemperatura.Text = ""
-                    TextHumedad.Text = ""
-                Else
-                    TextTemperatura.Text = ra.TEMPERATURA
-                    TextHumedad.Text = ra.HUMEDAD
-                End If
-            Else
-                TextTemperatura.Text = ""
-                TextHumedad.Text = ""
-            End If
-        Else
-            TextTemperatura.Text = ""
-            TextHumedad.Text = ""
-        End If
+        CargarTemHum()
     End Sub
 
     Private Sub ButtonNuevo_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonNuevo.Click

@@ -1250,7 +1250,7 @@ Public Class FormSolicitud
 
         'Codigo EMPI
         If codigo <> "" Then
-            observaciones = "Codigo EMPI: (" + codigo + ")"
+            observaciones = "Codigo EMPI: (" + codigo + "), " + TextObservaciones.Text.Trim
         End If
 
         If observaciones <> "" Then
@@ -2615,7 +2615,7 @@ Public Class FormSolicitud
         Dim pago As Integer
 
         If codigo <> "" Then
-            observaciones = "Codigo EMPI: (" + codigo + ")"
+            observaciones = "Codigo EMPI: (" + codigo + ") , " + TextObservaciones.Text.Trim
         End If
         If CheckPago.Checked = True Then
             pago = 1

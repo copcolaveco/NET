@@ -476,7 +476,7 @@ Public Class FormAutorizarCompra
         End If
 
 
-        x1hoja.Shapes.AddPicture("c:\Debug\encab_compras.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 520, 60)
+        x1hoja.Shapes.AddPicture("c:\Debug\encabezado_sin_oua2.jpg", Microsoft.Office.Core.MsoTriState.msoFalse, Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 520, 60)
         fila = fila + 3
 
         x1hoja.Cells(1, 1).columnwidth = 20

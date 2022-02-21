@@ -126,14 +126,15 @@ Public Class FormCajas
             Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
             End If
         Else
-            Dim c As New dCajas
-            c.CODIGO = codigo
-            c.ESTADO = estado
-            If (c.guardar(Usuario)) Then
-                MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
-                limpiar()
-            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
-            End If
+            MsgBox("Error, debe ingresar la caja correspondiente", MsgBoxStyle.Critical, "Atención")
+            'Dim c As New dCajas
+            'c.CODIGO = codigo
+            'c.ESTADO = estado
+            'If (c.guardar(Usuario)) Then
+            '    MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
+            '    limpiar()
+            '    Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+            'End If
         End If
 
 
