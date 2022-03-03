@@ -1832,6 +1832,45 @@ Public Class FormSubirInformes2
         If TextEnviarCopia.Text <> "" Then
             copia = TextEnviarCopia.Text
         End If
+
+        '****************************************************************************************
+        'JUNTAR LOS 2 PDF ***************************************************************************
+        ' Creamos una lista de archivos para concatenar
+        Dim Listax As New List(Of String)
+        ' Identificamos los documentos que queremos unir
+        Dim sFile1 As String = "\\ROBOT\PREINFORMES\SUELOS\c" & ficha & ".pdf"
+        Dim sFile2 As String = "\\ROBOT\PREINFORMES\SUELOS\cf" & ficha & ".pdf"
+        ' Los añadimos a la lista
+        Listax.Add(sFile1)
+        Listax.Add(sFile2)
+        ' Nombre del documento resultante
+        Dim sFileJoin As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
+        Dim Doc As New Document()
+        Try
+            Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
+            Dim copy As New PdfCopy(Doc, fs)
+            Doc.Open()
+            Dim Rd As PdfReader
+            Dim n As Integer 'Número de páginas de cada pdf
+            For Each file In Listax
+                Rd = New PdfReader(file)
+                n = Rd.NumberOfPages
+                Dim page As Integer = 0
+                Do While page < n
+                    page += 1
+                    copy.AddPage(copy.GetImportedPage(Rd, page))
+                Loop
+                copy.FreeReader(Rd)
+                Rd.Close()
+            Next
+        Catch ex As Exception
+            MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf, si el informe no lleva ANEXO por conversiòn de fertilizante proceguir.")
+        Finally
+            ' Cerramos el documento
+            Doc.Close()
+        End Try
+        '********************************************************************************************
+
         '****************************************************************************************
         '*** MOVER ARCHIVO XLS***********************************************************************
         Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".xls"

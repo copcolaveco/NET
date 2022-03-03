@@ -124,7 +124,18 @@ Public Class FormCajas
                 MsgBox("Registro modificado", MsgBoxStyle.Information, "Atención")
                 limpiar()
             Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+
             End If
+        ElseIf TextId.Text = "" And TextCodigo.Text <> "" And ComboEstado.Text <> "" Then
+            Dim c As New dCajas
+            c.CODIGO = codigo
+            c.ESTADO = estado
+            If (c.guardar(Usuario)) Then
+                MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
+                limpiar()
+            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+            End If
+
         Else
             MsgBox("Error, debe ingresar la caja correspondiente", MsgBoxStyle.Critical, "Atención")
             'Dim c As New dCajas
