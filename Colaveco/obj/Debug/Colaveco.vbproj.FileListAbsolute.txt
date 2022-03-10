@@ -6265,7 +6265,6 @@ C:\Code\NET\Colaveco\bin\Debug\Colaveco.xml
 C:\Code\NET\Colaveco\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Code\NET\Colaveco\bin\Debug\Microsoft.Office.Interop.Excel.xml
 C:\Code\NET\Colaveco\bin\Debug\Interop.IasHelperLib.dll
-C:\Code\NET\Colaveco\obj\Debug\Colaveco.vbprojResolveAssemblyReference.cache
 C:\Code\NET\Colaveco\obj\Debug\Colaveco.FormBentleyDeltaHistorial.resources
 C:\Code\NET\Colaveco\obj\Debug\Colaveco.FormBuscarVM.resources
 C:\Code\NET\Colaveco\obj\Debug\Colaveco.FormControlBD2.resources
@@ -6562,3 +6561,4 @@ C:\Code\NET\Colaveco\obj\Debug\Colaveco.FormReloj.resources
 C:\Code\NET\Colaveco\obj\Debug\Colaveco.vbproj.GenerateResource.Cache
 C:\Code\NET\Colaveco\obj\Debug\Colaveco.exe.manifest
 C:\Code\NET\Colaveco\obj\Debug\Colaveco.application
+C:\Code\NET\Colaveco\obj\Debug\Colaveco.vbprojResolveAssemblyReference.cache

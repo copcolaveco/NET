@@ -3025,7 +3025,7 @@ Public Class FormCrearInformes
 
                 x1hoja.Range("A" & fila, "J" & fila).Merge()
                 x1hoja.Cells(fila, columna).WrapText = True
-                x1hoja.Cells(fila, columna).Formula = "Conversión del Contenido de Nutrientes del Fertilizante Orgánico, " & " - Ficha " & nroficha & ", Fecha: " & fechaFicha
+                x1hoja.Cells(fila, columna).Formula = "Conversión del Contenido de Nutrientes del Fertilizante Orgánico, " & " - Ficha " & nroficha & ""
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 12
                 columna = 2
@@ -3319,26 +3319,7 @@ Public Class FormCrearInformes
                 x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
                 x1hoja.Cells(fila, columna).Font.Size = 8
                 x1hoja.Cells(fila, columna).Formula = "www.colaveco.com.uy"
-                columna = 1
-                fila = fila + 2
 
-                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                x1hoja.Cells(fila, columna).WrapText = True
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                x1hoja.Cells(fila, columna).Formula = "Otros"
-                columna = columna + 2
-
-                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                x1hoja.Cells(fila, columna).WrapText = True
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                x1hoja.Cells(fila, columna).Formula = "Otras observaciones"
-
-
-                
                 '*** IMPORTE ********************************************************
                 Dim f As New dFacturacion
                 Dim listast As New ArrayList
