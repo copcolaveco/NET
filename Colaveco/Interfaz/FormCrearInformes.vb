@@ -5946,7 +5946,7 @@ Public Class FormCrearInformes
                     fila = fila + 1
                     columna = 1
                     columna = columna + 11
-                    x1hoja.Cells(fila, columna).Formula = "Técnico resp: " & nombre_tecnico2
+                    x1hoja.Cells(fila, columna).Formula = "Técnico resp: " & nombre_tecnico
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Font.Size = 9
                     fila = fila + 1
@@ -5978,7 +5978,7 @@ Public Class FormCrearInformes
                     fila = fila + 1
                     columna = 1
                     columna = columna + 11
-                    x1hoja.Cells(fila, columna).Formula = "Técnico resp: " & nombre_tecnico2
+                    x1hoja.Cells(fila, columna).Formula = "Técnico resp: " & nombre_tecnico
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Font.Size = 9
                     fila = fila + 1
