@@ -73,6 +73,11 @@
   </dependency>
   <dependency>
     <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
+      <assemblyIdentity name="office" version="12.0.0.0" publicKeyToken="71E9BCE111E9429C" language="neutral" />
+    </dependentAssembly>
+  </dependency>
+  <dependency>
+    <dependentAssembly dependencyType="preRequisite" allowDelayedBinding="true">
       <assemblyIdentity name="System.Core" version="3.5.0.0" publicKeyToken="b77a5c561934e089" language="neutral" processorArchitecture="msil" />
     </dependentAssembly>
   </dependency>
@@ -82,14 +87,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Colaveco.exe" size="16577536">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Colaveco.exe" size="16591360">
       <assemblyIdentity name="Colaveco" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>j458QEe/15CbOmgYMMVF18Jkxmk=</dsig:DigestValue>
+        <dsig:DigestValue>2dbJ7A5T8w9Q4NzQBBsuQ50sv5w=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -113,7 +118,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>9qi7fILmE88tHFhZStbTiAfAwDU=</dsig:DigestValue>
+        <dsig:DigestValue>dQQoJ6RwuK9/NHTAKITBjwupLzI=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -2276,7 +2276,13 @@ Public Class FormSolicitud
         Dim muestra As String = TextMuestras.Text
         Dim n2 As New dNuevoAnalisis
         n2.FICHA = ficha
-        n2.MUESTRA = muestra
+
+        If ComboMuestra.Text = "Compost" Then
+            n2.MUESTRA = "COMPOST"
+        Else
+            n2.MUESTRA = muestra
+        End If
+
         n2 = n2.buscarrepetidas()
         If Not n2 Is Nothing Then
             My.Computer.Audio.Play("c:\debug\aviso.wav")

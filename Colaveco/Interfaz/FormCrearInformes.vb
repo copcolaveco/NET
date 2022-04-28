@@ -280,6 +280,7 @@ Public Class FormCrearInformes
         ElseIf idti = 14 Then '*** Suelos **************************************************
             Dim ficha As Long = TextFicha.Text.Trim
             Dim s As New dSolicitudAnalisis
+            informe_suelos_conversion_fertilizante()
             informe_suelos()
             s.ID = ficha
             s = s.buscar
@@ -2832,7 +2833,7 @@ Public Class FormCrearInformes
         x1libro = Nothing
         x1hoja = Nothing
     End Sub
-    Private Sub informe_suelos()
+    Private Sub informe_suelos_conversion_fertilizante()
         Dim x1app As Microsoft.Office.Interop.Excel.Application
         Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
         Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet
@@ -2862,6 +2863,587 @@ Public Class FormCrearInformes
         Dim nombre_operador As String = "José L. García"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         Dim sin_asterisco As Integer = 1
+
+        Dim Ms As Double = 0
+        Dim Potasio As Double = 0
+        Dim Nitrogeno As Double = 0
+        Dim Fosforo As Double = 0
+        Dim MsCantidad As Integer = 0
+        Dim PotasioCantidad As Integer = 0
+        Dim NitrogenoCantidad As Integer = 0
+        Dim FosforoCantidad As Integer = 0
+        Dim MsPrecente As Boolean = False
+        Dim PotasioPrecente As Boolean = False
+        Dim NitrogenoPrecente As Boolean = False
+        Dim FosforoPrecente As Boolean = False
+        Dim fechaFicha As Date
+        Dim KgApli As Integer = 10000
+
+
+
+        '*****************************
+        nroficha = TextFicha.Text.Trim
+        sa.ID = nroficha
+        sa = sa.buscar
+        lista = na.listarporfichamuestra(nroficha)
+        lista3 = na3.listarporficha3(nroficha)
+        lista_ = na_.listarporficha3(nroficha)
+        '**********************************************
+        If Not lista3 Is Nothing Then
+            xanalisis = lista3.Count - 1
+            ReDim vec(xanalisis)
+            Dim i As Integer = 0
+            For Each na3 In lista3
+                vec(i) = na3.ANALISIS
+                i = i + 1
+            Next
+        End If
+        '***********************************************
+        If Not lista_ Is Nothing Then
+            For Each na_ In lista_
+                Dim lp_ As New dListaPrecios
+                lp_.ID = na_.ANALISIS
+                lp_ = lp_.buscar
+                If Not lp_ Is Nothing Then
+                    If lp_.ACREDITADO = 1 Then
+                        sin_asterisco = 0
+                    End If
+                End If
+            Next
+        End If
+        '***********************************************
+        Dim fila As Integer
+        Dim columna As Integer
+        Dim titulo As Boolean = False
+        columna = 1
+        fila = 1
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+
+                For Each na In lista
+                    Dim na2 As New dNuevoAnalisis
+                    lista2 = na2.listarpormuestra(nroficha, na.MUESTRA)
+
+                    For Each na2 In lista2
+                        fechaFicha = na2.FECHAPROCESO
+                        Dim a As New dAcreditacion
+                        a.ANALISIS = na2.ANALISIS
+                        a = a.buscar
+                        If Not a Is Nothing Then
+                            Dim desde As Double = a.DESDE
+                            Dim hasta As Double = a.HASTA
+                            If Val(na2.RESULTADO2) < desde Or Val(na2.RESULTADO2) > hasta Then
+                                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                            Else
+                                acreditado2 = 1
+                            End If
+                        End If
+
+                        '%MS
+                        If na2.ANALISIS = 473 Or na2.ANALISIS = 479 Or na2.ANALISIS = 474 And sa.IDMUESTRA = 37 Then
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+                                    Ms = na2.RESULTADO
+                                    MsCantidad += 1
+                                    MsPrecente = True
+                                End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
+                                    Ms = na2.RESULTADO2
+                                    MsCantidad += 1
+                                    MsPrecente = True
+                                End If
+                            End If
+                        End If
+
+                        'Nitrogeno
+                        If na2.ANALISIS = 138 Or na2.ANALISIS = 374 And sa.IDMUESTRA = 37 Then
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+                                    Nitrogeno = na2.RESULTADO
+                                    NitrogenoCantidad += 1
+                                    NitrogenoPrecente = True
+                                End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
+                                    Nitrogeno = na2.RESULTADO2
+                                    NitrogenoCantidad += 1
+                                    NitrogenoPrecente = True
+                                End If
+                            End If
+                        End If
+
+                        'Fosforo
+                        If na2.ANALISIS = 226 Or na2.ANALISIS = 375 Or na2.ANALISIS = 400 And sa.IDMUESTRA = 37 Then
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+                                    Fosforo = na2.RESULTADO
+                                    FosforoCantidad += 1
+                                    FosforoPrecente = True
+                                End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
+                                    Fosforo = na2.RESULTADO2
+                                    FosforoCantidad += 1
+                                    FosforoPrecente = True
+                                End If
+                            End If
+                        End If
+
+                        'Potasio
+                        If na2.ANALISIS = 208 Or na2.ANALISIS = 376 Or na2.ANALISIS = 401 And sa.IDMUESTRA = 37 Then
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+                                    Potasio = na2.RESULTADO
+                                    PotasioCantidad += 1
+                                    PotasioPrecente = True
+                                End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
+                                    Potasio = na2.RESULTADO2
+                                    PotasioCantidad += 1
+                                    PotasioPrecente = True
+                                End If
+                            End If
+                        End If
+                    Next
+
+                    If titulo = False Then
+                        'Poner Titulos
+                        x1hoja.Shapes.AddPicture("c:\Debug\logo.jpg", _
+                        Microsoft.Office.Core.MsoTriState.msoFalse, _
+                        Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 160, 70)
+                        columna = 1
+                        fila = fila + 6
+
+                        x1hoja.Range("A" & fila, "J" & fila).Merge()
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).Formula = "ANEXO"
+                        x1hoja.Cells(fila, columna).Font.Bold = True
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        columna = 1
+                        fila = fila + 1
+
+                        x1hoja.Range("A" & fila, "J" & fila).Merge()
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).Formula = "Conversión del Contenido de Nutrientes del fertilizante Orgánico, " & " - Ficha " & nroficha & ""
+                        x1hoja.Cells(fila, columna).Font.Bold = True
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        columna = 2
+                        fila = fila + 1
+                        fechaFicha = Nothing
+
+                        titulo = True
+                    End If
+
+                    '//Comienzo de Contenido de Nutrientes
+
+                    'Ms = Ms / MsCantidad
+                    'Potasio = Potasio / PotasioCantidad
+                    'Nitrogeno = Nitrogeno / NitrogenoCantidad
+                    'Fosforo = Fosforo / FosforoCantidad
+
+                    If MsPrecente = True Then
+                        fila = fila + 1
+                        x1hoja.Range("A" & fila, "C" & fila).Merge()
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Compost"
+
+                        fila = fila + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Kg Aplicados"
+                        'x1hoja.Cells(fila, columna).Style.WrapText = True
+                        'x1hoja.Cells(fila, columna).EntireColumn.autofit()
+                        columna = columna + 1
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "MS (0-1)"
+                        columna = columna + 1
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Kg MS Aplicados"
+                        x1hoja.Cells(fila, columna).Style.WrapText = True
+                        fila = fila + 1
+                        columna = columna - 2
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = KgApli
+                        columna = columna + 1
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        Dim MScalculo As Double = Ms / 100
+                        MScalculo = Format(MScalculo, "0.00")
+                        x1hoja.Cells(fila, columna).Formula = MScalculo
+                        columna = columna + 1
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        Dim kgMasaApli As Integer = MScalculo * KgApli
+                        x1hoja.Cells(fila, columna).Formula = kgMasaApli
+                        columna = columna + 1
+                        fila = fila - 2
+
+                        'x1hoja.Range("D" & fila, "F" & fila).Merge()
+                        'x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        'x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        'x1hoja.Cells(fila, columna).WrapText = True
+                        'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        'x1hoja.Cells(fila, columna).Font.Size = 12
+                        'x1hoja.Cells(fila, columna).Formula = "Contenido Nutrientes"
+                        'x1hoja.Cells(fila, columna).Style.WrapText = True
+                        'x1hoja.Cells(fila, columna).EntireColumn.autofit()
+
+                        fila = fila + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Nitrògeno %"
+                        columna = columna + 1
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Fòsforo (mg / kg)"
+                        columna = columna + 1
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Potasio (mg / kg)"
+                        fila = fila + 1
+                        columna = columna - 2
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = Nitrogeno
+                        columna = columna + 1
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = Fosforo
+                        columna = columna + 1
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = Potasio
+
+                        columna = 2
+                        fila = fila + 2
+
+                        x1hoja.Range("B" & fila, "J" & fila).Merge()
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).Formula = "Cada 10 Toneladas de fertilizante orgánico aplicado, equivale a:"
+                        x1hoja.Cells(fila, columna).Font.Bold = True
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        columna = 1
+                        fila = fila + 2
+
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "P2O5 Aplicados(Kg / ha)"
+
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        Dim p205Aplicados As Double = ((((Fosforo / 1000) * 2.29) * kgMasaApli) / 1000)
+                        p205Aplicados = Format(p205Aplicados, "0.00")
+                        x1hoja.Cells(fila, columna).Formula = p205Aplicados
+
+                        columna = columna - 1
+                        fila = fila + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Equiv.Fert 7 - 40 - 0(Kg / ha)"
+
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        Dim EquicFert7 As Double = (p205Aplicados * 2.5)
+                        EquicFert7 = Format(EquicFert7, "0.00")
+                        x1hoja.Cells(fila, columna).Formula = EquicFert7
+
+                        columna = columna + 2
+                        fila = fila - 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "K2O Aplicados (Kg/ha)"
+
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        Dim K20Apli As Double = ((((Potasio / 1000) * 1.2046) * kgMasaApli) / 1000)
+                        K20Apli = Format(K20Apli, "0.00")
+                        x1hoja.Cells(fila, columna).Formula = K20Apli
+
+                        columna = columna - 1
+                        fila = fila + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Equiv. Fert KCl (Kg/ha)"
+
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        Dim EquivFertKC1 As Double = (100 / 60) * K20Apli
+                        EquivFertKC1 = Format(EquivFertKC1, "0.00")
+                        x1hoja.Cells(fila, columna).Formula = EquivFertKC1
+
+                        columna = columna + 2
+                        fila = fila - 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "N Total Aplic."
+
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        Dim NTotalAplic As Double = (kgMasaApli * (Nitrogeno / 100))
+                        NTotalAplic = Format(NTotalAplic, "0.00")
+                        x1hoja.Cells(fila, columna).Formula = NTotalAplic
+
+                        columna = columna - 1
+                        fila = fila + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        x1hoja.Cells(fila, columna).Formula = "Equiv. Fert Urea (Kg/ha)"
+
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 12
+                        Dim EquivFertUrea As Double = (100 / 46) * NTotalAplic
+                        EquivFertUrea = Format(EquivFertUrea, "0.00")
+                        x1hoja.Cells(fila, columna).Formula = EquivFertUrea
+
+                        fila = fila + 2
+                        columna = 1
+
+                    End If
+                    columna = 2
+                    fila = fila + 1
+                    Nitrogeno = 0
+                    Fosforo = 0
+                    Ms = 0
+                    Potasio = 0
+
+                    MsPrecente = False
+                    PotasioPrecente = False
+                    NitrogenoPrecente = False
+                    FosforoPrecente = False
+                Next
+
+
+                x1hoja.Range("A" & fila, "E" & fila).Merge()
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).WrapText = True
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Por consultas, comunicarse con el Laboratorio Colaveco"
+                columna = 1
+                fila = fila + 1
+
+                x1hoja.Range("A" & fila, "E" & fila).Merge()
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).WrapText = True
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "www.colaveco.com.uy"
+
+                '*** IMPORTE ********************************************************
+                Dim f As New dFacturacion
+                Dim listast As New ArrayList
+                listast = f.listarxficha(nroficha)
+                Dim total As Double = 0
+                Dim lp2 As New dListaPrecios
+                lp2.ID = 86
+                lp2 = lp2.buscar
+                If Not lp2 Is Nothing Then
+                    total = total + lp2.PRECIO1
+                End If
+                For Each f In listast
+                    total = total + f.SUBTOTAL
+                Next
+                f = Nothing
+                lp2 = Nothing
+                fila = fila - 2
+            End If
+        End If
+
+        x1hoja.Cells().Range("A11:H11").Columns.AutoFit()
+
+        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        columna = 1
+        fila = fila + 2
+        x1libro.Worksheets(1).cells(fila, columna).select()
+        x1libro.ActiveSheet.pictures.Insert("c:\Debug\AVISOS_informes_SUELOS Y PASTURAS.png").select()
+
+        'x1hoja.Shapes.AddPicture("c:\Debug\AVISOS_informes_EFLUENTES.png", _
+        'Microsoft.Office.Core.MsoTriState.msoFalse, _
+        'Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 160, 70)
+
+        '***********************************************************
+
+        'PROTEGE LA HOJA DE EXCEL
+        x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
+        Contents:=True, Scenarios:=True)
+        'GUARDA EL ARCHIVO DE EXCEL
+        x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\anexo" & nroficha & ".xls")
+        x1app.Visible = True
+        x1app = Nothing
+        x1libro = Nothing
+        x1hoja = Nothing
+    End Sub
+    Private Sub informe_suelos()
+        Dim ficha = TextFicha.Text.Trim
+        Dim x1app As Microsoft.Office.Interop.Excel.Application
+        Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
+        Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet
+        x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
+        x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
+        x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+
+        'ARCHIVO ANEXO *********************************************************************************
+        Dim Arch2 As String
+        Arch2 = "\\ROBOT\PREINFORMES\SUELOS\cf" & nroficha & ".xls"
+        Dim x1app2 As Microsoft.Office.Interop.Excel.Application
+        Dim x1libro2 As Microsoft.Office.Interop.Excel.Workbook
+        Dim x1hoja2 As Microsoft.Office.Interop.Excel.Worksheet
+        Dim existe_archivo_x As Integer = 0
+        x1app2 = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
+        If File.Exists("\\ROBOT\PREINFORMES\SUELOS\cf" & nroficha & ".xls") Then
+            existe_archivo_x = 1
+        End If
+        If existe_archivo_x = 1 Then
+            x1libro2 = CType(x1app2.Workbooks.Open(Arch2), Microsoft.Office.Interop.Excel.Workbook)
+            x1hoja2 = CType(x1libro2.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+        End If
+
+        Dim sa As New dSolicitudAnalisis
+        Dim cli As New dCliente
+        Dim na As New dNuevoAnalisis
+        Dim na_ As New dNuevoAnalisis
+        Dim na3 As New dNuevoAnalisis
+        Dim met As New dMetodos
+        Dim lista As New ArrayList
+        Dim lista_ As New ArrayList
+        Dim lista2 As New ArrayList
+        Dim lista3 As New ArrayList
+        Dim acreditado As Integer = 0
+        Dim acreditado2 As Integer = 0
+        Dim xanalisis As Integer = 0
+        Dim vec(xanalisis) As Integer
+        Dim informefinal As Integer = 0
+        Dim nombre_operador As String = "José L. García"
+        Dim nombre_tecnico As String = "Ing. Agr. Victor González"
+        Dim sin_asterisco As Integer = 1
+
+        Dim Ms As Double = 0
+        Dim Potasio As Double = 0
+        Dim Nitrogeno As Double = 0
+        Dim Fosforo As Double = 0
+        Dim MsCantidad As Integer = 0
+        Dim PotasioCantidad As Integer = 0
+        Dim NitrogenoCantidad As Integer = 0
+        Dim FosforoCantidad As Integer = 0
+        Dim MsPrecente As Boolean = False
+        Dim PotasioPrecente As Boolean = False
+        Dim NitrogenoPrecente As Boolean = False
+        Dim FosforoPrecente As Boolean = False
+
         '*****************************
         nroficha = TextFicha.Text.Trim
         sa.ID = nroficha
@@ -3194,10 +3776,255 @@ Public Class FormCrearInformes
                             End If
                         End If
                         columna = columna - ret
+
+                        '%MS
+                        If na2.ANALISIS = 473 Or na2.ANALISIS = 479 Or na2.ANALISIS = 474 Then
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+                                    Ms += na2.RESULTADO
+                                    MsCantidad += 1
+                                    MsPrecente = True
+                                End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
+                                    Ms += na2.RESULTADO2
+                                    MsCantidad += 1
+                                    MsPrecente = True
+                                End If
+                            End If
+                        End If
+
+                        'Nitrogeno
+                        If na2.ANALISIS = 138 Or na2.ANALISIS = 374 Then
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+                                    Nitrogeno += na2.RESULTADO
+                                    NitrogenoCantidad += 1
+                                    NitrogenoPrecente = True
+                                End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
+                                    Nitrogeno += na2.RESULTADO2
+                                    NitrogenoCantidad += 1
+                                    NitrogenoPrecente = True
+                                End If
+                            End If
+                        End If
+
+                        'Fosforo
+                        If na2.ANALISIS = 226 Or na2.ANALISIS = 375 Then
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+                                    Fosforo += na2.RESULTADO
+                                    FosforoCantidad += 1
+                                    FosforoPrecente = True
+                                End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
+                                    Fosforo += na2.RESULTADO2
+                                    FosforoCantidad += 1
+                                    FosforoPrecente = True
+                                End If
+                            End If
+                        End If
+
+                        'Potasio
+                        If na2.ANALISIS = 208 Or na2.ANALISIS = 376 Then
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+                                    Potasio += na2.RESULTADO
+                                    PotasioCantidad += 1
+                                    PotasioPrecente = True
+                                End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
+                                    Potasio += na2.RESULTADO2
+                                    PotasioCantidad += 1
+                                    PotasioPrecente = True
+                                End If
+                            End If
+                        End If
+
                     Next
                     columna = 1
                     fila = fila + 1
                 Next
+
+                '//Comienzo de Contenido de Nutrientes
+
+                Ms = Ms / MsCantidad
+                Potasio = Potasio / PotasioCantidad
+                Nitrogeno = Nitrogeno / NitrogenoCantidad
+                Fosforo = Fosforo / FosforoCantidad
+
+                'If MsPrecente = True And PotasioPrecente = True And FosforoPrecente = True And NitrogenoPrecente = True Then
+                '    fila = fila + 1
+                '    x1hoja.Range("A" & fila, "B" & fila).Merge()
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    x1hoja.Cells(fila, columna).Formula = "Compost"
+
+                '    fila = fila + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 6
+                '    x1hoja.Cells(fila, columna).Formula = "Kg Aplicados"
+                '    columna = columna + 1
+
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 6
+                '    x1hoja.Cells(fila, columna).Formula = "Kg MS Aplicados"
+                '    fila = fila + 1
+                '    columna = columna - 1
+
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 6
+                '    x1hoja.Cells(fila, columna).Formula = "10000"
+                '    columna = columna + 1
+
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 6
+                '    Dim kgMasaApli As Integer = Ms * 10000
+                '    x1hoja.Cells(fila, columna).Formula = kgMasaApli
+                '    columna = columna - 1
+
+                '    fila = fila + 2
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    x1hoja.Cells(fila, columna).Formula = "P2O5 Aplicados(Kg / ha)"
+
+                '    columna = columna + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    Dim p205Aplicados As Double = ((((Fosforo / 1000) * 2.29) * kgMasaApli) / 1000)
+                '    x1hoja.Cells(fila, columna).Formula = p205Aplicados
+
+                '    columna = columna - 1
+                '    fila = fila + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    x1hoja.Cells(fila, columna).Formula = "Equiv.Fert 7 - 40 - 0(Kg / ha)"
+
+                '    columna = columna + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    Dim EquicFert7 As Double = (Ms * 2.5)
+                '    x1hoja.Cells(fila, columna).Formula = EquicFert7
+
+                '    columna = columna + 2
+                '    fila = fila - 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    x1hoja.Cells(fila, columna).Formula = "K2O Aplicados (Kg/ha)"
+
+                '    columna = columna + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    Dim K20Apli As Double = ((((Potasio / 1000) * 1.2046) * kgMasaApli) / 1000)
+                '    x1hoja.Cells(fila, columna).Formula = K20Apli
+
+                '    columna = columna - 1
+                '    fila = fila + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    x1hoja.Cells(fila, columna).Formula = "Equiv. Fert KCl (Kg/ha)"
+
+                '    columna = columna + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    Dim EquivFertKC1 As Double = (100 / 60) * Potasio
+                '    x1hoja.Cells(fila, columna).Formula = EquivFertKC1
+
+                '    columna = columna + 2
+                '    fila = fila - 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    x1hoja.Cells(fila, columna).Formula = "N Total Aplic."
+
+                '    columna = columna + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    Dim NTotalAplic As Double = (kgMasaApli * (Nitrogeno / 100))
+                '    x1hoja.Cells(fila, columna).Formula = NTotalAplic
+
+                '    columna = columna - 1
+                '    fila = fila + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    x1hoja.Cells(fila, columna).Formula = "Equiv. Fert Urea (Kg/ha)"
+
+                '    columna = columna + 1
+                '    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                '    x1hoja.Cells(fila, columna).WrapText = True
+                '    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                '    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                '    x1hoja.Cells(fila, columna).Font.Size = 8
+                '    Dim EquivFertUrea As Double = (100 / 46) * NTotalAplic
+                '    x1hoja.Cells(fila, columna).Formula = EquivFertUrea
+
+                '    fila = fila + 2
+                '    columna = 1
+
+                'End If
+
+                '//Fin de Contenido de Nutrientes
+
                 x1hoja.Cells(fila, columna).rowheight = 3
                 fila = fila + 1
                 x1hoja.Range("A" & fila, "P" & fila).Merge()
@@ -3504,7 +4331,11 @@ Public Class FormCrearInformes
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
         'GUARDA EL ARCHIVO DE EXCEL
-        x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\" & nroficha & ".xls")
+        If MsPrecente = True And PotasioPrecente = True And FosforoPrecente = True And NitrogenoPrecente = True Then
+            x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\" & nroficha & ".xls")
+        Else
+            x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\" & nroficha & ".xls")
+        End If
         x1app.Visible = True
         x1app = Nothing
         x1libro = Nothing
@@ -5442,7 +6273,7 @@ Public Class FormCrearInformes
         _fecha = Format(fechaactual, "yyyy-MM-dd")
         pi.FICHA = nroficha
         pi = pi.buscar
-        
+
         If Not pi Is Nothing Then
             Dim pi2 As New dPreinformes
             pi2.FICHA = nroficha
