@@ -1230,6 +1230,99 @@
         End Try
     End Function
 
+    Public Function buscarPorDicose(ByVal pDicose As String) As ArrayList
+        Dim listaResultado As New ArrayList
+
+        Try
+            Dim Ds As New DataSet
+            Dim sql As String = "SELECT id, nombre, ifnull(email,''), ifnull(nombre_email1,''), ifnull(email1,''), ifnull(nombre_email2,''), ifnull(email2,''), ifnull(envio,''), ifnull(usuario_web,''), ifnull(nombre_celular1,''), ifnull(celular,''), ifnull(nombre_celular2,''), ifnull(celular2,''), ifnull(codigofigaro,''), ifnull(tipousuario,1), ifnull(direccion,''), ifnull(nombre_telefono1,''), ifnull(telefono1,''), ifnull(nombre_telefono2,''), ifnull(telefono2,''), ifnull(fax,''), ifnull(dicose,''), ifnull(iddepartamento,999), ifnull(idlocalidad,999), ifnull(tecnico1,3197), ifnull(tecnico2,3197), ifnull(idagencia,8), contrato, socio, nousar, codbar, caravanas, prolesa, ifnull(prolesasuc,0), prolesamat, ifnull(observaciones,''), ifnull(fac_rsocial,''), ifnull(fac_cedula,''), ifnull(fac_rut,''), ifnull(fac_direccion,''), ifnull(fac_localidad,''), ifnull(fac_departamento,0), ifnull(fac_cpostal,''), ifnull(fac_giro,0), ifnull(cob_nombre_telefono1,''), ifnull(fac_telefonos,''), ifnull(cob_nombre_telefono2,''), ifnull(cob_telefono2,''), ifnull(cob_nombre_celular1,''), ifnull(cob_celular1,''), ifnull(cob_nombre_celular2,''), ifnull(cob_celular2,''), ifnull(cob_nombre_email1,''), ifnull(cob_email1,''), ifnull(cob_nombre_email2,''), ifnull(cob_email2,''), ifnull(fac_fax,''), ifnull(fac_email,''), ifnull(fac_contacto,''), ifnull(fac_observaciones,''), fac_lista, fac_contado, ifnull(not_email_frascos1,''), ifnull(not_email_frascos2,''), ifnull(not_email_muestras1,''), ifnull(not_email_muestras2,''), ifnull(not_email_analisis1,''), ifnull(not_email_analisis2,''), ifnull(not_email_general1,''), ifnull(not_email_general2,''), incobrable FROM cliente WHERE Dicose LIKE '%" & pDicose & "%' AND nousar =0"
+
+            Ds = Me.EjecutarSQL(sql)
+
+            If Ds.Tables(0).Rows.Count > 0 Then
+                For Each unaFila As DataRow In Ds.Tables(0).Rows
+                    Dim p As New dcliente()
+                    p.ID = CType(unaFila.Item(0), Long)
+                    p.NOMBRE = CType(unaFila.Item(1), String)
+                    p.EMAIL = CType(unaFila.Item(2), String)
+                    p.NOMBRE_EMAIL1 = CType(unaFila.Item(3), String)
+                    p.EMAIL1 = CType(unaFila.Item(4), String)
+                    p.NOMBRE_EMAIL2 = CType(unaFila.Item(5), String)
+                    p.EMAIL2 = CType(unaFila.Item(6), String)
+                    p.ENVIO = CType(unaFila.Item(7), String)
+                    p.USUARIO_WEB = CType(unaFila.Item(8), String)
+                    p.NOMBRE_CELULAR1 = CType(unaFila.Item(9), String)
+                    p.CELULAR = CType(unaFila.Item(10), String)
+                    p.NOMBRE_CELULAR2 = CType(unaFila.Item(11), String)
+                    p.CELULAR2 = CType(unaFila.Item(12), String)
+                    p.CODIGOFIGARO = CType(unaFila.Item(13), String)
+                    p.TIPOUSUARIO = CType(unaFila.Item(14), Integer)
+                    p.DIRECCION = CType(unaFila.Item(15), String)
+                    p.NOMBRE_TELEFONO1 = CType(unaFila.Item(16), String)
+                    p.TELEFONO1 = CType(unaFila.Item(17), String)
+                    p.NOMBRE_TELEFONO2 = CType(unaFila.Item(18), String)
+                    p.TELEFONO2 = CType(unaFila.Item(19), String)
+                    p.FAX = CType(unaFila.Item(20), String)
+                    p.DICOSE = CType(unaFila.Item(21), String)
+                    p.IDDEPARTAMENTO = CType(unaFila.Item(22), Integer)
+                    p.IDLOCALIDAD = CType(unaFila.Item(23), Integer)
+                    p.TECNICO1 = CType(unaFila.Item(24), Long)
+                    p.TECNICO2 = CType(unaFila.Item(25), Long)
+                    p.IDAGENCIA = CType(unaFila.Item(26), Integer)
+                    p.CONTRATO = CType(unaFila.Item(27), Integer)
+                    p.SOCIO = CType(unaFila.Item(28), Integer)
+                    p.NOUSAR = CType(unaFila.Item(29), Integer)
+                    p.CODBAR = CType(unaFila.Item(30), Integer)
+                    p.CARAVANAS = CType(unaFila.Item(31), Integer)
+                    p.PROLESA = CType(unaFila.Item(32), Integer)
+                    p.PROLESASUC = CType(unaFila.Item(33), Integer)
+                    p.PROLESAMAT = CType(unaFila.Item(34), Long)
+                    p.OBSERVACIONES = CType(unaFila.Item(35), String)
+                    p.FAC_RSOCIAL = CType(unaFila.Item(36), String)
+                    p.FAC_CEDULA = CType(unaFila.Item(37), String)
+                    p.FAC_RUT = CType(unaFila.Item(38), String)
+                    p.FAC_DIRECCION = CType(unaFila.Item(39), String)
+                    p.FAC_LOCALIDAD = CType(unaFila.Item(40), String)
+                    p.FAC_DEPARTAMENTO = CType(unaFila.Item(41), Integer)
+                    p.FAC_CPOSTAL = CType(unaFila.Item(42), String)
+                    p.FAC_GIRO = CType(unaFila.Item(43), Integer)
+                    p.COB_NOMBRE_TELEFONO1 = CType(unaFila.Item(44), String)
+                    p.FAC_TELEFONOS = CType(unaFila.Item(45), String)
+                    p.COB_NOMBRE_TELEFONO2 = CType(unaFila.Item(46), String)
+                    p.COB_TELEFONO2 = CType(unaFila.Item(47), String)
+                    p.COB_NOMBRE_CELULAR1 = CType(unaFila.Item(48), String)
+                    p.COB_CELULAR1 = CType(unaFila.Item(49), String)
+                    p.COB_NOMBRE_CELULAR2 = CType(unaFila.Item(50), String)
+                    p.COB_CELULAR2 = CType(unaFila.Item(51), String)
+                    p.COB_NOMBRE_EMAIL1 = CType(unaFila.Item(52), String)
+                    p.COB_EMAIL1 = CType(unaFila.Item(53), String)
+                    p.COB_NOMBRE_EMAIL2 = CType(unaFila.Item(54), String)
+                    p.COB_EMAIL2 = CType(unaFila.Item(55), String)
+                    p.FAC_FAX = CType(unaFila.Item(56), String)
+                    p.FAC_EMAIL = CType(unaFila.Item(57), String)
+                    p.FAC_CONTACTO = CType(unaFila.Item(58), String)
+                    p.FAC_OBSERVACIONES = CType(unaFila.Item(59), String)
+                    p.FAC_LISTA = CType(unaFila.Item(60), Integer)
+                    p.FAC_CONTADO = CType(unaFila.Item(61), Integer)
+                    p.NOT_EMAIL_FRASCOS1 = CType(unaFila.Item(62), String)
+                    p.NOT_EMAIL_FRASCOS2 = CType(unaFila.Item(63), String)
+                    p.NOT_EMAIL_MUESTRAS1 = CType(unaFila.Item(64), String)
+                    p.NOT_EMAIL_MUESTRAS2 = CType(unaFila.Item(65), String)
+                    p.NOT_EMAIL_ANALISIS1 = CType(unaFila.Item(66), String)
+                    p.NOT_EMAIL_ANALISIS2 = CType(unaFila.Item(67), String)
+                    p.NOT_EMAIL_GENERAL1 = CType(unaFila.Item(68), String)
+                    p.NOT_EMAIL_GENERAL2 = CType(unaFila.Item(69), String)
+                    p.INCOBRABLE = CType(unaFila.Item(70), Integer)
+                    listaResultado.Add(p)
+                Next
+                Return listaResultado
+            End If
+            Return listaResultado
+        Catch ex As Exception
+            Return listaResultado
+        End Try
+    End Function
+
     Public Function buscarPorNombreEmpresa(ByVal pNombre As String) As ArrayList
         Dim listaResultado As New ArrayList
 

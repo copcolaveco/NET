@@ -838,7 +838,10 @@
         Dim s As New pCliente
         Return s.buscarPorNombre(pnombre)
     End Function
-  
+    Public Function buscarPorDicose(ByVal pdicose As String) As ArrayList
+        Dim s As New pCliente
+        Return s.buscarPorDicose(pdicose)
+    End Function
     Public Function buscarPorNombreEmpresa(ByVal pnombre As String) As ArrayList
         Dim s As New pCliente
         Return s.buscarPorNombreEmpresa(pnombre)
