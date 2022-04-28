@@ -1188,7 +1188,7 @@ Public Class FormPreInforme
         'GUARDA EL ARCHIVO DE EXCEL
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
         x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
-        'x1hoja.SaveAs("C:\PREINFORMES\CONTROL\" & idsol & ".xls")
+        x1hoja.SaveAs("C:\PREINFORMES\CONTROL\" & idsol & ".xls")
         Dim preinf As New dPreinformes
         preinf.FICHA = id_sol
         preinf.marcarcreado()

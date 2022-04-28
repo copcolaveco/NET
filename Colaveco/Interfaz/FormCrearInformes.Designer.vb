@@ -36,9 +36,10 @@ Partial Class FormCrearInformes
         '
         'ButtonCrear
         '
-        Me.ButtonCrear.Location = New System.Drawing.Point(326, 22)
+        Me.ButtonCrear.Location = New System.Drawing.Point(435, 27)
+        Me.ButtonCrear.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonCrear.Name = "ButtonCrear"
-        Me.ButtonCrear.Size = New System.Drawing.Size(80, 23)
+        Me.ButtonCrear.Size = New System.Drawing.Size(107, 28)
         Me.ButtonCrear.TabIndex = 0
         Me.ButtonCrear.Text = "Crear informe"
         Me.ButtonCrear.UseVisualStyleBackColor = True
@@ -46,44 +47,49 @@ Partial Class FormCrearInformes
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Location = New System.Drawing.Point(16, 11)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(150, 13)
+        Me.Label1.Size = New System.Drawing.Size(199, 17)
         Me.Label1.TabIndex = 1
         Me.Label1.Text = "Seleccione un tipo de informe:"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(228, 8)
+        Me.Label2.Location = New System.Drawing.Point(304, 10)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(60, 13)
+        Me.Label2.Size = New System.Drawing.Size(77, 17)
         Me.Label2.TabIndex = 2
         Me.Label2.Text = "Nº de ficha"
         '
         'TextFicha
         '
-        Me.TextFicha.Location = New System.Drawing.Point(216, 25)
+        Me.TextFicha.Location = New System.Drawing.Point(288, 31)
+        Me.TextFicha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextFicha.Name = "TextFicha"
-        Me.TextFicha.Size = New System.Drawing.Size(81, 20)
+        Me.TextFicha.Size = New System.Drawing.Size(107, 22)
         Me.TextFicha.TabIndex = 3
         '
         'ComboTI
         '
         Me.ComboTI.FormattingEnabled = True
-        Me.ComboTI.Location = New System.Drawing.Point(15, 25)
+        Me.ComboTI.Location = New System.Drawing.Point(20, 31)
+        Me.ComboTI.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboTI.Name = "ComboTI"
-        Me.ComboTI.Size = New System.Drawing.Size(170, 21)
+        Me.ComboTI.Size = New System.Drawing.Size(225, 24)
         Me.ComboTI.TabIndex = 4
         '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Ficha, Me.Informe, Me.Cliente})
-        Me.DataGridView1.Location = New System.Drawing.Point(15, 52)
+        Me.DataGridView1.Location = New System.Drawing.Point(20, 63)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(391, 502)
+        Me.DataGridView1.Size = New System.Drawing.Size(521, 619)
         Me.DataGridView1.TabIndex = 5
         '
         'Ficha
@@ -106,15 +112,16 @@ Partial Class FormCrearInformes
         '
         'FormCrearInformes
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(423, 570)
+        Me.ClientSize = New System.Drawing.Size(564, 702)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.ComboTI)
         Me.Controls.Add(Me.TextFicha)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ButtonCrear)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormCrearInformes"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Informes"

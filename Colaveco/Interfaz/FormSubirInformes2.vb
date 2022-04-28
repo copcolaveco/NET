@@ -1838,13 +1838,13 @@ Public Class FormSubirInformes2
         ' Creamos una lista de archivos para concatenar
         Dim Listax As New List(Of String)
         ' Identificamos los documentos que queremos unir
-        Dim sFile1 As String = "\\ROBOT\PREINFORMES\SUELOS\c" & ficha & ".pdf"
-        Dim sFile2 As String = "\\ROBOT\PREINFORMES\SUELOS\cf" & ficha & ".pdf"
+        Dim sFile1 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
+        Dim sFile2 As String = "\\ROBOT\PREINFORMES\SUELOS\anexo" & ficha & ".pdf"
         ' Los añadimos a la lista
         Listax.Add(sFile1)
         Listax.Add(sFile2)
         ' Nombre del documento resultante
-        Dim sFileJoin As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
+        Dim sFileJoin As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
         Dim Doc As New Document()
         Try
             Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
@@ -1884,16 +1884,16 @@ Public Class FormSubirInformes2
             MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
         End Try
         '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
+        'Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
+        'Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
+        'Try
+        '    ' Mover el fichero.si existe lo sobreescribe  
+        '    My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
+        '    'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
+        '    ' errores  
+        'Catch ex As Exception
+        '    MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+        'End Try
         '***********************************
         Dim pi As New dPreinformes
         pi.FICHA = ficha
