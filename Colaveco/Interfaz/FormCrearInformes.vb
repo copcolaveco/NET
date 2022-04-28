@@ -5997,7 +5997,7 @@ Public Class FormCrearInformes
                 listaat = at.listarporficha4(nroficha)
                 If Not listaat Is Nothing Then
                     x1hoja.Cells(fila, columna).Formula = "ANÁLISIS TERCERIZADOS"
-                    x1hoja.Range("A" & fila, "M" & fila).Merge()
+                    'x1hoja.Range("A" & fila, "M" & fila).Merge()
                     x1hoja.Cells(fila, columna).Interior.Color = RGB(215, 219, 221)
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Font.Size = 10

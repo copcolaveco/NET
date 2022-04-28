@@ -282,22 +282,24 @@ Public Class FormSubirInformes2
             productorweb_com = p.USUARIO_WEB
             Dim pw_com As New dProductorWeb_com
             pw_com.USUARIO = productorweb_com
-            'pw_com = pw_com.buscar
-            'If Not pw_com Is Nothing Then
-            '    email = RTrim(pw_com.ENVIAR_EMAIL)
-            'Else
-            '    MsgBox("No coincide el usuario web (.com)")
-            'End If
-            'Dim p As New dCliente
+            pw_com = pw_com.buscar
+
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
             p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
+
+            If Not pw_com Is Nothing Then
+                email = RTrim(pw_com.ENVIAR_EMAIL)
+            ElseIf Not p.NOT_EMAIL_ANALISIS1 Is Nothing Then
+                If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                    email = RTrim(p.NOT_EMAIL_ANALISIS1)
+                ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                    email = RTrim(p.NOT_EMAIL_ANALISIS2)
+                ElseIf p.EMAIL <> "" Then
+                    email = RTrim(p.EMAIL)
+                End If
+            Else
+                MsgBox("No coincide el usuario web (.com)")
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)

@@ -64,4 +64,21 @@
         Else : ListClientes.Items.Clear()
         End If
     End Sub
+
+    Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBuscarDicose.TextChanged
+        Dim dicose As String = TextBuscarDicose.Text.Trim
+        ListClientes.Items.Clear()
+        If dicose.Length > 0 Then
+            Dim unCli As New dCliente
+            Dim lista As New ArrayList
+            lista = unCli.buscarPorDicose(dicose)
+            If Not lista Is Nothing And lista.Count > 0 Then
+                For Each c As dCliente In lista
+                    ListClientes.Items.Add(c)
+                Next
+                ListClientes.Sorted = True
+            End If
+        Else : ListClientes.Items.Clear()
+        End If
+    End Sub
 End Class
