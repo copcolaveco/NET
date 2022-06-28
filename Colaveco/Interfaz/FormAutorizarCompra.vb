@@ -365,7 +365,7 @@ Public Class FormAutorizarCompra
                 limpiar()
                 listarcompras()
             ElseIf result = DialogResult.Yes Then
-                '                enviaremail()
+                enviaremail()
                 '--------------------------------------------------------------------------
                 Dim comp As New dCompras
                 Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
@@ -803,15 +803,14 @@ Public Class FormAutorizarCompra
         If email <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "19912021Laboratorio")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+            _Message.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
-            'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Quien lo envía 
             _Message.Subject = "Orden de compra"
             'Sujeto del e-mail 

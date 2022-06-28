@@ -349,15 +349,17 @@ Public Class FormSolicitarCotizacion
         If email <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "19912021Laboratorio")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
             '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Solicitud de cotización"
             'Sujeto del e-mail 
@@ -389,15 +391,17 @@ Public Class FormSolicitarCotizacion
         If email2 <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "19912021Laboratorio")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
             '_Message.[To].Add("computos@colaveco.com")
             _Message2.[To].Add(email2)
+            _Message2.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message2.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message2.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message2.Subject = "Solicitud de cotización"
             'Sujeto del e-mail 
@@ -428,15 +432,16 @@ Public Class FormSolicitarCotizacion
         If email3 <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "19912021Laboratorio")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
             ' CONFIGURACION DEL MENSAJE 
             '_Message.[To].Add("computos@colaveco.com")
             _Message3.[To].Add(email3)
+            _Message3.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message3.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message3.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message3.Subject = "Solicitud de cotización"
             'Sujeto del e-mail 

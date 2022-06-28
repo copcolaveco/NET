@@ -17,7 +17,7 @@ Namespace My
     'NOTA: este archivo se genera de forma automática; no lo modifique directamente. Para realizar cambios,
     ' o si detecta errores de compilación en este archivo, vaya al Diseñador de proyectos
     ' (vaya a Propiedades del proyecto o haga doble clic en el nodo My Project en el
-    ' Explorador de soluciones) y realice cambios en la ficha Aplicación.
+    ' Explorador de soluciones) y realice cambios en la pestaña Aplicación.
     '
     Partial Friend Class MyApplication
         

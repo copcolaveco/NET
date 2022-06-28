@@ -1307,15 +1307,16 @@ controlcsv:
         If enviarcopia <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
             _Message.[To].Add(enviarcopia)
-            '_Message.[To].Add("pepobaez@gmail.com")
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Informe" & " " & idficha & " - " & tipo
             'Sujeto del e-mail 
@@ -1351,7 +1352,7 @@ controlcsv:
     Public Function eliminarFichero(ByVal fichero As String) As String
         Dim destino As String = "ftp://colaveco.com.uy/www/gestor/data_file/1002/prueba.xls"
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim peticionFTP As FtpWebRequest
 
         ' Creamos una petición FTP con la dirección del fichero a eliminar
@@ -1379,7 +1380,7 @@ controlcsv:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".xls"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".xls"
@@ -1460,7 +1461,7 @@ controlcsv:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".pdf"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".pdf"
@@ -1539,7 +1540,7 @@ controlcsv:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".txt"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".txt"
@@ -1836,7 +1837,7 @@ controlcsv:
     Public Function existeObjeto() As Boolean
         'Dim destino As String = "ftp://colaveco.com.uy/www/gestor/data_file/1002/prueba.xls"
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim dir As String = "ftp://colaveco.com.uy/www/gestor/data_file/pepito/"
         Dim peticionFTP As FtpWebRequest
 
@@ -1865,7 +1866,7 @@ controlcsv:
 
     Public Function creaDirectorio() As String
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim dir As String = "ftp://colaveco.com.uy/www/gestor/data_file/pepito2/"
         Dim peticionFTP As FtpWebRequest
 
@@ -1895,7 +1896,7 @@ controlcsv:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         'Dim dir As String = "ftp://colaveco.com.uy/www/gestor/data_file/1"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".xls"
@@ -2017,7 +2018,7 @@ controlcsv:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         'Dim dir As String = "ftp://colaveco.com.uy/www/gestor/data_file/1"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".pdf"
@@ -2136,7 +2137,7 @@ controlcsv:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         'Dim dir As String = "ftp://colaveco.com.uy/www/gestor/data_file/1"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".txt"
@@ -5121,15 +5122,16 @@ controlcsv:
         If email <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Informe" & " Nº " & nficha & " - Colaveco"
             'Sujeto del e-mail 
@@ -5304,15 +5306,16 @@ controlcsv:
         If sms <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(sms)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "El informe Nº " & " " & nficha & " - " & tipo_analisis & " (" & nombre_productor & ")," & "se ha subido a la web. Gracias."
             '_Message.Subject = "El informe número " & " " & nficha & ", " & "se ha subido a la web. Gracias."
@@ -5350,14 +5353,16 @@ controlcsv:
         Dim contador As Integer = 0
 
         'CONFIGURACIÓN DEL STMP 
-        _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-        _SMTP.Host = "smtp.gmail.com"
-        _SMTP.Port = 587 '465
-        _SMTP.EnableSsl = True
+        _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+        _SMTP.Host = "170.249.199.66"
+        _SMTP.Port = 25
+        _SMTP.EnableSsl = False
+
         ' CONFIGURACION DEL MENSAJE 
         _Message.[To].Add("martin.bentancor@ecolat.com,rafael.bidegain@ecolat.com")
+        _Message.[To].Add("envios@colaveco.com.uy")
         'Cuenta de Correo al que se le quiere enviar el e-mail 
-        _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "Colaveco", System.Text.Encoding.UTF8)
+        _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
         'Quien lo envía 
         _Message.Subject = "Informe TXT"
         'Sujeto del e-mail 
@@ -5387,7 +5392,7 @@ controlcsv:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -5422,7 +5427,7 @@ controlcsv:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -5477,15 +5482,16 @@ controlcsv:
         If email <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Colaveco - Brucelosis en leche"
             'Sujeto del e-mail 
@@ -5523,15 +5529,16 @@ controlcsv:
         If email <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Colaveco - Brucelosis en leche"
             'Sujeto del e-mail 
@@ -5569,15 +5576,16 @@ controlcsv:
         If email <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Colaveco - Calidad de leche"
             'Sujeto del e-mail 
@@ -5615,15 +5623,16 @@ controlcsv:
         If email <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Colaveco - Calidad de leche - TXT"
             'Sujeto del e-mail 

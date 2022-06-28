@@ -16,6 +16,7 @@
     Public idti As Integer = 0
     Public nombre_pc As String
     Public cadena As String
+    Public isAnexo As Boolean
 
     'Public idparatecnicocontrol As Integer
 End Module

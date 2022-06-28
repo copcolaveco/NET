@@ -1135,7 +1135,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         'Dim dir As String = "ftp://colaveco.com.uy/www/gestor/data_file/1"
         If tipoinforme = 1 Then
             crea_control_lechero_com()
@@ -1279,7 +1279,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         If tipoinforme = 1 Then
             'fichero = "C:\INFORMES PARA SUBIR\" & idficha & ".pdf"
             fichero = _ficheropdf
@@ -1415,7 +1415,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         If tipoinforme = 1 Then
             'fichero = "C:\INFORMES PARA SUBIR\" & idficha & ".txt"
             fichero = _ficherocsv
@@ -1469,7 +1469,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".xls"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".xls"
@@ -1546,7 +1546,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".pdf"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".pdf"
@@ -1622,7 +1622,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".txt"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".txt"
@@ -1659,7 +1659,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1690,7 +1690,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1721,7 +1721,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/control_lechero/"
@@ -1751,7 +1751,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1782,7 +1782,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1813,7 +1813,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1844,7 +1844,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1875,7 +1875,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/serologia/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1899,7 +1899,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/patologia/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1923,7 +1923,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/calidad_de_leche/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1947,7 +1947,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/ambiental/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1971,7 +1971,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/agro_nutricion/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1995,7 +1995,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/otros_servicios/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -2019,7 +2019,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "HSy7TS8sfuv"
+        Dim pass As String = "NUEVA**!!COL22"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/efluentes/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear

@@ -1934,14 +1934,13 @@ Public Class FormSolicitud
         fichero = "\\192.168.1.10\E\NET\SOLICITUDES\S" & nficha & ".xls"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             ' CONFIGURACION DEL MENSAJE 
             _Message.[To].Add(email)
-            'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Solicitud de análisis"
             'Sujeto del e-mail 
@@ -4217,14 +4216,14 @@ Public Class FormSolicitud
         If tipoinforme = "Nutrición" Or tipoinforme = "Suelos" Then
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-                _SMTP.Host = "smtp.gmail.com"
-                _SMTP.Port = 587 '465
-                _SMTP.EnableSsl = True
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+                _SMTP.Host = "170.249.199.66"
+                _SMTP.Port = 25
+                _SMTP.EnableSsl = False
+                _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
                 ' CONFIGURACION DEL MENSAJE 
                 _Message.[To].Add(LTrim(email))
-                'Cuenta de Correo al que se le quiere enviar el e-mail 
-                _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+                _Message.[To].Add(LTrim("envios@colaveco.com.uy"))
                 'Quien lo envía 
                 _Message.Subject = "Solicitud de análisis"
                 'Sujeto del e-mail 
@@ -4261,14 +4260,14 @@ Public Class FormSolicitud
         Else
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-                _SMTP.Host = "smtp.gmail.com"
-                _SMTP.Port = 587 '465
-                _SMTP.EnableSsl = True
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+                _SMTP.Host = "170.249.199.66"
+                _SMTP.Port = 25
+                _SMTP.EnableSsl = False
+                _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
                 ' CONFIGURACION DEL MENSAJE 
                 _Message.[To].Add(LTrim(email))
-                'Cuenta de Correo al que se le quiere enviar el e-mail 
-                _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+                _Message.[To].Add(LTrim("envios@colaveco.com.uy"))
                 'Quien lo envía 
                 _Message.Subject = "Solicitud de análisis"
                 'Sujeto del e-mail 

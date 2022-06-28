@@ -1835,43 +1835,46 @@ Public Class FormSubirInformes2
             copia = TextEnviarCopia.Text
         End If
 
-        '****************************************************************************************
-        'JUNTAR LOS 2 PDF ***************************************************************************
-        ' Creamos una lista de archivos para concatenar
-        Dim Listax As New List(Of String)
-        ' Identificamos los documentos que queremos unir
-        Dim sFile1 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-        Dim sFile2 As String = "\\ROBOT\PREINFORMES\SUELOS\anexo" & ficha & ".pdf"
-        ' Los añadimos a la lista
-        Listax.Add(sFile1)
-        Listax.Add(sFile2)
-        ' Nombre del documento resultante
-        Dim sFileJoin As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Dim Doc As New Document()
-        Try
-            Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
-            Dim copy As New PdfCopy(Doc, fs)
-            Doc.Open()
-            Dim Rd As PdfReader
-            Dim n As Integer 'Número de páginas de cada pdf
-            For Each file In Listax
-                Rd = New PdfReader(file)
-                n = Rd.NumberOfPages
-                Dim page As Integer = 0
-                Do While page < n
-                    page += 1
-                    copy.AddPage(copy.GetImportedPage(Rd, page))
-                Loop
-                copy.FreeReader(Rd)
-                Rd.Close()
-            Next
-        Catch ex As Exception
-            MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf, si el informe no lleva ANEXO por conversiòn de fertilizante proceguir.")
-        Finally
-            ' Cerramos el documento
-            Doc.Close()
-        End Try
-        '********************************************************************************************
+        If isAnexo Then
+            '****************************************************************************************
+            'JUNTAR LOS 2 PDF ***************************************************************************
+            ' Creamos una lista de archivos para concatenar
+            Dim Listax As New List(Of String)
+            ' Identificamos los documentos que queremos unir
+            Dim sFile1 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
+            Dim sFile2 As String = "\\ROBOT\PREINFORMES\SUELOS\anexo" & ficha & ".pdf"
+            ' Los añadimos a la lista
+            Listax.Add(sFile1)
+            Listax.Add(sFile2)
+            ' Nombre del documento resultante
+            Dim sFileJoin As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
+            Dim Doc As New Document()
+            Try
+                Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
+                Dim copy As New PdfCopy(Doc, fs)
+                Doc.Open()
+                Dim Rd As PdfReader
+                Dim n As Integer 'Número de páginas de cada pdf
+                For Each file In Listax
+                    Rd = New PdfReader(file)
+                    n = Rd.NumberOfPages
+                    Dim page As Integer = 0
+                    Do While page < n
+                        page += 1
+                        copy.AddPage(copy.GetImportedPage(Rd, page))
+                    Loop
+                    copy.FreeReader(Rd)
+                    Rd.Close()
+                Next
+            Catch ex As Exception
+                MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf, si el informe no lleva ANEXO por conversiòn de fertilizante proceguir.")
+            Finally
+                ' Cerramos el documento
+                Doc.Close()
+            End Try
+            '********************************************************************************************
+        End If
+        
 
         '****************************************************************************************
         '*** MOVER ARCHIVO XLS***********************************************************************
@@ -1885,18 +1888,22 @@ Public Class FormSubirInformes2
         Catch ex As Exception
             MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
         End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        'Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-        'Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        'Try
-        '    ' Mover el fichero.si existe lo sobreescribe  
-        '    My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-        '    'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-        '    ' errores  
-        'Catch ex As Exception
-        '    MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        'End Try
-        '***********************************
+
+        If isAnexo = False Then
+            '*** MOVER ARCHIVO PDF***********************************************************************
+            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
+            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
+            Try
+                ' Mover el fichero.si existe lo sobreescribe  
+                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
+                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
+                ' errores  
+            Catch ex As Exception
+                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+            End Try
+            '***********************************
+        End If
+        
         Dim pi As New dPreinformes
         pi.FICHA = ficha
         pi.ABONADO = abonado
@@ -4199,15 +4206,16 @@ Public Class FormSubirInformes2
         email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Colaveco - Calidad de leche"
             'Sujeto del e-mail 
@@ -4243,15 +4251,16 @@ Public Class FormSubirInformes2
         email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Colaveco - Calidad de leche - TXT"
             'Sujeto del e-mail 
@@ -4286,15 +4295,16 @@ Public Class FormSubirInformes2
         email = "iverocay@hotmail.com"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Colaveco - Calidad de leche - TXT"
             'Sujeto del e-mail 

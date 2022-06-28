@@ -216,15 +216,16 @@ Public Class FormEnvioCajas
         End If
         If email <> "" And email <> "no aportado" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com")
             _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             _Message.Subject = "Envío de cajas"
             'Sujeto del e-mail 
@@ -386,15 +387,17 @@ Public Class FormEnvioCajas
         Dim cantcaracteres As Integer = Len(texto)
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("colaveco@gmail.com", "CLV19912021Colaveco30")
-            _SMTP.Host = "smtp.gmail.com"
-            _SMTP.Port = 587 '465
-            _SMTP.EnableSsl = True
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Host = "170.249.199.66"
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
             ' CONFIGURACION DEL MENSAJE 
             '_Message.[To].Add("computos@colaveco.com")
+            _Message.[To].Add("envios@colaveco.com.uy")
             _Message.[To].Add(sms)
             'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("colaveco@gmail.com", "COLAVECO", System.Text.Encoding.UTF8)
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             'Quien lo envía 
             If eremito <> "" Then
                 _Message.Subject = "Colaveco ha enviado" & " " & texto2 & ", " & "las siguientes cajas número " & texto & ", " & "por agencia" & " " & eagencia & ", " & "envío nº" & " " & eremito & " (999 = conservadora)"

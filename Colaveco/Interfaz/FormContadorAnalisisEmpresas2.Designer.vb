@@ -136,9 +136,10 @@ Partial Class FormContadorAnalisisEmpresas2
         '
         'ButtonImprimir
         '
-        Me.ButtonImprimir.Location = New System.Drawing.Point(369, 48)
+        Me.ButtonImprimir.Location = New System.Drawing.Point(492, 59)
+        Me.ButtonImprimir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonImprimir.Name = "ButtonImprimir"
-        Me.ButtonImprimir.Size = New System.Drawing.Size(83, 23)
+        Me.ButtonImprimir.Size = New System.Drawing.Size(111, 28)
         Me.ButtonImprimir.TabIndex = 17
         Me.ButtonImprimir.Text = "Generar TXT"
         Me.ButtonImprimir.UseVisualStyleBackColor = True
@@ -147,10 +148,11 @@ Partial Class FormContadorAnalisisEmpresas2
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Ficha, Me.Fecha, Me.RC, Me.RB, Me.Gr, Me.Pr, Me.Lc, Me.ST, Me.Cr, Me.Ur, Me.Inh, Me.Esp, Me.Psi})
-        Me.DataGridView1.Location = New System.Drawing.Point(14, 119)
+        Me.DataGridView1.Location = New System.Drawing.Point(19, 146)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(715, 361)
+        Me.DataGridView1.Size = New System.Drawing.Size(953, 444)
         Me.DataGridView1.TabIndex = 16
         '
         'Ficha
@@ -233,9 +235,10 @@ Partial Class FormContadorAnalisisEmpresas2
         '
         'ButtonListar
         '
-        Me.ButtonListar.Location = New System.Drawing.Point(288, 48)
+        Me.ButtonListar.Location = New System.Drawing.Point(384, 59)
+        Me.ButtonListar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonListar.Name = "ButtonListar"
-        Me.ButtonListar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonListar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonListar.TabIndex = 15
         Me.ButtonListar.Text = "Listar"
         Me.ButtonListar.UseVisualStyleBackColor = True
@@ -243,66 +246,74 @@ Partial Class FormContadorAnalisisEmpresas2
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(11, 53)
+        Me.Label3.Location = New System.Drawing.Point(15, 65)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(48, 13)
+        Me.Label3.Size = New System.Drawing.Size(64, 17)
         Me.Label3.TabIndex = 14
         Me.Label3.Text = "Empresa"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(158, 16)
+        Me.Label2.Location = New System.Drawing.Point(211, 20)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(33, 13)
+        Me.Label2.Size = New System.Drawing.Size(43, 17)
         Me.Label2.TabIndex = 13
         Me.Label2.Text = "hasta"
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(11, 16)
+        Me.Label1.Location = New System.Drawing.Point(15, 20)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(38, 13)
+        Me.Label1.Size = New System.Drawing.Size(49, 17)
         Me.Label1.TabIndex = 12
         Me.Label1.Text = "Desde"
         '
         'ComboEmpresas
         '
         Me.ComboEmpresas.FormattingEnabled = True
-        Me.ComboEmpresas.Location = New System.Drawing.Point(65, 50)
+        Me.ComboEmpresas.Location = New System.Drawing.Point(87, 62)
+        Me.ComboEmpresas.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboEmpresas.Name = "ComboEmpresas"
-        Me.ComboEmpresas.Size = New System.Drawing.Size(208, 21)
+        Me.ComboEmpresas.Size = New System.Drawing.Size(276, 24)
         Me.ComboEmpresas.TabIndex = 11
         '
         'DateHasta
         '
         Me.DateHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateHasta.Location = New System.Drawing.Point(197, 12)
+        Me.DateHasta.Location = New System.Drawing.Point(263, 15)
+        Me.DateHasta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateHasta.Name = "DateHasta"
-        Me.DateHasta.Size = New System.Drawing.Size(97, 20)
+        Me.DateHasta.Size = New System.Drawing.Size(128, 22)
         Me.DateHasta.TabIndex = 10
         '
         'DateDesde
         '
         Me.DateDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateDesde.Location = New System.Drawing.Point(55, 12)
+        Me.DateDesde.Location = New System.Drawing.Point(73, 15)
+        Me.DateDesde.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateDesde.Name = "DateDesde"
-        Me.DateDesde.Size = New System.Drawing.Size(97, 20)
+        Me.DateDesde.Size = New System.Drawing.Size(128, 22)
         Me.DateDesde.TabIndex = 9
         '
         'ProgressBar1
         '
-        Me.ProgressBar1.Location = New System.Drawing.Point(14, 90)
+        Me.ProgressBar1.Location = New System.Drawing.Point(19, 111)
+        Me.ProgressBar1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ProgressBar1.Name = "ProgressBar1"
-        Me.ProgressBar1.Size = New System.Drawing.Size(715, 23)
+        Me.ProgressBar1.Size = New System.Drawing.Size(953, 28)
         Me.ProgressBar1.TabIndex = 18
         '
         'ButtonFacturar
         '
-        Me.ButtonFacturar.Location = New System.Drawing.Point(458, 48)
+        Me.ButtonFacturar.Location = New System.Drawing.Point(611, 59)
+        Me.ButtonFacturar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonFacturar.Name = "ButtonFacturar"
-        Me.ButtonFacturar.Size = New System.Drawing.Size(83, 23)
+        Me.ButtonFacturar.Size = New System.Drawing.Size(111, 28)
         Me.ButtonFacturar.TabIndex = 19
         Me.ButtonFacturar.Text = "Facturar"
         Me.ButtonFacturar.UseVisualStyleBackColor = True
@@ -310,28 +321,31 @@ Partial Class FormContadorAnalisisEmpresas2
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(315, 12)
+        Me.Label4.Location = New System.Drawing.Point(420, 15)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(80, 13)
+        Me.Label4.Size = New System.Drawing.Size(107, 17)
         Me.Label4.TabIndex = 20
         Me.Label4.Text = "Tipo de informe"
         '
         'cbxTipoInforme
         '
         Me.cbxTipoInforme.FormattingEnabled = True
-        Me.cbxTipoInforme.Location = New System.Drawing.Point(401, 11)
+        Me.cbxTipoInforme.Location = New System.Drawing.Point(535, 14)
+        Me.cbxTipoInforme.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.cbxTipoInforme.Name = "cbxTipoInforme"
-        Me.cbxTipoInforme.Size = New System.Drawing.Size(208, 21)
+        Me.cbxTipoInforme.Size = New System.Drawing.Size(276, 24)
         Me.cbxTipoInforme.TabIndex = 21
         '
         'DataGridViewAmbiental
         '
         Me.DataGridViewAmbiental.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewAmbiental.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IDAMB, Me.FECHAAMB, Me.LISTERIAAMBIENTAL, Me.PSEUDOMONASPPPSEUDOMONAAUREGINOSA, Me.ENTEROBACTERIASAMBIENTALES, Me.MOHOSYLEVADURASAmbiental, Me.COLIFORMESTOTALESAMBIENTALES, Me.CFECALESAMBIENTALES, Me.PSEUDOMONAAMBIENTAL, Me.ANALISISTERCERIZADOSAMB, Me.MESOFILOSAMBIENTAL, Me.ECOLIMONAMBIENTAL, Me.VOUCHERAREAAMBIENTAL, Me.MOHOS, Me.SALMONELLASPPAislamiento, Me.LEVADURAS, Me.LISTERIASPPPalcamAislamiento, Me.LISTERIAMONOCYTOGENES, Me.ESTAFILOCOCOCOAGULASAPOSITIVO, Me.EColiO157RevealSP, Me.HISOPOPARAAMBIENTAL, Me.FRASCOCONMEDIOPARAAMBIENTAL, Me.LISTERIAMONOCYTOGENESPCR, Me.LISTERIAMONOCYTOGENESPOOLPCR, Me.SALMONELLAConfirmacionenambientales, Me.LISTERIASPPPalcamConfirmacion})
-        Me.DataGridViewAmbiental.Location = New System.Drawing.Point(735, 119)
+        Me.DataGridViewAmbiental.Location = New System.Drawing.Point(980, 146)
+        Me.DataGridViewAmbiental.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridViewAmbiental.Name = "DataGridViewAmbiental"
         Me.DataGridViewAmbiental.RowHeadersVisible = False
-        Me.DataGridViewAmbiental.Size = New System.Drawing.Size(715, 361)
+        Me.DataGridViewAmbiental.Size = New System.Drawing.Size(953, 444)
         Me.DataGridViewAmbiental.TabIndex = 22
         '
         'IDAMB
@@ -470,10 +484,11 @@ Partial Class FormContadorAnalisisEmpresas2
         '
         Me.DataGridViewAlimentos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridViewAlimentos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.ENTEROBACTERIAS, Me.CLORURODESODIO, Me.ECOLICOLIFORMESTOTALES35, Me.ESTAFILOCOCOCOAGULASAPOSITIVO3, Me.SALMONELLASPPAislamiento2, Me.MOHOSLEVADURAS, Me.SOLIDOSTOTALESHUMEDAD, Me.MATERIAGRASAVanGulik, Me.ph, Me.PROTEINATOTALxDUMAS, Me.TermofilosSP, Me.CENIZASTOTALES, Me.Nitrato, Me.COLIFORMESTOTALES, Me.COLIFORMESFECALES, Me.Paq1, Me.Paq2, Me.Paq3, Me.LISTERIAMONOCYTOGENESAislamiento, Me.COMPOSICIONENSUERO, Me.EColiO157RevealSP2, Me.MATERIAGRASAporROSEGOTTLIEB, Me.PROTEINATOTALNITROGENOxKJELDAHL, Me.ProteinaTotalporDUMAS5muestrasomás, Me.ANALISISTERCERIZADOSBROMAT, Me.Paq4, Me.LISTERIAMONOCYTOGENESPOOL5MUESTRASAislamiento, Me.SALMONELLASPPPOOL5MUESTRASAislamiento, Me.BACTERIASACIDOLACTICAS, Me.BACILLUSCEREUS, Me.MESÓFILOSRB, Me.ECOLIconpaq, Me.LEVADURAS2, Me.LISTERIASPP, Me.MOHOS2, Me.LISTERIAMONOCYTOGENESPCR2, Me.LISTERIAMONOCYTOGENESPOOLPCR2, Me.SALMONELLASPPPCR, Me.SALMONELLASPPPOOLPCR, Me.ACIDEZ, Me.CLOSTRIDIOSESPORULADOSANAEROBIOSMESÓFILOSENQUESO, Me.SALMONELLAConfirmacionenAlimentos, Me.SALMONELLAPOOL5MUESTRASConfirmacionenAlimentos, Me.LISTERIAMONOCYTOGENESConfirmacionenalimentos, Me.LISTERIAMONOCYTOGENESPOOL5MUESTRASConfirmacion, Me.Paq5, Me.Carbohidratos, Me.Energía, Me.LACTOSA, Me.CONDUCTIVIDADAlimentos, Me.EnvioaotrosLaboratoriosBromatologia})
-        Me.DataGridViewAlimentos.Location = New System.Drawing.Point(14, 498)
+        Me.DataGridViewAlimentos.Location = New System.Drawing.Point(19, 613)
+        Me.DataGridViewAlimentos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridViewAlimentos.Name = "DataGridViewAlimentos"
         Me.DataGridViewAlimentos.RowHeadersVisible = False
-        Me.DataGridViewAlimentos.Size = New System.Drawing.Size(1436, 278)
+        Me.DataGridViewAlimentos.Size = New System.Drawing.Size(1915, 342)
         Me.DataGridViewAlimentos.TabIndex = 23
         '
         'DataGridViewTextBoxColumn1
@@ -745,9 +760,9 @@ Partial Class FormContadorAnalisisEmpresas2
         '
         'FormContadorAnalisisEmpresas2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1462, 788)
+        Me.ClientSize = New System.Drawing.Size(1924, 970)
         Me.Controls.Add(Me.DataGridViewAlimentos)
         Me.Controls.Add(Me.DataGridViewAmbiental)
         Me.Controls.Add(Me.cbxTipoInforme)
@@ -763,6 +778,7 @@ Partial Class FormContadorAnalisisEmpresas2
         Me.Controls.Add(Me.ComboEmpresas)
         Me.Controls.Add(Me.DateHasta)
         Me.Controls.Add(Me.DateDesde)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormContadorAnalisisEmpresas2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Contador de análisis de empresas (Nuevo)"

@@ -14,6 +14,7 @@ Public Class FormCrearInformes
     Private _usuario As dUsuario
     Private idti As Integer = 0
     Private nroficha As Long = 0
+    Public isAnexo As Boolean = False
     Public Property Usuario() As dUsuario
         Get
             Return _usuario
@@ -2915,6 +2916,7 @@ Public Class FormCrearInformes
         Dim fila As Integer
         Dim columna As Integer
         Dim titulo As Boolean = False
+        Dim compost As Boolean = False
         columna = 1
         fila = 1
         If Not lista Is Nothing Then
@@ -2940,72 +2942,84 @@ Public Class FormCrearInformes
                         End If
 
                         '%MS
-                        If na2.ANALISIS = 473 Or na2.ANALISIS = 479 Or na2.ANALISIS = 474 And sa.IDMUESTRA = 37 Then
-                            If IsNumeric(na2.RESULTADO) Then
-                                If na2.RESULTADO <> -1 Then
-                                    Ms = na2.RESULTADO
-                                    MsCantidad += 1
-                                    MsPrecente = True
-                                End If
-                            ElseIf IsNumeric(na2.RESULTADO2) Then
-                                If na2.RESULTADO2 <> -1 Then
-                                    Ms = na2.RESULTADO2
-                                    MsCantidad += 1
-                                    MsPrecente = True
+                        If sa.IDMUESTRA = 37 Then
+                            compost = True
+                            If na2.ANALISIS = 473 Or na2.ANALISIS = 479 Or na2.ANALISIS = 474 Then
+                                If IsNumeric(na2.RESULTADO) Then
+                                    If na2.RESULTADO <> -1 Then
+                                        Ms = na2.RESULTADO
+                                        MsCantidad += 1
+                                        MsPrecente = True
+                                    End If
+                                ElseIf IsNumeric(na2.RESULTADO2) Then
+                                    If na2.RESULTADO2 <> -1 Then
+                                        Ms = na2.RESULTADO2
+                                        MsCantidad += 1
+                                        MsPrecente = True
+                                    End If
                                 End If
                             End If
                         End If
+                        
 
                         'Nitrogeno
-                        If na2.ANALISIS = 138 Or na2.ANALISIS = 374 And sa.IDMUESTRA = 37 Then
-                            If IsNumeric(na2.RESULTADO) Then
-                                If na2.RESULTADO <> -1 Then
-                                    Nitrogeno = na2.RESULTADO
-                                    NitrogenoCantidad += 1
-                                    NitrogenoPrecente = True
-                                End If
-                            ElseIf IsNumeric(na2.RESULTADO2) Then
-                                If na2.RESULTADO2 <> -1 Then
-                                    Nitrogeno = na2.RESULTADO2
-                                    NitrogenoCantidad += 1
-                                    NitrogenoPrecente = True
+                        If sa.IDMUESTRA = 37 Then
+                            If na2.ANALISIS = 138 Or na2.ANALISIS = 374 Then
+                                If IsNumeric(na2.RESULTADO) Then
+                                    If na2.RESULTADO <> -1 Then
+                                        Nitrogeno = na2.RESULTADO
+                                        NitrogenoCantidad += 1
+                                        NitrogenoPrecente = True
+                                    End If
+                                ElseIf IsNumeric(na2.RESULTADO2) Then
+                                    If na2.RESULTADO2 <> -1 Then
+                                        Nitrogeno = na2.RESULTADO2
+                                        NitrogenoCantidad += 1
+                                        NitrogenoPrecente = True
+                                    End If
                                 End If
                             End If
                         End If
 
                         'Fosforo
-                        If na2.ANALISIS = 226 Or na2.ANALISIS = 375 Or na2.ANALISIS = 400 And sa.IDMUESTRA = 37 Then
-                            If IsNumeric(na2.RESULTADO) Then
-                                If na2.RESULTADO <> -1 Then
-                                    Fosforo = na2.RESULTADO
-                                    FosforoCantidad += 1
-                                    FosforoPrecente = True
-                                End If
-                            ElseIf IsNumeric(na2.RESULTADO2) Then
-                                If na2.RESULTADO2 <> -1 Then
-                                    Fosforo = na2.RESULTADO2
-                                    FosforoCantidad += 1
-                                    FosforoPrecente = True
+                        If sa.IDMUESTRA = 37 Then
+                            If na2.ANALISIS = 226 Or na2.ANALISIS = 375 Or na2.ANALISIS = 400 Then
+                                If IsNumeric(na2.RESULTADO) Then
+                                    If na2.RESULTADO <> -1 Then
+                                        Fosforo = na2.RESULTADO
+                                        FosforoCantidad += 1
+                                        FosforoPrecente = True
+                                    End If
+                                ElseIf IsNumeric(na2.RESULTADO2) Then
+                                    If na2.RESULTADO2 <> -1 Then
+                                        Fosforo = na2.RESULTADO2
+                                        FosforoCantidad += 1
+                                        FosforoPrecente = True
+                                    End If
                                 End If
                             End If
                         End If
+                        
 
                         'Potasio
-                        If na2.ANALISIS = 208 Or na2.ANALISIS = 376 Or na2.ANALISIS = 401 And sa.IDMUESTRA = 37 Then
-                            If IsNumeric(na2.RESULTADO) Then
-                                If na2.RESULTADO <> -1 Then
-                                    Potasio = na2.RESULTADO
-                                    PotasioCantidad += 1
-                                    PotasioPrecente = True
-                                End If
-                            ElseIf IsNumeric(na2.RESULTADO2) Then
-                                If na2.RESULTADO2 <> -1 Then
-                                    Potasio = na2.RESULTADO2
-                                    PotasioCantidad += 1
-                                    PotasioPrecente = True
+                        If sa.IDMUESTRA = 37 Then
+                            If na2.ANALISIS = 208 Or na2.ANALISIS = 376 Or na2.ANALISIS = 401 Then
+                                If IsNumeric(na2.RESULTADO) Then
+                                    If na2.RESULTADO <> -1 Then
+                                        Potasio = na2.RESULTADO
+                                        PotasioCantidad += 1
+                                        PotasioPrecente = True
+                                    End If
+                                ElseIf IsNumeric(na2.RESULTADO2) Then
+                                    If na2.RESULTADO2 <> -1 Then
+                                        Potasio = na2.RESULTADO2
+                                        PotasioCantidad += 1
+                                        PotasioPrecente = True
+                                    End If
                                 End If
                             End If
                         End If
+                        
                     Next
 
                     If titulo = False Then
@@ -3097,7 +3111,7 @@ Public Class FormCrearInformes
                         x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
                         x1hoja.Cells(fila, columna).Font.Size = 12
                         Dim MScalculo As Double = Ms / 100
-                        MScalculo = Format(MScalculo, "0.00")
+                        MScalculo = Format(MScalculo, "0.000")
                         x1hoja.Cells(fila, columna).Formula = MScalculo
                         columna = columna + 1
 
@@ -3314,10 +3328,10 @@ Public Class FormCrearInformes
                     Ms = 0
                     Potasio = 0
 
-                    MsPrecente = False
-                    PotasioPrecente = False
-                    NitrogenoPrecente = False
-                    FosforoPrecente = False
+                    'MsPrecente = False
+                    'PotasioPrecente = False
+                    'NitrogenoPrecente = False
+                    'FosforoPrecente = False
                 Next
 
 
@@ -3372,15 +3386,25 @@ Public Class FormCrearInformes
 
         '***********************************************************
 
+
         'PROTEGE LA HOJA DE EXCEL
-        x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
-        Contents:=True, Scenarios:=True)
-        'GUARDA EL ARCHIVO DE EXCEL
-        x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\anexo" & nroficha & ".xls")
-        x1app.Visible = True
+        If MsPrecente And compost Then
+            x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
+           Contents:=True, Scenarios:=True)
+            'GUARDA EL ARCHIVO DE EXCEL
+            x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\anexo" & nroficha & ".xls")
+            x1app.Visible = True
+            Module1.isAnexo = True
+        End If
+
+
         x1app = Nothing
         x1libro = Nothing
         x1hoja = Nothing
+        MsPrecente = False
+        PotasioPrecente = False
+        NitrogenoPrecente = False
+        FosforoPrecente = False
     End Sub
     Private Sub informe_suelos()
         Dim ficha = TextFicha.Text.Trim

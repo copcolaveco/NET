@@ -277,7 +277,7 @@
         End Try
     End Function
     Public Function listarsincargar() As ArrayList
-        Dim sql As String = "SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, obsrecibo, responsable, cargada, convenio FROM enviocajas WHERE idempresa = 7 and cargada = 0 or idempresa = 13 and cargada = 0 order by id asc"
+        Dim sql As String = "SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, obsrecibo, responsable, cargada, convenio FROM enviocajas WHERE idempresa = 7 and cargada = 0 or idempresa = 13  and cargada = 0 or idempresa = 15  and cargada = 0 order by id asc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet

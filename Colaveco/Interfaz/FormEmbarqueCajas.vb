@@ -172,7 +172,7 @@ Public Class FormEmbarqueCajas
             ec.ID = id
             ec = ec.buscar2
             If Not ec Is Nothing Then
-                If ec.IDEMPRESA <> 7 And ec.IDEMPRESA <> 13 Then
+                If ec.IDEMPRESA <> 7 And ec.IDEMPRESA <> 13 And ec.IDEMPRESA <> 15 Then
                     Dim v As New FormCompletoEnvio2(id, Usuario)
                     v.ShowDialog()
                 End If
