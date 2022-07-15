@@ -40,11 +40,14 @@ Public Class FormSolicitud
         cargarComboInformes()
         cargarComboSubInformes()
         cargarComboTecnicos()
+        'cargarComboMuestreoTecnicos()
         cargarComboAgencia()
         cargarComboCajas()
+        cargarComboTecnicosMuestreo()
         limpiar()
         buscarultimaficha()
         idprod = idpro
+        cbxTecnicoMuestreo.Visible = False
         If idprod <> 0 Then
             Dim pro As New dCliente
             pro.ID = idprod
@@ -66,6 +69,9 @@ Public Class FormSolicitud
                 Next
                 guardar()
                 ComboTipoInforme.Focus()
+                If CheckMuestreo.Checked = True Then
+                    cbxTecnicoMuestreo.Visible = True
+                End If
             End If
         End If
     End Sub
@@ -101,6 +107,19 @@ Public Class FormSolicitud
             End If
         End If
     End Sub
+    Public Sub cargarComboTecnicosMuestreo()
+        Dim tecMue As New dTecnicoMuestreo
+        Dim lista As New ArrayList
+        lista = tecMue.listarTodos
+        cbxTecnicoMuestreo.Items.Clear()
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                For Each tecMue In lista
+                    cbxTecnicoMuestreo.Items.Add(tecMue)
+                Next
+            End If
+        End If
+    End Sub
     Public Sub cargarComboTecnicos()
         Dim t As New dCliente
         Dim lista As New ArrayList
@@ -112,6 +131,27 @@ Public Class FormSolicitud
                 Next
             End If
         End If
+    End Sub
+    Public Sub cargarComboMuestreoTecnicos()
+
+        Dim tec1 As New dCliente
+        tec1.ID = Enumerados.TecnicoMuestreo.Victor
+        tec1.NOMBRE = Enumerados.TecnicoMuestreo.Victor.ToString()
+        Dim tec2 As New dCliente
+        tec2.ID = Enumerados.TecnicoMuestreo.MedardoTerra
+        tec2.NOMBRE = Enumerados.TecnicoMuestreo.MedardoTerra.ToString()
+        Dim tec3 As New dCliente
+        tec3.ID = Enumerados.TecnicoMuestreo.LeticiaMendez
+        tec3.NOMBRE = Enumerados.TecnicoMuestreo.LeticiaMendez.ToString()
+        Dim tec4 As New dCliente
+        tec4.ID = Enumerados.TecnicoMuestreo.GastorReutor
+        tec4.NOMBRE = Enumerados.TecnicoMuestreo.GastorReutor.ToString()
+
+        cbxTecnicoMuestreo.Items.Add(tec1)
+        cbxTecnicoMuestreo.Items.Add(tec2)
+        cbxTecnicoMuestreo.Items.Add(tec3)
+        cbxTecnicoMuestreo.Items.Add(tec4)
+
     End Sub
     Public Sub cargarComboInformes()
         Dim ti As New dTipoInforme
@@ -203,6 +243,15 @@ Public Class FormSolicitud
         Dim idproductor As Long = TextIdProductor.Text.Trim
         Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
         Dim idsubinforme As dSubInforme = CType(ComboSubInforme.SelectedItem, dSubInforme)
+
+        'Tecnico Muestreo 
+        Dim tecMuestreo As dTecnicoMuestreo = CType(cbxTecnicoMuestreo.SelectedItem, dTecnicoMuestreo)
+        If CheckMuestreo.Checked = True And tecMuestreo Is Nothing Then
+            MsgBox("Debe seleccionar un Técnico para el muestreo!")
+            Exit Sub
+            cbxTecnicoMuestreo.Focus()
+        End If
+
         If idtipoinforme Is Nothing Then
             MsgBox("Debe seleccionar tipo de informe!")
             Exit Sub
@@ -301,11 +350,27 @@ Public Class FormSolicitud
         If CheckMuestreo.Checked = True Then
             muestreo = 1
         End If
+        Dim idTecnicoMuestreo As Long
+
+        If Not tecMuestreo Is Nothing Then
+            idTecnicoMuestreo = tecMuestreo.TECNICO_MUESTREO_ID
+        End If
+
         Dim fechamuestreo As Date = DateMuestreo.Value.ToString("yyyy-MM-dd")
         If TextId.Text.Trim.Length > 0 Then
             Dim sol As New dSolicitudAnalisis()
             Dim sw As New dSolicitudWeb
             Dim un As New dUltimoNumero
+
+            'Sol.It 261
+            If CheckMuestreo.Checked = True And Not tecMuestreo Is Nothing And ComboTipoInforme.SelectedIndex = 16 Then
+                Dim solTecnMuestreo As New dSolicitudanalisis_TecMuestreo()
+                solTecnMuestreo.ID_SOLICITUDANALISIS = id
+                solTecnMuestreo.ID_TECNICOMUESTREO = idTecnicoMuestreo
+                solTecnMuestreo.guardar()
+            End If
+            
+
             un = un.buscar
             Dim fecing As String
             fecing = Format(fechaingreso, "yyyy-MM-dd")
@@ -343,6 +408,7 @@ Public Class FormSolicitud
             sol.CODIGO = codigo
             sol.FECHAPROCESO = fecing
             sol.MUESTREO = muestreo
+            sol.INTERPRETACION = idTecnicoMuestreo
             Dim fecmuestreo As String
             fecmuestreo = Format(fechamuestreo, "yyyy-MM-dd")
             sol.FECHAMUESTREO = fecmuestreo
@@ -442,6 +508,7 @@ Public Class FormSolicitud
                 sol.CODIGO = codigo
                 sol.FECHAPROCESO = fecing
                 sol.MUESTREO = muestreo
+                sol.INTERPRETACION = idTecnicoMuestreo
                 Dim fecmuestreo As String
                 fecmuestreo = Format(fechamuestreo, "yyyy-MM-dd")
                 sol.FECHAMUESTREO = fecmuestreo
@@ -1903,7 +1970,6 @@ Public Class FormSolicitud
     End Sub
 
     Private Sub ButtonGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonGuardar.Click
-
         Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
         If Not idtipoinforme Is Nothing Then
             Dim tipoinforme As Integer = idtipoinforme.ID
@@ -5023,5 +5089,13 @@ Public Class FormSolicitud
         Dim parameters As String = JsonConvert.SerializeObject(notificacion, Formatting.None)
         Dim status As HttpStatusCode = HttpStatusCode.ExpectationFailed
         Dim response As Byte() = PostResponse("http://colaveco-gestor.herokuapp.com/notifications", "POST", parameters, status)
+    End Sub
+
+    Private Sub CheckMuestreo_CheckedChanged(sender As Object, e As EventArgs) Handles CheckMuestreo.CheckedChanged
+        If CheckMuestreo.Checked = True And ComboTipoInforme.SelectedIndex = 16 Then
+            cbxTecnicoMuestreo.Visible = True
+        Else
+            cbxTecnicoMuestreo.Visible = False
+        End If
     End Sub
 End Class

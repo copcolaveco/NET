@@ -10829,4 +10829,9 @@ controltxt:
         Dim v As New FormTiemposEnviosInformes(Sesion.Usuario)
         v.Show()
     End Sub
+
+    Private Sub TecnicosMuestreoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TecnicosMuestreoToolStripMenuItem.Click
+        Dim v As New FormTecnicoMuestreo(Sesion.Usuario)
+        v.Show()
+    End Sub
 End Class

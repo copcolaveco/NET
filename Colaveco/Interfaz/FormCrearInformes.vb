@@ -6356,7 +6356,7 @@ Public Class FormCrearInformes
         Dim informefinal As Integer = 0
         Dim nombre_operador As String = "José L. García"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
-        Dim nombre_tecnico2 As String = "PhD. Analía Pérez Ruchel"
+        'Dim nombre_tecnico2 As String = "PhD. Analía Pérez Ruchel"
         'Dim nombre_tecnico2 As String = "MSc Sebastián Brambillasca"
         Dim texto_facultad As String = "Dpto. de Nutrición, Fac. Veterinaria, UdelaR"
         '*****************************

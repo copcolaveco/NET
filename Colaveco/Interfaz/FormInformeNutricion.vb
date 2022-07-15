@@ -13048,7 +13048,8 @@ Public Class FormInformeNutricion
                     columna = 1
                     fila = fila + 1
                 Else
-                    x1hoja.Cells(fila, columna).formula = "Técnico resp:" & "Dra. MSc. Analía Pérez Ruchel"
+                    'x1hoja.Cells(fila, columna).formula = "Técnico resp:" & "Dra. MSc. Analía Pérez Ruchel"
+                    x1hoja.Cells(fila, columna).formula = "Técnico resp:" & "Ing. Agr. Víctor González"
                     x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                     x1hoja.Cells(fila, columna).Font.Size = 8
                     x1hoja.Cells(fila, columna).Font.Bold = True

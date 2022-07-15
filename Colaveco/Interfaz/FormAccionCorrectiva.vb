@@ -1,4 +1,6 @@
-﻿Public Class FormAccionCorrectiva
+﻿Imports Microsoft.Office.Interop.Excel
+
+Public Class FormAccionCorrectiva
     Private _usuario As dUsuario
     Private num_ As Long
     Public Property Usuario() As dUsuario
@@ -136,12 +138,12 @@
                 TextCriterios.Text = ac.CRITERIOS
                 ComboEficaz.Text = ac.EFICAZ
                 DateEvaluacion.Value = ac.FECHAEVALUACION
-            If ac.ESTADO = 1 Then
-                ComboEstado.Text = "Abierta"
-            Else
-                ComboEstado.Text = "Cerrada"
+                If ac.ESTADO = 1 Then
+                    ComboEstado.Text = "Abierta"
+                Else
+                    ComboEstado.Text = "Cerrada"
+                End If
             End If
-        End If
         End If
         If DataGridView1.Columns(e.ColumnIndex).Name = "Causa" Then
             Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
@@ -172,12 +174,12 @@
                 TextCriterios.Text = ac.CRITERIOS
                 ComboEficaz.Text = ac.EFICAZ
                 DateEvaluacion.Value = ac.FECHAEVALUACION
-            If ac.ESTADO = 1 Then
-                ComboEstado.Text = "Abierta"
-            Else
-                ComboEstado.Text = "Cerrada"
+                If ac.ESTADO = 1 Then
+                    ComboEstado.Text = "Abierta"
+                Else
+                    ComboEstado.Text = "Cerrada"
+                End If
             End If
-        End If
         End If
         If DataGridView1.Columns(e.ColumnIndex).Name = "Accion" Then
             Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
@@ -208,16 +210,16 @@
                 TextCriterios.Text = ac.CRITERIOS
                 ComboEficaz.Text = ac.EFICAZ
                 DateEvaluacion.Value = ac.FECHAEVALUACION
-            If ac.ESTADO = 1 Then
-                ComboEstado.Text = "Abierta"
-            Else
-                ComboEstado.Text = "Cerrada"
+                If ac.ESTADO = 1 Then
+                    ComboEstado.Text = "Abierta"
+                Else
+                    ComboEstado.Text = "Cerrada"
+                End If
             End If
-        End If
         End If
     End Sub
 
-   
+
     Private Sub ButtonPlan_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonPlan.Click
         Dim idac As Long = 0
         idac = TextId.Text.Trim
@@ -228,7 +230,7 @@
             Dim v As New FormPlanAC(Usuario, idac)
             v.Show()
         End If
-    
+
     End Sub
 
     Private Sub ButtonNueva_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonNueva.Click
@@ -354,5 +356,101 @@
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
+    End Sub
+
+    Private Sub btnExportExl_Click(sender As Object, e As EventArgs) Handles btnExportExl.Click
+
+
+        Dim x1app As Microsoft.Office.Interop.Excel.Application
+        Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
+        Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet
+        x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
+        x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
+        x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+
+        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
+        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+
+        Dim ac As New dAccionCorrectiva
+        Dim lista As New ArrayList
+        lista = ac.listar
+
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                Dim fila As Integer = 1
+                Dim columna As Integer = 1
+
+                x1hoja.Cells(1, 1).columnwidth = 20
+                x1hoja.Cells(1, 2).columnwidth = 29
+                x1hoja.Cells(1, 3).columnwidth = 34
+
+
+                x1hoja.Cells(fila, columna).formula = "Número"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Causa"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Acción"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+
+                columna = 1
+                fila = fila + 1
+
+                For Each ac In lista
+
+                    x1hoja.Cells(fila, columna).formula = ac.NUMERO
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    x1hoja.Cells(fila, columna).formula = ac.CAUSA
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    x1hoja.Cells(fila, columna).formula = ac.ACCION
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    columna = 1
+                    fila = fila + 1
+
+                Next
+            End If
+        End If
+
+        x1app.Visible = True
+        'x1libro.PrintPreview()
+
+        'x1hoja.PrintOut()
+        'x1libro.Close()
+        x1app = Nothing
+        x1libro = Nothing
+        x1hoja = Nothing
     End Sub
 End Class

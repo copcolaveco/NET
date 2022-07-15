@@ -71,47 +71,47 @@ Public Class FormEstadisticasCalidad
         x1hoja.Cells(fila, columna).formula = "Estadísticas calidad de leche " & fecdesde & " - " & fechasta
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = True
-        x1hoja.Cells(fila, columna).Font.Size = 12
+        x1hoja.Cells(fila, columna).Font.Size = 10
         fila = fila + 2
         x1hoja.Cells(fila, columna).formula = "Fecha"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
-        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Size = 8
         columna = columna + 1
         x1hoja.Cells(fila, columna).formula = "RB"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
-        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Size = 8
         columna = columna + 1
         x1hoja.Cells(fila, columna).formula = "RC"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
-        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Size = 8
         columna = columna + 1
         x1hoja.Cells(fila, columna).formula = "Grasa"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
-        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Size = 8
         columna = columna + 1
         x1hoja.Cells(fila, columna).formula = "Proteina"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
-        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Size = 8
         columna = columna + 1
         x1hoja.Cells(fila, columna).formula = "Lactosa"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
-        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Size = 8
         columna = columna + 1
         x1hoja.Cells(fila, columna).formula = "ST"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
-        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Size = 8
         columna = columna + 1
         x1hoja.Cells(fila, columna).formula = "Crioscopìa"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
-        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Size = 8
         columna = columna + 1
         x1hoja.Cells(fila, columna).formula = "Urea"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -127,6 +127,14 @@ Public Class FormEstadisticasCalidad
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Bold = False
         x1hoja.Cells(fila, columna).Font.Size = 10
+        columna = columna + 1
+        x1hoja.Cells(fila, columna).formula = "Iden. Muestra"
+        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+        x1hoja.Cells(fila, columna).Font.Bold = False
+        x1hoja.Cells(fila, columna).Font.Size = 10
+        columna = columna + 1
+       
+
         fila = fila + 1
         columna = 1
 
@@ -140,6 +148,21 @@ Public Class FormEstadisticasCalidad
                     listacsm = csm.listarporsolicitud(idficha)
                     If Not listacsm Is Nothing Then
                         If listacsm.Count > 0 Then
+
+                            ''Ficha
+                            'x1hoja.Cells(fila, columna).formula = "Ficha"
+                            'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                            'x1hoja.Cells(fila, columna).Font.Bold = False
+                            'x1hoja.Cells(fila, columna).Font.Size = 10
+
+                            'x1hoja.Cells(fila, columna).formula = csm.FICHA
+                            'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                            'x1hoja.Cells(fila, columna).Font.Bold = False
+                            'x1hoja.Cells(fila, columna).Font.Size = 10
+                            'x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
+                            'fila = fila + 1
+                            'columna = 1
+
                             For Each csm In listacsm
                                 Dim c As New dCalidad
                                 Dim ibc As New dIbc
@@ -382,17 +405,28 @@ Public Class FormEstadisticasCalidad
                                                 x1hoja.Cells(fila, columna).Font.Bold = False
                                                 x1hoja.Cells(fila, columna).Font.Size = 10
                                                 x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                                                columna = 1
-                                                fila = fila + 1
+                                                columna = columna + 1
+                                                'fila = fila + 1
                                             Else
                                                 x1hoja.Cells(fila, columna).formula = ""
                                                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                                                 x1hoja.Cells(fila, columna).Font.Bold = False
                                                 x1hoja.Cells(fila, columna).Font.Size = 10
                                                 x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                                                columna = 1
-                                                fila = fila + 1
+                                                columna = columna + 1
+                                                'fila = fila + 1
                                             End If
+
+                                            ''Iden. Muestra
+                                            x1hoja.Cells(fila, columna).formula = csm.MUESTRA.ToString() + ", " + csm.FICHA.ToString()
+                                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                                            x1hoja.Cells(fila, columna).Font.Bold = False
+                                            x1hoja.Cells(fila, columna).Font.Size = 10
+                                            x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
+                                            columna = 1
+                                            fila = fila + 1
+                                            
+
                                         Else
                                             x1hoja.Cells(fila, columna).formula = ""
                                             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
