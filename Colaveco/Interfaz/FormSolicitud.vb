@@ -132,27 +132,6 @@ Public Class FormSolicitud
             End If
         End If
     End Sub
-    Public Sub cargarComboMuestreoTecnicos()
-
-        Dim tec1 As New dCliente
-        tec1.ID = Enumerados.TecnicoMuestreo.Victor
-        tec1.NOMBRE = Enumerados.TecnicoMuestreo.Victor.ToString()
-        Dim tec2 As New dCliente
-        tec2.ID = Enumerados.TecnicoMuestreo.MedardoTerra
-        tec2.NOMBRE = Enumerados.TecnicoMuestreo.MedardoTerra.ToString()
-        Dim tec3 As New dCliente
-        tec3.ID = Enumerados.TecnicoMuestreo.LeticiaMendez
-        tec3.NOMBRE = Enumerados.TecnicoMuestreo.LeticiaMendez.ToString()
-        Dim tec4 As New dCliente
-        tec4.ID = Enumerados.TecnicoMuestreo.GastorReutor
-        tec4.NOMBRE = Enumerados.TecnicoMuestreo.GastorReutor.ToString()
-
-        cbxTecnicoMuestreo.Items.Add(tec1)
-        cbxTecnicoMuestreo.Items.Add(tec2)
-        cbxTecnicoMuestreo.Items.Add(tec3)
-        cbxTecnicoMuestreo.Items.Add(tec4)
-
-    End Sub
     Public Sub cargarComboInformes()
         Dim ti As New dTipoInforme
         Dim lista As New ArrayList
@@ -245,7 +224,7 @@ Public Class FormSolicitud
         Dim idsubinforme As dSubInforme = CType(ComboSubInforme.SelectedItem, dSubInforme)
 
         'Tecnico Muestreo 
-        Dim tecMuestreo As dTecnicoMuestreo = CType(cbxTecnicoMuestreo.SelectedItem, dTecnicoMuestreo)
+        Dim tecMuestreo As pTecnicoMuestreo = CType(cbxTecnicoMuestreo.SelectedItem, dTecnicoMuestreo)
         If CheckMuestreo.Checked = True And tecMuestreo Is Nothing Then
             MsgBox("Debe seleccionar un Técnico para el muestreo!")
             Exit Sub
