@@ -503,6 +503,10 @@
         Dim s As New pSolicitudAnalisis
         Return s.listarporproductor(texto, fecd, fech)
     End Function
+    Public Function listarportipoinforme(ByVal tipoinforme As Long, ByVal fecd As String, ByVal fech As String) As ArrayList
+        Dim s As New pSolicitudAnalisis
+        Return s.listarportipoinforme(tipoinforme, fecd, fech)
+    End Function
     Public Function listarporproductor2(ByVal texto As Long) As ArrayList
         Dim s As New pSolicitudAnalisis
         Return s.listarporproductor2(texto)

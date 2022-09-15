@@ -24,6 +24,8 @@ Partial Class FormSolicitud
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.cbxTecnicoSueloNutri = New System.Windows.Forms.CheckBox()
+        Me.Label29 = New System.Windows.Forms.Label()
         Me.cbxTecnicoMuestreo = New System.Windows.Forms.ComboBox()
         Me.Label28 = New System.Windows.Forms.Label()
         Me.DateMuestreo = New System.Windows.Forms.DateTimePicker()
@@ -110,6 +112,7 @@ Partial Class FormSolicitud
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Analisis = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.X = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.btnImprimir = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureImagen, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -131,6 +134,9 @@ Partial Class FormSolicitud
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.btnImprimir)
+        Me.TabPage1.Controls.Add(Me.cbxTecnicoSueloNutri)
+        Me.TabPage1.Controls.Add(Me.Label29)
         Me.TabPage1.Controls.Add(Me.cbxTecnicoMuestreo)
         Me.TabPage1.Controls.Add(Me.Label28)
         Me.TabPage1.Controls.Add(Me.DateMuestreo)
@@ -208,6 +214,25 @@ Partial Class FormSolicitud
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Ingreso"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'cbxTecnicoSueloNutri
+        '
+        Me.cbxTecnicoSueloNutri.AutoSize = True
+        Me.cbxTecnicoSueloNutri.Location = New System.Drawing.Point(232, 469)
+        Me.cbxTecnicoSueloNutri.Name = "cbxTecnicoSueloNutri"
+        Me.cbxTecnicoSueloNutri.Size = New System.Drawing.Size(18, 17)
+        Me.cbxTecnicoSueloNutri.TabIndex = 160
+        Me.cbxTecnicoSueloNutri.UseVisualStyleBackColor = True
+        '
+        'Label29
+        '
+        Me.Label29.AutoSize = True
+        Me.Label29.Location = New System.Drawing.Point(23, 469)
+        Me.Label29.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label29.Name = "Label29"
+        Me.Label29.Size = New System.Drawing.Size(191, 17)
+        Me.Label29.TabIndex = 159
+        Me.Label29.Text = "Técnico para Suelo Nutrición"
         '
         'cbxTecnicoMuestreo
         '
@@ -389,7 +414,7 @@ Partial Class FormSolicitud
         'CheckFrascos
         '
         Me.CheckFrascos.AutoSize = True
-        Me.CheckFrascos.Location = New System.Drawing.Point(24, 546)
+        Me.CheckFrascos.Location = New System.Drawing.Point(24, 582)
         Me.CheckFrascos.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckFrascos.Name = "CheckFrascos"
         Me.CheckFrascos.Size = New System.Drawing.Size(248, 21)
@@ -457,7 +482,7 @@ Partial Class FormSolicitud
         'CheckPago
         '
         Me.CheckPago.AutoSize = True
-        Me.CheckPago.Location = New System.Drawing.Point(24, 517)
+        Me.CheckPago.Location = New System.Drawing.Point(26, 553)
         Me.CheckPago.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckPago.Name = "CheckPago"
         Me.CheckPago.Size = New System.Drawing.Size(87, 21)
@@ -503,7 +528,7 @@ Partial Class FormSolicitud
         '
         'ButtonBuscar
         '
-        Me.ButtonBuscar.Location = New System.Drawing.Point(363, 575)
+        Me.ButtonBuscar.Location = New System.Drawing.Point(386, 624)
         Me.ButtonBuscar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonBuscar.Name = "ButtonBuscar"
         Me.ButtonBuscar.Size = New System.Drawing.Size(100, 28)
@@ -673,7 +698,7 @@ Partial Class FormSolicitud
         '
         'ButtonGuardar
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(255, 575)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(262, 624)
         Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonGuardar.Name = "ButtonGuardar"
         Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
@@ -709,7 +734,7 @@ Partial Class FormSolicitud
         '
         'ButtonNuevo
         '
-        Me.ButtonNuevo.Location = New System.Drawing.Point(148, 575)
+        Me.ButtonNuevo.Location = New System.Drawing.Point(135, 624)
         Me.ButtonNuevo.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonNuevo.Name = "ButtonNuevo"
         Me.ButtonNuevo.Size = New System.Drawing.Size(100, 28)
@@ -740,7 +765,7 @@ Partial Class FormSolicitud
         'CheckSinConservante
         '
         Me.CheckSinConservante.AutoSize = True
-        Me.CheckSinConservante.Location = New System.Drawing.Point(148, 459)
+        Me.CheckSinConservante.Location = New System.Drawing.Point(150, 524)
         Me.CheckSinConservante.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckSinConservante.Name = "CheckSinConservante"
         Me.CheckSinConservante.Size = New System.Drawing.Size(132, 21)
@@ -780,7 +805,7 @@ Partial Class FormSolicitud
         'CheckSinSolicitud
         '
         Me.CheckSinSolicitud.AutoSize = True
-        Me.CheckSinSolicitud.Location = New System.Drawing.Point(24, 459)
+        Me.CheckSinSolicitud.Location = New System.Drawing.Point(26, 524)
         Me.CheckSinSolicitud.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckSinSolicitud.Name = "CheckSinSolicitud"
         Me.CheckSinSolicitud.Size = New System.Drawing.Size(105, 21)
@@ -791,7 +816,7 @@ Partial Class FormSolicitud
         'CheckDerramadas
         '
         Me.CheckDerramadas.AutoSize = True
-        Me.CheckDerramadas.Location = New System.Drawing.Point(24, 488)
+        Me.CheckDerramadas.Location = New System.Drawing.Point(135, 553)
         Me.CheckDerramadas.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckDerramadas.Name = "CheckDerramadas"
         Me.CheckDerramadas.Size = New System.Drawing.Size(181, 21)
@@ -869,7 +894,7 @@ Partial Class FormSolicitud
         'CheckDesvio
         '
         Me.CheckDesvio.AutoSize = True
-        Me.CheckDesvio.Location = New System.Drawing.Point(332, 459)
+        Me.CheckDesvio.Location = New System.Drawing.Point(341, 582)
         Me.CheckDesvio.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckDesvio.Name = "CheckDesvio"
         Me.CheckDesvio.Size = New System.Drawing.Size(290, 21)
@@ -1032,6 +1057,16 @@ Partial Class FormSolicitud
         Me.X.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.X.Width = 40
         '
+        'btnImprimir
+        '
+        Me.btnImprimir.Location = New System.Drawing.Point(509, 624)
+        Me.btnImprimir.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(133, 28)
+        Me.btnImprimir.TabIndex = 161
+        Me.btnImprimir.Text = "Imprimir Sol."
+        Me.btnImprimir.UseVisualStyleBackColor = True
+        '
         'FormSolicitud
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8!, 16!)
@@ -1141,4 +1176,7 @@ End Sub
     Friend WithEvents Label27 As System.Windows.Forms.Label
     Friend WithEvents cbxTecnicoMuestreo As System.Windows.Forms.ComboBox
     Friend WithEvents Label28 As System.Windows.Forms.Label
+    Friend WithEvents cbxTecnicoSueloNutri As System.Windows.Forms.CheckBox
+    Friend WithEvents Label29 As System.Windows.Forms.Label
+    Friend WithEvents btnImprimir As System.Windows.Forms.Button
 End Class

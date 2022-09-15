@@ -911,7 +911,7 @@ Public Class FormCrearInformes
         x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
-        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 23/03/2022"
+        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 9
         fila = fila + 1
@@ -1596,11 +1596,12 @@ Public Class FormCrearInformes
                                                 hasta = a.HASTA
                                             End If
                                             If valcrioscopia > desde Or valcrioscopia < hasta Then
-                                                x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                                                'x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                                             End If
                                         End If
                                     End If
                                 End If
+                                x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                                 columna = columna + 1
                             Else
                                 x1hoja.Cells(fila, columna).formula = "-"
@@ -2039,7 +2040,7 @@ Public Class FormCrearInformes
                 x1hoja.Cells(fila, columna).Font.Size = 7
                 fila = fila + 1
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 23/03/2022"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -2415,7 +2416,7 @@ Public Class FormCrearInformes
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 23/03/2022"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -2775,7 +2776,7 @@ Public Class FormCrearInformes
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 23/03/2022"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -2960,7 +2961,7 @@ Public Class FormCrearInformes
                                 End If
                             End If
                         End If
-                        
+
 
                         'Nitrogeno
                         If sa.IDMUESTRA = 37 Then
@@ -2999,7 +3000,7 @@ Public Class FormCrearInformes
                                 End If
                             End If
                         End If
-                        
+
 
                         'Potasio
                         If sa.IDMUESTRA = 37 Then
@@ -3019,7 +3020,7 @@ Public Class FormCrearInformes
                                 End If
                             End If
                         End If
-                        
+
                     Next
 
                     If titulo = False Then
@@ -7524,20 +7525,20 @@ Public Class FormCrearInformes
                                     x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
                                     x1hoja.Cells(fila, columna).Font.Bold = False
                                     x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = 2
-                            End If
-                        Else
-                            Dim lm As New dListaMetodos
-                            lm.ANALISIS = na.ANALISIS
-                            lm = lm.buscarxanalisis
-                            If Not lm Is Nothing Then
-                                x1hoja.Cells(fila, columna).Formula = lm.METODO
-                                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                                x1hoja.Cells(fila, columna).WrapText = True
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Bold = False
-                                x1hoja.Cells(fila, columna).Font.Size = 8
+                                    columna = 2
+                                End If
+                            Else
+                                Dim lm As New dListaMetodos
+                                lm.ANALISIS = na.ANALISIS
+                                lm = lm.buscarxanalisis
+                                If Not lm Is Nothing Then
+                                    x1hoja.Cells(fila, columna).Formula = lm.METODO
+                                    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                    x1hoja.Cells(fila, columna).WrapText = True
+                                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                    x1hoja.Cells(fila, columna).Font.Bold = False
+                                    x1hoja.Cells(fila, columna).Font.Size = 8
 
                                     columna = columna + 1
                                     x1hoja.Cells(fila, columna).Formula = "-"
@@ -7547,13 +7548,13 @@ Public Class FormCrearInformes
                                     x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
                                     x1hoja.Cells(fila, columna).Font.Bold = False
                                     x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = 2
+                                    columna = 2
+                                End If
                             End If
                         End If
+                        '************************************************************************************************
                     End If
-                    '************************************************************************************************
-                        End If
-                        fila = fila + 1
+                    fila = fila + 1
                 Next
                 '*******************************************************************************
                 'End If  'cambio 18/11/2020
@@ -7936,7 +7937,7 @@ Public Class FormCrearInformes
 
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 23/03/2022"
+        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
         x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
             & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
         x1hoja.Range("A" & fila, "G" & fila).WrapText = True
@@ -8827,7 +8828,7 @@ Public Class FormCrearInformes
 
             '*** PIE DE PAGINA ******************************************************
             x1hoja.Cells(fila, columna).rowheight = 25
-            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 23/03/2022"
+            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
             x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
                 & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
             x1hoja.Range("A" & fila, "G" & fila).WrapText = True

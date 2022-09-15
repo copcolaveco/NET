@@ -173,4 +173,8 @@
         Dim p As New pAutorizaciones
         Return p.listarsemana(desde, hasta)
     End Function
+    Public Function listarPorFiltros(ByVal desde As String, ByVal hasta As String, ByVal usu As Integer) As ArrayList
+        Dim p As New pAutorizaciones
+        Return p.listarPorFiltros(desde, hasta, usu)
+    End Function
 End Class

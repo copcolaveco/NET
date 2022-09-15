@@ -30,6 +30,7 @@ Public Class FormBuscarSolicitud
         DateTimeDesde.Value = dtFecha
         DateTimeHasta.Value = Date.Today
         ocultar_campos()
+        cargarComboInformes()
     End Sub
 #End Region
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonBuscarProductor.Click
@@ -400,6 +401,8 @@ Public Class FormBuscarSolicitud
             listarporid()
         ElseIf RadioButtonProductor.Checked = True Then
             listarporproductor()
+        ElseIf rbTipoInfome.Checked = True Then
+            listarportipoinforme()
         Else
             listarporfecha()
         End If
@@ -665,4 +668,126 @@ Public Class FormBuscarSolicitud
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
    
     End Sub
+
+    Public Sub cargarComboInformes()
+        Dim ti As New dTipoInforme
+        Dim lista As New ArrayList
+        lista = ti.listar
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                For Each ti In lista
+                    cbxTipoInforme.Items.Add(ti)
+                Next
+            End If
+        End If
+    End Sub
+
+    Private Sub listarportipoinforme()
+
+        Dim s As New dSolicitudAnalisis
+        Dim fechadesde As Date = DateTimeDesde.Value.ToString("yyyy-MM-dd")
+        Dim fechahasta As Date = DateTimeHasta.Value.ToString("yyyy-MM-dd")
+        Dim fechad As String = Format(fechadesde, "yyyy-MM-dd")
+        Dim fechah As String = Format(fechahasta, "yyyy-MM-dd")
+
+        Dim idtipoinforme As dTipoInforme = CType(cbxTipoInforme.SelectedItem, dTipoInforme)
+        Dim tipoinforme As Long = idtipoinforme.ID
+        Dim lista As New ArrayList
+        lista = s.listarportipoinforme(tipoinforme, fechad, fechah)
+        Dim fila As Integer = 0
+        Dim columna As Integer = 0
+        DataGridView1.Rows.Clear()
+        If Not lista Is Nothing Then
+            DataGridView1.Rows.Add(lista.Count)
+        End If
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                For Each s In lista
+                    DataGridView1(columna, fila).Value = s.ID
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = s.FECHAINGRESO
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = s.NMUESTRAS
+                    columna = columna + 1
+                    If s.IDTIPOINFORME = 1 Then
+                        Dim noap As New dMuestrasNoAptas
+                        Dim listanoap As New ArrayList
+                        Dim ficha = s.ID
+                        listanoap = noap.listarporficha(ficha)
+                        Dim cantidad As Integer = 0
+                        If Not listanoap Is Nothing Then
+                            For Each noap In listanoap
+                                If noap.MOTIVO <> 8 Then
+                                    cantidad = cantidad + noap.CANTIDAD
+                                End If
+                            Next
+                        End If
+                        If Not noap Is Nothing Then
+                            DataGridView1(columna, fila).Value = cantidad
+                            columna = columna + 1
+                        Else
+                            DataGridView1(columna, fila).Value = ""
+                            columna = columna + 1
+                        End If
+                        noap = Nothing
+                    Else
+                        DataGridView1(columna, fila).Value = ""
+                        columna = columna + 1
+                    End If
+                    Dim ti As New dTipoInforme
+                    ti.ID = s.IDTIPOINFORME
+                    ti = ti.buscar
+                    If Not ti Is Nothing Then
+                        DataGridView1(columna, fila).Value = ti.NOMBRE
+                        columna = columna + 1
+                    Else
+                        DataGridView1(columna, fila).Value = ""
+                        columna = columna + 1
+                    End If
+                    Dim p As New dCliente
+                    p.ID = s.IDPRODUCTOR
+                    p = p.buscar
+                    If Not p Is Nothing Then
+                        DataGridView1(columna, fila).Value = p.NOMBRE
+                        columna = columna + 1
+
+                    Else
+                        DataGridView1(columna, fila).Value = ""
+                        columna = columna + 1
+
+                    End If
+                    DataGridView1(columna, fila).Value = s.OBSERVACIONES
+                    columna = columna + 1
+                    Dim est As New dEstados
+                    est.FICHA = s.ID
+                    est = est.buscarultimo
+                    If Not est Is Nothing Then
+                        Dim test As New dEstadosTipos
+                        test.ID = est.ESTADO
+                        test = test.buscar
+                        If Not test Is Nothing Then
+                            DataGridView1(columna, fila).Value = test.NOMBRE
+                            columna = columna + 1
+                        Else
+                            DataGridView1(columna, fila).Value = ""
+                            columna = columna + 1
+                        End If
+                    Else
+                        DataGridView1(columna, fila).Value = ""
+                        columna = columna + 1
+                    End If
+                    If s.PAGO = 1 Then
+                        DataGridView1(columna, fila).Value = "Si"
+                        columna = 0
+                        fila = fila + 1
+                    Else
+                        DataGridView1(columna, fila).Value = "No"
+                        columna = 0
+                        fila = fila + 1
+                    End If
+                Next
+            End If
+        End If
+    End Sub
+
 End Class

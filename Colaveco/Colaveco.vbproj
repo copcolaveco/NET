@@ -305,6 +305,13 @@
     <Compile Include="Importador\dImpCalidad2.vb" />
     <Compile Include="Importador\pControlAux.vb" />
     <Compile Include="Importador\pImpCalidad2.vb" />
+    <Compile Include="Interfaz\dTecnicoMuestreo.vb" />
+    <Compile Include="Interfaz\FormTecnicoMuestreo.Designer.vb">
+      <DependentUpon>FormTecnicoMuestreo.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormTecnicoMuestreo.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaz\MsgForm.Designer.vb">
       <DependentUpon>MsgForm.vb</DependentUpon>
     </Compile>
@@ -849,6 +856,7 @@
     <Compile Include="Logica\dSinaveleFicha.vb" />
     <Compile Include="Logica\dSinSolicitud.vb" />
     <Compile Include="Logica\dSinVisualizacion.vb" />
+    <Compile Include="Logica\dSolicitudanalisis_TecMuestreo.vb" />
     <Compile Include="Logica\dSolicitudesIT.vb" />
     <Compile Include="Logica\dSolicitudNutricion.vb" />
     <Compile Include="Logica\dSolicitudPAL.vb" />
@@ -974,6 +982,7 @@
     <Compile Include="Persistencia\pSaldos.vb" />
     <Compile Include="Persistencia\pSecale.vb" />
     <Compile Include="Persistencia\pSinVisualizacion.vb" />
+    <Compile Include="Persistencia\pSolicitudanalisisTecnicoMuestreo.vb" />
     <Compile Include="Persistencia\pSolicitudRodeo.vb" />
     <Compile Include="Persistencia\pSolicitudWeb.vb" />
     <Compile Include="Persistencia\pSolucionTrabajo.vb" />
@@ -1256,6 +1265,7 @@
     <Compile Include="Persistencia\pProveedores.vb" />
     <Compile Include="Persistencia\pSectores.vb" />
     <Compile Include="Persistencia\pTareas.vb" />
+    <Compile Include="Persistencia\pTecnicoMuestreo.vb" />
     <Compile Include="Persistencia\pTipoControl.vb" />
     <Compile Include="Persistencia\pUnidades.vb" />
     <Compile Include="Interfaz\FormAmbiental.Designer.vb">
@@ -3410,6 +3420,9 @@
     <EmbeddedResource Include="Interfaz\FormTareas.resx">
       <DependentUpon>FormTareas.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormTecnicoMuestreo.resx">
+      <DependentUpon>FormTecnicoMuestreo.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormTecnicoProductor.resx">
       <DependentUpon>FormTecnicoProductor.vb</DependentUpon>

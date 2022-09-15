@@ -178,4 +178,37 @@
             Return Nothing
         End Try
     End Function
+    Public Function listarPorFiltros(ByVal desde As String, ByVal hasta As String, ByVal id As Integer) As ArrayList
+        Dim idQuery As String
+        If id > 0 Then
+            idQuery = " idusuario = '" & id & "'"
+        Else
+            idQuery = " 1 = 1 "
+        End If
+
+        Dim sql As String = "SELECT id, fecha, idusuario, fechaevento, detalle FROM notificaciones WHERE fechaevento BETWEEN '" & desde & "' and '" & hasta & "' and " + idQuery + "ORDER BY fechaevento DESC"
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim l As New dNotificaciones_reloj
+                    l.ID = CType(unaFila.Item(0), Long)
+                    l.FECHA = CType(unaFila.Item(1), String)
+                    l.IDUSUARIO = CType(unaFila.Item(2), Integer)
+                    l.FECHAEVENTO = CType(unaFila.Item(3), String)
+                    l.DETALLE = CType(unaFila.Item(4), String)
+                    Lista.Add(l)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
 End Class
+

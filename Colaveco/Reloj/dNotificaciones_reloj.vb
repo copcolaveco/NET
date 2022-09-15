@@ -98,4 +98,8 @@
         Dim p As New pNotificaciones_reloj
         Return p.listarsemana(desde, hasta)
     End Function
+    Public Function listarPorFiltros(ByVal desde As String, ByVal hasta As String, ByVal id As Integer) As ArrayList
+        Dim p As New pNotificaciones_reloj
+        Return p.listarPorFiltros(desde, hasta, id)
+    End Function
 End Class

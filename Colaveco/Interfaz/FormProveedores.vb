@@ -98,6 +98,10 @@
         If CheckNoUsar.Checked = True Then
             nousar = 1
         End If
+        Dim critico As Integer = 0
+        If cbxCritico.Checked = True Then
+            critico = 1
+        End If
         If TextId.Text <> "" Then
             Dim p As New dProveedores
             Dim id As Long = TextId.Text.Trim
@@ -112,6 +116,7 @@
             p.CONTACTO = contacto
             p.OTROSDATOS = otrosdatos
             p.NOUSAR = nousar
+            p.CRITICO = critico
             If (p.modificar(Usuario)) Then
                 MsgBox("Registro modificado", MsgBoxStyle.Information, "Atención")
                 limpiar()
@@ -129,6 +134,7 @@
             p.CONTACTO = contacto
             p.OTROSDATOS = otrosdatos
             p.NOUSAR = nousar
+            p.CRITICO = critico
             If (p.guardar(Usuario)) Then
                 MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
                 limpiar()
@@ -164,6 +170,12 @@
                     CheckNoUsar.Checked = False
                 Else
                     CheckNoUsar.Checked = True
+                End If
+
+                If p.CRITICO = 0 Then
+                    cbxCritico.Checked = False
+                Else
+                    cbxCritico.Checked = True
                 End If
             End If
         End If

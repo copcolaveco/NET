@@ -79,6 +79,7 @@
     Private m_not_nombre_email_general2 As String
     Private m_not_email_general2 As String
     Private m_incobrable As Integer
+    Private m_tecnico_suelo_nutri As Integer
 #End Region
 
 #Region "Getters y Setters"
@@ -650,6 +651,14 @@
             m_incobrable = value
         End Set
     End Property
+    Public Property TECNICO_SUELO_NUTRI() As Integer
+        Get
+            Return m_tecnico_suelo_nutri
+        End Get
+        Set(ByVal value As Integer)
+            m_tecnico_suelo_nutri = value
+        End Set
+    End Property
 #End Region
 
 #Region "Constructores"
@@ -725,8 +734,9 @@
         m_not_email_general1 = ""
         m_not_email_general2 = ""
         m_incobrable = 0
+        m_tecnico_suelo_nutri = 0
     End Sub
-    Public Sub New(ByVal id As Long, ByVal nombre As String, ByVal email As String, ByVal nombre_email1 As String, ByVal email1 As String, ByVal nombre_email2 As String, ByVal email2 As String, ByVal envio As String, ByVal usuario_web As String, ByVal nombre_celular1 As String, ByVal celular As String, ByVal nombre_celular2 As String, ByVal celular2 As String, ByVal codigofigaro As String, ByVal tipousuario As Integer, ByVal direccion As String, ByVal nombre_telefono1 As String, ByVal telefono1 As String, ByVal nombre_telefono2 As String, ByVal telefono2 As String, ByVal fax As String, ByVal dicose As String, ByVal iddepartamento As Integer, ByVal idlocalidad As Integer, ByVal tecnico1 As Long, ByVal tecnico2 As Long, ByVal idagencia As Integer, ByVal contrato As Integer, ByVal socio As Integer, ByVal nousar As Integer, ByVal codbar As Integer, ByVal caravanas As Integer, ByVal prolesa As Integer, ByVal prolesasuc As Integer, ByVal prolesamat As Long, ByVal observaciones As String, ByVal fac_rsocial As String, ByVal fac_cedula As String, ByVal fac_rut As String, ByVal fac_direccion As String, ByVal fac_localidad As String, ByVal fac_departamento As Integer, ByVal fac_cpostal As String, ByVal fac_giro As Integer, ByVal cob_nombre_telefono1 As String, ByVal fac_telefonos As String, ByVal cob_nombre_telefono2 As String, ByVal cob_telefono2 As String, ByVal cob_nombre_celular1 As String, ByVal cob_celular1 As String, ByVal cob_nombre_celular2 As String, ByVal cob_celular2 As String, ByVal cob_nombre_email1 As String, ByVal cob_email1 As String, ByVal cob_nombre_email2 As String, ByVal cob_email2 As String, ByVal fac_fax As String, ByVal fac_email As String, ByVal fac_contacto As String, ByVal fac_observaciones As String, ByVal fac_lista As Integer, ByVal fac_contado As Integer, ByVal not_nombre_email_frascos1 As String, ByVal not_email_frascos1 As String, ByVal not_nombre_email_frascos2 As String, ByVal not_email_frascos2 As String, ByVal not_nombre_email_muestras1 As String, ByVal not_email_muestras1 As String, ByVal not_nombre_email_muestras2 As String, ByVal not_email_muestras2 As String, ByVal not_nombre_email_analisis1 As String, ByVal not_email_analisis1 As String, ByVal not_nombre_email_analisis2 As String, ByVal not_email_analisis2 As String, ByVal not_nombre_email_general1 As String, ByVal not_email_general1 As String, ByVal not_nombre_email_general2 As String, ByVal not_email_general2 As String, ByVal incobrable As Integer)
+    Public Sub New(ByVal id As Long, ByVal nombre As String, ByVal email As String, ByVal nombre_email1 As String, ByVal email1 As String, ByVal nombre_email2 As String, ByVal email2 As String, ByVal envio As String, ByVal usuario_web As String, ByVal nombre_celular1 As String, ByVal celular As String, ByVal nombre_celular2 As String, ByVal celular2 As String, ByVal codigofigaro As String, ByVal tipousuario As Integer, ByVal direccion As String, ByVal nombre_telefono1 As String, ByVal telefono1 As String, ByVal nombre_telefono2 As String, ByVal telefono2 As String, ByVal fax As String, ByVal dicose As String, ByVal iddepartamento As Integer, ByVal idlocalidad As Integer, ByVal tecnico1 As Long, ByVal tecnico2 As Long, ByVal idagencia As Integer, ByVal contrato As Integer, ByVal socio As Integer, ByVal nousar As Integer, ByVal codbar As Integer, ByVal caravanas As Integer, ByVal prolesa As Integer, ByVal prolesasuc As Integer, ByVal prolesamat As Long, ByVal observaciones As String, ByVal fac_rsocial As String, ByVal fac_cedula As String, ByVal fac_rut As String, ByVal fac_direccion As String, ByVal fac_localidad As String, ByVal fac_departamento As Integer, ByVal fac_cpostal As String, ByVal fac_giro As Integer, ByVal cob_nombre_telefono1 As String, ByVal fac_telefonos As String, ByVal cob_nombre_telefono2 As String, ByVal cob_telefono2 As String, ByVal cob_nombre_celular1 As String, ByVal cob_celular1 As String, ByVal cob_nombre_celular2 As String, ByVal cob_celular2 As String, ByVal cob_nombre_email1 As String, ByVal cob_email1 As String, ByVal cob_nombre_email2 As String, ByVal cob_email2 As String, ByVal fac_fax As String, ByVal fac_email As String, ByVal fac_contacto As String, ByVal fac_observaciones As String, ByVal fac_lista As Integer, ByVal fac_contado As Integer, ByVal not_nombre_email_frascos1 As String, ByVal not_email_frascos1 As String, ByVal not_nombre_email_frascos2 As String, ByVal not_email_frascos2 As String, ByVal not_nombre_email_muestras1 As String, ByVal not_email_muestras1 As String, ByVal not_nombre_email_muestras2 As String, ByVal not_email_muestras2 As String, ByVal not_nombre_email_analisis1 As String, ByVal not_email_analisis1 As String, ByVal not_nombre_email_analisis2 As String, ByVal not_email_analisis2 As String, ByVal not_nombre_email_general1 As String, ByVal not_email_general1 As String, ByVal not_nombre_email_general2 As String, ByVal not_email_general2 As String, ByVal incobrable As Integer, ByVal tecnico_suelo_nutri As Integer)
         m_id = id
         m_nombre = nombre
         m_email = email
@@ -798,6 +808,7 @@
         m_not_email_general1 = not_email_general1
         m_not_email_general2 = not_email_general2
         m_incobrable = incobrable
+        m_tecnico_suelo_nutri = tecnico_suelo_nutri
     End Sub
 #End Region
 
@@ -923,5 +934,9 @@
     Public Function actualizardicose(ByVal idcliente As Integer, ByVal dicose As String, ByVal usuario As dUsuario) As Boolean
         Dim p As New pCliente
         Return p.actualizardicose(idcliente, dicose, usuario)
+    End Function
+    Public Function actualizarTecnicoSueloNutri(ByVal idcliente As Integer, ByVal tecnicoSueloNutri As Integer) As Boolean
+        Dim p As New pCliente
+        Return p.actualizarTecnicoSueloNutri(idcliente, tecnicoSueloNutri)
     End Function
 End Class

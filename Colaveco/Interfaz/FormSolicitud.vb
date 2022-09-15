@@ -48,6 +48,8 @@ Public Class FormSolicitud
         buscarultimaficha()
         idprod = idpro
         cbxTecnicoMuestreo.Visible = False
+        cbxTecnicoSueloNutri.Visible = False
+        btnImprimir.Visible = False
         If idprod <> 0 Then
             Dim pro As New dCliente
             pro.ID = idprod
@@ -131,27 +133,6 @@ Public Class FormSolicitud
                 Next
             End If
         End If
-    End Sub
-    Public Sub cargarComboMuestreoTecnicos()
-
-        Dim tec1 As New dCliente
-        tec1.ID = Enumerados.TecnicoMuestreo.Victor
-        tec1.NOMBRE = Enumerados.TecnicoMuestreo.Victor.ToString()
-        Dim tec2 As New dCliente
-        tec2.ID = Enumerados.TecnicoMuestreo.MedardoTerra
-        tec2.NOMBRE = Enumerados.TecnicoMuestreo.MedardoTerra.ToString()
-        Dim tec3 As New dCliente
-        tec3.ID = Enumerados.TecnicoMuestreo.LeticiaMendez
-        tec3.NOMBRE = Enumerados.TecnicoMuestreo.LeticiaMendez.ToString()
-        Dim tec4 As New dCliente
-        tec4.ID = Enumerados.TecnicoMuestreo.GastorReutor
-        tec4.NOMBRE = Enumerados.TecnicoMuestreo.GastorReutor.ToString()
-
-        cbxTecnicoMuestreo.Items.Add(tec1)
-        cbxTecnicoMuestreo.Items.Add(tec2)
-        cbxTecnicoMuestreo.Items.Add(tec3)
-        cbxTecnicoMuestreo.Items.Add(tec4)
-
     End Sub
     Public Sub cargarComboInformes()
         Dim ti As New dTipoInforme
@@ -392,6 +373,7 @@ Public Class FormSolicitud
             If Not idtecnico Is Nothing Then
                 sol.IDTECNICO = idtecnico.ID
             End If
+
             sol.SINCOLICITUD = sinsolicitud
             sol.SINCONSERVANTE = sinconservante
             sol.TEMPERATURA = temperatura
@@ -422,6 +404,7 @@ Public Class FormSolicitud
                 sw.guardar(Usuario)
                 MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
                 imprimir_solicitud()
+                btnImprimir.Visible = True
                 Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
                 If result2 = DialogResult.Cancel Then
                     guardar_ticket()
@@ -2107,6 +2090,30 @@ Public Class FormSolicitud
         cargarComboSubInformes2()
         cargarComboMuestras()
         listaranalisis()
+
+        '
+        If Not idtipoinforme Is Nothing Then
+            If idtipoinforme.ID = 13 Or idtipoinforme.ID = 14 Then
+                If TextIdProductor.Text.ToString <> "" Then
+                    Dim pro As New dCliente
+                    idprod = TextIdProductor.Text
+                    pro.ID = idprod
+                    pro = pro.buscar
+                    If Not pro Is Nothing Then
+                        If pro.TECNICO_SUELO_NUTRI = 1 Then
+                            cbxTecnicoSueloNutri.Checked = True
+                            cbxTecnicoSueloNutri.Visible = True
+                        Else
+                            cbxTecnicoSueloNutri.Checked = False
+                            cbxTecnicoSueloNutri.Visible = True
+                        End If
+                    End If
+                End If
+            Else
+                cbxTecnicoSueloNutri.Visible = False
+            End If
+        End If
+
     End Sub
     Public Sub cargarComboSubInformes2()
         Dim si As New dSubInforme
@@ -2614,7 +2621,7 @@ Public Class FormSolicitud
         Dim UNIT833 As Boolean = False
         Dim PCR As Boolean = False
         lista_analisis = nuevo_analisis.listarporficha3(nuevaFicha)
-
+        Dim p2 As New dCliente
         'CHEQUE SI SE DEBE HACER ANALISIS CON METODO DE UNIT833
         If Not lista_analisis Is Nothing Then
             For Each nuevo_analisis In lista_analisis
@@ -3016,13 +3023,17 @@ Public Class FormSolicitud
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 10
         fila = fila + 1
-        x1hoja.Cells(fila, columna).rowheight = 40
-        x1hoja.Cells(fila, columna).Formula = obsinternas
-        x1hoja.Range("A" & fila, "G" & fila).WrapText = True
-        x1hoja.Range("A" & fila, "G" & fila).Merge()
-        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-        x1hoja.Cells(fila, columna).Font.Size = 10
+
+        If obsinternas <> "" Then
+            x1hoja.Cells(fila, columna).rowheight = 40
+            x1hoja.Cells(fila, columna).Formula = obsinternas
+            x1hoja.Range("A" & fila, "G" & fila).WrapText = True
+            x1hoja.Range("A" & fila, "G" & fila).Merge()
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+            x1hoja.Cells(fila, columna).Font.Size = 10
+        End If
+
         fila = fila + 1
         x1hoja.Range("A" & fila, "G" & fila).Merge()
         x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
@@ -3033,18 +3044,22 @@ Public Class FormSolicitud
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 10
         fila = fila + 1
-        x1hoja.Cells(fila, columna).rowheight = 40
-        x1hoja.Cells(fila, columna).Formula = observaciones
-        x1hoja.Range("A" & fila, "G" & fila).WrapText = True
-        x1hoja.Range("A" & fila, "G" & fila).Merge()
-        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-        x1hoja.Cells(fila, columna).Font.Size = 10
-        fila = fila + 2
-        x1hoja.Range("A" & fila, "G" & fila).Merge()
-        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-        x1hoja.Cells(fila, columna).rowheight = 2
-        fila = fila + 1
+
+        If observaciones <> "" Then
+            x1hoja.Cells(fila, columna).rowheight = 40
+            x1hoja.Cells(fila, columna).Formula = observaciones
+            x1hoja.Range("A" & fila, "G" & fila).WrapText = True
+            x1hoja.Range("A" & fila, "G" & fila).Merge()
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+            x1hoja.Cells(fila, columna).Font.Size = 10
+            fila = fila + 2
+            x1hoja.Range("A" & fila, "G" & fila).Merge()
+            x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+            x1hoja.Cells(fila, columna).rowheight = 2
+            fila = fila + 1
+        End If
+
         If tipoinforme = "Calidad de leche" Or tipoinforme = "Suelos" Then
             x1hoja.Cells(fila, columna).formula = listaanalisis2
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -3066,7 +3081,7 @@ Public Class FormSolicitud
         sa2.ID = ficha
         sa2 = sa2.buscar
         If Not sa2 Is Nothing Then
-            Dim p2 As New dCliente
+
             p2.ID = sa2.IDPRODUCTOR
             p2 = p2.buscar
             If Not p2 Is Nothing Then
@@ -3087,21 +3102,35 @@ Public Class FormSolicitud
             End If
         End If
         If listaconv <> "" Then
-            If sa2.IDTIPOINFORME = 1 Then
-                x1hoja.Cells(fila, columna).formula = "Convenios: " & listaconv
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                x1hoja.Cells(fila, columna).Font.Bold = True
-                x1hoja.Cells(fila, columna).Font.Size = 18
-            End If
+            ''If sa2.IDTIPOINFORME = 1 Then
+            x1hoja.Cells(fila, columna).formula = listaconv
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Font.Size = 18
+            fila = fila + 1
+            'End If
         End If
         If UNIT833 = True Then
             x1hoja.Cells(fila, columna).formula = "Análisis por UNIT 833"
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 18
+            fila = fila + 1
         End If
         If PCR = True Then
             x1hoja.Cells(fila, columna).formula = "Análisis por PCR"
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Font.Size = 18
+            fila = fila + 1
+        End If
+        If p2.TECNICO_SUELO_NUTRI = 1 And tipoinforme = "Suelos" Or tipoinforme = "Nutrición" Then
+            x1hoja.Cells(fila, columna).formula = "Tiene Técnico para Suelo o Nutrición"
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Font.Size = 18
+        ElseIf p2.TECNICO_SUELO_NUTRI = 0 And tipoinforme = "Suelos" Or tipoinforme = "Nutrición" Then
+            x1hoja.Cells(fila, columna).formula = "NO tiene Técnico para Suelo o Nutrición"
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 18
@@ -3339,6 +3368,7 @@ Public Class FormSolicitud
             Else
                 CheckDesvio.Checked = False
             End If
+            btnImprimir.Visible = True
 
         End If
         If TextId.Text <> "" Then
@@ -5097,5 +5127,18 @@ Public Class FormSolicitud
         Else
             cbxTecnicoMuestreo.Visible = False
         End If
+    End Sub
+
+    Private Sub cbxTecnicoSueloNutri_CheckedChanged(sender As Object, e As EventArgs) Handles cbxTecnicoSueloNutri.CheckedChanged
+        Dim idtecnico As dCliente = CType(ComboTecnico.SelectedItem, dCliente)
+        If cbxTecnicoSueloNutri.Checked = True Then
+            idtecnico.actualizarTecnicoSueloNutri(idtecnico.ID, 1)
+        Else
+            idtecnico.actualizarTecnicoSueloNutri(idtecnico.ID, 0)
+        End If
+    End Sub
+
+    Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
+        imprimir_solicitud()
     End Sub
 End Class

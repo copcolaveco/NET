@@ -11,7 +11,7 @@
     Private m_contacto As String
     Private m_otrosdatos As String
     Private m_nousar As Integer
-
+    Private m_critico As Integer
 #End Region
 
 #Region "Getters y Setters"
@@ -103,6 +103,14 @@
             m_nousar = value
         End Set
     End Property
+    Public Property CRITICO() As Integer
+        Get
+            Return m_critico
+        End Get
+        Set(ByVal value As Integer)
+            m_critico = value
+        End Set
+    End Property
 #End Region
 
 #Region "Constructores"
@@ -117,9 +125,9 @@
         m_email3 = ""
         m_contacto = ""
         m_nousar = 0
-       
+        m_critico = 0
     End Sub
-    Public Sub New(ByVal id As Integer, ByVal nombre As String, ByVal rut As String, ByVal telefono As String, ByVal direccion As String, ByVal email As String, ByVal email2 As String, ByVal email3 As String, ByVal contacto As String, ByVal otrosdatos As String, ByVal nousar As Integer)
+    Public Sub New(ByVal id As Integer, ByVal nombre As String, ByVal rut As String, ByVal telefono As String, ByVal direccion As String, ByVal email As String, ByVal email2 As String, ByVal email3 As String, ByVal contacto As String, ByVal otrosdatos As String, ByVal nousar As Integer, ByVal critico As Integer)
         m_id = id
         m_nombre = nombre
         m_rut = rut
@@ -131,6 +139,7 @@
         m_contacto = contacto
         m_otrosdatos = otrosdatos
         m_nousar = nousar
+        m_critico = critico
     End Sub
 #End Region
 

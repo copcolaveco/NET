@@ -594,6 +594,59 @@
             Return Nothing
         End Try
     End Function
+    Public Function listarportipoinforme(ByVal tipoinforme As Long, ByVal fecd As String, ByVal fech As String) As ArrayList
+        Dim sql As String = ("SELECT id, fechaingreso, idproductor, idtipoinforme, idsubinforme, idtipoficha,observaciones, nmuestras, idmuestra, idtecnico, sinsolicitud, sinconservante, temperatura, derramadas, desvio, idfactura, web, personal, email, fechaenvio, marca, eliminado, tambo, pago, importe, kmts, ifnull(obsinternas,''), ifnull(codigo,''), fechaproceso, muestreo, logo, ifnull(interpretacion,''), fechamuestreo FROM solicitudanalisis where idtipoinforme = " & tipoinforme & " and fechaingreso BETWEEN '" & fecd & "' and '" & fech & "' and eliminado=0 order by fechaingreso desc")
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim s As New dSolicitudAnalisis
+                    s.ID = CType(unaFila.Item(0), Long)
+                    s.FECHAINGRESO = CType(unaFila.Item(1), String)
+                    s.IDPRODUCTOR = CType(unaFila.Item(2), Long)
+                    s.IDTIPOINFORME = CType(unaFila.Item(3), Integer)
+                    s.IDSUBINFORME = CType(unaFila.Item(4), Integer)
+                    s.IDTIPOFICHA = CType(unaFila.Item(5), Integer)
+                    s.OBSERVACIONES = CType(unaFila.Item(6), String)
+                    s.NMUESTRAS = CType(unaFila.Item(7), Integer)
+                    s.IDMUESTRA = CType(unaFila.Item(8), Integer)
+                    s.IDTECNICO = CType(unaFila.Item(9), Long)
+                    s.SINCOLICITUD = CType(unaFila.Item(10), Integer)
+                    s.SINCONSERVANTE = CType(unaFila.Item(11), Integer)
+                    s.TEMPERATURA = CType(unaFila.Item(12), Double)
+                    s.DERRAMADAS = CType(unaFila.Item(13), Integer)
+                    s.DESVIOAUTORIZADO = CType(unaFila.Item(14), Integer)
+                    s.IDFACTURA = CType(unaFila.Item(15), Long)
+                    s.WEB = CType(unaFila.Item(16), Integer)
+                    s.PERSONAL = CType(unaFila.Item(17), Integer)
+                    s.EMAIL = CType(unaFila.Item(18), Integer)
+                    s.FECHAENVIO = CType(unaFila.Item(19), String)
+                    s.MARCA = CType(unaFila.Item(20), Integer)
+                    s.ELIMINADO = CType(unaFila.Item(21), Integer)
+                    s.TAMBO = CType(unaFila.Item(22), Integer)
+                    s.PAGO = CType(unaFila.Item(23), Integer)
+                    s.IMPORTE = CType(unaFila.Item(24), Double)
+                    s.KMTS = CType(unaFila.Item(25), Integer)
+                    s.OBSINTERNAS = CType(unaFila.Item(26), String)
+                    s.CODIGO = CType(unaFila.Item(27), String)
+                    s.FECHAPROCESO = CType(unaFila.Item(28), String)
+                    s.MUESTREO = CType(unaFila.Item(29), Integer)
+                    s.LOGO = CType(unaFila.Item(30), Integer)
+                    s.INTERPRETACION = CType(unaFila.Item(31), String)
+                    s.FECHAMUESTREO = CType(unaFila.Item(32), String)
+                    Lista.Add(s)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
     Public Function listarporproductor2(ByVal texto As Long) As ArrayList
         Dim sql As String = ("SELECT id, fechaingreso, idproductor, idtipoinforme, idsubinforme, idtipoficha,observaciones, nmuestras, idmuestra, idtecnico, sinsolicitud, sinconservante, temperatura, derramadas, desvio, idfactura, web, personal, email, fechaenvio, marca, eliminado, tambo, pago, importe, kmts, ifnull(obsinternas,''), ifnull(codigo,''), fechaproceso, muestreo, logo, ifnull(interpretacion,''), fechamuestreo FROM solicitudanalisis where idproductor = " & texto & " and idtipoinforme=10 and eliminado=0")
         Try

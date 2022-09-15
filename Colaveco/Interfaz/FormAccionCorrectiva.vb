@@ -386,7 +386,12 @@ Public Class FormAccionCorrectiva
                 x1hoja.Cells(1, 2).columnwidth = 29
                 x1hoja.Cells(1, 3).columnwidth = 34
 
-
+                x1hoja.Cells(fila, columna).formula = "Id"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
                 x1hoja.Cells(fila, columna).formula = "Número"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).Font.Bold = True
@@ -404,11 +409,76 @@ Public Class FormAccionCorrectiva
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 10
                 x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Plan"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Plazo"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Responsable"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Criterios"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Eficaz"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Fecha evaluzación"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "Estado"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "RG.CC.37 ID"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).formula = "RG.CC.37 Descripción"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                columna = columna + 1
+
 
                 columna = 1
                 fila = fila + 1
 
                 For Each ac In lista
+
+                    x1hoja.Cells(fila, columna).formula = ac.ID
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
 
                     x1hoja.Cells(fila, columna).formula = ac.NUMERO
                     x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -436,6 +506,131 @@ Public Class FormAccionCorrectiva
                     x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
                     x1hoja.Cells(fila, columna).WrapText = True
                     columna = columna + 1
+
+                    x1hoja.Cells(fila, columna).formula = ac.PLAN
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    x1hoja.Cells(fila, columna).formula = ac.PLAZO
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    Dim usuario As New dUsuario
+                    usuario.ID = ac.RESPONSABLE
+                    usuario = usuario.buscar
+
+                    If Not usuario Is Nothing Then
+                        x1hoja.Cells(fila, columna).formula = usuario.NOMBRE
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        columna = columna + 1
+                    Else
+                        x1hoja.Cells(fila, columna).formula = " - "
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        columna = columna + 1
+                    End If
+
+                    x1hoja.Cells(fila, columna).formula = ac.CRITERIOS
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    x1hoja.Cells(fila, columna).formula = ac.EFICAZ
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    x1hoja.Cells(fila, columna).formula = ac.FECHAEVALUACION
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    x1hoja.Cells(fila, columna).formula = ac.ESTADO
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 10
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    columna = columna + 1
+
+                    Dim reclamo As New dReclamos
+                    reclamo.ID = ac.NUMERO
+                    reclamo = reclamo.buscar
+
+                    If Not reclamo Is Nothing Then
+                        If reclamo.ID > 0 Then
+                            x1hoja.Cells(fila, columna).formula = reclamo.ID
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                            x1hoja.Cells(fila, columna).Font.Bold = False
+                            x1hoja.Cells(fila, columna).Font.Size = 10
+                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                            x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                            x1hoja.Cells(fila, columna).WrapText = True
+                            columna = columna + 1
+                        Else
+                            x1hoja.Cells(fila, columna).formula = " - "
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                            x1hoja.Cells(fila, columna).Font.Bold = False
+                            x1hoja.Cells(fila, columna).Font.Size = 10
+                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                            x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                            x1hoja.Cells(fila, columna).WrapText = True
+                            columna = columna + 1
+                        End If
+
+                        If Not reclamo.DESCRIPCION Is Nothing Then
+                            x1hoja.Cells(fila, columna).formula = reclamo.DESCRIPCION
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                            x1hoja.Cells(fila, columna).Font.Bold = False
+                            x1hoja.Cells(fila, columna).Font.Size = 10
+                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                            x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                            x1hoja.Cells(fila, columna).WrapText = True
+                            columna = columna + 1
+                        Else
+                            x1hoja.Cells(fila, columna).formula = " - "
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                            x1hoja.Cells(fila, columna).Font.Bold = False
+                            x1hoja.Cells(fila, columna).Font.Size = 10
+                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                            x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                            x1hoja.Cells(fila, columna).WrapText = True
+                            columna = columna + 1
+                        End If
+                    End If
+                    
 
                     columna = 1
                     fila = fila + 1
