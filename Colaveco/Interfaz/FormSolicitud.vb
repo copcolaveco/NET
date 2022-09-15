@@ -226,7 +226,7 @@ Public Class FormSolicitud
         Dim idsubinforme As dSubInforme = CType(ComboSubInforme.SelectedItem, dSubInforme)
 
         'Tecnico Muestreo 
-        Dim tecMuestreo As dTecnicoMuestreo = CType(cbxTecnicoMuestreo.SelectedItem, dTecnicoMuestreo)
+        Dim tecMuestreo As pTecnicoMuestreo = CType(cbxTecnicoMuestreo.SelectedItem, dTecnicoMuestreo)
         If CheckMuestreo.Checked = True And tecMuestreo Is Nothing Then
             MsgBox("Debe seleccionar un Técnico para el muestreo!")
             Exit Sub
