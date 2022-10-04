@@ -82,6 +82,7 @@ Public Class FormInicio
             cargarfichassubidas()
             cargarAutorizaciones()
             cargarNotificaciones()
+            cargarPreinformes()
             'chequear_pedidos()
             'chequear_envios()
             If Sesion.Usuario.SECTOR = 2 Then
@@ -112,6 +113,7 @@ Public Class FormInicio
             cargarfichassubidas()
             cargarAutorizaciones()
             cargarNotificaciones()
+            cargarPreinformes()
             'chequear_pedidos()
             'chequear_envios()
             If Sesion.Usuario.SECTOR = 2 Then
@@ -967,8 +969,13 @@ Public Class FormInicio
         cerrarSesion()
     End Sub
     Private Sub CajasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CajasToolStripMenuItem1.Click
-        Dim v As New FormEnvioCajas(Sesion.Usuario)
-        v.Show()
+        If _sesion.Usuario.ID = 22 Then
+            Dim v As New FormEnvioCajas(Sesion.Usuario)
+            v.Show()
+        Else
+            MsgBox("Permisos insuficientes.")
+        End If
+        
     End Sub
     Private Sub EmpresasDeTransportesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EmpresasDeTransportesToolStripMenuItem.Click
         Dim v As New FormEmpresaT(Sesion.Usuario)
@@ -1385,6 +1392,7 @@ Public Class FormInicio
         listarpedidospendientes()
         cargarAutorizaciones()
         cargarNotificaciones()
+        cargarPreinformes()
         desmarcar_pedidos_automaticos()
     End Sub
     Private Sub desmarcar_pedidos_automaticos()
@@ -10129,6 +10137,56 @@ controltxt:
             End If
         End If
     End Sub
+
+    Private Sub cargarPreinformes()
+
+        Dim preInforme As New dPreinformes
+        Dim ListaPreimformes As New ArrayList
+        ListaPreimformes = preInforme.ListaControlCalidad()
+        Dim fila As Integer = 0
+        Dim columna As Integer = 0
+
+        If Not ListaPreimformes Is Nothing Then
+            dgvPreinformes.Rows.Clear()
+            dgvPreinformes.Rows.Add(ListaPreimformes.Count)
+            For Each preInforme In ListaPreimformes
+                If preInforme.TIPO = 1 Then
+                    dgvPreinformes(columna, fila).Value = preInforme.ID
+                    columna = columna + 1
+                    dgvPreinformes(columna, fila).Value = preInforme.FICHA
+                    columna = columna + 1
+                    dgvPreinformes(columna, fila).Value = "Control" 'Tipo
+                    columna = columna + 1
+                    If preInforme.CREADO = 1 Then
+                        dgvPreinformes(columna, fila).Value = "Creado"
+                        columna = columna + 1
+                    Else
+                        dgvPreinformes(columna, fila).Value = "No creado"
+                        columna = columna + 1
+                    End If
+                    columna = 0
+                    fila = fila + 1
+                ElseIf preInforme.TIPO = 10 Then
+                    dgvPreinformes(columna, fila).Value = preInforme.ID
+                    columna = columna + 1
+                    dgvPreinformes(columna, fila).Value = preInforme.FICHA
+                    columna = columna + 1
+                    dgvPreinformes(columna, fila).Value = "Calidad" 'Tipo
+                    columna = columna + 1
+                    If preInforme.CREADO = 1 Then
+                        dgvPreinformes(columna, fila).Value = "Creado"
+                        columna = columna + 1
+                    Else
+                        dgvPreinformes(columna, fila).Value = "No creado"
+                        columna = columna + 1
+                    End If
+                    columna = 0
+                    fila = fila + 1
+                End If
+            Next
+        End If
+    End Sub
+
     Private Sub cargarNotificaciones()
         Dim fecha As Date = Now
         Dim fec As String = Format(fecha, "yyyy-MM-dd")
@@ -10833,5 +10891,28 @@ controltxt:
     Private Sub TecnicosMuestreoToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles TecnicosMuestreoToolStripMenuItem.Click
         Dim v As New FormTecnicoMuestreo(Sesion.Usuario)
         v.Show()
+    End Sub
+
+    Private Sub dgvPreinformes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPreinformes.CellContentClick
+        If Sesion.Usuario.ID = 32 Or Sesion.Usuario.ID = 116 Or Sesion.Usuario.ID = 112 Then
+            If dgvPreinformes.Columns(e.ColumnIndex).Name = "btnEdit" Then
+                Dim row As DataGridViewRow = dgvPreinformes.Rows(e.RowIndex)
+                Dim ficha As Long = 0
+                ficha = row.Cells("fichaColumn").Value
+                Dim dPre As New dPreinformes
+
+                dPre = dPre.buscarPorId(ficha)
+
+                If Not dPre Is Nothing Then
+
+                    Dim v As New FormPreinformeEdit(dPre)
+                    v.ShowDialog()
+
+                End If
+
+            End If
+        Else
+            MsgBox("Permisos insuficientes")
+        End If
     End Sub
 End Class

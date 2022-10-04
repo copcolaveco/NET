@@ -67,6 +67,7 @@ Partial Class FormInicio
         Me.UsuariosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AnálisisToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ProductorToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.TecnicosMuestreoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.AdministraciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RecepciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CompletarEnvíosToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
@@ -373,7 +374,13 @@ Partial Class FormInicio
         Me.NombrePend = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.ButtonCrearInformes = New System.Windows.Forms.Button()
-        Me.TecnicosMuestreoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.dgvPreinformes = New System.Windows.Forms.DataGridView()
+        Me.id2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.fichaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.btnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.Label4 = New System.Windows.Forms.Label()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridTareas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -396,6 +403,7 @@ Partial Class FormInicio
         CType(Me.DataGridAutorizaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridNotificaciones, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridViewPP, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.dgvPreinformes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -404,7 +412,7 @@ Partial Class FormInicio
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(1387, 28)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1616, 28)
         Me.MenuStrip1.TabIndex = 0
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -629,6 +637,12 @@ Partial Class FormInicio
         Me.ProductorToolStripMenuItem.Name = "ProductorToolStripMenuItem"
         Me.ProductorToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
         Me.ProductorToolStripMenuItem.Text = "Productores"
+        '
+        'TecnicosMuestreoToolStripMenuItem
+        '
+        Me.TecnicosMuestreoToolStripMenuItem.Name = "TecnicosMuestreoToolStripMenuItem"
+        Me.TecnicosMuestreoToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
+        Me.TecnicosMuestreoToolStripMenuItem.Text = "Tecnicos Muestreo"
         '
         'AdministraciónToolStripMenuItem
         '
@@ -2159,7 +2173,7 @@ Partial Class FormInicio
         Me.StatusStrip1.Location = New System.Drawing.Point(0, 833)
         Me.StatusStrip1.Name = "StatusStrip1"
         Me.StatusStrip1.Padding = New System.Windows.Forms.Padding(1, 0, 19, 0)
-        Me.StatusStrip1.Size = New System.Drawing.Size(1387, 22)
+        Me.StatusStrip1.Size = New System.Drawing.Size(1616, 22)
         Me.StatusStrip1.TabIndex = 12
         Me.StatusStrip1.Text = "StatusStrip1"
         '
@@ -2707,11 +2721,61 @@ Partial Class FormInicio
         Me.ButtonCrearInformes.Text = "Crear Informes (Nuevo)"
         Me.ButtonCrearInformes.UseVisualStyleBackColor = True
         '
-        'TecnicosMuestreoToolStripMenuItem
+        'dgvPreinformes
         '
-        Me.TecnicosMuestreoToolStripMenuItem.Name = "TecnicosMuestreoToolStripMenuItem"
-        Me.TecnicosMuestreoToolStripMenuItem.Size = New System.Drawing.Size(288, 24)
-        Me.TecnicosMuestreoToolStripMenuItem.Text = "Tecnicos Muestreo"
+        Me.dgvPreinformes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
+        Me.dgvPreinformes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id2, Me.fichaColumn, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.btnEdit})
+        Me.dgvPreinformes.Location = New System.Drawing.Point(1270, 139)
+        Me.dgvPreinformes.Margin = New System.Windows.Forms.Padding(4)
+        Me.dgvPreinformes.Name = "dgvPreinformes"
+        Me.dgvPreinformes.RowHeadersVisible = False
+        Me.dgvPreinformes.Size = New System.Drawing.Size(333, 312)
+        Me.dgvPreinformes.TabIndex = 37
+        '
+        'id2
+        '
+        Me.id2.DataPropertyName = "id"
+        Me.id2.HeaderText = "idPreinformes"
+        Me.id2.MinimumWidth = 7
+        Me.id2.Name = "id2"
+        Me.id2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.id2.Visible = False
+        '
+        'fichaColumn
+        '
+        Me.fichaColumn.HeaderText = "Ficha"
+        Me.fichaColumn.Name = "fichaColumn"
+        Me.fichaColumn.ReadOnly = True
+        Me.fichaColumn.Width = 50
+        '
+        'DataGridViewTextBoxColumn18
+        '
+        Me.DataGridViewTextBoxColumn18.HeaderText = "Tipo"
+        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
+        Me.DataGridViewTextBoxColumn18.Width = 50
+        '
+        'DataGridViewTextBoxColumn19
+        '
+        Me.DataGridViewTextBoxColumn19.HeaderText = "Creado"
+        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
+        Me.DataGridViewTextBoxColumn19.Width = 80
+        '
+        'btnEdit
+        '
+        Me.btnEdit.HeaderText = ""
+        Me.btnEdit.Name = "btnEdit"
+        Me.btnEdit.Text = "Edit"
+        Me.btnEdit.Width = 50
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(1267, 118)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(84, 17)
+        Me.Label4.TabIndex = 38
+        Me.Label4.Text = "Preinformes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
         'FormInicio
         '
@@ -2719,7 +2783,9 @@ Partial Class FormInicio
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
-        Me.ClientSize = New System.Drawing.Size(1387, 855)
+        Me.ClientSize = New System.Drawing.Size(1616, 855)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.dgvPreinformes)
         Me.Controls.Add(Me.ButtonCrearInformes)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.DataGridViewPP)
@@ -2771,6 +2837,7 @@ Partial Class FormInicio
         CType(Me.DataGridAutorizaciones, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridNotificaciones, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DataGridViewPP, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.dgvPreinformes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -3119,4 +3186,11 @@ Partial Class FormInicio
     Friend WithEvents ActualizarGestorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TimepoDeEnvíoDeInformesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TecnicosMuestreoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents dgvPreinformes As System.Windows.Forms.DataGridView
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents id2 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents fichaColumn As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn18 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents btnEdit As System.Windows.Forms.DataGridViewButtonColumn
 End Class

@@ -306,6 +306,12 @@
     <Compile Include="Importador\pControlAux.vb" />
     <Compile Include="Importador\pImpCalidad2.vb" />
     <Compile Include="Interfaz\dTecnicoMuestreo.vb" />
+    <Compile Include="Interfaz\FormPreinformeEdit.Designer.vb">
+      <DependentUpon>FormPreinformeEdit.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPreinformeEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaz\FormTecnicoMuestreo.Designer.vb">
       <DependentUpon>FormTecnicoMuestreo.vb</DependentUpon>
     </Compile>
@@ -3292,6 +3298,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormPreInforme.resx">
       <DependentUpon>FormPreInforme.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPreinformeEdit.resx">
+      <DependentUpon>FormPreinformeEdit.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormPresentaciones.resx">
       <DependentUpon>FormPresentaciones.vb</DependentUpon>

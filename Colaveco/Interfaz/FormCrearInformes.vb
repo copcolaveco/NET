@@ -1572,36 +1572,35 @@ Public Class FormCrearInformes
                                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                                 x1hoja.Cells(fila, columna).Font.Size = 8
                                 If valcrioscopia > -0.512 Then
-                                    Dim r As New dRgLab88
-                                    r.FICHA = nroficha
-                                    r.MUESTRA = csm.MUESTRA
-                                    r = r.buscarxfichaxmuestra
-                                    If Not r Is Nothing Then
-                                        Dim delta As Double = 0
-                                        Dim criosc As Double = 0
-                                        Dim resultado As Double = 0
-                                        delta = r.DELTA
-                                        criosc = r.CRIOSCOPO
-                                        If delta > criosc Then
-                                            resultado = delta - criosc
-                                        Else
-                                            resultado = criosc - delta
-                                        End If
-                                        If resultado > 5 Then
-                                            valcrioscopia = Val(r.CRIOSCOPO) * -1 / 1000
-                                            a.ANALISIS = 102
-                                            a = a.buscar
-                                            If Not a Is Nothing Then
-                                                desde = a.DESDE
-                                                hasta = a.HASTA
-                                            End If
-                                            If valcrioscopia > desde Or valcrioscopia < hasta Then
-                                                'x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                                            End If
-                                        End If
-                                    End If
+                                    'Dim r As New dRgLab88
+                                    'r.FICHA = nroficha
+                                    'r.MUESTRA = csm.MUESTRA
+                                    'r = r.buscarxfichaxmuestra
+                                    'If Not r Is Nothing Then
+                                    '    Dim delta As Double = 0
+                                    '    Dim criosc As Double = 0
+                                    '    Dim resultado As Double = 0
+                                    '    delta = r.DELTA
+                                    '    criosc = r.CRIOSCOPO
+                                    '    If delta > criosc Then
+                                    '        resultado = delta - criosc
+                                    '    Else
+                                    '        resultado = criosc - delta
+                                    '    End If
+                                    '    If resultado > 5 Then
+                                    '        valcrioscopia = Val(r.CRIOSCOPO) * -1 / 1000
+                                    '        a.ANALISIS = 102
+                                    '        a = a.buscar
+                                    '        If Not a Is Nothing Then
+                                    '            desde = a.DESDE
+                                    '            hasta = a.HASTA
+                                    '        End If
+                                    'If valcrioscopia > desde Or valcrioscopia < hasta Then
+                                    x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                                    '        End If
+                                    '    End If
+                                    'End If
                                 End If
-                                x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                                 columna = columna + 1
                             Else
                                 x1hoja.Cells(fila, columna).formula = "-"
@@ -1622,25 +1621,26 @@ Public Class FormCrearInformes
                         columna = columna + 1
                     End If
                     If csm.CRIOSCOPIA_CRIOSCOPO = 1 Then
-                        columna = columna - 1
-                        Dim r As New dRgLab88
-                        Dim valcrioscopia As Double = 0
-                        r.FICHA = nroficha
-                        r.MUESTRA = csm.MUESTRA
-                        r = r.buscarxfichaxmuestra
-                        If Not r Is Nothing Then
+                            columna = columna - 1
+                            Dim r As New dRgLab88
+                            Dim valcrioscopia As Double = 0
+                            r.FICHA = nroficha
+                            r.MUESTRA = csm.MUESTRA
+                            r = r.buscarxfichaxmuestra
+                            'If Not r Is Nothing Then
                             Dim criosc As Double = 0
                             criosc = r.CRIOSCOPO
                             valcrioscopia = Val(criosc) * -1 / 1000
                             a.ANALISIS = 102
                             a = a.buscar
-                            If Not a Is Nothing Then
-                                desde = a.DESDE
-                                hasta = a.HASTA
-                            End If
-                            If valcrioscopia > desde Or valcrioscopia < hasta Then
-                                x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                            End If
+                        If valcrioscopia > -0.512 Then
+                            'If Not a Is Nothing Then
+                            '    desde = a.DESDE
+                            '    hasta = a.HASTA
+                            'End If
+                            'If valcrioscopia > desde Or valcrioscopia < hasta Then
+                            x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                            'End If
                             x1hoja.Cells(fila, columna).formula = valcrioscopia.ToString("##,###0.000")
                             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                             x1hoja.Cells(fila, columna).Font.Size = 8
@@ -1652,67 +1652,17 @@ Public Class FormCrearInformes
                             columna = columna + 1
                         End If
                     End If
-                    If csm.UREA = 1 Then
-                        If Not c Is Nothing Then
-                            If c.UREA <> -1 Then
-                                Dim valorurea As Integer
-                                valorurea = c.UREA * 0.466
-                                x1hoja.Cells(fila, columna).formula = valorurea
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                If valorurea > 20 Or valorurea < 9 Then
-                                    x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                                End If
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            End If
-                        Else
-                            x1hoja.Cells(fila, columna).formula = "-"
-                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                            x1hoja.Cells(fila, columna).Font.Size = 8
-                            columna = columna + 1
+            If csm.UREA = 1 Then
+                If Not c Is Nothing Then
+                    If c.UREA <> -1 Then
+                        Dim valorurea As Integer
+                        valorurea = c.UREA * 0.466
+                        x1hoja.Cells(fila, columna).formula = valorurea
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        If valorurea > 20 Or valorurea < 9 Then
+                            x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                         End If
-                    Else
-                        x1hoja.Cells(fila, columna).formula = "-"
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        columna = columna + 1
-                    End If
-                    Dim inh As New dInhibidores
-                    inh.FICHA = nroficha
-                    inh.MUESTRA = Trim(csm.MUESTRA)
-                    inh = inh.buscarxfichaxmuestra
-                    If Not inh Is Nothing Then
-                        If inh.RESULTADO = 0 Then
-                            x1hoja.Cells(fila, columna).formula = "Negativo"
-                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                            x1hoja.Cells(fila, columna).Font.Size = 6
-                            columna = columna + 1
-                        Else
-                            x1hoja.Cells(fila, columna).formula = "Positivo"
-                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                            x1hoja.Cells(fila, columna).Font.Size = 6
-                            columna = columna + 1
-                        End If
-                    Else
-                        x1hoja.Cells(fila, columna).formula = "-"
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        columna = columna + 1
-                    End If
-                    'ESPORULADOS*******************************************************************************
-                    Dim esp As New dEsporulados
-                    esp.FICHA = nroficha
-                    esp.MUESTRA = Trim(csm.MUESTRA)
-                    esp = esp.buscarxfichaxmuestra
-                    If Not esp Is Nothing Then
-                        x1hoja.Cells(fila, columna).formula = esp.RESULTADO
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 8
                         columna = columna + 1
                     Else
                         x1hoja.Cells(fila, columna).formula = "-"
@@ -1720,13 +1670,79 @@ Public Class FormCrearInformes
                         x1hoja.Cells(fila, columna).Font.Size = 8
                         columna = columna + 1
                     End If
-                    'PSICROTROFOS*******************************************************************************
-                    Dim psi As New dPsicrotrofos
-                    psi.FICHA = nroficha
-                    psi.MUESTRA = Trim(csm.MUESTRA)
-                    psi = psi.buscarxfichaxmuestra
-                    If Not psi Is Nothing Then
-                        x1hoja.Cells(fila, columna).formula = psi.PROMEDIO
+                Else
+                    x1hoja.Cells(fila, columna).formula = "-"
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                    x1hoja.Cells(fila, columna).Font.Size = 8
+                    columna = columna + 1
+                End If
+            Else
+                x1hoja.Cells(fila, columna).formula = "-"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+            End If
+            Dim inh As New dInhibidores
+            inh.FICHA = nroficha
+            inh.MUESTRA = Trim(csm.MUESTRA)
+            inh = inh.buscarxfichaxmuestra
+            If Not inh Is Nothing Then
+                If inh.RESULTADO = 0 Then
+                    x1hoja.Cells(fila, columna).formula = "Negativo"
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                    x1hoja.Cells(fila, columna).Font.Size = 6
+                    columna = columna + 1
+                Else
+                    x1hoja.Cells(fila, columna).formula = "Positivo"
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                    x1hoja.Cells(fila, columna).Font.Size = 6
+                    columna = columna + 1
+                End If
+            Else
+                x1hoja.Cells(fila, columna).formula = "-"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+            End If
+            'ESPORULADOS*******************************************************************************
+            Dim esp As New dEsporulados
+            esp.FICHA = nroficha
+            esp.MUESTRA = Trim(csm.MUESTRA)
+            esp = esp.buscarxfichaxmuestra
+            If Not esp Is Nothing Then
+                x1hoja.Cells(fila, columna).formula = esp.RESULTADO
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+            Else
+                x1hoja.Cells(fila, columna).formula = "-"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+            End If
+            'PSICROTROFOS*******************************************************************************
+            Dim psi As New dPsicrotrofos
+            psi.FICHA = nroficha
+            psi.MUESTRA = Trim(csm.MUESTRA)
+            psi = psi.buscarxfichaxmuestra
+            If Not psi Is Nothing Then
+                x1hoja.Cells(fila, columna).formula = psi.PROMEDIO
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+            Else
+                x1hoja.Cells(fila, columna).formula = "-"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+            End If
+            'CASEINA ************************************************************************************
+            If csm.CASEINA = 1 Then
+                If Not c Is Nothing Then
+                    If c.CASEINA <> -1 Then
+                        Dim valorcaseina As Double
+                        valorcaseina = c.CASEINA
+                        x1hoja.Cells(fila, columna).formula = FormatNumber(valorcaseina, 2)
                         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         x1hoja.Cells(fila, columna).Font.Size = 8
                         columna = columna + 1
@@ -1736,52 +1752,36 @@ Public Class FormCrearInformes
                         x1hoja.Cells(fila, columna).Font.Size = 8
                         columna = columna + 1
                     End If
-                    'CASEINA ************************************************************************************
-                    If csm.CASEINA = 1 Then
-                        If Not c Is Nothing Then
-                            If c.CASEINA <> -1 Then
-                                Dim valorcaseina As Double
-                                valorcaseina = c.CASEINA
-                                x1hoja.Cells(fila, columna).formula = FormatNumber(valorcaseina, 2)
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            End If
-                        Else
-                            x1hoja.Cells(fila, columna).formula = "-"
-                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                            x1hoja.Cells(fila, columna).Font.Size = 8
-                            columna = columna + 1
-                        End If
-                    Else
-                        x1hoja.Cells(fila, columna).formula = "-"
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        columna = columna + 1
-                    End If
-                    'AFLATOXINA M1*******************************************************************************
-                    Dim m As New dMicotoxinasLeche
-                    m.FICHA = nroficha
-                    m.MUESTRA = Trim(csm.MUESTRA)
-                    m = m.buscarxfichaxmuestra
-                    If Not m Is Nothing Then
-                        x1hoja.Cells(fila, columna).formula = m.RESULTADO
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        columna = 1
-                    Else
-                        x1hoja.Cells(fila, columna).formula = "-"
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        columna = 1
-                    End If
-                    columna = 1
-                    fila = fila + 1
+                Else
+                    x1hoja.Cells(fila, columna).formula = "-"
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                    x1hoja.Cells(fila, columna).Font.Size = 8
+                    columna = columna + 1
+                End If
+            Else
+                x1hoja.Cells(fila, columna).formula = "-"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+            End If
+            'AFLATOXINA M1*******************************************************************************
+            Dim m As New dMicotoxinasLeche
+            m.FICHA = nroficha
+            m.MUESTRA = Trim(csm.MUESTRA)
+            m = m.buscarxfichaxmuestra
+            If Not m Is Nothing Then
+                x1hoja.Cells(fila, columna).formula = m.RESULTADO
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = 1
+            Else
+                x1hoja.Cells(fila, columna).formula = "-"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = 1
+            End If
+            columna = 1
+            fila = fila + 1
                 Next
                 'Referencias
                 fila = fila + 1

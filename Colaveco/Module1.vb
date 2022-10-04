@@ -7,6 +7,7 @@
     Public idparatecnico4 As Integer
     Public idparatecnico5 As Integer
     Public idparatecnico6 As Integer
+    Public idparatecnico7 As Integer
     Public cant_muestras As Integer
     Public idlincapacitacion As Long
     Public aguaclorada As Integer

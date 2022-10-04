@@ -290,7 +290,7 @@
     End Function
     Public Function guardarobservaciones(ByVal o As Object, ByVal usuario As dUsuario, ByVal obs As String) As Boolean
         Dim obj As dControldeInformes = CType(o, dControldeInformes)
-        Dim sql As String = "UPDATE controldeinformes SET observaciones='" & obs & "' WHERE ID = " & obj.ID & ""
+        Dim sql As String = "UPDATE controldeinformes SET observaciones='" & obs & "' WHERE ficha = " & obj.ID & ""
 
         Dim lista As New ArrayList
         lista.Add(sql)

@@ -737,4 +737,47 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function ListaControlCalidad() As ArrayList
+        Dim sql As String = "SELECT id, ficha, tipo, creado, abonado, ifnull(comentario,''),ifnull(copia,''), parasubir, subido, fecha, control FROM preinformes WHERE tipo in(1,10) ORDER BY FECHA DESC LIMIT 50"
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim p As New dPreinformes
+                    p.ID = CType(unaFila.Item(0), Long)
+                    p.FICHA = CType(unaFila.Item(1), Long)
+                    p.TIPO = CType(unaFila.Item(2), Integer)
+                    p.CREADO = CType(unaFila.Item(3), Integer)
+                    p.ABONADO = CType(unaFila.Item(4), Integer)
+                    p.COMENTARIO = CType(unaFila.Item(5), String)
+                    p.COPIA = CType(unaFila.Item(6), String)
+                    p.PARASUBIR = CType(unaFila.Item(7), Integer)
+                    p.SUBIDO = CType(unaFila.Item(8), Integer)
+                    p.FECHA = CType(unaFila.Item(9), String)
+                    p.CONTROL = CType(unaFila.Item(10), Integer)
+                    Lista.Add(p)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+    Public Function ModificarPreinforme(ByVal idTI As Integer, ByVal ficha As Integer) As Boolean
+
+        Dim sql As String = "UPDATE preinformes SET creado= 0, tipo =" & idTI & " WHERE ficha = " & ficha & ""
+
+        Dim lista As New ArrayList
+        lista.Add(sql)
+
+        Return EjecutarTransaccion(lista)
+    End Function
+
 End Class

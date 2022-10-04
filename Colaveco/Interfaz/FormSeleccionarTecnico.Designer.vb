@@ -29,14 +29,16 @@ Partial Class FormSeleccionarTecnico
         Me.ButtonGuardar = New System.Windows.Forms.Button()
         Me.CheckBoxVirginia = New System.Windows.Forms.CheckBox()
         Me.CheckBoxJeny = New System.Windows.Forms.CheckBox()
+        Me.cbxCrisCedrani = New System.Windows.Forms.CheckBox()
         Me.SuspendLayout()
         '
         'CheckBoxDiego
         '
         Me.CheckBoxDiego.AutoSize = True
-        Me.CheckBoxDiego.Location = New System.Drawing.Point(12, 12)
+        Me.CheckBoxDiego.Location = New System.Drawing.Point(16, 15)
+        Me.CheckBoxDiego.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxDiego.Name = "CheckBoxDiego"
-        Me.CheckBoxDiego.Size = New System.Drawing.Size(90, 17)
+        Me.CheckBoxDiego.Size = New System.Drawing.Size(116, 21)
         Me.CheckBoxDiego.TabIndex = 0
         Me.CheckBoxDiego.Text = "Diego Arenas"
         Me.CheckBoxDiego.UseVisualStyleBackColor = True
@@ -44,9 +46,10 @@ Partial Class FormSeleccionarTecnico
         'CheckBoxClaudia
         '
         Me.CheckBoxClaudia.AutoSize = True
-        Me.CheckBoxClaudia.Location = New System.Drawing.Point(12, 35)
+        Me.CheckBoxClaudia.Location = New System.Drawing.Point(16, 43)
+        Me.CheckBoxClaudia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxClaudia.Name = "CheckBoxClaudia"
-        Me.CheckBoxClaudia.Size = New System.Drawing.Size(97, 17)
+        Me.CheckBoxClaudia.Size = New System.Drawing.Size(123, 21)
         Me.CheckBoxClaudia.TabIndex = 1
         Me.CheckBoxClaudia.Text = "Claudia García"
         Me.CheckBoxClaudia.UseVisualStyleBackColor = True
@@ -54,9 +57,10 @@ Partial Class FormSeleccionarTecnico
         'CheckBoxLorena
         '
         Me.CheckBoxLorena.AutoSize = True
-        Me.CheckBoxLorena.Location = New System.Drawing.Point(12, 58)
+        Me.CheckBoxLorena.Location = New System.Drawing.Point(16, 71)
+        Me.CheckBoxLorena.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxLorena.Name = "CheckBoxLorena"
-        Me.CheckBoxLorena.Size = New System.Drawing.Size(105, 17)
+        Me.CheckBoxLorena.Size = New System.Drawing.Size(137, 21)
         Me.CheckBoxLorena.TabIndex = 2
         Me.CheckBoxLorena.Text = "Lorena Nidegger"
         Me.CheckBoxLorena.UseVisualStyleBackColor = True
@@ -64,18 +68,20 @@ Partial Class FormSeleccionarTecnico
         'CheckBoxErika
         '
         Me.CheckBoxErika.AutoSize = True
-        Me.CheckBoxErika.Location = New System.Drawing.Point(12, 81)
+        Me.CheckBoxErika.Location = New System.Drawing.Point(16, 100)
+        Me.CheckBoxErika.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxErika.Name = "CheckBoxErika"
-        Me.CheckBoxErika.Size = New System.Drawing.Size(76, 17)
+        Me.CheckBoxErika.Size = New System.Drawing.Size(96, 21)
         Me.CheckBoxErika.TabIndex = 3
         Me.CheckBoxErika.Text = "Erika Silva"
         Me.CheckBoxErika.UseVisualStyleBackColor = True
         '
         'ButtonGuardar
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(76, 172)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(101, 280)
+        Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonGuardar.TabIndex = 4
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
@@ -83,9 +89,10 @@ Partial Class FormSeleccionarTecnico
         'CheckBoxVirginia
         '
         Me.CheckBoxVirginia.AutoSize = True
-        Me.CheckBoxVirginia.Location = New System.Drawing.Point(12, 104)
+        Me.CheckBoxVirginia.Location = New System.Drawing.Point(16, 128)
+        Me.CheckBoxVirginia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxVirginia.Name = "CheckBoxVirginia"
-        Me.CheckBoxVirginia.Size = New System.Drawing.Size(98, 17)
+        Me.CheckBoxVirginia.Size = New System.Drawing.Size(131, 21)
         Me.CheckBoxVirginia.TabIndex = 5
         Me.CheckBoxVirginia.Text = "Virginia Ferreira"
         Me.CheckBoxVirginia.UseVisualStyleBackColor = True
@@ -93,18 +100,31 @@ Partial Class FormSeleccionarTecnico
         'CheckBoxJeny
         '
         Me.CheckBoxJeny.AutoSize = True
-        Me.CheckBoxJeny.Location = New System.Drawing.Point(12, 127)
+        Me.CheckBoxJeny.Location = New System.Drawing.Point(16, 156)
+        Me.CheckBoxJeny.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckBoxJeny.Name = "CheckBoxJeny"
-        Me.CheckBoxJeny.Size = New System.Drawing.Size(99, 17)
+        Me.CheckBoxJeny.Size = New System.Drawing.Size(129, 21)
         Me.CheckBoxJeny.TabIndex = 6
         Me.CheckBoxJeny.Text = "Jeniffer Madera"
         Me.CheckBoxJeny.UseVisualStyleBackColor = True
         '
+        'cbxCrisCedrani
+        '
+        Me.cbxCrisCedrani.AutoSize = True
+        Me.cbxCrisCedrani.Location = New System.Drawing.Point(16, 185)
+        Me.cbxCrisCedrani.Margin = New System.Windows.Forms.Padding(4)
+        Me.cbxCrisCedrani.Name = "cbxCrisCedrani"
+        Me.cbxCrisCedrani.Size = New System.Drawing.Size(130, 21)
+        Me.cbxCrisCedrani.TabIndex = 7
+        Me.cbxCrisCedrani.Text = "Cristian Cedrani"
+        Me.cbxCrisCedrani.UseVisualStyleBackColor = True
+        '
         'FormSeleccionarTecnico
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(231, 207)
+        Me.ClientSize = New System.Drawing.Size(312, 335)
+        Me.Controls.Add(Me.cbxCrisCedrani)
         Me.Controls.Add(Me.CheckBoxJeny)
         Me.Controls.Add(Me.CheckBoxVirginia)
         Me.Controls.Add(Me.ButtonGuardar)
@@ -112,6 +132,7 @@ Partial Class FormSeleccionarTecnico
         Me.Controls.Add(Me.CheckBoxLorena)
         Me.Controls.Add(Me.CheckBoxClaudia)
         Me.Controls.Add(Me.CheckBoxDiego)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormSeleccionarTecnico"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Seleccionar Técnico"
@@ -126,4 +147,5 @@ Partial Class FormSeleccionarTecnico
     Friend WithEvents ButtonGuardar As System.Windows.Forms.Button
     Friend WithEvents CheckBoxVirginia As System.Windows.Forms.CheckBox
     Friend WithEvents CheckBoxJeny As System.Windows.Forms.CheckBox
+    Friend WithEvents cbxCrisCedrani As System.Windows.Forms.CheckBox
 End Class

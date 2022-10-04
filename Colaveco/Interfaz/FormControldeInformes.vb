@@ -31,7 +31,7 @@ Public Class FormControldeInformes
 #End Region
     Private Sub ButtonBuscarInformes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonBuscarInformes.Click
         buscarinformes()
-        listarinformes()
+        'listarinformes()
     End Sub
     Private Sub listarinformes()
         Dim ci As New dControldeInformes
@@ -965,7 +965,7 @@ Public Class FormControldeInformes
             Dim id As Long = 0
             Dim observaciones As String = ""
             Dim ci As New dControldeInformes
-            id = row.Cells("Id").Value
+            id = row.Cells("Ficha").Value
             observaciones = row.Cells("Observaciones").Value
             ci.ID = id
             ci.marcarcontrolada(Usuario)

@@ -257,4 +257,12 @@
         Dim p As New pPreinformes
         Return p.buscarPorId(ficha)
     End Function
+    Public Function ListaControlCalidad() As ArrayList
+        Dim p As New pPreinformes
+        Return p.ListaControlCalidad()
+    End Function
+    Public Function ModificarPreinforme(ByVal idTI As Integer, ByVal ficha As Integer) As Boolean
+        Dim p As New pPreinformes
+        Return p.ModificarPreinforme(idTI, ficha)
+    End Function
 End Class
