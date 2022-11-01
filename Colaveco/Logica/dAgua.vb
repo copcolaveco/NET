@@ -42,6 +42,7 @@
     Private m_zn As Integer
     Private m_se As Integer
     Private m_alcalinidad As Integer
+    Private m_refrendacion_tambo As Integer
 #End Region
 
 #Region "Getters y Setters"
@@ -383,6 +384,14 @@
             m_alcalinidad = value
         End Set
     End Property
+    Public Property REFRENDACION_TAMBO() As Integer
+        Get
+            Return m_refrendacion_tambo
+        End Get
+        Set(ByVal value As Integer)
+            m_refrendacion_tambo = value
+        End Set
+    End Property
 #End Region
 
 #Region "Constructores"
@@ -429,8 +438,9 @@
         m_zn = 0
         m_se = 0
         m_alcalinidad = 0
+        m_refrendacion_tambo = 0
     End Sub
-    Public Sub New(ByVal id As Long, ByVal ficha As Long, ByVal fechaentrada As String, ByVal idtipopozo As Integer, ByVal antiguedad As Double, ByVal distanciapozonegro As Double, ByVal distanciatambo As Double, ByVal envasada As Integer, ByVal idmuestraextraida As Integer, ByVal idmuestrafueracondicion As Integer, ByVal profundidad As Integer, ByVal idaguatratada As Integer, ByVal idestadodeconservacion As Integer, ByVal het22 As Integer, ByVal het35 As Integer, ByVal het37 As Integer, ByVal cloro As Integer, ByVal conductividad As Integer, ByVal ph As Integer, ByVal ecoli As Integer, ByVal sulfitoreductores As Integer, ByVal enterococos As Integer, ByVal estreptococos As Integer, ByVal marca As Integer, ByVal muestraoficial As Integer, ByVal precinto As String, ByVal paqmacro As Integer, ByVal ca As Integer, ByVal mg As Integer, ByVal na As Integer, ByVal fe As Integer, ByVal k As Integer, ByVal al As Integer, ByVal cd As Integer, ByVal cr As Integer, ByVal cu As Integer, ByVal pb As Integer, ByVal mn As Integer, ByVal fem As Integer, ByVal zn As Integer, ByVal se As Integer, ByVal alcalinidad As Integer)
+    Public Sub New(ByVal id As Long, ByVal ficha As Long, ByVal fechaentrada As String, ByVal idtipopozo As Integer, ByVal antiguedad As Double, ByVal distanciapozonegro As Double, ByVal distanciatambo As Double, ByVal envasada As Integer, ByVal idmuestraextraida As Integer, ByVal idmuestrafueracondicion As Integer, ByVal profundidad As Integer, ByVal idaguatratada As Integer, ByVal idestadodeconservacion As Integer, ByVal het22 As Integer, ByVal het35 As Integer, ByVal het37 As Integer, ByVal cloro As Integer, ByVal conductividad As Integer, ByVal ph As Integer, ByVal ecoli As Integer, ByVal sulfitoreductores As Integer, ByVal enterococos As Integer, ByVal estreptococos As Integer, ByVal marca As Integer, ByVal muestraoficial As Integer, ByVal precinto As String, ByVal paqmacro As Integer, ByVal ca As Integer, ByVal mg As Integer, ByVal na As Integer, ByVal fe As Integer, ByVal k As Integer, ByVal al As Integer, ByVal cd As Integer, ByVal cr As Integer, ByVal cu As Integer, ByVal pb As Integer, ByVal mn As Integer, ByVal fem As Integer, ByVal zn As Integer, ByVal se As Integer, ByVal alcalinidad As Integer, ByVal refrendacion_tambo As Integer)
         m_id = id
         m_ficha = ficha
         m_fechaentrada = fechaentrada
@@ -473,6 +483,7 @@
         m_zn = zn
         m_se = se
         m_alcalinidad = alcalinidad
+        m_refrendacion_tambo = refrendacion_tambo
     End Sub
 #End Region
 

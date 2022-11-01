@@ -325,6 +325,9 @@ Public Class FormInformeControlLechero
         If idparatecnico5 = 1 Then
             paratecnico = paratecnico + "Virginia Ferreira - "
         End If
+        If idparatecnico7 = 1 Then
+            paratecnico = paratecnico + "Cristian Cedrani - "
+        End If
         If paratecnico <> "" Then
             x1hoja.Cells(fila, columna).formula = paratecnico
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -1911,6 +1914,9 @@ Public Class FormInformeControlLechero
         End If
         If idparatecnico5 = 1 Then
             paratecnico = paratecnico + "Virginia Ferreira - "
+        End If
+        If idparatecnico7 = 1 Then
+            paratecnico = paratecnico + "Cristian Cedrani - "
         End If
         If paratecnico <> "" Then
             x1hoja.Cells(fila, columna).formula = paratecnico

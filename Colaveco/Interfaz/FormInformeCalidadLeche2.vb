@@ -289,6 +289,9 @@ Public Class FormInformeCalidadLeche2
         If idparatecnico6 = 1 Then
             paratecnico = paratecnico + "Jeniffer Madera - "
         End If
+        If idparatecnico7 = 1 Then
+            paratecnico = paratecnico + "Cristian Cedrani - "
+        End If
         If paratecnico <> "" Then
             x1hoja.Cells(fila, columna).formula = paratecnico
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft

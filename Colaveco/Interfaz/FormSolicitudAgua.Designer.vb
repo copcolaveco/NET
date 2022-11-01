@@ -81,6 +81,7 @@ Partial Class FormSolicitudAgua
         Me.CheckPaqMacro = New System.Windows.Forms.CheckBox()
         Me.CheckAlcalinidad = New System.Windows.Forms.CheckBox()
         Me.CheckEnvasada = New System.Windows.Forms.CheckBox()
+        Me.cbxRefrendacionTambo = New System.Windows.Forms.CheckBox()
         Me.Panel1.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.GroupBox2.SuspendLayout()
@@ -90,9 +91,10 @@ Partial Class FormSolicitudAgua
         '
         Me.Label1.AutoSize = True
         Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label1.Location = New System.Drawing.Point(105, 20)
+        Me.Label1.Location = New System.Drawing.Point(140, 25)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(92, 13)
+        Me.Label1.Size = New System.Drawing.Size(117, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Datos del pozo"
         '
@@ -100,202 +102,226 @@ Partial Class FormSolicitudAgua
         '
         Me.Label2.AutoSize = True
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, CType((System.Drawing.FontStyle.Bold Or System.Drawing.FontStyle.Underline), System.Drawing.FontStyle), System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label2.Location = New System.Drawing.Point(105, 325)
+        Me.Label2.Location = New System.Drawing.Point(140, 400)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(120, 13)
+        Me.Label2.Size = New System.Drawing.Size(154, 17)
         Me.Label2.TabIndex = 1
         Me.Label2.Text = "Datos de la muestra"
         '
         'TextAntiguedad
         '
-        Me.TextAntiguedad.Location = New System.Drawing.Point(161, 116)
+        Me.TextAntiguedad.Location = New System.Drawing.Point(215, 143)
+        Me.TextAntiguedad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextAntiguedad.Name = "TextAntiguedad"
-        Me.TextAntiguedad.Size = New System.Drawing.Size(45, 20)
+        Me.TextAntiguedad.Size = New System.Drawing.Size(59, 22)
         Me.TextAntiguedad.TabIndex = 2
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(33, 119)
+        Me.Label3.Location = New System.Drawing.Point(44, 146)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(61, 13)
+        Me.Label3.Size = New System.Drawing.Size(80, 17)
         Me.Label3.TabIndex = 3
         Me.Label3.Text = "Antigüedad"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(212, 119)
+        Me.Label4.Location = New System.Drawing.Point(283, 146)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(30, 13)
+        Me.Label4.Size = New System.Drawing.Size(39, 17)
         Me.Label4.TabIndex = 4
         Me.Label4.Text = "años"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(33, 145)
+        Me.Label5.Location = New System.Drawing.Point(44, 178)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(64, 13)
+        Me.Label5.Size = New System.Drawing.Size(85, 17)
         Me.Label5.TabIndex = 5
         Me.Label5.Text = "Profundidad"
         '
         'TextProfundidad
         '
-        Me.TextProfundidad.Location = New System.Drawing.Point(161, 142)
+        Me.TextProfundidad.Location = New System.Drawing.Point(215, 175)
+        Me.TextProfundidad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextProfundidad.Name = "TextProfundidad"
-        Me.TextProfundidad.Size = New System.Drawing.Size(45, 20)
+        Me.TextProfundidad.Size = New System.Drawing.Size(59, 22)
         Me.TextProfundidad.TabIndex = 3
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(212, 145)
+        Me.Label6.Location = New System.Drawing.Point(283, 178)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(26, 13)
+        Me.Label6.Size = New System.Drawing.Size(34, 17)
         Me.Label6.TabIndex = 7
         Me.Label6.Text = "mts."
         '
         'TextDistTambo
         '
-        Me.TextDistTambo.Location = New System.Drawing.Point(161, 168)
+        Me.TextDistTambo.Location = New System.Drawing.Point(215, 207)
+        Me.TextDistTambo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextDistTambo.Name = "TextDistTambo"
-        Me.TextDistTambo.Size = New System.Drawing.Size(45, 20)
+        Me.TextDistTambo.Size = New System.Drawing.Size(59, 22)
         Me.TextDistTambo.TabIndex = 4
         '
         'TextDistPozoNegro
         '
-        Me.TextDistPozoNegro.Location = New System.Drawing.Point(161, 194)
+        Me.TextDistPozoNegro.Location = New System.Drawing.Point(215, 239)
+        Me.TextDistPozoNegro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextDistPozoNegro.Name = "TextDistPozoNegro"
-        Me.TextDistPozoNegro.Size = New System.Drawing.Size(45, 20)
+        Me.TextDistPozoNegro.Size = New System.Drawing.Size(59, 22)
         Me.TextDistPozoNegro.TabIndex = 5
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(33, 171)
+        Me.Label7.Location = New System.Drawing.Point(44, 210)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(94, 13)
+        Me.Label7.Size = New System.Drawing.Size(124, 17)
         Me.Label7.TabIndex = 10
         Me.Label7.Text = "Distancia al tambo"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(33, 197)
+        Me.Label8.Location = New System.Drawing.Point(44, 242)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(118, 13)
+        Me.Label8.Size = New System.Drawing.Size(157, 17)
         Me.Label8.TabIndex = 11
         Me.Label8.Text = "Distancia al pozo negro"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(212, 171)
+        Me.Label9.Location = New System.Drawing.Point(283, 210)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(26, 13)
+        Me.Label9.Size = New System.Drawing.Size(34, 17)
         Me.Label9.TabIndex = 12
         Me.Label9.Text = "mts."
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(212, 197)
+        Me.Label10.Location = New System.Drawing.Point(283, 242)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(26, 13)
+        Me.Label10.Size = New System.Drawing.Size(34, 17)
         Me.Label10.TabIndex = 13
         Me.Label10.Text = "mts."
         '
         'ComboIdTipoPozo
         '
         Me.ComboIdTipoPozo.FormattingEnabled = True
-        Me.ComboIdTipoPozo.Location = New System.Drawing.Point(161, 62)
+        Me.ComboIdTipoPozo.Location = New System.Drawing.Point(215, 76)
+        Me.ComboIdTipoPozo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboIdTipoPozo.Name = "ComboIdTipoPozo"
-        Me.ComboIdTipoPozo.Size = New System.Drawing.Size(131, 21)
+        Me.ComboIdTipoPozo.Size = New System.Drawing.Size(173, 24)
         Me.ComboIdTipoPozo.TabIndex = 0
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(33, 65)
+        Me.Label11.Location = New System.Drawing.Point(44, 80)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(69, 13)
+        Me.Label11.Size = New System.Drawing.Size(91, 17)
         Me.Label11.TabIndex = 15
         Me.Label11.Text = "Tipo de pozo"
         '
         'ComboIdEstConsevacion
         '
         Me.ComboIdEstConsevacion.FormattingEnabled = True
-        Me.ComboIdEstConsevacion.Location = New System.Drawing.Point(161, 89)
+        Me.ComboIdEstConsevacion.Location = New System.Drawing.Point(215, 110)
+        Me.ComboIdEstConsevacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboIdEstConsevacion.Name = "ComboIdEstConsevacion"
-        Me.ComboIdEstConsevacion.Size = New System.Drawing.Size(131, 21)
+        Me.ComboIdEstConsevacion.Size = New System.Drawing.Size(173, 24)
         Me.ComboIdEstConsevacion.TabIndex = 1
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(33, 92)
+        Me.Label12.Location = New System.Drawing.Point(44, 113)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(122, 13)
+        Me.Label12.Size = New System.Drawing.Size(160, 17)
         Me.Label12.TabIndex = 17
         Me.Label12.Text = "Estado de conservación"
         '
         'ComboIdMuestraExtraida
         '
         Me.ComboIdMuestraExtraida.FormattingEnabled = True
-        Me.ComboIdMuestraExtraida.Location = New System.Drawing.Point(125, 377)
+        Me.ComboIdMuestraExtraida.Location = New System.Drawing.Point(167, 464)
+        Me.ComboIdMuestraExtraida.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboIdMuestraExtraida.Name = "ComboIdMuestraExtraida"
-        Me.ComboIdMuestraExtraida.Size = New System.Drawing.Size(131, 21)
+        Me.ComboIdMuestraExtraida.Size = New System.Drawing.Size(173, 24)
         Me.ComboIdMuestraExtraida.TabIndex = 6
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(14, 381)
+        Me.Label13.Location = New System.Drawing.Point(19, 469)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(105, 13)
+        Me.Label13.Size = New System.Drawing.Size(137, 17)
         Me.Label13.TabIndex = 19
         Me.Label13.Text = "Muestra extraída de:"
         '
         'ComboIdMuestFueraCondicion
         '
         Me.ComboIdMuestFueraCondicion.FormattingEnabled = True
-        Me.ComboIdMuestFueraCondicion.Location = New System.Drawing.Point(125, 404)
+        Me.ComboIdMuestFueraCondicion.Location = New System.Drawing.Point(167, 497)
+        Me.ComboIdMuestFueraCondicion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboIdMuestFueraCondicion.Name = "ComboIdMuestFueraCondicion"
-        Me.ComboIdMuestFueraCondicion.Size = New System.Drawing.Size(186, 21)
+        Me.ComboIdMuestFueraCondicion.Size = New System.Drawing.Size(247, 24)
         Me.ComboIdMuestFueraCondicion.TabIndex = 7
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(14, 407)
+        Me.Label14.Location = New System.Drawing.Point(19, 501)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(98, 13)
+        Me.Label14.Size = New System.Drawing.Size(129, 17)
         Me.Label14.TabIndex = 21
         Me.Label14.Text = "Fuera de condición"
         '
         'ComboIdAguaTratada
         '
         Me.ComboIdAguaTratada.FormattingEnabled = True
-        Me.ComboIdAguaTratada.Location = New System.Drawing.Point(125, 431)
+        Me.ComboIdAguaTratada.Location = New System.Drawing.Point(167, 530)
+        Me.ComboIdAguaTratada.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboIdAguaTratada.Name = "ComboIdAguaTratada"
-        Me.ComboIdAguaTratada.Size = New System.Drawing.Size(131, 21)
+        Me.ComboIdAguaTratada.Size = New System.Drawing.Size(173, 24)
         Me.ComboIdAguaTratada.TabIndex = 8
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(14, 434)
+        Me.Label15.Location = New System.Drawing.Point(19, 534)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(68, 13)
+        Me.Label15.Size = New System.Drawing.Size(90, 17)
         Me.Label15.TabIndex = 23
         Me.Label15.Text = "Agua tratada"
         '
         'ButtonGuardar
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(294, 470)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(392, 578)
+        Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(95, 23)
+        Me.ButtonGuardar.Size = New System.Drawing.Size(127, 28)
         Me.ButtonGuardar.TabIndex = 10
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
@@ -312,17 +338,19 @@ Partial Class FormSolicitudAgua
         Me.Panel1.Controls.Add(Me.CheckHeterotroficos37)
         Me.Panel1.Controls.Add(Me.CheckHeterotroficos35)
         Me.Panel1.Controls.Add(Me.CheckHeterotroficos22)
-        Me.Panel1.Location = New System.Drawing.Point(340, 62)
+        Me.Panel1.Location = New System.Drawing.Point(453, 76)
+        Me.Panel1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Panel1.Name = "Panel1"
-        Me.Panel1.Size = New System.Drawing.Size(321, 129)
+        Me.Panel1.Size = New System.Drawing.Size(428, 159)
         Me.Panel1.TabIndex = 9
         '
         'CheckpH
         '
         Me.CheckpH.AutoSize = True
-        Me.CheckpH.Location = New System.Drawing.Point(194, 60)
+        Me.CheckpH.Location = New System.Drawing.Point(259, 74)
+        Me.CheckpH.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckpH.Name = "CheckpH"
-        Me.CheckpH.Size = New System.Drawing.Size(40, 17)
+        Me.CheckpH.Size = New System.Drawing.Size(48, 21)
         Me.CheckpH.TabIndex = 47
         Me.CheckpH.Text = "pH"
         Me.CheckpH.UseVisualStyleBackColor = True
@@ -330,9 +358,10 @@ Partial Class FormSolicitudAgua
         'CheckEstreptococos
         '
         Me.CheckEstreptococos.AutoSize = True
-        Me.CheckEstreptococos.Location = New System.Drawing.Point(10, 106)
+        Me.CheckEstreptococos.Location = New System.Drawing.Point(13, 130)
+        Me.CheckEstreptococos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckEstreptococos.Name = "CheckEstreptococos"
-        Me.CheckEstreptococos.Size = New System.Drawing.Size(131, 17)
+        Me.CheckEstreptococos.Size = New System.Drawing.Size(169, 21)
         Me.CheckEstreptococos.TabIndex = 46
         Me.CheckEstreptococos.Text = "Estreptococos fecales"
         Me.CheckEstreptococos.UseVisualStyleBackColor = True
@@ -340,9 +369,10 @@ Partial Class FormSolicitudAgua
         'CheckEnterococos
         '
         Me.CheckEnterococos.AutoSize = True
-        Me.CheckEnterococos.Location = New System.Drawing.Point(194, 105)
+        Me.CheckEnterococos.Location = New System.Drawing.Point(259, 129)
+        Me.CheckEnterococos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckEnterococos.Name = "CheckEnterococos"
-        Me.CheckEnterococos.Size = New System.Drawing.Size(86, 17)
+        Me.CheckEnterococos.Size = New System.Drawing.Size(109, 21)
         Me.CheckEnterococos.TabIndex = 26
         Me.CheckEnterococos.Text = "Enterococos"
         Me.CheckEnterococos.UseVisualStyleBackColor = True
@@ -350,9 +380,10 @@ Partial Class FormSolicitudAgua
         'CheckSulfitoReductores
         '
         Me.CheckSulfitoReductores.AutoSize = True
-        Me.CheckSulfitoReductores.Location = New System.Drawing.Point(10, 85)
+        Me.CheckSulfitoReductores.Location = New System.Drawing.Point(13, 105)
+        Me.CheckSulfitoReductores.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckSulfitoReductores.Name = "CheckSulfitoReductores"
-        Me.CheckSulfitoReductores.Size = New System.Drawing.Size(108, 17)
+        Me.CheckSulfitoReductores.Size = New System.Drawing.Size(141, 21)
         Me.CheckSulfitoReductores.TabIndex = 25
         Me.CheckSulfitoReductores.Text = "Sulfito reductores"
         Me.CheckSulfitoReductores.UseVisualStyleBackColor = True
@@ -360,9 +391,10 @@ Partial Class FormSolicitudAgua
         'CheckEcoli
         '
         Me.CheckEcoli.AutoSize = True
-        Me.CheckEcoli.Location = New System.Drawing.Point(194, 83)
+        Me.CheckEcoli.Location = New System.Drawing.Point(259, 102)
+        Me.CheckEcoli.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckEcoli.Name = "CheckEcoli"
-        Me.CheckEcoli.Size = New System.Drawing.Size(49, 17)
+        Me.CheckEcoli.Size = New System.Drawing.Size(60, 21)
         Me.CheckEcoli.TabIndex = 5
         Me.CheckEcoli.Text = "Ecoli"
         Me.CheckEcoli.UseVisualStyleBackColor = True
@@ -370,9 +402,10 @@ Partial Class FormSolicitudAgua
         'CheckConductividad
         '
         Me.CheckConductividad.AutoSize = True
-        Me.CheckConductividad.Location = New System.Drawing.Point(194, 37)
+        Me.CheckConductividad.Location = New System.Drawing.Point(259, 46)
+        Me.CheckConductividad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckConductividad.Name = "CheckConductividad"
-        Me.CheckConductividad.Size = New System.Drawing.Size(94, 17)
+        Me.CheckConductividad.Size = New System.Drawing.Size(119, 21)
         Me.CheckConductividad.TabIndex = 4
         Me.CheckConductividad.Text = "Conductividad"
         Me.CheckConductividad.UseVisualStyleBackColor = True
@@ -380,9 +413,10 @@ Partial Class FormSolicitudAgua
         'CheckCloro
         '
         Me.CheckCloro.AutoSize = True
-        Me.CheckCloro.Location = New System.Drawing.Point(194, 16)
+        Me.CheckCloro.Location = New System.Drawing.Point(259, 20)
+        Me.CheckCloro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCloro.Name = "CheckCloro"
-        Me.CheckCloro.Size = New System.Drawing.Size(50, 17)
+        Me.CheckCloro.Size = New System.Drawing.Size(63, 21)
         Me.CheckCloro.TabIndex = 3
         Me.CheckCloro.Text = "Cloro"
         Me.CheckCloro.UseVisualStyleBackColor = True
@@ -390,9 +424,10 @@ Partial Class FormSolicitudAgua
         'CheckHeterotroficos37
         '
         Me.CheckHeterotroficos37.AutoSize = True
-        Me.CheckHeterotroficos37.Location = New System.Drawing.Point(10, 62)
+        Me.CheckHeterotroficos37.Location = New System.Drawing.Point(13, 76)
+        Me.CheckHeterotroficos37.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckHeterotroficos37.Name = "CheckHeterotroficos37"
-        Me.CheckHeterotroficos37.Size = New System.Drawing.Size(137, 17)
+        Me.CheckHeterotroficos37.Size = New System.Drawing.Size(176, 21)
         Me.CheckHeterotroficos37.TabIndex = 2
         Me.CheckHeterotroficos37.Text = "Heterotróficos 37ºC/mL"
         Me.CheckHeterotroficos37.UseVisualStyleBackColor = True
@@ -400,9 +435,10 @@ Partial Class FormSolicitudAgua
         'CheckHeterotroficos35
         '
         Me.CheckHeterotroficos35.AutoSize = True
-        Me.CheckHeterotroficos35.Location = New System.Drawing.Point(10, 39)
+        Me.CheckHeterotroficos35.Location = New System.Drawing.Point(13, 48)
+        Me.CheckHeterotroficos35.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckHeterotroficos35.Name = "CheckHeterotroficos35"
-        Me.CheckHeterotroficos35.Size = New System.Drawing.Size(137, 17)
+        Me.CheckHeterotroficos35.Size = New System.Drawing.Size(176, 21)
         Me.CheckHeterotroficos35.TabIndex = 1
         Me.CheckHeterotroficos35.Text = "Heterotróficos 35ºC/mL"
         Me.CheckHeterotroficos35.UseVisualStyleBackColor = True
@@ -410,9 +446,10 @@ Partial Class FormSolicitudAgua
         'CheckHeterotroficos22
         '
         Me.CheckHeterotroficos22.AutoSize = True
-        Me.CheckHeterotroficos22.Location = New System.Drawing.Point(10, 16)
+        Me.CheckHeterotroficos22.Location = New System.Drawing.Point(13, 20)
+        Me.CheckHeterotroficos22.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckHeterotroficos22.Name = "CheckHeterotroficos22"
-        Me.CheckHeterotroficos22.Size = New System.Drawing.Size(137, 17)
+        Me.CheckHeterotroficos22.Size = New System.Drawing.Size(176, 21)
         Me.CheckHeterotroficos22.TabIndex = 0
         Me.CheckHeterotroficos22.Text = "Heterotróficos 22ºC/mL"
         Me.CheckHeterotroficos22.UseVisualStyleBackColor = True
@@ -420,35 +457,39 @@ Partial Class FormSolicitudAgua
         'CheckMuestraOficial
         '
         Me.CheckMuestraOficial.AutoSize = True
-        Me.CheckMuestraOficial.Location = New System.Drawing.Point(36, 241)
+        Me.CheckMuestraOficial.Location = New System.Drawing.Point(48, 297)
+        Me.CheckMuestraOficial.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckMuestraOficial.Name = "CheckMuestraOficial"
-        Me.CheckMuestraOficial.Size = New System.Drawing.Size(140, 17)
+        Me.CheckMuestraOficial.Size = New System.Drawing.Size(181, 21)
         Me.CheckMuestraOficial.TabIndex = 24
         Me.CheckMuestraOficial.Text = "Muestra oficial M.G.A.P."
         Me.CheckMuestraOficial.UseVisualStyleBackColor = True
         '
         'TextPrecinto
         '
-        Me.TextPrecinto.Location = New System.Drawing.Point(36, 284)
+        Me.TextPrecinto.Location = New System.Drawing.Point(48, 350)
+        Me.TextPrecinto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextPrecinto.Name = "TextPrecinto"
-        Me.TextPrecinto.Size = New System.Drawing.Size(202, 20)
+        Me.TextPrecinto.Size = New System.Drawing.Size(268, 22)
         Me.TextPrecinto.TabIndex = 25
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(36, 268)
+        Me.Label16.Location = New System.Drawing.Point(48, 330)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(61, 13)
+        Me.Label16.Size = New System.Drawing.Size(79, 17)
         Me.Label16.TabIndex = 26
         Me.Label16.Text = "Precinto Nº"
         '
         'CheckK
         '
         Me.CheckK.AutoSize = True
-        Me.CheckK.Location = New System.Drawing.Point(16, 111)
+        Me.CheckK.Location = New System.Drawing.Point(21, 137)
+        Me.CheckK.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckK.Name = "CheckK"
-        Me.CheckK.Size = New System.Drawing.Size(33, 17)
+        Me.CheckK.Size = New System.Drawing.Size(39, 21)
         Me.CheckK.TabIndex = 32
         Me.CheckK.Text = "K"
         Me.CheckK.UseVisualStyleBackColor = True
@@ -456,9 +497,10 @@ Partial Class FormSolicitudAgua
         'CheckFe
         '
         Me.CheckFe.AutoSize = True
-        Me.CheckFe.Location = New System.Drawing.Point(16, 88)
+        Me.CheckFe.Location = New System.Drawing.Point(21, 108)
+        Me.CheckFe.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckFe.Name = "CheckFe"
-        Me.CheckFe.Size = New System.Drawing.Size(38, 17)
+        Me.CheckFe.Size = New System.Drawing.Size(46, 21)
         Me.CheckFe.TabIndex = 31
         Me.CheckFe.Text = "Fe"
         Me.CheckFe.UseVisualStyleBackColor = True
@@ -466,9 +508,10 @@ Partial Class FormSolicitudAgua
         'CheckNa
         '
         Me.CheckNa.AutoSize = True
-        Me.CheckNa.Location = New System.Drawing.Point(16, 65)
+        Me.CheckNa.Location = New System.Drawing.Point(21, 80)
+        Me.CheckNa.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckNa.Name = "CheckNa"
-        Me.CheckNa.Size = New System.Drawing.Size(40, 17)
+        Me.CheckNa.Size = New System.Drawing.Size(48, 21)
         Me.CheckNa.TabIndex = 30
         Me.CheckNa.Text = "Na"
         Me.CheckNa.UseVisualStyleBackColor = True
@@ -476,9 +519,10 @@ Partial Class FormSolicitudAgua
         'CheckMg
         '
         Me.CheckMg.AutoSize = True
-        Me.CheckMg.Location = New System.Drawing.Point(16, 42)
+        Me.CheckMg.Location = New System.Drawing.Point(21, 52)
+        Me.CheckMg.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckMg.Name = "CheckMg"
-        Me.CheckMg.Size = New System.Drawing.Size(41, 17)
+        Me.CheckMg.Size = New System.Drawing.Size(49, 21)
         Me.CheckMg.TabIndex = 29
         Me.CheckMg.Text = "Mg"
         Me.CheckMg.UseVisualStyleBackColor = True
@@ -486,9 +530,10 @@ Partial Class FormSolicitudAgua
         'CheckCa
         '
         Me.CheckCa.AutoSize = True
-        Me.CheckCa.Location = New System.Drawing.Point(16, 19)
+        Me.CheckCa.Location = New System.Drawing.Point(21, 23)
+        Me.CheckCa.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCa.Name = "CheckCa"
-        Me.CheckCa.Size = New System.Drawing.Size(39, 17)
+        Me.CheckCa.Size = New System.Drawing.Size(47, 21)
         Me.CheckCa.TabIndex = 28
         Me.CheckCa.Text = "Ca"
         Me.CheckCa.UseVisualStyleBackColor = True
@@ -500,9 +545,11 @@ Partial Class FormSolicitudAgua
         Me.GroupBox1.Controls.Add(Me.CheckMg)
         Me.GroupBox1.Controls.Add(Me.CheckFe)
         Me.GroupBox1.Controls.Add(Me.CheckNa)
-        Me.GroupBox1.Location = New System.Drawing.Point(340, 252)
+        Me.GroupBox1.Location = New System.Drawing.Point(453, 310)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(114, 139)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(152, 171)
         Me.GroupBox1.TabIndex = 33
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Macroelementos"
@@ -518,9 +565,11 @@ Partial Class FormSolicitudAgua
         Me.GroupBox2.Controls.Add(Me.CheckMn)
         Me.GroupBox2.Controls.Add(Me.CheckCu)
         Me.GroupBox2.Controls.Add(Me.CheckPb)
-        Me.GroupBox2.Location = New System.Drawing.Point(472, 249)
+        Me.GroupBox2.Location = New System.Drawing.Point(629, 306)
+        Me.GroupBox2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox2.Name = "GroupBox2"
-        Me.GroupBox2.Size = New System.Drawing.Size(109, 225)
+        Me.GroupBox2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox2.Size = New System.Drawing.Size(145, 277)
         Me.GroupBox2.TabIndex = 34
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Microelementos"
@@ -528,9 +577,10 @@ Partial Class FormSolicitudAgua
         'CheckSe
         '
         Me.CheckSe.AutoSize = True
-        Me.CheckSe.Location = New System.Drawing.Point(9, 203)
+        Me.CheckSe.Location = New System.Drawing.Point(12, 250)
+        Me.CheckSe.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckSe.Name = "CheckSe"
-        Me.CheckSe.Size = New System.Drawing.Size(39, 17)
+        Me.CheckSe.Size = New System.Drawing.Size(47, 21)
         Me.CheckSe.TabIndex = 43
         Me.CheckSe.Text = "Se"
         Me.CheckSe.UseVisualStyleBackColor = True
@@ -538,9 +588,10 @@ Partial Class FormSolicitudAgua
         'CheckAl
         '
         Me.CheckAl.AutoSize = True
-        Me.CheckAl.Location = New System.Drawing.Point(11, 19)
+        Me.CheckAl.Location = New System.Drawing.Point(15, 23)
+        Me.CheckAl.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckAl.Name = "CheckAl"
-        Me.CheckAl.Size = New System.Drawing.Size(35, 17)
+        Me.CheckAl.Size = New System.Drawing.Size(42, 21)
         Me.CheckAl.TabIndex = 35
         Me.CheckAl.Text = "Al"
         Me.CheckAl.UseVisualStyleBackColor = True
@@ -548,9 +599,10 @@ Partial Class FormSolicitudAgua
         'CheckZn
         '
         Me.CheckZn.AutoSize = True
-        Me.CheckZn.Location = New System.Drawing.Point(9, 180)
+        Me.CheckZn.Location = New System.Drawing.Point(12, 222)
+        Me.CheckZn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckZn.Name = "CheckZn"
-        Me.CheckZn.Size = New System.Drawing.Size(39, 17)
+        Me.CheckZn.Size = New System.Drawing.Size(47, 21)
         Me.CheckZn.TabIndex = 42
         Me.CheckZn.Text = "Zn"
         Me.CheckZn.UseVisualStyleBackColor = True
@@ -558,9 +610,10 @@ Partial Class FormSolicitudAgua
         'CheckCd
         '
         Me.CheckCd.AutoSize = True
-        Me.CheckCd.Location = New System.Drawing.Point(11, 42)
+        Me.CheckCd.Location = New System.Drawing.Point(15, 52)
+        Me.CheckCd.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCd.Name = "CheckCd"
-        Me.CheckCd.Size = New System.Drawing.Size(39, 17)
+        Me.CheckCd.Size = New System.Drawing.Size(47, 21)
         Me.CheckCd.TabIndex = 36
         Me.CheckCd.Text = "Cd"
         Me.CheckCd.UseVisualStyleBackColor = True
@@ -568,9 +621,10 @@ Partial Class FormSolicitudAgua
         'CheckFem
         '
         Me.CheckFem.AutoSize = True
-        Me.CheckFem.Location = New System.Drawing.Point(9, 157)
+        Me.CheckFem.Location = New System.Drawing.Point(12, 193)
+        Me.CheckFem.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckFem.Name = "CheckFem"
-        Me.CheckFem.Size = New System.Drawing.Size(38, 17)
+        Me.CheckFem.Size = New System.Drawing.Size(46, 21)
         Me.CheckFem.TabIndex = 41
         Me.CheckFem.Text = "Fe"
         Me.CheckFem.UseVisualStyleBackColor = True
@@ -578,9 +632,10 @@ Partial Class FormSolicitudAgua
         'CheckCr
         '
         Me.CheckCr.AutoSize = True
-        Me.CheckCr.Location = New System.Drawing.Point(11, 65)
+        Me.CheckCr.Location = New System.Drawing.Point(15, 80)
+        Me.CheckCr.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCr.Name = "CheckCr"
-        Me.CheckCr.Size = New System.Drawing.Size(36, 17)
+        Me.CheckCr.Size = New System.Drawing.Size(44, 21)
         Me.CheckCr.TabIndex = 37
         Me.CheckCr.Text = "Cr"
         Me.CheckCr.UseVisualStyleBackColor = True
@@ -588,9 +643,10 @@ Partial Class FormSolicitudAgua
         'CheckMn
         '
         Me.CheckMn.AutoSize = True
-        Me.CheckMn.Location = New System.Drawing.Point(9, 134)
+        Me.CheckMn.Location = New System.Drawing.Point(12, 165)
+        Me.CheckMn.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckMn.Name = "CheckMn"
-        Me.CheckMn.Size = New System.Drawing.Size(41, 17)
+        Me.CheckMn.Size = New System.Drawing.Size(49, 21)
         Me.CheckMn.TabIndex = 40
         Me.CheckMn.Text = "Mn"
         Me.CheckMn.UseVisualStyleBackColor = True
@@ -598,9 +654,10 @@ Partial Class FormSolicitudAgua
         'CheckCu
         '
         Me.CheckCu.AutoSize = True
-        Me.CheckCu.Location = New System.Drawing.Point(11, 88)
+        Me.CheckCu.Location = New System.Drawing.Point(15, 108)
+        Me.CheckCu.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCu.Name = "CheckCu"
-        Me.CheckCu.Size = New System.Drawing.Size(39, 17)
+        Me.CheckCu.Size = New System.Drawing.Size(47, 21)
         Me.CheckCu.TabIndex = 38
         Me.CheckCu.Text = "Cu"
         Me.CheckCu.UseVisualStyleBackColor = True
@@ -608,9 +665,10 @@ Partial Class FormSolicitudAgua
         'CheckPb
         '
         Me.CheckPb.AutoSize = True
-        Me.CheckPb.Location = New System.Drawing.Point(11, 111)
+        Me.CheckPb.Location = New System.Drawing.Point(15, 137)
+        Me.CheckPb.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckPb.Name = "CheckPb"
-        Me.CheckPb.Size = New System.Drawing.Size(39, 17)
+        Me.CheckPb.Size = New System.Drawing.Size(47, 21)
         Me.CheckPb.TabIndex = 39
         Me.CheckPb.Text = "Pb"
         Me.CheckPb.UseVisualStyleBackColor = True
@@ -618,9 +676,10 @@ Partial Class FormSolicitudAgua
         'CheckPaqMacro
         '
         Me.CheckPaqMacro.AutoSize = True
-        Me.CheckPaqMacro.Location = New System.Drawing.Point(340, 197)
+        Me.CheckPaqMacro.Location = New System.Drawing.Point(453, 242)
+        Me.CheckPaqMacro.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckPaqMacro.Name = "CheckPaqMacro"
-        Me.CheckPaqMacro.Size = New System.Drawing.Size(241, 17)
+        Me.CheckPaqMacro.Size = New System.Drawing.Size(316, 21)
         Me.CheckPaqMacro.TabIndex = 44
         Me.CheckPaqMacro.Text = "Paquete Macroelementos (Ca, Mg, Na, Fe, K)"
         Me.CheckPaqMacro.UseVisualStyleBackColor = True
@@ -628,9 +687,10 @@ Partial Class FormSolicitudAgua
         'CheckAlcalinidad
         '
         Me.CheckAlcalinidad.AutoSize = True
-        Me.CheckAlcalinidad.Location = New System.Drawing.Point(340, 220)
+        Me.CheckAlcalinidad.Location = New System.Drawing.Point(453, 271)
+        Me.CheckAlcalinidad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckAlcalinidad.Name = "CheckAlcalinidad"
-        Me.CheckAlcalinidad.Size = New System.Drawing.Size(77, 17)
+        Me.CheckAlcalinidad.Size = New System.Drawing.Size(98, 21)
         Me.CheckAlcalinidad.TabIndex = 45
         Me.CheckAlcalinidad.Text = "Alcalinidad"
         Me.CheckAlcalinidad.UseVisualStyleBackColor = True
@@ -638,19 +698,32 @@ Partial Class FormSolicitudAgua
         'CheckEnvasada
         '
         Me.CheckEnvasada.AutoSize = True
-        Me.CheckEnvasada.Location = New System.Drawing.Point(125, 354)
+        Me.CheckEnvasada.Location = New System.Drawing.Point(167, 436)
+        Me.CheckEnvasada.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckEnvasada.Name = "CheckEnvasada"
-        Me.CheckEnvasada.Size = New System.Drawing.Size(101, 17)
+        Me.CheckEnvasada.Size = New System.Drawing.Size(129, 21)
         Me.CheckEnvasada.TabIndex = 46
         Me.CheckEnvasada.Text = "Agua envasada"
         Me.CheckEnvasada.UseVisualStyleBackColor = True
         '
+        'cbxRefrendacionTambo
+        '
+        Me.cbxRefrendacionTambo.AutoSize = True
+        Me.cbxRefrendacionTambo.Location = New System.Drawing.Point(48, 271)
+        Me.cbxRefrendacionTambo.Margin = New System.Windows.Forms.Padding(4)
+        Me.cbxRefrendacionTambo.Name = "cbxRefrendacionTambo"
+        Me.cbxRefrendacionTambo.Size = New System.Drawing.Size(183, 21)
+        Me.cbxRefrendacionTambo.TabIndex = 47
+        Me.cbxRefrendacionTambo.Text = "Refrendacion de Tambo"
+        Me.cbxRefrendacionTambo.UseVisualStyleBackColor = True
+        '
         'FormSolicitudAgua
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(706, 505)
+        Me.ClientSize = New System.Drawing.Size(941, 622)
         Me.ControlBox = False
+        Me.Controls.Add(Me.cbxRefrendacionTambo)
         Me.Controls.Add(Me.CheckEnvasada)
         Me.Controls.Add(Me.CheckAlcalinidad)
         Me.Controls.Add(Me.CheckPaqMacro)
@@ -686,6 +759,7 @@ Partial Class FormSolicitudAgua
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.Label1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormSolicitudAgua"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Solicitud Agua"
@@ -757,4 +831,5 @@ Partial Class FormSolicitudAgua
     Friend WithEvents CheckEstreptococos As System.Windows.Forms.CheckBox
     Friend WithEvents CheckpH As System.Windows.Forms.CheckBox
     Friend WithEvents CheckEnvasada As System.Windows.Forms.CheckBox
+    Friend WithEvents cbxRefrendacionTambo As System.Windows.Forms.CheckBox
 End Class

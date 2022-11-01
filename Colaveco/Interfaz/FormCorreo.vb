@@ -95,7 +95,7 @@
             _extension = System.IO.Path.GetExtension(fichero)
             '*** COPIAR ARCHIVO ***********************************************************************
             Dim sArchivoOrigen As String = fichero
-            _ruta = "\\" & "\\" & "SRVCOLAVECO" & "\\" & "E" & "\\" & "NET" & "\\" & "ADJUNTOS" & "\\" & _archivo & _extension
+            _ruta = "\\" & "\\" & "192.168.1.10" & "\\" & "E" & "\\" & "NET" & "\\" & "ADJUNTOS" & "\\" & _archivo & _extension
             Dim sRutaDestino As String = _ruta
             Try
                 ' copiar el fichero.si existe lo sobreescribe  

@@ -768,7 +768,7 @@ Public Class FormInicio
                 CapacitaciónToolStripMenuItem1.Enabled = True
                 'Personal
                 PersonalToolStripMenuItem.Enabled = True
-                If u.USUARIO = "GB" Or u.USUARIO = "M" Then
+                If u.USUARIO = "GB" Or u.USUARIO = "M" Or u.USUARIO = "AZ" Then
                     Label1.Visible = True
                     DataGridAutorizaciones.Visible = True
                     Label2.Visible = True
@@ -781,7 +781,7 @@ Public Class FormInicio
                     'Autorizaciones
                     AutorizacionesToolStripMenuItem.Enabled = False
                 End If
-                If u.USUARIO = "GB" Then
+                If u.USUARIO = "GB" Or u.USUARIO = "AZ" Then
                     AnálisisToolStripMenuItem.Enabled = True
                 End If
                 '****************************************************
@@ -836,7 +836,7 @@ Public Class FormInicio
                 If u.USUARIO = "JG" Then
                     AutorizacionesToolStripMenuItem.Enabled = True
                 End If
-                If u.USUARIO = "JG" Or u.USUARIO = "GB" Or u.USUARIO = "SA" Or u.USUARIO = "CA" Or u.USUARIO = "M" Then
+                If u.USUARIO = "JG" Or u.USUARIO = "GB" Or u.USUARIO = "SA" Or u.USUARIO = "CA" Or u.USUARIO = "M" Or u.USUARIO = "AZ" Then
                     RelojToolStripMenuItem1.Enabled = True
                     LicenciadíasToolStripMenuItem.Enabled = True
                     FeriadosToolStripMenuItem.Enabled = True

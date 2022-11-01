@@ -2,7 +2,7 @@
     Inherits Conectoras.ConexionMySQL
     Public Function guardar(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dAgua = CType(o, dAgua)
-        Dim sql As String = "INSERT INTO analisisdeagua (id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad) VALUES (" & obj.ID & ", " & obj.FICHA & ",'" & obj.FECHAENTRADA & "', " & obj.IDTIPOPOZO & ", " & obj.ANTIGUEDAD & ", " & obj.DISTANCIAPOZONEGRO & "," & obj.DISTANCIATAMBO & ", " & obj.ENVASADA & "," & obj.IDMUESTRAEXTRAIDA & ", " & obj.IDMUESTRAFUERACONDICION & ", " & obj.PROFUNDIDAD & ", " & obj.IDAGUATRATADA & ", " & obj.IDESTADODECONSERVACION & ", " & obj.HET22 & "," & obj.HET35 & "," & obj.HET37 & "," & obj.CLORO & "," & obj.CONDUCTIVIDAD & "," & obj.PH & "," & obj.ECOLI & "," & obj.SULFITOREDUCTORES & "," & obj.ENTEROCOCOS & "," & obj.ESTREPTOCOCOS & "," & obj.MARCA & ", " & obj.MUESTRAOFICIAL & ", '" & obj.PRECINTO & "', " & obj.PAQMACRO & ", " & obj.CA & ", " & obj.MG & ", " & obj.NA & ", " & obj.FE & ", " & obj.K & ", " & obj.AL & ", " & obj.CD & ", " & obj.CR & ", " & obj.CU & ", " & obj.PB & ", " & obj.MN & ", " & obj.FEM & ", " & obj.ZN & ", " & obj.SE & ", " & obj.ALCALINIDAD & ")"
+        Dim sql As String = "INSERT INTO analisisdeagua (id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad,refrendacion_tambo) VALUES (" & obj.ID & ", " & obj.FICHA & ",'" & obj.FECHAENTRADA & "', " & obj.IDTIPOPOZO & ", " & obj.ANTIGUEDAD & ", " & obj.DISTANCIAPOZONEGRO & "," & obj.DISTANCIATAMBO & ", " & obj.ENVASADA & "," & obj.IDMUESTRAEXTRAIDA & ", " & obj.IDMUESTRAFUERACONDICION & ", " & obj.PROFUNDIDAD & ", " & obj.IDAGUATRATADA & ", " & obj.IDESTADODECONSERVACION & ", " & obj.HET22 & "," & obj.HET35 & "," & obj.HET37 & "," & obj.CLORO & "," & obj.CONDUCTIVIDAD & "," & obj.PH & "," & obj.ECOLI & "," & obj.SULFITOREDUCTORES & "," & obj.ENTEROCOCOS & "," & obj.ESTREPTOCOCOS & "," & obj.MARCA & ", " & obj.MUESTRAOFICIAL & ", '" & obj.PRECINTO & "', " & obj.PAQMACRO & ", " & obj.CA & ", " & obj.MG & ", " & obj.NA & ", " & obj.FE & ", " & obj.K & ", " & obj.AL & ", " & obj.CD & ", " & obj.CR & ", " & obj.CU & ", " & obj.PB & ", " & obj.MN & ", " & obj.FEM & ", " & obj.ZN & ", " & obj.SE & ", " & obj.ALCALINIDAD & ", " & obj.REFRENDACION_TAMBO & ")"
 
         Dim lista As New ArrayList
         lista.Add(sql)
@@ -44,7 +44,7 @@
         Dim a As New dAgua
         Try
             Dim Ds As New DataSet
-            Ds = Me.EjecutarSQL("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad FROM analisisdeagua WHERE ficha = " & obj.ID & "")
+            Ds = Me.EjecutarSQL("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad, refrendacion_tambo FROM analisisdeagua WHERE ficha = " & obj.ID & "")
 
             If Ds.Tables(0).Rows.Count > 0 Then
                 Dim unaFila As DataRow
@@ -91,6 +91,7 @@
                 a.ZN = CType(unaFila.Item(39), Integer)
                 a.SE = CType(unaFila.Item(40), Integer)
                 a.ALCALINIDAD = CType(unaFila.Item(41), Integer)
+                a.REFRENDACION_TAMBO = CType(unaFila.Item(42), Integer)
                 Return a
             End If
             Return Nothing
@@ -103,7 +104,7 @@
         Dim a As New dAgua
         Try
             Dim Ds As New DataSet
-            Ds = Me.EjecutarSQL("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad FROM analisisdeagua WHERE ficha = " & obj.FICHA & "")
+            Ds = Me.EjecutarSQL("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad,refrendacion_tambo FROM analisisdeagua WHERE ficha = " & obj.FICHA & "")
 
             If Ds.Tables(0).Rows.Count > 0 Then
                 Dim unaFila As DataRow
@@ -150,6 +151,7 @@
                 a.ZN = CType(unaFila.Item(39), Integer)
                 a.SE = CType(unaFila.Item(40), Integer)
                 a.ALCALINIDAD = CType(unaFila.Item(41), Integer)
+                a.REFRENDACION_TAMBO = CType(unaFila.Item(42), Integer)
                 Return a
             End If
             Return Nothing
@@ -158,7 +160,7 @@
         End Try
     End Function
     Public Function listar() As ArrayList
-        Dim sql As String = "SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad FROM analisisdeagua WHERE marca = 0 order by id desc"
+        Dim sql As String = "SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad,refrendacion_tambo FROM analisisdeagua WHERE marca = 0 order by id desc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -211,6 +213,7 @@
                     a.ZN = CType(unaFila.Item(39), Integer)
                     a.SE = CType(unaFila.Item(40), Integer)
                     a.ALCALINIDAD = CType(unaFila.Item(41), Integer)
+                    a.REFRENDACION_TAMBO = CType(unaFila.Item(42), Integer)
                     Lista.Add(a)
                 Next
                 Return Lista
@@ -242,7 +245,7 @@
     End Function
 
     Public Function listarporid(ByVal texto As Long) As ArrayList
-        Dim sql As String = ("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad FROM analisisdeagua where ficha = " & texto & "")
+        Dim sql As String = ("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad,refrendacion_tambo FROM analisisdeagua where ficha = " & texto & "")
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -295,6 +298,7 @@
                     a.ZN = CType(unaFila.Item(39), Integer)
                     a.SE = CType(unaFila.Item(40), Integer)
                     a.ALCALINIDAD = CType(unaFila.Item(41), Integer)
+                    a.REFRENDACION_TAMBO = CType(unaFila.Item(42), Integer)
                     Lista.Add(a)
                 Next
                 Return Lista
@@ -306,7 +310,7 @@
 
 
     Public Function listarporsolicitud(ByVal texto As Long) As ArrayList
-        Dim sql As String = ("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad FROM analisisdeagua where marca = 0 and ficha = " & texto)
+        Dim sql As String = ("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad,refrendacion_tambo FROM analisisdeagua where marca = 0 and ficha = " & texto)
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -359,6 +363,7 @@
                     a.ZN = CType(unaFila.Item(39), Integer)
                     a.SE = CType(unaFila.Item(40), Integer)
                     a.ALCALINIDAD = CType(unaFila.Item(41), Integer)
+                    a.REFRENDACION_TAMBO = CType(unaFila.Item(42), Integer)
                     Lista.Add(a)
                 Next
                 Return Lista
@@ -368,7 +373,7 @@
         End Try
     End Function
     Public Function listarporsolicitud2(ByVal texto As Long) As ArrayList
-        Dim sql As String = ("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad FROM analisisdeagua where marca = 1 and ficha = " & texto)
+        Dim sql As String = ("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad,refrendacion_tambo FROM analisisdeagua where marca = 1 and ficha = " & texto)
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -421,6 +426,7 @@
                     a.ZN = CType(unaFila.Item(39), Integer)
                     a.SE = CType(unaFila.Item(40), Integer)
                     a.ALCALINIDAD = CType(unaFila.Item(41), Integer)
+                    a.REFRENDACION_TAMBO = CType(unaFila.Item(42), Integer)
                     Lista.Add(a)
                 Next
                 Return Lista
@@ -430,7 +436,7 @@
         End Try
     End Function
     Public Function listarporfecha(ByVal fechadesde As String, ByVal fechahasta As String) As ArrayList
-        Dim sql As String = ("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad FROM analisisdeagua where fechaingreso BETWEEN '" & fechadesde & "' And '" & fechahasta & "'")
+        Dim sql As String = ("SELECT id, ficha, fechaentrada, idtipopozo, antiguedad, distanciapozonegro, distanciatambo, envasada, idmuestraextraida, idmuestrafueracondicion, profundidad, idaguatratada, idestadodeconservacion, het22, het35, het37, cloro, conductividad, ph, ecoli, sulfitoreductores, enterococos, estreptococos, marca, muestraoficial, precinto, paqmacro, ca, mg, na, fe, k, al, cd, cr, cu, pb, mn, fem, zn, se, alcalinidad,refrendacion_tambo FROM analisisdeagua where fechaingreso BETWEEN '" & fechadesde & "' And '" & fechahasta & "'")
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -483,6 +489,7 @@
                     a.ZN = CType(unaFila.Item(39), Integer)
                     a.SE = CType(unaFila.Item(40), Integer)
                     a.ALCALINIDAD = CType(unaFila.Item(41), Integer)
+                    a.REFRENDACION_TAMBO = CType(unaFila.Item(42), Integer)
                     Lista.Add(a)
                 Next
                 Return Lista

@@ -422,14 +422,14 @@ Public Class FormRgLab88
                                         arraytext = Split(sLine, ",")
                                     End If
                                 End If
-                                If Not sLine Is Nothing Then
-                                    If linea >= 8 Then
+                            If Not sLine Is Nothing Then
+                                If linea >= 8 Then
                                     arraytext = Split(sLine, ",")
-                                        If arraytext.Length < 39 Then
+                                    If arraytext.Length < 39 Then
                                         arraytext = Split(sLine, ";")
-                                        End If
+                                    End If
                                     matricula = Trim(arraytext(5))
-                                        '** IMPORTAR CRIOSCOPIA **************************************************************************
+                                    '** IMPORTAR CRIOSCOPIA **************************************************************************
                                     If Trim(arraytext(15)) = "" Or Trim(arraytext(15)) = "-" Then
                                         crioscopia = -1
                                     Else
@@ -440,51 +440,51 @@ Public Class FormRgLab88
                                             Exit Sub
                                         End Try
                                     End If
-                                        '***************************************************************************************************
-                                        'If arraytext.Length <= 13 Then
+                                    '***************************************************************************************************
+                                    'If arraytext.Length <= 13 Then
 
-                                        '    crioscopia = -1
-                                        'Else
+                                    '    crioscopia = -1
+                                    'Else
 
-                                        '    If Trim(arraytext(17)) = "" Or Trim(arraytext(17)) = "-" Then
-                                        '        crioscopia = -1
-                                        '    Else
-                                        '        Try
-                                        '            crioscopia = arraytext(17)
+                                    '    If Trim(arraytext(17)) = "" Or Trim(arraytext(17)) = "-" Then
+                                    '        crioscopia = -1
+                                    '    Else
+                                    '        Try
+                                    '            crioscopia = arraytext(17)
 
-                                        '        Catch ex As Exception
-                                        '            MsgBox("Error en archivo: " & file.Name & ", línea: " & linea & ", valor: Crioscopía")
-                                        '            Exit Sub
-                                        '        End Try
+                                    '        Catch ex As Exception
+                                    '            MsgBox("Error en archivo: " & file.Name & ", línea: " & linea & ", valor: Crioscopía")
+                                    '            Exit Sub
+                                    '        End Try
 
-                                        '    End If
+                                    '    End If
 
-                                        'End If
-                                        'ficha2 = Mid(file.Name, Len(file.Name) - 4, 1)
-                                        ficha2 = Mid(file.Name, Len(file.Name) - 21, 1)
-                                        ficha3 = Mid(file.Name, 1, 1)
-                                        If ficha2 = "a" Or ficha2 = "A" Or ficha2 = "b" Or ficha2 = "B" Or ficha2 = "c" Or ficha2 = "C" Or ficha2 = "d" Or ficha2 = "D" Or ficha2 = "e" Or ficha2 = "E" Or ficha2 = "f" Or ficha2 = "F" Or ficha2 = "g" Or ficha2 = "G" Or ficha2 = "h" Or ficha2 = "H" Or ficha2 = "i" Or ficha2 = "I" Or ficha2 = "j" Or ficha2 = "J" Or ficha2 = "k" Or ficha2 = "K" Then
-                                            'ficha = Mid(file.Name, 1, Len(file.Name) - 5)
-                                            ficha = Mid(file.Name, 1, Len(file.Name) - 22)
-                                        Else
-                                            'ficha = Mid(file.Name, 1, Len(file.Name) - 4)
-                                            ficha = Mid(file.Name, 1, Len(file.Name) - 21)
-                                        End If
-                                        If Mid(ficha, 1, 1) = "l" Or Mid(ficha, 1, 1) = "L" Then
-                                            Dim MyString As String = ficha
-                                            Dim MyChar As Char() = {"l"c, "L"c}
-                                            Dim NewString As String = MyString.TrimStart(MyChar)
-                                            ficha3 = NewString
-                                        Else
-                                            ficha3 = ficha
-                                        End If
-
-                                        c.FICHA = ficha3
-                                        c.MUESTRA = matricula
-                                        c.CRIOSCOPIA = crioscopia
-                                        c.guardar(Usuario)
+                                    'End If
+                                    'ficha2 = Mid(file.Name, Len(file.Name) - 4, 1)
+                                    ficha2 = Mid(file.Name, Len(file.Name) - 21, 1)
+                                    ficha3 = Mid(file.Name, 1, 1)
+                                    If ficha2 = "a" Or ficha2 = "A" Or ficha2 = "b" Or ficha2 = "B" Or ficha2 = "c" Or ficha2 = "C" Or ficha2 = "d" Or ficha2 = "D" Or ficha2 = "e" Or ficha2 = "E" Or ficha2 = "f" Or ficha2 = "F" Or ficha2 = "g" Or ficha2 = "G" Or ficha2 = "h" Or ficha2 = "H" Or ficha2 = "i" Or ficha2 = "I" Or ficha2 = "j" Or ficha2 = "J" Or ficha2 = "k" Or ficha2 = "K" Then
+                                        'ficha = Mid(file.Name, 1, Len(file.Name) - 5)
+                                        ficha = Mid(file.Name, 1, Len(file.Name) - 22)
+                                    Else
+                                        'ficha = Mid(file.Name, 1, Len(file.Name) - 4)
+                                        ficha = Mid(file.Name, 1, Len(file.Name) - 21)
                                     End If
+                                    If Mid(ficha, 1, 1) = "l" Or Mid(ficha, 1, 1) = "L" Then
+                                        Dim MyString As String = ficha
+                                        Dim MyChar As Char() = {"l"c, "L"c}
+                                        Dim NewString As String = MyString.TrimStart(MyChar)
+                                        ficha3 = NewString
+                                    Else
+                                        ficha3 = ficha
+                                    End If
+
+                                    c.FICHA = ficha3
+                                    c.MUESTRA = matricula
+                                    c.CRIOSCOPIA = crioscopia
+                                    c.guardar(Usuario)
                                 End If
+                            End If
                             End If
                             linea = linea + 1
                         Loop Until sLine Is Nothing

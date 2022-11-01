@@ -163,6 +163,7 @@
         Dim zn As Integer
         Dim se As Integer
         Dim alcalinidad As Integer
+        Dim refrendacion_tambo As Integer
         '********************************************
         If CheckMuestraOficial.Checked = True Then
             muestraoficial = 1
@@ -318,6 +319,11 @@
         Else
             alcalinidad = 0
         End If
+        If cbxRefrendacionTambo.Checked = True Then
+            refrendacion_tambo = 1
+        Else
+            refrendacion_tambo = 0
+        End If
         Dim a As New dAgua
         Dim a3 As New dAgua3
         a.FICHA = idsol
@@ -383,6 +389,7 @@
         a.ZN = zn
         a.SE = se
         a.ALCALINIDAD = alcalinidad
+        a.REFRENDACION_TAMBO = refrendacion_tambo
         If (a.guardar(Usuario)) Then
             MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
         Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")

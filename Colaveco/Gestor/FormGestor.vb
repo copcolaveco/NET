@@ -318,7 +318,7 @@ Public Class FormGestor
                     f.FACNRO = m.MCCCMP
                     f = f.buscar
                     If Not f Is Nothing Then
-                        Dim c As String = "\\192.168.1.106\apls\soft\"
+                        Dim c As String = "\\SRVCOLAVECO6\apls\soft\"
                         Dim tx As String = f.FACPDF
                         If tx.Contains(c) Then
                             _path = tx.Replace(c, "")
@@ -347,7 +347,7 @@ Public Class FormGestor
         Dim user As String = "colaveco"
         Dim pass As String = "NUEVA**!!COL22"
 
-        fichero = "\\192.168.1.106\apls\soft\" & factura_origen
+        fichero = "\\SRVCOLAVECO6\apls\soft\" & factura_origen
         destino = "ftp://colaveco.com.uy/www/gestor/facturas/" & factura_origen
 
 
@@ -484,7 +484,7 @@ Public Class FormGestor
                     f.FACNRO = m.MCCCMP
                     f = f.buscar
                     If Not f Is Nothing Then
-                        Dim c As String = "\\192.168.1.106\apls\soft\"
+                        Dim c As String = "\\SRVCOLAVECO6\apls\soft\"
                         Dim tx As String = f.FACPDF
                         If tx.Contains(c) Then
                             _path = tx.Replace(c, "")
