@@ -555,7 +555,7 @@ Public Class FormAutorizaciones
             texto = nombre & " ha autorizado su solicitud: " & tipo & " - " & detalle & vbCrLf _
             & "Observaciones: " & mailobservaciones
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -614,7 +614,7 @@ Public Class FormAutorizaciones
             texto = nombre & " no ha autorizado su solicitud: " & tipo & " - " & detalle & vbCrLf _
             & "Observaciones: " & mailobservaciones
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "19912021Notificaciones")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False

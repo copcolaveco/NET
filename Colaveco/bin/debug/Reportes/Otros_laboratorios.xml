@@ -48,4 +48,8 @@
     <id>8</id>
     <nombre>LATU</nombre>
   </Table>
+  <Table>
+    <id>9</id>
+    <nombre>Labo Litoral</nombre>
+  </Table>
 </NewDataSet>

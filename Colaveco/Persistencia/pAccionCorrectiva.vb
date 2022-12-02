@@ -68,7 +68,7 @@
         End Try
     End Function
     Public Function listar() As ArrayList
-        Dim sql As String = "SELECT id, numero, ifnull(causa,''), ifnull(accion,''), plan, plazo, responsable, ifnull(criterios,''), ifnull(eficaz,''), fecha_evaluacion, estado FROM accion_correctiva order by id desc"
+        Dim sql As String = "SELECT id, numero, ifnull(causa,''), ifnull(accion,''), plan, plazo, responsable, ifnull(criterios,''), ifnull(eficaz,''), fecha_evaluacion, estado FROM accion_correctiva order by numero desc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet

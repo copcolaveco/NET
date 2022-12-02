@@ -804,7 +804,7 @@ Public Class FormProductor
     Public Sub crea_carpeta_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -838,7 +838,7 @@ Public Class FormProductor
     Public Sub crea_control_lechero_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -872,7 +872,7 @@ Public Class FormProductor
     Public Sub crea_agua_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -906,7 +906,7 @@ Public Class FormProductor
     Public Sub crea_antibiograma_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -940,7 +940,7 @@ Public Class FormProductor
     Public Sub crea_pal_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -974,7 +974,7 @@ Public Class FormProductor
     Public Sub crea_parasitologia_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1008,7 +1008,7 @@ Public Class FormProductor
     Public Sub crea_productos_subproductos_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1042,7 +1042,7 @@ Public Class FormProductor
     Public Sub crea_serologia_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1076,7 +1076,7 @@ Public Class FormProductor
     Public Sub crea_patologia_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1110,7 +1110,7 @@ Public Class FormProductor
     Public Sub crea_calidad_de_leche_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1144,7 +1144,7 @@ Public Class FormProductor
     Public Sub crea_ambiental_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1178,7 +1178,7 @@ Public Class FormProductor
     Public Sub crea_lactometros_chequeos_maquina_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1212,7 +1212,7 @@ Public Class FormProductor
     Public Sub crea_agro_nutricion_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1246,7 +1246,7 @@ Public Class FormProductor
     Public Sub crea_agro_suelos_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1280,7 +1280,7 @@ Public Class FormProductor
     Public Sub crea_brucelosis_leche_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList
@@ -1314,7 +1314,7 @@ Public Class FormProductor
     Public Sub crea_otros_servicios_com()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22"
+        Dim pass As String = "NUEVA**!!COL22$%"
 
         Dim peticionFTP As FtpWebRequest
         'Dim lista As New ArrayList

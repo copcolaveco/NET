@@ -181,6 +181,14 @@ Public Class FormBuscarSolicitud
                         columna = 0
                         fila = fila + 1
                     End If
+                    DataGridView1(columna, fila).Value = s.OBSINTERNAS
+                    columna = columna + 1
+                    Dim tipoMuestra As New dMuestras
+                    tipoMuestra.ID = s.IDMUESTRA
+                    tipoMuestra = tipoMuestra.buscar
+                    DataGridView1(columna, fila).Value = tipoMuestra.NOMBRE
+                    columna = 0
+                    fila = fila + 1
                 Next
             End If
         End If
@@ -280,13 +288,21 @@ Public Class FormBuscarSolicitud
                     End If
                     If s.PAGO = 1 Then
                         DataGridView1(columna, fila).Value = "Si"
-                        columna = 0
-                        fila = fila + 1
+                        columna = columna + 1
                     Else
                         DataGridView1(columna, fila).Value = "No"
-                        columna = 0
-                        fila = fila + 1
+                        columna = columna + 1
                     End If
+
+                    DataGridView1(columna, fila).Value = s.OBSINTERNAS
+                    columna = columna + 1
+
+                    Dim tipoMuestra As New dMuestras
+                    tipoMuestra.ID = s.IDMUESTRA
+                    tipoMuestra = tipoMuestra.buscar
+                    DataGridView1(columna, fila).Value = tipoMuestra.NOMBRE
+                    columna = 0
+                    fila = fila + 1
                 Next
             End If
         End If
@@ -383,13 +399,23 @@ Public Class FormBuscarSolicitud
                     End If
                     If s.PAGO = 1 Then
                         DataGridView1(columna, fila).Value = "Si"
-                        columna = 0
-                        fila = fila + 1
+                        columna = columna + 1
                     Else
                         DataGridView1(columna, fila).Value = "No"
+                        columna = columna + 1
+                    End If
+                    DataGridView1(columna, fila).Value = s.OBSINTERNAS
+                    columna = columna + 1
+                    Dim tipoMuestra As New dMuestras
+                    tipoMuestra.ID = s.IDMUESTRA
+                    tipoMuestra = tipoMuestra.buscar
+
+                    If Not tipoMuestra Is Nothing Then
+                        DataGridView1(columna, fila).Value = tipoMuestra.NOMBRE
                         columna = 0
                         fila = fila + 1
                     End If
+                    columna = 0
                 Next
             End If
         End If
@@ -666,7 +692,7 @@ Public Class FormBuscarSolicitud
     End Sub
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-   
+
     End Sub
 
     Public Sub cargarComboInformes()
@@ -785,6 +811,14 @@ Public Class FormBuscarSolicitud
                         columna = 0
                         fila = fila + 1
                     End If
+                    DataGridView1(columna, fila).Value = s.OBSINTERNAS
+                    columna = columna + 1
+                    Dim tipoMuestra As New dMuestras
+                    tipoMuestra.ID = s.IDMUESTRA
+                    tipoMuestra = tipoMuestra.buscar
+                    DataGridView1(columna, fila).Value = tipoMuestra.NOMBRE
+                    columna = 0
+                    fila = fila + 1
                 Next
             End If
         End If

@@ -73,25 +73,28 @@ Partial Class FormCapacitacion2
         '
         'TextId
         '
-        Me.TextId.Location = New System.Drawing.Point(127, 12)
+        Me.TextId.Location = New System.Drawing.Point(169, 15)
+        Me.TextId.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextId.Name = "TextId"
         Me.TextId.ReadOnly = True
-        Me.TextId.Size = New System.Drawing.Size(49, 20)
+        Me.TextId.Size = New System.Drawing.Size(64, 22)
         Me.TextId.TabIndex = 0
         '
         'TextIdCapacitacion
         '
-        Me.TextIdCapacitacion.Location = New System.Drawing.Point(208, 40)
+        Me.TextIdCapacitacion.Location = New System.Drawing.Point(277, 49)
+        Me.TextIdCapacitacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextIdCapacitacion.Name = "TextIdCapacitacion"
         Me.TextIdCapacitacion.ReadOnly = True
-        Me.TextIdCapacitacion.Size = New System.Drawing.Size(49, 20)
+        Me.TextIdCapacitacion.Size = New System.Drawing.Size(64, 22)
         Me.TextIdCapacitacion.TabIndex = 2
         '
         'ButtonSeleccionar
         '
-        Me.ButtonSeleccionar.Location = New System.Drawing.Point(127, 38)
+        Me.ButtonSeleccionar.Location = New System.Drawing.Point(169, 47)
+        Me.ButtonSeleccionar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonSeleccionar.Name = "ButtonSeleccionar"
-        Me.ButtonSeleccionar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonSeleccionar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonSeleccionar.TabIndex = 1
         Me.ButtonSeleccionar.Text = "Seleccionar"
         Me.ButtonSeleccionar.UseVisualStyleBackColor = True
@@ -99,32 +102,36 @@ Partial Class FormCapacitacion2
         'ComboFuncionario
         '
         Me.ComboFuncionario.FormattingEnabled = True
-        Me.ComboFuncionario.Location = New System.Drawing.Point(127, 271)
+        Me.ComboFuncionario.Location = New System.Drawing.Point(169, 334)
+        Me.ComboFuncionario.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboFuncionario.Name = "ComboFuncionario"
-        Me.ComboFuncionario.Size = New System.Drawing.Size(203, 21)
+        Me.ComboFuncionario.Size = New System.Drawing.Size(269, 24)
         Me.ComboFuncionario.TabIndex = 7
         '
         'DateDesde
         '
         Me.DateDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateDesde.Location = New System.Drawing.Point(127, 298)
+        Me.DateDesde.Location = New System.Drawing.Point(169, 367)
+        Me.DateDesde.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateDesde.Name = "DateDesde"
-        Me.DateDesde.Size = New System.Drawing.Size(95, 20)
+        Me.DateDesde.Size = New System.Drawing.Size(125, 22)
         Me.DateDesde.TabIndex = 8
         Me.DateDesde.Value = New Date(2013, 7, 4, 0, 0, 0, 0)
         '
         'TextHoras
         '
-        Me.TextHoras.Location = New System.Drawing.Point(127, 324)
+        Me.TextHoras.Location = New System.Drawing.Point(169, 399)
+        Me.TextHoras.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextHoras.Name = "TextHoras"
-        Me.TextHoras.Size = New System.Drawing.Size(63, 20)
+        Me.TextHoras.Size = New System.Drawing.Size(83, 22)
         Me.TextHoras.TabIndex = 10
         '
         'ButtonCompletar
         '
-        Me.ButtonCompletar.Location = New System.Drawing.Point(254, 28)
+        Me.ButtonCompletar.Location = New System.Drawing.Point(339, 34)
+        Me.ButtonCompletar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonCompletar.Name = "ButtonCompletar"
-        Me.ButtonCompletar.Size = New System.Drawing.Size(115, 23)
+        Me.ButtonCompletar.Size = New System.Drawing.Size(153, 28)
         Me.ButtonCompletar.TabIndex = 13
         Me.ButtonCompletar.Text = "Completar formulario"
         Me.ButtonCompletar.UseVisualStyleBackColor = True
@@ -132,81 +139,90 @@ Partial Class FormCapacitacion2
         'ComboEvaluacion2
         '
         Me.ComboEvaluacion2.FormattingEnabled = True
-        Me.ComboEvaluacion2.Location = New System.Drawing.Point(127, 377)
+        Me.ComboEvaluacion2.Location = New System.Drawing.Point(169, 464)
+        Me.ComboEvaluacion2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboEvaluacion2.Name = "ComboEvaluacion2"
-        Me.ComboEvaluacion2.Size = New System.Drawing.Size(244, 21)
+        Me.ComboEvaluacion2.Size = New System.Drawing.Size(324, 24)
         Me.ComboEvaluacion2.TabIndex = 12
         Me.ComboEvaluacion2.Visible = False
         '
         'TextCapacitacion
         '
-        Me.TextCapacitacion.Location = New System.Drawing.Point(127, 66)
+        Me.TextCapacitacion.Location = New System.Drawing.Point(169, 81)
+        Me.TextCapacitacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextCapacitacion.Multiline = True
         Me.TextCapacitacion.Name = "TextCapacitacion"
         Me.TextCapacitacion.ReadOnly = True
-        Me.TextCapacitacion.Size = New System.Drawing.Size(354, 76)
+        Me.TextCapacitacion.Size = New System.Drawing.Size(471, 93)
         Me.TextCapacitacion.TabIndex = 3
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 15)
+        Me.Label1.Location = New System.Drawing.Point(16, 18)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(16, 13)
+        Me.Label1.Size = New System.Drawing.Size(19, 17)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Id"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(9, 41)
+        Me.Label2.Location = New System.Drawing.Point(12, 50)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(69, 13)
+        Me.Label2.Size = New System.Drawing.Size(89, 17)
         Me.Label2.TabIndex = 12
         Me.Label2.Text = "Capacitación"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(10, 274)
+        Me.Label3.Location = New System.Drawing.Point(13, 337)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(62, 13)
+        Me.Label3.Size = New System.Drawing.Size(82, 17)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Funcionario"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(10, 302)
+        Me.Label4.Location = New System.Drawing.Point(13, 372)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(37, 13)
+        Me.Label4.Size = New System.Drawing.Size(47, 17)
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Fecha"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(10, 327)
+        Me.Label5.Location = New System.Drawing.Point(13, 402)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(35, 13)
+        Me.Label5.Size = New System.Drawing.Size(46, 17)
         Me.Label5.TabIndex = 15
         Me.Label5.Text = "Horas"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(10, 353)
+        Me.Label6.Location = New System.Drawing.Point(13, 434)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(109, 13)
+        Me.Label6.Size = New System.Drawing.Size(144, 17)
         Me.Label6.TabIndex = 16
         Me.Label6.Text = "Evualuación personal"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(9, 380)
+        Me.Label7.Location = New System.Drawing.Point(12, 468)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(86, 13)
+        Me.Label7.Size = New System.Drawing.Size(112, 17)
         Me.Label7.TabIndex = 17
         Me.Label7.Text = "Evaluación de la"
         Me.Label7.Visible = False
@@ -214,36 +230,40 @@ Partial Class FormCapacitacion2
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 393)
+        Me.Label8.Location = New System.Drawing.Point(16, 484)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(50, 13)
+        Me.Label8.Size = New System.Drawing.Size(65, 17)
         Me.Label8.TabIndex = 18
         Me.Label8.Text = "dirección"
         Me.Label8.Visible = False
         '
         'ButtonNueva
         '
-        Me.ButtonNueva.Location = New System.Drawing.Point(125, 491)
+        Me.ButtonNueva.Location = New System.Drawing.Point(167, 604)
+        Me.ButtonNueva.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonNueva.Name = "ButtonNueva"
-        Me.ButtonNueva.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonNueva.Size = New System.Drawing.Size(100, 28)
         Me.ButtonNueva.TabIndex = 15
         Me.ButtonNueva.Text = "Nueva"
         Me.ButtonNueva.UseVisualStyleBackColor = True
         '
         'ButtonGuardar
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(206, 491)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(275, 604)
+        Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonGuardar.TabIndex = 14
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
         '
         'ButtonEliminar
         '
-        Me.ButtonEliminar.Location = New System.Drawing.Point(287, 491)
+        Me.ButtonEliminar.Location = New System.Drawing.Point(383, 604)
+        Me.ButtonEliminar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonEliminar.Name = "ButtonEliminar"
-        Me.ButtonEliminar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonEliminar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonEliminar.TabIndex = 16
         Me.ButtonEliminar.Text = "Eliminar"
         Me.ButtonEliminar.UseVisualStyleBackColor = True
@@ -251,37 +271,41 @@ Partial Class FormCapacitacion2
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(9, 151)
+        Me.Label9.Location = New System.Drawing.Point(12, 186)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(107, 13)
+        Me.Label9.Size = New System.Drawing.Size(139, 17)
         Me.Label9.TabIndex = 24
         Me.Label9.Text = "Tipo de capacitación"
         '
         'ComboTipo
         '
         Me.ComboTipo.FormattingEnabled = True
-        Me.ComboTipo.Location = New System.Drawing.Point(127, 148)
+        Me.ComboTipo.Location = New System.Drawing.Point(169, 182)
+        Me.ComboTipo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboTipo.Name = "ComboTipo"
-        Me.ComboTipo.Size = New System.Drawing.Size(171, 21)
+        Me.ComboTipo.Size = New System.Drawing.Size(227, 24)
         Me.ComboTipo.TabIndex = 4
         '
         'ComboEvaluacion1
         '
         Me.ComboEvaluacion1.FormattingEnabled = True
-        Me.ComboEvaluacion1.ItemHeight = 13
-        Me.ComboEvaluacion1.Location = New System.Drawing.Point(127, 350)
+        Me.ComboEvaluacion1.ItemHeight = 16
+        Me.ComboEvaluacion1.Location = New System.Drawing.Point(169, 431)
+        Me.ComboEvaluacion1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboEvaluacion1.Name = "ComboEvaluacion1"
-        Me.ComboEvaluacion1.Size = New System.Drawing.Size(244, 21)
+        Me.ComboEvaluacion1.Size = New System.Drawing.Size(324, 24)
         Me.ComboEvaluacion1.TabIndex = 11
         '
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.X, Me.Id, Me.Fecha, Me.Funcionario, Me.Tipo, Me.Capacitacion})
-        Me.DataGridView1.Location = New System.Drawing.Point(502, 38)
+        Me.DataGridView1.Location = New System.Drawing.Point(669, 47)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(531, 457)
+        Me.DataGridView1.Size = New System.Drawing.Size(708, 562)
         Me.DataGridView1.TabIndex = 19
         '
         'X
@@ -324,103 +348,115 @@ Partial Class FormCapacitacion2
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(85, 305)
+        Me.Label11.Location = New System.Drawing.Point(113, 375)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(36, 13)
+        Me.Label11.Size = New System.Drawing.Size(47, 17)
         Me.Label11.TabIndex = 28
         Me.Label11.Text = "desde"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(228, 305)
+        Me.Label12.Location = New System.Drawing.Point(304, 375)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(33, 13)
+        Me.Label12.Size = New System.Drawing.Size(43, 17)
         Me.Label12.TabIndex = 29
         Me.Label12.Text = "hasta"
         '
         'DateHasta
         '
         Me.DateHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateHasta.Location = New System.Drawing.Point(267, 298)
+        Me.DateHasta.Location = New System.Drawing.Point(356, 367)
+        Me.DateHasta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateHasta.Name = "DateHasta"
-        Me.DateHasta.Size = New System.Drawing.Size(95, 20)
+        Me.DateHasta.Size = New System.Drawing.Size(125, 22)
         Me.DateHasta.TabIndex = 9
         '
         'TextNombre
         '
-        Me.TextNombre.Location = New System.Drawing.Point(127, 175)
+        Me.TextNombre.Location = New System.Drawing.Point(169, 215)
+        Me.TextNombre.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextNombre.Name = "TextNombre"
-        Me.TextNombre.Size = New System.Drawing.Size(354, 20)
+        Me.TextNombre.Size = New System.Drawing.Size(471, 22)
         Me.TextNombre.TabIndex = 5
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(9, 178)
+        Me.Label13.Location = New System.Drawing.Point(12, 219)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(95, 13)
+        Me.Label13.Size = New System.Drawing.Size(124, 17)
         Me.Label13.TabIndex = 32
         Me.Label13.Text = "Nombre del curso/"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(46, 191)
+        Me.Label14.Location = New System.Drawing.Point(61, 235)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(53, 13)
+        Me.Label14.Size = New System.Drawing.Size(68, 17)
         Me.Label14.TabIndex = 33
         Me.Label14.Text = "actividad:"
         '
         'ComboFuncionario2
         '
         Me.ComboFuncionario2.FormattingEnabled = True
-        Me.ComboFuncionario2.Location = New System.Drawing.Point(610, 12)
+        Me.ComboFuncionario2.Location = New System.Drawing.Point(813, 15)
+        Me.ComboFuncionario2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboFuncionario2.Name = "ComboFuncionario2"
-        Me.ComboFuncionario2.Size = New System.Drawing.Size(225, 21)
+        Me.ComboFuncionario2.Size = New System.Drawing.Size(299, 24)
         Me.ComboFuncionario2.TabIndex = 17
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(499, 19)
+        Me.Label15.Location = New System.Drawing.Point(665, 23)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(105, 13)
+        Me.Label15.Size = New System.Drawing.Size(143, 17)
         Me.Label15.TabIndex = 35
         Me.Label15.Text = "Filtrar por funcionario"
         '
         'ButtonTodos
         '
-        Me.ButtonTodos.Location = New System.Drawing.Point(958, 9)
+        Me.ButtonTodos.Location = New System.Drawing.Point(1277, 11)
+        Me.ButtonTodos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonTodos.Name = "ButtonTodos"
-        Me.ButtonTodos.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonTodos.Size = New System.Drawing.Size(100, 28)
         Me.ButtonTodos.TabIndex = 18
         Me.ButtonTodos.Text = "Todos"
         Me.ButtonTodos.UseVisualStyleBackColor = True
         '
         'TextDescripcion
         '
-        Me.TextDescripcion.Location = New System.Drawing.Point(127, 201)
+        Me.TextDescripcion.Location = New System.Drawing.Point(169, 247)
+        Me.TextDescripcion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextDescripcion.Multiline = True
         Me.TextDescripcion.Name = "TextDescripcion"
-        Me.TextDescripcion.Size = New System.Drawing.Size(354, 64)
+        Me.TextDescripcion.Size = New System.Drawing.Size(471, 78)
         Me.TextDescripcion.TabIndex = 6
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(12, 220)
+        Me.Label16.Location = New System.Drawing.Point(16, 271)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(63, 13)
+        Me.Label16.Size = New System.Drawing.Size(82, 17)
         Me.Label16.TabIndex = 38
         Me.Label16.Text = "Descripción"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(19, 33)
+        Me.Label17.Location = New System.Drawing.Point(25, 41)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(229, 13)
+        Me.Label17.Size = New System.Drawing.Size(310, 17)
         Me.Label17.TabIndex = 39
         Me.Label17.Text = "Antes de completar el formulario, debe guardar."
         '
@@ -428,35 +464,39 @@ Partial Class FormCapacitacion2
         '
         Me.GroupBox1.Controls.Add(Me.Label17)
         Me.GroupBox1.Controls.Add(Me.ButtonCompletar)
-        Me.GroupBox1.Location = New System.Drawing.Point(121, 404)
+        Me.GroupBox1.Location = New System.Drawing.Point(161, 497)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(375, 69)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(500, 85)
         Me.GroupBox1.TabIndex = 40
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Completar formulario de curso externo al laboratorio"
         '
         'TextArea
         '
-        Me.TextArea.Location = New System.Drawing.Point(262, 40)
+        Me.TextArea.Location = New System.Drawing.Point(349, 49)
+        Me.TextArea.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextArea.Name = "TextArea"
-        Me.TextArea.Size = New System.Drawing.Size(49, 20)
+        Me.TextArea.Size = New System.Drawing.Size(64, 22)
         Me.TextArea.TabIndex = 41
         Me.TextArea.Visible = False
         '
         'ButtonInformes
         '
-        Me.ButtonInformes.Location = New System.Drawing.Point(368, 491)
+        Me.ButtonInformes.Location = New System.Drawing.Point(491, 604)
+        Me.ButtonInformes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonInformes.Name = "ButtonInformes"
-        Me.ButtonInformes.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonInformes.Size = New System.Drawing.Size(100, 28)
         Me.ButtonInformes.TabIndex = 42
         Me.ButtonInformes.Text = "Informes"
         Me.ButtonInformes.UseVisualStyleBackColor = True
         '
         'FormCapacitacion2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1045, 522)
+        Me.ClientSize = New System.Drawing.Size(1393, 642)
         Me.Controls.Add(Me.ButtonInformes)
         Me.Controls.Add(Me.TextArea)
         Me.Controls.Add(Me.GroupBox1)
@@ -494,9 +534,10 @@ Partial Class FormCapacitacion2
         Me.Controls.Add(Me.ButtonSeleccionar)
         Me.Controls.Add(Me.TextIdCapacitacion)
         Me.Controls.Add(Me.TextId)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormCapacitacion2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
-        Me.Text = "Capacitación y evaulación de eventos RG.ADM 19"
+        Me.Text = "Capacitación y evaluación de eventos RG.ADM 19"
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox1.ResumeLayout(False)
         Me.GroupBox1.PerformLayout()

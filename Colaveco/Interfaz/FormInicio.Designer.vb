@@ -84,6 +84,7 @@ Partial Class FormInicio
         Me.EnvíosDeCajasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.HistorialPorCajaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.InformeDeCajasSinDevolverToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HistorialDePedidosToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContadorDeAnálisisEmpresasNUEVOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmbarqueDeCajasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -381,6 +382,7 @@ Partial Class FormInicio
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridTareas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -653,7 +655,7 @@ Partial Class FormInicio
         '
         'RecepciónToolStripMenuItem
         '
-        Me.RecepciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CompletarEnvíosToolStripMenuItem2, Me.DescarteDeMuestrasToolStripMenuItem, Me.EliminarSolicitudDeAnálisisToolStripMenuItem1, Me.IngresosSinSolicitudToolStripMenuItem1, Me.PedidosAutomáticoToolStripMenuItem, Me.PedidosDeFrascosToolStripMenuItem1, Me.SolicitudDeAnálisisToolStripMenuItem, Me.SolicitudesToolStripMenuItem1, Me.CajasToolStripMenuItem2, Me.BuscarCajasPorNúmeroToolStripMenuItem1, Me.ListadoDeCajasVerdesSinDevolverToolStripMenuItem1, Me.EnvíosDeCajasToolStripMenuItem2, Me.HistorialPorCajaToolStripMenuItem1, Me.InformeDeCajasSinDevolverToolStripMenuItem})
+        Me.RecepciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CompletarEnvíosToolStripMenuItem2, Me.DescarteDeMuestrasToolStripMenuItem, Me.EliminarSolicitudDeAnálisisToolStripMenuItem1, Me.IngresosSinSolicitudToolStripMenuItem1, Me.PedidosAutomáticoToolStripMenuItem, Me.PedidosDeFrascosToolStripMenuItem1, Me.SolicitudDeAnálisisToolStripMenuItem, Me.SolicitudesToolStripMenuItem1, Me.CajasToolStripMenuItem2, Me.BuscarCajasPorNúmeroToolStripMenuItem1, Me.ListadoDeCajasVerdesSinDevolverToolStripMenuItem1, Me.EnvíosDeCajasToolStripMenuItem2, Me.HistorialPorCajaToolStripMenuItem1, Me.InformeDeCajasSinDevolverToolStripMenuItem, Me.HistorialDePedidosToolStripMenuItem2})
         Me.RecepciónToolStripMenuItem.Name = "RecepciónToolStripMenuItem"
         Me.RecepciónToolStripMenuItem.Size = New System.Drawing.Size(165, 24)
         Me.RecepciónToolStripMenuItem.Text = "Recepción"
@@ -744,6 +746,12 @@ Partial Class FormInicio
         Me.InformeDeCajasSinDevolverToolStripMenuItem.Name = "InformeDeCajasSinDevolverToolStripMenuItem"
         Me.InformeDeCajasSinDevolverToolStripMenuItem.Size = New System.Drawing.Size(424, 24)
         Me.InformeDeCajasSinDevolverToolStripMenuItem.Text = "Cajas sin devolver"
+        '
+        'HistorialDePedidosToolStripMenuItem2
+        '
+        Me.HistorialDePedidosToolStripMenuItem2.Name = "HistorialDePedidosToolStripMenuItem2"
+        Me.HistorialDePedidosToolStripMenuItem2.Size = New System.Drawing.Size(424, 24)
+        Me.HistorialDePedidosToolStripMenuItem2.Text = "Historial de pedidos"
         '
         'ContableToolStripMenuItem
         '
@@ -1591,7 +1599,7 @@ Partial Class FormInicio
         '
         Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Name = "TimepoDeEnvíoDeInformesToolStripMenuItem"
         Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Size = New System.Drawing.Size(273, 24)
-        Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Text = "Timepo de envío de Informes"
+        Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Text = "Tiempo de envío de Informes"
         '
         'CapacitaciónToolStripMenuItem1
         '
@@ -2159,7 +2167,7 @@ Partial Class FormInicio
         '
         'ButtonSolicitudAnalisis
         '
-        Me.ButtonSolicitudAnalisis.Location = New System.Drawing.Point(175, 48)
+        Me.ButtonSolicitudAnalisis.Location = New System.Drawing.Point(196, 49)
         Me.ButtonSolicitudAnalisis.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonSolicitudAnalisis.Name = "ButtonSolicitudAnalisis"
         Me.ButtonSolicitudAnalisis.Size = New System.Drawing.Size(159, 28)
@@ -2572,7 +2580,7 @@ Partial Class FormInicio
         '
         'ButtonNuevaSolicitud
         '
-        Me.ButtonNuevaSolicitud.Location = New System.Drawing.Point(363, 49)
+        Me.ButtonNuevaSolicitud.Location = New System.Drawing.Point(496, 49)
         Me.ButtonNuevaSolicitud.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonNuevaSolicitud.Name = "ButtonNuevaSolicitud"
         Me.ButtonNuevaSolicitud.Size = New System.Drawing.Size(125, 28)
@@ -2713,7 +2721,7 @@ Partial Class FormInicio
         '
         'ButtonCrearInformes
         '
-        Me.ButtonCrearInformes.Location = New System.Drawing.Point(633, 49)
+        Me.ButtonCrearInformes.Location = New System.Drawing.Point(629, 49)
         Me.ButtonCrearInformes.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonCrearInformes.Name = "ButtonCrearInformes"
         Me.ButtonCrearInformes.Size = New System.Drawing.Size(184, 28)
@@ -2777,6 +2785,16 @@ Partial Class FormInicio
         Me.Label4.TabIndex = 38
         Me.Label4.Text = "Preinformes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(363, 49)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(125, 28)
+        Me.Button1.TabIndex = 39
+        Me.Button1.Text = "Buscar Solicitud"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FormInicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2784,6 +2802,7 @@ Partial Class FormInicio
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(1616, 855)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.dgvPreinformes)
         Me.Controls.Add(Me.ButtonCrearInformes)
@@ -3193,4 +3212,6 @@ Partial Class FormInicio
     Friend WithEvents DataGridViewTextBoxColumn18 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents btnEdit As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents HistorialDePedidosToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

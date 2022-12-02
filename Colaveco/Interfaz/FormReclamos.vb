@@ -32,7 +32,7 @@
 
     Private Sub permitiracceso()
         ButtonEliminar.Enabled = False
-        If Usuario.USUARIO = "CA" Then
+        If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "JMS" Then
             ButtonEliminar.Enabled = True
         Else
             ButtonEliminar.Enabled = False
@@ -131,7 +131,7 @@
                 rec.CIERREPROBLEMA = cierreproblema
                 rec.OBSERVACIONES = observaciones
                 rec.ACREDITADO = acreditado
-                If Usuario.USUARIO = "CA" Then
+                If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "JMS" Then
                     If (rec.modificar(Usuario)) Then
                         MsgBox("Registro modificado", MsgBoxStyle.Information, "Atención")
                     Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")

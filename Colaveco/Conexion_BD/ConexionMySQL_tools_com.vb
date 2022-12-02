@@ -8,7 +8,7 @@ Namespace Conectoras
         End Enum
         'String que contiene la cadena de conexión a BD.
 
-        'Private Shared mCadenaConexion As String = "Server=colaveco.com.uy;Database=herramientas;Uid=colaveco;Pwd=NUEVA**!!COL22;Convert Zero Datetime=True"
+        'Private Shared mCadenaConexion As String = "Server=colaveco.com.uy;Database=herramientas;Uid=colaveco;Pwd=NUEVA**!!COL22$%;Convert Zero Datetime=True"
         Private Shared mCadenaConexion As String = "Server=192.168.1.20;Database=herramientas;Uid=root;Pwd=root;Convert Zero Datetime=True"
         'Private Shared mCadenaConexion As String = "Server=localhost;Database=herramientas;Uid=root;Pwd=root;Convert Zero Datetime=True"
 
