@@ -437,10 +437,10 @@ Public Class FormAutorizarCompra
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
         x1hoja.PageSetup.Orientation = XlPageOrientation.xlLandscape
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         Dim fila As Integer = 1
         Dim columna As Integer = 1
@@ -758,7 +758,7 @@ Public Class FormAutorizarCompra
             Contents:=True, Scenarios:=True)
         'GUARDA EL ARCHIVO DE EXCEL
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\COMPRAS\OC\OC_" & idcompra & ".xls")
 
 

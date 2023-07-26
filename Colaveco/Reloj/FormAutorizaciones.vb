@@ -555,7 +555,7 @@ Public Class FormAutorizaciones
             texto = nombre & " ha autorizado su solicitud: " & tipo & " - " & detalle & vbCrLf _
             & "Observaciones: " & mailobservaciones
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -563,7 +563,7 @@ Public Class FormAutorizaciones
             ' CONFIGURACION DEL MENSAJE 
             Try
                 _Message.[To].Add(email)
-                _Message.[To].Add("avisos@colaveco.com.uy")
+                _Message.[To].Add("gerencia@colaveco.com.uy")
             Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
             End Try
 
@@ -614,7 +614,7 @@ Public Class FormAutorizaciones
             texto = nombre & " no ha autorizado su solicitud: " & tipo & " - " & detalle & vbCrLf _
             & "Observaciones: " & mailobservaciones
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -798,10 +798,10 @@ Public Class FormAutorizaciones
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 10
@@ -935,10 +935,10 @@ Public Class FormAutorizaciones
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 10

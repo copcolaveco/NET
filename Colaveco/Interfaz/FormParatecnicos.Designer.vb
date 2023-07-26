@@ -39,7 +39,7 @@ Partial Class FormParatecnicos
         Me.RadioButton1.Size = New System.Drawing.Size(148, 17)
         Me.RadioButton1.TabIndex = 0
         Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Diego Arenas - Erika Silva"
+        Me.RadioButton1.Text = "Erika Silva"
         Me.RadioButton1.UseVisualStyleBackColor = True
         '
         'RadioButton2
@@ -72,7 +72,7 @@ Partial Class FormParatecnicos
         Me.RadioButton4.Size = New System.Drawing.Size(177, 17)
         Me.RadioButton4.TabIndex = 3
         Me.RadioButton4.TabStop = True
-        Me.RadioButton4.Text = "Diego Arenas - Lorena Nidegger"
+        Me.RadioButton4.Text = "Lorena Nidegger"
         Me.RadioButton4.UseVisualStyleBackColor = True
         '
         'RadioButton5

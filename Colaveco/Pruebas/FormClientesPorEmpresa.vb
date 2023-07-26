@@ -25,7 +25,7 @@ Public Class FormClientesPorEmpresa
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
         x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(0.5) '(1)
         x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(0.5) '(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
         x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(0.5) '(1)
         Dim fila As Integer
         Dim columna As Integer
@@ -108,7 +108,7 @@ Public Class FormClientesPorEmpresa
                 End If
             Next
             '***********************************************************
-            x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+            'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
             'PROTEGE LA HOJA DE EXCEL
             x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
             Contents:=True, Scenarios:=True)

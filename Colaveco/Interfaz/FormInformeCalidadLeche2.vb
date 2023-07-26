@@ -94,10 +94,10 @@ Public Class FormInformeCalidadLeche2
         x1libro = CType(x1app.Workbooks.Open(Arch), Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         'Dim c As New dCalidad
         Dim csm As New dCalidadSolicitudMuestra
@@ -271,9 +271,9 @@ Public Class FormInformeCalidadLeche2
         x1hoja.Cells(fila, columna).Font.Size = 7
         columna = columna + 2
         Dim paratecnico As String = ""
-        If idparatecnico1 = 1 Then
-            paratecnico = paratecnico + "Diego Arenas - "
-        End If
+        'If idparatecnico1 = 1 Then
+        '    paratecnico = paratecnico + "Diego Arenas - "
+        'End If
         If idparatecnico2 = 1 Then
             paratecnico = paratecnico + "Lorena Nidegger - "
         End If
@@ -928,7 +928,9 @@ Public Class FormInformeCalidadLeche2
         columna = 1
         fila = fila + 1
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         columna = columna + 6
         x1hoja.Cells(fila, columna).formula = "La indicación ''Fuera de rango''. está fuera del alcance de la acreditación"
@@ -1016,7 +1018,7 @@ Public Class FormInformeCalidadLeche2
         End If
         'GUARDA EL ARCHIVO DE EXCEL
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1app.DisplayAlerts = False
         x1hoja.SaveAs("\\ROBOT\PREINFORMES\CALIDAD\" & idsol & ".xls")
         x1app.Visible = True
@@ -1029,6 +1031,26 @@ Public Class FormInformeCalidadLeche2
         End If
         totalprecio = 0
     End Sub
+
+
+    Sub InsertImageToDeclaredVariable(ByVal x1libro As Microsoft.Office.Interop.Excel.Workbook, ByVal rangeFirma As String, ByVal imagePath As String)
+
+        Dim myImage As Shape
+        Dim ws As Microsoft.Office.Interop.Excel.Worksheet
+
+        ws = x1libro.ActiveSheet
+        myImage = ws.Shapes.AddPicture( _
+            Filename:=imagePath, _
+            LinkToFile:=Microsoft.Office.Core.MsoTriState.msoFalse, _
+            SaveWithDocument:=Microsoft.Office.Core.MsoTriState.msoCTrue, _
+            Left:=0, _
+            Top:=0, _
+            Width:=-1, _
+            Height:=-1)
+        myImage.Left = x1libro.ActiveSheet.Range(rangeFirma).Left
+        myImage.Top = x1libro.ActiveSheet.Range(rangeFirma).Top
+    End Sub
+
     Private Sub factura_calidad()
         Dim ficha As Long = 0
         Dim muestras As Integer = 0

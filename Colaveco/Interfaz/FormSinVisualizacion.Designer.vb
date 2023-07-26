@@ -22,8 +22,8 @@ Partial Class FormSinVisualizacion
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
+        Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Ficha = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -68,18 +68,19 @@ Partial Class FormSinVisualizacion
         Me.DataGridView1.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Ficha, Me.Fecha, Me.Cliente, Me.Tipo, Me.Muestras, Me.Importe, Me.Abonado, Me.Visualizacion, Me.Fecha2, Me.Observaciones, Me.Abonado2, Me.Visualizacion2})
-        DataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridView1.Location = New System.Drawing.Point(6, 6)
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView1.DefaultCellStyle = DataGridViewCellStyle3
+        Me.DataGridView1.Location = New System.Drawing.Point(8, 7)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(1114, 510)
+        Me.DataGridView1.Size = New System.Drawing.Size(1485, 628)
         Me.DataGridView1.TabIndex = 0
         '
         'Id
@@ -170,16 +171,18 @@ Partial Class FormSinVisualizacion
         '
         Me.DateFecha.Enabled = False
         Me.DateFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFecha.Location = New System.Drawing.Point(926, 14)
+        Me.DateFecha.Location = New System.Drawing.Point(1235, 17)
+        Me.DateFecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateFecha.Name = "DateFecha"
-        Me.DateFecha.Size = New System.Drawing.Size(98, 20)
+        Me.DateFecha.Size = New System.Drawing.Size(129, 22)
         Me.DateFecha.TabIndex = 4
         '
         'ButtonImprimir
         '
-        Me.ButtonImprimir.Location = New System.Drawing.Point(458, 14)
+        Me.ButtonImprimir.Location = New System.Drawing.Point(611, 17)
+        Me.ButtonImprimir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonImprimir.Name = "ButtonImprimir"
-        Me.ButtonImprimir.Size = New System.Drawing.Size(165, 23)
+        Me.ButtonImprimir.Size = New System.Drawing.Size(220, 28)
         Me.ButtonImprimir.TabIndex = 5
         Me.ButtonImprimir.Text = "Imprimir"
         Me.ButtonImprimir.UseVisualStyleBackColor = True
@@ -188,19 +191,21 @@ Partial Class FormSinVisualizacion
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(12, 38)
+        Me.TabControl1.Location = New System.Drawing.Point(16, 47)
+        Me.TabControl1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(1134, 548)
+        Me.TabControl1.Size = New System.Drawing.Size(1512, 674)
         Me.TabControl1.TabIndex = 6
         '
         'TabPage1
         '
         Me.TabPage1.Controls.Add(Me.DataGridView1)
-        Me.TabPage1.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage1.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPage1.Name = "TabPage1"
-        Me.TabPage1.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage1.Size = New System.Drawing.Size(1126, 522)
+        Me.TabPage1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage1.Size = New System.Drawing.Size(1504, 645)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Sin visualización"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -208,10 +213,11 @@ Partial Class FormSinVisualizacion
         'TabPage2
         '
         Me.TabPage2.Controls.Add(Me.DataGridView2)
-        Me.TabPage2.Location = New System.Drawing.Point(4, 22)
+        Me.TabPage2.Location = New System.Drawing.Point(4, 25)
+        Me.TabPage2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TabPage2.Name = "TabPage2"
-        Me.TabPage2.Padding = New System.Windows.Forms.Padding(3)
-        Me.TabPage2.Size = New System.Drawing.Size(1126, 522)
+        Me.TabPage2.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TabPage2.Size = New System.Drawing.Size(1504, 645)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Con visualización"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -221,18 +227,19 @@ Partial Class FormSinVisualizacion
         Me.DataGridView2.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id2, Me.Ficha2, Me.Fecha3, Me.Cliente2, Me.Tipo2, Me.Muestras2, Me.Importe2, Me.Abonado3, Me.Visualizacion3, Me.Fecha4, Me.Observaciones2, Me.SinVisualizacion})
-        DataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridView2.Location = New System.Drawing.Point(6, 6)
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridView2.DefaultCellStyle = DataGridViewCellStyle4
+        Me.DataGridView2.Location = New System.Drawing.Point(8, 7)
+        Me.DataGridView2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersVisible = False
-        Me.DataGridView2.Size = New System.Drawing.Size(1014, 510)
+        Me.DataGridView2.Size = New System.Drawing.Size(1352, 628)
         Me.DataGridView2.TabIndex = 1
         '
         'Id2
@@ -314,12 +321,13 @@ Partial Class FormSinVisualizacion
         '
         'FormSinVisualizacion
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1158, 602)
+        Me.ClientSize = New System.Drawing.Size(1544, 741)
         Me.Controls.Add(Me.TabControl1)
         Me.Controls.Add(Me.ButtonImprimir)
         Me.Controls.Add(Me.DateFecha)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormSinVisualizacion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Informes sin visualización"

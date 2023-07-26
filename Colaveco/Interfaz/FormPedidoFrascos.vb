@@ -75,6 +75,7 @@
         TextF3.Text = ""
         TextCantidad3.Text = ""
         DateFecha.Focus()
+        CheckCodBarras.Checked = False
     End Sub
     Public Sub cargarComboAgencia()
         Dim et As New dEmpresaT
@@ -204,6 +205,7 @@
                 ped.CONVENIO = convenio
                 If (ped.modificar(Usuario)) Then
                     MsgBox("pedido modificado", MsgBoxStyle.Information, "Atención")
+                    limpiar()
                 Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                 End If
             End If
@@ -426,6 +428,7 @@
 
     Private Sub ListPedidos_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ListPedidos.SelectedIndexChanged
         limpiar()
+        TextoCodBarras()
         If ListPedidos.SelectedItems.Count = 1 Then
             Dim ped As dPedidos = CType(ListPedidos.SelectedItem, dPedidos)
             TextId.Text = ped.ID

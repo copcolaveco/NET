@@ -34,15 +34,6 @@ Partial Class FormSeleccionarTecnico
         '
         'CheckBoxDiego
         '
-        Me.CheckBoxDiego.AutoSize = True
-        Me.CheckBoxDiego.Location = New System.Drawing.Point(16, 15)
-        Me.CheckBoxDiego.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.CheckBoxDiego.Name = "CheckBoxDiego"
-        Me.CheckBoxDiego.Size = New System.Drawing.Size(116, 21)
-        Me.CheckBoxDiego.TabIndex = 0
-        Me.CheckBoxDiego.Text = "Diego Arenas"
-        Me.CheckBoxDiego.UseVisualStyleBackColor = True
-        '
         'CheckBoxClaudia
         '
         Me.CheckBoxClaudia.AutoSize = True

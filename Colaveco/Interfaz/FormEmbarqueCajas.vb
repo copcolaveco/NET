@@ -212,10 +212,10 @@ Public Class FormEmbarqueCajas
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
         x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         '*****************************
         Dim en As New dEnvioCajas
@@ -308,13 +308,13 @@ Public Class FormEmbarqueCajas
                         x1hoja.Cells(fila, columna).Font.Bold = False
                         x1hoja.Cells(fila, columna).Font.Size = 8
                         x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                       columna = columna + 1
+                        columna = columna + 1
                     Else
                         x1hoja.Cells(fila, columna).Formula = ""
                         x1hoja.Cells(fila, columna).Font.Bold = False
                         x1hoja.Cells(fila, columna).Font.Size = 8
                         x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                      columna = columna + 1
+                        columna = columna + 1
                     End If
                     x1hoja.Cells(fila, columna).Formula = ""
                     x1hoja.Cells(fila, columna).Font.Bold = False
@@ -341,10 +341,10 @@ Public Class FormEmbarqueCajas
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
         x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         '*****************************
         Dim en As New dEnvioCajas

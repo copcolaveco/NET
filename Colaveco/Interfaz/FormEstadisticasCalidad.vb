@@ -48,10 +48,10 @@ Public Class FormEstadisticasCalidad
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 6
@@ -133,7 +133,7 @@ Public Class FormEstadisticasCalidad
         x1hoja.Cells(fila, columna).Font.Bold = False
         x1hoja.Cells(fila, columna).Font.Size = 10
         columna = columna + 1
-       
+
 
         fila = fila + 1
         columna = 1
@@ -425,7 +425,7 @@ Public Class FormEstadisticasCalidad
                                             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
                                             columna = 1
                                             fila = fila + 1
-                                            
+
 
                                         Else
                                             x1hoja.Cells(fila, columna).formula = ""
@@ -536,10 +536,10 @@ ErrorEs_Bisiesto:
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 6
@@ -637,9 +637,9 @@ ErrorEs_Bisiesto:
                                 c.FICHA = idficha
                                 c.MUESTRA = Trim(csm.MUESTRA)
                                 c = c.buscarxfichaxmuestra
-                                
+
                                 If Not c Is Nothing Then
-                                    
+
 
 
 
@@ -893,7 +893,7 @@ ErrorEs_Bisiesto:
                                     Else
                                         descartadas = descartadas + 1
                                     End If
-                                    End If
+                                End If
                             Next
 
                         End If
@@ -909,7 +909,7 @@ ErrorEs_Bisiesto:
 
                 fila = fila + 1
                 columna = 1
-               
+
                 'Muestra cantidad de muestras
                 x1hoja.Cells(fila, columna).formula = "Muestras"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -1149,10 +1149,10 @@ ErrorEs_Bisiesto:
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 15
@@ -2250,10 +2250,10 @@ ErrorEs_Bisiesto:
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 6
@@ -3240,8 +3240,8 @@ ErrorEs_Bisiesto:
             x1hoja = Nothing
         End If
     End Sub
-   
-   
+
+
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Dim v As New FormBuscarCliente
         v.ShowDialog()
@@ -3280,10 +3280,10 @@ ErrorEs_Bisiesto:
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 6

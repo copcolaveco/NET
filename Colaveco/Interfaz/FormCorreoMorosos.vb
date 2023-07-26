@@ -230,7 +230,7 @@
         If email <> "" Then
             If TextAdjunto.Text <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
                 _SMTP.Host = "170.249.199.66"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
@@ -261,7 +261,7 @@
                 End Try
             Else
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
                 _SMTP.Host = "170.249.199.66"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False

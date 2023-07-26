@@ -150,10 +150,10 @@ Public Class FormNotificacionesReloj
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 10
@@ -265,7 +265,7 @@ Public Class FormNotificacionesReloj
                 End If
             Next
         End If
-        
+
         x1app.Visible = True
         'x1libro.PrintPreview()
         'x1hoja.PrintOut()
@@ -284,10 +284,10 @@ Public Class FormNotificacionesReloj
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 10
@@ -400,7 +400,7 @@ Public Class FormNotificacionesReloj
                 End If
             Next
         End If
-        
+
         x1app.Visible = True
         'x1libro.PrintPreview()
         'x1hoja.PrintOut()

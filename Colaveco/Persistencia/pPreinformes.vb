@@ -739,7 +739,7 @@
     End Function
 
     Public Function ListaControlCalidad() As ArrayList
-        Dim sql As String = "SELECT id, ficha, tipo, creado, abonado, ifnull(comentario,''),ifnull(copia,''), parasubir, subido, fecha, control FROM preinformes WHERE tipo in(1,10) ORDER BY FECHA DESC LIMIT 50"
+        Dim sql As String = "SELECT id, ficha, tipo, creado, abonado, ifnull(comentario,''),ifnull(copia,''), parasubir, subido, fecha, control FROM preinformes WHERE tipo in(1,10) and subido = 0 ORDER BY FICHA DESC "
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet

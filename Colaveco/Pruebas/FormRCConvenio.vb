@@ -18,10 +18,10 @@ Public Class FormRCConvenio
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim fila = 1
         Dim columna = 1
         x1hoja.Cells(fila, columna).formula = "Período: " & fecdesde & " - " & fechasta
@@ -130,7 +130,7 @@ Public Class FormRCConvenio
             Next
         End If
         x1app.DisplayAlerts = False 'NO PREGUNTA SI EL ARCHIVO EXISTE
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'x1hoja.SaveAs("\\192.168.1.10\E\NET\SOLICITUDES\S" & ficha & ".xls")
         x1app.Visible = True
         x1libro.PrintPreview()

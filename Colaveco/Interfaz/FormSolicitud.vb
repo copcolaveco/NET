@@ -22,6 +22,7 @@ Public Class FormSolicitud
     Private nroficha As Long = 0
     Private codigo As String = ""
     Private nuevaFicha As Integer = 0
+    Dim idcaja As String
 
     Public Property Usuario() As dUsuario
         Get
@@ -558,6 +559,13 @@ Public Class FormSolicitud
             c = c.buscar
             If Not c Is Nothing Then
                 productorweb_com = c.USUARIO_WEB
+                Dim pw_com As New dProductorWeb_com
+                pw_com.USUARIO = productorweb_com
+                pw_com = pw_com.buscar
+                If Not pw_com Is Nothing Then
+                    idproductorweb_com = pw_com.ID
+                    '
+                End If
             End If
         End If
 
@@ -715,10 +723,10 @@ Public Class FormSolicitud
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim ficha As String = TextId.Text.Trim
         Dim fecha As Date = DateFechaIngreso.Value
         Dim fechamuestreo As Date = DateMuestreo.Value
@@ -1086,7 +1094,7 @@ Public Class FormSolicitud
         '*************************************************************************************************************
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
         x1app.DisplayAlerts = False 'NO PREGUNTA SI EL ARCHIVO EXISTE
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\TICKET_CLIENTES\TC" & ficha & ".xls")
         'x1app.Visible = True
         'x1libro.PrintPreview()
@@ -1102,10 +1110,10 @@ Public Class FormSolicitud
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim ficha As String = TextId.Text.Trim
         Dim fecha As Date = DateFechaIngreso.Value
         Dim fechamuestreo As Date = DateMuestreo.Value
@@ -1486,7 +1494,7 @@ Public Class FormSolicitud
         '*************************************************************************************************************
         x1app.DisplayAlerts = False 'NO PREGUNTA SI EL ARCHIVO EXISTE
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\TICKET_CLIENTES\TC" & ficha & ".xls")
         x1app.Visible = True
         x1libro.PrintPreview()
@@ -1501,10 +1509,10 @@ Public Class FormSolicitud
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim ficha As String = TextId.Text.Trim
         Dim fecha As Date = DateFechaIngreso.Value
         Dim nmuestras As String
@@ -1877,7 +1885,7 @@ Public Class FormSolicitud
         '*************************************************************************************************************
         x1app.DisplayAlerts = False 'NO PREGUNTA SI EL ARCHIVO EXISTE
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\TICKET_CLIENTES\TC" & ficha & ".xls")
         x1app.Visible = True
         x1libro.PrintPreview()
@@ -1983,7 +1991,7 @@ Public Class FormSolicitud
         fichero = "\\192.168.1.10\E\NET\SOLICITUDES\S" & nficha & ".xls"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -2644,10 +2652,10 @@ Public Class FormSolicitud
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim ficha As String = TextId.Text.Trim
         Dim fecha As Date = DateFechaIngreso.Value
         Dim fechamuestreo As Date = DateMuestreo.Value
@@ -3138,7 +3146,7 @@ Public Class FormSolicitud
         '***************************************************************************************
 
         x1app.DisplayAlerts = False 'NO PREGUNTA SI EL ARCHIVO EXISTE
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\SOLICITUDES\S" & ficha & ".xls")
         x1app.Visible = True
         x1libro.PrintPreview()
@@ -3414,7 +3422,18 @@ Public Class FormSolicitud
             id = TextIdEnvio.Text.Trim
         Else
             Dim e As New dEnvioCajas
-            e.IDCAJA = ComboCajas.Text.Trim
+
+            'Agregando lectores de codifos 1/8/2023
+            If ComboCajas.Text.Trim <> "" Or txtCajasTipeables.Text <> "" Then
+                If txtCajasTipeables.Text <> "" Then
+                    e.IDCAJA = txtCajasTipeables.Text
+                Else
+                    e.IDCAJA = ComboCajas.Text.Trim
+                End If
+            Else : MsgBox("Error, no se completo Codigo de Caja", MsgBoxStyle.Critical, "Atención")
+
+            End If
+
             e = e.buscarultimoenvio()
             If Not e Is Nothing Then
                 id = e.ID
@@ -3426,7 +3445,7 @@ Public Class FormSolicitud
         Dim cliente As Long = TextIdProductor.Text
         Dim observaciones As String = TextObservaciones.Text.Trim
         Dim env As New dEnvioCajas()
-        If ComboCajas.Text.Trim.Length > 0 Then
+        If ComboCajas.Text.Trim.Length > 0 Or txtCajasTipeables.Text <> "" Then
             Dim fec As String
             fec = Format(fecharecibo, "yyyy-MM-dd")
             env.ID = id
@@ -3452,7 +3471,18 @@ Public Class FormSolicitud
         If TextIdEnvio.Text <> "" Then
             idenvio = TextIdEnvio.Text.Trim
         End If
-        Dim idcaja As String = ComboCajas.Text.Trim
+
+        'Agregando lectores de codifos 1/8/2023
+        If ComboCajas.Text.Trim <> "" Or txtCajasTipeables.Text <> "" Then
+            If txtCajasTipeables.Text <> "" Then
+                idcaja = txtCajasTipeables.Text
+            Else
+                idcaja = ComboCajas.Text.Trim
+            End If
+        Else : MsgBox("Error, no se completo Codigo de Caja", MsgBoxStyle.Critical, "Atención")
+
+        End If
+
         Dim gradilla1, gradilla2, gradilla3 As String
         If TextGradilla1.Text <> "" Then
             gradilla1 = TextGradilla1.Text.Trim
@@ -3480,7 +3510,7 @@ Public Class FormSolicitud
             nocolaveco = 0
         End If
         Dim sc As New dRelSolicitudCajas()
-        If ComboCajas.Text.Trim.Length > 0 Then
+        If ComboCajas.Text.Trim.Length > 0 Or txtCajasTipeables.Text <> "" Then
             sc.FICHA = ficha
             sc.IDENVIO = idenvio
             sc.IDCAJA = idcaja
@@ -3499,7 +3529,7 @@ Public Class FormSolicitud
             c.FECHA = fecing
             c.marcarLaboratorio(Usuario)
             c = Nothing
-            'MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
+            MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
         Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
         End If
     End Sub
@@ -3537,7 +3567,18 @@ Public Class FormSolicitud
     End Sub
     Private Sub buscarultimoenvio()
         Dim e As New dEnvioCajas
-        e.IDCAJA = ComboCajas.Text.Trim
+
+        'Agregando lectores de codifos 1/8/2023
+        If ComboCajas.Text.Trim <> "" Or txtCajasTipeables.Text <> "" Then
+            If txtCajasTipeables.Text <> "" Then
+                e.IDCAJA = txtCajasTipeables.Text
+            Else
+                e.IDCAJA = ComboCajas.Text.Trim
+            End If
+        Else : MsgBox("Error, no se completo Codigo de Caja", MsgBoxStyle.Critical, "Atención")
+
+        End If
+
         e = e.buscarultimoenvio()
         If Not e Is Nothing Then
             TextIdEnvio.Text = e.ID
@@ -4312,7 +4353,7 @@ Public Class FormSolicitud
         If tipoinforme = "Nutrición" Or tipoinforme = "Suelos" Then
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
                 _SMTP.Host = "170.249.199.66"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
@@ -4356,7 +4397,7 @@ Public Class FormSolicitud
         Else
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
                 _SMTP.Host = "170.249.199.66"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
@@ -5140,5 +5181,15 @@ Public Class FormSolicitud
 
     Private Sub btnImprimir_Click(sender As Object, e As EventArgs) Handles btnImprimir.Click
         imprimir_solicitud()
+    End Sub
+
+    Private Sub txtCajasTipeables_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCajasTipeables.KeyPress
+        If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
+            idcaja = txtCajasTipeables.Text
+        End If
+    End Sub
+
+    Private Sub txtCajasTipeables_TextChanged(sender As Object, e As EventArgs) Handles txtCajasTipeables.TextChanged
+        buscarultimoenvio()
     End Sub
 End Class

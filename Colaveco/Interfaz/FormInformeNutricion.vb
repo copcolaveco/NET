@@ -80,10 +80,10 @@ Public Class FormInformeNutricion
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         Dim sa As New dSolicitudAnalisis
         Dim pro As New dCliente
@@ -13069,19 +13069,14 @@ Public Class FormInformeNutricion
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     columna = 1
                     fila = fila + 1
-                Else
-                    x1hoja.Cells(fila, columna).formula = "Dpto. de Nutrición Animal Fac. Veterinaria)"
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                    x1hoja.Cells(fila, columna).Font.Size = 8
-                    x1hoja.Cells(fila, columna).Font.Bold = True
-                    columna = 1
-                    fila = fila + 1
                 End If
 
                 '**********************************************************
 
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 5
                 x1hoja.Cells(fila, columna).formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO."
@@ -13140,7 +13135,7 @@ Public Class FormInformeNutricion
         Contents:=True, Scenarios:=True)
         'GUARDA EL ARCHIVO DE EXCEL
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1app.Visible = True
         'x1hoja.SaveAs("\\192.168.1.10\E\NET\NUTRICION\" & idsol & ".xls")
         x1hoja.SaveAs("\\ROBOT\PREINFORMES\NUTRICION\" & idsol & ".xls")
@@ -13153,6 +13148,26 @@ Public Class FormInformeNutricion
         x1libro = Nothing
         x1hoja = Nothing
     End Sub
+
+
+    Sub InsertImageToDeclaredVariable(ByVal x1libro As Microsoft.Office.Interop.Excel.Workbook, ByVal rangeFirma As String, ByVal imagePath As String)
+
+        Dim myImage As Shape
+        Dim ws As Microsoft.Office.Interop.Excel.Worksheet
+
+        ws = x1libro.ActiveSheet
+        myImage = ws.Shapes.AddPicture( _
+            Filename:=imagePath, _
+            LinkToFile:=Microsoft.Office.Core.MsoTriState.msoFalse, _
+            SaveWithDocument:=Microsoft.Office.Core.MsoTriState.msoCTrue, _
+            Left:=0, _
+            Top:=0, _
+            Width:=-1, _
+            Height:=-1)
+        myImage.Left = x1libro.ActiveSheet.Range(rangeFirma).Left
+        myImage.Top = x1libro.ActiveSheet.Range(rangeFirma).Top
+    End Sub
+
     Private Sub factura_nutricion()
         Dim sa As New dSolicitudAnalisis
         Dim n As New dNutricion

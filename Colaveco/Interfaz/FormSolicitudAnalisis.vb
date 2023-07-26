@@ -6213,10 +6213,10 @@ Public Class FormSolicitudAnalisis
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim ficha As String = TextId.Text.Trim
         Dim fecha As Date = DateFechaIngreso.Value
         Dim nmuestras As String
@@ -8445,7 +8445,7 @@ Public Class FormSolicitudAnalisis
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 10
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\TICKET_CLIENTES\TC" & ficha & ".xls")
         x1app.Visible = True
         x1libro.PrintPreview()
@@ -8460,10 +8460,10 @@ Public Class FormSolicitudAnalisis
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim ficha As String = TextId.Text.Trim
         Dim fecha As Date = DateFechaIngreso.Value
         Dim nmuestras As String
@@ -10688,7 +10688,7 @@ Public Class FormSolicitudAnalisis
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 10
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\TICKET_CLIENTES\TC" & ficha & ".xls")
         x1app.Visible = False
         x1libro.Close()
@@ -10704,10 +10704,10 @@ Public Class FormSolicitudAnalisis
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim ficha As String = TextId.Text.Trim
         Dim fecha As Date = DateFechaIngreso.Value
         Dim nmuestras As String
@@ -13002,14 +13002,14 @@ Public Class FormSolicitudAnalisis
         x1hoja.Cells(fila, columna).Font.Size = 10
 
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\TICKET_CLIENTES\TC" & ficha & ".xls")
 
 
 
 
         x1app.Visible = True
-     
+
         x1libro.PrintPreview()
         x1app = Nothing
         x1libro = Nothing
@@ -13023,10 +13023,10 @@ Public Class FormSolicitudAnalisis
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         Dim ficha As String = TextId.Text.Trim
         Dim fecha As Date = DateFechaIngreso.Value
@@ -13563,7 +13563,7 @@ Public Class FormSolicitudAnalisis
                 x1hoja.Cells(fila, columna).Font.Size = 12
                 fila = fila + 3
             End If
-           
+
         End If
         ' SI ES CONTROL LECHERO ********************************************************************************
         If tipoinforme = "Control Lechero" Then
@@ -13958,7 +13958,7 @@ Public Class FormSolicitudAnalisis
                         If ss.ZINC = 1 Then
                             texto = texto & "ZINC - "
                         End If
-                     
+
                     Next
 
                 End If
@@ -14252,7 +14252,7 @@ Public Class FormSolicitudAnalisis
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 4
         End If
-      
+
         ' SI ES PARASITOLOGÍA ********************************************************************************
         texto2 = ""
         If tipoinforme = "Parasitología" Then
@@ -14323,7 +14323,7 @@ Public Class FormSolicitudAnalisis
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 4
         End If
-   
+
 
         ' SI ES AGUA ********************************************************************************
         If tipoinforme = "Agua" Then
@@ -14394,14 +14394,14 @@ Public Class FormSolicitudAnalisis
 
 
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\192.168.1.10\E\NET\SOLICITUDES\S" & ficha & ".xls")
         'x1hoja.SaveAs("c:\NET\SOLICITUDES\" & ficha & ".xls")
 
         x1app.Visible = True
-      
+
         x1libro.PrintPreview()
-       
+
         'x1hoja.PrintOut()
         'x1libro.Close()
         x1app = Nothing
@@ -16610,7 +16610,7 @@ Public Class FormSolicitudAnalisis
         If tipoinforme = "Nutrición" Or tipoinforme = "Suelos" Then
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
                 _SMTP.Host = "170.249.199.66"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
@@ -16656,7 +16656,7 @@ Public Class FormSolicitudAnalisis
         Else
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
                 _SMTP.Host = "170.249.199.66"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
@@ -16754,7 +16754,7 @@ Public Class FormSolicitudAnalisis
         End If
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -16934,7 +16934,7 @@ Public Class FormSolicitudAnalisis
 
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -16976,7 +16976,7 @@ Public Class FormSolicitudAnalisis
         fichero = "\\192.168.1.10\E\NET\SOLICITUDES\S" & nficha & ".xls"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False

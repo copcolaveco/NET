@@ -131,10 +131,10 @@ Public Class FormPreInforme
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim csm As New dCalidadSolicitudMuestra
         Dim i As New dIbc
         Dim sa As New dSolicitudAnalisis
@@ -722,7 +722,7 @@ Public Class FormPreInforme
         'Contents:=True, Scenarios:=True)
         'GUARDA EL ARCHIVO DE EXCEL
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'x1hoja.SaveAs("\\192.168.1.10\E\NET\PREINFORMES\CALIDAD\" & idsol & ".xls")
         'x1hoja.SaveAs("C:\PREINFORMES\CALIDAD\" & idsol & ".xls")
         'Marcar como creado
@@ -743,10 +743,10 @@ Public Class FormPreInforme
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim c As New dControl
         Dim i As New dIbc
         Dim sa As New dSolicitudAnalisis
@@ -1187,7 +1187,7 @@ Public Class FormPreInforme
         'Contents:=True, Scenarios:=True)
         'GUARDA EL ARCHIVO DE EXCEL
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("C:\PREINFORMES\CONTROL\" & idsol & ".xls")
         Dim preinf As New dPreinformes
         preinf.FICHA = id_sol

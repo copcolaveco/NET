@@ -282,7 +282,7 @@ Public Class FormCrearInformes
             Dim ficha As Long = TextFicha.Text.Trim
             Dim s As New dSolicitudAnalisis
             informe_suelos_conversion_fertilizante()
-            'PH_Suelos()
+            PH_Suelos()
             informe_suelos()
             s.ID = ficha
             s = s.buscar
@@ -363,8 +363,10 @@ Public Class FormCrearInformes
             limpiar()
         ElseIf idti = 20 Then '*** Efluentes **************************************************
             informe_toxicologia()
+            abrirventanaenvio()
         ElseIf idti = 99 Then '*** Efluentes **************************************************
             informe_semen()
+            abrirventanaenvio()
         End If
     End Sub
     Private Sub limpiar()
@@ -385,10 +387,10 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Open(Arch), Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.5)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.5)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
         'ARCHIVO ANEXO *********************************************************************************
         Dim Arch2 As String
         Arch2 = "\\ROBOT\GraficasRC\x" & idsol & ".xls"
@@ -644,9 +646,9 @@ Public Class FormCrearInformes
         x1hoja.Cells(fila, columna).Font.Size = 9
         columna = columna + 5
         'PARATECNICOS************************************************************************
-        If idparatecnico1 = 1 Then
-            nombre_paratecnico = nombre_paratecnico + "Diego Arenas - "
-        End If
+        'If idparatecnico1 = 1 Then
+        '    nombre_paratecnico = nombre_paratecnico + "Diego Arenas - "
+        'End If
         If idparatecnico2 = 1 Then
             nombre_paratecnico = nombre_paratecnico + "Lorena Nidegger - "
         End If
@@ -912,10 +914,15 @@ Public Class FormCrearInformes
         '*** PONER FIRMA ********************************************************
         fila = fila + 1
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+
+        Dim photo As Picture
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
+
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
-        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
+        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 10/01/2024"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 9
         fila = fila + 1
@@ -941,7 +948,7 @@ Public Class FormCrearInformes
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         x1hoja.SaveAs("\\ROBOT\PREINFORMES\CONTROL\" & idsol & ".xls")
         x1app.Visible = True
         If existe_archivo_x = 1 Then
@@ -955,10 +962,10 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(0.5) '(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(0.5) '(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(0.5) '(1)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(0.5) '(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(0.5) '(1.9)
+        ''x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(0.5) '(1)
         'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
@@ -1568,42 +1575,46 @@ Public Class FormCrearInformes
                         x1hoja.Cells(fila, columna).Font.Size = 8
                         columna = columna + 1
                     End If
-                    If csm.CRIOSCOPIA = 1 Then 'Or csm.CRIOSCOPIA_CRIOSCOPO = 1 Then
+                    If csm.CRIOSCOPIA = 1 Or csm.CRIOSCOPIA_CRIOSCOPO = 1 Then
                         If Not c Is Nothing Then
                             If c.CRIOSCOPIA <> -1 Then
                                 Dim valcrioscopia As Double = Val(c.CRIOSCOPIA) * -1 / 1000
+                                If valcrioscopia > -0.512 And valcrioscopia < 0 Then
+                                    x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                                End If
                                 x1hoja.Cells(fila, columna).formula = valcrioscopia.ToString("##,###0.000")
                                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                                 x1hoja.Cells(fila, columna).Font.Size = 8
-                                If valcrioscopia > -0.512 Then
-                                    'Dim r As New dRgLab88
-                                    'r.FICHA = nroficha
-                                    'r.MUESTRA = csm.MUESTRA
-                                    'r = r.buscarxfichaxmuestra
-                                    'If Not r Is Nothing Then
-                                    '    Dim delta As Double = 0
-                                    '    Dim criosc As Double = 0
-                                    '    Dim resultado As Double = 0
-                                    '    delta = r.DELTA
-                                    '    criosc = r.CRIOSCOPO
-                                    '    If delta > criosc Then
-                                    '        resultado = delta - criosc
-                                    '    Else
-                                    '        resultado = criosc - delta
-                                    '    End If
-                                    '    If resultado > 5 Then
-                                    '        valcrioscopia = Val(r.CRIOSCOPO) * -1 / 1000
-                                    '        a.ANALISIS = 102
-                                    '        a = a.buscar
-                                    '        If Not a Is Nothing Then
-                                    '            desde = a.DESDE
-                                    '            hasta = a.HASTA
-                                    '        End If
-                                    'If valcrioscopia > desde Or valcrioscopia < hasta Then
+                                columna = columna + 1
+                            Else
+                                x1hoja.Cells(fila, columna).formula = "-"
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 8
+                                columna = columna + 1
+                            End If
+                        Else
+                            x1hoja.Cells(fila, columna).formula = "-"
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            columna = columna + 1
+                        End If
+                    Else
+                        x1hoja.Cells(fila, columna).formula = "-"
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = columna + 1
+                    End If
+
+                    If csm.UREA = 1 Then
+                        If Not c Is Nothing Then
+                            If c.UREA <> -1 Then
+                                Dim valorurea As Integer
+                                valorurea = c.UREA * 0.466
+                                x1hoja.Cells(fila, columna).formula = valorurea
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 8
+                                If valorurea > 20 Or valorurea < 9 Then
                                     x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                                    '        End If
-                                    '    End If
-                                    'End If
                                 End If
                                 columna = columna + 1
                             Else
@@ -1624,168 +1635,106 @@ Public Class FormCrearInformes
                         x1hoja.Cells(fila, columna).Font.Size = 8
                         columna = columna + 1
                     End If
-                    If csm.CRIOSCOPIA_CRIOSCOPO = 1 Then
-                            columna = columna - 1
-                            Dim r As New dRgLab88
-                            Dim valcrioscopia As Double = 0
-                            r.FICHA = nroficha
-                            r.MUESTRA = csm.MUESTRA
-                            r = r.buscarxfichaxmuestra
-                            'If Not r Is Nothing Then
-                            Dim criosc As Double = 0
-                            criosc = r.CRIOSCOPO
-                            valcrioscopia = Val(criosc) * -1 / 1000
-                            a.ANALISIS = 102
-                            a = a.buscar
-                        If valcrioscopia > -0.512 Then
-                            'If Not a Is Nothing Then
-                            '    desde = a.DESDE
-                            '    hasta = a.HASTA
-                            'End If
-                            'If valcrioscopia > desde Or valcrioscopia < hasta Then
-                            x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                            'End If
-                            x1hoja.Cells(fila, columna).formula = valcrioscopia.ToString("##,###0.000")
+                    Dim inh As New dInhibidores
+                    inh.FICHA = nroficha
+                    inh.MUESTRA = Trim(csm.MUESTRA)
+                    inh = inh.buscarxfichaxmuestra
+                    If Not inh Is Nothing Then
+                        If inh.RESULTADO = 0 Then
+                            x1hoja.Cells(fila, columna).formula = "Negativo"
                             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).Font.Size = 6
                             columna = columna + 1
+                        Else
+                            x1hoja.Cells(fila, columna).formula = "Positivo"
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            x1hoja.Cells(fila, columna).Font.Size = 6
+                            columna = columna + 1
+                        End If
+                    Else
+                        x1hoja.Cells(fila, columna).formula = "-"
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = columna + 1
+                    End If
+                    'ESPORULADOS*******************************************************************************
+                    Dim esp As New dEsporulados
+                    esp.FICHA = nroficha
+                    esp.MUESTRA = Trim(csm.MUESTRA)
+                    esp = esp.buscarxfichaxmuestra
+                    If Not esp Is Nothing Then
+                        x1hoja.Cells(fila, columna).formula = esp.RESULTADO
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = columna + 1
+                    Else
+                        x1hoja.Cells(fila, columna).formula = "-"
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = columna + 1
+                    End If
+                    'PSICROTROFOS*******************************************************************************
+                    Dim psi As New dPsicrotrofos
+                    psi.FICHA = nroficha
+                    psi.MUESTRA = Trim(csm.MUESTRA)
+                    psi = psi.buscarxfichaxmuestra
+                    If Not psi Is Nothing Then
+                        x1hoja.Cells(fila, columna).formula = psi.PROMEDIO
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = columna + 1
+                    Else
+                        x1hoja.Cells(fila, columna).formula = "-"
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = columna + 1
+                    End If
+                    'CASEINA ************************************************************************************
+                    If csm.CASEINA = 1 Then
+                        If Not c Is Nothing Then
+                            If c.CASEINA <> -1 Then
+                                Dim valorcaseina As Double
+                                valorcaseina = c.CASEINA
+                                x1hoja.Cells(fila, columna).formula = FormatNumber(valorcaseina, 2)
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 8
+                                columna = columna + 1
+                            Else
+                                x1hoja.Cells(fila, columna).formula = "-"
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 8
+                                columna = columna + 1
+                            End If
                         Else
                             x1hoja.Cells(fila, columna).formula = "-"
                             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                             x1hoja.Cells(fila, columna).Font.Size = 8
                             columna = columna + 1
                         End If
-                    End If
-            If csm.UREA = 1 Then
-                If Not c Is Nothing Then
-                    If c.UREA <> -1 Then
-                        Dim valorurea As Integer
-                        valorurea = c.UREA * 0.466
-                        x1hoja.Cells(fila, columna).formula = valorurea
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        If valorurea > 20 Or valorurea < 9 Then
-                            x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                        End If
-                        columna = columna + 1
                     Else
                         x1hoja.Cells(fila, columna).formula = "-"
                         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         x1hoja.Cells(fila, columna).Font.Size = 8
                         columna = columna + 1
                     End If
-                Else
-                    x1hoja.Cells(fila, columna).formula = "-"
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                    x1hoja.Cells(fila, columna).Font.Size = 8
-                    columna = columna + 1
-                End If
-            Else
-                x1hoja.Cells(fila, columna).formula = "-"
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-            End If
-            Dim inh As New dInhibidores
-            inh.FICHA = nroficha
-            inh.MUESTRA = Trim(csm.MUESTRA)
-            inh = inh.buscarxfichaxmuestra
-            If Not inh Is Nothing Then
-                If inh.RESULTADO = 0 Then
-                    x1hoja.Cells(fila, columna).formula = "Negativo"
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                    x1hoja.Cells(fila, columna).Font.Size = 6
-                    columna = columna + 1
-                Else
-                    x1hoja.Cells(fila, columna).formula = "Positivo"
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                    x1hoja.Cells(fila, columna).Font.Size = 6
-                    columna = columna + 1
-                End If
-            Else
-                x1hoja.Cells(fila, columna).formula = "-"
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-            End If
-            'ESPORULADOS*******************************************************************************
-            Dim esp As New dEsporulados
-            esp.FICHA = nroficha
-            esp.MUESTRA = Trim(csm.MUESTRA)
-            esp = esp.buscarxfichaxmuestra
-            If Not esp Is Nothing Then
-                x1hoja.Cells(fila, columna).formula = esp.RESULTADO
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-            Else
-                x1hoja.Cells(fila, columna).formula = "-"
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-            End If
-            'PSICROTROFOS*******************************************************************************
-            Dim psi As New dPsicrotrofos
-            psi.FICHA = nroficha
-            psi.MUESTRA = Trim(csm.MUESTRA)
-            psi = psi.buscarxfichaxmuestra
-            If Not psi Is Nothing Then
-                x1hoja.Cells(fila, columna).formula = psi.PROMEDIO
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-            Else
-                x1hoja.Cells(fila, columna).formula = "-"
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-            End If
-            'CASEINA ************************************************************************************
-            If csm.CASEINA = 1 Then
-                If Not c Is Nothing Then
-                    If c.CASEINA <> -1 Then
-                        Dim valorcaseina As Double
-                        valorcaseina = c.CASEINA
-                        x1hoja.Cells(fila, columna).formula = FormatNumber(valorcaseina, 2)
+                    'AFLATOXINA M1*******************************************************************************
+                    Dim m As New dMicotoxinasLeche
+                    m.FICHA = nroficha
+                    m.MUESTRA = Trim(csm.MUESTRA)
+                    m = m.buscarxfichaxmuestra
+                    If Not m Is Nothing Then
+                        x1hoja.Cells(fila, columna).formula = m.RESULTADO
                         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         x1hoja.Cells(fila, columna).Font.Size = 8
-                        columna = columna + 1
+                        columna = 1
                     Else
                         x1hoja.Cells(fila, columna).formula = "-"
                         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         x1hoja.Cells(fila, columna).Font.Size = 8
-                        columna = columna + 1
+                        columna = 1
                     End If
-                Else
-                    x1hoja.Cells(fila, columna).formula = "-"
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                    x1hoja.Cells(fila, columna).Font.Size = 8
-                    columna = columna + 1
-                End If
-            Else
-                x1hoja.Cells(fila, columna).formula = "-"
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-            End If
-            'AFLATOXINA M1*******************************************************************************
-            Dim m As New dMicotoxinasLeche
-            m.FICHA = nroficha
-            m.MUESTRA = Trim(csm.MUESTRA)
-            m = m.buscarxfichaxmuestra
-            If Not m Is Nothing Then
-                x1hoja.Cells(fila, columna).formula = m.RESULTADO
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = 1
-            Else
-                x1hoja.Cells(fila, columna).formula = "-"
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = 1
-            End If
-            columna = 1
-            fila = fila + 1
+                    columna = 1
+                    fila = fila + 1
                 Next
                 'Referencias
                 fila = fila + 1
@@ -1876,9 +1825,9 @@ Public Class FormCrearInformes
              Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 470, 42)
                 End If
                 '********************************************************************
-                If idparatecnico1 = 1 Then
-                    nombre_paratecnico = nombre_paratecnico + "Diego Arenas - "
-                End If
+                'If idparatecnico1 = 1 Then
+                '    nombre_paratecnico = nombre_paratecnico + "Diego Arenas - "
+                'End If
                 If idparatecnico2 = 1 Then
                     nombre_paratecnico = nombre_paratecnico + "Lorena Nidegger - "
                 End If
@@ -1901,7 +1850,10 @@ Public Class FormCrearInformes
                 '*** PONER FIRMA ********************************************************
                 fila = fila + 1
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
+                'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila - 1
                 'RANGOS ACREDITADOS******************************************************************
@@ -2047,7 +1999,7 @@ Public Class FormCrearInformes
                 x1hoja.Cells(fila, columna).Font.Size = 7
                 fila = fila + 1
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 10/01/2024"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -2084,7 +2036,7 @@ Public Class FormCrearInformes
             End If
         End If
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        ''x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -2102,11 +2054,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim b As New dBrucelosis
@@ -2419,11 +2371,13 @@ Public Class FormCrearInformes
                 fila = fila + 1
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 10/01/2024"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -2471,7 +2425,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -2489,11 +2443,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim b As New dBrucelosis
@@ -2779,11 +2733,13 @@ Public Class FormCrearInformes
 
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 10/01/2024"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -2831,7 +2787,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -2849,11 +2805,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        ''x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        ''x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -3381,12 +3337,12 @@ Public Class FormCrearInformes
 
         x1hoja.Cells().Range("A11:H11").Columns.AutoFit()
 
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        ''x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        ''x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         columna = 1
         fila = fila + 2
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\AVISOS_informes_SUELOS Y PASTURAS.png").select()
+        x1libro.ActiveSheet.pictures.Insert("c:\Debug\AVISOS_informes_NUTRICION ANIMAL.png").select()
 
         'x1hoja.Shapes.AddPicture("c:\Debug\AVISOS_informes_EFLUENTES.png", _
         'Microsoft.Office.Core.MsoTriState.msoFalse, _
@@ -3421,11 +3377,13 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.5)
+        ''x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlPortrait)
+
+
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -3493,498 +3451,941 @@ Public Class FormCrearInformes
             Next
         End If
         '***********************************************
+        'Imagen
+
+        x1hoja.Shapes.AddPicture("c:\Debug\ColavecoShort.png", _
+             Microsoft.Office.Core.MsoTriState.msoFalse, _
+             Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 200, 50).Left = 370
+
+
+        '***********************************************
         Dim fila As Integer
         Dim columna As Integer
         Dim titulo As Boolean = False
         Dim compost As Boolean = False
         columna = 1
-        fila = 1
+        fila = 5
         If Not lista Is Nothing Then
             If lista.Count > 0 Then
+                'Titulos
+                Dim res1 As Boolean = False
+                Dim res2 As Boolean = False
+
+                x1hoja.Rows("7:7").RowHeight = 30
+
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Range("A" & fila, "H" & fila).Merge()
+                x1hoja.Columns("A:L").AutoFit()
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 18
+                x1hoja.Cells(fila, columna).Font.Name = "Geometos"
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "ANEXO SUELOS - " + nroficha.ToString + " - " + sa.FECHAENVIO.ToString
+                fila = fila + 2
+
+                'x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Range("A" & fila, "G" & fila).Merge()
+                x1hoja.Cells(fila, columna).WrapText = True
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Underline = True
+                x1hoja.Cells(fila, columna).Font.Name = "Geometos"
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "DISPONIBILIDAD DE LOS NUTRIENTES SEGÚN EL pH DEL SUELO (*)"
+                fila = fila + 2
+
+                fila = 10
+                columna = 2
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "ID"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "pH"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "Tipo(**)"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Nitrógeno"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Fósforo"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Potasio"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Sulfato"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Calcio"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Magnesio"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Hierro"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Manganeso"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Boro"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Cobre-Zinc"
+                fila = fila + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                x1hoja.Cells(fila, columna).Font.Size = 12
+                x1hoja.Cells(fila, columna).Formula = "Molibdeno"
+                columna = columna + 1
 
                 For Each na In lista
                     Dim na2 As New dNuevoAnalisis
                     lista2 = na2.listarpormuestra(nroficha, na.MUESTRA)
 
+                    res1 = False
+                    res2 = False
+
                     For Each na2 In lista2
-                        fechaFicha = na2.FECHAPROCESO
-                        Dim a As New dAcreditacion
-                        a.ANALISIS = na2.ANALISIS
-                        a = a.buscar
-                        If Not a Is Nothing Then
-                            Dim desde As Double = a.DESDE
-                            Dim hasta As Double = a.HASTA
-                            If Val(na2.RESULTADO2) < desde Or Val(na2.RESULTADO2) > hasta Then
-                                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                            Else
-                                acreditado2 = 1
-                            End If
-                        End If
 
-                        '%MS
-                        If sa.IDMUESTRA = 37 Then
-                            compost = True
-                            If na2.ANALISIS = 473 Or na2.ANALISIS = 479 Or na2.ANALISIS = 474 Then
-                                If IsNumeric(na2.RESULTADO) Then
-                                    If na2.RESULTADO <> -1 Then
-                                        Ms = na2.RESULTADO
-                                        MsCantidad += 1
-                                        MsPrecente = True
+                        fila = 10
+
+                        If na2.ANALISIS = 455 Or na2.ANALISIS = 142 Or na2.ANALISIS = 452 Or na2.ANALISIS = 144 Or na2.ANALISIS = 143 Or na2.ANALISIS = 195 Or na2.ANALISIS = 134 Then
+                            Module1.isAnexoPH = True
+
+                            'ID
+                            x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                            x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                            x1hoja.Cells(fila, columna).Font.Size = 12
+                            x1hoja.Cells(fila, columna).Formula = na.MUESTRA
+
+                            fila = fila + 1
+
+                            'SEMAFORO
+                            If IsNumeric(na2.RESULTADO) Then
+                                If na2.RESULTADO <> -1 Then
+
+                                    If res1 = False Then
+                                        'PH
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        'If na2.RESULTADO Mod 1 = 0 Then
+                                        '    x1hoja.Cells(fila, columna).Formula = na2.RESULTADO.ToString + ".0"
+                                        'Else
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO
+                                        'End If
+
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        res1 = True
+                                        fila = fila + 1
                                     End If
-                                ElseIf IsNumeric(na2.RESULTADO2) Then
-                                    If na2.RESULTADO2 <> -1 Then
-                                        Ms = na2.RESULTADO2
-                                        MsCantidad += 1
-                                        MsPrecente = True
+
+                                    'Tipo
+                                    If na2.RESULTADO <= 5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Muy fuertemente Ácido"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO >= 5.1 And na2.RESULTADO <= 5.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Fuertemente Ácido"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO >= 5.6 And na2.RESULTADO < 6.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Moderadamente Ácido"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO >= 6.1 And na2.RESULTADO <= 6.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Ligeramente Ácidos"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO >= 6.6 And na2.RESULTADO <= 7.3 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Suelo Neutro"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO >= 7.4 And na2.RESULTADO <= 7.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Ligeramente Alcalino"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO >= 7.9 And na2.RESULTADO <= 8.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Moderadamente Alcalino"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO >= 8.5 And na2.RESULTADO <= 9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Fuertemente Alcalino"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO >= 9.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Muy Fuertemente Alcalino"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+
                                     End If
+
+
+                                    'NITROGENO
+                                    If na2.RESULTADO >= 6 And na2.RESULTADO <= 7.7 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 5.5 And na2.RESULTADO <= 5.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 7.8 And na2.RESULTADO <= 8.3 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 5.4 Or na2.RESULTADO >= 8.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Fosforo
+                                    If na2.RESULTADO >= 6.5 And na2.RESULTADO <= 7.4 Or na2.RESULTADO >= 9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 6.1 And na2.RESULTADO < 6.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 7.5 And na2.RESULTADO <= 7.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 8.6 And na2.RESULTADO <= 8.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 8 And na2.RESULTADO >= 8.5 Or na2.RESULTADO <= 6 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'POTASIO
+                                    If na2.RESULTADO >= 5.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 5.5 And na2.RESULTADO <= 5.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 5.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'SULFATO
+                                    If na2.RESULTADO >= 5.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 5.5 And na2.RESULTADO <= 5.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 5.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Calcio
+                                    If na2.RESULTADO >= 6.7 And na2.RESULTADO <= 7.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 6.1 And na2.RESULTADO <= 6.6 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 7.6 And na2.RESULTADO <= 7.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 6 And na2.RESULTADO >= 8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'MAgnesio
+                                    If na2.RESULTADO >= 6.6 And na2.RESULTADO <= 8.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 6 And na2.RESULTADO <= 6.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 8.9 And na2.RESULTADO <= 9.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 5.9 Or na2.RESULTADO >= 9.6 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Hierro
+                                    If na2.RESULTADO <= 6.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 6.2 And na2.RESULTADO <= 8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 8.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Manganeso
+                                    If na2.RESULTADO >= 4.9 And na2.RESULTADO <= 7.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 4.6 And na2.RESULTADO <= 4.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 7.5 And na2.RESULTADO <= 8.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 4.5 Or na2.RESULTADO >= 8.6 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Boro
+                                    If na2.RESULTADO >= 4.9 And na2.RESULTADO <= 7 Or na2.RESULTADO >= 9.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 4.6 And na2.RESULTADO <= 4.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 7.1 And na2.RESULTADO <= 7.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 8.6 And na2.RESULTADO <= 9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 4.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 7.5 And na2.RESULTADO <= 8.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Cobre y Zinc
+                                    If na2.RESULTADO >= 4.9 And na2.RESULTADO <= 7 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 4.6 And na2.RESULTADO <= 4.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 7.1 And na2.RESULTADO <= 7.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO <= 4.5 Or na2.RESULTADO >= 8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Molibdeno
+                                    If na2.RESULTADO >= 8.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO >= 5.5 And na2.RESULTADO <= 8.3 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    End If
+                                    If na2.RESULTADO > 5.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+                                    columna = columna + 1
+
                                 End If
-                            End If
-                        End If
+                            ElseIf IsNumeric(na2.RESULTADO2) Then
+                                If na2.RESULTADO2 <> -1 Then
 
+                                    If res2 = False Then
+                                        'PH
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
 
-                        'Nitrogeno
-                        If sa.IDMUESTRA = 37 Then
-                            If na2.ANALISIS = 138 Or na2.ANALISIS = 374 Then
-                                If IsNumeric(na2.RESULTADO) Then
-                                    If na2.RESULTADO <> -1 Then
-                                        Nitrogeno = na2.RESULTADO
-                                        NitrogenoCantidad += 1
-                                        NitrogenoPrecente = True
+                                        'If na2.RESULTADO2 Mod 1 = 0 Then
+                                        '    x1hoja.Cells(fila, columna).Formula = na2.RESULTADO2.ToString + ".0"
+                                        'Else
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO2
+                                        'End If
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        res2 = True
+                                        fila = fila + 1
                                     End If
-                                ElseIf IsNumeric(na2.RESULTADO2) Then
-                                    If na2.RESULTADO2 <> -1 Then
-                                        Nitrogeno = na2.RESULTADO2
-                                        NitrogenoCantidad += 1
-                                        NitrogenoPrecente = True
-                                    End If
-                                End If
-                            End If
-                        End If
 
-                        'Fosforo
-                        If sa.IDMUESTRA = 37 Then
-                            If na2.ANALISIS = 226 Or na2.ANALISIS = 375 Or na2.ANALISIS = 400 Then
-                                If IsNumeric(na2.RESULTADO) Then
-                                    If na2.RESULTADO <> -1 Then
-                                        Fosforo = na2.RESULTADO
-                                        FosforoCantidad += 1
-                                        FosforoPrecente = True
-                                    End If
-                                ElseIf IsNumeric(na2.RESULTADO2) Then
-                                    If na2.RESULTADO2 <> -1 Then
-                                        Fosforo = na2.RESULTADO2
-                                        FosforoCantidad += 1
-                                        FosforoPrecente = True
-                                    End If
-                                End If
-                            End If
-                        End If
+                                    'Tipo
+                                    If na2.RESULTADO2 <= 5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Muy fuertemente Ácido"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 5.1 And na2.RESULTADO2 <= 5.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Fuertemente Ácido"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 5.6 And na2.RESULTADO2 < 6.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Moderadamente Ácido"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 6.1 And na2.RESULTADO2 <= 6.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Ligeramente Ácidos"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 6.6 And na2.RESULTADO2 <= 7.3 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Suelo Neutro"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.4 And na2.RESULTADO2 <= 7.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Ligeramente Alcalino"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.9 And na2.RESULTADO2 <= 8.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Moderadamente Alcalino"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 8.5 And na2.RESULTADO2 <= 9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Fuertemente Alcalino"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 9.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                                        x1hoja.Cells(fila, columna).Font.Size = 12
+                                        x1hoja.Cells(fila, columna).Formula = "Muy Fuertemente Alcalino"
+                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                        fila = fila + 1
 
+                                    End If
 
-                        'Potasio
-                        If sa.IDMUESTRA = 37 Then
-                            If na2.ANALISIS = 208 Or na2.ANALISIS = 376 Or na2.ANALISIS = 401 Then
-                                If IsNumeric(na2.RESULTADO) Then
-                                    If na2.RESULTADO <> -1 Then
-                                        Potasio = na2.RESULTADO
-                                        PotasioCantidad += 1
-                                        PotasioPrecente = True
+                                    'NITROGENO
+                                    If na2.RESULTADO2 >= 6 And na2.RESULTADO2 <= 7.7 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 5.5 And na2.RESULTADO2 <= 5.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.8 And na2.RESULTADO2 <= 8.3 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 5.4 Or na2.RESULTADO2 >= 8.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
                                     End If
-                                ElseIf IsNumeric(na2.RESULTADO2) Then
-                                    If na2.RESULTADO2 <> -1 Then
-                                        Potasio = na2.RESULTADO2
-                                        PotasioCantidad += 1
-                                        PotasioPrecente = True
+
+                                    'Fosforo
+                                    If na2.RESULTADO2 >= 6.5 And na2.RESULTADO2 <= 7.4 Or na2.RESULTADO2 >= 9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 2, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 6.1 And na2.RESULTADO2 < 6.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.5 And na2.RESULTADO2 <= 7.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 8.6 And na2.RESULTADO2 <= 8.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 8 And na2.RESULTADO2 >= 8.5 Or na2.RESULTADO2 <= 6 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
                                     End If
+
+                                    'POTASIO
+                                    If na2.RESULTADO2 >= 5.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 5.5 And na2.RESULTADO2 <= 5.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 5.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'SULFATO
+                                    If na2.RESULTADO2 >= 5.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 5.5 And na2.RESULTADO2 <= 5.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 5.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Calcio
+                                    If na2.RESULTADO2 >= 6.7 And na2.RESULTADO2 <= 7.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 6.1 And na2.RESULTADO2 <= 6.6 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.6 And na2.RESULTADO2 <= 7.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 6 Or na2.RESULTADO2 >= 8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'MAgnesio
+                                    If na2.RESULTADO2 >= 6.6 And na2.RESULTADO2 <= 8.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 6 And na2.RESULTADO2 <= 6.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 8.9 And na2.RESULTADO2 <= 9.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 5.9 Or na2.RESULTADO2 >= 9.6 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Hierro
+                                    If na2.RESULTADO2 <= 6.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 6.2 And na2.RESULTADO2 <= 8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 8.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Manganeso
+                                    If na2.RESULTADO2 >= 4.9 And na2.RESULTADO2 <= 7.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 4.6 And na2.RESULTADO2 <= 4.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.5 And na2.RESULTADO2 <= 8.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 4.5 Or na2.RESULTADO2 >= 8.6 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Boro
+                                    If na2.RESULTADO2 >= 4.9 And na2.RESULTADO2 <= 7 Or na2.RESULTADO2 >= 9.1 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 4.6 And na2.RESULTADO2 <= 4.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.1 And na2.RESULTADO2 <= 7.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 8.6 And na2.RESULTADO2 <= 9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 4.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.5 And na2.RESULTADO2 <= 8.5 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Cobre y Zinc
+                                    If na2.RESULTADO2 >= 4.9 And na2.RESULTADO2 <= 7 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 4.6 And na2.RESULTADO2 <= 4.8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 7.1 And na2.RESULTADO2 <= 7.9 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 <= 4.5 Or na2.RESULTADO2 >= 8 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+
+                                    'Molibdeno
+                                    If na2.RESULTADO2 >= 8.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 >= 5.5 And na2.RESULTADO2 <= 8.3 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+                                        fila = fila + 1
+                                    ElseIf na2.RESULTADO2 < 5.4 Then
+                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+                                        fila = fila + 1
+                                    End If
+                                    columna = columna + 1
                                 End If
                             End If
                         End If
 
                     Next
-
-                    If titulo = False Then
-                        'Poner Titulos
-                        x1hoja.Shapes.AddPicture("c:\Debug\logo.jpg", _
-                        Microsoft.Office.Core.MsoTriState.msoFalse, _
-                        Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 160, 70)
-                        columna = 1
-                        fila = fila + 6
-
-                        x1hoja.Range("A" & fila, "J" & fila).Merge()
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).Formula = "ANEXO"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        columna = 1
-                        fila = fila + 1
-
-                        x1hoja.Range("A" & fila, "J" & fila).Merge()
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).Formula = "Conversión del Contenido de Nutrientes del fertilizante Orgánico, " & " - Ficha " & nroficha & ""
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        columna = 2
-                        fila = fila + 1
-                        fechaFicha = Nothing
-
-                        titulo = True
-                    End If
-
-                    '//Comienzo de Contenido de Nutrientes
-
-                    'Ms = Ms / MsCantidad
-                    'Potasio = Potasio / PotasioCantidad
-                    'Nitrogeno = Nitrogeno / NitrogenoCantidad
-                    'Fosforo = Fosforo / FosforoCantidad
-
-                    If MsPrecente = True Then
-                        fila = fila + 1
-                        x1hoja.Range("A" & fila, "C" & fila).Merge()
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Compost"
-
-                        fila = fila + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Kg Aplicados"
-                        'x1hoja.Cells(fila, columna).Style.WrapText = True
-                        'x1hoja.Cells(fila, columna).EntireColumn.autofit()
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "MS (0-1)"
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Kg MS Aplicados"
-                        x1hoja.Cells(fila, columna).Style.WrapText = True
-                        fila = fila + 1
-                        columna = columna - 2
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = KgApli
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        Dim MScalculo As Double = Ms / 100
-                        MScalculo = Format(MScalculo, "0.000")
-                        x1hoja.Cells(fila, columna).Formula = MScalculo
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        Dim kgMasaApli As Integer = MScalculo * KgApli
-                        x1hoja.Cells(fila, columna).Formula = kgMasaApli
-                        columna = columna + 1
-                        fila = fila - 2
-
-                        'x1hoja.Range("D" & fila, "F" & fila).Merge()
-                        'x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        'x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        'x1hoja.Cells(fila, columna).WrapText = True
-                        'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        'x1hoja.Cells(fila, columna).Font.Size = 12
-                        'x1hoja.Cells(fila, columna).Formula = "Contenido Nutrientes"
-                        'x1hoja.Cells(fila, columna).Style.WrapText = True
-                        'x1hoja.Cells(fila, columna).EntireColumn.autofit()
-
-                        fila = fila + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Nitrògeno %"
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Fòsforo (mg / kg)"
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Potasio (mg / kg)"
-                        fila = fila + 1
-                        columna = columna - 2
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = Nitrogeno
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = Fosforo
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = Potasio
-
-                        columna = 2
-                        fila = fila + 2
-
-                        x1hoja.Range("B" & fila, "J" & fila).Merge()
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).Formula = "Cada 10 Toneladas de fertilizante orgánico aplicado, equivale a:"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        columna = 1
-                        fila = fila + 2
-
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "P2O5 Aplicados(Kg / ha)"
-
-                        columna = columna + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        Dim p205Aplicados As Double = ((((Fosforo / 1000) * 2.29) * kgMasaApli) / 1000)
-                        p205Aplicados = Format(p205Aplicados, "0.00")
-                        x1hoja.Cells(fila, columna).Formula = p205Aplicados
-
-                        columna = columna - 1
-                        fila = fila + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Equiv.Fert 7 - 40 - 0(Kg / ha)"
-
-                        columna = columna + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        Dim EquicFert7 As Double = (p205Aplicados * 2.5)
-                        EquicFert7 = Format(EquicFert7, "0.00")
-                        x1hoja.Cells(fila, columna).Formula = EquicFert7
-
-                        columna = columna + 2
-                        fila = fila - 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "K2O Aplicados (Kg/ha)"
-
-                        columna = columna + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        Dim K20Apli As Double = ((((Potasio / 1000) * 1.2046) * kgMasaApli) / 1000)
-                        K20Apli = Format(K20Apli, "0.00")
-                        x1hoja.Cells(fila, columna).Formula = K20Apli
-
-                        columna = columna - 1
-                        fila = fila + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Equiv. Fert KCl (Kg/ha)"
-
-                        columna = columna + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        Dim EquivFertKC1 As Double = (100 / 60) * K20Apli
-                        EquivFertKC1 = Format(EquivFertKC1, "0.00")
-                        x1hoja.Cells(fila, columna).Formula = EquivFertKC1
-
-                        columna = columna + 2
-                        fila = fila - 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "N Total Aplic."
-
-                        columna = columna + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        Dim NTotalAplic As Double = (kgMasaApli * (Nitrogeno / 100))
-                        NTotalAplic = Format(NTotalAplic, "0.00")
-                        x1hoja.Cells(fila, columna).Formula = NTotalAplic
-
-                        columna = columna - 1
-                        fila = fila + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        x1hoja.Cells(fila, columna).Formula = "Equiv. Fert Urea (Kg/ha)"
-
-                        columna = columna + 1
-                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).WrapText = True
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                        x1hoja.Cells(fila, columna).Font.Size = 12
-                        Dim EquivFertUrea As Double = (100 / 46) * NTotalAplic
-                        EquivFertUrea = Format(EquivFertUrea, "0.00")
-                        x1hoja.Cells(fila, columna).Formula = EquivFertUrea
-
-                        fila = fila + 2
-                        columna = 1
-
-                    End If
-                    columna = 2
-                    fila = fila + 1
-                    Nitrogeno = 0
-                    Fosforo = 0
-                    Ms = 0
-                    Potasio = 0
-
-                    'MsPrecente = False
-                    'PotasioPrecente = False
-                    'NitrogenoPrecente = False
-                    'FosforoPrecente = False
                 Next
-
-
-                x1hoja.Range("A" & fila, "E" & fila).Merge()
-                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                x1hoja.Cells(fila, columna).WrapText = True
-                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                x1hoja.Cells(fila, columna).Font.Size = 12
-                x1hoja.Cells(fila, columna).Formula = "Por consultas, comunicarse con el Laboratorio Colaveco"
-                columna = 1
-                fila = fila + 1
-
-                x1hoja.Range("A" & fila, "E" & fila).Merge()
-                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                x1hoja.Cells(fila, columna).WrapText = True
-                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                x1hoja.Cells(fila, columna).Font.Size = 12
-                x1hoja.Cells(fila, columna).Formula = "www.colaveco.com.uy"
-
-                '*** IMPORTE ********************************************************
-                Dim f As New dFacturacion
-                Dim listast As New ArrayList
-                listast = f.listarxficha(nroficha)
-                Dim total As Double = 0
-                Dim lp2 As New dListaPrecios
-                lp2.ID = 86
-                lp2 = lp2.buscar
-                If Not lp2 Is Nothing Then
-                    total = total + lp2.PRECIO1
-                End If
-                For Each f In listast
-                    total = total + f.SUBTOTAL
-                Next
-                f = Nothing
-                lp2 = Nothing
-                fila = fila - 2
             End If
         End If
 
-        x1hoja.Cells().Range("A11:H11").Columns.AutoFit()
 
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        '' Disponibilidad de Nutrientes
+
+        fila = 27
+        columna = 1
+
+        x1hoja.Rows("27:27").RowHeight = 30
+        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Range("A" & fila, "C" & fila).Merge()
+        x1hoja.Cells(fila, columna).WrapText = True
+        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, columna).Font.Size = 12
+        x1hoja.Cells(fila, columna).Font.Bold = True
+        x1hoja.Cells(fila, columna).Font.Underline = True
+        x1hoja.Cells(fila, columna).Formula = "Disponibilidad de Nutrientes"
+        fila = fila + 2
+        columna = 2
+
+        x1hoja.Cells(fila, columna).WrapText = True
+        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+        x1hoja.Cells(fila, columna).Font.Size = 12
+        x1hoja.Cells(fila, columna).Formula = "Baja"
+        fila = fila + 1
+
+        x1hoja.Cells(fila, columna).WrapText = True
+        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+        x1hoja.Cells(fila, columna).Font.Size = 12
+        x1hoja.Cells(fila, columna).Formula = "Media"
+        fila = fila + 1
+
+        x1hoja.Cells(fila, columna).WrapText = True
+        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+        x1hoja.Cells(fila, columna).Font.Size = 12
+        x1hoja.Cells(fila, columna).Formula = "Alta"
+        fila = fila + 1
+
+        fila = fila - 3
+        columna = columna + 1
+
+        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) 'Rojo
+        fila = fila + 1
+
+        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 233, 57) 'Amarillo
+        fila = fila + 1
+
+        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 143, 57) 'Verde
+        fila = fila + 2
+
+        '***********************************************************
+
+
+        columna = 1
+
+        x1hoja.Range("A" & fila, "L" & fila).Merge()
+        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Bold = True
+        x1hoja.Cells(fila, columna).Font.Italic = True
+        x1hoja.Cells(fila, columna).Font.Name = "Roboto"
+        x1hoja.Cells(fila, columna).Formula = "*  Fuente: Adaptado de: Relationship between the availability of plant nutrients and soil pH (National Soil Survey Manual, USDA, NRCS)"
+
+        fila = fila + 1
+
+        x1hoja.Range("A" & fila, "L" & fila).Merge()
+        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Bold = True
+        x1hoja.Cells(fila, columna).Font.Italic = True
+        x1hoja.Cells(fila, columna).Font.Name = "Roboto"
+        x1hoja.Cells(fila, columna).Formula = "** Fuente: Adaptado de: Soil Quality Indicators: pH. USDA enero, 1998"
+
         columna = 1
         fila = fila + 2
         x1libro.Worksheets(1).cells(fila, columna).select()
         x1libro.ActiveSheet.pictures.Insert("c:\Debug\AVISOS_informes_SUELOS Y PASTURAS.png").select()
 
-        'x1hoja.Shapes.AddPicture("c:\Debug\AVISOS_informes_EFLUENTES.png", _
-        'Microsoft.Office.Core.MsoTriState.msoFalse, _
-        'Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 160, 70)
+        x1hoja.Columns("A:Z").AutoFit()
+
+        'Paginacion de hojas
+        Dim ix As Integer
+
+        For ix = 1 To x1libro.Worksheets.Count
+            x1libro.Worksheets(ix).Range("A" & fila + 6) = "Pagina: " & ix
+        Next
 
         '***********************************************************
 
 
         'PROTEGE LA HOJA DE EXCEL
-        If MsPrecente And compost Then
+        If Module1.isAnexoPH Then
             x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
-           Contents:=True, Scenarios:=True)
+            Contents:=True, Scenarios:=True)
             'GUARDA EL ARCHIVO DE EXCEL
-            x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\anexo" & nroficha & ".xls")
+            x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\anexoPH" & nroficha & ".xls")
             x1app.Visible = True
-            Module1.isAnexo = True
         End If
-
 
         x1app = Nothing
         x1libro = Nothing
         x1hoja = Nothing
-        MsPrecente = False
-        PotasioPrecente = False
-        NitrogenoPrecente = False
-        FosforoPrecente = False
     End Sub
     Private Sub informe_suelos()
         Dim ficha = TextFicha.Text.Trim
@@ -3994,11 +4395,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        ''x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        ''x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
 
         'ARCHIVO ANEXO *********************************************************************************
         Dim Arch2 As String
@@ -4885,8 +5286,11 @@ Public Class FormCrearInformes
                     fila = fila + 1
                 End If
                 '*** PONER FIRMA ********************************************************
+
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
@@ -4930,7 +5334,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        ''x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -4945,6 +5349,25 @@ Public Class FormCrearInformes
         x1libro = Nothing
         x1hoja = Nothing
     End Sub
+
+    Sub InsertImageToDeclaredVariable(ByVal x1libro As Microsoft.Office.Interop.Excel.Workbook, ByVal rangeFirma As String, ByVal imagePath As String)
+
+        Dim myImage As Shape
+        Dim ws As Microsoft.Office.Interop.Excel.Worksheet
+
+        ws = x1libro.ActiveSheet
+        myImage = ws.Shapes.AddPicture( _
+            Filename:=imagePath, _
+            LinkToFile:=Microsoft.Office.Core.MsoTriState.msoFalse, _
+            SaveWithDocument:=Microsoft.Office.Core.MsoTriState.msoCTrue, _
+            Left:=0, _
+            Top:=0, _
+            Width:=-1, _
+            Height:=-1)
+        myImage.Left = x1libro.ActiveSheet.Range(rangeFirma).Left
+        myImage.Top = x1libro.ActiveSheet.Range(rangeFirma).Top
+    End Sub
+
     Private Sub informe_semen()
         Dim x1app As Microsoft.Office.Interop.Excel.Application
         Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
@@ -4952,11 +5375,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -5374,7 +5797,9 @@ Public Class FormCrearInformes
                 'fila = fila - 2
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 columna = columna + 6
                 x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
@@ -5422,7 +5847,7 @@ Public Class FormCrearInformes
         'End If
         'pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -5440,11 +5865,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -5842,7 +6267,9 @@ Public Class FormCrearInformes
 
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
 
                 columna = 1
@@ -5923,7 +6350,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -5941,11 +6368,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -6345,7 +6772,9 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
@@ -6389,7 +6818,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -6407,11 +6836,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -6845,7 +7274,9 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
@@ -6898,7 +7329,7 @@ Public Class FormCrearInformes
 
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -6916,11 +7347,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -6938,7 +7369,8 @@ Public Class FormCrearInformes
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         'Dim nombre_tecnico2 As String = "PhD. Analía Pérez Ruchel"
         'Dim nombre_tecnico2 As String = "MSc Sebastián Brambillasca"
-        Dim texto_facultad As String = "Dpto. de Nutrición, Fac. Veterinaria, UdelaR"
+        'Dim texto_facultad As String = "Dpto. de Nutrición, Fac. Veterinaria, UdelaR"
+        Dim texto_facultad As String = ""
         '*****************************
         nroficha = TextFicha.Text.Trim
         sa.ID = nroficha
@@ -7536,7 +7968,9 @@ Public Class FormCrearInformes
                 '*** PONER FIRMA ********************************************************
                 fila = fila - 1
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
@@ -7580,7 +8014,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -7598,11 +8032,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlPortrait)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlPortrait)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -8502,7 +8936,9 @@ Public Class FormCrearInformes
         '************************************************************************************************************
         '*** PONER FIRMA ********************************************************
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 4
         columna = 1
@@ -8516,7 +8952,7 @@ Public Class FormCrearInformes
 
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
+        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 10/01/2024"
         x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
             & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
         x1hoja.Range("A" & fila, "G" & fila).WrapText = True
@@ -8554,7 +8990,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -8572,11 +9008,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlPortrait)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlPortrait)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -9393,7 +9829,9 @@ Public Class FormCrearInformes
             '************************************************************************************************************
             '*** PONER FIRMA ********************************************************
             x1libro.Worksheets(1).cells(fila, columna).select()
-            x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+            Dim rangeFirma As String = "A" + fila.ToString
+            x1libro.ActiveSheet.Range(rangeFirma).select()
+            InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
             x1libro.Worksheets(1).cells(2, 1).select()
             fila = fila + 4
             columna = 1
@@ -9407,7 +9845,7 @@ Public Class FormCrearInformes
 
             '*** PIE DE PAGINA ******************************************************
             x1hoja.Cells(fila, columna).rowheight = 25
-            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 31/08/2022"
+            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 10/01/2024"
             x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
                 & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
             x1hoja.Range("A" & fila, "G" & fila).WrapText = True
@@ -9445,7 +9883,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -9466,10 +9904,10 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Open(Arch), Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
         'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim c As New dControl
         Dim sa As New dSolicitudAnalisis
@@ -9651,9 +10089,9 @@ Public Class FormCrearInformes
         x1hoja.Cells(fila, columna).Font.Size = 7
         columna = columna + 2
         Dim paratecnico As String = ""
-        If idparatecnico1 = 1 Then
-            paratecnico = paratecnico + "Diego Arenas - "
-        End If
+        'If idparatecnico1 = 1 Then
+        '    paratecnico = paratecnico + "Diego Arenas - "
+        'End If
         If idparatecnico2 = 1 Then
             paratecnico = paratecnico + "Lorena Nidegger - "
         End If
@@ -10098,7 +10536,9 @@ Public Class FormCrearInformes
         fila = fila + 2
         columna = 1
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         columna = columna + 6
         x1hoja.Cells(fila, columna).formula = "Interpretación de recuento celular"
@@ -10274,7 +10714,7 @@ Public Class FormCrearInformes
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
             Contents:=True, Scenarios:=True)
         'GUARDA EL ARCHIVO DE EXCEL
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'x1hoja.SaveAs("\\ROBOT\PREINFORMES\CONTROL\" & idsol & ".xls")
         x1app.Visible = True
         x1app = Nothing
@@ -10288,11 +10728,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        ''x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        ''x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -10309,6 +10749,7 @@ Public Class FormCrearInformes
         Dim nombre_operador As String = ""
         Dim nombre_tecnico As String = "xxx xxx xxx xxx"
         Dim todos_acreditados As Integer = 1
+        Dim solidosTotales As Boolean = False
         '*****************************
         nroficha = TextFicha.Text.Trim
         sa.ID = nroficha
@@ -10642,6 +11083,9 @@ Public Class FormCrearInformes
                     a.ANALISIS = na2.ANALISIS
                     a = a.buscar
                     columna = columna - ret
+                    If na2.ANALISIS = 29 Then
+                        solidosTotales = True
+                    End If
                 Next
                 columna = 1
                 fila = fila + 1
@@ -10688,9 +11132,15 @@ Public Class FormCrearInformes
             fila = fila + 1
         End If
         '*** OBSERVACIONES **************************************************
-        If sa.OBSERVACIONES <> "" Then
+        If sa.OBSERVACIONES <> "" Or solidosTotales Then
             x1hoja.Cells(fila, columna).rowheight = 25
-            x1hoja.Cells(fila, columna).Formula = "Observaciones: " & sa.OBSERVACIONES
+
+            If solidosTotales Then
+                x1hoja.Cells(fila, columna).Formula = "Observaciones: " & sa.OBSERVACIONES + ", % Humedad = 100 - Sólidos Totales."
+            Else
+                x1hoja.Cells(fila, columna).Formula = "Observaciones: " & sa.OBSERVACIONES
+            End If
+
             x1hoja.Range("A" & fila, "M" & fila).WrapText = True
             x1hoja.Range("A" & fila, "M" & fila).Merge()
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -10827,7 +11277,9 @@ Public Class FormCrearInformes
         End If
         '*** PONER FIRMA ********************************************************
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
         columna = 1
@@ -10871,7 +11323,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        ''x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -10889,11 +11341,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -11423,7 +11875,9 @@ Public Class FormCrearInformes
         End If
         '*** PONER FIRMA ********************************************************
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
         columna = 1
@@ -11467,7 +11921,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -11485,11 +11939,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -11979,7 +12433,9 @@ Public Class FormCrearInformes
         End If
         '*** PONER FIRMA ********************************************************
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
         columna = 1
@@ -12021,7 +12477,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -12105,11 +12561,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -12593,7 +13049,9 @@ Public Class FormCrearInformes
         End If
         '*** PONER FIRMA ********************************************************
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
         columna = 1
@@ -12635,7 +13093,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -12653,11 +13111,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -13170,7 +13628,9 @@ Public Class FormCrearInformes
         End If
         '*** PONER FIRMA Y REFERENCIAS********************************************************
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         columna = columna + 2
         fila = fila + 1
@@ -13237,7 +13697,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -13256,11 +13716,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -13657,7 +14117,9 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
@@ -13737,7 +14199,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -13755,11 +14217,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -14229,7 +14691,9 @@ Public Class FormCrearInformes
         End If
         '*** PONER FIRMA ********************************************************
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
         columna = 1
@@ -14271,7 +14735,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -14289,11 +14753,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -14820,7 +15284,9 @@ Public Class FormCrearInformes
         '************************************************************************************
         '*** PONER FIRMA ********************************************************
         x1libro.Worksheets(1).cells(fila, columna).select()
-        x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+        Dim rangeFirma As String = "A" + fila.ToString
+        x1libro.ActiveSheet.Range(rangeFirma).select()
+        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
         columna = 1
@@ -14871,7 +15337,7 @@ Public Class FormCrearInformes
 
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -14890,11 +15356,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -15446,7 +15912,9 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
@@ -15490,7 +15958,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -15508,11 +15976,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -16189,7 +16657,9 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
@@ -16233,7 +16703,7 @@ Public Class FormCrearInformes
         End If
         pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)
@@ -16251,11 +16721,11 @@ Public Class FormCrearInformes
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
-        x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
+        'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg") = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
         Dim sa As New dSolicitudAnalisis
         Dim cli As New dCliente
         Dim na As New dNuevoAnalisis
@@ -16931,7 +17401,9 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PONER FIRMA ********************************************************
                 x1libro.Worksheets(1).cells(fila, columna).select()
-                x1libro.ActiveSheet.pictures.Insert("c:\Debug\cecilia.jpg").select()
+                Dim rangeFirma As String = "A" + fila.ToString
+                x1libro.ActiveSheet.Range(rangeFirma).select()
+                InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
@@ -16975,7 +17447,7 @@ Public Class FormCrearInformes
         'End If
         'pi = Nothing
         '***********************************************************
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'PROTEGE LA HOJA DE EXCEL
         x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
         Contents:=True, Scenarios:=True)

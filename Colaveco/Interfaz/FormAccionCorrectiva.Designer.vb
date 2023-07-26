@@ -48,21 +48,23 @@ Partial Class FormAccionCorrectiva
         Me.Label10 = New System.Windows.Forms.Label()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Causa = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Accion = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ButtonNueva = New System.Windows.Forms.Button()
         Me.ButtonGuardar = New System.Windows.Forms.Button()
         Me.ButtonEliminar = New System.Windows.Forms.Button()
         Me.btnExportExl = New System.Windows.Forms.Button()
+        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Numero = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Causa = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Accion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.FechaEvaluacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Responsable = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TextId
         '
         Me.TextId.Location = New System.Drawing.Point(145, 15)
-        Me.TextId.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextId.Margin = New System.Windows.Forms.Padding(4)
         Me.TextId.Name = "TextId"
         Me.TextId.ReadOnly = True
         Me.TextId.Size = New System.Drawing.Size(99, 22)
@@ -71,7 +73,7 @@ Partial Class FormAccionCorrectiva
         'TextNumero
         '
         Me.TextNumero.Location = New System.Drawing.Point(145, 47)
-        Me.TextNumero.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextNumero.Margin = New System.Windows.Forms.Padding(4)
         Me.TextNumero.Name = "TextNumero"
         Me.TextNumero.ReadOnly = True
         Me.TextNumero.Size = New System.Drawing.Size(132, 22)
@@ -80,7 +82,7 @@ Partial Class FormAccionCorrectiva
         'TextCausa
         '
         Me.TextCausa.Location = New System.Drawing.Point(145, 79)
-        Me.TextCausa.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextCausa.Margin = New System.Windows.Forms.Padding(4)
         Me.TextCausa.Multiline = True
         Me.TextCausa.Name = "TextCausa"
         Me.TextCausa.Size = New System.Drawing.Size(431, 83)
@@ -89,7 +91,7 @@ Partial Class FormAccionCorrectiva
         'TextAccion
         '
         Me.TextAccion.Location = New System.Drawing.Point(145, 170)
-        Me.TextAccion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextAccion.Margin = New System.Windows.Forms.Padding(4)
         Me.TextAccion.Multiline = True
         Me.TextAccion.Name = "TextAccion"
         Me.TextAccion.Size = New System.Drawing.Size(431, 83)
@@ -100,7 +102,7 @@ Partial Class FormAccionCorrectiva
         Me.ComboPlan.FormattingEnabled = True
         Me.ComboPlan.Items.AddRange(New Object() {"Si", "No"})
         Me.ComboPlan.Location = New System.Drawing.Point(145, 261)
-        Me.ComboPlan.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboPlan.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboPlan.Name = "ComboPlan"
         Me.ComboPlan.Size = New System.Drawing.Size(160, 24)
         Me.ComboPlan.TabIndex = 4
@@ -108,7 +110,7 @@ Partial Class FormAccionCorrectiva
         'ButtonPlan
         '
         Me.ButtonPlan.Location = New System.Drawing.Point(315, 261)
-        Me.ButtonPlan.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonPlan.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonPlan.Name = "ButtonPlan"
         Me.ButtonPlan.Size = New System.Drawing.Size(141, 26)
         Me.ButtonPlan.TabIndex = 5
@@ -119,7 +121,7 @@ Partial Class FormAccionCorrectiva
         '
         Me.DatePlazo.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DatePlazo.Location = New System.Drawing.Point(145, 294)
-        Me.DatePlazo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DatePlazo.Margin = New System.Windows.Forms.Padding(4)
         Me.DatePlazo.Name = "DatePlazo"
         Me.DatePlazo.Size = New System.Drawing.Size(132, 22)
         Me.DatePlazo.TabIndex = 6
@@ -128,7 +130,7 @@ Partial Class FormAccionCorrectiva
         '
         Me.ComboResponsable.FormattingEnabled = True
         Me.ComboResponsable.Location = New System.Drawing.Point(145, 326)
-        Me.ComboResponsable.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboResponsable.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboResponsable.Name = "ComboResponsable"
         Me.ComboResponsable.Size = New System.Drawing.Size(265, 24)
         Me.ComboResponsable.TabIndex = 7
@@ -136,7 +138,7 @@ Partial Class FormAccionCorrectiva
         'TextCriterios
         '
         Me.TextCriterios.Location = New System.Drawing.Point(145, 359)
-        Me.TextCriterios.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextCriterios.Margin = New System.Windows.Forms.Padding(4)
         Me.TextCriterios.Multiline = True
         Me.TextCriterios.Name = "TextCriterios"
         Me.TextCriterios.Size = New System.Drawing.Size(431, 83)
@@ -147,7 +149,7 @@ Partial Class FormAccionCorrectiva
         Me.ComboEficaz.FormattingEnabled = True
         Me.ComboEficaz.Items.AddRange(New Object() {"Si", "No", "En proceso"})
         Me.ComboEficaz.Location = New System.Drawing.Point(145, 450)
-        Me.ComboEficaz.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboEficaz.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboEficaz.Name = "ComboEficaz"
         Me.ComboEficaz.Size = New System.Drawing.Size(160, 24)
         Me.ComboEficaz.TabIndex = 9
@@ -156,7 +158,7 @@ Partial Class FormAccionCorrectiva
         '
         Me.DateEvaluacion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateEvaluacion.Location = New System.Drawing.Point(145, 484)
-        Me.DateEvaluacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DateEvaluacion.Margin = New System.Windows.Forms.Padding(4)
         Me.DateEvaluacion.Name = "DateEvaluacion"
         Me.DateEvaluacion.Size = New System.Drawing.Size(132, 22)
         Me.DateEvaluacion.TabIndex = 10
@@ -166,7 +168,7 @@ Partial Class FormAccionCorrectiva
         Me.ComboEstado.FormattingEnabled = True
         Me.ComboEstado.Items.AddRange(New Object() {"Abierta", "Cerrada"})
         Me.ComboEstado.Location = New System.Drawing.Point(145, 516)
-        Me.ComboEstado.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ComboEstado.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboEstado.Name = "ComboEstado"
         Me.ComboEstado.Size = New System.Drawing.Size(160, 24)
         Me.ComboEstado.TabIndex = 11
@@ -284,13 +286,53 @@ Partial Class FormAccionCorrectiva
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Numero, Me.Causa, Me.Accion})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Numero, Me.Causa, Me.Accion, Me.FechaEvaluacion, Me.Responsable})
         Me.DataGridView1.Location = New System.Drawing.Point(604, 15)
-        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(635, 527)
+        Me.DataGridView1.Size = New System.Drawing.Size(803, 527)
         Me.DataGridView1.TabIndex = 23
+        '
+        'ButtonNueva
+        '
+        Me.ButtonNueva.Location = New System.Drawing.Point(145, 570)
+        Me.ButtonNueva.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonNueva.Name = "ButtonNueva"
+        Me.ButtonNueva.Size = New System.Drawing.Size(100, 28)
+        Me.ButtonNueva.TabIndex = 24
+        Me.ButtonNueva.Text = "Nueva"
+        Me.ButtonNueva.UseVisualStyleBackColor = True
+        '
+        'ButtonGuardar
+        '
+        Me.ButtonGuardar.Location = New System.Drawing.Point(253, 570)
+        Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonGuardar.Name = "ButtonGuardar"
+        Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
+        Me.ButtonGuardar.TabIndex = 25
+        Me.ButtonGuardar.Text = "Guardar"
+        Me.ButtonGuardar.UseVisualStyleBackColor = True
+        '
+        'ButtonEliminar
+        '
+        Me.ButtonEliminar.Location = New System.Drawing.Point(361, 570)
+        Me.ButtonEliminar.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonEliminar.Name = "ButtonEliminar"
+        Me.ButtonEliminar.Size = New System.Drawing.Size(100, 28)
+        Me.ButtonEliminar.TabIndex = 26
+        Me.ButtonEliminar.Text = "Eliminar"
+        Me.ButtonEliminar.UseVisualStyleBackColor = True
+        '
+        'btnExportExl
+        '
+        Me.btnExportExl.Location = New System.Drawing.Point(1068, 570)
+        Me.btnExportExl.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnExportExl.Name = "btnExportExl"
+        Me.btnExportExl.Size = New System.Drawing.Size(171, 28)
+        Me.btnExportExl.TabIndex = 27
+        Me.btnExportExl.Text = "Exportar Excel"
+        Me.btnExportExl.UseVisualStyleBackColor = True
         '
         'Id
         '
@@ -320,51 +362,23 @@ Partial Class FormAccionCorrectiva
         Me.Accion.Name = "Accion"
         Me.Accion.Width = 200
         '
-        'ButtonNueva
+        'FechaEvaluacion
         '
-        Me.ButtonNueva.Location = New System.Drawing.Point(145, 570)
-        Me.ButtonNueva.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.ButtonNueva.Name = "ButtonNueva"
-        Me.ButtonNueva.Size = New System.Drawing.Size(100, 28)
-        Me.ButtonNueva.TabIndex = 24
-        Me.ButtonNueva.Text = "Nueva"
-        Me.ButtonNueva.UseVisualStyleBackColor = True
+        Me.FechaEvaluacion.HeaderText = "FechaEvaluacion"
+        Me.FechaEvaluacion.Name = "FechaEvaluacion"
+        Me.FechaEvaluacion.ReadOnly = True
         '
-        'ButtonGuardar
+        'Responsable
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(253, 570)
-        Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
-        Me.ButtonGuardar.TabIndex = 25
-        Me.ButtonGuardar.Text = "Guardar"
-        Me.ButtonGuardar.UseVisualStyleBackColor = True
-        '
-        'ButtonEliminar
-        '
-        Me.ButtonEliminar.Location = New System.Drawing.Point(361, 570)
-        Me.ButtonEliminar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.ButtonEliminar.Name = "ButtonEliminar"
-        Me.ButtonEliminar.Size = New System.Drawing.Size(100, 28)
-        Me.ButtonEliminar.TabIndex = 26
-        Me.ButtonEliminar.Text = "Eliminar"
-        Me.ButtonEliminar.UseVisualStyleBackColor = True
-        '
-        'btnExportExl
-        '
-        Me.btnExportExl.Location = New System.Drawing.Point(1068, 570)
-        Me.btnExportExl.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnExportExl.Name = "btnExportExl"
-        Me.btnExportExl.Size = New System.Drawing.Size(171, 28)
-        Me.btnExportExl.TabIndex = 27
-        Me.btnExportExl.Text = "Exportar Excel"
-        Me.btnExportExl.UseVisualStyleBackColor = True
+        Me.Responsable.HeaderText = "Responsable"
+        Me.Responsable.Name = "Responsable"
+        Me.Responsable.ReadOnly = True
         '
         'FormAccionCorrectiva
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1256, 614)
+        Me.ClientSize = New System.Drawing.Size(1429, 614)
         Me.Controls.Add(Me.btnExportExl)
         Me.Controls.Add(Me.ButtonEliminar)
         Me.Controls.Add(Me.ButtonGuardar)
@@ -393,7 +407,7 @@ Partial Class FormAccionCorrectiva
         Me.Controls.Add(Me.TextCausa)
         Me.Controls.Add(Me.TextNumero)
         Me.Controls.Add(Me.TextId)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormAccionCorrectiva"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Acción correctiva RG.CC57 V07 del 15/07/2019"
@@ -429,9 +443,11 @@ Partial Class FormAccionCorrectiva
     Friend WithEvents ButtonNueva As System.Windows.Forms.Button
     Friend WithEvents ButtonGuardar As System.Windows.Forms.Button
     Friend WithEvents ButtonEliminar As System.Windows.Forms.Button
+    Friend WithEvents btnExportExl As System.Windows.Forms.Button
     Friend WithEvents Id As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Numero As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Causa As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Accion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents btnExportExl As System.Windows.Forms.Button
+    Friend WithEvents FechaEvaluacion As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Responsable As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

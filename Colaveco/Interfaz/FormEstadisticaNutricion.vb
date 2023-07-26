@@ -1471,10 +1471,10 @@ Public Class FormEstadisticaNutricion
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 10
@@ -1884,7 +1884,7 @@ Public Class FormEstadisticaNutricion
         'Dim medgeomzeara As Double = 0
         'Dim medgeomfibraefectiva As Double = 0
         'Dim medgeomclostridios As Double = 0
-       
+
         'Dim idclase As dNutricionClase = CType(ComboClase.SelectedItem, dNutricionClase)
         'Dim idalimento As dNutricionAlimento = CType(ComboAlimento.SelectedItem, dNutricionAlimento)
 
@@ -3711,7 +3711,7 @@ Public Class FormEstadisticaNutricion
 
 
 
-      
+
 
 
         x1app.Visible = True
@@ -3740,7 +3740,7 @@ Public Class FormEstadisticaNutricion
         Else
             ComboClase.Enabled = False
         End If
-        
+
     End Sub
     Private Sub habilitar_alimento()
         If CheckAlimento.Checked = True Then
@@ -3748,7 +3748,7 @@ Public Class FormEstadisticaNutricion
         Else
             ComboAlimento.Enabled = False
         End If
-        
+
     End Sub
 
     Private Sub ButtonListar2_Click(sender As Object, e As EventArgs) Handles ButtonListar2.Click
@@ -5130,7 +5130,7 @@ Public Class FormEstadisticaNutricion
     End Sub
 
     Private Sub ComboAlimento2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboAlimento2.SelectedIndexChanged
-        
+
     End Sub
 
     Private Sub CheckClaseAlimento2_CheckedChanged(sender As Object, e As EventArgs)
@@ -5151,10 +5151,10 @@ Public Class FormEstadisticaNutricion
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 10
@@ -5177,7 +5177,7 @@ Public Class FormEstadisticaNutricion
 
         Dim desde As Date = DateDesde2.Value.ToString("yyyy-MM-dd")
         Dim hasta As Date = DateHasta2.Value.ToString("yyyy-MM-dd")
-        
+
         Dim fecdesde As String
         Dim fechasta As String
         fecdesde = Format(desde, "yyyy-MM-dd")

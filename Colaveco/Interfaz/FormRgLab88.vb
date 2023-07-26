@@ -396,6 +396,7 @@ Public Class FormRgLab88
             Dim _ficheros() As String
             '_ficheros = Directory.GetFiles("\\DELTA\Samples")
         _ficheros = Directory.GetFiles("\\DELTA2\Export\CSV")
+
             If Not (_ficheros.Length > 0) Then
             Else
                 For Each file As FileInfo In folder.GetFiles("*.csv")
@@ -606,10 +607,10 @@ Public Class FormRgLab88
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         Dim rg88 As New dRgLab88
 

@@ -1039,10 +1039,10 @@ Public Class FormEstadisticaSuelos
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 10
@@ -4277,10 +4277,10 @@ Public Class FormEstadisticaSuelos
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
 
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
 
         x1hoja.Cells(1, 1).columnwidth = 10
         x1hoja.Cells(1, 2).columnwidth = 10
@@ -4828,7 +4828,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                    
+
                     'Sulfatos
                     If n2.ANALISIS = 137 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -4936,7 +4936,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                   
+
                     'Materia Organico
                     If n2.ANALISIS = 139 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -4972,7 +4972,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                   
+
                     'PMN
                     If n2.ANALISIS = 140 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -5188,7 +5188,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                    
+
                     'SB
                     If n2.ANALISIS = 281 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -5365,7 +5365,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                   
+
                     'Potasio intercambiable
                     If n2.ANALISIS = 136 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -5399,7 +5399,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                    
+
                     'Nitrogeno Total
                     If n2.ANALISIS = 475 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -5433,7 +5433,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                    
+
                     'Materia Organico
                     If n2.ANALISIS = 139 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -5467,7 +5467,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                    
+
                     'Calcio
                     If n2.ANALISIS = 146 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -5518,7 +5518,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                    
+
                     'Acides Titulable
                     If n2.ANALISIS = 279 Then
                         If IsNumeric(n2.RESULTADO) Then
@@ -5552,7 +5552,7 @@ Public Class FormEstadisticaSuelos
                             End If
                         End If
                     End If
-                    
+
                     'SB
                     If n2.ANALISIS = 281 Then
                         If IsNumeric(n2.RESULTADO) Then

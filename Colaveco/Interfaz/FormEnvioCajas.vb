@@ -15,6 +15,7 @@ Public Class FormEnvioCajas
     Dim eremito As String
     Dim productorweb As String
     Private _usuario As dUsuario
+    Dim idcaja As String
 
     Public Property Usuario() As dUsuario
         Get
@@ -216,7 +217,7 @@ Public Class FormEnvioCajas
         End If
         If email <> "" And email <> "no aportado" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -387,7 +388,7 @@ Public Class FormEnvioCajas
         Dim cantcaracteres As Integer = Len(texto)
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -572,10 +573,12 @@ Public Class FormEnvioCajas
                 CheckPendiente.Checked = True
                 ComboCajas.Enabled = False
                 ButtonEnvio.Enabled = False
+                txtCajasTipeables.Enabled = True
             Else
                 CheckPendiente.Checked = False
                 ComboCajas.Enabled = True
                 ButtonEnvio.Enabled = True
+                txtCajasTipeables.Enabled = True
             End If
         End If
         listarcajasporid()
@@ -618,7 +621,7 @@ Public Class FormEnvioCajas
         Dim fecharecibo As Date = Now
         Dim fec As String
         fec = Format(fecharecibo, "yyyy-MM-dd")
-        Dim idcaja As String = ComboCajas.Text.Trim
+        idcaja = ComboCajas.Text.Trim
         lista = ec.listarxcajasindevolver(idcaja)
         If Not lista Is Nothing Then
             If lista.Count > 0 Then
@@ -645,7 +648,19 @@ Public Class FormEnvioCajas
         Dim id As Long
         Dim idpedido As Long = TextId.Text.Trim
         Dim idproductor As Long = TextIdProductor.Text.Trim
-        Dim idcaja As String = ComboCajas.Text.Trim
+
+        'Agregando lectores de codifos 1/8/2023
+        If ComboCajas.Text.Trim <> "" Or txtCajasTipeables.Text <> "" Then
+            If txtCajasTipeables.Text <> "" Then
+                idcaja = txtCajasTipeables.Text
+            Else
+                idcaja = ComboCajas.Text.Trim
+            End If
+        Else : MsgBox("Error, no se completo Codigo de Caja", MsgBoxStyle.Critical, "Atención")
+
+        End If
+
+
         Dim gradilla1 As String = ""
         If TextGradilla1.Text <> "" Then
             gradilla1 = TextGradilla1.Text.Trim
@@ -699,7 +714,7 @@ Public Class FormEnvioCajas
             Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
             End If
         Else
-            If ComboCajas.Text.Trim.Length > 0 Then
+            If ComboCajas.Text.Trim.Length > 0 Or txtCajasTipeables.Text <> "" Then
                 Dim env As New dEnvioCajas()
                 Dim fec As String
                 fec = Format(fechaenvio, "yyyy-MM-dd")
@@ -781,7 +796,7 @@ Public Class FormEnvioCajas
         If Not ListCajas.SelectedItem Is Nothing Then
             Dim ec As New dEnvioCajas
             Dim id As Long = CType(TextIdEnvio.Text, Long)
-            Dim idcaja As String = TextCaja.Text
+            idcaja = TextCaja.Text
             ec.ID = id
             If (ec.eliminar(Usuario)) Then
                 Dim c As New dCajas
@@ -1225,5 +1240,11 @@ Public Class FormEnvioCajas
 
     Private Sub TextFrascos_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextFrascos.TextChanged
 
+    End Sub
+
+    Private Sub txtCajasTipeables_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCajasTipeables.KeyPress
+        If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
+            idcaja = txtCajasTipeables.Text
+        End If
     End Sub
 End Class

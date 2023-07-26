@@ -18,6 +18,7 @@
     Public nombre_pc As String
     Public cadena As String
     Public isAnexo As Boolean
+    Public isAnexoPH As Boolean
 
     'Public idparatecnicocontrol As Integer
 End Module

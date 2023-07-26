@@ -557,7 +557,7 @@ Public Class FormSinVisualizacion
         email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -602,7 +602,7 @@ Public Class FormSinVisualizacion
         email = "iverocay@hotmail.com"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -671,10 +671,10 @@ Public Class FormSinVisualizacion
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim fila = 1
         Dim columna = 1
         x1hoja.Cells(fila, columna).formula = "Ficha"
@@ -853,10 +853,10 @@ Public Class FormSinVisualizacion
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim fila = 1
         Dim columna = 1
         x1hoja.Cells(fila, columna).formula = "Ficha"
@@ -1942,8 +1942,8 @@ Public Class FormSinVisualizacion
     End Function
 
     Private Sub DataGridView2_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView2.CellClick
-        If DataGridView1.Columns(e.ColumnIndex).Name = "SinVisualizacion" Then
-            Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+        If DataGridView1.Columns(e.ColumnIndex).Name = "Abonado2" Then
+            Dim row As DataGridViewRow = DataGridView2.Rows(e.RowIndex)
             Dim fecha As Date = DateFecha.Value.ToString("yyyy-MM-dd")
             Dim fec As String
             fec = Format(fecha, "yyyy-MM-dd")

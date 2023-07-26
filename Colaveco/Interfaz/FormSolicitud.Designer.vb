@@ -24,6 +24,8 @@ Partial Class FormSolicitud
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.txtCajasTipeables = New System.Windows.Forms.TextBox()
+        Me.btnImprimir = New System.Windows.Forms.Button()
         Me.cbxTecnicoSueloNutri = New System.Windows.Forms.CheckBox()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.cbxTecnicoMuestreo = New System.Windows.Forms.ComboBox()
@@ -112,7 +114,6 @@ Partial Class FormSolicitud
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Analisis = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.X = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.btnImprimir = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureImagen, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -134,6 +135,7 @@ Partial Class FormSolicitud
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.txtCajasTipeables)
         Me.TabPage1.Controls.Add(Me.btnImprimir)
         Me.TabPage1.Controls.Add(Me.cbxTecnicoSueloNutri)
         Me.TabPage1.Controls.Add(Me.Label29)
@@ -214,6 +216,24 @@ Partial Class FormSolicitud
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Ingreso"
         Me.TabPage1.UseVisualStyleBackColor = True
+        '
+        'txtCajasTipeables
+        '
+        Me.txtCajasTipeables.Location = New System.Drawing.Point(652, 138)
+        Me.txtCajasTipeables.Margin = New System.Windows.Forms.Padding(4)
+        Me.txtCajasTipeables.Name = "txtCajasTipeables"
+        Me.txtCajasTipeables.Size = New System.Drawing.Size(164, 22)
+        Me.txtCajasTipeables.TabIndex = 162
+        '
+        'btnImprimir
+        '
+        Me.btnImprimir.Location = New System.Drawing.Point(509, 624)
+        Me.btnImprimir.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnImprimir.Name = "btnImprimir"
+        Me.btnImprimir.Size = New System.Drawing.Size(133, 28)
+        Me.btnImprimir.TabIndex = 161
+        Me.btnImprimir.Text = "Imprimir Sol."
+        Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'cbxTecnicoSueloNutri
         '
@@ -424,16 +444,16 @@ Partial Class FormSolicitud
         '
         'PictureImagen
         '
-        Me.PictureImagen.Location = New System.Drawing.Point(653, 358)
+        Me.PictureImagen.Location = New System.Drawing.Point(653, 393)
         Me.PictureImagen.Margin = New System.Windows.Forms.Padding(4)
         Me.PictureImagen.Name = "PictureImagen"
-        Me.PictureImagen.Size = New System.Drawing.Size(391, 245)
+        Me.PictureImagen.Size = New System.Drawing.Size(391, 210)
         Me.PictureImagen.TabIndex = 141
         Me.PictureImagen.TabStop = False
         '
         'ButtonImagen
         '
-        Me.ButtonImagen.Location = New System.Drawing.Point(653, 316)
+        Me.ButtonImagen.Location = New System.Drawing.Point(652, 354)
         Me.ButtonImagen.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonImagen.Name = "ButtonImagen"
         Me.ButtonImagen.Size = New System.Drawing.Size(196, 28)
@@ -493,7 +513,7 @@ Partial Class FormSolicitud
         'Label23
         '
         Me.Label23.AutoSize = True
-        Me.Label23.Location = New System.Drawing.Point(653, 260)
+        Me.Label23.Location = New System.Drawing.Point(652, 298)
         Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label23.Name = "Label23"
         Me.Label23.Size = New System.Drawing.Size(43, 17)
@@ -502,7 +522,7 @@ Partial Class FormSolicitud
         '
         'TextOtros
         '
-        Me.TextOtros.Location = New System.Drawing.Point(653, 277)
+        Me.TextOtros.Location = New System.Drawing.Point(652, 315)
         Me.TextOtros.Margin = New System.Windows.Forms.Padding(4)
         Me.TextOtros.Name = "TextOtros"
         Me.TextOtros.Size = New System.Drawing.Size(393, 22)
@@ -661,7 +681,7 @@ Partial Class FormSolicitud
         '
         'ButtonEliminarCaja
         '
-        Me.ButtonEliminarCaja.Location = New System.Drawing.Point(975, 139)
+        Me.ButtonEliminarCaja.Location = New System.Drawing.Point(974, 177)
         Me.ButtonEliminarCaja.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonEliminarCaja.Name = "ButtonEliminarCaja"
         Me.ButtonEliminarCaja.Size = New System.Drawing.Size(69, 28)
@@ -690,7 +710,7 @@ Partial Class FormSolicitud
         Me.ListCajas.BackColor = System.Drawing.SystemColors.Info
         Me.ListCajas.FormattingEnabled = True
         Me.ListCajas.ItemHeight = 16
-        Me.ListCajas.Location = New System.Drawing.Point(653, 139)
+        Me.ListCajas.Location = New System.Drawing.Point(652, 177)
         Me.ListCajas.Margin = New System.Windows.Forms.Padding(4)
         Me.ListCajas.Name = "ListCajas"
         Me.ListCajas.Size = New System.Drawing.Size(312, 116)
@@ -1057,16 +1077,6 @@ Partial Class FormSolicitud
         Me.X.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.X.Width = 40
         '
-        'btnImprimir
-        '
-        Me.btnImprimir.Location = New System.Drawing.Point(509, 624)
-        Me.btnImprimir.Margin = New System.Windows.Forms.Padding(4)
-        Me.btnImprimir.Name = "btnImprimir"
-        Me.btnImprimir.Size = New System.Drawing.Size(133, 28)
-        Me.btnImprimir.TabIndex = 161
-        Me.btnImprimir.Text = "Imprimir Sol."
-        Me.btnImprimir.UseVisualStyleBackColor = True
-        '
         'FormSolicitud
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8!, 16!)
@@ -1179,4 +1189,5 @@ End Sub
     Friend WithEvents cbxTecnicoSueloNutri As System.Windows.Forms.CheckBox
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents btnImprimir As System.Windows.Forms.Button
+    Friend WithEvents txtCajasTipeables As System.Windows.Forms.TextBox
 End Class

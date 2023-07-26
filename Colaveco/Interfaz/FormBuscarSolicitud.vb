@@ -300,9 +300,17 @@ Public Class FormBuscarSolicitud
                     Dim tipoMuestra As New dMuestras
                     tipoMuestra.ID = s.IDMUESTRA
                     tipoMuestra = tipoMuestra.buscar
-                    DataGridView1(columna, fila).Value = tipoMuestra.NOMBRE
-                    columna = 0
-                    fila = fila + 1
+
+                    If Not tipoMuestra Is Nothing Then
+                        DataGridView1(columna, fila).Value = tipoMuestra.NOMBRE
+                        columna = 0
+                        fila = fila + 1
+                    Else
+                        DataGridView1(columna, fila).Value = ""
+                        columna = 0
+                        fila = fila + 1
+                    End If
+                    
                 Next
             End If
         End If

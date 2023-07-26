@@ -62,15 +62,6 @@ Partial Class FormParatecnicosControl
         '
         'RadioButton1
         '
-        Me.RadioButton1.AutoSize = True
-        Me.RadioButton1.Location = New System.Drawing.Point(13, 10)
-        Me.RadioButton1.Name = "RadioButton1"
-        Me.RadioButton1.Size = New System.Drawing.Size(89, 17)
-        Me.RadioButton1.TabIndex = 6
-        Me.RadioButton1.TabStop = True
-        Me.RadioButton1.Text = "Diego Arenas"
-        Me.RadioButton1.UseVisualStyleBackColor = True
-        '
         'FormParatecnicosControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)

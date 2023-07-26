@@ -589,6 +589,7 @@ Public Class FormInicio
             If Sesion.abrirSesion() Then
                 Sesion = Sesion.buscarUltimaSesion
                 desbloquearVentana()
+                BlqVentanasPersonal(Sesion.Usuario.TIPOUSUARIO)
             End If
         End If
     End Sub
@@ -607,6 +608,30 @@ Public Class FormInicio
                 End If
             End If
         End If
+    End Sub
+    Public Sub BlqVentanasPersonal(ByVal tipo As Integer)
+        If tipo = 99 Then
+            AutorizacionesToolStripMenuItem.Enabled = True
+            FeriadosToolStripMenuItem.Enabled = True
+            FuncionariosToolStripMenuItem.Enabled = True
+            LicenciadíasToolStripMenuItem.Enabled = True
+            NotificacionesToolStripMenuItem.Enabled = True
+            LicenciaToolStripMenuItem.Enabled = True
+            VerPlanDeLicenciaAnualToolStripMenuItem.Enabled = True
+            RelojToolStripMenuItem1.Enabled = True
+            InformesRelojToolStripMenuItem.Enabled = True
+        Else
+            AutorizacionesToolStripMenuItem.Enabled = False
+            FeriadosToolStripMenuItem.Enabled = False
+            FuncionariosToolStripMenuItem.Enabled = False
+            LicenciadíasToolStripMenuItem.Enabled = False
+            NotificacionesToolStripMenuItem.Enabled = True
+            LicenciaToolStripMenuItem.Enabled = True
+            VerPlanDeLicenciaAnualToolStripMenuItem.Enabled = True
+            RelojToolStripMenuItem1.Enabled = False
+            InformesRelojToolStripMenuItem.Enabled = False
+        End If
+
     End Sub
     Public Sub bloquearVentana()
         MantenimientoToolStripMenuItem.Enabled = False
@@ -682,7 +707,7 @@ Public Class FormInicio
                     DataGridAutorizaciones.Visible = False
                 End If
                 'Notificaciones
-                If u.USUARIO = "SA" Then
+                If u.USUARIO = "SA" Or u.USUARIO = "DF" Then
                     Label2.Visible = True
                     DataGridNotificaciones.Visible = True
                 Else
@@ -699,7 +724,7 @@ Public Class FormInicio
                     DirecciónToolStripMenuItem.Enabled = False
                 End If
                 'Compras
-                If u.USUARIO = "MCF" Or u.USUARIO = "CA" Or u.USUARIO = "AP" Or u.USUARIO = "MC" Then
+                If u.USUARIO = "MCF" Or u.USUARIO = "CA" Or u.USUARIO = "AP" Or u.USUARIO = "MC" Or u.USUARIO = "JMS" Then
                     comprobarcompras()
                     AutorizarCompraToolStripMenuItem.Enabled = True
                     EnviarComprasToolStripMenuItem.Enabled = True
@@ -708,7 +733,7 @@ Public Class FormInicio
                     comprobarlicencias()
                 End If
                 'IT
-                If u.USUARIO = "SA" Or u.USUARIO = "AP" Then
+                If u.USUARIO = "SA" Or u.USUARIO = "AP" Or u.USUARIO = "SV" Then
                     ITToolStripMenuItem.Enabled = True
                     AutorizarCompraToolStripMenuItem.Enabled = True
                     EnviarComprasToolStripMenuItem.Enabled = True
@@ -969,13 +994,10 @@ Public Class FormInicio
         cerrarSesion()
     End Sub
     Private Sub CajasToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CajasToolStripMenuItem1.Click
-        If _sesion.Usuario.ID = 22 Then
-            Dim v As New FormEnvioCajas(Sesion.Usuario)
-            v.Show()
-        Else
-            MsgBox("Permisos insuficientes.")
-        End If
-        
+
+        Dim v As New FormEnvioCajas(Sesion.Usuario)
+        v.Show()
+
     End Sub
     Private Sub EmpresasDeTransportesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles EmpresasDeTransportesToolStripMenuItem.Click
         Dim v As New FormEmpresaT(Sesion.Usuario)
@@ -1633,10 +1655,10 @@ Public Class FormInicio
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim c As New dControl
         Dim i As New dIbc
         Dim sa As New dSolicitudAnalisis
@@ -2077,7 +2099,7 @@ Public Class FormInicio
         'Contents:=True, Scenarios:=True)
         'GUARDA EL ARCHIVO DE EXCEL
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'x1hoja.SaveAs("C:\PREINFORMES\CONTROL\" & idsol & ".xls")
         Dim preinf As New dPreinformes
         preinf.FICHA = idsol
@@ -2096,10 +2118,10 @@ Public Class FormInicio
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim csm As New dCalidadSolicitudMuestra
         Dim i As New dIbc
         Dim sa As New dSolicitudAnalisis
@@ -2687,7 +2709,7 @@ Public Class FormInicio
         'Contents:=True, Scenarios:=True)
         'GUARDA EL ARCHIVO DE EXCEL
         'Dim paginas As Integer = x1hoja.PageSetup.pages.count
-        x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
         'x1hoja.SaveAs("\\192.168.1.10\E\NET\PREINFORMES\CALIDAD\" & idsol & ".xls")
         'x1hoja.SaveAs("C:\PREINFORMES\CALIDAD\" & idsol & ".xls")
         'Marcar como creado
@@ -4635,7 +4657,7 @@ controltxt:
         End If
         If enviarcopia <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -6388,7 +6410,7 @@ controltxt:
             & "Administración - COLAVECO"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -6561,7 +6583,7 @@ controltxt:
         End If
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -6606,7 +6628,7 @@ controltxt:
         email = "unepi@mgap.gub.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -6655,7 +6677,7 @@ controltxt:
         email = "decano@fvet.edu.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -9513,7 +9535,7 @@ controltxt:
         If tipoinforme = "Nutrición" Or tipoinforme = "Suelos" Then
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
                 _SMTP.Host = "170.249.199.66"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
@@ -9559,7 +9581,7 @@ controltxt:
         Else
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
                 _SMTP.Host = "170.249.199.66"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
@@ -9727,7 +9749,7 @@ controltxt:
         End If
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -9784,10 +9806,10 @@ controltxt:
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(2)
-        x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
-        x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
-        x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
+        'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
+        'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
+        'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
+        'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         x1hoja.Cells(1, 1).columnwidth = 15
         x1hoja.Cells(1, 2).columnwidth = 15
         x1hoja.Cells(1, 3).columnwidth = 50
@@ -10508,7 +10530,7 @@ controltxt:
         email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -10553,7 +10575,7 @@ controltxt:
         email = "iverocay@hotmail.com"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "J]e5$5c2(Qnl")
+            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
             _SMTP.Host = "170.249.199.66"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
@@ -10924,5 +10946,9 @@ controltxt:
     Private Sub Button1_Click_4(sender As Object, e As EventArgs) Handles Button1.Click
         Dim v As New FormBuscarSolicitud(Sesion.Usuario)
         v.ShowDialog()
+    End Sub
+
+    Private Sub AdministraciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdministraciónToolStripMenuItem.Click
+
     End Sub
 End Class

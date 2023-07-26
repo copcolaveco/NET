@@ -988,7 +988,7 @@ Public Class FormGraficasRC
             x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
                 Contents:=True, Scenarios:=True)
             'GUARDA EL ARCHIVO DE EXCEL
-            x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+            'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
             Try
                 x1app.DisplayAlerts = False 'NO PREGUNTA SI EL ARCHIVO EXISTE
                 x1hoja.SaveAs("\\ROBOT\GraficasRC\x" & ficha1 & ".xls")

@@ -109,7 +109,7 @@
         Dim lista As New ArrayList
         Dim fila As Integer = 0
         Dim columna As Integer = 0
-        If usu = 32 Or usu = 116 Or usu = 4 Or usu = 5 Or usu = 47 Then
+        If usu = 32 Or usu = 116 Or usu = 4 Or usu = 5 Or usu = 47 Or usu = 122 Then
             lista = u.listar
         Else
             lista = u.listarxusuario(usu)

@@ -602,6 +602,12 @@ Public Class FormGestor
             c = c.buscar
             If Not c Is Nothing Then
                 productorweb_com = c.USUARIO_WEB
+                Dim pw_com As New dProductorWeb_com
+                pw_com.USUARIO = productorweb_com
+                pw_com = pw_com.buscar
+                If Not pw_com Is Nothing Then
+                    idproductorweb_com = pw_com.ID
+                End If
             End If
         End If
 
