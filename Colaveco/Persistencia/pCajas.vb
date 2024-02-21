@@ -149,7 +149,7 @@
         End Try
     End Function
     Public Function buscarPorCodigo(ByVal codigo As String) As ArrayList
-        Dim sql As String = "SELECT id, codigo, estado, idcliente, fecha FROM cajas WHERE codigo LIKE '%" & codigo & "%' ORDER BY codigo asc"
+        Dim sql As String = "SELECT id, codigo, estado, idcliente, fecha FROM cajas WHERE BINARY codigo like '%" & codigo & "%' ORDER BY codigo asc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -249,7 +249,7 @@
         End Try
     End Function
     Public Function listarenClientes() As ArrayList
-        Dim sql As String = "SELECT id, codigo, estado, idcliente, fecha FROM cajas WHERE estado <> 1 ORDER BY codigo asc"
+        Dim sql As String = "SELECT distinct(caj.id), caj.codigo, caj.estado, caj.idcliente, caj.fecha FROM cajas caj INNER JOIN enviocajas ecaj oN ecaj.idcaja = caj.id WHERE estado <> 1 and ecaj.recibido = 1 ORDER BY codigo asc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet

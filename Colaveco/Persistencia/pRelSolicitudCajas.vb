@@ -39,6 +39,19 @@
 
         Return EjecutarTransaccion(lista)
     End Function
+    Public Function eliminarPorIdCaja(ByVal o As Object, ByVal idCaja As String) As Boolean
+        Dim obj As dRelSolicitudCajas = CType(o, dRelSolicitudCajas)
+        Dim sql As String = "UPDATE solicitud_cajas SET eliminado = 1 WHERE IDCAJA = '" & idCaja & "'"
+
+        Dim lista As New ArrayList
+        lista.Add(sql)
+
+        'Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
+        '& "VALUES (now(), 'solicitud_cajas', 'eliminación', " & obj.ID & ", " & idCaja & ")"
+        'lista.Add(sqlAccion)
+
+        Return EjecutarTransaccion(lista)
+    End Function
     Public Function buscar(ByVal o As Object) As dRelSolicitudCajas
         Dim obj As dRelSolicitudCajas = CType(o, dRelSolicitudCajas)
         Dim e As New dRelSolicitudCajas

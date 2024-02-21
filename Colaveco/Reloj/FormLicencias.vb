@@ -25,6 +25,9 @@ Public Class FormLicencias
         Usuario = u
         cargarUsuarios()
         cargarLista()
+        If Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "DF" Or Usuario.USUARIO = "SA" Then
+            Eliminar.Visible = True
+        End If
     End Sub
 #End Region
     Private Sub cargarUsuarios()
@@ -370,6 +373,22 @@ Public Class FormLicencias
                 MsgBox("La licencia seleccionada aún no está aprobada.")
             End If
         End If
+        If DataGridView1.Columns(e.ColumnIndex).Name = "Eliminar" Then
+            Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+            Dim id As Long = 0
+            Dim dias As Long = 0
+            Dim usuarioId As Long = 0
+            Dim l As New dLicencias
+            l.ID = row.Cells("Id").Value
+            l = l.buscar
+            If (l.eliminar(Usuario)) Then
+                cargarLista()
+                MsgBox("Licencia eliminada.")
+            Else
+                MsgBox("La licencia seleccionada no se pudo eliminar.")
+            End If
+          
+        End If
     End Sub
     Private Sub imprimir_licencia()
         Dim x1app As Microsoft.Office.Interop.Excel.Application
@@ -558,4 +577,5 @@ Public Class FormLicencias
         TextDiasCorrespondientes.Text = diasdelicencia
         TextDiasRestantes.Text = diasrestantes
     End Sub
+
 End Class

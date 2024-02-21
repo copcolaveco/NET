@@ -361,7 +361,7 @@
         End Try
     End Function
     Public Function listarcargadas() As ArrayList
-        Dim sql As String = "SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, obsrecibo, responsable, cargada, convenio FROM enviocajas Where cargada = 1 order by fechaenvio desc LIMIT 100"
+        Dim sql As String = "SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, obsrecibo, responsable, cargada, convenio FROM enviocajas Where cargada = 1 and recibido = 0 order by fechaenvio desc LIMIT 100"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -615,7 +615,7 @@
     End Function
     Public Function listarxcaja(ByVal caja As String) As ArrayList
         'Dim sql As String = ("SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, ifnull(obsrecibo,''), responsable FROM enviocajas where idcaja = '" & caja & "' AND recibido =0 ORDER BY fechaenvio desc ")
-        Dim sql As String = ("SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, ifnull(obsrecibo,''), responsable, cargada, convenio FROM enviocajas where idcaja = '" & caja & "' ORDER BY fechaenvio desc ")
+        Dim sql As String = ("SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, ifnull(obsrecibo,''), responsable, cargada, convenio FROM enviocajas where idcaja = '" & caja & "' AND recibido =0 ORDER BY fechaenvio desc ")
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet

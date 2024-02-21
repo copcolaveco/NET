@@ -1,4 +1,4 @@
-﻿Public Class pFactur
+﻿Public Class pFactura
     Inherits Conectoras.ConexionMySQL_facturacion
 
     Public Function listarxfecha(ByVal nrofac As Long) As ArrayList

@@ -331,6 +331,29 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function listarfichasMineralesLeche(ByVal tipoinf As Integer) As ArrayList
+        Dim sql As String = "SELECT DISTINCT ficha FROM nuevoanalisis WHERE tipoinforme = " & tipoinf & " and finalizado = 0 and analisis in(518,570,562,563,571,564,565,572,566,567,573,568) order by id asc"
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim n As New dNuevoAnalisis
+                    n.FICHA = CType(unaFila.Item(0), Long)
+                    Lista.Add(n)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
     Public Function listarporid(ByVal texto As Long) As ArrayList
         Dim sql As String = ("SELECT id, ficha, muestra, ifnull(detallemuestra,''), tipoinforme, analisis, ifnull(resultado,''), ifnull(resultado2,''), mostrar_r, metodo, unidad, orden, operador, fechaproceso, finalizado FROM nuevoanalisis WHERE ficha = " & texto & "")
         Try
@@ -627,6 +650,41 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function listarporfichaMinerales(ByVal texto As Long) As ArrayList
+        Dim sql As String = ("SELECT distinct analisis, id, ficha, muestra, detallemuestra, tipoinforme, resultado, resultado2, metodo, unidad, operador, fechaproceso, finalizado FROM nuevoanalisis WHERE ficha = " & texto & " order by orden asc")
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim n As New dNuevoAnalisis
+                    n.ANALISIS = CType(unaFila.Item(0), Integer)
+                    n.ID = CType(unaFila.Item(1), Integer)
+                    n.FICHA = CType(unaFila.Item(2), Integer)
+                    n.MUESTRA = CType(unaFila.Item(3), String)
+                    n.DETALLEMUESTRA = CType(unaFila.Item(4), String)
+                    n.TIPOINFORME = CType(unaFila.Item(5), Integer)
+                    n.RESULTADO = CType(unaFila.Item(6), String)
+                    n.RESULTADO2 = CType(unaFila.Item(7), String)
+                    n.METODO = CType(unaFila.Item(8), Integer)
+                    n.UNIDAD = CType(unaFila.Item(9), Integer)
+                    n.OPERADOR = CType(unaFila.Item(10), Integer)
+                    n.FECHAPROCESO = CType(unaFila.Item(11), Date)
+                    n.FINALIZADO = CType(unaFila.Item(12), Integer)
+                    Lista.Add(n)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
     Public Function listarporfichamicro(ByVal texto As Long) As ArrayList
         Dim sql As String = ("SELECT distinct analisis, metodo, unidad, operador FROM nuevoanalisis WHERE ficha = " & texto & " AND orden <= 100 order by orden asc")
         Try

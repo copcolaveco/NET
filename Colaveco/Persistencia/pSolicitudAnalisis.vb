@@ -228,7 +228,7 @@
         End Try
     End Function
     Public Function listarpendientes() As ArrayList
-        Dim sql As String = "SELECT id, fechaingreso, idproductor, idtipoinforme, idsubinforme, idtipoficha,observaciones, nmuestras, idmuestra, idtecnico, sinsolicitud, sinconservante, temperatura, derramadas, desvio, idfactura, web, personal, email, fechaenvio, marca, eliminado, tambo, pago, importe, kmts, ifnull(obsinternas,''), ifnull(codigo,''), fechaproceso, muestreo, logo, ifnull(interpretacion,''), fechamuestreo FROM solicitudanalisis WHERE marca=0 and eliminado=0 order by fechaingreso asc"
+        Dim sql As String = "SELECT s.id, s.fechaingreso, s.idproductor, s.idtipoinforme, s.idsubinforme, s.idtipoficha,observaciones, s.nmuestras, s.idmuestra, s.idtecnico, s.sinsolicitud, s.sinconservante, s.temperatura, s.derramadas, s.desvio, s.idfactura, s.web, s.personal, s.email, s.fechaenvio, s.marca, s.eliminado, s.tambo, s.pago, s.importe, s.kmts, ifnull(s.obsinternas,''), ifnull(s.codigo,''), s.fechaproceso, s.muestreo, s.logo, ifnull(s.interpretacion,''), s.fechamuestreo, count(n.muestra) FROM solicitudanalisis s join nuevoanalisis n on n.ficha = s.id WHERE marca=0 and eliminado=0 group by s.id order by fechaingreso asc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -272,6 +272,7 @@
                     s.LOGO = CType(unaFila.Item(30), Integer)
                     s.INTERPRETACION = CType(unaFila.Item(31), String)
                     s.FECHAMUESTREO = CType(unaFila.Item(32), String)
+                    s.NMUESTRAS = CType(unaFila.Item(33), String)
                     Lista.Add(s)
                 Next
                 Return Lista
