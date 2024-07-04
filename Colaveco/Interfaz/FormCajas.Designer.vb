@@ -48,60 +48,67 @@ Partial Class FormCajas
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(243, 35)
+        Me.Label1.Location = New System.Drawing.Point(324, 43)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(16, 13)
+        Me.Label1.Size = New System.Drawing.Size(19, 17)
         Me.Label1.TabIndex = 0
         Me.Label1.Text = "Id"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(243, 61)
+        Me.Label3.Location = New System.Drawing.Point(324, 75)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(40, 13)
+        Me.Label3.Size = New System.Drawing.Size(52, 17)
         Me.Label3.TabIndex = 2
         Me.Label3.Text = "Código"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(243, 87)
+        Me.Label4.Location = New System.Drawing.Point(324, 107)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(40, 13)
+        Me.Label4.Size = New System.Drawing.Size(52, 17)
         Me.Label4.TabIndex = 3
         Me.Label4.Text = "Estado"
         '
         'TextId
         '
-        Me.TextId.Location = New System.Drawing.Point(292, 32)
+        Me.TextId.Location = New System.Drawing.Point(389, 39)
+        Me.TextId.Margin = New System.Windows.Forms.Padding(4)
         Me.TextId.Name = "TextId"
         Me.TextId.ReadOnly = True
-        Me.TextId.Size = New System.Drawing.Size(58, 20)
+        Me.TextId.Size = New System.Drawing.Size(76, 22)
         Me.TextId.TabIndex = 4
         '
         'TextCodigo
         '
-        Me.TextCodigo.Location = New System.Drawing.Point(292, 58)
+        Me.TextCodigo.Location = New System.Drawing.Point(389, 71)
+        Me.TextCodigo.Margin = New System.Windows.Forms.Padding(4)
         Me.TextCodigo.Name = "TextCodigo"
-        Me.TextCodigo.Size = New System.Drawing.Size(100, 20)
+        Me.TextCodigo.Size = New System.Drawing.Size(132, 22)
         Me.TextCodigo.TabIndex = 6
         '
         'ComboEstado
         '
         Me.ComboEstado.FormattingEnabled = True
-        Me.ComboEstado.Items.AddRange(New Object() {"Laboratorio", "Cliente", "Florida", "Cardal", "Canelones", "Perdida"})
-        Me.ComboEstado.Location = New System.Drawing.Point(292, 84)
+        Me.ComboEstado.Items.AddRange(New Object() {"Laboratorio", "Cliente", "Florida", "Cardal", "Canelones", "Perdida", "Desuso"})
+        Me.ComboEstado.Location = New System.Drawing.Point(389, 103)
+        Me.ComboEstado.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboEstado.Name = "ComboEstado"
-        Me.ComboEstado.Size = New System.Drawing.Size(100, 21)
+        Me.ComboEstado.Size = New System.Drawing.Size(132, 24)
         Me.ComboEstado.TabIndex = 7
         '
         'RadioCA
         '
         Me.RadioCA.AutoSize = True
-        Me.RadioCA.Location = New System.Drawing.Point(15, 19)
+        Me.RadioCA.Location = New System.Drawing.Point(20, 23)
+        Me.RadioCA.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioCA.Name = "RadioCA"
-        Me.RadioCA.Size = New System.Drawing.Size(142, 17)
+        Me.RadioCA.Size = New System.Drawing.Size(187, 21)
         Me.RadioCA.TabIndex = 8
         Me.RadioCA.TabStop = True
         Me.RadioCA.Text = "Conservadora para agua"
@@ -110,9 +117,10 @@ Partial Class FormCajas
         'RadioCL
         '
         Me.RadioCL.AutoSize = True
-        Me.RadioCL.Location = New System.Drawing.Point(15, 42)
+        Me.RadioCL.Location = New System.Drawing.Point(20, 52)
+        Me.RadioCL.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioCL.Name = "RadioCL"
-        Me.RadioCL.Size = New System.Drawing.Size(196, 17)
+        Me.RadioCL.Size = New System.Drawing.Size(259, 21)
         Me.RadioCL.TabIndex = 12
         Me.RadioCL.TabStop = True
         Me.RadioCL.Text = "Conservadora para frascos de leche"
@@ -121,9 +129,10 @@ Partial Class FormCajas
         'RadioCaja
         '
         Me.RadioCaja.AutoSize = True
-        Me.RadioCaja.Location = New System.Drawing.Point(15, 65)
+        Me.RadioCaja.Location = New System.Drawing.Point(20, 80)
+        Me.RadioCaja.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioCaja.Name = "RadioCaja"
-        Me.RadioCaja.Size = New System.Drawing.Size(107, 17)
+        Me.RadioCaja.Size = New System.Drawing.Size(139, 21)
         Me.RadioCaja.TabIndex = 13
         Me.RadioCaja.TabStop = True
         Me.RadioCaja.Text = "Caja verde o azul"
@@ -135,18 +144,21 @@ Partial Class FormCajas
         Me.GroupBox1.Controls.Add(Me.RadioCA)
         Me.GroupBox1.Controls.Add(Me.RadioCaja)
         Me.GroupBox1.Controls.Add(Me.RadioCL)
-        Me.GroupBox1.Location = New System.Drawing.Point(12, 16)
+        Me.GroupBox1.Location = New System.Drawing.Point(16, 20)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(225, 124)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4)
+        Me.GroupBox1.Size = New System.Drawing.Size(300, 153)
         Me.GroupBox1.TabIndex = 14
         Me.GroupBox1.TabStop = False
         '
         'RadioCajaFlorida
         '
         Me.RadioCajaFlorida.AutoSize = True
-        Me.RadioCajaFlorida.Location = New System.Drawing.Point(15, 88)
+        Me.RadioCajaFlorida.Location = New System.Drawing.Point(20, 108)
+        Me.RadioCajaFlorida.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioCajaFlorida.Name = "RadioCajaFlorida"
-        Me.RadioCajaFlorida.Size = New System.Drawing.Size(80, 17)
+        Me.RadioCajaFlorida.Size = New System.Drawing.Size(104, 21)
         Me.RadioCajaFlorida.TabIndex = 19
         Me.RadioCajaFlorida.TabStop = True
         Me.RadioCajaFlorida.Text = "Caja Florida"
@@ -154,18 +166,20 @@ Partial Class FormCajas
         '
         'ButtonNueva
         '
-        Me.ButtonNueva.Location = New System.Drawing.Point(247, 158)
+        Me.ButtonNueva.Location = New System.Drawing.Point(329, 194)
+        Me.ButtonNueva.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonNueva.Name = "ButtonNueva"
-        Me.ButtonNueva.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonNueva.Size = New System.Drawing.Size(100, 28)
         Me.ButtonNueva.TabIndex = 15
         Me.ButtonNueva.Text = "Nueva"
         Me.ButtonNueva.UseVisualStyleBackColor = True
         '
         'ButtonGuardar
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(328, 158)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(437, 194)
+        Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonGuardar.TabIndex = 16
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
@@ -174,10 +188,11 @@ Partial Class FormCajas
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Codigo, Me.Estado})
-        Me.DataGridView1.Location = New System.Drawing.Point(467, 32)
+        Me.DataGridView1.Location = New System.Drawing.Point(623, 39)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(216, 333)
+        Me.DataGridView1.Size = New System.Drawing.Size(288, 410)
         Me.DataGridView1.TabIndex = 17
         '
         'Id
@@ -198,25 +213,27 @@ Partial Class FormCajas
         '
         'TextBuscar
         '
-        Me.TextBuscar.Location = New System.Drawing.Point(467, 6)
+        Me.TextBuscar.Location = New System.Drawing.Point(623, 7)
+        Me.TextBuscar.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBuscar.Name = "TextBuscar"
-        Me.TextBuscar.Size = New System.Drawing.Size(216, 20)
+        Me.TextBuscar.Size = New System.Drawing.Size(287, 22)
         Me.TextBuscar.TabIndex = 18
         '
         'ButtonExportar
         '
-        Me.ButtonExportar.Location = New System.Drawing.Point(608, 371)
+        Me.ButtonExportar.Location = New System.Drawing.Point(811, 457)
+        Me.ButtonExportar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonExportar.Name = "ButtonExportar"
-        Me.ButtonExportar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonExportar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonExportar.TabIndex = 19
         Me.ButtonExportar.Text = "Exportar"
         Me.ButtonExportar.UseVisualStyleBackColor = True
         '
         'FormCajas
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(697, 404)
+        Me.ClientSize = New System.Drawing.Size(929, 497)
         Me.Controls.Add(Me.ButtonExportar)
         Me.Controls.Add(Me.TextBuscar)
         Me.Controls.Add(Me.DataGridView1)
@@ -229,6 +246,7 @@ Partial Class FormCajas
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.Label1)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormCajas"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Cajas y conservadoras"

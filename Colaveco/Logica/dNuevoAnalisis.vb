@@ -247,6 +247,7 @@
         Dim e As New pNuevoAnalisis
         Return e.buscarrepetidas(Me)
     End Function
+   
 #End Region
 
     Public Overrides Function ToString() As String
@@ -266,6 +267,12 @@
         Dim e As New pNuevoAnalisis
         Return e.listarfichasnuevas(tipoinf)
     End Function
+    Public Function listarfichasMineralesLeche(ByVal tipoinf As Integer) As ArrayList
+        Dim e As New pNuevoAnalisis
+        Return e.listarfichasMineralesLeche(tipoinf)
+    End Function
+
+
     Public Function listarporid(ByVal texto As Long) As ArrayList
         Dim e As New pNuevoAnalisis
         Return e.listarporid(texto)
@@ -301,6 +308,10 @@
     Public Function listarporficha3(ByVal texto As Long) As ArrayList
         Dim e As New pNuevoAnalisis
         Return e.listarporficha3(texto)
+    End Function
+    Public Function listarporfichaMinerales(ByVal texto As Long) As ArrayList
+        Dim e As New pNuevoAnalisis
+        Return e.listarporfichaMinerales(texto)
     End Function
     Public Function listarpositivo(ByVal texto As Long) As ArrayList
         Dim e As New pNuevoAnalisis

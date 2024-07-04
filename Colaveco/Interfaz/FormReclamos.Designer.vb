@@ -66,288 +66,321 @@ Partial Class FormReclamos
         '
         'TextId
         '
-        Me.TextId.Location = New System.Drawing.Point(159, 6)
+        Me.TextId.Location = New System.Drawing.Point(212, 7)
+        Me.TextId.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextId.Name = "TextId"
         Me.TextId.ReadOnly = True
-        Me.TextId.Size = New System.Drawing.Size(77, 20)
+        Me.TextId.Size = New System.Drawing.Size(101, 22)
         Me.TextId.TabIndex = 0
         '
         'ComboTipo
         '
         Me.ComboTipo.FormattingEnabled = True
         Me.ComboTipo.Items.AddRange(New Object() {"Reclamo", "No conformidad", "Comunicación", "Sugerencia"})
-        Me.ComboTipo.Location = New System.Drawing.Point(159, 32)
+        Me.ComboTipo.Location = New System.Drawing.Point(212, 39)
+        Me.ComboTipo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboTipo.Name = "ComboTipo"
-        Me.ComboTipo.Size = New System.Drawing.Size(121, 21)
+        Me.ComboTipo.Size = New System.Drawing.Size(160, 24)
         Me.ComboTipo.TabIndex = 1
         '
         'DateFecha
         '
         Me.DateFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFecha.Location = New System.Drawing.Point(159, 59)
+        Me.DateFecha.Location = New System.Drawing.Point(212, 73)
+        Me.DateFecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateFecha.Name = "DateFecha"
-        Me.DateFecha.Size = New System.Drawing.Size(121, 20)
+        Me.DateFecha.Size = New System.Drawing.Size(160, 22)
         Me.DateFecha.TabIndex = 2
         '
         'ComboCategoria
         '
         Me.ComboCategoria.FormattingEnabled = True
-        Me.ComboCategoria.Items.AddRange(New Object() {"Acreditado", "Administración", "Laboratorio", "IT", "Otro"})
-        Me.ComboCategoria.Location = New System.Drawing.Point(159, 85)
+        Me.ComboCategoria.Items.AddRange(New Object() {"Administración", "Laboratorio", "IT", "FQI,", "FQ-Agua,", "FQ-Alimentos,", "Microbiología,", "Suelos y nutrición ( SYN )", "Efluentes,", "Veterinaria,", "Calidad,", "Gestión Humana", "Administración", "IT", "Paquetería", "Otro"})
+        Me.ComboCategoria.Location = New System.Drawing.Point(212, 105)
+        Me.ComboCategoria.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboCategoria.Name = "ComboCategoria"
-        Me.ComboCategoria.Size = New System.Drawing.Size(121, 21)
+        Me.ComboCategoria.Size = New System.Drawing.Size(160, 24)
         Me.ComboCategoria.TabIndex = 3
         '
         'ComboFuente
         '
         Me.ComboFuente.FormattingEnabled = True
         Me.ComboFuente.Items.AddRange(New Object() {"Detección interna", "Cliente", "Auditoría", "Otro"})
-        Me.ComboFuente.Location = New System.Drawing.Point(159, 112)
+        Me.ComboFuente.Location = New System.Drawing.Point(212, 138)
+        Me.ComboFuente.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboFuente.Name = "ComboFuente"
-        Me.ComboFuente.Size = New System.Drawing.Size(121, 21)
+        Me.ComboFuente.Size = New System.Drawing.Size(160, 24)
         Me.ComboFuente.TabIndex = 4
         '
         'TextDescripcion
         '
-        Me.TextDescripcion.Location = New System.Drawing.Point(159, 139)
+        Me.TextDescripcion.Location = New System.Drawing.Point(212, 171)
+        Me.TextDescripcion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextDescripcion.Multiline = True
         Me.TextDescripcion.Name = "TextDescripcion"
-        Me.TextDescripcion.Size = New System.Drawing.Size(464, 55)
+        Me.TextDescripcion.Size = New System.Drawing.Size(617, 67)
         Me.TextDescripcion.TabIndex = 5
         '
         'TextAnalisis
         '
-        Me.TextAnalisis.Location = New System.Drawing.Point(159, 200)
+        Me.TextAnalisis.Location = New System.Drawing.Point(212, 246)
+        Me.TextAnalisis.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextAnalisis.Multiline = True
         Me.TextAnalisis.Name = "TextAnalisis"
-        Me.TextAnalisis.Size = New System.Drawing.Size(464, 55)
+        Me.TextAnalisis.Size = New System.Drawing.Size(617, 67)
         Me.TextAnalisis.TabIndex = 6
         '
         'TextAcciones
         '
-        Me.TextAcciones.Location = New System.Drawing.Point(159, 261)
+        Me.TextAcciones.Location = New System.Drawing.Point(212, 321)
+        Me.TextAcciones.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextAcciones.Multiline = True
         Me.TextAcciones.Name = "TextAcciones"
-        Me.TextAcciones.Size = New System.Drawing.Size(464, 55)
+        Me.TextAcciones.Size = New System.Drawing.Size(617, 67)
         Me.TextAcciones.TabIndex = 7
         '
         'TextResponsable
         '
-        Me.TextResponsable.Location = New System.Drawing.Point(159, 322)
+        Me.TextResponsable.Location = New System.Drawing.Point(212, 396)
+        Me.TextResponsable.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextResponsable.Name = "TextResponsable"
-        Me.TextResponsable.Size = New System.Drawing.Size(236, 20)
+        Me.TextResponsable.Size = New System.Drawing.Size(313, 22)
         Me.TextResponsable.TabIndex = 8
         '
         'DateAccion
         '
         Me.DateAccion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateAccion.Location = New System.Drawing.Point(159, 348)
+        Me.DateAccion.Location = New System.Drawing.Point(212, 428)
+        Me.DateAccion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateAccion.Name = "DateAccion"
-        Me.DateAccion.Size = New System.Drawing.Size(121, 20)
+        Me.DateAccion.Size = New System.Drawing.Size(160, 22)
         Me.DateAccion.TabIndex = 9
         '
         'ComboSeguimiento
         '
         Me.ComboSeguimiento.FormattingEnabled = True
         Me.ComboSeguimiento.Items.AddRange(New Object() {"Acción correctiva", "Acción preventiva", "Opción de mejora", "No"})
-        Me.ComboSeguimiento.Location = New System.Drawing.Point(159, 374)
+        Me.ComboSeguimiento.Location = New System.Drawing.Point(212, 460)
+        Me.ComboSeguimiento.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboSeguimiento.Name = "ComboSeguimiento"
-        Me.ComboSeguimiento.Size = New System.Drawing.Size(121, 21)
+        Me.ComboSeguimiento.Size = New System.Drawing.Size(160, 24)
         Me.ComboSeguimiento.TabIndex = 10
         '
         'TextCierreProblema
         '
-        Me.TextCierreProblema.Location = New System.Drawing.Point(159, 401)
+        Me.TextCierreProblema.Location = New System.Drawing.Point(212, 494)
+        Me.TextCierreProblema.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextCierreProblema.Multiline = True
         Me.TextCierreProblema.Name = "TextCierreProblema"
-        Me.TextCierreProblema.Size = New System.Drawing.Size(464, 55)
+        Me.TextCierreProblema.Size = New System.Drawing.Size(617, 67)
         Me.TextCierreProblema.TabIndex = 11
         '
         'TextObservaciones
         '
-        Me.TextObservaciones.Location = New System.Drawing.Point(159, 462)
+        Me.TextObservaciones.Location = New System.Drawing.Point(212, 569)
+        Me.TextObservaciones.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextObservaciones.Multiline = True
         Me.TextObservaciones.Name = "TextObservaciones"
-        Me.TextObservaciones.Size = New System.Drawing.Size(464, 55)
+        Me.TextObservaciones.Size = New System.Drawing.Size(617, 67)
         Me.TextObservaciones.TabIndex = 12
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(12, 9)
+        Me.Label1.Location = New System.Drawing.Point(16, 11)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(16, 13)
+        Me.Label1.Size = New System.Drawing.Size(19, 17)
         Me.Label1.TabIndex = 13
         Me.Label1.Text = "Id"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(12, 35)
+        Me.Label2.Location = New System.Drawing.Point(16, 43)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(28, 13)
+        Me.Label2.Size = New System.Drawing.Size(36, 17)
         Me.Label2.TabIndex = 14
         Me.Label2.Text = "Tipo"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 63)
+        Me.Label3.Location = New System.Drawing.Point(16, 78)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(37, 13)
+        Me.Label3.Size = New System.Drawing.Size(47, 17)
         Me.Label3.TabIndex = 15
         Me.Label3.Text = "Fecha"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 88)
+        Me.Label4.Location = New System.Drawing.Point(16, 108)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(54, 13)
+        Me.Label4.Size = New System.Drawing.Size(69, 17)
         Me.Label4.TabIndex = 16
         Me.Label4.Text = "Categoría"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(12, 115)
+        Me.Label5.Location = New System.Drawing.Point(16, 142)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(40, 13)
+        Me.Label5.Size = New System.Drawing.Size(52, 17)
         Me.Label5.TabIndex = 17
         Me.Label5.Text = "Fuente"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(12, 142)
+        Me.Label6.Location = New System.Drawing.Point(16, 175)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(127, 13)
+        Me.Label6.Size = New System.Drawing.Size(168, 17)
         Me.Label6.TabIndex = 18
         Me.Label6.Text = "Descripción del planteo o"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(12, 155)
+        Me.Label8.Location = New System.Drawing.Point(16, 191)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(79, 13)
+        Me.Label8.Size = New System.Drawing.Size(104, 17)
         Me.Label8.TabIndex = 20
         Me.Label8.Text = "de lo sucedido."
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(12, 168)
+        Me.Label9.Location = New System.Drawing.Point(16, 207)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(145, 13)
+        Me.Label9.Size = New System.Drawing.Size(194, 17)
         Me.Label9.TabIndex = 21
         Me.Label9.Text = "Nombre del cliente o persona"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(12, 181)
+        Me.Label10.Location = New System.Drawing.Point(16, 223)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(136, 13)
+        Me.Label10.Size = New System.Drawing.Size(180, 17)
         Me.Label10.TabIndex = 22
         Me.Label10.Text = "contactada si corresponde."
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(12, 203)
+        Me.Label7.Location = New System.Drawing.Point(16, 250)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(113, 13)
+        Me.Label7.Size = New System.Drawing.Size(153, 17)
         Me.Label7.TabIndex = 23
         Me.Label7.Text = "Análisis del problema y"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(12, 216)
+        Me.Label11.Location = New System.Drawing.Point(16, 266)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(124, 13)
+        Me.Label11.Size = New System.Drawing.Size(166, 17)
         Me.Label11.TabIndex = 24
         Me.Label11.Text = "respuesta dada si es R +"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(12, 229)
+        Me.Label12.Location = New System.Drawing.Point(16, 282)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(119, 13)
+        Me.Label12.Size = New System.Drawing.Size(161, 17)
         Me.Label12.TabIndex = 25
         Me.Label12.Text = "nombre del responsable"
         '
         'Label13
         '
         Me.Label13.AutoSize = True
-        Me.Label13.Location = New System.Drawing.Point(12, 242)
+        Me.Label13.Location = New System.Drawing.Point(16, 298)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(82, 13)
+        Me.Label13.Size = New System.Drawing.Size(110, 17)
         Me.Label13.TabIndex = 26
         Me.Label13.Text = "de la respuesta."
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(12, 264)
+        Me.Label14.Location = New System.Drawing.Point(16, 325)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(51, 13)
+        Me.Label14.Size = New System.Drawing.Size(65, 17)
         Me.Label14.TabIndex = 27
         Me.Label14.Text = "Acciones"
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(12, 325)
+        Me.Label15.Location = New System.Drawing.Point(16, 400)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(133, 13)
+        Me.Label15.Size = New System.Drawing.Size(175, 17)
         Me.Label15.TabIndex = 28
         Me.Label15.Text = "Responsable de la acción."
         '
         'Label16
         '
         Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(12, 352)
+        Me.Label16.Location = New System.Drawing.Point(16, 433)
+        Me.Label16.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(98, 13)
+        Me.Label16.Size = New System.Drawing.Size(127, 17)
         Me.Label16.TabIndex = 29
         Me.Label16.Text = "Fecha de la acción"
         '
         'Label17
         '
         Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(12, 377)
+        Me.Label17.Location = New System.Drawing.Point(16, 464)
+        Me.Label17.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(65, 13)
+        Me.Label17.Size = New System.Drawing.Size(86, 17)
         Me.Label17.TabIndex = 30
         Me.Label17.Text = "Seguimiento"
         '
         'Label18
         '
         Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(12, 404)
+        Me.Label18.Location = New System.Drawing.Point(16, 497)
+        Me.Label18.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(89, 13)
+        Me.Label18.Size = New System.Drawing.Size(119, 17)
         Me.Label18.TabIndex = 31
         Me.Label18.Text = "Si no requiere AC"
         '
         'Label19
         '
         Me.Label19.AutoSize = True
-        Me.Label19.Location = New System.Drawing.Point(12, 417)
+        Me.Label19.Location = New System.Drawing.Point(16, 513)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(145, 13)
+        Me.Label19.Size = New System.Drawing.Size(195, 17)
         Me.Label19.TabIndex = 32
         Me.Label19.Text = "¿como se cierra el problema?"
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(12, 465)
+        Me.Label20.Location = New System.Drawing.Point(16, 572)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(78, 13)
+        Me.Label20.Size = New System.Drawing.Size(103, 17)
         Me.Label20.TabIndex = 33
         Me.Label20.Text = "Observaciones"
         '
@@ -355,52 +388,59 @@ Partial Class FormReclamos
         '
         Me.ListReclamos.BackColor = System.Drawing.SystemColors.Info
         Me.ListReclamos.FormattingEnabled = True
-        Me.ListReclamos.Location = New System.Drawing.Point(648, 6)
+        Me.ListReclamos.ItemHeight = 16
+        Me.ListReclamos.Location = New System.Drawing.Point(864, 7)
+        Me.ListReclamos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ListReclamos.Name = "ListReclamos"
-        Me.ListReclamos.Size = New System.Drawing.Size(316, 511)
+        Me.ListReclamos.Size = New System.Drawing.Size(420, 628)
         Me.ListReclamos.TabIndex = 34
         '
         'ButtonNuevo
         '
-        Me.ButtonNuevo.Location = New System.Drawing.Point(161, 523)
+        Me.ButtonNuevo.Location = New System.Drawing.Point(215, 644)
+        Me.ButtonNuevo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonNuevo.Name = "ButtonNuevo"
-        Me.ButtonNuevo.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonNuevo.Size = New System.Drawing.Size(100, 28)
         Me.ButtonNuevo.TabIndex = 35
         Me.ButtonNuevo.Text = "Nuevo"
         Me.ButtonNuevo.UseVisualStyleBackColor = True
         '
         'ButtonGuardar
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(242, 523)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(323, 644)
+        Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonGuardar.TabIndex = 36
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
         '
         'ButtonEliminar
         '
-        Me.ButtonEliminar.Location = New System.Drawing.Point(323, 523)
+        Me.ButtonEliminar.Location = New System.Drawing.Point(431, 644)
+        Me.ButtonEliminar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonEliminar.Name = "ButtonEliminar"
-        Me.ButtonEliminar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonEliminar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonEliminar.TabIndex = 37
         Me.ButtonEliminar.Text = "Eliminar"
         Me.ButtonEliminar.UseVisualStyleBackColor = True
         '
         'ButtonListar
         '
-        Me.ButtonListar.Location = New System.Drawing.Point(519, 523)
+        Me.ButtonListar.Location = New System.Drawing.Point(692, 644)
+        Me.ButtonListar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonListar.Name = "ButtonListar"
-        Me.ButtonListar.Size = New System.Drawing.Size(104, 23)
+        Me.ButtonListar.Size = New System.Drawing.Size(139, 28)
         Me.ButtonListar.TabIndex = 38
         Me.ButtonListar.Text = "Exportar (Excel)"
         Me.ButtonListar.UseVisualStyleBackColor = True
         '
         'ButtonAC
         '
-        Me.ButtonAC.Location = New System.Drawing.Point(286, 374)
+        Me.ButtonAC.Location = New System.Drawing.Point(381, 460)
+        Me.ButtonAC.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonAC.Name = "ButtonAC"
-        Me.ButtonAC.Size = New System.Drawing.Size(165, 21)
+        Me.ButtonAC.Size = New System.Drawing.Size(220, 26)
         Me.ButtonAC.TabIndex = 39
         Me.ButtonAC.Text = "Requiere acción correctiva"
         Me.ButtonAC.UseVisualStyleBackColor = True
@@ -408,18 +448,19 @@ Partial Class FormReclamos
         'CheckAcreditado
         '
         Me.CheckAcreditado.AutoSize = True
-        Me.CheckAcreditado.Location = New System.Drawing.Point(296, 34)
+        Me.CheckAcreditado.Location = New System.Drawing.Point(395, 42)
+        Me.CheckAcreditado.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckAcreditado.Name = "CheckAcreditado"
-        Me.CheckAcreditado.Size = New System.Drawing.Size(77, 17)
+        Me.CheckAcreditado.Size = New System.Drawing.Size(98, 21)
         Me.CheckAcreditado.TabIndex = 40
         Me.CheckAcreditado.Text = "Acreditado"
         Me.CheckAcreditado.UseVisualStyleBackColor = True
         '
         'FormReclamos
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(978, 550)
+        Me.ClientSize = New System.Drawing.Size(1304, 677)
         Me.Controls.Add(Me.CheckAcreditado)
         Me.Controls.Add(Me.ButtonAC)
         Me.Controls.Add(Me.ButtonListar)
@@ -460,6 +501,7 @@ Partial Class FormReclamos
         Me.Controls.Add(Me.DateFecha)
         Me.Controls.Add(Me.ComboTipo)
         Me.Controls.Add(Me.TextId)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormReclamos"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RG.CC. 37 - Reclamos, sugerencias y no conformidades. v04"

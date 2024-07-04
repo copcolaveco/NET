@@ -194,6 +194,10 @@
         Dim c As New pControldeInformes
         Return c.listar
     End Function
+    Public Function listarPorFicha(ByVal ficha As Integer) As ArrayList
+        Dim c As New pControldeInformes
+        Return c.listarPorFicha(ficha)
+    End Function
     Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim c As New pControldeInformes
         Return c.listarxfecha(desde, hasta)

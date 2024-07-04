@@ -249,7 +249,7 @@ Public Class FormAccionCorrectiva
 
     Private Sub ButtonEliminar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonEliminar.Click
         If TextId.Text <> "" Then
-            If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "JMS" Then
+            If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "JMS" Or Usuario.USUARIO = "MD" Then
                 If MsgBox("El registro será eliminado, ¿desea continuar?", MsgBoxStyle.OkCancel, "Atención") = MsgBoxResult.Ok Then
                     Dim ac As New dAccionCorrectiva
                     Dim id As Long = CType(TextId.Text, Long)
@@ -329,7 +329,7 @@ Public Class FormAccionCorrectiva
             ac.EFICAZ = eficaz
             ac.FECHAEVALUACION = feceval
             ac.ESTADO = estado
-            If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "JMS" Or Usuario.USUARIO = "SA" Then
+            If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "JMS" Or Usuario.USUARIO = "SA" Or Usuario.USUARIO = "MD" Then
                 If (ac.modificar(Usuario)) Then
                     MsgBox("Registro modificado", MsgBoxStyle.Information, "Atención")
                 Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")

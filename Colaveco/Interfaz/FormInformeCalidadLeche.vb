@@ -301,7 +301,7 @@ Public Class FormInformeCalidadLeche
             paratecnico = paratecnico + "Virginia Ferreira - "
         End If
         If idparatecnico6 = 1 Then
-            paratecnico = paratecnico + "Jeniffer Madera - "
+            paratecnico = paratecnico + "Jeniffer Melendrez - "
         End If
         If paratecnico <> "" Then
             x1hoja.Cells(fila, columna).formula = paratecnico
@@ -1748,7 +1748,7 @@ Public Class FormInformeCalidadLeche
                 columna = 1
                 fila = fila + 2
 
-                x1hoja.Cells(fila, columna).formula = "Laboratorio habilitado RNL 0029 - MGAP" '&" - Certificado vigente al 23/03/2023"
+                x1hoja.Cells(fila, columna).formula = "Laboratorio habilitado RNL 0029 - MGAP" '&" - Certificado vigente al 30/04/2025"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).Font.Size = 10
                 x1hoja.Cells(fila, columna).Font.Bold = True

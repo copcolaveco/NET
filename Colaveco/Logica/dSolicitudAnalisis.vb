@@ -421,6 +421,10 @@
         Dim s As New pSolicitudAnalisis
         Return s.marcarpago(Me, usuario)
     End Function
+    Public Function marcarpago2(ByVal usuario As dUsuario) As Boolean
+        Dim s As New pSolicitudAnalisis
+        Return s.marcarpago2(Me, usuario)
+    End Function
     Public Function marcar2() As Boolean
         Dim s As New pSolicitudAnalisis
         Return s.marcar2(Me)

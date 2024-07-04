@@ -48,6 +48,33 @@
 
         Return EjecutarTransaccion(lista)
     End Function
+    Public Function desmarcar(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
+        Dim obj As dCajas = CType(o, dCajas)
+        Dim sql As String = "UPDATE cajas SET marcada_envio = 0 WHERE codigo = '" & obj.CODIGO & "'"
+
+        Dim lista As New ArrayList
+        lista.Add(sql)
+
+        Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
+                                 & "VALUES (now(), 'cajas', 'marcar_laboratorio', " & obj.ID & ", " & usuario.ID & ")"
+        lista.Add(sqlAccion)
+
+        Return EjecutarTransaccion(lista)
+    End Function
+
+    Public Function marcar(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
+        Dim obj As dCajas = CType(o, dCajas)
+        Dim sql As String = "UPDATE cajas SET marcada_envio = 1 WHERE codigo = '" & obj.CODIGO & "'"
+
+        Dim lista As New ArrayList
+        lista.Add(sql)
+
+        Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
+                                 & "VALUES (now(), 'cajas', 'marcar_laboratorio', " & obj.ID & ", " & usuario.ID & ")"
+        lista.Add(sqlAccion)
+
+        Return EjecutarTransaccion(lista)
+    End Function
     Public Function marcarlaboratorioManual(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dCajas = CType(o, dCajas)
         Dim sql As String = "UPDATE cajas SET estado= 1, idcliente=-1, fecha = '" & obj.FECHA & "'  WHERE codigo = '" & obj.CODIGO & "'"
@@ -149,7 +176,7 @@
         End Try
     End Function
     Public Function buscarPorCodigo(ByVal codigo As String) As ArrayList
-        Dim sql As String = "SELECT id, codigo, estado, idcliente, fecha FROM cajas WHERE BINARY codigo like '%" & codigo & "%' ORDER BY codigo asc"
+        Dim sql As String = "SELECT id, codigo, estado, idcliente, fecha, marcada_envio FROM cajas WHERE codigo = '" & codigo & "' ORDER BY codigo asc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -165,6 +192,7 @@
                     c.ESTADO = CType(unaFila.Item(2), Integer)
                     c.IDCLIENTE = CType(unaFila.Item(3), Long)
                     c.FECHA = CType(unaFila.Item(4), String)
+                    c.MARCADA_CAJA = CType(unaFila.Item(5), Integer)
                     Lista.Add(c)
                 Next
                 Return Lista
@@ -224,7 +252,7 @@
         End Try
     End Function
     Public Function listarenLaboratorio() As ArrayList
-        Dim sql As String = "SELECT id, codigo, estado, idcliente, fecha FROM cajas WHERE estado = 1 ORDER BY codigo asc"
+        Dim sql As String = "SELECT id, codigo, estado, idcliente, fecha FROM cajas WHERE estado = 1 and marcada_envio=0 ORDER BY codigo asc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -249,7 +277,7 @@
         End Try
     End Function
     Public Function listarenClientes() As ArrayList
-        Dim sql As String = "SELECT distinct(caj.id), caj.codigo, caj.estado, caj.idcliente, caj.fecha FROM cajas caj INNER JOIN enviocajas ecaj oN ecaj.idcaja = caj.id WHERE estado <> 1 and ecaj.recibido = 1 ORDER BY codigo asc"
+        Dim sql As String = "SELECT distinct(caj.id), caj.codigo, caj.estado, caj.idcliente, caj.fecha FROM cajas caj INNER JOIN enviocajas ecaj oN ecaj.idcaja = caj.codigo WHERE estado = 2 and ecaj.recibido = 1 and marcada_envio = 1 ORDER BY codigo asc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet

@@ -31,7 +31,7 @@
     Private Sub checkearusuario()
         ComboFuncionario2.Enabled = False
         ButtonTodos.Enabled = False
-        If Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "CA" Then
+        If Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "CA" Or Usuario.USUARIO = "JMS" Or Usuario.USUARIO = "DF" Then
             ComboFuncionario2.Enabled = True
             ButtonTodos.Enabled = True
         Else
@@ -40,7 +40,7 @@
         End If
     End Sub
     Private Sub cargarlista()
-        If Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "CA" Or Usuario.USUARIO = "M" Then
+        If Usuario.USUARIO = "MCF" Or Usuario.USUARIO = "CA" Or Usuario.USUARIO = "M" Or Usuario.USUARIO = "JMS" Or Usuario.USUARIO = "DF" Then
             Dim cl As New dCapacitacionLin
             Dim f As New dUsuario
             Dim c As New dCapacitacionCab

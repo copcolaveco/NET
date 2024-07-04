@@ -20,6 +20,7 @@ Public Class FormEmbarqueCajas
         Usuario = u
         listarsincargar()
         listarcargadas()
+        'listarPedidosFinalizados()
     End Sub
 #End Region
     Private Sub listarsincargar()
@@ -34,6 +35,8 @@ Public Class FormEmbarqueCajas
                 DataGridView1.Rows.Add(lista.Count)
                 For Each e In lista
                     DataGridView1(columna, fila).Value = e.ID
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = e.IDPEDIDO
                     columna = columna + 1
                     DataGridView1(columna, fila).Value = e.FECHAENVIO
                     columna = columna + 1
@@ -80,6 +83,8 @@ Public Class FormEmbarqueCajas
                 DataGridView1.Rows.Add(lista.Count)
                 For Each e In lista
                     DataGridView1(columna, fila).Value = e.ID
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = e.IDPEDIDO
                     columna = columna + 1
                     DataGridView1(columna, fila).Value = e.FECHAENVIO
                     columna = columna + 1
@@ -130,6 +135,8 @@ Public Class FormEmbarqueCajas
                     Dim c As New dCliente
                     c.ID = e.IDPRODUCTOR
                     c = c.buscar
+                    DataGridView2(columna, fila).Value = e.IDPEDIDO
+                    columna = columna + 1
                     If Not c Is Nothing Then
                         DataGridView2(columna, fila).Value = c.NOMBRE
                         columna = columna + 1
@@ -162,30 +169,107 @@ Public Class FormEmbarqueCajas
         End If
     End Sub
 
-    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-        If DataGridView1.Columns(e.ColumnIndex).Name = "Cargada" Then
+    'Private Sub listarPedidosFinalizados()
+    '    Dim pedidos As New dPedidos
+    '    Dim listaPedidos As New ArrayList
+    '    listaPedidos = pedidos.listarPedidosFinalizados
+    '    DataGridView3.Rows.Clear()
+    '    If Not listaPedidos Is Nothing Then
+    '        If listaPedidos.Count > 0 Then
+    '            Dim fila As Integer = 0
+    '            Dim columna As Integer = 0
+    '            DataGridView3.Rows.Add(listaPedidos.Count)
+    '            For Each e In listaPedidos
+    '                DataGridView3(columna, fila).Value = e.ID
+    '                columna = columna + 1
+    '                DataGridView3(columna, fila).Value = e.FECHA
+    '                columna = columna + 1
+    '                DataGridView3(columna, fila).Value = e.FECHAPOSENVIO
+    '                columna = columna + 1
+    '                Dim c As New dCliente
+    '                c.ID = e.IDPRODUCTOR
+    '                c = c.buscar
+    '                If Not c Is Nothing Then
+    '                    DataGridView3(columna, fila).Value = c.NOMBRE
+    '                    columna = columna + 1
+    '                Else
+    '                    DataGridView3(columna, fila).Value = ""
+    '                    columna = columna + 1
+    '                End If
+    '                columna = 0
+    '                fila = fila + 1
+    '            Next
+    '            'DataGridView1.Sort(DataGridView1.Columns(0), System.ComponentModel.ListSortDirection.Ascending)
+    '        End If
+    '    End If
+    'End Sub
 
-            Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
-            Dim id As Long = 0
-            Dim ec As New dEnvioCajas
-            id = row.Cells("Id").Value
-            ec.ID = id
-            ec = ec.buscar2
-            If Not ec Is Nothing Then
-                If ec.IDEMPRESA <> 7 And ec.IDEMPRESA <> 13 And ec.IDEMPRESA <> 15 Then
-                    Dim v As New FormCompletoEnvio2(id, Usuario)
-                    v.ShowDialog()
+    Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+        If DataGridView1.Columns(e.ColumnIndex).Name = "Embarcar" Then
+            ' Este es el código para mostrar un popup de advertencia con botones de Aceptar y Cancelar
+            Dim result As DialogResult = MessageBox.Show("Se Embarcara la caja y el pedido seleccionado. ¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
+
+            ' Verificar qué botón fue presionado por el usuario
+            If result = DialogResult.OK Then
+                Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+                Dim id As Long = 0
+                Dim ec As New dEnvioCajas
+                id = row.Cells("Id").Value
+                ec.ID = id
+                ec = ec.buscar2
+                If Not ec Is Nothing Then
+                    If ec.IDEMPRESA <> 7 And ec.IDEMPRESA <> 13 And ec.IDEMPRESA <> 15 Then
+                        Dim v As New FormCompletoEnvio2(id, Usuario)
+                        v.ShowDialog()
+                    End If
+                    'Embarcar
+                    ec.marcarcargada(Usuario)
                 End If
-                ec.marcarcargada(Usuario)
+                listarsincargar()
+                listarcargadas()
+            ElseIf result = DialogResult.Cancel Then
             End If
-            listarsincargar()
-            listarcargadas()
+        End If
+
+        If DataGridView1.Columns(e.ColumnIndex).Name = "DesmarcarEmbarque" Then
+
+            ' Este es el código para mostrar un popup de advertencia con botones de Aceptar y Cancelar
+            Dim result As DialogResult = MessageBox.Show("Desea modificar el Pedido. ¿Continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
+
+            ' Verificar qué botón fue presionado por el usuario
+            If result = DialogResult.OK Then
+                Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+                Dim id As Long = 0
+                Dim ec As New dEnvioCajas
+                id = row.Cells("Id").Value
+                ec.ID = id
+                ec = ec.buscar2
+                If Not ec Is Nothing Then
+                    ec.modificarPedido(Usuario)
+                End If
+
+                'Desmarcar Pedido lo deja en enviadi = 0-------------------------------------------------------------
+                Dim pedido As New dPedidos
+                If pedido.desmarcarPedido(row.Cells("Pedido").Value, Usuario) Then
+                    MsgBox("Se desembarco el pedido", MsgBoxStyle.Critical, "Atención")
+                Else : MsgBox("Ocurrio un error", MsgBoxStyle.Critical, "Atención")
+                End If
+                listarsincargar()
+                listarcargadas()
+            ElseIf result = DialogResult.Cancel Then
+            End If
         End If
     End Sub
 
     Private Sub DataGridView2_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView2.CellContentClick
-        If DataGridView2.Columns(e.ColumnIndex).Name = "Desmarcar" Then
-            If Usuario.ID = 1 Or Usuario.ID = 3 Or Usuario.ID = 5 Or Usuario.ID = 8 Or Usuario.ID = 38 Or Usuario.ID = 39 Then
+        If DataGridView2.Columns(e.ColumnIndex).Name = "Desembarcar" Then
+            'If Usuario.ID = 1 Or Usuario.ID = 3 Or Usuario.ID = 5 Or Usuario.ID = 8 Or Usuario.ID = 38 Or Usuario.ID = 39 Then
+
+            Dim result As DialogResult = MessageBox.Show("De desembarcara la caja y el pedido. ¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
+
+            ' Verificar qué botón fue presionado por el usuario
+            If result = DialogResult.OK Then
+
                 Dim row As DataGridViewRow = DataGridView2.Rows(e.RowIndex)
                 Dim id As Long = 0
                 Dim ec As New dEnvioCajas
@@ -194,11 +278,46 @@ Public Class FormEmbarqueCajas
                 ec = ec.buscar2
                 If Not ec Is Nothing Then
                     ec.desmarcarcargada(Usuario)
+                    Dim pedido As New dPedidos
+                    pedido.desmarcarPedido(ec.IDPEDIDO, Usuario)
                 End If
                 listarsincargar()
                 listarcargadas()
+            ElseIf result = DialogResult.Cancel Then
+            End If
+
+        End If
+        'End If
+
+        If DataGridView2.Columns(e.ColumnIndex).Name = "FinalizarPedido" Then
+
+            Dim result As DialogResult = MessageBox.Show("Se finalizara el Pedido. ¿Desea continuar?", "Advertencia", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
+
+            ' Verificar qué botón fue presionado por el usuario
+            If result = DialogResult.OK Then
+
+                Dim row As DataGridViewRow = DataGridView2.Rows(e.RowIndex)
+                Dim id As Long = 0
+                Dim ec As New dEnvioCajas
+                id = row.Cells("Id2").Value
+                ec.ID = id
+                ec = ec.buscar2
+                If Not ec Is Nothing Then
+                    ec.finalizarPedido(Usuario)
+                End If
+
+                'Deja la caja para poder preparar otro pedido
+                ec.CARGADA = 1 'Preparada
+                ec.marcarrecibido(Usuario)
+
+                listarsincargar()
+                listarcargadas()
+                ' listarPedidosFinalizados()
+            ElseIf result = DialogResult.Cancel Then
             End If
         End If
+
+
     End Sub
 
     Private Sub ButtonExcel_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonExcel.Click
@@ -472,5 +591,60 @@ Public Class FormEmbarqueCajas
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         listarsincargar2()
+    End Sub
+
+
+    Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
+        Dim e2 As New dEnvioCajas
+        Dim lista As New ArrayList
+        Dim desde As String = ""
+        Dim hasta As String = ""
+        desde = dtDesde.Value.ToString("yyyy-MM-dd")
+        hasta = dtHasta.Value.ToString("yyyy-MM-dd")
+        lista = e2.listarcargadasPorFecha(desde, hasta)
+        DataGridView2.Rows.Clear()
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                Dim fila As Integer = 0
+                Dim columna As Integer = 0
+                DataGridView2.Rows.Add(lista.Count)
+                For Each e2 In lista
+                    DataGridView2(columna, fila).Value = e2.ID
+                    columna = columna + 1
+                    Dim c As New dCliente
+                    c.ID = e2.IDPRODUCTOR
+                    c = c.buscar
+                    DataGridView2(columna, fila).Value = e2.IDPEDIDO
+                    columna = columna + 1
+                    If Not c Is Nothing Then
+                        DataGridView2(columna, fila).Value = c.NOMBRE
+                        columna = columna + 1
+                    Else
+                        DataGridView2(columna, fila).Value = ""
+                        columna = columna + 1
+                    End If
+                    DataGridView2(columna, fila).Value = e2.IDCAJA
+                    columna = columna + 1
+                    DataGridView2(columna, fila).Value = e2.FRASCOS
+                    columna = columna + 1
+                    Dim a As New dEmpresaT
+                    a.ID = e2.IDEMPRESA
+                    a = a.buscar
+                    If Not a Is Nothing Then
+                        DataGridView2(columna, fila).Value = a.NOMBRE
+                        columna = columna + 1
+                    Else
+                        DataGridView2(columna, fila).Value = ""
+                        columna = columna + 1
+                    End If
+                    DataGridView2(columna, fila).Value = e2.FECHAENVIO
+                    columna = columna + 1
+                    DataGridView2(columna, fila).Value = e2.ENVIO
+                    columna = 0
+                    fila = fila + 1
+                Next
+                'DataGridView1.Sort(DataGridView1.Columns(0), System.ComponentModel.ListSortDirection.Ascending)
+            End If
+        End If
     End Sub
 End Class

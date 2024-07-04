@@ -650,6 +650,9 @@ Public Class FormGestor
             carpeta = "agro_suelos"
         ElseIf tipoinforme = 20 Then
             carpeta = "patologia"
+        ElseIf tipoinforme = 21 Then
+            carpeta = "calidad_de_leche"
+            tipoinforme = 10
         End If
 
         Dim rg As New dResultado
@@ -737,6 +740,9 @@ Public Class FormGestor
             carpeta = "agro_suelos"
         ElseIf tipoinforme = 20 Then
             carpeta = "patologia"
+        ElseIf tipoinforme = 21 Then
+            carpeta = "calidad_de_leche"
+            tipoinforme = 10
         End If
 
         Dim rg As New dResultado

@@ -72,7 +72,6 @@ Partial Class FormSolicitud
         Me.DateFechaIngreso = New System.Windows.Forms.DateTimePicker()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label7 = New System.Windows.Forms.Label()
-        Me.ButtonEliminarCaja = New System.Windows.Forms.Button()
         Me.TextNMuestras = New System.Windows.Forms.TextBox()
         Me.TextProductor = New System.Windows.Forms.TextBox()
         Me.ListCajas = New System.Windows.Forms.ListBox()
@@ -114,6 +113,8 @@ Partial Class FormSolicitud
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Analisis = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.X = New System.Windows.Forms.DataGridViewCheckBoxColumn()
+        Me.EliminarDeLista = New System.Windows.Forms.Button()
+        Me.AgregarALista = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureImagen, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -135,6 +136,8 @@ Partial Class FormSolicitud
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.AgregarALista)
+        Me.TabPage1.Controls.Add(Me.EliminarDeLista)
         Me.TabPage1.Controls.Add(Me.txtCajasTipeables)
         Me.TabPage1.Controls.Add(Me.btnImprimir)
         Me.TabPage1.Controls.Add(Me.cbxTecnicoSueloNutri)
@@ -183,7 +186,6 @@ Partial Class FormSolicitud
         Me.TabPage1.Controls.Add(Me.DateFechaIngreso)
         Me.TabPage1.Controls.Add(Me.Label1)
         Me.TabPage1.Controls.Add(Me.Label7)
-        Me.TabPage1.Controls.Add(Me.ButtonEliminarCaja)
         Me.TabPage1.Controls.Add(Me.TextNMuestras)
         Me.TabPage1.Controls.Add(Me.TextProductor)
         Me.TabPage1.Controls.Add(Me.ListCajas)
@@ -679,16 +681,6 @@ Partial Class FormSolicitud
         Me.Label7.TabIndex = 109
         Me.Label7.Text = "Tipo de informe"
         '
-        'ButtonEliminarCaja
-        '
-        Me.ButtonEliminarCaja.Location = New System.Drawing.Point(974, 177)
-        Me.ButtonEliminarCaja.Margin = New System.Windows.Forms.Padding(4)
-        Me.ButtonEliminarCaja.Name = "ButtonEliminarCaja"
-        Me.ButtonEliminarCaja.Size = New System.Drawing.Size(69, 28)
-        Me.ButtonEliminarCaja.TabIndex = 117
-        Me.ButtonEliminarCaja.Text = "Eliminar"
-        Me.ButtonEliminarCaja.UseVisualStyleBackColor = True
-        '
         'TextNMuestras
         '
         Me.TextNMuestras.Location = New System.Drawing.Point(135, 321)
@@ -1077,9 +1069,29 @@ Partial Class FormSolicitud
         Me.X.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.X.Width = 40
         '
+        'EliminarDeLista
+        '
+        Me.EliminarDeLista.Location = New System.Drawing.Point(972, 213)
+        Me.EliminarDeLista.Margin = New System.Windows.Forms.Padding(4)
+        Me.EliminarDeLista.Name = "EliminarDeLista"
+        Me.EliminarDeLista.Size = New System.Drawing.Size(188, 28)
+        Me.EliminarDeLista.TabIndex = 163
+        Me.EliminarDeLista.Text = "Eliminar"
+        Me.EliminarDeLista.UseVisualStyleBackColor = True
+        '
+        'AgregarALista
+        '
+        Me.AgregarALista.Location = New System.Drawing.Point(972, 177)
+        Me.AgregarALista.Margin = New System.Windows.Forms.Padding(4)
+        Me.AgregarALista.Name = "AgregarALista"
+        Me.AgregarALista.Size = New System.Drawing.Size(188, 28)
+        Me.AgregarALista.TabIndex = 164
+        Me.AgregarALista.Text = "Agregar"
+        Me.AgregarALista.UseVisualStyleBackColor = True
+        '
         'FormSolicitud
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(8!, 16!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1324, 726)
         Me.Controls.Add(Me.TabControl1)
@@ -1087,17 +1099,17 @@ Partial Class FormSolicitud
         Me.Name = "FormSolicitud"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Solicitud"
-        Me.TabControl1.ResumeLayout(false)
-        Me.TabPage1.ResumeLayout(false)
-        Me.TabPage1.PerformLayout
-        CType(Me.PictureImagen,System.ComponentModel.ISupportInitialize).EndInit
-        Me.TabPage2.ResumeLayout(false)
-        Me.TabPage2.PerformLayout
-        CType(Me.DataGridView2,System.ComponentModel.ISupportInitialize).EndInit
-        CType(Me.DataGridView1,System.ComponentModel.ISupportInitialize).EndInit
-        Me.ResumeLayout(false)
+        Me.TabControl1.ResumeLayout(False)
+        Me.TabPage1.ResumeLayout(False)
+        Me.TabPage1.PerformLayout()
+        CType(Me.PictureImagen, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.TabPage2.ResumeLayout(False)
+        Me.TabPage2.PerformLayout()
+        CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
+        Me.ResumeLayout(False)
 
-End Sub
+    End Sub
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage1 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage2 As System.Windows.Forms.TabPage
@@ -1135,7 +1147,6 @@ End Sub
     Friend WithEvents DateFechaIngreso As System.Windows.Forms.DateTimePicker
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label7 As System.Windows.Forms.Label
-    Friend WithEvents ButtonEliminarCaja As System.Windows.Forms.Button
     Friend WithEvents TextNMuestras As System.Windows.Forms.TextBox
     Friend WithEvents TextProductor As System.Windows.Forms.TextBox
     Friend WithEvents ListCajas As System.Windows.Forms.ListBox
@@ -1190,4 +1201,6 @@ End Sub
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents btnImprimir As System.Windows.Forms.Button
     Friend WithEvents txtCajasTipeables As System.Windows.Forms.TextBox
+    Friend WithEvents EliminarDeLista As System.Windows.Forms.Button
+    Friend WithEvents AgregarALista As System.Windows.Forms.Button
 End Class

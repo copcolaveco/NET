@@ -64,8 +64,12 @@ Public Class FormCajas
                         DataGridView1(columna, fila).Value = "Canelones"
                         columna = 0
                         fila = fila + 1
-                    Else
-                        DataGridView1(columna, fila).Value = "Desaparecida"
+                    ElseIf c.ESTADO = 6 Then
+                        DataGridView1(columna, fila).Value = "Perdida"
+                        columna = 0
+                        fila = fila + 1
+                    ElseIf c.ESTADO = 7 Then
+                        DataGridView1(columna, fila).Value = "Desuso"
                         columna = 0
                         fila = fila + 1
                     End If
@@ -77,14 +81,14 @@ Public Class FormCajas
     Private Sub limpiar()
         TextId.Text = ""
         TextCodigo.Text = ""
-        ComboEstado.Text = "Laboratorio"
+        ComboEstado.Text = ""
         RadioCA.Checked = True
         actualizartxt()
         cargarlista()
     End Sub
 
     Private Sub ButtonGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonGuardar.Click
-        Dim codigo As String = TextCodigo.Text.Trim
+        Dim codigo As String = TextCodigo.Text.Trim.ToUpper
         If ComboEstado.Text.Trim.Length = 0 Then MsgBox("Seleccione unestado", MsgBoxStyle.Exclamation, "Atención") : ComboEstado.Focus() : Exit Sub
         Dim estado As Integer = 0
         If ComboEstado.Text = "Laboratorio" Then
@@ -99,9 +103,22 @@ Public Class FormCajas
             estado = 5
         ElseIf ComboEstado.Text = "Perdida" Then
             estado = 6
+        ElseIf ComboEstado.Text = "Desuso" Then
+            estado = 7
         End If
 
         If TextId.Text <> "" Then
+            If estado = 7 Then
+                Dim caja As New dEnvioCajas
+                Dim idcaja As Long = TextId.Text.Trim
+                caja.IDCAJA = codigo
+                If (caja.cajaDesuso(Usuario)) Then
+                    MsgBox("Registro modificado para Desuso, todos los envios de clientes quedaron anulados ", MsgBoxStyle.Information, "Atención")
+                Else
+                    MsgBox("Ocurrio algun error al modificar la caja en Desuso", MsgBoxStyle.Information, "Atención")
+                End If
+            End If
+
             Dim c As New dCajas
             Dim id As Long = TextId.Text.Trim
             c.ID = id
@@ -175,6 +192,8 @@ Public Class FormCajas
                     ComboEstado.Text = "Canelones"
                 ElseIf c.ESTADO = 6 Then
                     ComboEstado.Text = "Perdida"
+                ElseIf c.ESTADO = 7 Then
+                    ComboEstado.Text = "Desuso"
                 End If
             End If
         End If
@@ -198,6 +217,10 @@ Public Class FormCajas
                     ComboEstado.Text = "Cardal"
                 ElseIf c.ESTADO = 5 Then
                     ComboEstado.Text = "Canelones"
+                ElseIf c.ESTADO = 6 Then
+                    ComboEstado.Text = "Perdida"
+                ElseIf c.ESTADO = 7 Then
+                    ComboEstado.Text = "Desuso"
                 End If
             End If
         End If
@@ -221,6 +244,10 @@ Public Class FormCajas
                     ComboEstado.Text = "Cardal"
                 ElseIf c.ESTADO = 5 Then
                     ComboEstado.Text = "Canelones"
+                ElseIf c.ESTADO = 6 Then
+                    ComboEstado.Text = "Perdida"
+                ElseIf c.ESTADO = 7 Then
+                    ComboEstado.Text = "Desuso"
                 End If
             End If
         End If
@@ -301,6 +328,10 @@ Public Class FormCajas
                         fila = fila + 1
                     ElseIf c.ESTADO = 6 Then
                         DataGridView1(columna, fila).Value = "Perdida"
+                        columna = 0
+                        fila = fila + 1
+                    ElseIf c.ESTADO = 7 Then
+                        DataGridView1(columna, fila).Value = "Desuso"
                         columna = 0
                         fila = fila + 1
                     End If
@@ -464,6 +495,21 @@ Public Class FormCajas
                         columna = columna + 1
                     ElseIf c.ESTADO = 6 Then
                         x1hoja.Cells(fila, columna).formula = "Perdida"
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = ""
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        'columna = 1
+                        'fila = fila + 1
+                        columna = columna + 1
+                    ElseIf c.ESTADO = 7 Then
+                        x1hoja.Cells(fila, columna).formula = "Desuso"
                         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                         x1hoja.Cells(fila, columna).Font.Bold = False
                         x1hoja.Cells(fila, columna).Font.Size = 10

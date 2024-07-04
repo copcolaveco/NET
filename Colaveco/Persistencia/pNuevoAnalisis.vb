@@ -254,6 +254,7 @@
             Return Nothing
         End Try
     End Function
+
     Public Function listar() As ArrayList
         Dim sql As String = "SELECT id, ficha, muestra, ifnull(detallemuestra,''), tipoinforme, analisis, ifnull(resultado,''), ifnull(resultado2,''), mostrar_r, metodo, unidad, orden, operador, fechaproceso, finalizado FROM nuevoanalisis order by id desc"
         Try

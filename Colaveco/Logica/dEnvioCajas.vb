@@ -22,6 +22,7 @@
     Private m_responsable As Integer
     Private m_cargada As Integer
     Private m_convenio As Integer
+    Private m_desembarcadas As Integer
 
 #End Region
 
@@ -202,6 +203,14 @@
             m_convenio = value
         End Set
     End Property
+    Public Property DESEMBARCADA() As Integer
+        Get
+            Return m_desembarcadas
+        End Get
+        Set(ByVal value As Integer)
+            m_desembarcadas = value
+        End Set
+    End Property
 #End Region
 
 #Region "Constructores"
@@ -228,8 +237,9 @@
         m_responsable = 0
         m_cargada = 0
         m_convenio = 0
+        m_desembarcadas = 0
     End Sub
-    Public Sub New(ByVal id As Long, ByVal idpedido As Long, ByVal idproductor As Long, ByVal idcaja As String, ByVal gradilla1 As String, ByVal gradilla2 As String, ByVal gradilla3 As String, ByVal frascos As Integer, ByVal idempresa As Integer, ByVal envio As String, ByVal fechaenvio As String, ByVal observaciones As String, ByVal enviado As Integer, ByVal idagencia As Integer, ByVal recibo As String, ByVal fecharecibo As String, ByVal recibido As Integer, ByVal cliente As Long, ByVal obsrecibo As String, ByVal responsable As Integer, ByVal cargada As Integer, ByVal convenio As Integer)
+    Public Sub New(ByVal id As Long, ByVal idpedido As Long, ByVal idproductor As Long, ByVal idcaja As String, ByVal gradilla1 As String, ByVal gradilla2 As String, ByVal gradilla3 As String, ByVal frascos As Integer, ByVal idempresa As Integer, ByVal envio As String, ByVal fechaenvio As String, ByVal observaciones As String, ByVal enviado As Integer, ByVal idagencia As Integer, ByVal recibo As String, ByVal fecharecibo As String, ByVal recibido As Integer, ByVal cliente As Long, ByVal obsrecibo As String, ByVal responsable As Integer, ByVal cargada As Integer, ByVal convenio As Integer, ByVal desembarcada As Integer)
         m_id = id
         m_idpedido = idpedido
         m_idproductor = idproductor
@@ -252,6 +262,7 @@
         m_responsable = responsable
         m_cargada = cargada
         m_convenio = convenio
+        m_desembarcadas = desembarcada
     End Sub
 #End Region
 
@@ -365,6 +376,10 @@
         Dim e As New pEnvioCajas
         Return e.listarcargadas()
     End Function
+    Public Function listarcargadasPorFecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+        Dim e As New pEnvioCajas
+        Return e.listarcargadasPorFecha(desde, hasta)
+    End Function
     Public Function listarverdessindevolver() As ArrayList
         Dim e As New pEnvioCajas
         Return e.listarverdessindevolver()
@@ -389,4 +404,23 @@
         Dim e As New pEnvioCajas
         Return e.desmarcarcargada(Me, usuario)
     End Function
+
+    Public Function modificarPedido(ByVal usuario As dUsuario) As Boolean
+        Dim e As New pEnvioCajas
+        Return e.modificarPedido(Me, usuario)
+    End Function
+    Public Function cajaDesuso(ByVal usuario As dUsuario) As Boolean
+        Dim e As New pEnvioCajas
+        Return e.cajaDesuso(Me, usuario)
+    End Function
+
+    Public Function modificarAgencia(ByVal usuario As dUsuario) As Boolean
+        Dim e As New pEnvioCajas
+        Return e.modificarAgencia(Me, usuario)
+    End Function
+    Public Function finalizarPedido(ByVal usuario As dUsuario) As Boolean
+        Dim e As New pEnvioCajas
+        Return e.finalizarPedido(Me, usuario)
+    End Function
+
 End Class

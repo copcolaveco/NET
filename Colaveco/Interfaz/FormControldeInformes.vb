@@ -25,7 +25,7 @@ Public Class FormControldeInformes
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Usuario = u
-        listarinformes()
+        ' listarinformes()
     End Sub
 
 #End Region
@@ -416,7 +416,7 @@ Public Class FormControldeInformes
         Else
         End If
         '*** SUELOS ***********************************************************************
-        If lnutricion.Count > 0 Then
+        If lsuelos.Count > 0 Then
             Dim ci As New dControldeInformes
             If lsuelos.Count < 2 Then
                 lista2 = sa.controlsuelos1(fechad, fechah)
@@ -841,6 +841,126 @@ Public Class FormControldeInformes
             End If
         Else
         End If
+
+        'If faltan < 3 Then
+        'Dim ci As New dControldeInformes
+        DataGridView1.Rows.Clear()
+
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+
+                Dim fila As Integer = 0
+                Dim columna As Integer = 0
+                DataGridView1.Rows.Add(lista.Count)
+                For Each ci In lista
+                    Dim ci2 As New dControldeInformes
+
+                    Dim listaControl As New ArrayList
+
+                    listaControl = ci2.listarPorFicha(ci.ID)
+                    Dim m As New dMuestras
+                    Dim ti As New dTipoInforme
+                    Dim si As New dSubInforme
+                    Dim s As New dSinaveleFicha
+
+                    DataGridView1(columna, fila).Value = ci.ID
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = ci.FECHAINGRESO
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = ci.ID
+                    columna = columna + 1
+                    s.FICHA = ci.ID
+                    s = s.buscar
+                    If Not s Is Nothing Then
+                        DataGridView1(columna, fila).Value = s.SINAVELE
+                        columna = columna + 1
+                    Else
+                        DataGridView1(columna, fila).Value = ""
+                        columna = columna + 1
+                    End If
+                    DataGridView1(columna, fila).Value = ci.FECHAINGRESO
+                    columna = columna + 1
+
+                    Dim ciResultado As Integer
+                    Dim ciCoindide As Integer
+                    Dim ciOM As Integer
+                    Dim ciNC As Integer
+                    Dim ciControlado As Integer
+
+                    If Not listaControl Is Nothing Then
+                        For Each i In listaControl
+                            m.ID = i.FICHA
+                            ciResultado = i.RESULTADO
+                            ciCoindide = i.COINCIDE
+                            ciOM = i.OM
+                            ciNC = i.NC
+                            ciControlado = i.CONTROLADO
+                        Next
+                    End If
+                    
+                    m = m.buscar
+                    If Not m Is Nothing Then
+                        DataGridView1(columna, fila).Value = m.NOMBRE
+                        columna = columna + 1
+                    Else
+                        DataGridView1(columna, fila).Value = "vacío"
+                        columna = columna + 1
+                    End If
+                    ti.ID = ci.IDTIPOINFORME
+                    ti = ti.buscar
+                    DataGridView1(columna, fila).Value = ti.NOMBRE
+                    columna = columna + 1
+                    si.ID = ci.IDSUBINFORME
+                    si = si.buscar
+                    If Not si Is Nothing Then
+                        DataGridView1(columna, fila).Value = si.NOMBRE
+                        columna = columna + 1
+                    Else
+                        DataGridView1(columna, fila).Value = ""
+                        columna = columna + 1
+                    End If
+                    If ciResultado = 0 Then
+                        DataGridView1(columna, fila).Value = False
+                    Else
+                        DataGridView1(columna, fila).Value = True
+                    End If
+                    columna = columna + 1
+                    If ciCoindide = 0 Then
+                        DataGridView1(columna, fila).Value = False
+                    Else
+                        DataGridView1(columna, fila).Value = True
+                    End If
+                    columna = columna + 1
+                    If ciOM = 0 Then
+                        DataGridView1(columna, fila).Value = False
+                    Else
+                        DataGridView1(columna, fila).Value = True
+                    End If
+                    columna = columna + 1
+                    If ciNC = 0 Then
+                        DataGridView1(columna, fila).Value = False
+                    Else
+                        DataGridView1(columna, fila).Value = True
+                    End If
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = ci.OBSERVACIONES
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = Usuario.NOMBRE
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = "Ver informe"
+                    columna = columna + 1
+                    If ciControlado = 0 Then
+                        DataGridView1(columna, fila).Value = False
+                    Else
+                        DataGridView1(columna, fila).Value = True
+                    End If
+                    columna = 0
+                    fila = fila + 1
+                Next
+        End If
+        'End If
+        End If
+
     End Sub
 
     Private Sub DataGridView1_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellClick

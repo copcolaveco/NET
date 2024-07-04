@@ -101,6 +101,8 @@ Partial Class FormEnvioCajas
         Me.ComboProlesa = New System.Windows.Forms.ComboBox()
         Me.Label31 = New System.Windows.Forms.Label()
         Me.txtCajasTipeables = New System.Windows.Forms.TextBox()
+        Me.ComboBox1 = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.GroupBox1.SuspendLayout()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -729,7 +731,7 @@ Partial Class FormEnvioCajas
         Me.ComboCajas.Margin = New System.Windows.Forms.Padding(4)
         Me.ComboCajas.Name = "ComboCajas"
         Me.ComboCajas.Size = New System.Drawing.Size(119, 24)
-        Me.ComboCajas.TabIndex = 74
+        Me.ComboCajas.TabIndex = 5
         '
         'Timer2
         '
@@ -751,7 +753,7 @@ Partial Class FormEnvioCajas
         Me.MenuStrip1.Location = New System.Drawing.Point(0, 0)
         Me.MenuStrip1.Name = "MenuStrip1"
         Me.MenuStrip1.Padding = New System.Windows.Forms.Padding(8, 2, 0, 2)
-        Me.MenuStrip1.Size = New System.Drawing.Size(1311, 28)
+        Me.MenuStrip1.Size = New System.Drawing.Size(1489, 28)
         Me.MenuStrip1.TabIndex = 76
         Me.MenuStrip1.Text = "MenuStrip1"
         '
@@ -834,13 +836,36 @@ Partial Class FormEnvioCajas
         Me.txtCajasTipeables.Margin = New System.Windows.Forms.Padding(4)
         Me.txtCajasTipeables.Name = "txtCajasTipeables"
         Me.txtCajasTipeables.Size = New System.Drawing.Size(120, 22)
-        Me.txtCajasTipeables.TabIndex = 84
+        Me.txtCajasTipeables.TabIndex = 5
+        '
+        'ComboBox1
+        '
+        Me.ComboBox1.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboBox1.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboBox1.FormattingEnabled = True
+        Me.ComboBox1.Location = New System.Drawing.Point(1259, 225)
+        Me.ComboBox1.Margin = New System.Windows.Forms.Padding(4)
+        Me.ComboBox1.Name = "ComboBox1"
+        Me.ComboBox1.Size = New System.Drawing.Size(187, 24)
+        Me.ComboBox1.TabIndex = 165
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(1258, 257)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(188, 28)
+        Me.Button1.TabIndex = 166
+        Me.Button1.Text = "Ingresar caja manual"
+        Me.Button1.UseVisualStyleBackColor = True
         '
         'FormEnvioCajas
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1311, 655)
+        Me.ClientSize = New System.Drawing.Size(1489, 655)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.ComboBox1)
         Me.Controls.Add(Me.txtCajasTipeables)
         Me.Controls.Add(Me.Label31)
         Me.Controls.Add(Me.ComboProlesa)
@@ -991,5 +1016,7 @@ Partial Class FormEnvioCajas
     Friend WithEvents ComboProlesa As System.Windows.Forms.ComboBox
     Friend WithEvents Label31 As System.Windows.Forms.Label
     Friend WithEvents txtCajasTipeables As System.Windows.Forms.TextBox
+    Friend WithEvents ComboBox1 As System.Windows.Forms.ComboBox
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 
 End Class

@@ -139,6 +139,7 @@ Partial Class FormInicio
         Me.EsporuladosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FoliaresNuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.InhibidoresToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.Minerales = New System.Windows.Forms.ToolStripMenuItem()
         Me.LeucosisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MicotoxinasEnLecheToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.NutriciónNuevoToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -159,6 +160,7 @@ Partial Class FormInicio
         Me.ControlDeInformesNutriciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlDeInformesSuelosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlDeInformesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.AsfToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FrascosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CajasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CompletarEnvíosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -218,6 +220,7 @@ Partial Class FormInicio
         Me.NutriciónToolStripMenuItem3 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SuelosToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.TimepoDeEnvíoDeInformesToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ControlDeInformesToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CapacitaciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CompletarCapacitaciónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.RegistrosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -998,7 +1001,7 @@ Partial Class FormInicio
         '
         'AnálisisToolStripMenuItem
         '
-        Me.AnálisisToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AguaToolStripMenuItem, Me.AguaNuevoToolStripMenuItem, Me.AlimentosNuevoToolStripMenuItem, Me.AmbientalNuevoToolStripMenuItem, Me.AntibiogramasToolStripMenuItem, Me.AntibiogramasNuevoToolStripMenuItem1, Me.BacteriologíaClínicaAeróbicaToolStripMenuItem, Me.BacteriologíaDeTanqueNuevoToolStripMenuItem, Me.BrucelosisToolStripMenuItem1, Me.EfluentesnuevoToolStripMenuItem, Me.EsporuladosToolStripMenuItem, Me.FoliaresNuevoToolStripMenuItem, Me.InhibidoresToolStripMenuItem, Me.LeucosisToolStripMenuItem, Me.MicotoxinasEnLecheToolStripMenuItem, Me.NutriciónNuevoToolStripMenuItem, Me.OtrosServiciosToolStripMenuItem, Me.ParasitologíaNuevoToolStripMenuItem, Me.PatologíaNuevoToolStripMenuItem, Me.PsicrótrofosToolStripMenuItem, Me.SerologíaNuevoToolStripMenuItem, Me.SuelosNuevoToolStripMenuItem, Me.ToxicologíaToolStripMenuItem, Me.DevoluciónDeFrascosToolStripMenuItem2, Me.DescartarMuestrasRosaDeBengToolStripMenuItem, Me.DevoluciónDeFrascosToolStripMenuItem3, Me.ToolStripMenuItem4, Me.CONTROLESToolStripMenuItem1})
+        Me.AnálisisToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AguaToolStripMenuItem, Me.AguaNuevoToolStripMenuItem, Me.AlimentosNuevoToolStripMenuItem, Me.AmbientalNuevoToolStripMenuItem, Me.AntibiogramasToolStripMenuItem, Me.AntibiogramasNuevoToolStripMenuItem1, Me.BacteriologíaClínicaAeróbicaToolStripMenuItem, Me.BacteriologíaDeTanqueNuevoToolStripMenuItem, Me.BrucelosisToolStripMenuItem1, Me.EfluentesnuevoToolStripMenuItem, Me.EsporuladosToolStripMenuItem, Me.FoliaresNuevoToolStripMenuItem, Me.InhibidoresToolStripMenuItem, Me.Minerales, Me.LeucosisToolStripMenuItem, Me.MicotoxinasEnLecheToolStripMenuItem, Me.NutriciónNuevoToolStripMenuItem, Me.OtrosServiciosToolStripMenuItem, Me.ParasitologíaNuevoToolStripMenuItem, Me.PatologíaNuevoToolStripMenuItem, Me.PsicrótrofosToolStripMenuItem, Me.SerologíaNuevoToolStripMenuItem, Me.SuelosNuevoToolStripMenuItem, Me.ToxicologíaToolStripMenuItem, Me.DevoluciónDeFrascosToolStripMenuItem2, Me.DescartarMuestrasRosaDeBengToolStripMenuItem, Me.DevoluciónDeFrascosToolStripMenuItem3, Me.ToolStripMenuItem4, Me.CONTROLESToolStripMenuItem1, Me.AsfToolStripMenuItem})
         Me.AnálisisToolStripMenuItem.Name = "AnálisisToolStripMenuItem"
         Me.AnálisisToolStripMenuItem.Size = New System.Drawing.Size(71, 24)
         Me.AnálisisToolStripMenuItem.Text = "Análisis"
@@ -1096,6 +1099,14 @@ Partial Class FormInicio
         Me.InhibidoresToolStripMenuItem.Name = "InhibidoresToolStripMenuItem"
         Me.InhibidoresToolStripMenuItem.Size = New System.Drawing.Size(332, 24)
         Me.InhibidoresToolStripMenuItem.Text = "Inhibidores"
+        '
+        'Minerales
+        '
+        Me.Minerales.BackColor = System.Drawing.SystemColors.ActiveCaptionText
+        Me.Minerales.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.Minerales.Name = "Minerales"
+        Me.Minerales.Size = New System.Drawing.Size(332, 24)
+        Me.Minerales.Text = "Minerales en Leche"
         '
         'LeucosisToolStripMenuItem
         '
@@ -1231,6 +1242,12 @@ Partial Class FormInicio
         Me.ControlDeInformesToolStripMenuItem1.Name = "ControlDeInformesToolStripMenuItem1"
         Me.ControlDeInformesToolStripMenuItem1.Size = New System.Drawing.Size(175, 24)
         Me.ControlDeInformesToolStripMenuItem1.Text = "Efluentes"
+        '
+        'AsfToolStripMenuItem
+        '
+        Me.AsfToolStripMenuItem.Name = "AsfToolStripMenuItem"
+        Me.AsfToolStripMenuItem.Size = New System.Drawing.Size(332, 24)
+        Me.AsfToolStripMenuItem.Text = "asf"
         '
         'FrascosToolStripMenuItem1
         '
@@ -1565,7 +1582,7 @@ Partial Class FormInicio
         '
         'EstadísticasToolStripMenuItem
         '
-        Me.EstadísticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalidadDeLecheToolStripMenuItem1, Me.ComprasToolStripMenuItem2, Me.NutriciónToolStripMenuItem3, Me.SuelosToolStripMenuItem2, Me.TimepoDeEnvíoDeInformesToolStripMenuItem})
+        Me.EstadísticasToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CalidadDeLecheToolStripMenuItem1, Me.ComprasToolStripMenuItem2, Me.NutriciónToolStripMenuItem3, Me.SuelosToolStripMenuItem2, Me.TimepoDeEnvíoDeInformesToolStripMenuItem, Me.ControlDeInformesToolStripMenuItem2})
         Me.EstadísticasToolStripMenuItem.Name = "EstadísticasToolStripMenuItem"
         Me.EstadísticasToolStripMenuItem.Size = New System.Drawing.Size(97, 24)
         Me.EstadísticasToolStripMenuItem.Text = "Estadísticas"
@@ -1600,6 +1617,12 @@ Partial Class FormInicio
         Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Name = "TimepoDeEnvíoDeInformesToolStripMenuItem"
         Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Size = New System.Drawing.Size(273, 24)
         Me.TimepoDeEnvíoDeInformesToolStripMenuItem.Text = "Tiempo de envío de Informes"
+        '
+        'ControlDeInformesToolStripMenuItem2
+        '
+        Me.ControlDeInformesToolStripMenuItem2.Name = "ControlDeInformesToolStripMenuItem2"
+        Me.ControlDeInformesToolStripMenuItem2.Size = New System.Drawing.Size(273, 24)
+        Me.ControlDeInformesToolStripMenuItem2.Text = "Control de Informes"
         '
         'CapacitaciónToolStripMenuItem1
         '
@@ -3214,4 +3237,7 @@ Partial Class FormInicio
     Friend WithEvents btnEdit As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents HistorialDePedidosToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents ControlDeInformesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Minerales As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents AsfToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

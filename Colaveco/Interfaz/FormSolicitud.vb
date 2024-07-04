@@ -23,6 +23,8 @@ Public Class FormSolicitud
     Private codigo As String = ""
     Private nuevaFicha As Integer = 0
     Dim idcaja As String
+    Dim idCliente As Long = 0
+    Dim cajasImp As String = ""
 
     Public Property Usuario() As dUsuario
         Get
@@ -608,6 +610,9 @@ Public Class FormSolicitud
             carpeta = "agro_suelos"
         ElseIf tipoinforme = 20 Then
             carpeta = "patologia"
+        ElseIf tipoinforme = 21 Then
+            carpeta = "calidad_de_leche"
+            tipoinforme = 10
         End If
 
         Dim rg As New dResultado
@@ -1976,6 +1981,47 @@ Public Class FormSolicitud
                     Exit Sub
                 End If
             End If
+
+            For Each t In ListCajas.Items
+
+                Dim caja As New dCajas
+                Dim lista As New ArrayList
+                lista = caja.buscarPorCodigo(t.CODIGO)
+                cajasImp = cajasImp + Format$(t.CODIGO) & " - "
+
+                If lista IsNot Nothing Then
+                    If lista.Count > 0 Then
+
+                        Dim env2 As New dEnvioCajas()
+                        env2.IDCAJA = lista(0).CODIGO
+                        env2 = env2.buscarultimoenvioxcaja()
+
+
+                        Dim agenciaPed As dEmpresaT = CType(ComboAgencia.SelectedItem, dEmpresaT)
+                        Dim reciboPed As String = TextRemito.Text.Trim
+                        Dim clientePEd As Long = TextIdProductor.Text
+                        Dim observacionesPed As String = TextObservaciones.Text.Trim
+                        Dim fec As String
+                        fec = Format(System.DateTime.Now, "yyyy-MM-dd")
+                        If Not agenciaPed Is Nothing Then
+                            env2.IDAGENCIA = agenciaPed.ID
+                        Else
+                            env2.IDAGENCIA = 8
+                        End If
+                        env2.FECHARECIBO = fec
+                        env2.CLIENTE = clientePEd
+                        env2.OBSRECIBO = observacionesPed
+                        env2.RECIBIDO = 1
+                        env2.CARGADA = 0
+
+                        If (env2.marcarrecibido(Usuario)) Then
+
+                        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                        End If
+                    End If
+                End If
+            Next
+
             If tipoinforme = 10 Then
                 limpio_tabla_csm()
                 graba_tabla_csm()
@@ -2081,6 +2127,9 @@ Public Class FormSolicitud
             ElseIf idtipoinforme.ID = 20 Then
                 idtipoinf = 20
                 idtipoinforme_ = 20
+            ElseIf idtipoinforme.ID = 21 Then
+                idtipoinf = 21
+                idtipoinforme_ = 21
             ElseIf idtipoinforme.ID = 99 Then
                 idtipoinf = 99
                 idtipoinforme_ = 99
@@ -2188,9 +2237,18 @@ Public Class FormSolicitud
                 End If
             Next
             ComboTipoInforme.Focus()
+            idCliente = cli.ID
+
+            'Cargar cajas pendientes del cliente
+            'listar_solicitud_cajas(idCliente)
+
         End If
         If TextId.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de ficha", MsgBoxStyle.Exclamation, "Atención") : TextId.Focus() : Exit Sub
         guardar()
+
+       
+
+
     End Sub
     Public Sub guardar()
 
@@ -2813,7 +2871,7 @@ Public Class FormSolicitud
         End If
         x1hoja.Range("D10", "G11").Merge()
         x1hoja.Range("D10", "G11").WrapText = True
-        x1hoja.Cells(fila, columna).formula = "Caja/s nº:" & " " & cajas
+        x1hoja.Cells(fila, columna).formula = "Caja/s nº:" & " " & cajasImp
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
         x1hoja.Cells(fila, columna).Font.Size = 10
@@ -3382,7 +3440,7 @@ Public Class FormSolicitud
         If TextId.Text <> "" Then
             If TextId.Text > 0 Then
                 ficha = TextId.Text.Trim
-                listar_solicitud_cajas()
+                'listar_solicitud_cajas(idCliente)
                 listaranalisis2()
                 '*********************************************
                 Dim nam As New dNuevoAnalisis
@@ -3409,7 +3467,7 @@ Public Class FormSolicitud
             'c = Nothing
             marcarrecibido()
             solicitud_caja()
-            listar_solicitud_cajas()
+            'listar_solicitud_cajas(idCliente)
             TextCaja.Text = ""
             TextFrascos.Text = ""
             TextRemito.Text = ""
@@ -3417,21 +3475,148 @@ Public Class FormSolicitud
         End If
     End Sub
     Private Sub marcarrecibido()
-        Dim id As Long = 0
+        Dim p As New dPedidos
+        Dim lista As New ArrayList
+        Dim id As Integer = TextId.Text.Trim
+        p.ID = id
         If TextIdEnvio.Text <> "" Then
             id = TextIdEnvio.Text.Trim
         Else
             Dim e As New dEnvioCajas
 
-            'Agregando lectores de codifos 1/8/2023
-            If ComboCajas.Text.Trim <> "" Or txtCajasTipeables.Text <> "" Then
-                If txtCajasTipeables.Text <> "" Then
-                    e.IDCAJA = txtCajasTipeables.Text
-                Else
-                    e.IDCAJA = ComboCajas.Text.Trim
-                End If
-            Else : MsgBox("Error, no se completo Codigo de Caja", MsgBoxStyle.Critical, "Atención")
+            'Agregando lectores de codifos 31/7/2023
 
+            If txtCajasTipeables.Text <> "" Then
+                Dim caja As New dCajas
+                caja.CODIGO = txtCajasTipeables.Text
+                lista = caja.buscarPorCodigo(caja.CODIGO)
+
+                If lista IsNot Nothing Then
+                    If lista.Count > 0 Then
+
+                        Dim env2 As New dEnvioCajas()
+                        env2.IDCAJA = txtCajasTipeables.Text
+                        env2 = env2.buscarultimoenvioxcaja()
+
+
+                        Dim agenciaPed As dEmpresaT = CType(ComboAgencia.SelectedItem, dEmpresaT)
+                        Dim reciboPed As String = TextRemito.Text.Trim
+                        Dim clientePEd As Long = TextIdProductor.Text
+                        Dim observacionesPed As String = TextObservaciones.Text.Trim
+                        Dim fec As String
+                        fec = Format(System.DateTime.Now, "yyyy-MM-dd")
+                        If Not agenciaPed Is Nothing Then
+                            env2.IDAGENCIA = agenciaPed.ID
+                        Else
+                            env2.IDAGENCIA = 8
+                        End If
+                        ' env2.RECIBIDO = reciboPed
+                        env2.FECHARECIBO = fec
+                        env2.CLIENTE = clientePEd
+                        env2.OBSRECIBO = observacionesPed
+                        env2.RECIBIDO = 1
+                        env2.CARGADA = 0
+
+                        If (env2.marcarrecibido(Usuario)) Then
+                            MsgBox("Registro actualizado", MsgBoxStyle.Information, "Atención")
+                        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                        End If
+
+                        Dim c As New dCajas
+                        'c.CODIGO = env2.IDCAJA
+                        'If c.desmarcar(Usuario) Then
+                        'Else
+                        '    MsgBox("Caja sin desmarcar", MsgBoxStyle.Information, "Atención")
+                        'End If
+
+                        'p.marcarEnvio(p.ID, Usuario)
+                        If ComboAgencia.Text = "RETIRA EN COLAVECO" Or ComboAgencia.Text = "Retira ahora" Then
+                            e.IDCAJA = txtCajasTipeables.Text
+                        End If
+                    Else
+                        MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                    End If
+                Else
+                    MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                End If
+
+
+            ElseIf ComboCajas.Text.Trim <> "" Then
+
+                Dim caja As New dCajas
+                caja.CODIGO = ComboCajas.Text.Trim
+                lista = caja.buscarPorCodigo(caja.CODIGO)
+
+                If lista IsNot Nothing Then
+                    If lista.Count > 0 Then
+
+                        Dim env2 As New dEnvioCajas()
+                        env2.IDCAJA = ComboCajas.Text.Trim
+                        env2 = env2.buscarultimoenvioxcaja()
+
+
+                        Dim agenciaPed As dEmpresaT = CType(ComboAgencia.SelectedItem, dEmpresaT)
+                        Dim reciboPed As String = TextRemito.Text.Trim
+                        Dim clientePEd As Long = TextIdProductor.Text
+                        Dim observacionesPed As String = TextObservaciones.Text.Trim
+                        Dim fec As String
+                        fec = Format(System.DateTime.Now, "yyyy-MM-dd")
+                        If Not agenciaPed Is Nothing Then
+                            env2.IDAGENCIA = agenciaPed.ID
+                        Else
+                            env2.IDAGENCIA = 8
+                        End If
+                        ' env2.RECIBIDO = reciboPed
+                        env2.FECHARECIBO = fec
+                        env2.CLIENTE = clientePEd
+                        env2.OBSRECIBO = observacionesPed
+                        env2.RECIBIDO = 1
+                        env2.CARGADA = 0
+
+                        If (env2.marcarrecibido(Usuario)) Then
+                            MsgBox("Registro actualizado", MsgBoxStyle.Information, "Atención")
+                        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                        End If
+
+                        Dim c As New dCajas
+                        'c.CODIGO = env2.IDCAJA
+                        'If c.desmarcar(Usuario) Then
+                        'Else
+                        '    MsgBox("Caja sin desmarcar", MsgBoxStyle.Information, "Atención")
+                        'End If
+
+                        'p.marcarEnvio(p.ID, Usuario)
+                        If ComboAgencia.Text = "RETIRA EN COLAVECO" Or ComboAgencia.Text = "Retira ahora" Then
+                            e.IDCAJA = txtCajasTipeables.Text
+                        End If
+                    Else
+                        MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                    End If
+                Else
+                    MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                End If
+
+
+
+                'Dim caja As New dCajas
+                'caja.CODIGO = ComboCajas.Text.Trim
+                'lista = caja.buscarPorCodigo(caja.CODIGO)
+
+                'If lista IsNot Nothing Then
+                '    If lista.Count > 0 Then
+                '        p.marcarEnvio(p.ID, Usuario)
+                '        If ComboAgencia.Text = "RETIRA EN COLAVECO" Or ComboAgencia.Text = "Retira ahora" Then
+                '            e.IDCAJA = ComboCajas.Text.Trim
+                '        End If
+                '    Else
+                '        MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                '    End If
+                'Else
+                '    MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                'End If
+
+            Else
+                MsgBox("Ingrese codigo de la Caja", MsgBoxStyle.Critical, "Atención")
             End If
 
             e = e.buscarultimoenvio()
@@ -3459,6 +3644,7 @@ Public Class FormSolicitud
             env.CLIENTE = cliente
             env.OBSRECIBO = observaciones
             env.RECIBIDO = 1
+            env.CARGADA = 0
         End If
         If (env.marcarrecibido(Usuario)) Then
             MsgBox("Caja recibida", MsgBoxStyle.Information, "Atención")
@@ -3533,16 +3719,16 @@ Public Class FormSolicitud
         Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
         End If
     End Sub
-    Public Sub listar_solicitud_cajas()
+    Public Sub listar_solicitud_cajas(ByVal idCliente As Integer)
         Dim sc As New dRelSolicitudCajas
+        Dim ec As New dEnvioCajas
         Dim lista As New ArrayList
-        Dim texto As Long = TextId.Text.Trim
-        lista = sc.listarporid(texto)
+        lista = sc.listarCajasPendientesCliente(idCliente)
         ListCajas.Items.Clear()
         If Not lista Is Nothing Then
             If lista.Count > 0 Then
-                For Each sc In lista
-                    ListCajas().Items.Add(sc)
+                For Each ec In lista
+                    ListCajas().Items.Add(ec)
                 Next
             End If
         End If
@@ -3563,7 +3749,7 @@ Public Class FormSolicitud
     End Sub
 
     Private Sub ComboCajas_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboCajas.SelectedIndexChanged
-        buscarultimoenvio()
+        'buscarultimoenvio()
     End Sub
     Private Sub buscarultimoenvio()
         Dim e As New dEnvioCajas
@@ -3602,35 +3788,92 @@ Public Class FormSolicitud
         cargarComboCajas()
     End Sub
 
-    Private Sub ButtonEliminarCaja_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonEliminarCaja.Click
+    Private Sub ButtonEliminarCaja_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         If Not ListCajas.SelectedItem Is Nothing Then
             Dim sc As New dRelSolicitudCajas
-            Dim id As Long = CType(TextIdSC.Text, Long)
-            sc.ID = id
-            If (sc.eliminar(Usuario)) Then
+            Dim idCaja As String
+            Dim indice As Integer
+
+            Dim ec As New dEnvioCajas
+            ec.IDCAJA = ListCajas.SelectedItem.IDCAJA
+
+            ec = ec.buscarultimoenvio()
+            If Not ec Is Nothing Then
+                TextIdEnvio.Text = ec.ID
+                TextFrascos.Text = ec.FRASCOS
+                Dim c As New dCliente
+                c.ID = ec.IDPRODUCTOR
+            Else
+                'TextGradilla1.Focus()
+                TextRemito.Focus()
+            End If
+
+
+            Dim elementoSeleccionado As String
+            elementoSeleccionado = ListCajas.SelectedItem.ToString
+
+            ' Dividir el elemento seleccionado en palabras
+            Dim palabras() As String
+
+            ' Utilizar una expresión regular para dividir la cadena en palabras
+            Dim regex As Object
+            regex = CreateObject("VBScript.RegExp")
+            regex.Global = True
+            regex.Pattern = "\S+" ' Divide en base a espacios en blanco
+            Dim primerValor As String
+            Dim matches As Object
+            matches = regex.Execute(elementoSeleccionado)
+
+            ' Verificar si se encontraron coincidencias
+            If matches.Count > 0 Then
+                ' Obtener el primer valor (primera palabra)
+
+                primerValor = matches(0).Value
+
+                ' Mostrar el primer valor en un MsgBox
+                MsgBox("El primer valor del elemento seleccionado es: " & primerValor)
+            Else
+                MsgBox("El elemento seleccionado no contiene ninguna palabra.")
+            End If
+
+
+            If (sc.eliminarPorIdCaja(primerValor)) Then
                 desmarcarrecibido()
                 MsgBox("Caja eliminada", MsgBoxStyle.Information, "Atención")
             Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
             End If
         End If
-        limpiar2()
-        listar_solicitud_cajas()
+        'limpiar2()
+        'listar_solicitud_cajas(idCliente)
+
     End Sub
     Private Sub desmarcarrecibido()
         Dim id As Long = TextIdEnvio.Text.Trim
         Dim env As New dEnvioCajas()
-        If TextCaja.Text.Trim.Length > 0 Then
             env.ID = id
             env.IDAGENCIA = 0
-            env.RECIBO = ""
-            env.FECHARECIBO = "0000-00-00"
+        env.RECIBO = "Ingreso desde nueva Solicitud"
+        env.FECHARECIBO = System.DateTime.Now
             env.OBSRECIBO = ""
-            env.RECIBIDO = 0
-        End If
+        env.RECIBIDO = 1
+        env.CARGADA = 0
+        env.IDCAJA = ListCajas.SelectedItem.IDCAJA
+
         If (env.marcarrecibido(Usuario)) Then
             MsgBox("Registro actualizado", MsgBoxStyle.Information, "Atención")
         Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
         End If
+
+        'Desmarque de caja 
+
+        Dim c As New dCajas
+        c.CODIGO = env.IDCAJA
+        If c.desmarcar(Usuario) Then
+        Else
+            MsgBox("Caja sin desmarcar", MsgBoxStyle.Information, "Atención")
+        End If
+
+
     End Sub
 
     Private Sub TextRemito_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles TextRemito.MouseClick
@@ -5163,7 +5406,7 @@ Public Class FormSolicitud
     End Sub
 
     Private Sub CheckMuestreo_CheckedChanged(sender As Object, e As EventArgs) Handles CheckMuestreo.CheckedChanged
-        If CheckMuestreo.Checked = True And ComboTipoInforme.SelectedIndex = 16 Then
+        If CheckMuestreo.Checked = True And ComboTipoInforme.SelectedIndex = 11 Then
             cbxTecnicoMuestreo.Visible = True
         Else
             cbxTecnicoMuestreo.Visible = False
@@ -5190,6 +5433,90 @@ Public Class FormSolicitud
     End Sub
 
     Private Sub txtCajasTipeables_TextChanged(sender As Object, e As EventArgs) Handles txtCajasTipeables.TextChanged
-        buscarultimoenvio()
+        'buscarultimoenvio()
+    End Sub
+
+    Private Sub ButtonImagen_Click(sender As Object, e As EventArgs) Handles ButtonImagen.Click
+
+    End Sub
+
+    Private Sub ListCajas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ListCajas.SelectedIndexChanged
+
+    End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub ComboBox1_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub AgregarALista_Click(sender As Object, e As EventArgs) Handles AgregarALista.Click
+        Dim p As New dPedidos
+        Dim lista As New ArrayList
+        Dim id As Integer = TextId.Text.Trim
+        p.ID = id
+        If TextIdEnvio.Text <> "" Then
+            id = TextIdEnvio.Text.Trim
+        Else
+            'Dim e As New dEnvioCajas
+
+            'Agregando lectores de codifos 31/7/2023
+
+            If txtCajasTipeables.Text <> "" Then
+                Dim caja As New dCajas
+                Dim listCaja As New ArrayList
+                listCaja = caja.buscarPorCodigo(txtCajasTipeables.Text)
+
+                If listCaja IsNot Nothing Then
+                    If listCaja.Count > 0 Then
+                        For Each ec In listCaja
+                            ListCajas().Items.Add(ec)
+                        Next
+                    Else
+                        MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                    End If
+                Else
+                    MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                End If
+            ElseIf ComboCajas.Text.Trim <> "" Then
+                Dim caja As New dCajas
+                caja.CODIGO = ComboCajas.Text.Trim
+                lista = caja.buscarPorCodigo(caja.CODIGO)
+
+                If lista IsNot Nothing Then
+                    If lista.Count > 0 Then
+                        For Each ec In lista
+                            ListCajas().Items.Add(ec)
+                        Next
+                    Else
+                        MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                    End If
+                Else
+                    MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                End If
+            Else
+                MsgBox("Ingrese codigo de la Caja", MsgBoxStyle.Critical, "Atención")
+            End If
+        End If
+    End Sub
+
+    Private Sub EliminarDeLista_Click(sender As Object, e As EventArgs) Handles EliminarDeLista.Click
+        If Not ListCajas.SelectedItem Is Nothing Then
+            Dim sc As New dRelSolicitudCajas
+            Dim idCaja As String
+            Dim indice As Integer
+            Dim ec As New dEnvioCajas
+            ec.IDCAJA = ListCajas.SelectedItem.CODIGO
+
+            If ListCajas.SelectedIndex <> -1 Then
+                ' Elimina el elemento seleccionado
+                ListCajas.Items.RemoveAt(ListCajas.SelectedIndex)
+            Else
+                ' Opcional: muestra un mensaje si no hay un elemento seleccionado
+                MessageBox.Show("Por favor, selecciona un elemento para eliminar.", "Elemento no seleccionado", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            End If
+        End If
     End Sub
 End Class

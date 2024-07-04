@@ -268,6 +268,15 @@
         Dim lista As New ArrayList : lista.Add(sql) : lista.Add(sqlAccion)
         Return EjecutarTransaccion(lista)
     End Function
+    Public Function desmarcarPedido(ByVal idPedido As Integer, ByVal usuario As dUsuario) As Boolean
+        Dim sql As String = "UPDATE pedidos SET enviado = 0 and eliminado=0 WHERE id = " & idPedido
+
+        Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
+                                    & "VALUES (now(), 'pedidos', 'marcar envio', " & idPedido & ", " & usuario.ID & ")"
+
+        Dim lista As New ArrayList : lista.Add(sql) : lista.Add(sqlAccion)
+        Return EjecutarTransaccion(lista)
+    End Function
     Public Function marcarpendiente(ByVal idPedido As Integer, ByVal usuario As dUsuario) As Boolean
         Dim sql As String = "UPDATE pedidos SET pendiente = 1 WHERE id = " & idPedido & ""
 
@@ -623,6 +632,55 @@
                     p.CONVENIO = CType(unaFila.Item(25), Integer)
                     p.PENDIENTE = CType(unaFila.Item(26), Integer)
                     p.MARCA = CType(unaFila.Item(27), Integer)
+                    Lista.Add(p)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+    Public Function listarPedidosFinalizados() As ArrayList
+        Dim sql As String = "SELECT id, fecha, fechaposenvio, idproductor, direccion, ifnull(telefono,''), idagencia, ifnull(idtecnico,999),ifnull(responsable,''), ifnull(rc_compos,0),ifnull(agua,0), ifnull(sangre,0), ifnull(esteriles,0), ifnull(otros,0), ifnull(observaciones,''), ifnull(factura1,0), ifnull(cantidad1,0), ifnull(factura2,0), ifnull(cantidad2,0), ifnull(factura3,0), ifnull(cantidad3,0), enviado, facturado, eliminado, usuario, convenio, pendiente, marca, status FROM pedidos WHERE status = 2 order by 1 desc limit 1000"
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim p As New dPedidos
+                    p.ID = CType(unaFila.Item(0), Long)
+                    p.FECHA = CType(unaFila.Item(1), String)
+                    p.FECHAPOSENVIO = CType(unaFila.Item(2), String)
+                    p.IDPRODUCTOR = CType(unaFila.Item(3), Long)
+                    p.DIRECCION = CType(unaFila.Item(4), String)
+                    p.TELEFONO = CType(unaFila.Item(5), String)
+                    p.IDAGENCIA = CType(unaFila.Item(6), Integer)
+                    p.IDTECNICO = CType(unaFila.Item(7), Integer)
+                    p.RESPONSABLE = CType(unaFila.Item(8), String)
+                    p.RC_COMPOS = CType(unaFila.Item(9), Integer)
+                    p.AGUA = CType(unaFila.Item(10), Integer)
+                    p.SANGRE = CType(unaFila.Item(11), Integer)
+                    p.ESTERILES = CType(unaFila.Item(12), Integer)
+                    p.OTROS = CType(unaFila.Item(13), Integer)
+                    p.OBSERVACIONES = CType(unaFila.Item(14), String)
+                    p.FACTURA1 = CType(unaFila.Item(15), Long)
+                    p.CANTIDAD1 = CType(unaFila.Item(16), Integer)
+                    p.FACTURA2 = CType(unaFila.Item(17), Long)
+                    p.CANTIDAD2 = CType(unaFila.Item(18), Integer)
+                    p.FACTURA3 = CType(unaFila.Item(19), Long)
+                    p.CANTIDAD3 = CType(unaFila.Item(20), Integer)
+                    p.ENVIADO = CType(unaFila.Item(21), Integer)
+                    p.FACTURADO = CType(unaFila.Item(22), Integer)
+                    p.ELIMINADO = CType(unaFila.Item(23), Integer)
+                    p.IDUSUARIO = CType(unaFila.Item(24), Integer)
+                    p.CONVENIO = CType(unaFila.Item(25), Integer)
+                    p.PENDIENTE = CType(unaFila.Item(26), Integer)
+                    p.MARCA = CType(unaFila.Item(27), Integer)
+                    p.STATUS = CType(unaFila.Item(28), Integer)
                     Lista.Add(p)
                 Next
                 Return Lista

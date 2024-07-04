@@ -141,6 +141,32 @@
             Return Nothing
         End Try
     End Function
+    Public Function listarCajasPendienteCliente(ByVal texto As Long) As ArrayList
+        Dim sql As String = ("select id, idpedido, idproductor, idcaja, frascos, fechaenvio from enviocajas where cargada = 2 and recibido <> 1 and idproductor = " & texto & " order by 1 desc ")
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim e As New dEnvioCajas
+                    e.ID = CType(unaFila.Item(0), Long)
+                    e.IDPEDIDO = CType(unaFila.Item(1), Long)
+                    e.IDPRODUCTOR = CType(unaFila.Item(2), Long)
+                    e.IDCAJA = CType(unaFila.Item(3), String)
+                    e.FRASCOS = CType(unaFila.Item(4), Integer)
+                    e.FECHAENVIO = CType(unaFila.Item(5), Date)
+                    Lista.Add(e)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
     Public Function listarporficha(ByVal ficha As String) As ArrayList
         Dim sql As String = ("SELECT id, ficha, idenvio, idcaja, gradilla1, gradilla2, gradilla3,frascos, nocolaveco, eliminado FROM solicitud_cajas WHERE eliminado = 0 AND ficha = " & ficha & "")
         Try

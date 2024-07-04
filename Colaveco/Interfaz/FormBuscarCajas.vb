@@ -120,7 +120,9 @@
             Dim recibido As Integer = 0
             Dim id2 As Long = 0
             Dim ec2 As New dEnvioCajas
+
             id2 = row.Cells("Id").Value
+
             ec2.ID = id2
             ec2 = ec2.buscar2
             If Not ec2 Is Nothing Then
@@ -130,12 +132,14 @@
             End If
             '****************************************
             ec.ID = id
+            ec.IDCAJA = row.Cells("Caja").Value
             ec.IDAGENCIA = 8
             ec.RECIBO = "s/n"
             ec.FECHARECIBO = fec
             ec.OBSRECIBO = "Entrada manual"
             ec.RECIBIDO = 1
             ec.CLIENTE = 0
+            ec.CARGADA = 0
             If recibido = 0 Then
                 If (ec.marcarrecibido(Usuario)) Then
                     Dim c As New dCajas
@@ -151,5 +155,9 @@
                 MsgBox("Ya fué recibida anteriormente!")
             End If
         End If
+    End Sub
+
+    Private Sub ComboCajas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboCajas.SelectedIndexChanged
+
     End Sub
 End Class

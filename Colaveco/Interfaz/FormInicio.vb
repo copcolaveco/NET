@@ -5,6 +5,7 @@ Imports System.IO
 Imports System.Collections
 Imports System.Net.FtpWebRequest
 Imports System.Net
+Imports Newtonsoft.Json
 
 Public Class FormInicio
 
@@ -699,7 +700,7 @@ Public Class FormInicio
                 'Menú INFORMES
                 InformesToolStripMenuItem.Enabled = True
                 'Autorizaciones
-                If u.USUARIO = "MCF" Or u.USUARIO = "CA" Or u.USUARIO = "JMS" Then
+                If u.USUARIO = "MCF" Or u.USUARIO = "CA" Or u.USUARIO = "JMS" Or u.USUARIO = "DF" Then
                     Label1.Visible = True
                     DataGridAutorizaciones.Visible = True
                 Else
@@ -707,7 +708,7 @@ Public Class FormInicio
                     DataGridAutorizaciones.Visible = False
                 End If
                 'Notificaciones
-                If u.USUARIO = "SA" Or u.USUARIO = "DF" Then
+                If u.USUARIO = "SA" Or u.USUARIO = "DF" Or u.USUARIO = "MCF" Then
                     Label2.Visible = True
                     DataGridNotificaciones.Visible = True
                 Else
@@ -718,7 +719,7 @@ Public Class FormInicio
                 AdministraciónToolStripMenuItem.Enabled = True
                 ButtonSolicitudAnalisis.Enabled = True
                 'Direccion
-                If u.USUARIO = "MCF" Or u.USUARIO = "SA" Or u.USUARIO = "CA" Or u.USUARIO = "AP" Or u.USUARIO = "JMS" Then
+                If u.USUARIO = "MCF" Or u.USUARIO = "SA" Or u.USUARIO = "CA" Or u.USUARIO = "AP" Or u.USUARIO = "JMS" Or u.USUARIO = "DF" Then
                     DirecciónToolStripMenuItem.Enabled = True
                 Else
                     DirecciónToolStripMenuItem.Enabled = False
@@ -9909,8 +9910,22 @@ controltxt:
                         x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
                         columna = 1
                         fila = fila + 1
-                    Else
-                        x1hoja.Cells(fila, columna).formula = "Desaparecida"
+                    ElseIf c.ESTADO = 6 Then
+                        x1hoja.Cells(fila, columna).formula = "Perdida"
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = ""
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = 1
+                        fila = fila + 1
+                    ElseIf c.ESTADO = 7 Then
+                        x1hoja.Cells(fila, columna).formula = "Desuso"
                         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                         x1hoja.Cells(fila, columna).Font.Bold = False
                         x1hoja.Cells(fila, columna).Font.Size = 10
@@ -10949,6 +10964,25 @@ controltxt:
     End Sub
 
     Private Sub AdministraciónToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles AdministraciónToolStripMenuItem.Click
+
+    End Sub
+
+    Private Sub Button2_Click_1(sender As Object, e As EventArgs)
+      
+    End Sub
+
+    Private Sub ControlDeInformesToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles ControlDeInformesToolStripMenuItem2.Click
+        Dim v As New ControlInformes(Sesion.Usuario)
+        v.ShowDialog()
+    End Sub
+
+    Private Sub ToolStripMenuItem1_Click_1(sender As Object, e As EventArgs) Handles Minerales.Click
+        Dim tipoanalisis As Integer = 10
+        Dim v As New FormNuevoAnalisis(Sesion.Usuario, tipoanalisis)
+        v.Show()
+    End Sub
+
+    Private Sub DataGridAutorizaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridAutorizaciones.CellContentClick
 
     End Sub
 End Class

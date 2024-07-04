@@ -28,6 +28,7 @@
     Private m_convenio As Integer
     Private m_pendiente As Integer
     Private m_marca As Integer
+    Private m_status As Integer
 #End Region
 
 #Region "Getters y Setters"
@@ -255,6 +256,14 @@
             m_marca = value
         End Set
     End Property
+    Public Property STATUS() As Integer
+        Get
+            Return m_status
+        End Get
+        Set(ByVal value As Integer)
+            m_status = value
+        End Set
+    End Property
 #End Region
 
 #Region "Constructores"
@@ -287,8 +296,9 @@
         m_convenio = 0
         m_pendiente = 0
         m_marca = 0
+        m_status = 0
     End Sub
-    Public Sub New(ByVal id As Long, ByVal fecha As String, ByVal fechaposenvio As String, ByVal idproductor As Long, ByVal direccion As String, ByVal telefono As String, ByVal idtecnico As Integer, ByVal responsable As String, ByVal idagencia As Integer, ByVal rc_compos As Integer, ByVal agua As Integer, ByVal sangre As Integer, ByVal esteriles As Integer, ByVal otros As Integer, ByVal observaciones As String, ByVal factura1 As Long, ByVal cantidad1 As Integer, ByVal factura2 As Long, ByVal cantidad2 As Integer, ByVal factura3 As Long, ByVal cantidad3 As Integer, ByVal enviado As Integer, ByVal facturado As Integer, ByVal eliminado As Integer, ByVal idusuario As Integer, ByVal convenio As Integer, ByVal pendiente As Integer, ByVal marca As Integer)
+    Public Sub New(ByVal id As Long, ByVal fecha As String, ByVal fechaposenvio As String, ByVal idproductor As Long, ByVal direccion As String, ByVal telefono As String, ByVal idtecnico As Integer, ByVal responsable As String, ByVal idagencia As Integer, ByVal rc_compos As Integer, ByVal agua As Integer, ByVal sangre As Integer, ByVal esteriles As Integer, ByVal otros As Integer, ByVal observaciones As String, ByVal factura1 As Long, ByVal cantidad1 As Integer, ByVal factura2 As Long, ByVal cantidad2 As Integer, ByVal factura3 As Long, ByVal cantidad3 As Integer, ByVal enviado As Integer, ByVal facturado As Integer, ByVal eliminado As Integer, ByVal idusuario As Integer, ByVal convenio As Integer, ByVal pendiente As Integer, ByVal marca As Integer, ByVal status As Integer)
         m_id = id
         m_fecha = fecha
         m_fechaposenvio = fechaposenvio
@@ -317,6 +327,7 @@
         m_convenio = convenio
         m_pendiente = pendiente
         m_marca = marca
+        m_status = status
     End Sub
 #End Region
 
@@ -366,6 +377,10 @@
         Dim p As New pPedidos
         Return p.marcarEnvio(idPedido, usuario)
     End Function
+    Public Function desmarcarPedido(ByVal idPedido As Integer, ByVal usuario As dUsuario) As Boolean
+        Dim p As New pPedidos
+        Return p.desmarcarPedido(idPedido, usuario)
+    End Function
     Public Function marcar(ByVal idPedido As Integer, ByVal usuario As dUsuario) As Boolean
         Dim p As New pPedidos
         Return p.marcar(idPedido, usuario)
@@ -410,4 +425,9 @@
         Dim p As New pPedidos
         Return p.listarsinfacturaragua()
     End Function
+    Public Function listarPedidosFinalizados() As ArrayList
+        Dim p As New pPedidos
+        Return p.listarPedidosFinalizados()
+    End Function
+
 End Class

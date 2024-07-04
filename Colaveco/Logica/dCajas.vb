@@ -5,6 +5,7 @@
     Private m_estado As Integer
     Private m_idcliente As Long
     Private m_fecha As String
+    Private m_marcada_caja As Integer
 #End Region
 
 #Region "Getters y Setters"
@@ -49,6 +50,15 @@
             m_fecha = value
         End Set
     End Property
+
+    Public Property MARCADA_CAJA() As Integer
+        Get
+            Return m_marcada_caja
+        End Get
+        Set(ByVal value As Integer)
+            m_marcada_caja = value
+        End Set
+    End Property
 #End Region
 
 #Region "Constructores"
@@ -58,13 +68,15 @@
         m_estado = 0
         m_idcliente = 0
         m_fecha = ""
+        m_marcada_caja = 0
     End Sub
-    Public Sub New(ByVal id As Long, ByVal codigo As String, ByVal estado As Integer, ByVal idcliente As Long, ByVal fecha As String)
+    Public Sub New(ByVal id As Long, ByVal codigo As String, ByVal estado As Integer, ByVal idcliente As Long, ByVal fecha As String, ByVal marcada_caja As Integer)
         m_id = id
         m_codigo = codigo
         m_estado = estado
         m_idcliente = idcliente
         m_fecha = fecha
+        m_marcada_caja = marcada_caja
     End Sub
 #End Region
 
@@ -84,6 +96,14 @@
     Public Function marcarLaboratorio(ByVal usuario As dUsuario) As Boolean
         Dim c As New pCajas
         Return c.marcarLaboratorio(Me, usuario)
+    End Function
+    Public Function desmarcar(ByVal usuario As dUsuario) As Boolean
+        Dim c As New pCajas
+        Return c.desmarcar(Me, usuario)
+    End Function
+    Public Function marcar(ByVal usuario As dUsuario) As Boolean
+        Dim c As New pCajas
+        Return c.marcar(Me, usuario)
     End Function
     Public Function marcarLaboratorioManual(ByVal usuario As dUsuario) As Boolean
         Dim c As New pCajas

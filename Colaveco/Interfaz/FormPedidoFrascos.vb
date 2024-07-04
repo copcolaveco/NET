@@ -140,6 +140,10 @@
             MsgBox("No se puede agregar en el mismo pedido, frascos de agua y sangre!")
             Exit Sub
         End If
+        If TextTelefono.Text = "" Then
+            MsgBox("No se puede agregar el pedido sin un teléfono")
+            Exit Sub
+        End If
         Dim observaciones As String = TextObservaciones.Text.Trim
         Dim factura1 As Long
         Dim cantidad1 As Integer
@@ -603,7 +607,7 @@
     End Sub
     Private Sub TextoCodBarras()
         If CheckCodBarras.Checked = True Then
-            TextObservaciones.Text = "VAN CON CÓDIGOS DE BARRA"
+            TextObservaciones.Text = TextObservaciones.Text + " ,VAN CON CÓDIGOS DE BARRA"
         Else
             TextObservaciones.Text = ""
         End If
@@ -657,5 +661,36 @@
 
     Private Sub TextRC_compos_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextRC_compos.TextChanged
 
+    End Sub
+
+    Private Sub txbBuscarCliente_TextChanged(sender As Object, e As EventArgs)
+        
+    End Sub
+
+    Private Sub Button5_Click(sender As Object, e As EventArgs) Handles Button5.Click
+        Dim v As New FormBuscarCliente
+        v.ShowDialog()
+        Dim lista As New ArrayList
+        Dim p As New dPedidos
+        If Not v.Cliente Is Nothing Then
+            Dim cli As dCliente = v.Cliente
+            lista = p.listarporcliente(cli.ID)
+            ListPedidos.Items.Clear()
+            If Not lista Is Nothing Then
+                If lista.Count > 0 Then
+                    For Each p In lista
+                        ListPedidos().Items.Add(p)
+                    Next
+                End If
+            End If
+        End If
+    End Sub
+
+    Private Sub chbFletePAgo_CheckedChanged(sender As Object, e As EventArgs) Handles chbFletePAgo.CheckedChanged
+        If chbFletePAgo.Checked = True Then
+            TextObservaciones.Text = TextObservaciones.Text + " ,FLETE PAGO"
+        Else
+            TextObservaciones.Text = ""
+        End If
     End Sub
 End Class

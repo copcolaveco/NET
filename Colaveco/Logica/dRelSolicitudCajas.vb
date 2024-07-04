@@ -135,6 +135,10 @@
         Dim e As New pRelSolicitudCajas
         Return e.eliminar(Me, usuario)
     End Function
+    Public Function eliminarPorIdCaja(ByVal idCaja As String) As Boolean
+        Dim e As New pRelSolicitudCajas
+        Return e.eliminarPorIdCaja(Me, idCaja)
+    End Function
     Public Function buscar() As dRelSolicitudCajas
         Dim e As New pRelSolicitudCajas
         Return e.buscar(Me)
@@ -154,6 +158,10 @@
     Public Function listarporid(ByVal texto As Long) As ArrayList
         Dim e As New pRelSolicitudCajas
         Return e.listarporid(texto)
+    End Function
+    Public Function listarCajasPendientesCliente(ByVal texto As Long) As ArrayList
+        Dim e As New pRelSolicitudCajas
+        Return e.listarCajasPendienteCliente(texto)
     End Function
     Public Function listarporficha(ByVal ficha As String) As ArrayList
         Dim e As New pRelSolicitudCajas

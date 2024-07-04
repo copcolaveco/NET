@@ -104,6 +104,40 @@
             Return Nothing
         End Try
     End Function
+    Public Function listarPorFicha(ByVal ficha As Integer) As ArrayList
+        Dim sql As String = ("select id, fechacontrol, ficha, fecha, muestra, tipo, subtipo, resultado, coincide,opcionmejora, noconformidad, observaciones,  controlador, controlado FROM controldeinformes WHERE FICHA = " & ficha & " and controlado = 0 order by fecha asc")
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim c As New dControldeInformes
+                    c.ID = CType(unaFila.Item(0), Long)
+                    c.FECHACONTROL = CType(unaFila.Item(1), String)
+                    c.FICHA = CType(unaFila.Item(2), Long)
+                    c.FECHA = CType(unaFila.Item(3), String)
+                    c.MUESTRA = CType(unaFila.Item(4), Integer)
+                    c.TIPO = CType(unaFila.Item(5), Integer)
+                    c.SUBTIPO = CType(unaFila.Item(6), Integer)
+                    c.RESULTADO = CType(unaFila.Item(7), Integer)
+                    c.COINCIDE = CType(unaFila.Item(8), Integer)
+                    c.OM = CType(unaFila.Item(9), Integer)
+                    c.NC = CType(unaFila.Item(10), Integer)
+                    c.OBSERVACIONES = CType(unaFila.Item(11), String)
+                    c.CONTROLADOR = CType(unaFila.Item(12), Integer)
+                    c.CONTROLADO = CType(unaFila.Item(13), Integer)
+                    Lista.Add(c)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
     Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim sql As String = ("select id, fechacontrol, ficha, fecha, muestra, tipo, subtipo, resultado, coincide,opcionmejora, noconformidad, observaciones,  controlador, controlado FROM controldeinformes WHERE fecha >='" & desde & "' and fecha <='" & hasta & "' AND controlado = 1 order by tipo asc")
         Try

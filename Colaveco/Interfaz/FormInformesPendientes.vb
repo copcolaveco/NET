@@ -2,6 +2,7 @@
 Imports Microsoft.Office.Interop.Excel
 Public Class FormInformesPendientes
 
+    Private _sesion As New dSesion
     Private _usuario As dUsuario
     Public Property Usuario() As dUsuario
         Get
@@ -11,15 +12,23 @@ Public Class FormInformesPendientes
             _usuario = value
         End Set
     End Property
+    Public Property Sesion() As dSesion
+        Get
+            Return _sesion
+        End Get
+        Set(ByVal value As dSesion)
+            _sesion = value
+        End Set
+    End Property
 #Region "Constructores"
     Public Sub New(ByVal u As dUsuario)
 
         ' Llamada necesaria para el Diseñador de Windows Forms.
         InitializeComponent()
-        listarpendientes()
+
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Usuario = u
-
+        listarpendientes()
     End Sub
 #End Region
     Private Sub listarpendientes()
@@ -233,17 +242,29 @@ Public Class FormInformesPendientes
 
                     'ListPendientes.Items.Add(s.FECHAINGRESO & Chr(9) & diasatraso & Chr(9) & p.NOMBRE & Chr(9) & informe & Chr(9) & s.ID)
 
+                    ' *** Según usuario se desbloquean las secciones correspondientes.-
+                    Dim u As dUsuario = Sesion.Usuario
+                    'DataGridView1.ColumnCount = 7
+
                     DataGridView1(columna, fila).Value = s.FECHAINGRESO
                     columna = columna + 1
                     DataGridView1(columna, fila).Value = diasatraso
                     columna = columna + 1
-                    DataGridView1(columna, fila).Value = p.NOMBRE
-                    columna = columna + 1
-                    DataGridView1(columna, fila).Value = informe
-                    columna = columna + 1
-                    DataGridView1(columna, fila).Value = s.ID
-                    columna = 0
-                    fila = fila + 1
+
+                    If Usuario.TIPOUSUARIO = 99 Or Usuario.TIPOUSUARIO = 97 Then
+                        DataGridView1(columna, fila).Value = p.NOMBRE
+                        columna = columna + 1
+                    Else
+                        DataGridView1(columna, fila).Value = " - "
+                        columna = columna + 1
+                    End If
+            DataGridView1(columna, fila).Value = Informe
+            columna = columna + 1
+            DataGridView1(columna, fila).Value = s.ID
+            columna = columna + 1
+            DataGridView1(columna, fila).Value = s.NMUESTRAS
+            columna = 0
+            fila = fila + 1
                 Next
                 DataGridView1.Sort(DataGridView1.Columns(1), System.ComponentModel.ListSortDirection.Descending)
                 TextControl.Text = cuenta_control
@@ -637,6 +658,10 @@ Public Class FormInformesPendientes
 
     
     Private Sub Label21_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Label21.Click
+
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
     End Sub
 End Class

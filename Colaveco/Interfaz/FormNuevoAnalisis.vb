@@ -46,7 +46,13 @@
     Private Sub listarfichas()
         Dim n As New dNuevoAnalisis
         Dim lista As New ArrayList
-        lista = n.listarfichasnuevas(tipoinforme)
+
+        If tipoinforme = 10 Then
+            lista = n.listarfichasMineralesLeche(tipoinforme)
+        Else
+            lista = n.listarfichasnuevas(tipoinforme)
+        End If
+
         Dim fila As Integer = 0
         Dim columna As Integer = 0
         DataGridView1.Rows.Clear()

@@ -8,6 +8,8 @@
         idparatecnico5 = 0
         idparatecnico6 = 0
         idparatecnico7 = 0
+        idparatecnico8 = 0
+        idparatecnico9 = 0
         If CheckBoxDiego.Checked = True Then
             idparatecnico1 = 1
         End If
@@ -28,6 +30,12 @@
         End If
         If cbxCrisCedrani.Checked = True Then
             idparatecnico7 = 1
+        End If
+        If cbxGabriel.Checked = True Then
+            idparatecnico9 = 1
+        End If
+        If cbxAdolfo.Checked = True Then
+            idparatecnico8 = 1
         End If
         Me.Close()
     End Sub

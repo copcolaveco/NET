@@ -131,7 +131,7 @@
                 rec.CIERREPROBLEMA = cierreproblema
                 rec.OBSERVACIONES = observaciones
                 rec.ACREDITADO = acreditado
-                If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "JMS" Then
+                If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "JMS" Or Usuario.USUARIO = "MD" Then
                     If (rec.modificar(Usuario)) Then
                         MsgBox("Registro modificado", MsgBoxStyle.Information, "Atención")
                     Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")

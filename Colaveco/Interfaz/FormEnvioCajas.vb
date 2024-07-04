@@ -16,6 +16,7 @@ Public Class FormEnvioCajas
     Dim productorweb As String
     Private _usuario As dUsuario
     Dim idcaja As String
+    Dim idAgenciaModificada As Integer = 0
 
     Public Property Usuario() As dUsuario
         Get
@@ -35,6 +36,7 @@ Public Class FormEnvioCajas
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Usuario = u
         cargarComboCajas()
+        cargarComboCajas2()
         cargarComboAgencia()
         cargarComboResponsable()
         cargarComboProlesa()
@@ -61,6 +63,37 @@ Public Class FormEnvioCajas
             End If
         End If
     End Sub
+
+    Public Sub cargarComboCajas2()
+        Dim c As New dCajas
+        Dim lista As New ArrayList
+        lista = c.listar2
+        ComboBox1.Items.Clear()
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                For Each c In lista
+                    ComboBox1.Items.Add(c)
+                Next
+            End If
+        End If
+    End Sub
+
+    Public Sub eliminarElementoSeleccionadoComboCajas()
+        Try
+            ' Verificar si hay un elemento seleccionado
+            If ComboCajas.SelectedIndex >= 0 Then
+                ' Eliminar el elemento seleccionado
+                ComboCajas.Items.RemoveAt(ComboCajas.SelectedIndex)
+            Else
+                MessageBox.Show("No hay ningún elemento seleccionado para eliminar.")
+            End If
+        Catch ex As Exception
+            ' Manejar cualquier excepción que pueda ocurrir
+            MessageBox.Show("Ocurrió un error al eliminar el elemento: " & ex.Message)
+        End Try
+    End Sub
+
+
     Public Sub cargarComboProlesa()
         Dim p As New dProlesa
         Dim lista As New ArrayList
@@ -611,9 +644,12 @@ Public Class FormEnvioCajas
     Private Sub TextEnvio_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles TextEnvio.KeyPress
         If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
             guardar()
+            eliminarElementoSeleccionadoComboCajas()
+            Dim c As New dCajas
             limpiar()
             listarcajasporid()
         End If
+
     End Sub
     Private Sub matarcaja()
         Dim ec As New dEnvioCajas
@@ -633,7 +669,13 @@ Public Class FormEnvioCajas
                     ec2.FECHARECIBO = fec
                     ec2.OBSRECIBO = "Caja matada en envío"
                     ec2.RECIBIDO = 1
+                    ec2.CARGADA = 0
                     If (ec2.marcarrecibido(Usuario)) Then
+                        Dim c As New dCajas
+                        Dim caja As String = ""
+                        caja = ec.IDCAJA
+                        c.CODIGO = caja
+                        c.marcarLaboratorioManual(Usuario)
                         'MsgBox("Caja recibida", MsgBoxStyle.Information, "Atención")
                     Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                     End If
@@ -642,104 +684,215 @@ Public Class FormEnvioCajas
         End If
     End Sub
     Sub guardar()
-        Dim v As New FormIngresarUsuario
-        v.ShowDialog()
-        Dim responsable As Integer = idusuario1
+        'Dim v As New FormIngresarUsuario
+        'v.ShowDialog()
+        Dim responsable As Integer = Usuario.ID
         Dim id As Long
         Dim idpedido As Long = TextId.Text.Trim
         Dim idproductor As Long = TextIdProductor.Text.Trim
+        Dim cajaExiste As Boolean = False
+        Dim desuso As Boolean
+        desuso = False
+        Dim marcadaCaja As Boolean
+        marcadaCaja = False
+        Dim existeEnGrid As Boolean = False
+        Dim ec As New dEnvioCajas
 
         'Agregando lectores de codifos 1/8/2023
-        If ComboCajas.Text.Trim <> "" Or txtCajasTipeables.Text <> "" Then
-            If txtCajasTipeables.Text <> "" Then
-                idcaja = txtCajasTipeables.Text
+        'If ComboCajas.Text.Trim <> "" Or txtCajasTipeables.Text <> "" Then
+        '    If txtCajasTipeables.Text <> "" Then
+        '        idcaja = txtCajasTipeables.Text
+        '    Else
+        '        idcaja = ComboCajas.Text.Trim
+        '    End If
+        'Else : MsgBox("Error, no se completo Codigo de Caja", MsgBoxStyle.Critical, "Atención")
+
+        'End If
+
+        Dim p As New dPedidos
+        Dim lista As New ArrayList
+
+
+        If txtCajasTipeables.Text <> "" Then
+            Dim caja As New dCajas
+            caja.CODIGO = txtCajasTipeables.Text
+            lista = caja.buscarPorCodigo(caja.CODIGO)
+
+            If lista IsNot Nothing Then
+                If lista.Count > 0 Then
+                    For Each e In lista
+                        Dim ecaja As New dEnvioCajas
+                        For Each ecaja In ListCajas.Items
+                            If (ecaja.IDCAJA = caja.CODIGO And ecaja.IDCAJA = "Cons-Devolución" Or ecaja.IDCAJA = "Caja-Devolución" Or ecaja.IDCAJA = "Bolsa" Or ecaja.IDCAJA = "Gradilla" Or ecaja.IDCAJA = "Frasco de agua") Then
+                                existeEnGrid = False
+                            ElseIf ecaja.IDCAJA = caja.CODIGO Then
+                                'And ecaja.IDCAJA <> "Cons-Devolución" Or ecaja.IDCAJA <> "Caja-Devolución" Or ecaja.IDCAJA <> "Bolsa" Or ecaja.IDCAJA <> "Gradilla" Or ecaja.IDCAJA <> "Frasco de agua" Then
+                                existeEnGrid = True
+                            End If
+                        Next
+                        If e.ESTADO = 7 Then
+                            desuso = True
+                        End If
+                        If e.MARCADA_CAJA = 1 Then
+                            marcadaCaja = True
+                        End If
+                    Next
+                    idcaja = txtCajasTipeables.Text
+                    cajaExiste = True
+                Else
+                    MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                End If
             Else
-                idcaja = ComboCajas.Text.Trim
+                MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
             End If
-        Else : MsgBox("Error, no se completo Codigo de Caja", MsgBoxStyle.Critical, "Atención")
-
-        End If
 
 
-        Dim gradilla1 As String = ""
-        If TextGradilla1.Text <> "" Then
-            gradilla1 = TextGradilla1.Text.Trim
-        End If
-        Dim gradilla2 As String = ""
-        If TextGradilla2.Text <> "" Then
-            gradilla2 = TextGradilla2.Text.Trim
-        End If
-        Dim gradilla3 As String = ""
-        If TextGradilla3.Text <> "" Then
-            gradilla3 = TextGradilla3.Text.Trim
-        End If
-        If TextFrascos.Text = "" Then
-            MsgBox("Debe ingresar la cantidad de frascos!")
-            Exit Sub
-        End If
-        Dim frascos As Integer = TextFrascos.Text.Trim
-        Dim agencia As dEmpresaT = CType(ComboAgencia.SelectedItem, dEmpresaT)
-        Dim envio As String = TextEnvio.Text.Trim
-        Dim fechaenvio As Date = DateFechaEnvio.Value.ToString("yyyy-MM-dd")
-        Dim observaciones As String = TextObservacionesE.Text.Trim
-        Dim prolesa As dProlesa = CType(ComboProlesa.SelectedItem, dProlesa)
-        Dim idprolesa As Integer = 0
-        If Not prolesa Is Nothing Then
-            idprolesa = prolesa.ID
-        End If
-        If Not ListCajas.SelectedItem Is Nothing Then
-            Dim env As New dEnvioCajas()
-            If TextCaja.Text.Trim.Length > 0 Then
-                Dim fec As String
-                fec = Format(fechaenvio, "yyyy-MM-dd")
-                id = TextIdEnvio.Text.Trim
-                env.ID = id
-                env.IDPEDIDO = idpedido
-                env.IDPRODUCTOR = idproductor
-                env.IDCAJA = idcaja
-                env.GRADILLA1 = gradilla1
-                env.GRADILLA2 = gradilla2
-                env.GRADILLA3 = gradilla3
-                env.FRASCOS = frascos
-                env.IDEMPRESA = agencia.ID
-                env.ENVIO = envio
-                env.FECHAENVIO = fec
-                env.OBSERVACIONES = observaciones
-                env.ENVIADO = 0
-                env.RESPONSABLE = responsable
-                env.CONVENIO = idprolesa
+            ElseIf ComboCajas.Text.Trim <> "" Then
+                Dim caja As New dCajas
+                caja.CODIGO = ComboCajas.Text.Trim
+                lista = caja.buscarPorCodigo(caja.CODIGO)
+
+            If lista IsNot Nothing Then
+                For Each e In lista
+                    Dim ecaja As New dEnvioCajas
+                    For Each ecaja In ListCajas.Items
+                        If (ecaja.IDCAJA = caja.CODIGO And ecaja.IDCAJA = "Cons-Devolución" Or ecaja.IDCAJA = "Caja-Devolución" Or ecaja.IDCAJA = "Bolsa" Or ecaja.IDCAJA = "Gradilla" Or ecaja.IDCAJA = "Frasco de agua") Then
+                            existeEnGrid = False
+                        ElseIf ecaja.IDCAJA = caja.CODIGO Then
+                            'And ecaja.IDCAJA <> "Cons-Devolución" Or ecaja.IDCAJA <> "Caja-Devolución" Or ecaja.IDCAJA <> "Bolsa" Or ecaja.IDCAJA <> "Gradilla" Or ecaja.IDCAJA <> "Frasco de agua" Then
+                            existeEnGrid = True
+                        End If
+                    Next
+                    If e.ESTADO = 7 Then
+                        desuso = True
+                    End If
+                    If e.MARCADA_CAJA = 1 Then
+                        marcadaCaja = True
+                    End If
+                Next
+                If lista.Count > 0 Then
+                    idcaja = ComboCajas.Text.Trim
+                    cajaExiste = True
+                Else
+                    MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                End If
+            Else
+                MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
             End If
-            If (env.modificar(Usuario)) Then
-                MsgBox("Caja modificada", MsgBoxStyle.Information, "Atención")
-            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+
+            Else
+                MsgBox("Ingrese codigo de la Caja", MsgBoxStyle.Critical, "Atención")
             End If
-        Else
-            If ComboCajas.Text.Trim.Length > 0 Or txtCajasTipeables.Text <> "" Then
-                Dim env As New dEnvioCajas()
-                Dim fec As String
-                fec = Format(fechaenvio, "yyyy-MM-dd")
-                env.IDPEDIDO = idpedido
-                env.IDPRODUCTOR = idproductor
-                env.IDCAJA = idcaja
-                env.GRADILLA1 = gradilla1
-                env.GRADILLA2 = gradilla2
-                env.GRADILLA3 = gradilla3
-                env.FRASCOS = frascos
-                env.IDEMPRESA = agencia.ID
-                env.ENVIO = envio
-                env.FECHAENVIO = fec
-                env.OBSERVACIONES = observaciones
-                env.ENVIADO = 0
-                env.IDAGENCIA = 0
-                env.RECIBIDO = 0
-                env.RESPONSABLE = responsable
-                env.CONVENIO = idprolesa
-                If (env.guardar(Usuario)) Then
-                    MsgBox("Caja guardada", MsgBoxStyle.Information, "Atención")
-                Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+
+        If cajaExiste Then
+            If marcadaCaja Then
+                MsgBox("Caja en uso", MsgBoxStyle.Information, "Atención")
+            Else
+                If desuso Then
+                    MsgBox("Cajaen desuso", MsgBoxStyle.Information, "Atención")
+
+                ElseIf existeEnGrid Then
+                    MsgBox("Caja ya cargada", MsgBoxStyle.Information, "Atención")
+
+                Else
+                    Dim gradilla1 As String = ""
+                    If TextGradilla1.Text <> "" Then
+                        gradilla1 = TextGradilla1.Text.Trim
+                    End If
+                    Dim gradilla2 As String = ""
+                    If TextGradilla2.Text <> "" Then
+                        gradilla2 = TextGradilla2.Text.Trim
+                    End If
+                    Dim gradilla3 As String = ""
+                    If TextGradilla3.Text <> "" Then
+                        gradilla3 = TextGradilla3.Text.Trim
+                    End If
+                    If TextFrascos.Text = "" Then
+                        MsgBox("Debe ingresar la cantidad de frascos!")
+                        Exit Sub
+                    End If
+                    Dim frascos As Integer = TextFrascos.Text.Trim
+                    Dim agencia As dEmpresaT = CType(ComboAgencia.SelectedItem, dEmpresaT)
+                    Dim envio As String = TextEnvio.Text.Trim
+                    Dim fechaenvio As Date = DateFechaEnvio.Value.ToString("yyyy-MM-dd")
+                    Dim observaciones As String = TextObservacionesE.Text.Trim
+                    Dim prolesa As dProlesa = CType(ComboProlesa.SelectedItem, dProlesa)
+                    Dim idprolesa As Integer = 0
+                    If Not prolesa Is Nothing Then
+                        idprolesa = prolesa.ID
+                    End If
+                    If Not ListCajas.SelectedItem Is Nothing Then
+                        Dim env As New dEnvioCajas()
+                        If TextCaja.Text.Trim.Length > 0 Then
+                            Dim fec As String
+                            fec = Format(fechaenvio, "yyyy-MM-dd")
+                            id = TextIdEnvio.Text.Trim
+                            env.ID = id
+                            env.IDPEDIDO = idpedido
+                            env.IDPRODUCTOR = idproductor
+                            env.IDCAJA = idcaja
+                            env.GRADILLA1 = gradilla1
+                            env.GRADILLA2 = gradilla2
+                            env.GRADILLA3 = gradilla3
+                            env.FRASCOS = frascos
+                            env.IDEMPRESA = idAgenciaModificada
+                            env.ENVIO = envio
+                            env.FECHAENVIO = fec
+                            env.OBSERVACIONES = observaciones
+                            env.ENVIADO = 0
+                            env.RESPONSABLE = responsable
+                            env.CONVENIO = idprolesa
+                            env.DESEMBARCADA = 0
+                        End If
+                        If (env.modificar(Usuario)) Then
+                            Dim c As New dCajas
+                            c.CODIGO = idcaja
+                            If c.CODIGO = "Gradilla" Or c.CODIGO = "Cons-Devolucion" Or c.CODIGO = "Caja-Devolucion" Or c.CODIGO = "Bolsa" Or c.CODIGO = "Frasco de agua" Then
+                            Else
+                                c.marcar(Usuario)
+                                MsgBox("Caja modificada", MsgBoxStyle.Information, "Atención")
+                            End If
+                            
+                        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                        End If
+                    Else
+                        If ComboCajas.Text.Trim.Length > 0 Or txtCajasTipeables.Text <> "" Then
+                            Dim env As New dEnvioCajas()
+                            Dim fec As String
+                            fec = Format(fechaenvio, "yyyy-MM-dd")
+                            env.IDPEDIDO = idpedido
+                            env.IDPRODUCTOR = idproductor
+                            env.IDCAJA = idcaja
+                            env.GRADILLA1 = gradilla1
+                            env.GRADILLA2 = gradilla2
+                            env.GRADILLA3 = gradilla3
+                            env.FRASCOS = frascos
+                            env.IDEMPRESA = agencia.ID
+                            env.ENVIO = envio
+                            env.FECHAENVIO = fec
+                            env.OBSERVACIONES = observaciones
+                            env.ENVIADO = 0
+                            env.IDAGENCIA = 0
+                            env.RECIBIDO = 0
+                            env.RESPONSABLE = responsable
+                            env.CONVENIO = idprolesa
+                            env.DESEMBARCADA = 0
+                            If (env.guardar(Usuario)) Then
+                                Dim c As New dCajas
+                                c.CODIGO = idcaja
+                                If c.CODIGO = "Gradilla" Or c.CODIGO = "Cons-Devolución" Or c.CODIGO = "Caja-Devolución" Or c.CODIGO = "Bolsa" Or c.CODIGO = "Frasco de agua" Then
+                                Else
+                                    c.marcar(Usuario)
+                                    MsgBox("Caja guardada", MsgBoxStyle.Information, "Atención")
+                                End If
+                            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                            End If
+                            End If
+                    End If
                 End If
             End If
         End If
+
     End Sub
     Public Sub listarcajas()
         Dim e As New dEnvioCajas
@@ -793,37 +946,60 @@ Public Class FormEnvioCajas
         End If
     End Sub
     Private Sub ButtonBorrar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonBorrar.Click
+        Dim c As New dCajas
         If Not ListCajas.SelectedItem Is Nothing Then
             Dim ec As New dEnvioCajas
             Dim id As Long = CType(TextIdEnvio.Text, Long)
             idcaja = TextCaja.Text
             ec.ID = id
             If (ec.eliminar(Usuario)) Then
-                Dim c As New dCajas
                 c.CODIGO = idcaja
                 c.marcarLaboratorio(Usuario)
                 MsgBox("Caja eliminada", MsgBoxStyle.Information, "Atención")
             Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
             End If
         End If
+        If c.desmarcar(Usuario) Then
+            MsgBox("Caja desmarcada", MsgBoxStyle.Information, "Atención")
+        End If
         limpiar()
         listarcajasporid()
     End Sub
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonEnvio.Click
         Dim p As New dPedidos
+        Dim lista As New ArrayList
         Dim env As New dEnvioCajas
         Dim id As Integer = TextId.Text.Trim
         p.ID = id
         env.ID = id
-        env.marcarEnvio(env.ID, Usuario)
-        p.marcarEnvio(p.ID, Usuario)
-        If ComboAgencia.Text = "RETIRA EN COLAVECO" Or ComboAgencia.Text = "Retira ahora" Then
-            enviomail()
-            enviar_notificacion_envio()
-            p.marcar(p.ID, Usuario)
+
+        If ListCajas.SelectedItems.Count = 1 Then
+            env.marcarEnvio(env.ID, Usuario)
+
+            'sender marca el envio------------------------------------------------------------------
+            p.marcarEnvio(p.ID, Usuario)
+            '---------------------------------------------------------------------------------------
+
+            If ComboAgencia.Text = "RETIRA EN COLAVECO" Or ComboAgencia.Text = "Retira ahora" Then
+                enviomail()
+                enviar_notificacion_envio()
+                p.marcar(p.ID, Usuario)
+                'env.desmarcarcargada(Usuario)
+            End If
+
+            Timer2.Enabled = True
+
+            'Modificar Agencia
+            Dim env2 As New dEnvioCajas
+            env2 = env.buscar
+            If env2.IDAGENCIA <> ComboAgencia.SelectedItem.ID Then
+                env2.IDEMPRESA = idAgenciaModificada
+                env2.modificarAgencia(Usuario)
+            End If
+            limpiar2()
+
+        Else : MsgBox("Seleccione o agruegue una caja", MsgBoxStyle.Critical, "Atención")
         End If
-        limpiar2()
-        Timer2.Enabled = True
     End Sub
     Private Sub enviar_notificacion_envio()
         Dim fechaactual As Date = Now()
@@ -1116,6 +1292,14 @@ Public Class FormEnvioCajas
         Else
             TextEnvio.Text = ""
         End If
+
+        ' Obtener el ID del ítem seleccionado
+        Dim selectedItem = CType(ComboAgencia.SelectedItem, Object)
+        If selectedItem IsNot Nothing Then
+            idAgenciaModificada = selectedItem.ID
+        End If
+
+
     End Sub
     Private Sub ButtonCargarPedidosAutomaticos_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         CargarPedidosAutomaticos()
@@ -1246,5 +1430,42 @@ Public Class FormEnvioCajas
         If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
             idcaja = txtCajasTipeables.Text
         End If
+        Me.ComboCajas.SelectNextControl(TextGradilla1, False, True, True, True)
+        Me.TextGradilla1.SelectNextControl(TextGradilla1, False, True, True, True)
+    End Sub
+
+    Private Sub ComboCajas_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboCajas.SelectedIndexChanged
+        Me.ComboCajas.SelectNextControl(TextGradilla1, True, True, True, True)
+    End Sub
+
+    Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
+
+        Dim id As Long = 0
+        Dim ec As New dEnvioCajas
+        Dim ecItem As New dEnvioCajas
+
+        Dim caja As String = ComboBox1.Text
+        Dim listaenvio As New ArrayList
+        listaenvio = ec.listarultimoenvio(caja)
+
+        For Each ecItem In listaenvio
+            ec.ID = ecItem.ID
+        Next
+
+        ec.IDCAJA = ComboBox1.Text
+        ec.IDAGENCIA = 8
+        ec.RECIBO = "s/n"
+        ec.OBSRECIBO = "Entrada manual"
+        ec.RECIBIDO = 1
+        ec.CLIENTE = 0
+        ec.CARGADA = 0
+
+        If (ec.marcarrecibido(Usuario)) Then
+            Dim c As New dCajas
+            c.CODIGO = caja
+            c.marcarLaboratorioManual(Usuario)
+        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+        End If
+        cargarComboCajas()
     End Sub
 End Class

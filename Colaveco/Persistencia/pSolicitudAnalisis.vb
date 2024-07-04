@@ -272,7 +272,6 @@
                     s.LOGO = CType(unaFila.Item(30), Integer)
                     s.INTERPRETACION = CType(unaFila.Item(31), String)
                     s.FECHAMUESTREO = CType(unaFila.Item(32), String)
-                    s.NMUESTRAS = CType(unaFila.Item(33), String)
                     Lista.Add(s)
                 Next
                 Return Lista
@@ -1592,6 +1591,16 @@
     Public Function marcarpago(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dSolicitudAnalisis = CType(o, dSolicitudAnalisis)
         Dim sql As String = "UPDATE solicitudanalisis SET pago=1 WHERE pago=0 and ID = " & obj.ID & ""
+        Dim lista As New ArrayList
+        lista.Add(sql)
+        Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
+                                 & "VALUES (now(), 'solicitudanalisis', 'marca_pago', " & obj.ID & ", " & usuario.ID & ")"
+        lista.Add(sqlAccion)
+        Return EjecutarTransaccion(lista)
+    End Function
+    Public Function marcarpago2(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
+        Dim obj As dSolicitudAnalisis = CType(o, dSolicitudAnalisis)
+        Dim sql As String = "UPDATE solicitudanalisis SET pago=" & obj.PAGO & ", web=1 WHERE pago=0 and ID = " & obj.ID & ""
         Dim lista As New ArrayList
         lista.Add(sql)
         Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _

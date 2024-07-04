@@ -14699,6 +14699,7 @@ Public Class FormSolicitudAnalisis
             env.CLIENTE = cliente
             env.OBSRECIBO = observaciones
             env.RECIBIDO = 1
+            env.CARGADA = 0
         End If
         If (env.marcarrecibido(Usuario)) Then
             MsgBox("Caja recibida", MsgBoxStyle.Information, "Atención")
@@ -14722,6 +14723,7 @@ Public Class FormSolicitudAnalisis
             env.FECHARECIBO = "0000-00-00"
             env.OBSRECIBO = ""
             env.RECIBIDO = 0
+            env.CARGADA = 0
         End If
         If (env.marcarrecibido(Usuario)) Then
             MsgBox("Registro actualizado", MsgBoxStyle.Information, "Atención")
@@ -15855,6 +15857,9 @@ Public Class FormSolicitudAnalisis
             carpeta = "agro_suelos"
         ElseIf tipoinforme = 15 Then
             carpeta = "brucelosis_leche"
+        ElseIf tipoinforme = 21 Then
+            carpeta = "calidad_de_leche"
+            tipoinforme = 10
         End If
         Dim rg As New dResultado
         Dim fechaemi2 As String

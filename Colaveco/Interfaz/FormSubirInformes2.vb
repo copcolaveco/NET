@@ -84,6 +84,8 @@ Public Class FormSubirInformes2
             subir_foliares()
         ElseIf tipoinforme = 20 Then
             subir_toxicologia()
+        ElseIf tipoinforme = 21 Then
+            subir_mineralesenleche()
         End If
     End Sub
     Private Sub subir_control()
@@ -1210,6 +1212,8 @@ Public Class FormSubirInformes2
         ElseIf RadioNoAbonadosv.Checked = True Then
             abonado = 0
         End If
+        Dim marcarPago As Integer = 0
+        marcarPago = abonado
         If TextComentarios.Text <> "" Then
             comentario = TextComentarios.Text
         End If
@@ -1425,6 +1429,204 @@ Public Class FormSubirInformes2
             End If
         End If
 
+
+        If RadioNoAbonadosv.Checked = True Then
+            Dim fechaact As Date = Now()
+            Dim fecact As String
+            fecact = Format(fechaact, "yyyy-MM-dd")
+            Dim sol As New dSolicitudAnalisis
+            sol.ID = ficha
+            sol = sol.buscar
+            Dim muestras As Integer = 0
+            If Not sol Is Nothing Then
+                muestras = sol.NMUESTRAS
+            End If
+            Dim importe As Double = sol.IMPORTE
+            Dim visualizacion As Integer = 0
+            Dim observaciones As String = ""
+            If TextComentarios.Text <> "" Then
+                observaciones = TextComentarios.Text.Trim
+            End If
+            Dim sv As New dSinVisualizacion
+            sv.FICHA = ficha
+            fichasv = ficha
+            sv.FECHA = fecact
+            sv.MUESTRAS = muestras
+            sv.IMPORTE = importe
+            sv.VISUALIZACION = visualizacion
+            sv.FECHAVISUALIZACION = fecact
+            sv.OBSERVACIONES = observaciones
+            sv.guardar()
+            Dim p As New dCliente
+            Dim prod As Long = sol.IDPRODUCTOR
+            Dim productorweb_com As String = ""
+            productorweb_com = p.USUARIO_WEB
+            Dim pw_com As New dProductorWeb_com
+            pw_com.USUARIO = productorweb_com
+            pw_com = pw_com.buscar
+            If Not pw_com Is Nothing Then
+                email = RTrim(pw_com.ENVIAR_EMAIL)
+            Else
+                MsgBox("No coincide el usuario web (.com)")
+            End If
+
+            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
+            v.Show()
+            productorweb_com = Nothing
+            pw_com = Nothing
+            p = Nothing
+            prod = Nothing
+            sv = Nothing
+            sol = Nothing
+        Else
+            Dim sol As New dSolicitudAnalisis
+            sol.ID = ficha
+            sol = sol.buscar
+            Dim p As New dCliente
+            Dim prod As Long = sol.IDPRODUCTOR
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
+            End If
+            Dim productorweb_com As String = ""
+            productorweb_com = p.USUARIO_WEB
+            Dim v As New FormCorreo(Usuario, email, ficha)
+            v.Show()
+            productorweb_com = Nothing
+            p = Nothing
+            prod = Nothing
+            sol = Nothing
+        End If
+        '****************************
+        '**Marcar pago en SA***
+        Dim solicitud As New dSolicitudAnalisis
+        solicitud.ID = ficha
+        solicitud = solicitud.buscar
+        If marcarPago = 0 Then
+            solicitud.PAGO = 0
+            solicitud.marcarpago2(Usuario)
+        End If
+        If marcarPago = 1 Then
+            solicitud.PAGO = 1
+            solicitud.marcarpago2(Usuario)
+        End If
+        If marcarPago = 2 Then
+            solicitud.PAGO = 2
+            solicitud.marcarpago2(Usuario)
+        End If
+        limpiar()
+        marcarxdefecto()
+    End Sub
+
+    Private Sub subir_mineralesenleche()
+        Dim ficha As Long = 0
+        Dim abonado As Integer = 0
+        Dim comentario As String = ""
+        Dim copia As String = ""
+        ficha = TextFicha.Text.Trim
+        If RadioAbonado.Checked = True Then
+            abonado = 2
+        ElseIf RadioNoAbonadocv.Checked = True Then
+            abonado = 1
+        ElseIf RadioNoAbonadosv.Checked = True Then
+            abonado = 0
+        End If
+        If TextComentarios.Text <> "" Then
+            comentario = TextComentarios.Text
+        End If
+        If TextEnviarCopia.Text <> "" Then
+            copia = TextEnviarCopia.Text
+        End If
+        Dim cliente As Integer = 0
+        cliente = TextIdCliente.Text.Trim
+
+        'ABRE TXT PARA CONTROL ****************************************************************************************************************
+        If cliente = 6299 Then 'Or cliente = 2705 Then
+            'If RadioAbonado.Checked = True Or RadioNoAbonadocv.Checked = True Then
+            Dim arch As String = ""
+            arch = "\\192.168.1.10\E\NET\CALIDAD\" & ficha & ".txt"
+            If File.Exists(arch) Then
+                System.Diagnostics.Process.Start(arch)
+            End If
+            'End If
+            Dim result = MessageBox.Show("Desea enviar un correo electrónico con el archivo txt?", "Atención!", MessageBoxButtons.YesNoCancel)
+            If result = DialogResult.Cancel Then
+                Exit Sub
+            ElseIf result = DialogResult.No Then
+                Exit Sub
+            ElseIf result = DialogResult.Yes Then
+                '*** MOVER ARCHIVO XLS ***********************************************************************
+                Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".xls"
+                Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
+                Try
+                    ' Mover el fichero.si existe lo sobreescribe  
+                    My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
+                                                    sRutaDestino, _
+                                                    True)
+                    'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
+                    ' errores  
+                Catch ex As Exception
+                    MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+                End Try
+                '*** MOVER ARCHIVO PDF ***********************************************************************
+                Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".pdf"
+                Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
+                Try
+                    ' Mover el fichero.si existe lo sobreescribe  
+                    My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
+                                                    sRutaDestino2, _
+                                                    True)
+                    'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
+                    ' errores  
+                Catch ex As Exception
+                    MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+                End Try
+                '*****************************************************************************************
+                If RadioAbonado.Checked = True Or RadioNoAbonadocv.Checked = True Then
+                    If cliente = 6299 Then
+                        enviar_correo_AFB()
+                        enviar_correo_AFB2()
+                    ElseIf cliente = 2705 Then
+                        enviar_correo_IS()
+                    End If
+                End If
+            End If
+            'enviar_correo_AFB()
+            'enviar_correo_AFB2()
+        Else
+            '*** MOVER ARCHIVO XLS ***********************************************************************
+            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".xls"
+            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
+            Try
+                ' Mover el fichero.si existe lo sobreescribe  
+                My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
+                                                sRutaDestino, _
+                                                True)
+                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
+                ' errores  
+            Catch ex As Exception
+                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+            End Try
+            '*** MOVER ARCHIVO PDF ***********************************************************************
+            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".pdf"
+            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
+            Try
+                ' Mover el fichero.si existe lo sobreescribe  
+                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
+                                                sRutaDestino2, _
+                                                True)
+                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
+                ' errores  
+            Catch ex As Exception
+                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+            End Try
+            '*****************************************************************************************
+        End If
 
         If RadioNoAbonadosv.Checked = True Then
             Dim fechaact As Date = Now()

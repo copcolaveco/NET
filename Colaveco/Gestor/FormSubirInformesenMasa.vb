@@ -449,6 +449,9 @@ controltxt:
             carpeta = "brucelosis_leche"
         ElseIf tipoinforme = 16 Then
             carpeta = "efluentes"
+        ElseIf tipoinforme = 21 Then
+            carpeta = "calidad_de_leche"
+            tipoinforme = 10
         End If
 
         Dim rg As New dResultado
