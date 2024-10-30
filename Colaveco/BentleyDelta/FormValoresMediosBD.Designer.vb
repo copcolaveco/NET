@@ -30,78 +30,110 @@ Partial Class FormValoresMediosBD
         Me.TextDelta400 = New System.Windows.Forms.TextBox()
         Me.TextDelta600 = New System.Windows.Forms.TextBox()
         Me.DateFecha = New System.Windows.Forms.DateTimePicker()
+        Me.ButtonB6 = New System.Windows.Forms.Button()
+        Me.TextB6 = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'ButtonProcesar
         '
-        Me.ButtonProcesar.Location = New System.Drawing.Point(313, 144)
+        Me.ButtonProcesar.Location = New System.Drawing.Point(416, 247)
+        Me.ButtonProcesar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonProcesar.Name = "ButtonProcesar"
-        Me.ButtonProcesar.Size = New System.Drawing.Size(127, 31)
+        Me.ButtonProcesar.Size = New System.Drawing.Size(169, 38)
         Me.ButtonProcesar.TabIndex = 42
         Me.ButtonProcesar.Text = "Cargar valores medios"
         Me.ButtonProcesar.UseVisualStyleBackColor = True
         '
         'ButtonDelta600
         '
-        Me.ButtonDelta600.Location = New System.Drawing.Point(12, 107)
+        Me.ButtonDelta600.Location = New System.Drawing.Point(15, 131)
+        Me.ButtonDelta600.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonDelta600.Name = "ButtonDelta600"
-        Me.ButtonDelta600.Size = New System.Drawing.Size(111, 23)
+        Me.ButtonDelta600.Size = New System.Drawing.Size(148, 28)
         Me.ButtonDelta600.TabIndex = 46
         Me.ButtonDelta600.Text = "Delta 600"
         Me.ButtonDelta600.UseVisualStyleBackColor = True
         '
         'ButtonDelta400
         '
-        Me.ButtonDelta400.Location = New System.Drawing.Point(12, 77)
+        Me.ButtonDelta400.Location = New System.Drawing.Point(15, 170)
+        Me.ButtonDelta400.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonDelta400.Name = "ButtonDelta400"
-        Me.ButtonDelta400.Size = New System.Drawing.Size(111, 23)
+        Me.ButtonDelta400.Size = New System.Drawing.Size(148, 28)
         Me.ButtonDelta400.TabIndex = 45
         Me.ButtonDelta400.Text = "Delta 400"
         Me.ButtonDelta400.UseVisualStyleBackColor = True
+        Me.ButtonDelta400.Visible = False
         '
         'ButtonBentley
         '
-        Me.ButtonBentley.Location = New System.Drawing.Point(12, 48)
+        Me.ButtonBentley.Location = New System.Drawing.Point(16, 59)
+        Me.ButtonBentley.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonBentley.Name = "ButtonBentley"
-        Me.ButtonBentley.Size = New System.Drawing.Size(111, 23)
+        Me.ButtonBentley.Size = New System.Drawing.Size(148, 28)
         Me.ButtonBentley.TabIndex = 44
         Me.ButtonBentley.Text = "Bentley"
         Me.ButtonBentley.UseVisualStyleBackColor = True
         '
         'TextBentley
         '
-        Me.TextBentley.Location = New System.Drawing.Point(129, 50)
+        Me.TextBentley.Location = New System.Drawing.Point(172, 62)
+        Me.TextBentley.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBentley.Name = "TextBentley"
-        Me.TextBentley.Size = New System.Drawing.Size(311, 20)
+        Me.TextBentley.Size = New System.Drawing.Size(413, 22)
         Me.TextBentley.TabIndex = 43
         '
         'TextDelta400
         '
-        Me.TextDelta400.Location = New System.Drawing.Point(129, 80)
+        Me.TextDelta400.Location = New System.Drawing.Point(171, 173)
+        Me.TextDelta400.Margin = New System.Windows.Forms.Padding(4)
         Me.TextDelta400.Name = "TextDelta400"
-        Me.TextDelta400.Size = New System.Drawing.Size(311, 20)
+        Me.TextDelta400.Size = New System.Drawing.Size(413, 22)
         Me.TextDelta400.TabIndex = 47
+        Me.TextDelta400.Visible = False
         '
         'TextDelta600
         '
-        Me.TextDelta600.Location = New System.Drawing.Point(129, 107)
+        Me.TextDelta600.Location = New System.Drawing.Point(171, 131)
+        Me.TextDelta600.Margin = New System.Windows.Forms.Padding(4)
         Me.TextDelta600.Name = "TextDelta600"
-        Me.TextDelta600.Size = New System.Drawing.Size(311, 20)
+        Me.TextDelta600.Size = New System.Drawing.Size(413, 22)
         Me.TextDelta600.TabIndex = 48
         '
         'DateFecha
         '
         Me.DateFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFecha.Location = New System.Drawing.Point(12, 12)
+        Me.DateFecha.Location = New System.Drawing.Point(16, 15)
+        Me.DateFecha.Margin = New System.Windows.Forms.Padding(4)
         Me.DateFecha.Name = "DateFecha"
-        Me.DateFecha.Size = New System.Drawing.Size(111, 20)
+        Me.DateFecha.Size = New System.Drawing.Size(147, 22)
         Me.DateFecha.TabIndex = 49
+        '
+        'ButtonB6
+        '
+        Me.ButtonB6.Location = New System.Drawing.Point(15, 95)
+        Me.ButtonB6.Margin = New System.Windows.Forms.Padding(4)
+        Me.ButtonB6.Name = "ButtonB6"
+        Me.ButtonB6.Size = New System.Drawing.Size(148, 28)
+        Me.ButtonB6.TabIndex = 51
+        Me.ButtonB6.Text = "Bentley600"
+        Me.ButtonB6.UseVisualStyleBackColor = True
+        '
+        'TextB6
+        '
+        Me.TextB6.Location = New System.Drawing.Point(171, 98)
+        Me.TextB6.Margin = New System.Windows.Forms.Padding(4)
+        Me.TextB6.Name = "TextB6"
+        Me.TextB6.Size = New System.Drawing.Size(413, 22)
+        Me.TextB6.TabIndex = 50
         '
         'FormValoresMediosBD
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(460, 185)
+        Me.ClientSize = New System.Drawing.Size(606, 298)
+        Me.Controls.Add(Me.ButtonB6)
+        Me.Controls.Add(Me.TextB6)
         Me.Controls.Add(Me.DateFecha)
         Me.Controls.Add(Me.TextDelta600)
         Me.Controls.Add(Me.TextDelta400)
@@ -110,6 +142,7 @@ Partial Class FormValoresMediosBD
         Me.Controls.Add(Me.ButtonBentley)
         Me.Controls.Add(Me.TextBentley)
         Me.Controls.Add(Me.ButtonProcesar)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormValoresMediosBD"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Valores Medios"
@@ -125,4 +158,6 @@ Partial Class FormValoresMediosBD
     Friend WithEvents TextDelta400 As System.Windows.Forms.TextBox
     Friend WithEvents TextDelta600 As System.Windows.Forms.TextBox
     Friend WithEvents DateFecha As System.Windows.Forms.DateTimePicker
+    Friend WithEvents ButtonB6 As System.Windows.Forms.Button
+    Friend WithEvents TextB6 As System.Windows.Forms.TextBox
 End Class

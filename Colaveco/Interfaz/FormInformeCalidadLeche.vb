@@ -793,7 +793,11 @@ Public Class FormInformeCalidadLeche
                         If Not c Is Nothing Then
                             If c.UREA <> -1 Then
                                 Dim valorurea As Integer
-                                valorurea = c.UREA * 0.466
+                                If c.EQUIPO = "Bentley600" Then
+                                    valorurea = c.UREA
+                                Else
+                                    valorurea = c.UREA * 0.466
+                                End If
                                 If valorurea > 20 Or valorurea < 9 Then
                                     x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                                 End If
@@ -1748,7 +1752,7 @@ Public Class FormInformeCalidadLeche
                 columna = 1
                 fila = fila + 2
 
-                x1hoja.Cells(fila, columna).formula = "Laboratorio habilitado RNL 0029 - MGAP" '&" - Certificado vigente al 30/04/2025"
+                x1hoja.Cells(fila, columna).formula = "Laboratorio habilitado RNL 0029 - MGAP" '&" - Certificado vigente al 09/07/2025"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).Font.Size = 10
                 x1hoja.Cells(fila, columna).Font.Bold = True

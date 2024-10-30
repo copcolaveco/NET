@@ -614,6 +614,7 @@ Public Class FormEmbarqueCajas
                     Dim c As New dCliente
                     c.ID = e2.IDPRODUCTOR
                     c = c.buscar
+
                     DataGridView2(columna, fila).Value = e2.IDPEDIDO
                     columna = columna + 1
                     If Not c Is Nothing Then

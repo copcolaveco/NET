@@ -44,6 +44,9 @@
         If RadioBentley.Checked = True Then
             equipo = "Bentley"
             listar()
+        ElseIf RadioB6.Checked = True Then
+            equipo = "Bentley600"
+            listar()
         ElseIf RadioDelta.Checked = True Then
             equipo = "Delta"
             listar()

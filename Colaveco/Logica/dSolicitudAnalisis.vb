@@ -33,6 +33,7 @@
     Private m_logo As Integer
     Private m_interpretacion As String
     Private m_fechamuestreo As String
+    Private m_operador As Integer
 #End Region
 #Region "Getters y Setters"
     Public Property ID() As Long
@@ -299,6 +300,14 @@
             m_fechamuestreo = value
         End Set
     End Property
+    Public Property OPERADOR() As Integer
+        Get
+            Return m_operador
+        End Get
+        Set(ByVal value As Integer)
+            m_operador = value
+        End Set
+    End Property
 #End Region
 #Region "Constructores"
     Public Sub New()
@@ -335,8 +344,9 @@
         m_logo = 0
         m_interpretacion = ""
         m_fechamuestreo = ""
+        m_operador = 0
     End Sub
-    Public Sub New(ByVal id As Long, ByVal fechaingreso As String, ByVal idproductor As Long, ByVal idtipoinforme As Integer, ByVal idsubinforme As Integer, ByVal idtipoficha As Integer, ByVal observaciones As String, ByVal nmuestras As Integer, ByVal idmuestra As Integer, ByVal idtecnico As Long, ByVal sinsolicitud As Integer, ByVal sinconservante As Integer, ByVal temperatura As Double, ByVal derramadas As Integer, ByVal desvioautorizado As Integer, ByVal idfactura As Long, ByVal web As Integer, ByVal personal As Integer, ByVal email As Integer, ByVal fechaenvio As String, ByVal marca As Integer, ByVal eliminado As Integer, ByVal tambo As Integer, ByVal pago As Integer, ByVal importe As Double, ByVal kmts As Integer, ByVal obsinternas As String, ByVal codigo As String, ByVal fechaproceso As String, ByVal muestreo As Integer, ByVal logo As Integer, ByVal interpretacion As String, ByVal fechamuestreo As String)
+    Public Sub New(ByVal id As Long, ByVal fechaingreso As String, ByVal idproductor As Long, ByVal idtipoinforme As Integer, ByVal idsubinforme As Integer, ByVal idtipoficha As Integer, ByVal observaciones As String, ByVal nmuestras As Integer, ByVal idmuestra As Integer, ByVal idtecnico As Long, ByVal sinsolicitud As Integer, ByVal sinconservante As Integer, ByVal temperatura As Double, ByVal derramadas As Integer, ByVal desvioautorizado As Integer, ByVal idfactura As Long, ByVal web As Integer, ByVal personal As Integer, ByVal email As Integer, ByVal fechaenvio As String, ByVal marca As Integer, ByVal eliminado As Integer, ByVal tambo As Integer, ByVal pago As Integer, ByVal importe As Double, ByVal kmts As Integer, ByVal obsinternas As String, ByVal codigo As String, ByVal fechaproceso As String, ByVal muestreo As Integer, ByVal logo As Integer, ByVal interpretacion As String, ByVal fechamuestreo As String, ByVal operador As Integer)
         m_id = id
         m_fechaingreso = fechaingreso
         m_idproductor = idproductor
@@ -370,6 +380,7 @@
         m_logo = logo
         m_interpretacion = interpretacion
         m_fechamuestreo = fechamuestreo
+        m_operador = operador
     End Sub
 #End Region
 #Region "Métodos ABM"

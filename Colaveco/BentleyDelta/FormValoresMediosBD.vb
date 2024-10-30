@@ -180,23 +180,23 @@ Public Class FormValoresMediosBD
             TextDelta600.Text = fichero
         End If
 
-        cargodelta600()
+        cargodelta600("D6")
     End Sub
 
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonProcesar.Click
-        If TextBentley.Text <> "" And TextDelta400.Text <> "" And TextDelta600.Text <> "" Then
+        If TextBentley.Text <> "" And TextB6.Text <> "" And TextDelta600.Text <> "" Then
             archivo_1_2_3()
-        ElseIf TextBentley.Text <> "" And TextDelta400.Text <> "" And TextDelta600.Text = "" Then
+        ElseIf TextBentley.Text <> "" And TextB6.Text <> "" And TextDelta600.Text = "" Then
             archivo_1_2()
-        ElseIf TextBentley.Text <> "" And TextDelta600.Text <> "" And TextDelta400.Text = "" Then
+        ElseIf TextBentley.Text <> "" And TextDelta600.Text <> "" And TextB6.Text = "" Then
             archivo_1_3()
-        ElseIf TextDelta400.Text <> "" And TextDelta600.Text <> "" And TextBentley.Text = "" Then
+        ElseIf TextB6.Text <> "" And TextDelta600.Text <> "" And TextBentley.Text = "" Then
             archivo_2_3()
-        ElseIf TextDelta400.Text <> "" And TextDelta600.Text = "" And TextBentley.Text = "" Then
+        ElseIf TextB6.Text <> "" And TextDelta600.Text = "" And TextBentley.Text = "" Then
             archivo_2()
-        ElseIf TextDelta400.Text = "" And TextDelta600.Text <> "" And TextBentley.Text = "" Then
+        ElseIf TextB6.Text = "" And TextDelta600.Text <> "" And TextBentley.Text = "" Then
             archivo_3()
-        ElseIf TextDelta400.Text = "" And TextDelta600.Text = "" And TextBentley.Text <> "" Then
+        ElseIf TextB6.Text = "" And TextDelta600.Text = "" And TextBentley.Text <> "" Then
             archivo_1()
         End If
     End Sub
@@ -585,9 +585,15 @@ Public Class FormValoresMediosBD
         a2vmurea1 = a2sumaurea1 / 10
         a2vmurea2 = a2sumaurea2 / 10
     End Sub
-    Private Sub cargodelta600()
+    Private Sub cargodelta600(ByVal equipo As String)
         Dim nombrearchivo As String = ""
-        nombrearchivo = TextDelta600.Text.Trim
+        If equipo = "B6" Then
+            nombrearchivo = TextB6.Text.Trim
+        End If
+        If equipo = "D6" Then
+            nombrearchivo = TextDelta600.Text.Trim
+        End If
+
         Dim objReader As New StreamReader(nombrearchivo)
         Dim sLine As String = ""
         Dim linea As Integer = 1
@@ -596,68 +602,148 @@ Public Class FormValoresMediosBD
             sLine = objReader.ReadLine()
             If sLine <> " " Then
                 Texto = Split(sLine, ";")
-                If linea > 7 And linea < 18 Then
-                    'Grasa**********************************
-                    If Trim(Texto(11)) <> "" Then
-                        a3sumagrasa1 = a3sumagrasa1 + Trim(Texto(11))
+
+                If equipo = "B6" Then
+                    If linea >= 7 And linea < 17 Then
+                        'Grasa**********************************
+                        If Trim(Texto(11)) <> "" Then
+                            a2sumagrasa1 = a2sumagrasa1 + Trim(Texto(11))
+                        End If
+                        'Proteina*******************************
+                        If Trim(Texto(12)) <> "" Then
+                            a2sumaprot1 = a2sumaprot1 + Trim(Texto(12))
+                        End If
+                        'Lactosa********************************
+                        If Trim(Texto(13)) <> "" Then
+                            a2sumalact1 = a2sumalact1 + Trim(Texto(13))
+                        End If
+                        'Sólidos totales************************
+                        If Trim(Texto(14)) <> "" Then
+                            a2sumast1 = a2sumast1 + Trim(Texto(14))
+                        End If
+                        'Células********************************
+                        If Trim(Texto(9)) <> "" Then
+                            a2sumacel1 = a2sumacel1 + Trim(Texto(9))
+                        End If
+                        'Crioscopía********************************
+                        If Trim(Texto(15)) <> "" Then
+                            a2sumacrio1 = a2sumacrio1 + Trim(Texto(15))
+                        End If
+                        'Urea********************************
+                        If Trim(Texto(16)) <> "" Then
+                            a2sumaurea1 = a2sumaurea1 + Trim(Texto(16))
+                        End If
+                    ElseIf linea >= 17 And linea < 27 Then
+                        'Grasa**********************************
+                        If Trim(Texto(11)) <> "" Then
+                            a2sumagrasa2 = a2sumagrasa2 + Trim(Texto(11))
+                        End If
+                        'Proteina*******************************
+                        If Trim(Texto(12)) <> "" Then
+                            a2sumaprot2 = a2sumaprot2 + Trim(Texto(12))
+                        End If
+                        'Lactosa********************************
+                        If Trim(Texto(13)) <> "" Then
+                            a2sumalact2 = a2sumalact2 + Trim(Texto(13))
+                        End If
+                        'Sólidos totales************************
+                        If Trim(Texto(14)) <> "" Then
+                            a2sumast2 = a2sumast2 + Trim(Texto(14))
+                        End If
+                        'Células********************************
+                        If Trim(Texto(9)) <> "" Then
+                            a2sumacel2 = a2sumacel2 + Trim(Texto(9))
+                        End If
+                        'Crioscopía********************************
+                        If Trim(Texto(15)) <> "" Then
+                            a2sumacrio2 = a2sumacrio2 + Trim(Texto(15))
+                        End If
+                        'Urea********************************
+                        If Trim(Texto(16)) <> "" Then
+                            a2sumaurea2 = a2sumaurea2 + Trim(Texto(16))
+                        End If
                     End If
-                    'Proteina*******************************
-                    If Trim(Texto(12)) <> "" Then
-                        a3sumaprot1 = a3sumaprot1 + Trim(Texto(12))
-                    End If
-                    'Lactosa********************************
-                    If Trim(Texto(13)) <> "" Then
-                        a3sumalact1 = a3sumalact1 + Trim(Texto(13))
-                    End If
-                    'Sólidos totales************************
-                    If Trim(Texto(14)) <> "" Then
-                        a3sumast1 = a3sumast1 + Trim(Texto(14))
-                    End If
-                    'Células********************************
-                    If Trim(Texto(9)) <> "" Then
-                        a3sumacel1 = a3sumacel1 + Trim(Texto(9))
-                    End If
-                    'Crioscopía********************************
-                    If Trim(Texto(15)) <> "" Then
-                        a3sumacrio1 = a3sumacrio1 + Trim(Texto(15))
-                    End If
-                    'Urea********************************
-                    If Trim(Texto(16)) <> "" Then
-                        a3sumaurea1 = a3sumaurea1 + Trim(Texto(16))
-                    End If
-                ElseIf linea > 17 And linea < 28 Then
-                    'Grasa**********************************
-                    If Trim(Texto(11)) <> "" Then
-                        a3sumagrasa2 = a3sumagrasa2 + Trim(Texto(11))
-                    End If
-                    'Proteina*******************************
-                    If Trim(Texto(12)) <> "" Then
-                        a3sumaprot2 = a3sumaprot2 + Trim(Texto(12))
-                    End If
-                    'Lactosa********************************
-                    If Trim(Texto(13)) <> "" Then
-                        a3sumalact2 = a3sumalact2 + Trim(Texto(13))
-                    End If
-                    'Sólidos totales************************
-                    If Trim(Texto(14)) <> "" Then
-                        a3sumast2 = a3sumast2 + Trim(Texto(14))
-                    End If
-                    'Células********************************
-                    If Trim(Texto(9)) <> "" Then
-                        a3sumacel2 = a3sumacel2 + Trim(Texto(9))
-                    End If
-                    'Crioscopía********************************
-                    If Trim(Texto(15)) <> "" Then
-                        a3sumacrio2 = a3sumacrio2 + Trim(Texto(15))
-                    End If
-                    'Urea********************************
-                    If Trim(Texto(16)) <> "" Then
-                        a3sumaurea2 = a3sumaurea2 + Trim(Texto(16))
+                End If
+
+                If equipo = "D6" Then
+                    If linea > 7 And linea < 18 Then
+                        'Grasa**********************************
+                        If Trim(Texto(11)) <> "" Then
+                            a3sumagrasa1 = a3sumagrasa1 + Trim(Texto(11))
+                        End If
+                        'Proteina*******************************
+                        If Trim(Texto(12)) <> "" Then
+                            a3sumaprot1 = a3sumaprot1 + Trim(Texto(12))
+                        End If
+                        'Lactosa********************************
+                        If Trim(Texto(13)) <> "" Then
+                            a3sumalact1 = a3sumalact1 + Trim(Texto(13))
+                        End If
+                        'Sólidos totales************************
+                        If Trim(Texto(14)) <> "" Then
+                            a3sumast1 = a3sumast1 + Trim(Texto(14))
+                        End If
+                        'Células********************************
+                        If Trim(Texto(9)) <> "" Then
+                            a3sumacel1 = a3sumacel1 + Trim(Texto(9))
+                        End If
+                        'Crioscopía********************************
+                        If Trim(Texto(15)) <> "" Then
+                            a3sumacrio1 = a3sumacrio1 + Trim(Texto(15))
+                        End If
+                        'Urea********************************
+                        If Trim(Texto(16)) <> "" Then
+                            a3sumaurea1 = a3sumaurea1 + Trim(Texto(16))
+                        End If
+                    ElseIf linea > 17 And linea < 28 Then
+                        'Grasa**********************************
+                        If Trim(Texto(11)) <> "" Then
+                            a3sumagrasa2 = a3sumagrasa2 + Trim(Texto(11))
+                        End If
+                        'Proteina*******************************
+                        If Trim(Texto(12)) <> "" Then
+                            a3sumaprot2 = a3sumaprot2 + Trim(Texto(12))
+                        End If
+                        'Lactosa********************************
+                        If Trim(Texto(13)) <> "" Then
+                            a3sumalact2 = a3sumalact2 + Trim(Texto(13))
+                        End If
+                        'Sólidos totales************************
+                        If Trim(Texto(14)) <> "" Then
+                            a3sumast2 = a3sumast2 + Trim(Texto(14))
+                        End If
+                        'Células********************************
+                        If Trim(Texto(9)) <> "" Then
+                            a3sumacel2 = a3sumacel2 + Trim(Texto(9))
+                        End If
+                        'Crioscopía********************************
+                        If Trim(Texto(15)) <> "" Then
+                            a3sumacrio2 = a3sumacrio2 + Trim(Texto(15))
+                        End If
+                        'Urea********************************
+                        If Trim(Texto(16)) <> "" Then
+                            a3sumaurea2 = a3sumaurea2 + Trim(Texto(16))
+                        End If
                     End If
                 End If
             End If
             linea = linea + 1
         Loop Until sLine Is Nothing
+
+        a2vmgrasa1 = a2sumagrasa1 / 10
+        a2vmgrasa2 = a2sumagrasa2 / 10
+        a2vmprot1 = a2sumaprot1 / 10
+        a2vmprot2 = a2sumaprot2 / 10
+        a2vmlact1 = a2sumalact1 / 10
+        a2vmlact2 = a2sumalact2 / 10
+        a2vmst1 = a2sumast1 / 10
+        a2vmst2 = a2sumast2 / 10
+        a2vmcel1 = a2sumacel1 / 10
+        a2vmcel2 = a2sumacel2 / 10
+        a2vmcrio1 = a2sumacrio1 / 10
+        a2vmcrio2 = a2sumacrio2 / 10
+        a2vmurea1 = a2sumaurea1 / 10
+        a2vmurea2 = a2sumaurea2 / 10
 
         a3vmgrasa1 = a3sumagrasa1 / 10
         a3vmgrasa2 = a3sumagrasa2 / 10
@@ -676,7 +762,14 @@ Public Class FormValoresMediosBD
     End Sub
     Private Sub cargobentley()
         Dim nombrearchivo As String = ""
-        nombrearchivo = TextBentley.Text.Trim
+
+        If TextBentley.Text <> "" Then
+            nombrearchivo = TextBentley.Text.Trim
+        End If
+        If TextB6.Text <> "" Then
+            nombrearchivo = TextB6.Text.Trim
+        End If
+
         Dim objReader As New StreamReader(nombrearchivo)
         Dim sLine As String = ""
         Dim linea As Integer = 1
@@ -744,4 +837,20 @@ Public Class FormValoresMediosBD
         a1vmcel2 = a1sumacel2 / 10
     End Sub
 
+    Private Sub ButtonB6_Click(sender As Object, e As EventArgs) Handles ButtonB6.Click
+        Dim fichero As String
+        Dim dlAbrir As New System.Windows.Forms.OpenFileDialog
+        dlAbrir.Filter = "Todos los archivos (*.csv)|*.csv"
+        dlAbrir.Multiselect = False
+        dlAbrir.CheckFileExists = False
+        dlAbrir.Title = "Selección de fichero"
+        dlAbrir.InitialDirectory = "\\Bentley600\results"
+        dlAbrir.ShowDialog()
+        If dlAbrir.FileName <> "" Then
+            fichero = dlAbrir.FileName
+            TextB6.Text = fichero
+        End If
+
+        cargodelta600("B6")
+    End Sub
 End Class

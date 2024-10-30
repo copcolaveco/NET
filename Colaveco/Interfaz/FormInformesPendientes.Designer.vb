@@ -26,12 +26,6 @@ Partial Class FormInformesPendientes
         Me.DateHoy = New System.Windows.Forms.DateTimePicker()
         Me.DateSolicitud = New System.Windows.Forms.DateTimePicker()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Informe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Ficha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Muestras = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.TextControl = New System.Windows.Forms.TextBox()
         Me.TextCalidad = New System.Windows.Forms.TextBox()
         Me.TextAgua = New System.Windows.Forms.TextBox()
@@ -74,6 +68,13 @@ Partial Class FormInformesPendientes
         Me.Label20 = New System.Windows.Forms.Label()
         Me.Label21 = New System.Windows.Forms.Label()
         Me.TextEfluentes = New System.Windows.Forms.TextBox()
+        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Column3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Informe = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Ficha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Muestras = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Analisis = New System.Windows.Forms.DataGridViewTextBoxColumn()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -110,47 +111,13 @@ Partial Class FormInformesPendientes
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Informe, Me.Ficha, Me.Muestras})
+        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Column1, Me.Column2, Me.Column3, Me.Informe, Me.Ficha, Me.Muestras, Me.Analisis})
         Me.DataGridView1.Location = New System.Drawing.Point(16, 235)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(1113, 395)
         Me.DataGridView1.TabIndex = 4
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Fecha solicitud"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Atraso (dias)"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Width = 70
-        '
-        'Column3
-        '
-        Me.Column3.HeaderText = "Productor"
-        Me.Column3.Name = "Column3"
-        Me.Column3.Width = 350
-        '
-        'Informe
-        '
-        Me.Informe.HeaderText = "Informe"
-        Me.Informe.Name = "Informe"
-        Me.Informe.Width = 200
-        '
-        'Ficha
-        '
-        Me.Ficha.HeaderText = "Ficha"
-        Me.Ficha.Name = "Ficha"
-        '
-        'Muestras
-        '
-        Me.Muestras.HeaderText = "Muestras"
-        Me.Muestras.Name = "Muestras"
-        Me.Muestras.ReadOnly = True
         '
         'TextControl
         '
@@ -530,6 +497,45 @@ Partial Class FormInformesPendientes
         Me.TextEfluentes.Size = New System.Drawing.Size(52, 22)
         Me.TextEfluentes.TabIndex = 46
         '
+        'Column1
+        '
+        Me.Column1.HeaderText = "Fecha solicitud"
+        Me.Column1.Name = "Column1"
+        '
+        'Column2
+        '
+        Me.Column2.HeaderText = "Atraso (dias)"
+        Me.Column2.Name = "Column2"
+        Me.Column2.Width = 70
+        '
+        'Column3
+        '
+        Me.Column3.HeaderText = "Productor"
+        Me.Column3.Name = "Column3"
+        Me.Column3.Width = 350
+        '
+        'Informe
+        '
+        Me.Informe.HeaderText = "Informe"
+        Me.Informe.Name = "Informe"
+        Me.Informe.Width = 200
+        '
+        'Ficha
+        '
+        Me.Ficha.HeaderText = "Ficha"
+        Me.Ficha.Name = "Ficha"
+        '
+        'Muestras
+        '
+        Me.Muestras.HeaderText = "Muestras"
+        Me.Muestras.Name = "Muestras"
+        Me.Muestras.ReadOnly = True
+        '
+        'Analisis
+        '
+        Me.Analisis.HeaderText = "Análisis"
+        Me.Analisis.Name = "Analisis"
+        '
         'FormInformesPendientes
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -642,4 +648,5 @@ Partial Class FormInformesPendientes
     Friend WithEvents Informe As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Ficha As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Muestras As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Analisis As System.Windows.Forms.DataGridViewTextBoxColumn
 End Class

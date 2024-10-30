@@ -2574,7 +2574,11 @@ Public Class FormInicio
                         If Not c Is Nothing Then
                             If c.UREA <> -1 Then
                                 Dim valorurea As Integer
-                                valorurea = c.UREA * 0.466
+                                If c.EQUIPO = "Bentley600" Then
+                                    valorurea = c.UREA
+                                Else
+                                    valorurea = c.UREA * 0.466
+                                End If
                                 If valorurea > 20 Or valorurea < 9 Then
                                     x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                                 End If
@@ -4659,7 +4663,7 @@ controltxt:
         If enviarcopia <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -6412,7 +6416,7 @@ controltxt:
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -6585,7 +6589,7 @@ controltxt:
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -6630,7 +6634,7 @@ controltxt:
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -6679,7 +6683,7 @@ controltxt:
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -8157,7 +8161,7 @@ controltxt:
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "C1nIpB{tFYvp")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -9537,7 +9541,7 @@ controltxt:
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
                 _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "170.249.199.66"
+                _SMTP.Host = "23.111.185.242"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
@@ -9583,7 +9587,7 @@ controltxt:
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
                 _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "170.249.199.66"
+                _SMTP.Host = "23.111.185.242"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
@@ -9751,7 +9755,7 @@ controltxt:
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -10546,7 +10550,7 @@ controltxt:
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -10591,7 +10595,7 @@ controltxt:
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 

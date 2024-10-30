@@ -113,6 +113,10 @@ Public Class FormRgLab51_carga
             procesar_bentley()
             generarinformesbentley()
         End If
+        If TextArchivoB6.Text <> "" Then
+            procesar_bentley()
+            generarinformesbentley()
+        End If
         If TextArchivoDelta1.Text <> "" And TextArchivoDelta2.Text <> "" Then
             procesar_delta1()
             procesar_delta2()
@@ -131,7 +135,13 @@ Public Class FormRgLab51_carga
     Private Sub procesar_bentley()
 
         Dim nombrearchivo As String = ""
-        nombrearchivo = TextArchivoBentley.Text.Trim
+        If TextArchivoBentley.Text <> "" Then
+            nombrearchivo = TextArchivoBentley.Text.Trim
+        End If
+        If TextArchivoB6.Text <> "" Then
+            nombrearchivo = TextArchivoB6.Text.Trim
+        End If
+
         Dim linea As Integer
         linea = 1
         Dim objReader As New StreamReader(nombrearchivo)
@@ -168,7 +178,12 @@ Public Class FormRgLab51_carga
                 End If
                 If cuentalinea <= 40 Then
                     rg51.FECHA = fecha
-                    rg51.EQUIPO = "Bentley"
+                    If TextArchivoBentley.Text <> "" Then
+                        rg51.EQUIPO = "Bentley"
+                    End If
+                    If TextArchivoB6.Text <> "" Then
+                        rg51.EQUIPO = "Bentley600"
+                    End If
                     rg51.OPERADOR = Usuario.ID
                     rg51.MUESTRA = id
                     rg51.RESULTADO = rc
@@ -3897,5 +3912,21 @@ Public Class FormRgLab51_carga
             End If
 
         Next i
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim fichero As String
+        Dim dlAbrir As New System.Windows.Forms.OpenFileDialog
+        dlAbrir.Filter = "Todos los archivos (*.*)|*.*"
+        dlAbrir.Multiselect = False
+        dlAbrir.CheckFileExists = False
+        dlAbrir.Title = "Selección de fichero"
+        dlAbrir.InitialDirectory = "\\Bentley600\results"
+        'dlAbrir.InitialDirectory = "c:\rglab51"
+        dlAbrir.ShowDialog()
+        If dlAbrir.FileName <> "" Then
+            fichero = dlAbrir.FileName
+            TextArchivoB6.Text = fichero
+        End If
     End Sub
 End Class

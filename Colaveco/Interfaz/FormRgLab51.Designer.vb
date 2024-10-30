@@ -22,21 +22,22 @@ Partial Class FormRgLab51
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.DataGridView1 = New System.Windows.Forms.DataGridView
-        Me.Muestra = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Resultado1 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Resultado2 = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Promedio = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.DifMax = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Dif = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.Resultado = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.RadioBentley = New System.Windows.Forms.RadioButton
-        Me.RadioDelta = New System.Windows.Forms.RadioButton
-        Me.DataGridFechas = New System.Windows.Forms.DataGridView
-        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn
-        Me.DateFecha = New System.Windows.Forms.DateTimePicker
-        Me.ButtonListar = New System.Windows.Forms.Button
-        Me.Label1 = New System.Windows.Forms.Label
+        Me.DataGridView1 = New System.Windows.Forms.DataGridView()
+        Me.Muestra = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Resultado1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Resultado2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Promedio = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DifMax = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Dif = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Resultado = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.RadioBentley = New System.Windows.Forms.RadioButton()
+        Me.RadioDelta = New System.Windows.Forms.RadioButton()
+        Me.DataGridFechas = New System.Windows.Forms.DataGridView()
+        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.DateFecha = New System.Windows.Forms.DateTimePicker()
+        Me.ButtonListar = New System.Windows.Forms.Button()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.RadioB6 = New System.Windows.Forms.RadioButton()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridFechas, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -45,10 +46,11 @@ Partial Class FormRgLab51
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Muestra, Me.Resultado1, Me.Resultado2, Me.Promedio, Me.DifMax, Me.Dif, Me.Resultado})
-        Me.DataGridView1.Location = New System.Drawing.Point(105, 68)
+        Me.DataGridView1.Location = New System.Drawing.Point(140, 84)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(556, 519)
+        Me.DataGridView1.Size = New System.Drawing.Size(741, 639)
         Me.DataGridView1.TabIndex = 0
         '
         'Muestra
@@ -95,9 +97,10 @@ Partial Class FormRgLab51
         'RadioBentley
         '
         Me.RadioBentley.AutoSize = True
-        Me.RadioBentley.Location = New System.Drawing.Point(169, 22)
+        Me.RadioBentley.Location = New System.Drawing.Point(225, 27)
+        Me.RadioBentley.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RadioBentley.Name = "RadioBentley"
-        Me.RadioBentley.Size = New System.Drawing.Size(60, 17)
+        Me.RadioBentley.Size = New System.Drawing.Size(76, 21)
         Me.RadioBentley.TabIndex = 1
         Me.RadioBentley.TabStop = True
         Me.RadioBentley.Text = "Bentley"
@@ -106,9 +109,10 @@ Partial Class FormRgLab51
         'RadioDelta
         '
         Me.RadioDelta.AutoSize = True
-        Me.RadioDelta.Location = New System.Drawing.Point(169, 45)
+        Me.RadioDelta.Location = New System.Drawing.Point(225, 55)
+        Me.RadioDelta.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RadioDelta.Name = "RadioDelta"
-        Me.RadioDelta.Size = New System.Drawing.Size(50, 17)
+        Me.RadioDelta.Size = New System.Drawing.Size(62, 21)
         Me.RadioDelta.TabIndex = 2
         Me.RadioDelta.TabStop = True
         Me.RadioDelta.Text = "Delta"
@@ -118,10 +122,11 @@ Partial Class FormRgLab51
         '
         Me.DataGridFechas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridFechas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Fecha})
-        Me.DataGridFechas.Location = New System.Drawing.Point(12, 68)
+        Me.DataGridFechas.Location = New System.Drawing.Point(16, 84)
+        Me.DataGridFechas.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridFechas.Name = "DataGridFechas"
         Me.DataGridFechas.RowHeadersVisible = False
-        Me.DataGridFechas.Size = New System.Drawing.Size(87, 519)
+        Me.DataGridFechas.Size = New System.Drawing.Size(116, 639)
         Me.DataGridFechas.TabIndex = 3
         '
         'Fecha
@@ -133,16 +138,18 @@ Partial Class FormRgLab51
         'DateFecha
         '
         Me.DateFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFecha.Location = New System.Drawing.Point(12, 22)
+        Me.DateFecha.Location = New System.Drawing.Point(16, 27)
+        Me.DateFecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateFecha.Name = "DateFecha"
-        Me.DateFecha.Size = New System.Drawing.Size(135, 20)
+        Me.DateFecha.Size = New System.Drawing.Size(179, 22)
         Me.DateFecha.TabIndex = 4
         '
         'ButtonListar
         '
-        Me.ButtonListar.Location = New System.Drawing.Point(247, 22)
+        Me.ButtonListar.Location = New System.Drawing.Point(471, 27)
+        Me.ButtonListar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonListar.Name = "ButtonListar"
-        Me.ButtonListar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonListar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonListar.TabIndex = 5
         Me.ButtonListar.Text = "Listar"
         Me.ButtonListar.UseVisualStyleBackColor = True
@@ -150,17 +157,31 @@ Partial Class FormRgLab51
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(515, 22)
+        Me.Label1.Location = New System.Drawing.Point(687, 27)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(146, 13)
+        Me.Label1.Size = New System.Drawing.Size(193, 17)
         Me.Label1.TabIndex = 13
         Me.Label1.Text = "NORMA: ISO 13366-2 (2006)"
         '
+        'RadioB6
+        '
+        Me.RadioB6.AutoSize = True
+        Me.RadioB6.Location = New System.Drawing.Point(319, 27)
+        Me.RadioB6.Margin = New System.Windows.Forms.Padding(4)
+        Me.RadioB6.Name = "RadioB6"
+        Me.RadioB6.Size = New System.Drawing.Size(104, 21)
+        Me.RadioB6.TabIndex = 14
+        Me.RadioB6.TabStop = True
+        Me.RadioB6.Text = "Bentley 600"
+        Me.RadioB6.UseVisualStyleBackColor = True
+        '
         'FormRgLab51
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(673, 599)
+        Me.ClientSize = New System.Drawing.Size(897, 737)
+        Me.Controls.Add(Me.RadioB6)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.ButtonListar)
         Me.Controls.Add(Me.DateFecha)
@@ -168,6 +189,7 @@ Partial Class FormRgLab51
         Me.Controls.Add(Me.RadioDelta)
         Me.Controls.Add(Me.RadioBentley)
         Me.Controls.Add(Me.DataGridView1)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormRgLab51"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Repetibilidad de células somáticas (RG.LAB 51)"
@@ -192,4 +214,5 @@ Partial Class FormRgLab51
     Friend WithEvents Dif As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Resultado As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents RadioB6 As System.Windows.Forms.RadioButton
 End Class

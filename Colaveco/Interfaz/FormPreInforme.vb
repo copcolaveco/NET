@@ -586,7 +586,11 @@ Public Class FormPreInforme
                         If Not c Is Nothing Then
                             If c.UREA <> -1 Then
                                 Dim valorurea As Integer
-                                valorurea = c.UREA * 0.466
+                                If c.EQUIPO = "Bentley600" Then
+                                    valorurea = c.UREA
+                                Else
+                                    valorurea = c.UREA * 0.466
+                                End If
                                 If valorurea > 20 Or valorurea < 9 Then
                                     x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                                 End If
@@ -940,7 +944,11 @@ Public Class FormPreInforme
                                 columna = columna + 1
                             Else
                                 Dim valorurea As Integer
-                                valorurea = c.UREA * 0.466
+                                If c.EQUIPO = "Bentley600" Then
+                                    valorurea = c.UREA
+                                Else
+                                    valorurea = c.UREA * 0.466
+                                End If
                                 If valorurea > 20 Or valorurea < 9 Then
                                     x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                                 End If

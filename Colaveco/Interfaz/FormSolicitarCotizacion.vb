@@ -350,7 +350,7 @@ Public Class FormSolicitarCotizacion
 
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "C1nIpB{tFYvp")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -392,7 +392,7 @@ Public Class FormSolicitarCotizacion
 
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "C1nIpB{tFYvp")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -433,7 +433,7 @@ Public Class FormSolicitarCotizacion
 
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "C1nIpB{tFYvp")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
             ' CONFIGURACION DEL MENSAJE 

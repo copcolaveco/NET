@@ -1969,6 +1969,7 @@ Public Class FormSolicitud
         Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
         If Not idtipoinforme Is Nothing Then
             Dim tipoinforme As Integer = idtipoinforme.ID
+            cajasImp = ""
             If tipoinforme = 1 Then
                 If ListCajas.Items.Count = 0 And TextOtros.Text = "" Then
                     MsgBox("Debe completar algún campo en cajas recibidas!")
@@ -2028,6 +2029,7 @@ Public Class FormSolicitud
             End If
         End If
         guardar2()
+        ListCajas.Items.Clear()
     End Sub
     Private Sub enviomailpulsa()
         Dim _Message As New System.Net.Mail.MailMessage()
@@ -2038,7 +2040,7 @@ Public Class FormSolicitud
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
             _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
@@ -2246,7 +2248,7 @@ Public Class FormSolicitud
         If TextId.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de ficha", MsgBoxStyle.Exclamation, "Atención") : TextId.Focus() : Exit Sub
         guardar()
 
-       
+
 
 
     End Sub
@@ -2911,7 +2913,7 @@ Public Class FormSolicitud
         x1hoja.Cells(fila, columna).Font.Size = 10
         If tipoinforme = "Control Lechero" Or tipoinforme = "Calidad de leche" Then
             columna = columna + 4
-            x1hoja.Cells(fila, columna).formula = "Bentley  //  Delta 400  //  Delta 600"
+            x1hoja.Cells(fila, columna).formula = "Bentley  //  Bentley 600  //  Delta 600"
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 10
@@ -3850,11 +3852,11 @@ Public Class FormSolicitud
     Private Sub desmarcarrecibido()
         Dim id As Long = TextIdEnvio.Text.Trim
         Dim env As New dEnvioCajas()
-            env.ID = id
-            env.IDAGENCIA = 0
+        env.ID = id
+        env.IDAGENCIA = 0
         env.RECIBO = "Ingreso desde nueva Solicitud"
         env.FECHARECIBO = System.DateTime.Now
-            env.OBSRECIBO = ""
+        env.OBSRECIBO = ""
         env.RECIBIDO = 1
         env.CARGADA = 0
         env.IDCAJA = ListCajas.SelectedItem.IDCAJA
@@ -4597,7 +4599,7 @@ Public Class FormSolicitud
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
                 _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "170.249.199.66"
+                _SMTP.Host = "23.111.185.242"
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
                 _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
@@ -4641,8 +4643,8 @@ Public Class FormSolicitud
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
                 _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "170.249.199.66"
-                _SMTP.Port = 25
+                _SMTP.Host = "23.111.185.242"
+                _SMTP.Port = 26
                 _SMTP.EnableSsl = False
                 _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
                 ' CONFIGURACION DEL MENSAJE 
@@ -5429,7 +5431,38 @@ Public Class FormSolicitud
     Private Sub txtCajasTipeables_KeyPress(ByVal sender As Object, ByVal e As System.Windows.Forms.KeyPressEventArgs) Handles txtCajasTipeables.KeyPress
         If e.KeyChar = Microsoft.VisualBasic.ChrW(13) Then
             idcaja = txtCajasTipeables.Text
+
+            Dim p As New dPedidos
+            Dim lista As New ArrayList
+            Dim id As Integer = TextId.Text.Trim
+            p.ID = id
+           
+            'Agregando lectores de codifos 31/7/2023
+
+            If txtCajasTipeables.Text <> "" Then
+                Dim caja As New dCajas
+                Dim listCaja As New ArrayList
+                listCaja = caja.buscarPorCodigo(txtCajasTipeables.Text)
+
+                If listCaja IsNot Nothing Then
+                    If listCaja.Count > 0 Then
+                        For Each ec In listCaja
+                            ListCajas().Items.Add(ec)
+                        Next
+                    Else
+                        MsgBox("Codigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                    End If
+                Else
+                    MsgBox("Codigo de caja no existe", MsgBoxStyle.Critical, "Atención")
+                End If
+                txtCajasTipeables.Text = ""
+
+            Else
+                MsgBox("Ingrese codigo de la Caja", MsgBoxStyle.Critical, "Atención")
+                txtCajasTipeables.Text = ""
+            End If
         End If
+
     End Sub
 
     Private Sub txtCajasTipeables_TextChanged(sender As Object, e As EventArgs) Handles txtCajasTipeables.TextChanged

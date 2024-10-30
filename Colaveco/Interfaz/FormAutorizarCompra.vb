@@ -804,7 +804,7 @@ Public Class FormAutorizarCompra
 
             'CONFIGURACIÓN DEL STMP 
             _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "C1nIpB{tFYvp")
-            _SMTP.Host = "170.249.199.66"
+            _SMTP.Host = "23.111.185.242"
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
             _Message.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)

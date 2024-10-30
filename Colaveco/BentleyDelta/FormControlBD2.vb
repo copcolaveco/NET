@@ -112,7 +112,7 @@ Public Class FormControlBD2
         End If
     End Sub
    
-    Private Sub ButtonDelta400_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonDelta400.Click
+    Private Sub ButtonDelta400_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim fichero As String
         Dim dlAbrir As New System.Windows.Forms.OpenFileDialog
         dlAbrir.Filter = "Todos los archivos (*.man)|*.man"
@@ -158,7 +158,7 @@ Public Class FormControlBD2
             TextArchivo.Text = fichero
         End If
         If TextArchivo.Text <> "" Then
-            proceso_delta600()
+            proceso_delta600("D6")
         End If
     End Sub
 
@@ -531,7 +531,178 @@ Public Class FormControlBD2
 
 
     End Sub
-    Private Sub proceso_delta600()
+    Private Sub proceso_delta600(ByVal pequipo As String)
+        Dim nombrearchivo As String = ""
+        nombrearchivo = TextArchivo.Text.Trim
+        '********************************************************
+        Dim linea As Integer = 1
+        Dim linea_ As Integer = 0
+        Dim ident As Long = 0
+        Dim fecha As String = ""
+        Dim hora As String = ""
+        Dim id As Integer = 0
+        Dim grasa As Double = 0
+        Dim proteina As Double = 0
+        Dim lactosa As Double = 0
+        Dim soltotales As Double = 0
+        Dim celulas As Integer = 0
+        Dim crioscopia As Integer = 0
+        Dim urea As Integer = 0
+        Dim equipo As String = ""
+        Dim vmgrasa As Double = 0
+        Dim vmproteina As Double = 0
+        Dim vmlactosa As Double = 0
+        Dim vmstotales As Double = 0
+        Dim vmcelulas As Integer = 0
+        Dim vmcrioscopia As Integer = 0
+        Dim vmurea As Integer = 0
+        Dim archivo As String = ""
+        Dim fila As Integer = 0
+
+        '********************************************************
+        Dim objReader As New StreamReader(nombrearchivo)
+        Dim sLine As String = ""
+        Dim a As New dAnalisisBD
+        Dim a2 As New dAnalisisBD2
+        Dim lista As New ArrayList
+        lista = a.listarxarchivo(archivox)
+        If Not lista Is Nothing Then
+            For Each a In lista
+                linea_ = a.FILA
+            Next
+        End If
+
+        Dim Texto() As String
+
+        Do
+            sLine = objReader.ReadLine()
+            If Not sLine Is Nothing Then
+                'Texto = sLine
+                Texto = Split(sLine, ";")
+                'If linea > linea_ Then
+                If linea >= 7 Then
+                    'id**********************************
+                    If Trim(Texto(5)) <> "" Then
+                        id = Trim(Texto(5))
+                    End If
+                    'ident**********************************
+                    If Trim(Texto(5)) <> "" Then
+                        ident = Trim(Texto(0))
+                    End If
+                    'Grasa**********************************
+                    If Trim(Texto(11)) <> "" Then
+                        grasa = Trim(Texto(11))
+                    End If
+                    'Proteina*******************************
+                    If Trim(Texto(12)) <> "" Then
+                        proteina = Trim(Texto(12))
+                    End If
+                    'Lactosa********************************
+                    If Trim(Texto(13)) <> "" Then
+                        lactosa = Trim(Texto(13))
+                    End If
+                    'Sólidos totales************************
+                    If Trim(Texto(14)) <> "" Then
+                        soltotales = Trim(Texto(14))
+                    End If
+                    'Células********************************
+                    If Trim(Texto(9)) <> "" Then
+                        celulas = Trim(Texto(9))
+                    End If
+                    'Crioscopía********************************
+                    If Trim(Texto(15)) <> "" Then
+                        crioscopia = Trim(Texto(15))
+                    End If
+                    'Urea********************************
+                    If Trim(Texto(16)) <> "" Then
+                        urea = Trim(Texto(16))
+                    End If
+                End If
+                'crioscopia = 0
+                'urea = 0
+                equipo = pequipo
+                If ident = 1 Then
+                    vmgrasa = TextGrasa1.Text.Trim
+                    vmproteina = TextProteina1.Text.Trim
+                    vmlactosa = TextLactosa1.Text.Trim
+                    vmstotales = TextSTotales1.Text.Trim
+                    vmcelulas = TextCelulas1.Text.Trim
+                    vmcrioscopia = TextCrioscopia1.Text.Trim
+                    vmurea = TextUrea1.Text.Trim
+                ElseIf ident = 2 Then
+                    vmgrasa = TextGrasa2.Text.Trim
+                    vmproteina = TextProteina2.Text.Trim
+                    vmlactosa = TextLactosa2.Text.Trim
+                    vmstotales = TextSTotales2.Text.Trim
+                    vmcelulas = TextCelulas2.Text.Trim
+                    vmcrioscopia = TextCrioscopia2.Text.Trim
+                    vmurea = TextUrea2.Text.Trim
+                End If
+                archivo = archivox
+                fila = linea
+                _fecha = fecha_fat
+                _fec = Format(_fecha, "yyyy-MM-dd")
+                a.IDENT = ident
+                a.FECHA = _fec
+                a.HORA = hora_fat
+                a.ID = id
+                a.GRASA = grasa
+                a.PROTEINA = proteina
+                a.LACTOSA = lactosa
+                a.SOLTOTALES = soltotales
+                a.CELULAS = celulas
+                a.CRIOSCOPIA = crioscopia
+                a.UREA = urea
+                a.EQUIPO = equipo
+                a.VMGRASA = vmgrasa
+                a.VMPROTEINA = vmproteina
+                a.VMLACTOSA = vmlactosa
+                a.VMSTOTALES = vmstotales
+                a.VMCELULAS = vmcelulas
+                a.VMCRIOSCOPIA = vmcrioscopia
+                a.VMUREA = vmurea
+                a.ARCHIVO = archivo
+                a.FILA = fila
+
+                a2.IDENT = ident
+                a2.FECHA = _fec
+                a2.HORA = hora_fat
+                a2.ID = id
+                a2.GRASA = grasa
+                a2.PROTEINA = proteina
+                a2.LACTOSA = lactosa
+                a2.SOLTOTALES = soltotales
+                a2.CELULAS = celulas
+                a2.CRIOSCOPIA = crioscopia
+                a2.UREA = urea
+                a2.EQUIPO = equipo
+                a2.VMGRASA = vmgrasa
+                a2.VMPROTEINA = vmproteina
+                a2.VMLACTOSA = vmlactosa
+                a2.VMSTOTALES = vmstotales
+                a2.VMCELULAS = vmcelulas
+                a2.VMCRIOSCOPIA = vmcrioscopia
+                a2.VMUREA = vmurea
+                a2.ARCHIVO = archivo
+                a2.FILA = fila
+                If pequipo = "B6" Then
+                    If linea >= 7 Then
+                        a.guardar(Usuario)
+                        a2.guardar(Usuario)
+                    End If
+                Else
+                    If linea > 7 Then
+                        a.guardar(Usuario)
+                        a2.guardar(Usuario)
+                    End If
+                End If
+            End If
+            linea = linea + 1
+        Loop Until sLine Is Nothing
+        a = Nothing
+        a2 = Nothing
+    End Sub
+    Private Sub proceso_B6()
         Dim nombrearchivo As String = ""
         nombrearchivo = TextArchivo.Text.Trim
         '********************************************************
@@ -620,7 +791,7 @@ Public Class FormControlBD2
                 End If
                 'crioscopia = 0
                 'urea = 0
-                equipo = "D6"
+                equipo = "B6"
                 If ident = 1 Then
                     vmgrasa = TextGrasa1.Text.Trim
                     vmproteina = TextProteina1.Text.Trim
@@ -1021,8 +1192,8 @@ Public Class FormControlBD2
                         lactosa2 = a1.LACTOSA
                         stotales2 = a1.SOLTOTALES
                         celulas2 = a1.CELULAS
-                        crioscopia2 = 0
-                        urea2 = 0
+                        crioscopia2 = a1.CRIOSCOPIA
+                        urea2 = a1.UREA
                         grasapromedio = a1.VMGRASA
                         proteinapromedio = a1.VMPROTEINA
                         lactosapromedio = a1.VMLACTOSA
@@ -4397,5 +4568,31 @@ Public Class FormControlBD2
 
     Private Sub Button2_Click_1(ByVal sender As System.Object, ByVal e As System.EventArgs)
         grabo_resultados()
+    End Sub
+
+    Private Sub ButtonB6_Click(sender As Object, e As EventArgs) Handles ButtonB6.Click
+        Dim fichero As String
+        Dim dlAbrir As New System.Windows.Forms.OpenFileDialog
+        dlAbrir.Filter = "Todos los archivos (*.csv)|*.csv"
+        dlAbrir.Multiselect = False
+        dlAbrir.CheckFileExists = False
+        dlAbrir.Title = "Selección de fichero"
+        dlAbrir.InitialDirectory = "\\C:\data"
+        dlAbrir.ShowDialog()
+        If dlAbrir.FileName <> "" Then
+            fichero = dlAbrir.FileName
+            Dim Archivo As New FileInfo(fichero)
+            fecha_fat = Archivo.LastWriteTime.ToShortDateString
+            fec_fat = Format(fecha_fat, "yyyy-MM-dd")
+            hora_fat = Archivo.LastWriteTime.ToShortTimeString
+            archivox = Archivo.Name
+            TextArchivo.Text = fichero
+            arch1 = 1
+            arch2 = 0
+            arch3 = 0
+        End If
+        If TextArchivo.Text <> "" Then
+            proceso_delta600("B6")
+        End If
     End Sub
 End Class

@@ -79,209 +79,234 @@ Partial Class FormRgLab31
         '
         'TextId
         '
-        Me.TextId.Location = New System.Drawing.Point(101, 44)
+        Me.TextId.Location = New System.Drawing.Point(135, 54)
+        Me.TextId.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextId.Name = "TextId"
         Me.TextId.ReadOnly = True
-        Me.TextId.Size = New System.Drawing.Size(75, 20)
+        Me.TextId.Size = New System.Drawing.Size(99, 22)
         Me.TextId.TabIndex = 0
         '
         'DateFecha
         '
         Me.DateFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFecha.Location = New System.Drawing.Point(101, 70)
+        Me.DateFecha.Location = New System.Drawing.Point(135, 86)
+        Me.DateFecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateFecha.Name = "DateFecha"
-        Me.DateFecha.Size = New System.Drawing.Size(100, 20)
+        Me.DateFecha.Size = New System.Drawing.Size(132, 22)
         Me.DateFecha.TabIndex = 1
         '
         'TextHora
         '
-        Me.TextHora.Location = New System.Drawing.Point(101, 96)
+        Me.TextHora.Location = New System.Drawing.Point(135, 118)
+        Me.TextHora.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextHora.Name = "TextHora"
-        Me.TextHora.Size = New System.Drawing.Size(75, 20)
+        Me.TextHora.Size = New System.Drawing.Size(99, 22)
         Me.TextHora.TabIndex = 2
         '
         'TextFicha
         '
-        Me.TextFicha.Location = New System.Drawing.Point(101, 149)
+        Me.TextFicha.Location = New System.Drawing.Point(135, 183)
+        Me.TextFicha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextFicha.Name = "TextFicha"
-        Me.TextFicha.Size = New System.Drawing.Size(75, 20)
+        Me.TextFicha.Size = New System.Drawing.Size(99, 22)
         Me.TextFicha.TabIndex = 3
         '
         'TextCantidad
         '
-        Me.TextCantidad.Location = New System.Drawing.Point(101, 175)
+        Me.TextCantidad.Location = New System.Drawing.Point(135, 215)
+        Me.TextCantidad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextCantidad.Name = "TextCantidad"
-        Me.TextCantidad.Size = New System.Drawing.Size(75, 20)
+        Me.TextCantidad.Size = New System.Drawing.Size(99, 22)
         Me.TextCantidad.TabIndex = 4
         '
         'ComboAnalisis
         '
         Me.ComboAnalisis.FormattingEnabled = True
-        Me.ComboAnalisis.Location = New System.Drawing.Point(101, 201)
+        Me.ComboAnalisis.Location = New System.Drawing.Point(135, 247)
+        Me.ComboAnalisis.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboAnalisis.Name = "ComboAnalisis"
-        Me.ComboAnalisis.Size = New System.Drawing.Size(183, 21)
+        Me.ComboAnalisis.Size = New System.Drawing.Size(243, 24)
         Me.ComboAnalisis.TabIndex = 5
         '
         'ComboOperador
         '
         Me.ComboOperador.FormattingEnabled = True
-        Me.ComboOperador.Location = New System.Drawing.Point(101, 408)
+        Me.ComboOperador.Location = New System.Drawing.Point(135, 502)
+        Me.ComboOperador.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboOperador.Name = "ComboOperador"
-        Me.ComboOperador.Size = New System.Drawing.Size(183, 21)
+        Me.ComboOperador.Size = New System.Drawing.Size(243, 24)
         Me.ComboOperador.TabIndex = 6
         '
         'TextTemperatura
         '
-        Me.TextTemperatura.Location = New System.Drawing.Point(101, 435)
+        Me.TextTemperatura.Location = New System.Drawing.Point(135, 535)
+        Me.TextTemperatura.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextTemperatura.Name = "TextTemperatura"
-        Me.TextTemperatura.Size = New System.Drawing.Size(75, 20)
+        Me.TextTemperatura.Size = New System.Drawing.Size(99, 22)
         Me.TextTemperatura.TabIndex = 7
         '
         'TextHumedad
         '
-        Me.TextHumedad.Location = New System.Drawing.Point(101, 461)
+        Me.TextHumedad.Location = New System.Drawing.Point(135, 567)
+        Me.TextHumedad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextHumedad.Name = "TextHumedad"
-        Me.TextHumedad.Size = New System.Drawing.Size(75, 20)
+        Me.TextHumedad.Size = New System.Drawing.Size(99, 22)
         Me.TextHumedad.TabIndex = 8
         '
         'ComboEliminado
         '
         Me.ComboEliminado.FormattingEnabled = True
-        Me.ComboEliminado.Location = New System.Drawing.Point(101, 487)
+        Me.ComboEliminado.Location = New System.Drawing.Point(135, 599)
+        Me.ComboEliminado.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboEliminado.Name = "ComboEliminado"
-        Me.ComboEliminado.Size = New System.Drawing.Size(183, 21)
+        Me.ComboEliminado.Size = New System.Drawing.Size(243, 24)
         Me.ComboEliminado.TabIndex = 9
         '
         'TextObservaciones
         '
-        Me.TextObservaciones.Location = New System.Drawing.Point(101, 514)
+        Me.TextObservaciones.Location = New System.Drawing.Point(135, 633)
+        Me.TextObservaciones.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextObservaciones.Multiline = True
         Me.TextObservaciones.Name = "TextObservaciones"
-        Me.TextObservaciones.Size = New System.Drawing.Size(183, 130)
+        Me.TextObservaciones.Size = New System.Drawing.Size(243, 159)
         Me.TextObservaciones.TabIndex = 10
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(17, 47)
+        Me.Label1.Location = New System.Drawing.Point(23, 58)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(16, 13)
+        Me.Label1.Size = New System.Drawing.Size(19, 17)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Id"
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(17, 76)
+        Me.Label2.Location = New System.Drawing.Point(23, 94)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(37, 13)
+        Me.Label2.Size = New System.Drawing.Size(47, 17)
         Me.Label2.TabIndex = 12
         Me.Label2.Text = "Fecha"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(17, 99)
+        Me.Label3.Location = New System.Drawing.Point(23, 122)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(30, 13)
+        Me.Label3.Size = New System.Drawing.Size(39, 17)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Hora"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(17, 152)
+        Me.Label4.Location = New System.Drawing.Point(23, 187)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(33, 13)
+        Me.Label4.Size = New System.Drawing.Size(42, 17)
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Ficha"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(17, 178)
+        Me.Label5.Location = New System.Drawing.Point(23, 219)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(49, 13)
+        Me.Label5.Size = New System.Drawing.Size(64, 17)
         Me.Label5.TabIndex = 15
         Me.Label5.Text = "Cantidad"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(17, 204)
+        Me.Label6.Location = New System.Drawing.Point(23, 251)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(42, 13)
+        Me.Label6.Size = New System.Drawing.Size(56, 17)
         Me.Label6.TabIndex = 16
         Me.Label6.Text = "Analisis"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(17, 411)
+        Me.Label7.Location = New System.Drawing.Point(23, 506)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(51, 13)
+        Me.Label7.Size = New System.Drawing.Size(69, 17)
         Me.Label7.TabIndex = 17
         Me.Label7.Text = "Operador"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(17, 438)
+        Me.Label8.Location = New System.Drawing.Point(23, 539)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(81, 13)
+        Me.Label8.Size = New System.Drawing.Size(108, 17)
         Me.Label8.TabIndex = 18
         Me.Label8.Text = "Temperatura ºC"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(17, 464)
+        Me.Label9.Location = New System.Drawing.Point(23, 571)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(64, 13)
+        Me.Label9.Size = New System.Drawing.Size(85, 17)
         Me.Label9.TabIndex = 19
         Me.Label9.Text = "Humedad %"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(17, 490)
+        Me.Label10.Location = New System.Drawing.Point(23, 603)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(78, 13)
+        Me.Label10.Size = New System.Drawing.Size(105, 17)
         Me.Label10.TabIndex = 20
         Me.Label10.Text = "Eliminadas por:"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(17, 517)
+        Me.Label11.Location = New System.Drawing.Point(23, 636)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(78, 13)
+        Me.Label11.Size = New System.Drawing.Size(103, 17)
         Me.Label11.TabIndex = 21
         Me.Label11.Text = "Observaciones"
         '
         'ButtonNuevo
         '
-        Me.ButtonNuevo.Location = New System.Drawing.Point(47, 661)
+        Me.ButtonNuevo.Location = New System.Drawing.Point(63, 814)
+        Me.ButtonNuevo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonNuevo.Name = "ButtonNuevo"
-        Me.ButtonNuevo.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonNuevo.Size = New System.Drawing.Size(100, 28)
         Me.ButtonNuevo.TabIndex = 22
         Me.ButtonNuevo.Text = "Nuevo"
         Me.ButtonNuevo.UseVisualStyleBackColor = True
         '
         'ButtonGuardar
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(128, 661)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(171, 814)
+        Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonGuardar.Name = "ButtonGuardar"
-        Me.ButtonGuardar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonGuardar.TabIndex = 23
         Me.ButtonGuardar.Text = "Guardar"
         Me.ButtonGuardar.UseVisualStyleBackColor = True
         '
         'ButtonEliminar
         '
-        Me.ButtonEliminar.Location = New System.Drawing.Point(209, 661)
+        Me.ButtonEliminar.Location = New System.Drawing.Point(279, 814)
+        Me.ButtonEliminar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonEliminar.Name = "ButtonEliminar"
-        Me.ButtonEliminar.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonEliminar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonEliminar.TabIndex = 24
         Me.ButtonEliminar.Text = "Eliminar"
         Me.ButtonEliminar.UseVisualStyleBackColor = True
@@ -290,10 +315,11 @@ Partial Class FormRgLab31
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Fecha, Me.Ficha})
-        Me.DataGridView1.Location = New System.Drawing.Point(450, 44)
+        Me.DataGridView1.Location = New System.Drawing.Point(600, 54)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(207, 573)
+        Me.DataGridView1.Size = New System.Drawing.Size(276, 705)
         Me.DataGridView1.TabIndex = 25
         '
         'Id
@@ -325,9 +351,11 @@ Partial Class FormRgLab31
         Me.GroupBox7.Controls.Add(Me.CheckEsporulados)
         Me.GroupBox7.Controls.Add(Me.CheckPsicrotrofos)
         Me.GroupBox7.Controls.Add(Me.CheckTermofilos)
-        Me.GroupBox7.Location = New System.Drawing.Point(153, 228)
+        Me.GroupBox7.Location = New System.Drawing.Point(204, 281)
+        Me.GroupBox7.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox7.Name = "GroupBox7"
-        Me.GroupBox7.Size = New System.Drawing.Size(291, 169)
+        Me.GroupBox7.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox7.Size = New System.Drawing.Size(388, 208)
         Me.GroupBox7.TabIndex = 42
         Me.GroupBox7.TabStop = False
         Me.GroupBox7.Text = "Calidad"
@@ -335,9 +363,10 @@ Partial Class FormRgLab31
         'CheckCaseina
         '
         Me.CheckCaseina.AutoSize = True
-        Me.CheckCaseina.Location = New System.Drawing.Point(159, 118)
+        Me.CheckCaseina.Location = New System.Drawing.Point(212, 145)
+        Me.CheckCaseina.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCaseina.Name = "CheckCaseina"
-        Me.CheckCaseina.Size = New System.Drawing.Size(66, 17)
+        Me.CheckCaseina.Size = New System.Drawing.Size(81, 21)
         Me.CheckCaseina.TabIndex = 10
         Me.CheckCaseina.Text = "Caseína"
         Me.CheckCaseina.UseVisualStyleBackColor = True
@@ -345,9 +374,10 @@ Partial Class FormRgLab31
         'CheckCrioscopo
         '
         Me.CheckCrioscopo.AutoSize = True
-        Me.CheckCrioscopo.Location = New System.Drawing.Point(11, 120)
+        Me.CheckCrioscopo.Location = New System.Drawing.Point(15, 148)
+        Me.CheckCrioscopo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCrioscopo.Name = "CheckCrioscopo"
-        Me.CheckCrioscopo.Size = New System.Drawing.Size(133, 17)
+        Me.CheckCrioscopo.Size = New System.Drawing.Size(173, 21)
         Me.CheckCrioscopo.TabIndex = 4
         Me.CheckCrioscopo.Text = "Crioscopía (Crióscopo)"
         Me.CheckCrioscopo.UseVisualStyleBackColor = True
@@ -355,9 +385,10 @@ Partial Class FormRgLab31
         'CheckUrea2
         '
         Me.CheckUrea2.AutoSize = True
-        Me.CheckUrea2.Location = New System.Drawing.Point(159, 51)
+        Me.CheckUrea2.Location = New System.Drawing.Point(212, 63)
+        Me.CheckUrea2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckUrea2.Name = "CheckUrea2"
-        Me.CheckUrea2.Size = New System.Drawing.Size(49, 17)
+        Me.CheckUrea2.Size = New System.Drawing.Size(61, 21)
         Me.CheckUrea2.TabIndex = 7
         Me.CheckUrea2.Text = "Urea"
         Me.CheckUrea2.UseVisualStyleBackColor = True
@@ -365,9 +396,10 @@ Partial Class FormRgLab31
         'CheckInhibidores
         '
         Me.CheckInhibidores.AutoSize = True
-        Me.CheckInhibidores.Location = New System.Drawing.Point(11, 143)
+        Me.CheckInhibidores.Location = New System.Drawing.Point(15, 176)
+        Me.CheckInhibidores.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckInhibidores.Name = "CheckInhibidores"
-        Me.CheckInhibidores.Size = New System.Drawing.Size(77, 17)
+        Me.CheckInhibidores.Size = New System.Drawing.Size(99, 21)
         Me.CheckInhibidores.TabIndex = 5
         Me.CheckInhibidores.Text = "Inhibidores"
         Me.CheckInhibidores.UseVisualStyleBackColor = True
@@ -375,9 +407,10 @@ Partial Class FormRgLab31
         'CheckCrioscopia
         '
         Me.CheckCrioscopia.AutoSize = True
-        Me.CheckCrioscopia.Location = New System.Drawing.Point(11, 97)
+        Me.CheckCrioscopia.Location = New System.Drawing.Point(15, 119)
+        Me.CheckCrioscopia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCrioscopia.Name = "CheckCrioscopia"
-        Me.CheckCrioscopia.Size = New System.Drawing.Size(111, 17)
+        Me.CheckCrioscopia.Size = New System.Drawing.Size(143, 21)
         Me.CheckCrioscopia.TabIndex = 3
         Me.CheckCrioscopia.Text = "Crioscopía (Delta)"
         Me.CheckCrioscopia.UseVisualStyleBackColor = True
@@ -385,9 +418,10 @@ Partial Class FormRgLab31
         'CheckComposicion2
         '
         Me.CheckComposicion2.AutoSize = True
-        Me.CheckComposicion2.Location = New System.Drawing.Point(11, 74)
+        Me.CheckComposicion2.Location = New System.Drawing.Point(15, 91)
+        Me.CheckComposicion2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckComposicion2.Name = "CheckComposicion2"
-        Me.CheckComposicion2.Size = New System.Drawing.Size(86, 17)
+        Me.CheckComposicion2.Size = New System.Drawing.Size(110, 21)
         Me.CheckComposicion2.TabIndex = 2
         Me.CheckComposicion2.Text = "Composición"
         Me.CheckComposicion2.UseVisualStyleBackColor = True
@@ -395,9 +429,10 @@ Partial Class FormRgLab31
         'CheckRC2
         '
         Me.CheckRC2.AutoSize = True
-        Me.CheckRC2.Location = New System.Drawing.Point(11, 51)
+        Me.CheckRC2.Location = New System.Drawing.Point(15, 63)
+        Me.CheckRC2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckRC2.Name = "CheckRC2"
-        Me.CheckRC2.Size = New System.Drawing.Size(41, 17)
+        Me.CheckRC2.Size = New System.Drawing.Size(49, 21)
         Me.CheckRC2.TabIndex = 1
         Me.CheckRC2.Text = "RC"
         Me.CheckRC2.UseVisualStyleBackColor = True
@@ -405,9 +440,10 @@ Partial Class FormRgLab31
         'CheckRB
         '
         Me.CheckRB.AutoSize = True
-        Me.CheckRB.Location = New System.Drawing.Point(11, 28)
+        Me.CheckRB.Location = New System.Drawing.Point(15, 34)
+        Me.CheckRB.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckRB.Name = "CheckRB"
-        Me.CheckRB.Size = New System.Drawing.Size(41, 17)
+        Me.CheckRB.Size = New System.Drawing.Size(49, 21)
         Me.CheckRB.TabIndex = 1
         Me.CheckRB.Text = "RB"
         Me.CheckRB.UseVisualStyleBackColor = True
@@ -415,9 +451,10 @@ Partial Class FormRgLab31
         'CheckEsporulados
         '
         Me.CheckEsporulados.AutoSize = True
-        Me.CheckEsporulados.Location = New System.Drawing.Point(159, 28)
+        Me.CheckEsporulados.Location = New System.Drawing.Point(212, 34)
+        Me.CheckEsporulados.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckEsporulados.Name = "CheckEsporulados"
-        Me.CheckEsporulados.Size = New System.Drawing.Size(131, 17)
+        Me.CheckEsporulados.Size = New System.Drawing.Size(173, 21)
         Me.CheckEsporulados.TabIndex = 6
         Me.CheckEsporulados.Text = "Espor. Anaer. mesófilo"
         Me.CheckEsporulados.UseVisualStyleBackColor = True
@@ -425,9 +462,10 @@ Partial Class FormRgLab31
         'CheckPsicrotrofos
         '
         Me.CheckPsicrotrofos.AutoSize = True
-        Me.CheckPsicrotrofos.Location = New System.Drawing.Point(159, 97)
+        Me.CheckPsicrotrofos.Location = New System.Drawing.Point(212, 119)
+        Me.CheckPsicrotrofos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckPsicrotrofos.Name = "CheckPsicrotrofos"
-        Me.CheckPsicrotrofos.Size = New System.Drawing.Size(81, 17)
+        Me.CheckPsicrotrofos.Size = New System.Drawing.Size(105, 21)
         Me.CheckPsicrotrofos.TabIndex = 9
         Me.CheckPsicrotrofos.Text = "Psicrotrofos"
         Me.CheckPsicrotrofos.UseVisualStyleBackColor = True
@@ -435,9 +473,10 @@ Partial Class FormRgLab31
         'CheckTermofilos
         '
         Me.CheckTermofilos.AutoSize = True
-        Me.CheckTermofilos.Location = New System.Drawing.Point(159, 74)
+        Me.CheckTermofilos.Location = New System.Drawing.Point(212, 91)
+        Me.CheckTermofilos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckTermofilos.Name = "CheckTermofilos"
-        Me.CheckTermofilos.Size = New System.Drawing.Size(74, 17)
+        Me.CheckTermofilos.Size = New System.Drawing.Size(96, 21)
         Me.CheckTermofilos.TabIndex = 8
         Me.CheckTermofilos.Text = "Termofilos"
         Me.CheckTermofilos.UseVisualStyleBackColor = True
@@ -447,9 +486,11 @@ Partial Class FormRgLab31
         Me.GroupBox1.Controls.Add(Me.CheckUrea)
         Me.GroupBox1.Controls.Add(Me.CheckComposicion)
         Me.GroupBox1.Controls.Add(Me.CheckRC)
-        Me.GroupBox1.Location = New System.Drawing.Point(20, 228)
+        Me.GroupBox1.Location = New System.Drawing.Point(27, 281)
+        Me.GroupBox1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.GroupBox1.Name = "GroupBox1"
-        Me.GroupBox1.Size = New System.Drawing.Size(118, 95)
+        Me.GroupBox1.Padding = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.GroupBox1.Size = New System.Drawing.Size(157, 117)
         Me.GroupBox1.TabIndex = 43
         Me.GroupBox1.TabStop = False
         Me.GroupBox1.Text = "Control"
@@ -457,9 +498,10 @@ Partial Class FormRgLab31
         'CheckUrea
         '
         Me.CheckUrea.AutoSize = True
-        Me.CheckUrea.Location = New System.Drawing.Point(11, 65)
+        Me.CheckUrea.Location = New System.Drawing.Point(15, 80)
+        Me.CheckUrea.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckUrea.Name = "CheckUrea"
-        Me.CheckUrea.Size = New System.Drawing.Size(49, 17)
+        Me.CheckUrea.Size = New System.Drawing.Size(61, 21)
         Me.CheckUrea.TabIndex = 7
         Me.CheckUrea.Text = "Urea"
         Me.CheckUrea.UseVisualStyleBackColor = True
@@ -467,9 +509,10 @@ Partial Class FormRgLab31
         'CheckComposicion
         '
         Me.CheckComposicion.AutoSize = True
-        Me.CheckComposicion.Location = New System.Drawing.Point(11, 42)
+        Me.CheckComposicion.Location = New System.Drawing.Point(15, 52)
+        Me.CheckComposicion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckComposicion.Name = "CheckComposicion"
-        Me.CheckComposicion.Size = New System.Drawing.Size(86, 17)
+        Me.CheckComposicion.Size = New System.Drawing.Size(110, 21)
         Me.CheckComposicion.TabIndex = 2
         Me.CheckComposicion.Text = "Composición"
         Me.CheckComposicion.UseVisualStyleBackColor = True
@@ -477,9 +520,10 @@ Partial Class FormRgLab31
         'CheckRC
         '
         Me.CheckRC.AutoSize = True
-        Me.CheckRC.Location = New System.Drawing.Point(11, 19)
+        Me.CheckRC.Location = New System.Drawing.Point(15, 23)
+        Me.CheckRC.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckRC.Name = "CheckRC"
-        Me.CheckRC.Size = New System.Drawing.Size(41, 17)
+        Me.CheckRC.Size = New System.Drawing.Size(49, 21)
         Me.CheckRC.TabIndex = 1
         Me.CheckRC.Text = "RC"
         Me.CheckRC.UseVisualStyleBackColor = True
@@ -487,19 +531,21 @@ Partial Class FormRgLab31
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(19, 125)
+        Me.Label12.Location = New System.Drawing.Point(25, 154)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(40, 13)
+        Me.Label12.Size = New System.Drawing.Size(52, 17)
         Me.Label12.TabIndex = 44
         Me.Label12.Text = "Equipo"
         '
         'ComboEquipo
         '
         Me.ComboEquipo.FormattingEnabled = True
-        Me.ComboEquipo.Items.AddRange(New Object() {"Bentley", "Delta 400", "Delta 600"})
-        Me.ComboEquipo.Location = New System.Drawing.Point(101, 122)
+        Me.ComboEquipo.Items.AddRange(New Object() {"Bentley", "Bentley 600", "Delta 600"})
+        Me.ComboEquipo.Location = New System.Drawing.Point(135, 150)
+        Me.ComboEquipo.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboEquipo.Name = "ComboEquipo"
-        Me.ComboEquipo.Size = New System.Drawing.Size(121, 21)
+        Me.ComboEquipo.Size = New System.Drawing.Size(160, 24)
         Me.ComboEquipo.TabIndex = 45
         '
         'Timer1
@@ -510,18 +556,19 @@ Partial Class FormRgLab31
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(12, 9)
+        Me.Label13.Location = New System.Drawing.Point(16, 11)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(547, 20)
+        Me.Label13.Size = New System.Drawing.Size(673, 25)
         Me.Label13.TabIndex = 46
         Me.Label13.Text = "Verificación del pedido del cliente, por parte del analista, en calidad de leche." & _
-            ""
+    ""
         '
         'FormRgLab31
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(667, 688)
+        Me.ClientSize = New System.Drawing.Size(889, 847)
         Me.Controls.Add(Me.Label13)
         Me.Controls.Add(Me.ComboEquipo)
         Me.Controls.Add(Me.Label12)
@@ -553,6 +600,7 @@ Partial Class FormRgLab31
         Me.Controls.Add(Me.TextHora)
         Me.Controls.Add(Me.DateFecha)
         Me.Controls.Add(Me.TextId)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormRgLab31"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RGLAB 31"

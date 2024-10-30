@@ -28,10 +28,17 @@ Public Class FormInformesPendientes
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Usuario = u
-        listarpendientes()
+
+        If u.TIPOUSUARIO = u.TIPOUSUARIO = 98 Then
+            listarpendientes(True)
+        Else
+            listarpendientes(False)
+        End If
+
+
     End Sub
 #End Region
-    Private Sub listarpendientes()
+    Private Sub listarpendientes(ByVal pPorUsu As Boolean)
         Dim s As New dSolicitudAnalisis
         Dim p As New dCliente
         Dim t As New dTiempos
@@ -120,151 +127,361 @@ Public Class FormInformesPendientes
                 Dim columna As Integer = 0
                 DataGridView1.Rows.Add(lista.Count)
                 For Each s In lista
-                    DateHoy.Value = Now
-                    DateSolicitud.Value = s.FECHAINGRESO
-                    Dim fechahoy As Date = DateHoy.Value.ToString("yyyy-MM-dd")
-                    Dim fechaingreso As Date = DateSolicitud.Value.ToString("yyyy-MM-dd")
-                    dias = DateDiff(DateInterval.Day, fechaingreso, fechahoy)
-                    Dim diasatraso As Integer = 0
-                    Dim diasinforme As Integer = 0
-                    Dim informe As String = ""
-                    If s.IDTIPOINFORME = 1 Then
-                        diasinforme = control
-                        informe = "Control lechero"
-                        cuenta_control = cuenta_control + 1
-                    ElseIf s.IDTIPOINFORME = 10 Then
-                        Dim csm As New dCalidadSolicitudMuestra
-                        csm.ficha = s.ID
-                        csm = csm.buscarxsolicitud
-                        If Not csm Is Nothing Then
-                            If csm.ESPORULADOS = 1 Then
-                                diasinforme = esporulados
-                                informe = "Calidad de leche / Esporulados"
-                                cuenta_esporulados = cuenta_esporulados + 1
-                            Else
-                                diasinforme = calidad
-                                informe = "Calidad de leche"
-                                cuenta_calidad = cuenta_calidad + 1
+                    If pPorUsu And s.OPERADOR = Usuario.ID Then
+                        DateHoy.Value = Now
+                        DateSolicitud.Value = s.FECHAINGRESO
+                        Dim fechahoy As Date = DateHoy.Value.ToString("yyyy-MM-dd")
+                        Dim fechaingreso As Date = DateSolicitud.Value.ToString("yyyy-MM-dd")
+                        dias = DateDiff(DateInterval.Day, fechaingreso, fechahoy)
+                        Dim diasatraso As Integer = 0
+                        Dim diasinforme As Integer = 0
+                        Dim informe As String = ""
+                        If s.IDTIPOINFORME = 1 Then
+                            diasinforme = control
+                            informe = "Control lechero"
+                            cuenta_control = cuenta_control + 1
+                        ElseIf s.IDTIPOINFORME = 10 Then
+                            Dim csm As New dCalidadSolicitudMuestra
+                            csm.FICHA = s.ID
+                            csm = csm.buscarxsolicitud
+                            If Not csm Is Nothing Then
+                                If csm.ESPORULADOS = 1 Then
+                                    diasinforme = esporulados
+                                    informe = "Calidad de leche / Esporulados"
+                                    cuenta_esporulados = cuenta_esporulados + 1
+                                Else
+                                    diasinforme = calidad
+                                    informe = "Calidad de leche"
+                                    cuenta_calidad = cuenta_calidad + 1
+                                End If
                             End If
-                        End If
-                        csm = Nothing
-                    ElseIf s.IDTIPOINFORME = 3 Then
-                        diasinforme = agua
-                        informe = "Agua"
-                        cuenta_agua = cuenta_agua + 1
-                    ElseIf s.IDTIPOINFORME = 4 Then
-                        diasinforme = antibiograma
-                        informe = "Antibiograma"
-                        cuenta_antibiograma = cuenta_antibiograma + 1
-                    ElseIf s.IDTIPOINFORME = 5 Then
-                        diasinforme = pal
-                        informe = "PAL"
-                        cuenta_pal = cuenta_pal + 1
-                    ElseIf s.IDTIPOINFORME = 6 Then
-                        diasinforme = parasitologia
-                        informe = "Parasitología"
-                        cuenta_parasitologia = cuenta_parasitologia + 1
-                    ElseIf s.IDTIPOINFORME = 7 Then
-                        Dim sp As New dSubproducto
-                        sp.ficha = s.ID
-                        sp = sp.buscarxsolicitud()
-                        If Not sp Is Nothing Then
-                            If sp.SALMONELLA = 1 Or sp.LISTERIASPP = 1 Then
-                                diasinforme = sp_salmonella_listeria
-                                informe = "Alimentos / Salmonella - Listeria"
-                                cuenta_sp_salmonella_listeria = cuenta_sp_salmonella_listeria + 1
-                            ElseIf sp.MOHOSYLEVADURAS = 1 Then
-                                diasinforme = sp_mohos_levaduras
-                                informe = "Alimentos / Mohos y levaduras"
-                                cuenta_sp_mohos_levaduras = cuenta_sp_mohos_levaduras + 1
+                            csm = Nothing
+                        ElseIf s.IDTIPOINFORME = 3 Then
+                            diasinforme = agua
+                            informe = "Agua"
+                            cuenta_agua = cuenta_agua + 1
+                        ElseIf s.IDTIPOINFORME = 4 Then
+                            diasinforme = antibiograma
+                            informe = "Antibiograma"
+                            cuenta_antibiograma = cuenta_antibiograma + 1
+                        ElseIf s.IDTIPOINFORME = 5 Then
+                            diasinforme = pal
+                            informe = "PAL"
+                            cuenta_pal = cuenta_pal + 1
+                        ElseIf s.IDTIPOINFORME = 6 Then
+                            diasinforme = parasitologia
+                            informe = "Parasitología"
+                            cuenta_parasitologia = cuenta_parasitologia + 1
+                        ElseIf s.IDTIPOINFORME = 7 Then
+                            Dim sp As New dSubproducto
+                            sp.FICHA = s.ID
+                            sp = sp.buscarxsolicitud()
+                            If Not sp Is Nothing Then
+                                If sp.SALMONELLA = 1 Or sp.LISTERIASPP = 1 Then
+                                    diasinforme = sp_salmonella_listeria
+                                    informe = "Alimentos / Salmonella - Listeria"
+                                    cuenta_sp_salmonella_listeria = cuenta_sp_salmonella_listeria + 1
+                                ElseIf sp.MOHOSYLEVADURAS = 1 Then
+                                    diasinforme = sp_mohos_levaduras
+                                    informe = "Alimentos / Mohos y levaduras"
+                                    cuenta_sp_mohos_levaduras = cuenta_sp_mohos_levaduras + 1
+                                Else
+                                    diasinforme = productos
+                                    informe = "Alimentos"
+                                    cuenta_productos = cuenta_productos + 1
+                                End If
                             Else
                                 diasinforme = productos
                                 informe = "Alimentos"
                                 cuenta_productos = cuenta_productos + 1
                             End If
-                        Else
-                            diasinforme = productos
-                            informe = "Alimentos"
-                            cuenta_productos = cuenta_productos + 1
+                            sp = Nothing
+                        ElseIf s.IDTIPOINFORME = 8 Then
+                            If s.IDSUBINFORME = 22 Then
+                                diasinforme = serologia_otros
+                                informe = "Serología RDB"
+                                cuenta_serologia_otros = cuenta_serologia_otros + 1
+                            Else
+                                diasinforme = serologia_leucosis
+                                informe = "Serología Leucosis"
+                                cuenta_serologia_leucosis = cuenta_serologia_leucosis + 1
+                            End If
+
+                        ElseIf s.IDTIPOINFORME = 9 Then
+                            diasinforme = patologia
+                            informe = "Patología"
+                            cuenta_patologia = cuenta_patologia + 1
+                        ElseIf s.IDTIPOINFORME = 11 Then
+                            diasinforme = ambiental
+                            informe = "Ambiental"
+                            cuenta_ambiental = cuenta_ambiental + 1
+                        ElseIf s.IDTIPOINFORME = 12 Then
+                            diasinforme = lactometros
+                            informe = "Lactómetros"
+                            cuenta_lactometros = cuenta_lactometros + 1
+                        ElseIf s.IDTIPOINFORME = 13 Then
+                            diasinforme = nutricion
+                            informe = "Nutrición"
+                            cuenta_nutricion = cuenta_nutricion + 1
+                        ElseIf s.IDTIPOINFORME = 14 Then
+                            diasinforme = suelos
+                            informe = "Suelos"
+                            cuenta_suelos = cuenta_suelos + 1
+                        ElseIf s.IDTIPOINFORME = 15 Then
+                            diasinforme = brucelosis_leche
+                            informe = "Brucelosis en leche"
+                            cuenta_brucelosis_leche = cuenta_brucelosis_leche + 1
+                        ElseIf s.IDTIPOINFORME = 16 Then
+                            diasinforme = 0
+                            informe = "Efluentes"
+                            cuenta_efluentes = cuenta_efluentes + 1
+                        ElseIf s.IDTIPOINFORME = 99 Then
+                            diasinforme = otros
+                            informe = "Otros servicios"
+                            cuenta_otros = cuenta_otros + 1
                         End If
-                        sp = Nothing
-                    ElseIf s.IDTIPOINFORME = 8 Then
-                        If s.IDSUBINFORME = 22 Then
-                            diasinforme = serologia_otros
-                            informe = "Serología RDB"
-                            cuenta_serologia_otros = cuenta_serologia_otros + 1
+                        If dias < diasinforme Then
+                            diasatraso = 0
                         Else
-                            diasinforme = serologia_leucosis
-                            informe = "Serología Leucosis"
-                            cuenta_serologia_leucosis = cuenta_serologia_leucosis + 1
+                            diasatraso = dias - diasinforme
                         End If
+                        p.ID = s.IDPRODUCTOR
+                        p = p.buscar
 
-                    ElseIf s.IDTIPOINFORME = 9 Then
-                        diasinforme = patologia
-                        informe = "Patología"
-                        cuenta_patologia = cuenta_patologia + 1
-                    ElseIf s.IDTIPOINFORME = 11 Then
-                        diasinforme = ambiental
-                        informe = "Ambiental"
-                        cuenta_ambiental = cuenta_ambiental + 1
-                    ElseIf s.IDTIPOINFORME = 12 Then
-                        diasinforme = lactometros
-                        informe = "Lactómetros"
-                        cuenta_lactometros = cuenta_lactometros + 1
-                    ElseIf s.IDTIPOINFORME = 13 Then
-                        diasinforme = nutricion
-                        informe = "Nutrición"
-                        cuenta_nutricion = cuenta_nutricion + 1
-                    ElseIf s.IDTIPOINFORME = 14 Then
-                        diasinforme = suelos
-                        informe = "Suelos"
-                        cuenta_suelos = cuenta_suelos + 1
-                    ElseIf s.IDTIPOINFORME = 15 Then
-                        diasinforme = brucelosis_leche
-                        informe = "Brucelosis en leche"
-                        cuenta_brucelosis_leche = cuenta_brucelosis_leche + 1
-                    ElseIf s.IDTIPOINFORME = 16 Then
-                        diasinforme = 0
-                        informe = "Efluentes"
-                        cuenta_efluentes = cuenta_efluentes + 1
-                    ElseIf s.IDTIPOINFORME = 99 Then
-                        diasinforme = otros
-                        informe = "Otros servicios"
-                        cuenta_otros = cuenta_otros + 1
-                    End If
-                    If dias < diasinforme Then
-                        diasatraso = 0
-                    Else
-                        diasatraso = dias - diasinforme
-                    End If
-                    p.ID = s.IDPRODUCTOR
-                    p = p.buscar
+                        'ListPendientes.Items.Add(s.FECHAINGRESO & Chr(9) & diasatraso & Chr(9) & p.NOMBRE & Chr(9) & informe & Chr(9) & s.ID)
 
-                    'ListPendientes.Items.Add(s.FECHAINGRESO & Chr(9) & diasatraso & Chr(9) & p.NOMBRE & Chr(9) & informe & Chr(9) & s.ID)
+                        ' *** Según usuario se desbloquean las secciones correspondientes.-
+                        Dim u As dUsuario = Sesion.Usuario
+                        'DataGridView1.ColumnCount = 7
 
-                    ' *** Según usuario se desbloquean las secciones correspondientes.-
-                    Dim u As dUsuario = Sesion.Usuario
-                    'DataGridView1.ColumnCount = 7
-
-                    DataGridView1(columna, fila).Value = s.FECHAINGRESO
-                    columna = columna + 1
-                    DataGridView1(columna, fila).Value = diasatraso
-                    columna = columna + 1
-
-                    If Usuario.TIPOUSUARIO = 99 Or Usuario.TIPOUSUARIO = 97 Then
-                        DataGridView1(columna, fila).Value = p.NOMBRE
+                        DataGridView1(columna, fila).Value = s.FECHAINGRESO
                         columna = columna + 1
-                    Else
-                        DataGridView1(columna, fila).Value = " - "
+                        DataGridView1(columna, fila).Value = diasatraso
                         columna = columna + 1
+
+                        If Usuario.TIPOUSUARIO = 99 Or Usuario.TIPOUSUARIO = 97 Then
+                            DataGridView1(columna, fila).Value = p.NOMBRE
+                            columna = columna + 1
+                        Else
+                            DataGridView1(columna, fila).Value = " - "
+                            columna = columna + 1
+                        End If
+                        DataGridView1(columna, fila).Value = informe
+                        columna = columna + 1
+                        DataGridView1(columna, fila).Value = s.ID
+                        columna = columna + 1
+                        DataGridView1(columna, fila).Value = s.NMUESTRAS
+                        columna = columna + 1
+                        'Analisis
+
+                        ' Crear una lista temporal para almacenar las descripciones de los análisis
+                        Dim analisis As New dNuevoAnalisis
+                        Dim listaAnalisisFicha As ArrayList
+                        listaAnalisisFicha = analisis.listarporficha3(s.ID)
+                        Dim listaDescripciones As New List(Of String)
+
+                        ' Recorrer cada elemento en la lista de análisis
+                        For Each analisis In listaAnalisisFicha
+                            ' Crear el objeto y obtener la descripción
+                            Dim nombreAnalisis As New dListaPrecios
+                            nombreAnalisis.ID = analisis.ANALISIS
+                            nombreAnalisis = nombreAnalisis.buscar()
+
+                            ' Agregar la descripción obtenida a la lista de descripciones
+                            If Not String.IsNullOrEmpty(nombreAnalisis.DESCRIPCION) Then
+                                listaDescripciones.Add(nombreAnalisis.DESCRIPCION)
+                            End If
+                        Next
+
+                        Dim textoConcatenado As String = String.Join(" - ", listaDescripciones.ToArray())
+                        DataGridView1(columna, fila).Value = textoConcatenado
+
+                        ' Calcular el ancho de la columna basado en la longitud de la cadena concatenada
+                        Dim anchoEstimado As Integer = textoConcatenado.Length * 12 ' Ajusta el valor multiplicador según el tamaño de fuente
+
+                        ' Asignar el ancho estimado a la columna
+                        DataGridView1.Columns(columna).Width = anchoEstimado
+
+                        columna = 0
+                        fila = fila + 1
+                    Else
+                        DateHoy.Value = Now
+                        DateSolicitud.Value = s.FECHAINGRESO
+                        Dim fechahoy As Date = DateHoy.Value.ToString("yyyy-MM-dd")
+                        Dim fechaingreso As Date = DateSolicitud.Value.ToString("yyyy-MM-dd")
+                        dias = DateDiff(DateInterval.Day, fechaingreso, fechahoy)
+                        Dim diasatraso As Integer = 0
+                        Dim diasinforme As Integer = 0
+                        Dim informe As String = ""
+                        If s.IDTIPOINFORME = 1 Then
+                            diasinforme = control
+                            informe = "Control lechero"
+                            cuenta_control = cuenta_control + 1
+                        ElseIf s.IDTIPOINFORME = 10 Then
+                            Dim csm As New dCalidadSolicitudMuestra
+                            csm.FICHA = s.ID
+                            csm = csm.buscarxsolicitud
+                            If Not csm Is Nothing Then
+                                If csm.ESPORULADOS = 1 Then
+                                    diasinforme = esporulados
+                                    informe = "Calidad de leche / Esporulados"
+                                    cuenta_esporulados = cuenta_esporulados + 1
+                                Else
+                                    diasinforme = calidad
+                                    informe = "Calidad de leche"
+                                    cuenta_calidad = cuenta_calidad + 1
+                                End If
+                            End If
+                            csm = Nothing
+                        ElseIf s.IDTIPOINFORME = 3 Then
+                            diasinforme = agua
+                            informe = "Agua"
+                            cuenta_agua = cuenta_agua + 1
+                        ElseIf s.IDTIPOINFORME = 4 Then
+                            diasinforme = antibiograma
+                            informe = "Antibiograma"
+                            cuenta_antibiograma = cuenta_antibiograma + 1
+                        ElseIf s.IDTIPOINFORME = 5 Then
+                            diasinforme = pal
+                            informe = "PAL"
+                            cuenta_pal = cuenta_pal + 1
+                        ElseIf s.IDTIPOINFORME = 6 Then
+                            diasinforme = parasitologia
+                            informe = "Parasitología"
+                            cuenta_parasitologia = cuenta_parasitologia + 1
+                        ElseIf s.IDTIPOINFORME = 7 Then
+                            Dim sp As New dSubproducto
+                            sp.FICHA = s.ID
+                            sp = sp.buscarxsolicitud()
+                            If Not sp Is Nothing Then
+                                If sp.SALMONELLA = 1 Or sp.LISTERIASPP = 1 Then
+                                    diasinforme = sp_salmonella_listeria
+                                    informe = "Alimentos / Salmonella - Listeria"
+                                    cuenta_sp_salmonella_listeria = cuenta_sp_salmonella_listeria + 1
+                                ElseIf sp.MOHOSYLEVADURAS = 1 Then
+                                    diasinforme = sp_mohos_levaduras
+                                    informe = "Alimentos / Mohos y levaduras"
+                                    cuenta_sp_mohos_levaduras = cuenta_sp_mohos_levaduras + 1
+                                Else
+                                    diasinforme = productos
+                                    informe = "Alimentos"
+                                    cuenta_productos = cuenta_productos + 1
+                                End If
+                            Else
+                                diasinforme = productos
+                                informe = "Alimentos"
+                                cuenta_productos = cuenta_productos + 1
+                            End If
+                            sp = Nothing
+                        ElseIf s.IDTIPOINFORME = 8 Then
+                            If s.IDSUBINFORME = 22 Then
+                                diasinforme = serologia_otros
+                                informe = "Serología RDB"
+                                cuenta_serologia_otros = cuenta_serologia_otros + 1
+                            Else
+                                diasinforme = serologia_leucosis
+                                informe = "Serología Leucosis"
+                                cuenta_serologia_leucosis = cuenta_serologia_leucosis + 1
+                            End If
+
+                        ElseIf s.IDTIPOINFORME = 9 Then
+                            diasinforme = patologia
+                            informe = "Patología"
+                            cuenta_patologia = cuenta_patologia + 1
+                        ElseIf s.IDTIPOINFORME = 11 Then
+                            diasinforme = ambiental
+                            informe = "Ambiental"
+                            cuenta_ambiental = cuenta_ambiental + 1
+                        ElseIf s.IDTIPOINFORME = 12 Then
+                            diasinforme = lactometros
+                            informe = "Lactómetros"
+                            cuenta_lactometros = cuenta_lactometros + 1
+                        ElseIf s.IDTIPOINFORME = 13 Then
+                            diasinforme = nutricion
+                            informe = "Nutrición"
+                            cuenta_nutricion = cuenta_nutricion + 1
+                        ElseIf s.IDTIPOINFORME = 14 Then
+                            diasinforme = suelos
+                            informe = "Suelos"
+                            cuenta_suelos = cuenta_suelos + 1
+                        ElseIf s.IDTIPOINFORME = 15 Then
+                            diasinforme = brucelosis_leche
+                            informe = "Brucelosis en leche"
+                            cuenta_brucelosis_leche = cuenta_brucelosis_leche + 1
+                        ElseIf s.IDTIPOINFORME = 16 Then
+                            diasinforme = 0
+                            informe = "Efluentes"
+                            cuenta_efluentes = cuenta_efluentes + 1
+                        ElseIf s.IDTIPOINFORME = 99 Then
+                            diasinforme = otros
+                            informe = "Otros servicios"
+                            cuenta_otros = cuenta_otros + 1
+                        End If
+                        If dias < diasinforme Then
+                            diasatraso = 0
+                        Else
+                            diasatraso = dias - diasinforme
+                        End If
+                        p.ID = s.IDPRODUCTOR
+                        p = p.buscar
+
+                        'ListPendientes.Items.Add(s.FECHAINGRESO & Chr(9) & diasatraso & Chr(9) & p.NOMBRE & Chr(9) & informe & Chr(9) & s.ID)
+
+                        ' *** Según usuario se desbloquean las secciones correspondientes.-
+                        Dim u As dUsuario = Sesion.Usuario
+                        'DataGridView1.ColumnCount = 7
+
+                        DataGridView1(columna, fila).Value = s.FECHAINGRESO
+                        columna = columna + 1
+                        DataGridView1(columna, fila).Value = diasatraso
+                        columna = columna + 1
+
+                        If Usuario.TIPOUSUARIO = 99 Or Usuario.TIPOUSUARIO = 97 Then
+                            DataGridView1(columna, fila).Value = p.NOMBRE
+                            columna = columna + 1
+                        Else
+                            DataGridView1(columna, fila).Value = " - "
+                            columna = columna + 1
+                        End If
+                        DataGridView1(columna, fila).Value = informe
+                        columna = columna + 1
+                        DataGridView1(columna, fila).Value = s.ID
+                        columna = columna + 1
+                        DataGridView1(columna, fila).Value = s.NMUESTRAS
+                        columna = columna + 1
+                        'Analisis
+
+                        ' Crear una lista temporal para almacenar las descripciones de los análisis
+                        Dim analisis As New dNuevoAnalisis
+                        Dim listaAnalisisFicha As ArrayList
+                        listaAnalisisFicha = analisis.listarporficha3(s.ID)
+                        Dim listaDescripciones As New List(Of String)
+
+                        ' Recorrer cada elemento en la lista de análisis
+                        For Each analisis In listaAnalisisFicha
+                            ' Crear el objeto y obtener la descripción
+                            Dim nombreAnalisis As New dListaPrecios
+                            nombreAnalisis.ID = analisis.ANALISIS
+                            nombreAnalisis = nombreAnalisis.buscar()
+
+                            ' Agregar la descripción obtenida a la lista de descripciones
+                            If Not String.IsNullOrEmpty(nombreAnalisis.DESCRIPCION) Then
+                                listaDescripciones.Add(nombreAnalisis.DESCRIPCION)
+                            End If
+                        Next
+
+                        Dim textoConcatenado As String = String.Join(" - ", listaDescripciones.ToArray())
+                        DataGridView1(columna, fila).Value = textoConcatenado
+
+                        ' Calcular el ancho de la columna basado en la longitud de la cadena concatenada
+                        Dim anchoEstimado As Integer = textoConcatenado.Length * 12 ' Ajusta el valor multiplicador según el tamaño de fuente
+
+                        ' Asignar el ancho estimado a la columna
+                        DataGridView1.Columns(columna).Width = anchoEstimado
+
+                        columna = 0
+                        fila = fila + 1
                     End If
-            DataGridView1(columna, fila).Value = Informe
-            columna = columna + 1
-            DataGridView1(columna, fila).Value = s.ID
-            columna = columna + 1
-            DataGridView1(columna, fila).Value = s.NMUESTRAS
-            columna = 0
-            fila = fila + 1
                 Next
                 DataGridView1.Sort(DataGridView1.Columns(1), System.ComponentModel.ListSortDirection.Descending)
                 TextControl.Text = cuenta_control
@@ -504,145 +721,282 @@ Public Class FormInformesPendientes
                 columna = 1
                 fila = fila + 1
                 For Each s In lista
-                    DateHoy.Value = Now
-                    DateSolicitud.Value = s.FECHAINGRESO
-                    Dim fechahoy As Date = DateHoy.Value.ToString("yyyy-MM-dd")
-                    Dim fechaingreso As Date = DateSolicitud.Value.ToString("yyyy-MM-dd")
-                    dias = DateDiff(DateInterval.Day, fechaingreso, fechahoy)
-                    Dim diasatraso As Integer = 0
-                    Dim diasinforme As Integer = 0
-                    Dim informe As String = ""
-                    If s.IDTIPOINFORME = 1 Then
-                        diasinforme = control
-                        informe = "Control lechero"
-                    ElseIf s.IDTIPOINFORME = 10 Then
-                        Dim csm As New dCalidadSolicitudMuestra
-                        csm.ficha = s.ID
-                        csm = csm.buscarxsolicitud
-                        If Not csm Is Nothing Then
-                            If csm.ESPORULADOS = 1 Then
-                                diasinforme = esporulados
-                                informe = "Esporulados"
-                                cuenta_esporulados = cuenta_esporulados + 1
-                            Else
-                                diasinforme = calidad
-                                informe = "Calidad de leche"
-                                cuenta_calidad = cuenta_calidad + 1
+                    If Usuario.TIPOUSUARIO = 98 And s.OPERADOR = Usuario.ID Then
+                        DateHoy.Value = Now
+                        DateSolicitud.Value = s.FECHAINGRESO
+                        Dim fechahoy As Date = DateHoy.Value.ToString("yyyy-MM-dd")
+                        Dim fechaingreso As Date = DateSolicitud.Value.ToString("yyyy-MM-dd")
+                        dias = DateDiff(DateInterval.Day, fechaingreso, fechahoy)
+                        Dim diasatraso As Integer = 0
+                        Dim diasinforme As Integer = 0
+                        Dim informe As String = ""
+                        If s.IDTIPOINFORME = 1 Then
+                            diasinforme = control
+                            informe = "Control lechero"
+                        ElseIf s.IDTIPOINFORME = 10 Then
+                            Dim csm As New dCalidadSolicitudMuestra
+                            csm.FICHA = s.ID
+                            csm = csm.buscarxsolicitud
+                            If Not csm Is Nothing Then
+                                If csm.ESPORULADOS = 1 Then
+                                    diasinforme = esporulados
+                                    informe = "Esporulados"
+                                    cuenta_esporulados = cuenta_esporulados + 1
+                                Else
+                                    diasinforme = calidad
+                                    informe = "Calidad de leche"
+                                    cuenta_calidad = cuenta_calidad + 1
+                                End If
                             End If
-                        End If
-                        csm = Nothing
-                        'ElseIf s.IDTIPOINFORME = 10 Then
-                        '    diasinforme = calidad
-                        '    informe = "Calidad de leche"
-                    ElseIf s.IDTIPOINFORME = 3 Then
-                        diasinforme = agua
-                        informe = "Agua"
-                    ElseIf s.IDTIPOINFORME = 4 Then
-                        diasinforme = antibiograma
-                        informe = "Antibiograma"
-                    ElseIf s.IDTIPOINFORME = 5 Then
-                        diasinforme = pal
-                        informe = "PAL"
-                    ElseIf s.IDTIPOINFORME = 6 Then
-                        diasinforme = parasitologia
-                        informe = "Parasitología"
-                    ElseIf s.IDTIPOINFORME = 7 Then
-                        Dim sp As New dSubproducto
-                        sp.ficha = s.ID
-                        sp = sp.buscarxsolicitud()
-                        If Not sp Is Nothing Then
-                            If sp.SALMONELLA = 1 Or sp.LISTERIASPP = 1 Then
-                                diasinforme = sp_salmonella_listeria
-                                informe = "Salmonella - Listeria"
-                                cuenta_sp_salmonella_listeria = cuenta_sp_salmonella_listeria + 1
-                            ElseIf sp.MOHOSYLEVADURAS = 1 Then
-                                diasinforme = sp_mohos_levaduras
-                                informe = "Mohos y levaduras"
-                                cuenta_sp_mohos_levaduras = cuenta_sp_mohos_levaduras + 1
+                            csm = Nothing
+                            'ElseIf s.IDTIPOINFORME = 10 Then
+                            '    diasinforme = calidad
+                            '    informe = "Calidad de leche"
+                        ElseIf s.IDTIPOINFORME = 3 Then
+                            diasinforme = agua
+                            informe = "Agua"
+                        ElseIf s.IDTIPOINFORME = 4 Then
+                            diasinforme = antibiograma
+                            informe = "Antibiograma"
+                        ElseIf s.IDTIPOINFORME = 5 Then
+                            diasinforme = pal
+                            informe = "PAL"
+                        ElseIf s.IDTIPOINFORME = 6 Then
+                            diasinforme = parasitologia
+                            informe = "Parasitología"
+                        ElseIf s.IDTIPOINFORME = 7 Then
+                            Dim sp As New dSubproducto
+                            sp.FICHA = s.ID
+                            sp = sp.buscarxsolicitud()
+                            If Not sp Is Nothing Then
+                                If sp.SALMONELLA = 1 Or sp.LISTERIASPP = 1 Then
+                                    diasinforme = sp_salmonella_listeria
+                                    informe = "Salmonella - Listeria"
+                                    cuenta_sp_salmonella_listeria = cuenta_sp_salmonella_listeria + 1
+                                ElseIf sp.MOHOSYLEVADURAS = 1 Then
+                                    diasinforme = sp_mohos_levaduras
+                                    informe = "Mohos y levaduras"
+                                    cuenta_sp_mohos_levaduras = cuenta_sp_mohos_levaduras + 1
+                                Else
+                                    diasinforme = productos
+                                    informe = "Alimentos"
+                                    cuenta_productos = cuenta_productos + 1
+                                End If
                             Else
                                 diasinforme = productos
                                 informe = "Alimentos"
                                 cuenta_productos = cuenta_productos + 1
                             End If
-                        Else
-                            diasinforme = productos
-                            informe = "Alimentos"
-                            cuenta_productos = cuenta_productos + 1
+                            sp = Nothing
+                            'ElseIf s.IDTIPOINFORME = 7 Then
+                            '    diasinforme = productos
+                            '    informe = "Productos lácteos"
+                        ElseIf s.IDTIPOINFORME = 8 Then
+                            diasinforme = serologia_leucosis
+                            informe = "Serología Leucosis"
+                        ElseIf s.IDTIPOINFORME = 9 Then
+                            diasinforme = patologia
+                            informe = "Patología"
+                        ElseIf s.IDTIPOINFORME = 11 Then
+                            diasinforme = ambiental
+                            informe = "Ambiental"
+                        ElseIf s.IDTIPOINFORME = 12 Then
+                            diasinforme = lactometros
+                            informe = "Lactómetros"
+                        ElseIf s.IDTIPOINFORME = 13 Then
+                            diasinforme = nutricion
+                            informe = "Nutrición"
+                        ElseIf s.IDTIPOINFORME = 14 Then
+                            diasinforme = suelos
+                            informe = "Suelos"
+                        ElseIf s.IDTIPOINFORME = 15 Then
+                            diasinforme = brucelosis_leche
+                            informe = "Brucelosis en leche"
+                        ElseIf s.IDTIPOINFORME = 16 Then
+                            diasinforme = efluentes
+                            informe = "Efluentes"
+                        ElseIf s.IDTIPOINFORME = 99 Then
+                            diasinforme = otros
+                            informe = "Otros servicios"
                         End If
-                        sp = Nothing
-                        'ElseIf s.IDTIPOINFORME = 7 Then
-                        '    diasinforme = productos
-                        '    informe = "Productos lácteos"
-                    ElseIf s.IDTIPOINFORME = 8 Then
-                        diasinforme = serologia_leucosis
-                        informe = "Serología Leucosis"
-                    ElseIf s.IDTIPOINFORME = 9 Then
-                        diasinforme = patologia
-                        informe = "Patología"
-                    ElseIf s.IDTIPOINFORME = 11 Then
-                        diasinforme = ambiental
-                        informe = "Ambiental"
-                    ElseIf s.IDTIPOINFORME = 12 Then
-                        diasinforme = lactometros
-                        informe = "Lactómetros"
-                    ElseIf s.IDTIPOINFORME = 13 Then
-                        diasinforme = nutricion
-                        informe = "Nutrición"
-                    ElseIf s.IDTIPOINFORME = 14 Then
-                        diasinforme = suelos
-                        informe = "Suelos"
-                    ElseIf s.IDTIPOINFORME = 15 Then
-                        diasinforme = brucelosis_leche
-                        informe = "Brucelosis en leche"
-                    ElseIf s.IDTIPOINFORME = 16 Then
-                        diasinforme = efluentes
-                        informe = "Efluentes"
-                    ElseIf s.IDTIPOINFORME = 99 Then
-                        diasinforme = otros
-                        informe = "Otros servicios"
-                    End If
-                    If dias < diasinforme Then
-                        diasatraso = 0
+                        If dias < diasinforme Then
+                            diasatraso = 0
+                        Else
+                            diasatraso = dias - diasinforme
+                        End If
+                        p.ID = s.IDPRODUCTOR
+                        p = p.buscar
+
+                        x1hoja.Cells(fila, columna).formula = s.FECHAINGRESO
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = diasatraso
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = p.NOMBRE
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = informe
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = s.ID
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = 1
+                        fila = fila + 1
                     Else
-                        diasatraso = dias - diasinforme
+                        DateHoy.Value = Now
+                        DateSolicitud.Value = s.FECHAINGRESO
+                        Dim fechahoy As Date = DateHoy.Value.ToString("yyyy-MM-dd")
+                        Dim fechaingreso As Date = DateSolicitud.Value.ToString("yyyy-MM-dd")
+                        dias = DateDiff(DateInterval.Day, fechaingreso, fechahoy)
+                        Dim diasatraso As Integer = 0
+                        Dim diasinforme As Integer = 0
+                        Dim informe As String = ""
+                        If s.IDTIPOINFORME = 1 Then
+                            diasinforme = control
+                            informe = "Control lechero"
+                        ElseIf s.IDTIPOINFORME = 10 Then
+                            Dim csm As New dCalidadSolicitudMuestra
+                            csm.FICHA = s.ID
+                            csm = csm.buscarxsolicitud
+                            If Not csm Is Nothing Then
+                                If csm.ESPORULADOS = 1 Then
+                                    diasinforme = esporulados
+                                    informe = "Esporulados"
+                                    cuenta_esporulados = cuenta_esporulados + 1
+                                Else
+                                    diasinforme = calidad
+                                    informe = "Calidad de leche"
+                                    cuenta_calidad = cuenta_calidad + 1
+                                End If
+                            End If
+                            csm = Nothing
+                            'ElseIf s.IDTIPOINFORME = 10 Then
+                            '    diasinforme = calidad
+                            '    informe = "Calidad de leche"
+                        ElseIf s.IDTIPOINFORME = 3 Then
+                            diasinforme = agua
+                            informe = "Agua"
+                        ElseIf s.IDTIPOINFORME = 4 Then
+                            diasinforme = antibiograma
+                            informe = "Antibiograma"
+                        ElseIf s.IDTIPOINFORME = 5 Then
+                            diasinforme = pal
+                            informe = "PAL"
+                        ElseIf s.IDTIPOINFORME = 6 Then
+                            diasinforme = parasitologia
+                            informe = "Parasitología"
+                        ElseIf s.IDTIPOINFORME = 7 Then
+                            Dim sp As New dSubproducto
+                            sp.FICHA = s.ID
+                            sp = sp.buscarxsolicitud()
+                            If Not sp Is Nothing Then
+                                If sp.SALMONELLA = 1 Or sp.LISTERIASPP = 1 Then
+                                    diasinforme = sp_salmonella_listeria
+                                    informe = "Salmonella - Listeria"
+                                    cuenta_sp_salmonella_listeria = cuenta_sp_salmonella_listeria + 1
+                                ElseIf sp.MOHOSYLEVADURAS = 1 Then
+                                    diasinforme = sp_mohos_levaduras
+                                    informe = "Mohos y levaduras"
+                                    cuenta_sp_mohos_levaduras = cuenta_sp_mohos_levaduras + 1
+                                Else
+                                    diasinforme = productos
+                                    informe = "Alimentos"
+                                    cuenta_productos = cuenta_productos + 1
+                                End If
+                            Else
+                                diasinforme = productos
+                                informe = "Alimentos"
+                                cuenta_productos = cuenta_productos + 1
+                            End If
+                            sp = Nothing
+                            'ElseIf s.IDTIPOINFORME = 7 Then
+                            '    diasinforme = productos
+                            '    informe = "Productos lácteos"
+                        ElseIf s.IDTIPOINFORME = 8 Then
+                            diasinforme = serologia_leucosis
+                            informe = "Serología Leucosis"
+                        ElseIf s.IDTIPOINFORME = 9 Then
+                            diasinforme = patologia
+                            informe = "Patología"
+                        ElseIf s.IDTIPOINFORME = 11 Then
+                            diasinforme = ambiental
+                            informe = "Ambiental"
+                        ElseIf s.IDTIPOINFORME = 12 Then
+                            diasinforme = lactometros
+                            informe = "Lactómetros"
+                        ElseIf s.IDTIPOINFORME = 13 Then
+                            diasinforme = nutricion
+                            informe = "Nutrición"
+                        ElseIf s.IDTIPOINFORME = 14 Then
+                            diasinforme = suelos
+                            informe = "Suelos"
+                        ElseIf s.IDTIPOINFORME = 15 Then
+                            diasinforme = brucelosis_leche
+                            informe = "Brucelosis en leche"
+                        ElseIf s.IDTIPOINFORME = 16 Then
+                            diasinforme = efluentes
+                            informe = "Efluentes"
+                        ElseIf s.IDTIPOINFORME = 99 Then
+                            diasinforme = otros
+                            informe = "Otros servicios"
+                        End If
+                        If dias < diasinforme Then
+                            diasatraso = 0
+                        Else
+                            diasatraso = dias - diasinforme
+                        End If
+                        p.ID = s.IDPRODUCTOR
+                        p = p.buscar
+
+                        x1hoja.Cells(fila, columna).formula = s.FECHAINGRESO
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = diasatraso
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = p.NOMBRE
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = informe
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = columna + 1
+                        x1hoja.Cells(fila, columna).formula = s.ID
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).Font.Bold = False
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
+                        columna = 1
+                        fila = fila + 1
                     End If
-                    p.ID = s.IDPRODUCTOR
-                    p = p.buscar
-
-                    x1hoja.Cells(fila, columna).formula = s.FECHAINGRESO
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                    x1hoja.Cells(fila, columna).Font.Bold = False
-                    x1hoja.Cells(fila, columna).Font.Size = 10
-                    'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
-                    columna = columna + 1
-                    x1hoja.Cells(fila, columna).formula = diasatraso
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                    x1hoja.Cells(fila, columna).Font.Bold = False
-                    x1hoja.Cells(fila, columna).Font.Size = 10
-                    'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
-                    columna = columna + 1
-                    x1hoja.Cells(fila, columna).formula = p.NOMBRE
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                    x1hoja.Cells(fila, columna).Font.Bold = False
-                    x1hoja.Cells(fila, columna).Font.Size = 10
-                    'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
-                    columna = columna + 1
-                    x1hoja.Cells(fila, columna).formula = informe
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                    x1hoja.Cells(fila, columna).Font.Bold = False
-                    x1hoja.Cells(fila, columna).Font.Size = 10
-                    'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
-                    columna = columna + 1
-                    x1hoja.Cells(fila, columna).formula = s.ID
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                    x1hoja.Cells(fila, columna).Font.Bold = False
-                    x1hoja.Cells(fila, columna).Font.Size = 10
-                    'x1hoja.Cells(fila, columna).BORDERS.color = RGB(255, 0, 0)
-                    columna = 1
-                    fila = fila + 1
-
                 Next
-
             End If
         End If
 

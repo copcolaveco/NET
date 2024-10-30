@@ -28,14 +28,14 @@ Public Class FormControlMuestrasDuplicadas
                 fichero = dlAbrir.FileName
                 TextArchivo.Text = fichero
             End If
-        ElseIf RadioDelta.Checked = True Then
+        ElseIf RadioB6.Checked = True Then
             Dim fichero As String
             Dim dlAbrir As New System.Windows.Forms.OpenFileDialog
             dlAbrir.Filter = "Todos los archivos (*.*)|*.*"
             dlAbrir.Multiselect = False
             dlAbrir.CheckFileExists = False
             dlAbrir.Title = "Selección de fichero"
-            dlAbrir.InitialDirectory = "\\DELTA400\Samples"
+            dlAbrir.InitialDirectory = "\\192.168.1.192\data"
             dlAbrir.ShowDialog()
             If dlAbrir.FileName <> "" Then
                 fichero = dlAbrir.FileName
@@ -77,7 +77,7 @@ Public Class FormControlMuestrasDuplicadas
         If extension = "csv" Or extension = "CSV" Then
 
             Do
-                If RadioDelta.Checked = True Then
+                If RadioB6.Checked = True Then
                     sLine = objReader.ReadLine()
                     If linea = 3 Then
                         arraytext = Split(sLine, ";")
@@ -130,7 +130,7 @@ Public Class FormControlMuestrasDuplicadas
                     End If
                     matricula = ""
                 End If
-                
+
             Loop Until sLine Is Nothing
 
             objReader.Close()

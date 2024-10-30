@@ -283,6 +283,7 @@ Public Class FormCrearInformes
             Dim s As New dSolicitudAnalisis
             informe_suelos_conversion_fertilizante()
             PH_Suelos()
+            AnexoCationes()
             informe_suelos()
             s.ID = ficha
             s = s.buscar
@@ -937,7 +938,7 @@ Public Class FormCrearInformes
 
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
-        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 30/04/2025"
+        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 9
         fila = fila + 1
@@ -1212,14 +1213,14 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Gr"
+            x1hoja.Cells(fila, columna).Formula = "Gr*"
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Pr"
+            x1hoja.Cells(fila, columna).Formula = "Pr*"
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
@@ -1233,7 +1234,7 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "ST"
+            x1hoja.Cells(fila, columna).Formula = "ST*"
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
@@ -1683,7 +1684,11 @@ Public Class FormCrearInformes
                             If Not c Is Nothing Then
                                 If c.UREA <> -1 Then
                                     Dim valorurea As Integer
-                                    valorurea = c.UREA * 0.466
+                                    If c.EQUIPO = "Bentley600" Then
+                                        valorurea = c.UREA
+                                    Else
+                                        valorurea = c.UREA * 0.466
+                                    End If
                                     x1hoja.Cells(fila, columna).formula = valorurea
                                     x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                                     x1hoja.Cells(fila, columna).Font.Size = 8
@@ -1852,7 +1857,7 @@ Public Class FormCrearInformes
                     x1hoja.Cells(fila, columna).Borders.Weight = Excel.XlBorderWeight.xlThick
 
                     columna = columna + 1
-                    x1hoja.Cells(fila, columna).Formula = "Valor fuera de lo establecido en el decreto N 359/016"
+                    x1hoja.Cells(fila, columna).Formula = "Valor fuera de lo establecido en el decreto N 382/016 - 359/013"
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
                     x1hoja.Cells(fila, columna).Font.Size = 8
@@ -2088,7 +2093,7 @@ Public Class FormCrearInformes
                     x1hoja.Cells(fila, columna).Font.Size = 7
                     fila = fila + 1
                     columna = 1
-                    x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 30/04/2025"
+                    x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Font.Size = 9
                     fila = fila + 1
@@ -3086,7 +3091,7 @@ Public Class FormCrearInformes
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 30/04/2025"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -3448,7 +3453,7 @@ Public Class FormCrearInformes
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 30/04/2025"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -5096,6 +5101,905 @@ Public Class FormCrearInformes
         x1libro = Nothing
         x1hoja = Nothing
     End Sub
+
+    Private Sub AnexoCationes()
+        Dim x1app As Microsoft.Office.Interop.Excel.Application
+        Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
+        Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet
+        x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
+        x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
+        x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+
+        Dim sa As New dSolicitudAnalisis
+        Dim cli As New dCliente
+        Dim na As New dNuevoAnalisis
+        Dim na_ As New dNuevoAnalisis
+        Dim na3 As New dNuevoAnalisis
+        Dim met As New dMetodos
+        Dim lista As New ArrayList
+        Dim lista_ As New ArrayList
+        Dim lista2 As New ArrayList
+        Dim lista3 As New ArrayList
+        Dim acreditado As Integer = 0
+        Dim acreditado2 As Integer = 0
+        Dim xanalisis As Integer = 0
+        Dim vec(xanalisis) As Integer
+        Dim informefinal As Integer = 0
+        Dim nombre_operador As String = "José L. García"
+        Dim nombre_tecnico As String = "Ing. Agr. Victor González"
+        Dim sin_asterisco As Integer = 1
+
+        Dim Ms As Double = 0
+        Dim Potasio As Double = 0
+        Dim Nitrogeno As Double = 0
+        Dim Fosforo As Double = 0
+        Dim MsCantidad As Integer = 0
+        Dim PotasioCantidad As Integer = 0
+        Dim NitrogenoCantidad As Integer = 0
+        Dim FosforoCantidad As Integer = 0
+        Dim MsPrecente As Boolean = False
+        Dim PotasioPrecente As Boolean = False
+        Dim NitrogenoPrecente As Boolean = False
+        Dim FosforoPrecente As Boolean = False
+        Dim fechaFicha As Date
+        Dim KgApli As Integer = 10000
+
+        '*****************************
+        nroficha = TextFicha.Text.Trim
+        sa.ID = nroficha
+        sa = sa.buscar
+        lista = na.listarporfichamuestra(nroficha)
+        lista3 = na3.listarporficha3(nroficha)
+        lista_ = na_.listarporficha3(nroficha)
+        '**********************************************
+        If Not lista3 Is Nothing Then
+            xanalisis = lista3.Count - 1
+            ReDim vec(xanalisis)
+            Dim i As Integer = 0
+            For Each na3 In lista3
+                vec(i) = na3.ANALISIS
+                i = i + 1
+            Next
+        End If
+        '***********************************************
+        If Not lista_ Is Nothing Then
+            For Each na_ In lista_
+                Dim lp_ As New dListaPrecios
+                lp_.ID = na_.ANALISIS
+                lp_ = lp_.buscar
+                If Not lp_ Is Nothing Then
+                    If lp_.ACREDITADO = 1 Then
+                        sin_asterisco = 0
+                    End If
+                End If
+            Next
+        End If
+        '***********************************************
+        'Imagen
+
+        x1hoja.Shapes.AddPicture("c:\Debug\ColavecoShort.png", _
+             Microsoft.Office.Core.MsoTriState.msoFalse, _
+             Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 200, 50).Left = 370
+
+
+        '***********************************************
+        Dim fila As Integer
+        Dim columna As Integer
+        Dim titulo As Boolean = False
+        Dim compost As Boolean = False
+        Dim listaAnalisis As New List(Of Analisis)()
+
+        'donde arranca el Anexo despues de la imagen
+
+        columna = 1
+        fila = 5
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                'Titulos
+                Dim res1 As Boolean = False
+                Dim res2 As Boolean = False
+
+                x1hoja.Rows("7:7").RowHeight = 30
+
+                'x1hoja.Range("A" & fila, "H" & fila).Merge()
+                'x1hoja.Columns("A:L").AutoFit()
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).Font.Size = 18
+                'x1hoja.Cells(fila, columna).Font.Name = "Geometos"
+                'x1hoja.Cells(fila, columna).Font.Bold = True
+                'x1hoja.Cells(fila, columna).Formula = "ANEXO SUELOS - " + nroficha.ToString + " - " + sa.FECHAENVIO.ToString
+
+                Dim fraseFila3 As Integer
+                fraseFila3 = fila  ' Ajusta este valor según sea necesario
+
+                x1hoja.Range(x1hoja.Cells(fraseFila3, 1), x1hoja.Cells(fraseFila3, columna + 10)).Merge()
+                x1hoja.Cells(fraseFila3, 1).Value = "ANEXO SUELOS - " + nroficha.ToString + " - " + sa.FECHAENVIO.ToString
+
+                ' Aplicar formato a la frase
+                With x1hoja.Range(x1hoja.Cells(fraseFila3, 1), x1hoja.Cells(fraseFila3, columna + 10))
+                    .HorizontalAlignment = -4108 ' xlCenter
+                    .VerticalAlignment = -4108 ' xlCenter
+                    .Font.Bold = True
+                    .Interior.Color = RGB(255, 0, 0) ' rojo
+                End With
+
+                fila = fila + 2
+
+                x1hoja.Range(x1hoja.Cells(fila, 1), x1hoja.Cells(fila, columna + 10)).Merge()
+                x1hoja.Cells(fila, 1).Value = "RELACIONES ENTRE LAS BASES EN LA MUESTRA DE SUELOS"
+
+                ' Aplicar formato a la frase
+                With x1hoja.Range(x1hoja.Cells(fila, 1), x1hoja.Cells(fila, columna + 10))
+                    .HorizontalAlignment = -4108 ' xlCenter
+                    .VerticalAlignment = -4108 ' xlCenter
+                    .Font.Bold = True
+                    .Interior.Color = RGB(211, 211, 211) ' Gris claro
+                End With
+
+                'x1hoja.Range("A" & fila, "G" & fila).Merge()
+                'x1hoja.Cells(fila, columna).WrapText = True
+                'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                'x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                'x1hoja.Cells(fila, columna).Font.Bold = True
+                'x1hoja.Cells(fila, columna).Font.Underline = True
+                'x1hoja.Cells(fila, columna).Font.Name = "Geometos"
+                'x1hoja.Cells(fila, columna).Font.Size = 12
+                'x1hoja.Cells(fila, columna).Formula = "Relaciones entre los Cationes"
+
+                fila = 10
+                columna = 1
+
+                'Titulos de la primera grilla
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "Muestra"
+                columna = columna + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "Ca"
+                columna = columna + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "Mg"
+                columna = columna + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "K"
+                columna = columna + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "Na"
+                columna = columna + 1
+
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Formula = "TOTAL"
+                columna = 1
+                fila = fila + 1
+
+
+                For Each na In lista
+                    Dim na2 As New dNuevoAnalisis
+                    lista2 = na2.listarpormuestra(nroficha, na.MUESTRA)
+                    res1 = False
+                    res2 = False
+                    Dim relacionCaMg As Double = 0
+                    Dim relacionMgK As Double = 0
+                    Dim relacionCaK As Double = 0
+                    Dim relacionCaMgK As Double = 0
+
+                    Dim Ca As Double = 0
+                    Dim Mg As Double = 0
+                    Dim K As Double = 0
+                    Dim CNa As Double = 0
+                    Dim muestra As String = ""
+
+                    For Each na2 In lista2
+
+                        '145:                    Paquete Cationes
+                        '147                     Mg
+                        '146                     Calcio
+                        '136:                    Potasio()
+                        '148:                    na()
+                        '630:                    Cationes Integrales
+                        If na2.ANALISIS = 145 Or na2.ANALISIS = 147 Or na2.ANALISIS = 146 Or na2.ANALISIS = 136 Or na2.ANALISIS = 148 Or na2.ANALISIS = 630 Then
+                            Module1.isAnexoCationes = True
+                        Else
+                            Continue For
+                        End If
+
+                        'muestra
+                        columna = 1
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(248, 222, 129)
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        x1hoja.Cells(fila, columna).Formula = na2.MUESTRA
+                        muestra = na2.MUESTRA
+
+                        Select Case na2.ANALISIS
+                            Case 146
+                                columna = 2
+                                'Ca-calcio
+                                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                x1hoja.Cells(fila, columna).Interior.Color = RGB(248, 222, 129)
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 10
+                                If IsNumeric(na2.RESULTADO) Then
+                                    If na2.RESULTADO <> -1 Then
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO
+                                        Ca = na2.RESULTADO
+                                    End If
+                                ElseIf IsNumeric(na2.RESULTADO2) Then
+                                    If na2.RESULTADO2 <> -1 Then
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO2
+                                        Ca = na2.RESULTADO2
+                                    End If
+                                Else
+                                    x1hoja.Cells(fila, columna).Formula = ""
+                                End If
+                            Case 147
+                                columna = 3
+                                'Mg-magnecio
+                                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                x1hoja.Cells(fila, columna).Interior.Color = RGB(248, 222, 129)
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 10
+                                If IsNumeric(na2.RESULTADO) Then
+                                    If na2.RESULTADO <> -1 Then
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO
+                                        Mg = na2.RESULTADO
+                                    End If
+                                ElseIf IsNumeric(na2.RESULTADO2) Then
+                                    If na2.RESULTADO2 <> -1 Then
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO2
+                                        Mg = na2.RESULTADO2
+                                    End If
+                                Else
+                                    x1hoja.Cells(fila, columna).Formula = ""
+                                End If
+                            Case 136
+                                columna = 4
+                                'K-Potasio
+                                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                x1hoja.Cells(fila, columna).Interior.Color = RGB(248, 222, 129)
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 10
+                                If IsNumeric(na2.RESULTADO) Then
+                                    If na2.RESULTADO <> -1 Then
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO
+                                        K = na2.RESULTADO
+                                    End If
+                                ElseIf IsNumeric(na2.RESULTADO2) Then
+                                    If na2.RESULTADO2 <> -1 Then
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO2
+                                        K = na2.RESULTADO2
+                                    End If
+                                Else
+                                    x1hoja.Cells(fila, columna).Formula = ""
+                                End If
+                            Case 148
+                                columna = 5
+                                'Na-sodio
+                                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                x1hoja.Cells(fila, columna).Interior.Color = RGB(248, 222, 129)
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 10
+                                If IsNumeric(na2.RESULTADO) Then
+                                    If na2.RESULTADO <> -1 Then
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO
+                                        CNa = na2.RESULTADO
+                                    End If
+                                ElseIf IsNumeric(na2.RESULTADO2) Then
+                                    If na2.RESULTADO2 <> -1 Then
+                                        x1hoja.Cells(fila, columna).Formula = na2.RESULTADO2
+                                        CNa = na2.RESULTADO2
+                                    End If
+                                Else
+                                    x1hoja.Cells(fila, columna).Formula = ""
+                                End If
+
+                            Case Else
+                                Continue For
+                        End Select
+
+                        columna = 6
+                        'Total
+                        Dim suma As Double = 0
+                        Dim columnaInicio As Integer = 2 ' Columna inicial
+                        Dim columnaFin As Integer = 5 ' Columna final (ajusta según tus necesidades)
+
+                        For col As Integer = columnaInicio To columnaFin
+                            Dim valorCelda As Object = x1hoja.Cells(fila, col).Value
+                            If IsNumeric(valorCelda) Then
+                                suma += Convert.ToDouble(valorCelda)
+                            End If
+                        Next
+                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                        x1hoja.Cells(fila, columna).Interior.Color = RGB(248, 222, 129)
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 10
+                        x1hoja.Cells(fila, columna).Formula = suma
+                    Next
+                    fila = fila + 1
+
+                    'Valores de grilla Relacion
+
+
+
+                    relacionCaMg = Ca / Mg
+                    relacionMgK = Mg / K
+                    relacionCaK = Ca / K
+                    relacionCaMgK = (Ca / Mg) / K
+
+                    Dim analisis As New Analisis(muestra, relacionCaMg, relacionMgK, relacionCaK, relacionCaMgK)
+                    listaAnalisis.Add(analisis)
+                Next
+            End If
+        End If
+
+        fila = fila + 2
+        columna = 2
+
+        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+        x1hoja.Cells(fila, columna).Font.Size = 10
+        x1hoja.Cells(fila, columna).Font.Bold = True
+
+        Dim filaI As Integer = fila
+        ' Encabezados de las columnas
+        x1hoja.Cells(fila, 1).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, 1).Interior.Color = RGB(192, 192, 192)
+        x1hoja.Cells(fila, 1).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, 1).VerticalAlignment = XlVAlign.xlVAlignCenter
+        x1hoja.Cells(fila, 1).Font.Size = 10
+        x1hoja.Cells(fila, 1).Font.Bold = True
+        x1hoja.Cells(fila, 1).Value = "Relación"
+        fila = fila + 1
+        ' Encabezados de las filas
+        x1hoja.Cells(fila, 1).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, 1).Interior.Color = RGB(192, 192, 192)
+        x1hoja.Cells(fila, 1).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, 1).VerticalAlignment = XlVAlign.xlVAlignCenter
+        x1hoja.Cells(fila, 1).Font.Size = 10
+        x1hoja.Cells(fila, 1).Font.Bold = True
+        x1hoja.Cells(fila, 1).Value = "Ca/Mg"
+        fila = fila + 1
+        x1hoja.Cells(fila, 1).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, 1).Interior.Color = RGB(192, 192, 192)
+        x1hoja.Cells(fila, 1).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, 1).VerticalAlignment = XlVAlign.xlVAlignCenter
+        x1hoja.Cells(fila, 1).Font.Size = 10
+        x1hoja.Cells(fila, 1).Font.Bold = True
+        x1hoja.Cells(fila, 1).Value = "Mg/K"
+        fila = fila + 1
+        x1hoja.Cells(fila, 1).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, 1).Interior.Color = RGB(192, 192, 192)
+        x1hoja.Cells(fila, 1).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, 1).VerticalAlignment = XlVAlign.xlVAlignCenter
+        x1hoja.Cells(fila, 1).Font.Size = 10
+        x1hoja.Cells(fila, 1).Font.Bold = True
+        x1hoja.Cells(fila, 1).Value = "Ca/K"
+        fila = fila + 1
+        x1hoja.Cells(fila, 1).Borders.Color = RGB(0, 0, 0)
+        x1hoja.Cells(fila, 1).Interior.Color = RGB(192, 192, 192)
+        x1hoja.Cells(fila, 1).HorizontalAlignment = XlHAlign.xlHAlignCenter
+        x1hoja.Cells(fila, 1).VerticalAlignment = XlVAlign.xlVAlignCenter
+        x1hoja.Cells(fila, 1).Font.Size = 10
+        x1hoja.Cells(fila, 1).Font.Bold = True
+        x1hoja.Cells(fila, 1).Value = "(Ca+Mg)/K"
+
+
+        ' Llenar la grilla con los valores de la colección
+        For Each analisis As Analisis In listaAnalisis
+            fila = filaI
+
+            x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+            x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+            x1hoja.Cells(fila, columna).Font.Size = 10
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Value = analisis.Muestra ' muestra
+            fila += 1
+
+            x1hoja.Cells(fila, columna).Value = analisis.RelacionCaMg.ToString("0.00") ' Ca/Mg
+            If analisis.RelacionCaMg >= 3 AndAlso analisis.RelacionCaMg <= 6 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 255, 0) ' Verde
+            ElseIf analisis.RelacionCaMg >= 6.1 AndAlso analisis.RelacionCaMg <= 9.9 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 255, 0) ' Amarillo
+            ElseIf analisis.RelacionCaMg >= 3 AndAlso analisis.RelacionCaMg <= 10 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) ' Rojo
+            Else
+                ' Puedes manejar otro caso o color por defecto si es necesario
+            End If
+            fila += 1
+
+            x1hoja.Cells(fila, columna).Value = analisis.RelacionMgK.ToString("0.00") ' Mg/K
+            If analisis.RelacionMgK >= 5 AndAlso analisis.RelacionMgK <= 7 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 255, 0) ' Verde
+            ElseIf analisis.RelacionMgK >= 7 AndAlso analisis.RelacionMgK <= 16 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 255, 0) ' Amarillo
+            ElseIf analisis.RelacionMgK >= 2 AndAlso analisis.RelacionMgK <= 4.9 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 255, 0) ' Amarillo
+            ElseIf analisis.RelacionMgK > 16 Or analisis.RelacionMgK < 2 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) ' Rojo
+            End If
+            fila += 1
+
+            x1hoja.Cells(fila, columna).Value = analisis.RelacionCaK.ToString("0.00") ' Ca/K
+            If analisis.RelacionCaK >= 15 AndAlso analisis.RelacionCaK <= 20 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 255, 0) ' Verde
+            ElseIf analisis.RelacionCaK >= 20 AndAlso analisis.RelacionCaK <= 29 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 255, 0) ' Amarillo
+            ElseIf analisis.RelacionCaK >= 14.9 AndAlso analisis.RelacionCaK <= 10 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 255, 0) ' Amarillo
+            ElseIf analisis.RelacionCaK > 29 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) ' Rojo
+            End If
+            fila += 1
+
+            x1hoja.Cells(fila, columna).Value = analisis.RelacionCaMgK.ToString("0.00") ' (Ca+Mg)/K
+            If analisis.RelacionCaMgK >= 20 AndAlso analisis.RelacionCaMgK <= 25 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(0, 255, 0) ' Verde
+            ElseIf analisis.RelacionCaMgK >= 25 AndAlso analisis.RelacionCaMgK <= 40 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 255, 0) ' Amarillo
+            ElseIf analisis.RelacionCaMgK < 20 Or analisis.RelacionCaMgK > 40 Then
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(255, 0, 0) ' Rojo
+            End If
+            columna += 1
+        Next
+
+        fila = fila + 2
+        columna = 2
+
+        ' Agregar la frase en el rango A28:K28
+        Dim fraseFila As Integer
+        fraseFila = fila ' Ajusta este valor según sea necesario
+
+        x1hoja.Range(x1hoja.Cells(fraseFila, 1), x1hoja.Cells(fraseFila, columna + 9)).Merge()
+        x1hoja.Cells(fraseFila, 1).Value = "COMPOSICIÓN DE LAS BASES EN LA MUESTRA "
+
+        ' Aplicar formato a la frase
+        With x1hoja.Range(x1hoja.Cells(fraseFila, 1), x1hoja.Cells(fraseFila, columna + 9))
+            .HorizontalAlignment = -4108 ' xlCenter
+            .VerticalAlignment = -4108 ' xlCenter
+            .Font.Bold = True
+            .Interior.Color = RGB(211, 211, 211) ' Gris claro
+        End With
+
+        
+
+        '' Definir los encabezados de la tabla
+        'x1hoja.Cells(10, 8).Value = "Interpretación"
+        'x1hoja.Cells(10, 10).Value = "Corregir"
+        'x1hoja.Cells(11, 8).Value = "Cationes"
+        'x1hoja.Cells(11, 9).Value = "Relación"
+        'x1hoja.Cells(11, 10).Value = "Déficit"
+        'x1hoja.Cells(11, 11).Value = "Exceso"
+
+        '' Definir los encabezados de la tabla
+        'x1hoja.Cells(10, 8).Value = "Interpretación"
+        'x1hoja.Cells(10, 10).Value = "Corregir"
+        'x1hoja.Cells(11, 8).Value = "Cationes"
+        'x1hoja.Cells(11, 9).Value = "Relación"
+        'x1hoja.Cells(11, 10).Value = "Déficit"
+        'x1hoja.Cells(11, 11).Value = "Exceso"
+
+        '' Definir los datos de la tabla
+        'x1hoja.Cells(12, 8).Value = "Ca/Mg"
+        'x1hoja.Cells(12, 9).Value = ">10:1"
+        'x1hoja.Cells(12, 10).Value = "Mg"
+        'x1hoja.Cells(12, 11).Value = "Ca"
+
+        'x1hoja.Cells(13, 9).Value = "<3:1"
+        'x1hoja.Cells(13, 10).Value = "Ca"
+        'x1hoja.Cells(13, 11).Value = "Mg"
+
+        'x1hoja.Cells(14, 8).Value = "Mg/k"
+        'x1hoja.Cells(14, 9).Value = ">16:1"
+        'x1hoja.Cells(14, 10).Value = "K"
+        'x1hoja.Cells(14, 11).Value = "Mg"
+
+        'x1hoja.Cells(15, 9).Value = "<2:1"
+        'x1hoja.Cells(15, 10).Value = "Mg"
+        'x1hoja.Cells(15, 11).Value = "K"
+
+        'x1hoja.Cells(16, 8).Value = "Ca/K"
+        'x1hoja.Cells(16, 9).Value = ">30:1"
+        'x1hoja.Cells(16, 10).Value = "K"
+        'x1hoja.Cells(16, 11).Value = "Ca"
+
+        'x1hoja.Cells(17, 9).Value = "<15:1"
+        'x1hoja.Cells(17, 10).Value = "Ca"
+        'x1hoja.Cells(17, 11).Value = "K"
+
+        'x1hoja.Cells(18, 8).Value = "(Ca+Mg)/K"
+        'x1hoja.Cells(18, 9).Value = ">40:1"
+        'x1hoja.Cells(18, 10).Value = "K"
+        'x1hoja.Cells(18, 11).Value = "Ca y/o Mg"
+
+        'x1hoja.Cells(19, 9).Value = "<20:1"
+        'x1hoja.Cells(19, 10).Value = "Ca y/o Mg"
+        'x1hoja.Cells(19, 11).Value = "K"
+
+        '' Aplicar estilo: centrar el texto y agregar bordes
+        'Dim rng As Object
+        'rng = x1hoja.Range("H10:K19")
+
+        '' Centrar el texto
+        'rng.HorizontalAlignment = -4108 ' xlCenter
+        'rng.VerticalAlignment = -4108 ' xlCenter
+
+        '' Agregar bordes
+        'With rng.Borders
+        '    .LineStyle = 1 ' xlContinuous
+        '    .Weight = 2 ' xlThin
+        'End With
+
+        '----------------------------------------------------------
+        'If fila < 20 Then
+        '    fila = 22
+        '    columna = 2
+        'End If
+
+        '' Definir los encabezados de la nueva grilla
+        'x1hoja.Cells(fila + 1, columna).Value = "Relación"
+        'x1hoja.Cells(fila + 1, columna + 1).Value = "Correcto"
+        'x1hoja.Cells(fila + 1, columna + 2).Value = ""
+        'x1hoja.Cells(fila + 1, columna + 3).Value = "Precaución"
+        'x1hoja.Cells(fila + 1, columna + 4).Value = ""
+        'x1hoja.Cells(fila + 1, columna + 5).Value = ""
+        'x1hoja.Cells(fila + 1, columna + 7).Value = "Corregir"
+
+        '' Definir los datos de la nueva grilla
+        'x1hoja.Cells(fila + 2, columna).Value = "Ca/Mg"
+        'x1hoja.Cells(fila + 2, columna + 1).Value = 3
+        'x1hoja.Cells(fila + 2, columna + 2).Value = 6
+        'x1hoja.Cells(fila + 2, columna + 3).Value = 6.1
+        'x1hoja.Cells(fila + 2, columna + 4).Value = 9.9
+        'x1hoja.Cells(fila + 2, columna + 7).Value = 3
+        'x1hoja.Cells(fila + 2, columna + 8).Value = 10
+
+        'x1hoja.Cells(fila + 3, columna).Value = "Mg/K"
+        'x1hoja.Cells(fila + 3, columna + 1).Value = 5
+        'x1hoja.Cells(fila + 3, columna + 2).Value = 7
+        'x1hoja.Cells(fila + 3, columna + 3).Value = 7
+        'x1hoja.Cells(fila + 3, columna + 4).Value = 16
+        'x1hoja.Cells(fila + 3, columna + 5).Value = 2
+        'x1hoja.Cells(fila + 3, columna + 6).Value = 4.9
+        'x1hoja.Cells(fila + 3, columna + 7).Value = 16
+        'x1hoja.Cells(fila + 3, columna + 8).Value = 2
+
+        'x1hoja.Cells(fila + 4, columna).Value = "Ca/K"
+        'x1hoja.Cells(fila + 4, columna + 1).Value = 15
+        'x1hoja.Cells(fila + 4, columna + 2).Value = 20
+        'x1hoja.Cells(fila + 4, columna + 3).Value = 20
+        'x1hoja.Cells(fila + 4, columna + 4).Value = 29
+        'x1hoja.Cells(fila + 4, columna + 5).Value = 14.9
+        'x1hoja.Cells(fila + 4, columna + 6).Value = 10
+        'x1hoja.Cells(fila + 4, columna + 7).Value = 30
+
+        'x1hoja.Cells(fila + 5, columna).Value = "(Ca+Mg)/K"
+        'x1hoja.Cells(fila + 5, columna + 1).Value = 20
+        'x1hoja.Cells(fila + 5, columna + 2).Value = 25
+        'x1hoja.Cells(fila + 5, columna + 3).Value = 25
+        'x1hoja.Cells(fila + 5, columna + 4).Value = 40
+        'x1hoja.Cells(fila + 5, columna + 6).Value = 20
+        'x1hoja.Cells(fila + 5, columna + 7).Value = 40
+
+        '' Aplicar estilo: centrar el texto y agregar bordes
+
+        'rng = x1hoja.Range(x1hoja.Cells(fila + 1, columna), x1hoja.Cells(fila + 5, columna + 8))
+
+        '' Centrar el texto
+        'rng.HorizontalAlignment = -4108 ' xlCenter
+        'rng.VerticalAlignment = -4108 ' xlCenter
+
+        '' Agregar bordes
+        'With rng.Borders
+        '    .LineStyle = 1 ' xlContinuous
+        '    .Weight = 2 ' xlThin
+        'End With
+
+        ' Colorear las celdas según tu imagen de referencia
+        Dim colorCorrecto As Long
+        Dim colorPrecaucion As Long
+        Dim colorCorregir As Long
+
+        colorCorrecto = RGB(0, 255, 0) ' Verde claro
+        colorPrecaucion = RGB(255, 255, 0) ' Amarillo
+        colorCorregir = RGB(255, 0, 0) ' Rojo
+
+        '' Aplicar color de fondo
+        'x1hoja.Range(x1hoja.Cells(fila + 2, columna + 1), x1hoja.Cells(fila + 5, columna + 2)).Interior.Color = colorCorrecto
+        'x1hoja.Range(x1hoja.Cells(fila + 2, columna + 3), x1hoja.Cells(fila + 5, columna + 6)).Interior.Color = colorPrecaucion
+        'x1hoja.Range(x1hoja.Cells(fila + 2, columna + 7), x1hoja.Cells(fila + 5, columna + 8)).Interior.Color = colorCorregir
+        'x1hoja.Range(x1hoja.Cells(fila + 5, columna + 6), x1hoja.Cells(fila + 5, columna + 6)).Interior.Color = colorCorregir
+
+        '' Agregar la frase en el rango A28:K28
+        'Dim fraseFila As Integer
+        'fraseFila = fila + 8 ' Ajusta este valor según sea necesario
+
+        'x1hoja.Range(x1hoja.Cells(fraseFila, 1), x1hoja.Cells(fraseFila, columna + 9)).Merge()
+        'x1hoja.Cells(fraseFila, 1).Value = "Composición de la CIC Ideal en los Suelos del Uruguay a pH normal"
+
+        '' Aplicar formato a la frase
+        'With x1hoja.Range(x1hoja.Cells(fraseFila, 1), x1hoja.Cells(fraseFila, columna + 9))
+        '    .HorizontalAlignment = -4108 ' xlCenter
+        '    .VerticalAlignment = -4108 ' xlCenter
+        '    .Font.Bold = True
+        '    .Interior.Color = RGB(211, 211, 211) ' Gris claro
+        'End With
+
+        fila = fila + 1
+        
+        ' Definir los encabezados de la grilla
+        x1hoja.Cells(fila + 1, 2).Value = "CATION"
+        x1hoja.Cells(fila + 1, 3).Value = "IDEAL %"
+        x1hoja.Cells(fila + 1, 4).Value = "1 (%)"
+        'x1hoja.Cells(fila + 1, 5).Value = ""
+        x1hoja.Cells(fila + 1, 5).Value = "2 (%)"
+
+        ' Definir los datos de la grilla
+        x1hoja.Cells(fila + 2, 2).Value = "Calcio"
+        x1hoja.Cells(fila + 2, 3).Value = "_65 - 85_"
+        x1hoja.Cells(fila + 2, 4).Value = 73.2
+        'x1hoja.Cells(fila + 2, 5).Value = 73.2
+        x1hoja.Cells(fila + 2, 5).Value = 79.5
+        'x1hoja.Cells(fila + 2, 7).Value = 79.5
+
+        x1hoja.Cells(fila + 3, 2).Value = "Magnesio"
+        x1hoja.Cells(fila + 3, 3).Value = "_10 - 20_"
+        x1hoja.Cells(fila + 3, 4).Value = 19.9
+        'x1hoja.Cells(fila + 3, 5).Value = 19.9
+        x1hoja.Cells(fila + 3, 5).Value = 16.7
+        'x1hoja.Cells(fila + 3, 7).Value = 16.7
+
+        x1hoja.Cells(fila + 4, 2).Value = "Potasio"
+        x1hoja.Cells(fila + 4, 3).Value = "_2 - 5_"
+        x1hoja.Cells(fila + 4, 4).Value = 5.5
+        'x1hoja.Cells(fila + 4, 5).Value = 5.5
+        x1hoja.Cells(fila + 4, 5).Value = 2.6
+        'x1hoja.Cells(fila + 4, 7).Value = 2.6
+
+        x1hoja.Cells(fila + 5, 2).Value = "Sodio"
+        x1hoja.Cells(fila + 5, 3).Value = "_1 - 5_"
+        x1hoja.Cells(fila + 5, 4).Value = 1.5
+        'x1hoja.Cells(fila + 5, 5).Value = 1.5
+        x1hoja.Cells(fila + 5, 5).Value = 1.3
+        'x1hoja.Cells(fila + 5, 7).Value = 1.3
+
+        'x1hoja.Cells(fila + 6, 2).Value = "TOTAL"
+        'x1hoja.Cells(fila + 6, 3).Value = ""
+        'x1hoja.Cells(fila + 6, 4).Value = 100.0
+        'x1hoja.Cells(fila + 6, 5).Value = ""
+        'x1hoja.Cells(fila + 6, 6).Value = 100.0
+
+        ' Aplicar color gris a todas las celdas
+        Dim rng2 As Object
+
+        rng2 = x1hoja.Range(x1hoja.Cells(fila + 1, 2), x1hoja.Cells(fila + 6, 5))
+
+        rng2.Interior.Color = RGB(211, 211, 211) ' Gris claro
+        x1hoja.Range(x1hoja.Cells(fila + 2, 4), x1hoja.Cells(fila + 5, 4)).Interior.Color = RGB(0, 255, 0) ' Verde
+        x1hoja.Range(x1hoja.Cells(fila + 2, 5), x1hoja.Cells(fila + 5, 5)).Interior.Color = RGB(0, 255, 0) ' Verde
+        x1hoja.Range(x1hoja.Cells(fila + 4, 4), x1hoja.Cells(fila + 4, 4)).Interior.Color = RGB(255, 255, 0) 'Amarillo
+
+        ' Centrar el texto
+        rng2.HorizontalAlignment = -4108 ' xlCenter
+        rng2.VerticalAlignment = -4108 ' xlCenter
+
+        ' Agregar bordes
+        With rng2.Borders
+            .LineStyle = 1 ' xlContinuous
+            .Weight = 2 ' xlThin
+        End With
+
+        fila = fila + 8
+        columna = 2
+
+        ' Agregar la frase en el rango A28:K28
+        Dim fraseFila2 As Integer
+        fraseFila2 = fila  ' Ajusta este valor según sea necesario
+
+        x1hoja.Range(x1hoja.Cells(fraseFila2, 1), x1hoja.Cells(fraseFila2, columna + 9)).Merge()
+        x1hoja.Cells(fraseFila2, 1).Value = "Y cuando vaya a fertilizar, recuerde que…."
+
+        ' Aplicar formato a la frase
+        With x1hoja.Range(x1hoja.Cells(fraseFila2, 1), x1hoja.Cells(fraseFila2, columna + 9))
+            .HorizontalAlignment = -4108 ' xlCenter
+            .VerticalAlignment = -4108 ' xlCenter
+            .Font.Bold = True
+            .Interior.Color = RGB(211, 211, 211) ' Gris claro
+        End With
+        x1hoja.Columns("A:Z").AutoFit()
+
+        fila = fila + 2
+
+        ' Definir los encabezados y datos de la grilla
+        x1hoja.Cells(fila, 2).Value = "Fósforo"
+        x1hoja.Range(x1hoja.Cells(fila, 3), x1hoja.Cells(fila, 7)).Merge()
+        x1hoja.Cells(fila, 3).Value = "Para subir 1 mg/kg de fósforo disponible en el suelo"
+        x1hoja.Range(x1hoja.Cells(fila + 1, 3), x1hoja.Cells(fila + 1, 7)).Merge()
+        x1hoja.Cells(fila + 1, 3).Value = "se requieren 12 a 15 kg/Ha de P2O5"
+
+        x1hoja.Cells(fila + 2, 2).Value = "Potasio"
+        x1hoja.Range(x1hoja.Cells(fila + 2, 3), x1hoja.Cells(fila + 2, 7)).Merge()
+        x1hoja.Cells(fila + 2, 3).Value = "Para subir 0.1 meq/100 g se necesitan,"
+        x1hoja.Range(x1hoja.Cells(fila + 3, 3), x1hoja.Cells(fila + 3, 7)).Merge()
+        x1hoja.Cells(fila + 3, 3).Value = "como mínimo, 117 kg/Ha de K2O (195  Kg/Ha de KCl)"
+
+        x1hoja.Cells(fila + 4, 2).Value = "Nitrógeno"
+        x1hoja.Range(x1hoja.Cells(fila + 4, 3), x1hoja.Cells(fila + 4, 7)).Merge()
+        x1hoja.Cells(fila + 4, 3).Value = "1 mg/kg de N-NO3 al momento de muestreo"
+        x1hoja.Range(x1hoja.Cells(fila + 5, 3), x1hoja.Cells(fila + 5, 7)).Merge()
+        x1hoja.Cells(fila + 5, 3).Value = "equivale a 2,5 Kg de N disponible/Ha (5.4 kg de urea/Ha)"
+
+        x1hoja.Cells(fila + 6, 2).Value = "Nota"
+        x1hoja.Range(x1hoja.Cells(fila + 6, 3), x1hoja.Cells(fila + 6, 7)).Merge()
+        x1hoja.Cells(fila + 6, 3).Value = "Estos valores pueden variar con la densidad aparente del suelo,"
+        x1hoja.Range(x1hoja.Cells(fila + 7, 3), x1hoja.Cells(fila + 7, 7)).Merge()
+        x1hoja.Cells(fila + 7, 3).Value = "textura, pH, nivel inicial del nutriente, humedad en el perfil, entre otros."
+
+        ' Aplicar color de fondo a las celdas según el ejemplo
+        x1hoja.Range(x1hoja.Cells(fila, 2), x1hoja.Cells(fila + 1, 2)).Interior.Color = RGB(255, 192, 0) ' Naranja
+        x1hoja.Range(x1hoja.Cells(fila + 2, 2), x1hoja.Cells(fila + 3, 2)).Interior.Color = RGB(0, 176, 240) ' Azul
+        x1hoja.Range(x1hoja.Cells(fila + 4, 2), x1hoja.Cells(fila + 5, 2)).Interior.Color = RGB(146, 208, 80) ' Verde
+
+        ' Aplicar bordes a la tabla
+        Dim rng5 As Range
+        rng5 = x1hoja.Range(x1hoja.Cells(fila, 2), x1hoja.Cells(fila + 7, 7))
+
+        ' Centrar el texto
+        rng5.HorizontalAlignment = -4108 ' xlCenter
+        rng5.VerticalAlignment = -4108 ' xlCenter
+
+        ' Agregar bordes
+        With rng5.Borders
+            .LineStyle = 1 ' xlContinuous
+            .Weight = 2 ' xlThin
+        End With
+
+        ' Ajustar el ancho de las columnas automáticamente
+        x1hoja.Columns("B:G").AutoFit()
+
+        '-----------------------------------------------
+
+
+        '' Definir los encabezados de la nueva grilla
+        'x1hoja.Cells(fila + 1, columna).Value = "Cation"
+        'x1hoja.Cells(fila + 1, columna + 1).Value = "Correcto"
+        'x1hoja.Cells(fila + 1, columna + 2).Value = ""
+        'x1hoja.Cells(fila + 1, columna + 3).Value = "Precaución"
+        'x1hoja.Cells(fila + 1, columna + 4).Value = ""
+        'x1hoja.Cells(fila + 1, columna + 5).Value = ""
+        'x1hoja.Cells(fila + 1, columna + 7).Value = "Corregir"
+
+        '' Definir los datos de la nueva grilla
+        'x1hoja.Cells(fila + 2, columna).Value = "Calcio"
+        'x1hoja.Cells(fila + 2, columna + 1).Value = 65
+        'x1hoja.Cells(fila + 2, columna + 2).Value = 85
+        'x1hoja.Cells(fila + 2, columna + 3).Value = 60
+        'x1hoja.Cells(fila + 2, columna + 4).Value = 64.9
+        'x1hoja.Cells(fila + 2, columna + 5).Value = 85.1
+        'x1hoja.Cells(fila + 2, columna + 6).Value = 90
+        'x1hoja.Cells(fila + 2, columna + 7).Value = 59.9
+        'x1hoja.Cells(fila + 2, columna + 8).Value = 90.1
+
+        'x1hoja.Cells(fila + 3, columna).Value = "Magnesio"
+        'x1hoja.Cells(fila + 3, columna + 1).Value = 10
+        'x1hoja.Cells(fila + 3, columna + 2).Value = 20
+        'x1hoja.Cells(fila + 3, columna + 3).Value = 8
+        'x1hoja.Cells(fila + 3, columna + 4).Value = 9.9
+        'x1hoja.Cells(fila + 3, columna + 5).Value = 20.1
+        'x1hoja.Cells(fila + 3, columna + 6).Value = 25
+        'x1hoja.Cells(fila + 3, columna + 7).Value = 7.9
+        'x1hoja.Cells(fila + 3, columna + 8).Value = 25.1
+
+        'x1hoja.Cells(fila + 4, columna).Value = "Potasio"
+        'x1hoja.Cells(fila + 4, columna + 1).Value = 2
+        'x1hoja.Cells(fila + 4, columna + 2).Value = 5
+        'x1hoja.Cells(fila + 4, columna + 3).Value = 1
+        'x1hoja.Cells(fila + 4, columna + 4).Value = 1.9
+        'x1hoja.Cells(fila + 4, columna + 5).Value = 5.1
+        'x1hoja.Cells(fila + 4, columna + 6).Value = 8
+        'x1hoja.Cells(fila + 4, columna + 7).Value = 0.9
+        'x1hoja.Cells(fila + 4, columna + 8).Value = 8.1
+
+        'x1hoja.Cells(fila + 5, columna).Value = "Sodio"
+        'x1hoja.Cells(fila + 5, columna + 1).Value = 1
+        'x1hoja.Cells(fila + 5, columna + 2).Value = 5
+        'x1hoja.Cells(fila + 5, columna + 3).Value = 0.5
+        'x1hoja.Cells(fila + 5, columna + 4).Value = 0.9
+        'x1hoja.Cells(fila + 5, columna + 5).Value = 5.1
+        'x1hoja.Cells(fila + 5, columna + 6).Value = 8
+        'x1hoja.Cells(fila + 5, columna + 7).Value = 0.4
+        'x1hoja.Cells(fila + 5, columna + 8).Value = 8.1
+
+        '' Aplicar estilo: centrar el texto y agregar bordes
+        'Dim rng3 As Object
+
+        'rng3 = x1hoja.Range(x1hoja.Cells(fila + 1, columna), x1hoja.Cells(fila + 5, columna + 8))
+
+        '' Centrar el texto
+        'rng3.HorizontalAlignment = -4108 ' xlCenter
+        'rng3.VerticalAlignment = -4108 ' xlCenter
+
+        '' Agregar bordes
+        'With rng3.Borders
+        '    .LineStyle = 1 ' xlContinuous
+        '    .Weight = 2 ' xlThin
+        'End With
+
+        '' Aplicar color de fondo
+        'x1hoja.Range(x1hoja.Cells(fila + 2, columna + 1), x1hoja.Cells(fila + 5, columna + 2)).Interior.Color = colorCorrecto
+        'x1hoja.Range(x1hoja.Cells(fila + 2, columna + 3), x1hoja.Cells(fila + 5, columna + 6)).Interior.Color = colorPrecaucion
+        'x1hoja.Range(x1hoja.Cells(fila + 2, columna + 7), x1hoja.Cells(fila + 5, columna + 8)).Interior.Color = colorCorregir
+
+        '-----------------------------------------------
+
+
+
+        'Paginacion de hojas
+        Dim ix As Integer
+
+        For ix = 1 To x1libro.Worksheets.Count
+            x1libro.Worksheets(ix).Range("A" & fila + 10) = "Pagina: " & ix
+        Next
+
+        '***********************************************************
+
+        'PROTEGE LA HOJA DE EXCEL
+        If Module1.isAnexoCationes Then
+            x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
+            Contents:=True, Scenarios:=True)
+            'GUARDA EL ARCHIVO DE EXCEL
+            x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\anexoCationes" & nroficha & ".xls")
+            x1app.Visible = True
+        End If
+
+        x1app = Nothing
+        x1libro = Nothing
+        x1hoja = Nothing
+    End Sub
+
     Private Sub informe_suelos()
         Dim ficha = TextFicha.Text.Trim
         Dim x1app As Microsoft.Office.Interop.Excel.Application
@@ -9661,7 +10565,7 @@ Public Class FormCrearInformes
 
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 30/04/2025"
+        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
         x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
             & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
         x1hoja.Range("A" & fila, "G" & fila).WrapText = True
@@ -10554,7 +11458,7 @@ Public Class FormCrearInformes
 
             '*** PIE DE PAGINA ******************************************************
             x1hoja.Cells(fila, columna).rowheight = 25
-            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 30/04/2025"
+            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
             x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
                 & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
             x1hoja.Range("A" & fila, "G" & fila).WrapText = True
@@ -18176,5 +19080,22 @@ Public Class FormCrearInformes
 
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
+    End Sub
+End Class
+
+Public Class Analisis
+    Public Property Muestra As String
+    Public Property RelacionCaMg As Double
+    Public Property RelacionMgK As Double
+    Public Property RelacionCaK As Double
+    Public Property RelacionCaMgK As Double
+
+    ' Constructor para inicializar las propiedades
+    Public Sub New(muestra As String, relacionCaMg As Double, relacionMgK As Double, relacionCaK As Double, relacionCaMgK As Double)
+        Me.Muestra = muestra
+        Me.RelacionCaMg = relacionCaMg
+        Me.RelacionMgK = relacionMgK
+        Me.RelacionCaK = relacionCaK
+        Me.RelacionCaMgK = relacionCaMgK
     End Sub
 End Class

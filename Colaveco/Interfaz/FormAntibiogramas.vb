@@ -1506,7 +1506,7 @@ Public Class FormAntibiogramas
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).Font.Size = 8
                 fila = fila + 1
-                x1hoja.Cells(fila, columna).formula = "P: Penicilina / RAX: Rifampin / Sxt: Trimetoprim sulfametoxazol / T: Oxytetraciclina"
+                x1hoja.Cells(fila, columna).formula = "P: Penicilina / RAX : Rifaximina / Sxt: Trimetoprim sulfametoxazol / T: Oxytetraciclina"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).Font.Size = 8
                 fila = fila + 1

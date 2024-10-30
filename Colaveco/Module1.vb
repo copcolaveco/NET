@@ -21,6 +21,7 @@
     Public cadena As String
     Public isAnexo As Boolean
     Public isAnexoPH As Boolean
+    Public isAnexoCationes As Boolean
 
     'Public idparatecnicocontrol As Integer
 End Module
