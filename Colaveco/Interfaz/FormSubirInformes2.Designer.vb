@@ -45,17 +45,19 @@ Partial Class FormSubirInformes2
         '
         'TextTipoAnalisis
         '
-        Me.TextTipoAnalisis.Location = New System.Drawing.Point(12, 124)
+        Me.TextTipoAnalisis.Location = New System.Drawing.Point(16, 153)
+        Me.TextTipoAnalisis.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextTipoAnalisis.Name = "TextTipoAnalisis"
         Me.TextTipoAnalisis.ReadOnly = True
-        Me.TextTipoAnalisis.Size = New System.Drawing.Size(324, 20)
+        Me.TextTipoAnalisis.Size = New System.Drawing.Size(431, 22)
         Me.TextTipoAnalisis.TabIndex = 39
         '
         'ButtonSubirInforme
         '
-        Me.ButtonSubirInforme.Location = New System.Drawing.Point(339, 426)
+        Me.ButtonSubirInforme.Location = New System.Drawing.Point(452, 524)
+        Me.ButtonSubirInforme.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonSubirInforme.Name = "ButtonSubirInforme"
-        Me.ButtonSubirInforme.Size = New System.Drawing.Size(94, 23)
+        Me.ButtonSubirInforme.Size = New System.Drawing.Size(125, 28)
         Me.ButtonSubirInforme.TabIndex = 38
         Me.ButtonSubirInforme.Text = "Subir informe"
         Me.ButtonSubirInforme.UseVisualStyleBackColor = True
@@ -63,25 +65,28 @@ Partial Class FormSubirInformes2
         'CheckCom
         '
         Me.CheckCom.AutoSize = True
-        Me.CheckCom.Location = New System.Drawing.Point(12, 403)
+        Me.CheckCom.Location = New System.Drawing.Point(16, 496)
+        Me.CheckCom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckCom.Name = "CheckCom"
-        Me.CheckCom.Size = New System.Drawing.Size(165, 17)
+        Me.CheckCom.Size = New System.Drawing.Size(202, 21)
         Me.CheckCom.TabIndex = 36
         Me.CheckCom.Text = "http://www.colaveco.com.uy"
         Me.CheckCom.UseVisualStyleBackColor = True
         '
         'TextEnviarCopia
         '
-        Me.TextEnviarCopia.Location = New System.Drawing.Point(12, 377)
+        Me.TextEnviarCopia.Location = New System.Drawing.Point(16, 464)
+        Me.TextEnviarCopia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextEnviarCopia.Name = "TextEnviarCopia"
-        Me.TextEnviarCopia.Size = New System.Drawing.Size(278, 20)
+        Me.TextEnviarCopia.Size = New System.Drawing.Size(369, 22)
         Me.TextEnviarCopia.TabIndex = 35
         '
         'ButtonEnviarCopia
         '
-        Me.ButtonEnviarCopia.Location = New System.Drawing.Point(12, 348)
+        Me.ButtonEnviarCopia.Location = New System.Drawing.Point(16, 428)
+        Me.ButtonEnviarCopia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonEnviarCopia.Name = "ButtonEnviarCopia"
-        Me.ButtonEnviarCopia.Size = New System.Drawing.Size(75, 23)
+        Me.ButtonEnviarCopia.Size = New System.Drawing.Size(100, 28)
         Me.ButtonEnviarCopia.TabIndex = 34
         Me.ButtonEnviarCopia.Text = "Enviar copia"
         Me.ButtonEnviarCopia.UseVisualStyleBackColor = True
@@ -89,26 +94,29 @@ Partial Class FormSubirInformes2
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(9, 235)
+        Me.Label1.Location = New System.Drawing.Point(12, 289)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(68, 13)
+        Me.Label1.Size = New System.Drawing.Size(91, 17)
         Me.Label1.TabIndex = 33
         Me.Label1.Text = "Comentarios:"
         '
         'TextComentarios
         '
-        Me.TextComentarios.Location = New System.Drawing.Point(12, 251)
+        Me.TextComentarios.Location = New System.Drawing.Point(16, 309)
+        Me.TextComentarios.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextComentarios.Multiline = True
         Me.TextComentarios.Name = "TextComentarios"
-        Me.TextComentarios.Size = New System.Drawing.Size(278, 79)
+        Me.TextComentarios.Size = New System.Drawing.Size(369, 96)
         Me.TextComentarios.TabIndex = 32
         '
         'RadioAbonado
         '
         Me.RadioAbonado.AutoSize = True
-        Me.RadioAbonado.Location = New System.Drawing.Point(12, 203)
+        Me.RadioAbonado.Location = New System.Drawing.Point(16, 250)
+        Me.RadioAbonado.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RadioAbonado.Name = "RadioAbonado"
-        Me.RadioAbonado.Size = New System.Drawing.Size(68, 17)
+        Me.RadioAbonado.Size = New System.Drawing.Size(86, 21)
         Me.RadioAbonado.TabIndex = 31
         Me.RadioAbonado.TabStop = True
         Me.RadioAbonado.Text = "Abonado"
@@ -117,9 +125,10 @@ Partial Class FormSubirInformes2
         'RadioNoAbonadocv
         '
         Me.RadioNoAbonadocv.AutoSize = True
-        Me.RadioNoAbonadocv.Location = New System.Drawing.Point(12, 180)
+        Me.RadioNoAbonadocv.Location = New System.Drawing.Point(16, 222)
+        Me.RadioNoAbonadocv.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RadioNoAbonadocv.Name = "RadioNoAbonadocv"
-        Me.RadioNoAbonadocv.Size = New System.Drawing.Size(174, 17)
+        Me.RadioNoAbonadocv.Size = New System.Drawing.Size(228, 21)
         Me.RadioNoAbonadocv.TabIndex = 30
         Me.RadioNoAbonadocv.TabStop = True
         Me.RadioNoAbonadocv.Text = "No abonado (con visualización)"
@@ -128,9 +137,10 @@ Partial Class FormSubirInformes2
         'RadioNoAbonadosv
         '
         Me.RadioNoAbonadosv.AutoSize = True
-        Me.RadioNoAbonadosv.Location = New System.Drawing.Point(12, 157)
+        Me.RadioNoAbonadosv.Location = New System.Drawing.Point(16, 193)
+        Me.RadioNoAbonadosv.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.RadioNoAbonadosv.Name = "RadioNoAbonadosv"
-        Me.RadioNoAbonadosv.Size = New System.Drawing.Size(169, 17)
+        Me.RadioNoAbonadosv.Size = New System.Drawing.Size(223, 21)
         Me.RadioNoAbonadosv.TabIndex = 29
         Me.RadioNoAbonadosv.TabStop = True
         Me.RadioNoAbonadosv.Text = "No abonado (sin visualización)"
@@ -139,17 +149,19 @@ Partial Class FormSubirInformes2
         'DateFecha
         '
         Me.DateFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFecha.Location = New System.Drawing.Point(12, 12)
+        Me.DateFecha.Location = New System.Drawing.Point(16, 15)
+        Me.DateFecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateFecha.Name = "DateFecha"
-        Me.DateFecha.Size = New System.Drawing.Size(104, 20)
+        Me.DateFecha.Size = New System.Drawing.Size(137, 22)
         Me.DateFecha.TabIndex = 28
         '
         'CheckTxt
         '
         Me.CheckTxt.AutoSize = True
-        Me.CheckTxt.Location = New System.Drawing.Point(322, 101)
+        Me.CheckTxt.Location = New System.Drawing.Point(429, 124)
+        Me.CheckTxt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckTxt.Name = "CheckTxt"
-        Me.CheckTxt.Size = New System.Drawing.Size(37, 17)
+        Me.CheckTxt.Size = New System.Drawing.Size(44, 21)
         Me.CheckTxt.TabIndex = 27
         Me.CheckTxt.Text = "txt"
         Me.CheckTxt.UseVisualStyleBackColor = True
@@ -157,9 +169,10 @@ Partial Class FormSubirInformes2
         'CheckPdf
         '
         Me.CheckPdf.AutoSize = True
-        Me.CheckPdf.Location = New System.Drawing.Point(275, 101)
+        Me.CheckPdf.Location = New System.Drawing.Point(367, 124)
+        Me.CheckPdf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckPdf.Name = "CheckPdf"
-        Me.CheckPdf.Size = New System.Drawing.Size(41, 17)
+        Me.CheckPdf.Size = New System.Drawing.Size(50, 21)
         Me.CheckPdf.TabIndex = 26
         Me.CheckPdf.Text = "pdf"
         Me.CheckPdf.UseVisualStyleBackColor = True
@@ -167,59 +180,65 @@ Partial Class FormSubirInformes2
         'CheckXls
         '
         Me.CheckXls.AutoSize = True
-        Me.CheckXls.Location = New System.Drawing.Point(231, 101)
+        Me.CheckXls.Location = New System.Drawing.Point(308, 124)
+        Me.CheckXls.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.CheckXls.Name = "CheckXls"
-        Me.CheckXls.Size = New System.Drawing.Size(38, 17)
+        Me.CheckXls.Size = New System.Drawing.Size(46, 21)
         Me.CheckXls.TabIndex = 25
         Me.CheckXls.Text = "xls"
         Me.CheckXls.UseVisualStyleBackColor = True
         '
         'TextFicha
         '
-        Me.TextFicha.Location = New System.Drawing.Point(125, 97)
+        Me.TextFicha.Location = New System.Drawing.Point(167, 119)
+        Me.TextFicha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextFicha.Name = "TextFicha"
-        Me.TextFicha.Size = New System.Drawing.Size(100, 20)
+        Me.TextFicha.Size = New System.Drawing.Size(132, 22)
         Me.TextFicha.TabIndex = 24
         '
         'ButtonSeleccionarFicha
         '
-        Me.ButtonSeleccionarFicha.Location = New System.Drawing.Point(12, 95)
+        Me.ButtonSeleccionarFicha.Location = New System.Drawing.Point(16, 117)
+        Me.ButtonSeleccionarFicha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonSeleccionarFicha.Name = "ButtonSeleccionarFicha"
-        Me.ButtonSeleccionarFicha.Size = New System.Drawing.Size(107, 23)
+        Me.ButtonSeleccionarFicha.Size = New System.Drawing.Size(143, 28)
         Me.ButtonSeleccionarFicha.TabIndex = 23
         Me.ButtonSeleccionarFicha.Text = "Seleccionar ficha"
         Me.ButtonSeleccionarFicha.UseVisualStyleBackColor = True
         '
         'ButtonSeleccionarCliente
         '
-        Me.ButtonSeleccionarCliente.Location = New System.Drawing.Point(12, 40)
+        Me.ButtonSeleccionarCliente.Location = New System.Drawing.Point(16, 49)
+        Me.ButtonSeleccionarCliente.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ButtonSeleccionarCliente.Name = "ButtonSeleccionarCliente"
-        Me.ButtonSeleccionarCliente.Size = New System.Drawing.Size(107, 23)
+        Me.ButtonSeleccionarCliente.Size = New System.Drawing.Size(143, 28)
         Me.ButtonSeleccionarCliente.TabIndex = 22
         Me.ButtonSeleccionarCliente.Text = "Seleccionar cliente"
         Me.ButtonSeleccionarCliente.UseVisualStyleBackColor = True
         '
         'TextNombreCliente
         '
-        Me.TextNombreCliente.Location = New System.Drawing.Point(118, 69)
+        Me.TextNombreCliente.Location = New System.Drawing.Point(157, 85)
+        Me.TextNombreCliente.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextNombreCliente.Name = "TextNombreCliente"
         Me.TextNombreCliente.ReadOnly = True
-        Me.TextNombreCliente.Size = New System.Drawing.Size(315, 20)
+        Me.TextNombreCliente.Size = New System.Drawing.Size(419, 22)
         Me.TextNombreCliente.TabIndex = 21
         '
         'TextIdCliente
         '
-        Me.TextIdCliente.Location = New System.Drawing.Point(12, 69)
+        Me.TextIdCliente.Location = New System.Drawing.Point(16, 85)
+        Me.TextIdCliente.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextIdCliente.Name = "TextIdCliente"
         Me.TextIdCliente.ReadOnly = True
-        Me.TextIdCliente.Size = New System.Drawing.Size(100, 20)
+        Me.TextIdCliente.Size = New System.Drawing.Size(132, 22)
         Me.TextIdCliente.TabIndex = 20
         '
         'FormSubirInformes2
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(452, 461)
+        Me.ClientSize = New System.Drawing.Size(603, 567)
         Me.Controls.Add(Me.TextTipoAnalisis)
         Me.Controls.Add(Me.ButtonSubirInforme)
         Me.Controls.Add(Me.CheckCom)
@@ -239,6 +258,7 @@ Partial Class FormSubirInformes2
         Me.Controls.Add(Me.ButtonSeleccionarCliente)
         Me.Controls.Add(Me.TextNombreCliente)
         Me.Controls.Add(Me.TextIdCliente)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormSubirInformes2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Subir Informes (Nuevo)"

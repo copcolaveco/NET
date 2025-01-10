@@ -266,7 +266,7 @@ Public Class FormInformeCalidadLeche2
         x1hoja.Cells(fila, columna).Font.Size = 8
         fila = fila + 1
         columna = 1
-        x1hoja.Cells(fila, columna).Formula = "Paratécnico:"
+        x1hoja.Cells(fila, columna).Formula = "Analista:"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 7
         columna = columna + 2
@@ -983,7 +983,7 @@ Public Class FormInformeCalidadLeche2
         x1hoja.Cells(fila, columna).Font.Bold = True
         fila = fila + 2
 
-        x1hoja.Cells(fila, columna).formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO."
+        x1hoja.Cells(fila, columna).formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO."
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Size = 6
         fila = fila + 1
@@ -995,7 +995,7 @@ Public Class FormInformeCalidadLeche2
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Size = 6
         fila = fila + 1
-        x1hoja.Cells(fila, columna).formula = "asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)."
+        x1hoja.Cells(fila, columna).formula = "asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Size = 6
 

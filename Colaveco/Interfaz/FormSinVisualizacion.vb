@@ -287,8 +287,14 @@ Public Class FormSinVisualizacion
             c.marcarabonado(Usuario, fec)
             c.marcarvisualizacion(Usuario, fec)
             abonado_ = 2
-            marcarweb(ficha, abonado_)
-            subir_ficha(ficha, abonado_)
+            'marcarweb(ficha, abonado_)
+            'subir_ficha(ficha, abonado_)
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
+            nuevoGestor.modificar(Usuario)
             listar()
         End If
         If DataGridView1.Columns(e.ColumnIndex).Name = "Visualizacion2" Then
@@ -304,9 +310,15 @@ Public Class FormSinVisualizacion
             ficha = c.FICHA
             idficha = ficha
             c.marcarvisualizacion(Usuario, fec)
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2        'sin visualizacion
+            nuevoGestor.modificar(Usuario)
             abonado_ = 1
-            marcarweb(ficha, abonado_)
-            subir_ficha(ficha, abonado_)
+
+            'marcarweb(ficha, abonado_)
+            'subir_ficha(ficha, abonado_)
             listar()
         End If
     End Sub
@@ -1959,8 +1971,15 @@ Public Class FormSinVisualizacion
             idficha = ficha
             c.desmarcarvisualizacion(Usuario, fec)
             abonado_ = 0
-            marcarweb(ficha, abonado_)
-            subir_ficha(ficha, abonado_)
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2        'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+            abonado_ = 1
+
+            'marcarweb(ficha, abonado_)
+            'subir_ficha(ficha, abonado_)
             listar()
         End If
     End Sub

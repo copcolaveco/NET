@@ -394,6 +394,7 @@ Public Class FormSolicitud
             sol.FECHAPROCESO = fecing
             sol.MUESTREO = muestreo
             sol.INTERPRETACION = idTecnicoMuestreo
+            sol.SOLICITUDESTADOID = 2 'EnProcesso
             Dim fecmuestreo As String
             fecmuestreo = Format(fechamuestreo, "yyyy-MM-dd")
             sol.FECHAMUESTREO = fecmuestreo
@@ -404,6 +405,26 @@ Public Class FormSolicitud
                     un.FICHAS = ultimaficha
                     un.modificar()
                 End If
+
+                '---------------GestorGX
+                Dim gestorNuevo As New dNuevoGestor
+                gestorNuevo.ID = sol.ID
+                gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
+                gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
+                gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
+                gestorNuevo.NMUESTRAS = sol.NMUESTRAS
+                gestorNuevo.IDMUESTRA = idmuestra.ID
+                gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
+                gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
+                gestorNuevo.TEMPERATURA = sol.TEMPERATURA
+                gestorNuevo.DERRAMADAS = sol.DERRAMADAS
+                gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
+                gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
+                gestorNuevo.FECHAENVIO = sol.FECHAENVIO
+                gestorNuevo.guardarNuevoGestor(Usuario)
+
+                '-----------------------------------
+
                 sw.guardar(Usuario)
                 MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
                 imprimir_solicitud()
@@ -503,6 +524,26 @@ Public Class FormSolicitud
                         un.FICHAS = ultimaficha
                         un.modificar()
                     End If
+
+                    '---------------GestorGX
+                    Dim gestorNuevo As New dNuevoGestor
+                    gestorNuevo.ID = sol.ID
+                    gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
+                    gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
+                    gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
+                    gestorNuevo.NMUESTRAS = sol.NMUESTRAS
+                    gestorNuevo.IDMUESTRA = idmuestra.ID
+                    gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
+                    gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
+                    gestorNuevo.TEMPERATURA = sol.TEMPERATURA
+                    gestorNuevo.DERRAMADAS = sol.DERRAMADAS
+                    gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
+                    gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
+                    gestorNuevo.FECHAENVIO = sol.FECHAENVIO
+                    gestorNuevo.guardarNuevoGestor(Usuario)
+                    '----------------------------------------------------
+
+
                     MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
                     '***IMPRESIÓN DE SOLICITUD Y TICKETS **************************************************************************************
                     imprimir_solicitud()

@@ -1682,19 +1682,19 @@ Public Class FormAntibiogramas
                 'x1hoja.Cells(fila, columna).Font.Size = 8
                 'x1hoja.Cells(fila, columna).Font.Bold = True
                 fila = fila + 2
-                x1hoja.Cells(fila, columna).formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO."
+                x1hoja.Cells(fila, columna).formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO."
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).Font.Size = 6
                 fila = fila + 1
                 x1hoja.Cells(fila, columna).formula = "Los resultados consignados se refieren exclusivamente a la muestra recibida."
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).Font.Size = 6
                 fila = fila + 1
                 x1hoja.Cells(fila, columna).formula = "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe,"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).Font.Size = 6
                 fila = fila + 1
-                x1hoja.Cells(fila, columna).formula = "asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)."
+                x1hoja.Cells(fila, columna).formula = "asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).Font.Size = 8
             End If

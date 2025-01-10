@@ -50,42 +50,63 @@ Public Class FormSubirInformes2
     End Sub
     Private Sub ButtonSubirInforme_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSubirInforme.Click
         'subirinforme()
+        Dim saMarcar As New dSolicitudAnalisis
+        saMarcar.ID = idficha
+
         If tipoinforme = 1 Then
             subir_control()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 3 Then
             subir_agua()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 4 Then
             subir_atb()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 6 Then
             subir_parasitologia()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 7 Then
             subir_alimentos()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 8 Then
             subir_serologia()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 9 Then
             subir_patologia()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 10 Then
             subir_calidad()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 11 Then
             subir_ambiental()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 13 Then
             subir_nutricion()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 14 Or tipoinforme = 19 Then
             subir_suelos()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 15 Then
             subir_brucelosis()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 16 Then
             subir_efluentes()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 17 Then
             subir_bacteriologia()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 18 Then
             subir_bacteriologia_clinica()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 19 Then
             subir_foliares()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 20 Then
             subir_toxicologia()
+            saMarcar.marcar(Usuario)
         ElseIf tipoinforme = 21 Then
             subir_mineralesenleche()
+            saMarcar.marcar(Usuario)
         End If
     End Sub
     Private Sub subir_control()
@@ -258,6 +279,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -316,6 +345,15 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -460,6 +498,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -505,6 +551,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -588,6 +642,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -633,6 +695,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -719,6 +789,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -764,6 +842,15 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -903,6 +990,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -948,6 +1043,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -1002,6 +1105,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -1047,6 +1158,15 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -1130,6 +1250,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -1175,6 +1303,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3       'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -1437,6 +1573,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -1482,6 +1626,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -1635,6 +1787,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -1680,6 +1840,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -1763,6 +1931,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -1808,6 +1984,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -1948,6 +2132,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -1993,6 +2185,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -2200,7 +2400,7 @@ Public Class FormSubirInformes2
         Catch ex As Exception
             MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
         End Try
-        
+
         Dim pi As New dPreinformes
         pi.FICHA = ficha
         pi.ABONADO = abonado
@@ -2274,6 +2474,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -2319,6 +2527,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -2402,6 +2618,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -2447,6 +2671,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -2586,6 +2818,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -2631,6 +2871,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -2714,6 +2962,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -2759,6 +3015,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -2842,6 +3106,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -2887,6 +3159,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -3026,6 +3306,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -3071,6 +3359,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -3154,6 +3450,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -3199,6 +3503,14 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = ficha
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
+            nuevoGestor.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -4127,10 +4439,10 @@ Public Class FormSubirInformes2
         ElseIf TextTipoAnalisis.Text = "Suelos" Or TextTipoAnalisis.Text = "Foliares" Then
             '*** MOVER ARCHIVO XLS***********************************************************************
             Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
+            Dim sRutaDestino As String = "\\SERVERGESTOR\Informes\" & ficha & ".xls"
             Try
                 ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
+                My.Computer.FileSystem.CopyFile(sArchivoOrigen, sRutaDestino, True)
                 'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
                 ' errores  
             Catch ex As Exception
@@ -4138,7 +4450,7 @@ Public Class FormSubirInformes2
             End Try
             '*** MOVER ARCHIVO PDF***********************************************************************
             Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
+            Dim sRutaDestino2 As String = "\\SERVERGESTOR\Informes\" & ficha & ".pdf"
             Try
                 ' Mover el fichero.si existe lo sobreescribe  
                 My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
@@ -4221,6 +4533,11 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+            sol.SOLICITUDESTADOID = 4
+            sol.modificar(Usuario)
+
             Dim muestras As Integer = 0
             If Not sol Is Nothing Then
                 muestras = sol.NMUESTRAS
@@ -4266,6 +4583,11 @@ Public Class FormSubirInformes2
             Dim sol As New dSolicitudAnalisis
             sol.ID = ficha
             sol = sol.buscar
+
+            'gestorColaveco
+            sol.SOLICITUDESTADOID = 5
+            sol.modificar(Usuario)
+
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -4627,6 +4949,10 @@ Public Class FormSubirInformes2
         email = ""
     End Sub
     Private Sub DataRepeater1_CurrentItemIndexChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub FormSubirInformes2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
     End Sub
 End Class

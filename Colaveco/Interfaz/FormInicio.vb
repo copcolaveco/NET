@@ -10962,7 +10962,7 @@ controltxt:
         v.Show()
     End Sub
 
-    Private Sub Button1_Click_4(sender As Object, e As EventArgs) Handles Button1.Click
+    Private Sub Button1_Click_4(sender As Object, e As EventArgs)
         Dim v As New FormBuscarSolicitud(Sesion.Usuario)
         v.ShowDialog()
     End Sub
@@ -10988,5 +10988,10 @@ controltxt:
 
     Private Sub DataGridAutorizaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridAutorizaciones.CellContentClick
 
+    End Sub
+
+    Private Sub Button2_Click_2(sender As Object, e As EventArgs)
+        Dim v As New FormSubirInformes2(Sesion.Usuario)
+        v.Show()
     End Sub
 End Class

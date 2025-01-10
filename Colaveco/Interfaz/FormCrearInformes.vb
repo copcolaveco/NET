@@ -683,7 +683,7 @@ Public Class FormCrearInformes
             nombre_paratecnico = nombre_paratecnico + "Gabriel Facchin - "
         End If
 
-        x1hoja.Cells(fila, columna).Formula = "Paratécnico: " & nombre_paratecnico
+        x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_paratecnico
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 9
         '** SI HAY MUESTRAS NO APTAS *****************************************************************************
@@ -945,7 +945,7 @@ Public Class FormCrearInformes
         '************************************************************************
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 35
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida. COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (DT)"
+        x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "O" & fila).WrapText = True
         x1hoja.Range("A" & fila, "O" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -2098,7 +2098,7 @@ Public Class FormCrearInformes
                     x1hoja.Cells(fila, columna).Font.Size = 9
                     fila = fila + 1
                     'PARATECNICOS************************************************************************
-                    x1hoja.Cells(fila, columna).Formula = "Paratécnico: " & nombre_paratecnico
+                    x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_paratecnico
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Font.Size = 9
                     fila = fila + 1
@@ -2110,8 +2110,7 @@ Public Class FormCrearInformes
                     fila = fila + 1
                     '*** PIE DE PAGINA ******************************************************
                     x1hoja.Cells(fila, columna).rowheight = 25
-                    x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                        & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (DT)"
+                    x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                     x1hoja.Range("A" & fila, "N" & fila).WrapText = True
                     x1hoja.Range("A" & fila, "N" & fila).Merge()
                     x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -2141,7 +2140,7 @@ Public Class FormCrearInformes
             x1libro = Nothing
             x1hoja = Nothing
         End If
-        
+
     End Sub
 
     Private Sub informe_minerales_en_leche()
@@ -2702,7 +2701,7 @@ Public Class FormCrearInformes
 
                 fila = fila + 2
                 'PARATECNICOS************************************************************************
-                x1hoja.Cells(fila, columna).Formula = "Paratécnico: " & nombre_paratecnico
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_paratecnico
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -2725,8 +2724,7 @@ Public Class FormCrearInformes
 
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (DT)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "G" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "G" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -3078,7 +3076,7 @@ Public Class FormCrearInformes
          Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 690, 50)
                 '***********************************************************
                 columna = columna + 4
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 columna = 1
@@ -3101,8 +3099,7 @@ Public Class FormCrearInformes
                 fila = fila + 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "I" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "I" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -3439,7 +3436,7 @@ Public Class FormCrearInformes
          Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 690, 50)
                 '***********************************************************
                 columna = columna + 4
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 columna = 1
@@ -3463,8 +3460,7 @@ Public Class FormCrearInformes
                 fila = fila + 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "I" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "I" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -6780,7 +6776,7 @@ Public Class FormCrearInformes
                 lp2 = Nothing
                 fila = fila - 2
                 columna = columna + 11
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -6909,8 +6905,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "O" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "O" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -7415,15 +7410,14 @@ Public Class FormCrearInformes
                 InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
                 columna = columna + 6
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 6
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+               x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "O" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "O" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -7887,7 +7881,7 @@ Public Class FormCrearInformes
 
                 columna = 1
                 columna = columna + 3
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 2
@@ -7925,8 +7919,7 @@ Public Class FormCrearInformes
                 fila = fila + 2
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+               x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "G" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "G" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -8373,7 +8366,7 @@ Public Class FormCrearInformes
                 lp2 = Nothing
                 fila = fila - 2
                 columna = columna + 11
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -8393,8 +8386,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+               x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "O" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "O" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -8880,7 +8872,7 @@ Public Class FormCrearInformes
          Microsoft.Office.Core.MsoTriState.msoFalse, _
          Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 700, 50)
                 columna = columna + 9
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 2
@@ -8895,8 +8887,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "K" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "K" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -9420,7 +9411,7 @@ Public Class FormCrearInformes
                 If acreditado2 = 0 Then
                     fila = fila - 1
                     columna = columna + 11
-                    x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                    x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Font.Size = 9
                     fila = fila + 1
@@ -9438,7 +9429,7 @@ Public Class FormCrearInformes
                     x1hoja.Cells(fila2, columna2).Formula = listadeabreviaturas & " ■ µg/Kg = ppb ■"
                     fila = fila - 1
                     columna = columna + 11
-                    x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                    x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Font.Size = 9
                     fila = fila + 1
@@ -9452,7 +9443,7 @@ Public Class FormCrearInformes
                     x1hoja.Cells(fila2, columna2).Formula = listadeabreviaturas & " ■ µg/Kg = ppb ■"
                     fila = fila - 1
                     columna = columna + 11
-                    x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                    x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                     x1hoja.Cells(fila, columna).Font.Bold = True
                     x1hoja.Cells(fila, columna).Font.Size = 9
                     fila = fila + 1
@@ -9589,8 +9580,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "K" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "K" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -10420,7 +10410,7 @@ Public Class FormCrearInformes
 
                 fila = fila - 4
                 columna = columna + 4
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 3
@@ -10566,8 +10556,7 @@ Public Class FormCrearInformes
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
         x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-            & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+       x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "G" & fila).WrapText = True
         x1hoja.Range("A" & fila, "G" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -11325,7 +11314,7 @@ Public Class FormCrearInformes
 
             fila = fila - 4
             columna = columna + 4
-            x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+            x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 3
@@ -11459,8 +11448,7 @@ Public Class FormCrearInformes
             '*** PIE DE PAGINA ******************************************************
             x1hoja.Cells(fila, columna).rowheight = 25
             x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
-            x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+            x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
             x1hoja.Range("A" & fila, "G" & fila).WrapText = True
             x1hoja.Range("A" & fila, "G" & fila).Merge()
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -11697,7 +11685,7 @@ Public Class FormCrearInformes
         x1hoja.Cells(fila, columna).Font.Size = 8
         fila = fila + 1
         columna = 1
-        x1hoja.Cells(fila, columna).Formula = "Paratécnico:"
+        x1hoja.Cells(fila, columna).Formula = "Analista:"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 7
         columna = columna + 2
@@ -12304,7 +12292,7 @@ Public Class FormCrearInformes
         '*******************************************************************
         columna = 1
         fila = fila + 1
-        x1hoja.Cells(fila, columna).formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO."
+        x1hoja.Cells(fila, columna).formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO."
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Size = 6
         fila = fila + 1
@@ -12316,7 +12304,7 @@ Public Class FormCrearInformes
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Size = 6
         fila = fila + 1
-        x1hoja.Cells(fila, columna).formula = "asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)."
+        x1hoja.Cells(fila, columna).formula = "asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Size = 6
         fila = fila + 1
@@ -12770,7 +12758,7 @@ Public Class FormCrearInformes
         '********************************************************************
         If Not lista Is Nothing Then
             columna = columna + 10
-            x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+            x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 2
@@ -12904,8 +12892,7 @@ Public Class FormCrearInformes
         columna = 1
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-            & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+              x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "M" & fila).WrapText = True
         x1hoja.Range("A" & fila, "M" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -13369,7 +13356,7 @@ Public Class FormCrearInformes
         '********************************************************************
         If Not lista Is Nothing Then
             columna = columna + 10
-            x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+            x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 2
@@ -13502,8 +13489,7 @@ Public Class FormCrearInformes
         columna = 1
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-            & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+           x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "M" & fila).WrapText = True
         x1hoja.Range("A" & fila, "M" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -13932,7 +13918,7 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).Font.Bold = True
             columna = columna + 7
-            x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+            x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 2
@@ -14060,8 +14046,7 @@ Public Class FormCrearInformes
         columna = 1
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-            & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+               x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "I" & fila).WrapText = True
         x1hoja.Range("A" & fila, "I" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -14550,7 +14535,7 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).Font.Bold = True
             columna = columna + 10
-            x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+            x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 9
         fila = fila + 2
@@ -14676,8 +14661,7 @@ Public Class FormCrearInformes
         columna = 1
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-            & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+             x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "M" & fila).WrapText = True
         x1hoja.Range("A" & fila, "M" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -15093,7 +15077,7 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).Font.Bold = True
             columna = columna + 10
-            x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+            x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 2
@@ -15280,8 +15264,7 @@ Public Class FormCrearInformes
         columna = 1
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-            & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+            x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "M" & fila).WrapText = True
         x1hoja.Range("A" & fila, "M" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -15730,7 +15713,7 @@ Public Class FormCrearInformes
                 f = Nothing
                 lp2 = Nothing
                 columna = columna + 9
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 columna = 1
@@ -15773,8 +15756,7 @@ Public Class FormCrearInformes
                 '********************************************************************
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+       x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "L" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "L" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -16191,7 +16173,7 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).Font.Bold = True
             columna = columna + 7
-            x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+            x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 2
@@ -16318,8 +16300,7 @@ Public Class FormCrearInformes
         columna = 1
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-            & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+       x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "I" & fila).WrapText = True
         x1hoja.Range("A" & fila, "I" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -16753,7 +16734,7 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).Font.Bold = True
             columna = columna + 3
-            x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+            x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 9
             fila = fila + 2
@@ -16911,8 +16892,7 @@ Public Class FormCrearInformes
         columna = 1
         '*** PIE DE PAGINA ******************************************************
         x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-            & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+       x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
         x1hoja.Range("A" & fila, "E" & fila).WrapText = True
         x1hoja.Range("A" & fila, "E" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -17539,8 +17519,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+       x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "O" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "O" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -18269,7 +18248,7 @@ Public Class FormCrearInformes
                     usu = Nothing
                 End If
                 na2 = Nothing
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -18284,8 +18263,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+        x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "O" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "O" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -19013,7 +18991,7 @@ Public Class FormCrearInformes
                     usu = Nothing
                 End If
                 na2 = Nothing
-                x1hoja.Cells(fila, columna).Formula = "Operador: " & nombre_operador
+                x1hoja.Cells(fila, columna).Formula = "Analista: " & nombre_operador
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -19028,8 +19006,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-                x1hoja.Cells(fila, columna).Formula = "Este informe no podrá ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida." & vbCrLf _
-                    & "COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan y procedimientos de muestreo aplicados por el cliente. Dra. Cecilia Abelenda (Directora Técnica)"
+        x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "O" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "O" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
