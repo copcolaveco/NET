@@ -62,7 +62,7 @@
         & "Si lo desea, puede realizar un depósito en la cta cte en $ del BROU 001522854-00007, a nombre de Colaveco, o abonarlo en nuestro local." & vbCrLf & vbCrLf _
         & "Solicitamos nos informe si ha realizado el pago por esta vía, de forma de emitir el recibo y darle visualización a la brevedad." & vbCrLf & vbCrLf _
         & "Recuerde que los resultados quedan habilitados si el cliente no tiene facturas vencidas." & vbCrLf & vbCrLf _
-        & "Para poder acceder a los resultados debe ir a http://www.colaveco.com.uy/gestor y digitar su usuario y contraseña." & vbCrLf & vbCrLf _
+        & "Para poder acceder a los resultados debe ir a https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin y digitar su usuario y contraseña." & vbCrLf & vbCrLf _
         & "Sino cuenta con usuario y contraseña, favor solicitarla en administración al correo electrónico colaveco@gmail.com o al teléfono 4554 5311." & vbCrLf & vbCrLf _
         & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
         & "Administración - COLAVECO"
@@ -70,7 +70,7 @@
         textoprolesa = "El informe Nº" & " " & nficha & " - " & tipo_analisis & " " & "(" & nombre_productor & ")," & "se encuentra pendiente de visualización en la web/app de Colaveco, por motivo        de FALTA DE RECEPCIÓN ORDEN DE PROLESA." & vbCrLf & vbCrLf _
         & "Solicitamos gestionar LA ORDEN DE PAGO con la sucursal de PROLESA que ud. trabaja y nos la haga llegar vía mail o fax a los efectos de poder visualizar el resultado." & vbCrLf & vbCrLf _
         & "Recuerde que los resultados quedan habilitados cuando el cliente envía la orden correspondiente." & vbCrLf & vbCrLf _
-        & "Para poder acceder a los resultados debe ir a http://www.colaveco.com.uy/gestor y digitar su usuario y contraseña." & vbCrLf & vbCrLf _
+        & "Para poder acceder a los resultados debe ir a https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin y digitar su usuario y contraseña." & vbCrLf & vbCrLf _
         & "Sino cuenta con usuario y contraseña, favor solicitarla en administración al correo electrónico colaveco@gmail.com o al teléfono 4554 5311." & vbCrLf & vbCrLf _
         & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
         & "Administración - COLAVECO"
@@ -230,8 +230,11 @@
         If email <> "" Then
             If TextAdjunto.Text <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "23.111.185.242"
+                ' Llamamos al método buscar para obtener el objeto Credenciales
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+                _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+                _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
@@ -261,8 +264,11 @@
                 End Try
             Else
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "23.111.185.242"
+                ' Llamamos al método buscar para obtener el objeto Credenciales
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+                _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+                _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 

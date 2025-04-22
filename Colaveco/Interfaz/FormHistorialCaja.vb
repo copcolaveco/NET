@@ -47,7 +47,7 @@
             lista = ec.listarxcajatodos(idcaja)
             DataGridView1.Rows.Clear()
             If Not lista Is Nothing Then
-
+                DataGridView1.ColumnCount = lista.Count
                 DataGridView1.Rows.Add(lista.Count)
                 If Not lista Is Nothing Then
                     If lista.Count > 0 Then
@@ -77,6 +77,26 @@
                             DataGridView1(columna, fila).Value = ec.FECHARECIBO
                             columna = columna + 1
                             DataGridView1(columna, fila).Value = ec.OBSRECIBO
+                            columna = columna + 1
+
+                            If ec.OBSRECIBO.Trim = "Entrada manual" Then
+
+                                Dim usuario As dUsuario = New dUsuario
+                                usuario.ID = ec.CLIENTE
+                                usuario = usuario.buscar()
+
+                                If ec.CLIENTE <> 0 Then
+                                    If Not usuario Is Nothing Then
+                                        DataGridView1(columna, fila).Value = usuario.NOMBRE
+                                    Else
+                                        DataGridView1(columna, fila).Value = "Sin registro"
+                                    End If
+                                Else
+                                    DataGridView1(columna, fila).Value = "Sin registro"
+                                End If
+                                columna = columna + 1
+                            End If
+
                             columna = 0
                             fila = fila + 1
                         Next
@@ -84,5 +104,9 @@
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
+
     End Sub
 End Class

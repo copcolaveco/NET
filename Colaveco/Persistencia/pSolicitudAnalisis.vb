@@ -1570,9 +1570,9 @@
         lista.Add(sqlAccion)
         Return EjecutarTransaccion(lista)
     End Function
-    Public Function marcar(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
+    Public Function marcar(ByVal o As Object, ByVal usuario As dUsuario, ByVal fechaEnvio As String) As Boolean
         Dim obj As dSolicitudAnalisis = CType(o, dSolicitudAnalisis)
-        Dim sql As String = "UPDATE solicitudanalisis SET marca=1 WHERE marca=0 and ID = " & obj.ID & ""
+        Dim sql As String = "UPDATE solicitudanalisis SET marca=1, FECHAENVIO = '" & fechaEnvio & "' WHERE marca=0 and ID = " & obj.ID & ""
         Dim lista As New ArrayList
         lista.Add(sql)
         Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _

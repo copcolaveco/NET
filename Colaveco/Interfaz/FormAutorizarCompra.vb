@@ -346,40 +346,52 @@ Public Class FormAutorizarCompra
             'Arch1 = "\\192.168.1.10\E\NET\COMPRAS\OC\OC_" & compraid & ".xls"
             'System.Diagnostics.Process.Start(Arch1)
 
-            '*** Para enviar correo electrónico ********************************
-            Dim result = MessageBox.Show("Desea enviar un correo electrónico con la órden de compra?", "Atención!", MessageBoxButtons.YesNoCancel)
-            If result = DialogResult.Cancel Then
-                Exit Sub
-            ElseIf result = DialogResult.No Then
-                '--------------------------------------------------------------------------
-                Dim comp As New dCompras
-                Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
-                Dim fecaut As String
-                fecaut = Format(fechaautoriza, "yyyy-MM-dd")
-                comp.ID = TextIdCompra.Text
-                comp.USUARIOAUTORIZA = Usuario.ID
-                comp.FECHAAUTORIZA = fecaut
-                comp.marcarautoriza(Usuario)
-                comp.marcarnoenvia(Usuario)
-                '--------------------------------------------------------------------------
-                limpiar()
-                listarcompras()
-            ElseIf result = DialogResult.Yes Then
-                enviaremail()
-                '--------------------------------------------------------------------------
-                Dim comp As New dCompras
-                Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
-                Dim fecaut As String
-                fecaut = Format(fechaautoriza, "yyyy-MM-dd")
-                comp.ID = TextIdCompra.Text
-                comp.USUARIOAUTORIZA = Usuario.ID
-                comp.FECHAAUTORIZA = fecaut
-                comp.marcarautoriza(Usuario)
-                comp.marcarenvia(Usuario)
-                '--------------------------------------------------------------------------
-                limpiar()
-                listarcompras()
-            End If
+            Dim comp As New dCompras
+            Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
+            Dim fecaut As String
+            fecaut = Format(fechaautoriza, "yyyy-MM-dd")
+            comp.ID = TextIdCompra.Text
+            comp.USUARIOAUTORIZA = Usuario.ID
+            comp.FECHAAUTORIZA = fecaut
+            comp.marcarautoriza(Usuario)
+            limpiar()
+            listarcompras()
+
+
+            ''*** Para enviar correo electrónico ********************************
+            'Dim result = MessageBox.Show("Desea enviar un correo electrónico con la órden de compra?", "Atención!", MessageBoxButtons.YesNoCancel)
+            'If result = DialogResult.Cancel Then
+            '    Exit Sub
+            'ElseIf result = DialogResult.No Then
+            '    '--------------------------------------------------------------------------
+            '    Dim comp As New dCompras
+            '    Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
+            '    Dim fecaut As String
+            '    fecaut = Format(fechaautoriza, "yyyy-MM-dd")
+            '    comp.ID = TextIdCompra.Text
+            '    comp.USUARIOAUTORIZA = Usuario.ID
+            '    comp.FECHAAUTORIZA = fecaut
+            '    comp.marcarautoriza(Usuario)
+            '    comp.marcarnoenvia(Usuario)
+            '    '--------------------------------------------------------------------------
+            '    limpiar()
+            '    listarcompras()
+            'ElseIf result = DialogResult.Yes Then
+            '    enviaremail()
+            '    '--------------------------------------------------------------------------
+            '    Dim comp As New dCompras
+            '    Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
+            '    Dim fecaut As String
+            '    fecaut = Format(fechaautoriza, "yyyy-MM-dd")
+            '    comp.ID = TextIdCompra.Text
+            '    comp.USUARIOAUTORIZA = Usuario.ID
+            '    comp.FECHAAUTORIZA = fecaut
+            '    comp.marcarautoriza(Usuario)
+            '    comp.marcarenvia(Usuario)
+            '    '--------------------------------------------------------------------------
+            '    limpiar()
+            '    listarcompras()
+            'End If
             '*******************************************************************
 
         End If
@@ -803,10 +815,14 @@ Public Class FormAutorizarCompra
         If email <> "" Then
 
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "C1nIpB{tFYvp")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("laboratorio")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
+
             _Message.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
             ' CONFIGURACION DEL MENSAJE 
             _Message.[To].Add(email)

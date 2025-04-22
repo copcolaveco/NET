@@ -4,7 +4,8 @@ Public Class FormControlInformesSuelos
     Public check_coincide As Integer = 0
     Public check_om As Integer = 0
     Public check_nc As Integer = 0
-
+    Dim email As String
+    Dim Informe As Long
 #Region "Atributos"
     Private _usuario As dUsuario
     Public Property Usuario() As dUsuario
@@ -255,6 +256,18 @@ Public Class FormControlInformesSuelos
             observaciones = row.Cells("Observaciones").Value
             ci.ID = id
             ci.marcarcontrolada(Usuario)
+            'GestorNuevo modificar estado Cotnrol
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = row.Cells("Ficha").Value
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlControlado = 1
+                controlGestor.modificar()
+                enviomailInformeConVisualizacion()
+            Catch ex As Exception
+
+            End Try
             ci.guardarobservaciones(Usuario, observaciones)
             listarinformessuelos()
         End If
@@ -550,5 +563,78 @@ Public Class FormControlInformesSuelos
                 End If
             End If
         End If
+    End Sub
+
+    Private Sub enviomailInformeConVisualizacion()
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+        Dim sa As New dSolicitudAnalisis
+        Dim p As New dCliente
+        Dim ti As New dTipoInforme
+        Dim nombre_productor As String = ""
+        Dim tipo_analisis As String = ""
+        Dim nficha As Long = Informe
+        sa.ID = nficha
+        sa = sa.buscar
+        If Not sa Is Nothing Then
+            p.ID = sa.IDPRODUCTOR
+            p = p.buscar
+            If Not p Is Nothing Then
+                nombre_productor = p.NOMBRE
+            End If
+            ti.ID = sa.IDTIPOINFORME
+            ti = ti.buscar
+            If Not ti Is Nothing Then
+                tipo_analisis = ti.NOMBRE
+            End If
+        End If
+        Dim texto As String = ""
+        texto = "Nos es grato comunicarle que el informe Nº " & " " & nficha & " - " & tipo_analisis & " (" & nombre_productor & ")," & "se encuentra disponible en la web/app de Colaveco." & vbCrLf _
+            & "Para poder acceder a los resultados debe ir a www.colaveco.com.uy y digitar su usuario y contraseña." & vbCrLf _
+            & "Sino cuenta con usuario y contraseña, favor solicitarla en administración al correo electrónico colaveco@gmail.com o al teléfono 4554 5311." & vbCrLf _
+            & "Agradecemos su confianza y quedamos a sus órdenes." & vbCrLf & vbCrLf _
+            & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
+            & "Administración - COLAVECO"
+        If email <> "" Then
+            'CONFIGURACIÓN DEL STMP 
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
+            ' CONFIGURACION DEL MENSAJE 
+            '_Message.[To].Add("computos@colaveco.com.uy")
+            Try
+                _Message.[To].Add(email)
+                _Message.[To].Add("envios@colaveco.com.uy")
+            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+            End Try
+            'Cuenta de Correo al que se le quiere enviar el e-mail 
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+            'Quien lo envía 
+            _Message.Subject = "Informe" & " Nº " & nficha & " - Colaveco"
+            'Sujeto del e-mail 
+            _Message.SubjectEncoding = System.Text.Encoding.UTF8
+            'Codificacion 
+            _Message.Body = texto
+            'contenido del mail 
+            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+            _Message.Priority = System.Net.Mail.MailPriority.Normal
+            _Message.IsBodyHtml = False
+            ' ADICION DE DATOS ADJUNTOS ‘
+            'Dim _File As String = My.Application.Info.DirectoryPath & "archivo" 'archivo que se quiere adjuntar ‘
+            'Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
+            '_Message.Attachments.Add(_Attachment) 'ENVIO 
+            Try
+                _SMTP.Send(_Message)
+                'MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+            End Try
+        End If
+        email = ""
+        nficha = 0
     End Sub
 End Class

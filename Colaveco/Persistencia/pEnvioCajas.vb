@@ -1053,9 +1053,13 @@
         Dim sql As String = "UPDATE enviocajas SET idagencia=" & obj.IDAGENCIA & ", recibo='" & obj.RECIBO & "', fecharecibo='" & obj.FECHARECIBO & "', recibido= " & obj.RECIBIDO & ", cliente= " & obj.CLIENTE & ",obsrecibo='" & obj.OBSRECIBO & "' ,cargada=" & obj.CARGADA & "  WHERE id = " & obj.ID & ""
         Dim sql2 As String = "UPDATE cajas SET marcada_envio = 0, estado = 1 WHERE codigo = '" & obj.IDCAJA & "'"
 
+        'matar caja
+        Dim sql3 As String = "UPDATE enviocajas SET recibido= " & obj.RECIBIDO & ", cargada=" & obj.CARGADA & " WHERE idcaja = '" & obj.IDCAJA & "'"
+
         Dim lista As New ArrayList
         lista.Add(sql)
         lista.Add(sql2)
+        lista.Add(sql3)
         Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
                                  & "VALUES (now(), 'envio_cajas', 'marcar recibido', last_insert_id(), " & usuario.ID & ")"
         lista.Add(sqlAccion)

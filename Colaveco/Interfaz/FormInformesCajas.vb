@@ -116,6 +116,7 @@ Public Class FormInformesCajas
                 env.OBSRECIBO = "Entrada manual"
                 env.RECIBIDO = 1
                 env.CARGADA = 0
+                env.CLIENTE = Usuario.ID
                 'End If
                 If MsgBox("La caja será marcada como recibida, ¿desea continuar?", MsgBoxStyle.OkCancel, "Atención") = MsgBoxResult.Ok Then
                     If (env.marcarrecibido(Usuario)) Then

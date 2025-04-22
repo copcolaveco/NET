@@ -126,16 +126,16 @@ Public Class FormCajas
             c.ESTADO = estado
             If (c.modificar(Usuario)) Then
                 '**************************************************
-                Dim cw As New dCajasWeb
-                cw.CODIGO = codigo
-                cw = cw.buscar()
-                If Not cw Is Nothing Then
-                    cw.ESTADO = estado
-                    cw.CLIENTE = -1
-                    cw.MODCOLAVECO = 1
-                    cw.MODFLORIDA = 0
-                    cw.modificarcaja(Usuario)
-                End If
+                'Dim cw As New dCajasWeb
+                'cw.CODIGO = codigo
+                'cw = cw.buscar()
+                'If Not cw Is Nothing Then
+                '    cw.ESTADO = estado
+                '    cw.CLIENTE = -1
+                '    cw.MODCOLAVECO = 1
+                '    cw.MODFLORIDA = 0
+                '    cw.modificarcaja(Usuario)
+                'End If
                 '**************************************************
 
                 MsgBox("Registro modificado", MsgBoxStyle.Information, "Atención")

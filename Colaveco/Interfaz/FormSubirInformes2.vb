@@ -52,61 +52,175 @@ Public Class FormSubirInformes2
         'subirinforme()
         Dim saMarcar As New dSolicitudAnalisis
         saMarcar.ID = idficha
+        Dim pi As New dPreinformes
+        Dim fechaactual As Date = Now()
+        Dim _fecha As String
+        _fecha = Format(fechaactual, "yyyy-MM-dd")
+        pi.FICHA = idficha
 
         If tipoinforme = 1 Then
-            subir_control()
-            saMarcar.marcar(Usuario)
+            subir_control() '_control()
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 3 Then
             subir_agua()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 4 Then
             subir_atb()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 6 Then
             subir_parasitologia()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 7 Then
             subir_alimentos()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 8 Then
             subir_serologia()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 9 Then
             subir_patologia()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 10 Then
             subir_calidad()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 11 Then
             subir_ambiental()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 13 Then
             subir_nutricion()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 14 Or tipoinforme = 19 Then
             subir_suelos()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 15 Then
             subir_brucelosis()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 16 Then
             subir_efluentes()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 17 Then
             subir_bacteriologia()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 18 Then
             subir_bacteriologia_clinica()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 19 Then
             subir_foliares()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 20 Then
             subir_toxicologia()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         ElseIf tipoinforme = 21 Then
             subir_mineralesenleche()
-            saMarcar.marcar(Usuario)
+            saMarcar.marcar(Usuario, _fecha)
+            pi.marcarsubido(_fecha)
+            '---------------GestorGX
+            Dim gestorNuevo As New dNuevoGestor
+            gestorNuevo.ID = idficha
+            gestorNuevo.FECHAENVIO = _fecha
+            gestorNuevo.modificarFechaEnvio(Usuario)
         End If
     End Sub
     Private Sub subir_control()
@@ -238,6 +352,27 @@ Public Class FormSubirInformes2
                 cifq.CONTROLADO = 0
                 cifq.guardar()
                 cifq = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 1 'FQ
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -260,6 +395,27 @@ Public Class FormSubirInformes2
             cifq.CONTROLADO = 0
             cifq.guardar()
             cifq = Nothing
+
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = pi.FICHA
+                controlGestor.UsuarioId = _usuario.ID
+                controlGestor.ControlTipoId = 1 'FQ
+                controlGestor.ControlCoincide = 0
+                controlGestor.ControlControlado = 0
+                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlNoConformidad = 0
+                controlGestor.ControlObservaciones = "Se creo Control"
+                controlGestor.ControlOpcMejora = 0
+                controlGestor.ControlResultado = 0
+                controlGestor.guardar()
+            Catch ex As Exception
+
+            End Try
+
             ' Grabar estado de la ficha
             Dim est As New dEstados
             est.FICHA = ficha
@@ -373,6 +529,10 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
+
         End If
         '****************************
         limpiar()
@@ -458,6 +618,26 @@ Public Class FormSubirInformes2
                 cimicro.CONTROLADO = 0
                 cimicro.guardar()
                 cimicro = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 3 'Micro
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -480,6 +660,26 @@ Public Class FormSubirInformes2
             cimicro.CONTROLADO = 0
             cimicro.guardar()
             cimicro = Nothing
+
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = pi.FICHA
+                controlGestor.UsuarioId = _usuario.ID
+                controlGestor.ControlTipoId = 3 'Micro
+                controlGestor.ControlCoincide = 0
+                controlGestor.ControlControlado = 0
+                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlNoConformidad = 0
+                controlGestor.ControlObservaciones = "Se creo Control"
+                controlGestor.ControlOpcMejora = 0
+                controlGestor.ControlResultado = 0
+                controlGestor.guardar()
+            Catch ex As Exception
+
+            End Try
             ' Grabar estado de la ficha
             Dim est As New dEstados
             est.FICHA = ficha
@@ -578,6 +778,10 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
+
         End If
         '****************************
         limpiar()
@@ -722,6 +926,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -870,6 +1077,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -950,6 +1160,26 @@ Public Class FormSubirInformes2
                 cimicro.CONTROLADO = 0
                 cimicro.guardar()
                 cimicro = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 3 'Micro
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -972,6 +1202,26 @@ Public Class FormSubirInformes2
             cimicro.CONTROLADO = 0
             cimicro.guardar()
             cimicro = Nothing
+
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = pi.FICHA
+                controlGestor.UsuarioId = _usuario.ID
+                controlGestor.ControlTipoId = 3 'Micro
+                controlGestor.ControlCoincide = 0
+                controlGestor.ControlControlado = 0
+                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlNoConformidad = 0
+                controlGestor.ControlObservaciones = "Se creo Control"
+                controlGestor.ControlOpcMejora = 0
+                controlGestor.ControlResultado = 0
+                controlGestor.guardar()
+            Catch ex As Exception
+
+            End Try
             ' Grabar estado de la ficha
             Dim est As New dEstados
             est.FICHA = ficha
@@ -1070,6 +1320,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -1186,6 +1439,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -1330,6 +1586,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -1479,6 +1738,27 @@ Public Class FormSubirInformes2
                 cifq.CONTROLADO = 0
                 cifq.guardar()
                 cifq = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 1 'FQ
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -1501,6 +1781,27 @@ Public Class FormSubirInformes2
             cifq.CONTROLADO = 0
             cifq.guardar()
             cifq = Nothing
+
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = pi.FICHA
+                controlGestor.UsuarioId = _usuario.ID
+                controlGestor.ControlTipoId = 1 'FQ
+                controlGestor.ControlCoincide = 0
+                controlGestor.ControlControlado = 0
+                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlNoConformidad = 0
+                controlGestor.ControlObservaciones = "Se creo Control"
+                controlGestor.ControlOpcMejora = 0
+                controlGestor.ControlResultado = 0
+                controlGestor.guardar()
+            Catch ex As Exception
+
+            End Try
+
             ' Grabar estado de la ficha
             Dim est As New dEstados
             est.FICHA = ficha
@@ -1508,6 +1809,7 @@ Public Class FormSubirInformes2
             est.FECHA = fechad
             est.guardar2()
             est = Nothing
+
             '****************************
         End If
         'AGREGRA A LISTA PARA CONTROLAR MICRO***************************
@@ -1532,6 +1834,27 @@ Public Class FormSubirInformes2
                     cimicro.CONTROLADO = 0
                     cimicro.guardar()
                     cimicro = Nothing
+
+                    Dim controlGestor As New dNGControl
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 3 'Micro
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -1554,6 +1877,27 @@ Public Class FormSubirInformes2
                 cimicro.CONTROLADO = 0
                 cimicro.guardar()
                 cimicro = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 3 'Micro
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -1653,6 +1997,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         '**Marcar pago en SA***
@@ -1867,6 +2214,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -2011,6 +2361,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -2091,6 +2444,27 @@ Public Class FormSubirInformes2
                 cinutricion.CONTROLADO = 0
                 cinutricion.guardar()
                 cinutricion = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 4 'Nutricion
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -2113,6 +2487,27 @@ Public Class FormSubirInformes2
             cinutricion.CONTROLADO = 0
             cinutricion.guardar()
             cinutricion = Nothing
+
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = pi.FICHA
+                controlGestor.UsuarioId = _usuario.ID
+                controlGestor.ControlTipoId = 4 'Nutricion
+                controlGestor.ControlCoincide = 0
+                controlGestor.ControlControlado = 0
+                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlNoConformidad = 0
+                controlGestor.ControlObservaciones = "Se creo Control"
+                controlGestor.ControlOpcMejora = 0
+                controlGestor.ControlResultado = 0
+                controlGestor.guardar()
+            Catch ex As Exception
+
+            End Try
+
             ' Grabar estado de la ficha
             Dim est As New dEstados
             est.FICHA = ficha
@@ -2212,6 +2607,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -2433,6 +2831,27 @@ Public Class FormSubirInformes2
                 cisuelos.CONTROLADO = 0
                 cisuelos.guardar()
                 cisuelos = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 5 'suelos
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -2455,6 +2874,27 @@ Public Class FormSubirInformes2
             cisuelos.CONTROLADO = 0
             cisuelos.guardar()
             cisuelos = Nothing
+
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = pi.FICHA
+                controlGestor.UsuarioId = _usuario.ID
+                controlGestor.ControlTipoId = 5 'suelos
+                controlGestor.ControlCoincide = 0
+                controlGestor.ControlControlado = 0
+                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlNoConformidad = 0
+                controlGestor.ControlObservaciones = "Se creo Control"
+                controlGestor.ControlOpcMejora = 0
+                controlGestor.ControlResultado = 0
+                controlGestor.guardar()
+            Catch ex As Exception
+
+            End Try
+
             ' Grabar estado de la ficha
             Dim est As New dEstados
             est.FICHA = ficha
@@ -2532,7 +2972,7 @@ Public Class FormSubirInformes2
 
             Dim nuevoGestor As New dNuevoGestor
             nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'sin visualizacion
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
             nuevoGestor.modificar(Usuario)
 
             Dim p As New dCliente
@@ -2554,6 +2994,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -2698,6 +3141,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -2778,6 +3224,27 @@ Public Class FormSubirInformes2
                 ciefluentes.CONTROLADO = 0
                 ciefluentes.guardar()
                 ciefluentes = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 2 'Efluentes
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -2800,6 +3267,26 @@ Public Class FormSubirInformes2
             ciefluentes.CONTROLADO = 0
             ciefluentes.guardar()
             ciefluentes = Nothing
+
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = pi.FICHA
+                controlGestor.UsuarioId = _usuario.ID
+                controlGestor.ControlTipoId = 2 'Efluentes
+                controlGestor.ControlCoincide = 0
+                controlGestor.ControlControlado = 0
+                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlNoConformidad = 0
+                controlGestor.ControlObservaciones = "Se creo Control"
+                controlGestor.ControlOpcMejora = 0
+                controlGestor.ControlResultado = 0
+                controlGestor.guardar()
+            Catch ex As Exception
+
+            End Try
             ' Grabar estado de la ficha
             Dim est As New dEstados
             est.FICHA = ficha
@@ -2876,7 +3363,7 @@ Public Class FormSubirInformes2
 
             Dim nuevoGestor As New dNuevoGestor
             nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'sin visualizacion
+            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
             nuevoGestor.modificar(Usuario)
 
             Dim p As New dCliente
@@ -2898,6 +3385,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -3042,6 +3532,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -3186,6 +3679,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -3266,6 +3762,27 @@ Public Class FormSubirInformes2
                 cisuelos.CONTROLADO = 0
                 cisuelos.guardar()
                 cisuelos = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 5 'suelo
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -3288,6 +3805,27 @@ Public Class FormSubirInformes2
             cisuelos.CONTROLADO = 0
             cisuelos.guardar()
             cisuelos = Nothing
+
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = pi.FICHA
+                controlGestor.UsuarioId = _usuario.ID
+                controlGestor.ControlTipoId = 5 'Suelo
+                controlGestor.ControlCoincide = 0
+                controlGestor.ControlControlado = 0
+                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlNoConformidad = 0
+                controlGestor.ControlObservaciones = "Se creo Control"
+                controlGestor.ControlOpcMejora = 0
+                controlGestor.ControlResultado = 0
+                controlGestor.guardar()
+            Catch ex As Exception
+
+            End Try
+
             ' Grabar estado de la ficha
             Dim est As New dEstados
             est.FICHA = ficha
@@ -3386,6 +3924,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -3530,6 +4071,9 @@ Public Class FormSubirInformes2
             p = Nothing
             prod = Nothing
             sol = Nothing
+
+            'Gestor, envio mail al cliente
+            enviomailInformeConVisualizacion()
         End If
         '****************************
         limpiar()
@@ -3620,6 +4164,27 @@ Public Class FormSubirInformes2
                     cifq.CONTROLADO = 0
                     cifq.guardar()
                     cifq = Nothing
+
+                    Dim controlGestor As New dNGControl
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 1 'FQ
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -3642,6 +4207,27 @@ Public Class FormSubirInformes2
                 cifq.CONTROLADO = 0
                 cifq.guardar()
                 cifq = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 1 'FQ
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -3673,6 +4259,27 @@ Public Class FormSubirInformes2
                         cimicro.CONTROLADO = 0
                         cimicro.guardar()
                         cimicro = Nothing
+
+                        Dim controlGestor As New dNGControl
+                        Try
+                            'Registro en Gestor Nuevo
+                            controlGestor.InformeId = pi.FICHA
+                            controlGestor.UsuarioId = _usuario.ID
+                            controlGestor.ControlTipoId = 3 'Micro
+                            controlGestor.ControlCoincide = 0
+                            controlGestor.ControlControlado = 0
+                            controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                            controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                            controlGestor.ControlInformeTipo = pi.TIPO
+                            controlGestor.ControlNoConformidad = 0
+                            controlGestor.ControlObservaciones = "Se creo Control"
+                            controlGestor.ControlOpcMejora = 0
+                            controlGestor.ControlResultado = 0
+                            controlGestor.guardar()
+                        Catch ex As Exception
+
+                        End Try
+
                         ' Grabar estado de la ficha
                         Dim est As New dEstados
                         est.FICHA = ficha
@@ -3695,6 +4302,27 @@ Public Class FormSubirInformes2
                     cimicro.CONTROLADO = 0
                     cimicro.guardar()
                     cimicro = Nothing
+
+                    Dim controlGestor As New dNGControl
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 3 'Micro
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -3823,6 +4451,27 @@ Public Class FormSubirInformes2
                     cifq.CONTROLADO = 0
                     cifq.guardar()
                     cifq = Nothing
+
+                    Dim controlGestor As New dNGControl
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 1 'FQ
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -3845,6 +4494,27 @@ Public Class FormSubirInformes2
                 cifq.CONTROLADO = 0
                 cifq.guardar()
                 cifq = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 1 'FQ
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -3915,6 +4585,27 @@ Public Class FormSubirInformes2
                     cimicro.CONTROLADO = 0
                     cimicro.guardar()
                     cimicro = Nothing
+
+                    Dim controlGestor As New dNGControl
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 3 'micro
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -3937,6 +4628,27 @@ Public Class FormSubirInformes2
                 cimicro.CONTROLADO = 0
                 cimicro.guardar()
                 cimicro = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 3 'Micro
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -4003,6 +4715,27 @@ Public Class FormSubirInformes2
                     cimicro.CONTROLADO = 0
                     cimicro.guardar()
                     cimicro = Nothing
+
+                    Dim controlGestor As New dNGControl
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 3 'micro
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -4025,6 +4758,27 @@ Public Class FormSubirInformes2
                 cimicro.CONTROLADO = 0
                 cimicro.guardar()
                 cimicro = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 3 'micro
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -4246,6 +5000,27 @@ Public Class FormSubirInformes2
                     cinutricion.CONTROLADO = 0
                     cinutricion.guardar()
                     cinutricion = Nothing
+
+                    Dim controlGestor As New dNGControl
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 4 'nutricion
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -4268,6 +5043,27 @@ Public Class FormSubirInformes2
                 cinutricion.CONTROLADO = 0
                 cinutricion.guardar()
                 cinutricion = Nothing
+
+                Dim controlGestor As New dNGControl
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 4 'nutricion
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -4403,6 +5199,28 @@ Public Class FormSubirInformes2
                     cimicro.CONTROLADO = 0
                     cimicro.guardar()
                     cimicro = Nothing
+
+                    Dim controlGestor As New dNGControl
+
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 3 'micro
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -4425,6 +5243,28 @@ Public Class FormSubirInformes2
                 cimicro.CONTROLADO = 0
                 cimicro.guardar()
                 cimicro = Nothing
+
+                Dim controlGestor As New dNGControl
+
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 3 'micro
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -4492,6 +5332,28 @@ Public Class FormSubirInformes2
                     cisuelos.CONTROLADO = 0
                     cisuelos.guardar()
                     cisuelos = Nothing
+
+                    Dim controlGestor As New dNGControl
+
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 5 'suelos
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                     ' Grabar estado de la ficha
                     Dim est As New dEstados
                     est.FICHA = ficha
@@ -4514,6 +5376,28 @@ Public Class FormSubirInformes2
                 cisuelos.CONTROLADO = 0
                 cisuelos.guardar()
                 cisuelos = Nothing
+
+                Dim controlGestor As New dNGControl
+
+                Try
+                    'Registro en Gestor Nuevo
+                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.UsuarioId = _usuario.ID
+                    controlGestor.ControlTipoId = 5 'suelos
+                    controlGestor.ControlCoincide = 0
+                    controlGestor.ControlControlado = 0
+                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlNoConformidad = 0
+                    controlGestor.ControlObservaciones = "Se creo Control"
+                    controlGestor.ControlOpcMejora = 0
+                    controlGestor.ControlResultado = 0
+                    controlGestor.guardar()
+                Catch ex As Exception
+
+                End Try
+
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
                 est.FICHA = ficha
@@ -4530,19 +5414,19 @@ Public Class FormSubirInformes2
             Dim fechaact As Date = Now()
             Dim fecact As String
             fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
+            Dim sol3 As New dSolicitudAnalisis
+            sol3.ID = ficha
+            sol3 = sol3.buscar
 
             'gestorColaveco
-            sol.SOLICITUDESTADOID = 4
-            sol.modificar(Usuario)
+            sol3.SOLICITUDESTADOID = 4
+            sol3.modificar(Usuario)
 
             Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
+            If Not sol3 Is Nothing Then
+                muestras = sol3.NMUESTRAS
             End If
-            Dim importe As Double = sol.IMPORTE
+            Dim importe As Double = sol3.IMPORTE
             Dim visualizacion As Integer = 0
             Dim observaciones As String = ""
             If TextComentarios.Text <> "" Then
@@ -4559,38 +5443,38 @@ Public Class FormSubirInformes2
             sv.OBSERVACIONES = observaciones
             sv.guardar()
             Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
+            Dim prod As Long = sol3.IDPRODUCTOR
             Dim productorweb_com As String = ""
             productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
-            End If
+            'Dim pw_com As New dProductorWeb_com
+            'pw_com.USUARIO = productorweb_com
+            'pw_com = pw_com.buscar
+            'If Not pw_com Is Nothing Then
+            '    email = RTrim(pw_com.ENVIAR_EMAIL)
+            'Else
+            '    MsgBox("No coincide el usuario web (.com)")
+            'End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+            'productorweb_com = Nothing
+            'pw_com = Nothing
             p = Nothing
             prod = Nothing
             sv = Nothing
-            sol = Nothing
+            sol3 = Nothing
         Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
+            Dim sol2 As New dSolicitudAnalisis
+            sol2.ID = ficha
+            sol2 = sol2.buscar
 
             'gestorColaveco
-            sol.SOLICITUDESTADOID = 5
-            sol.modificar(Usuario)
+            sol2.SOLICITUDESTADOID = 5
+            sol2.modificar(Usuario)
 
             Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
+            Dim prod As Long = sol2.IDPRODUCTOR
+            p.ID = sol2.IDPRODUCTOR
             p = p.buscar
             If p.NOT_EMAIL_ANALISIS1 <> "" Then
                 email = RTrim(p.NOT_EMAIL_ANALISIS1)
@@ -4599,8 +5483,8 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+            'Dim productorweb_com As String = ""
+            'productorweb_com = p.USUARIO_WEB
             'Dim pw_com As New dProductorWeb_com
             'pw_com.USUARIO = productorweb_com
             'pw_com = pw_com.buscar
@@ -4615,9 +5499,16 @@ Public Class FormSubirInformes2
             'pw_com = Nothing
             p = Nothing
             prod = Nothing
-            sol = Nothing
+            sol2 = Nothing
         End If
         '****************************
+        Dim sol As New dSolicitudAnalisis
+        sol.ID = ficha
+        sol = sol.buscar
+        sol.FECHAENVIO = Today
+        sol.modificar(Usuario)
+
+
         limpiar()
         marcarxdefecto()
     End Sub
@@ -4825,8 +5716,11 @@ Public Class FormSubirInformes2
         email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -4870,8 +5764,11 @@ Public Class FormSubirInformes2
         email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -4913,9 +5810,13 @@ Public Class FormSubirInformes2
         archivo = TextFicha.Text.Trim
         email = "iverocay@hotmail.com"
         If email <> "" Then
+      
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -4954,5 +5855,79 @@ Public Class FormSubirInformes2
 
     Private Sub FormSubirInformes2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
 
+    End Sub
+
+    Private Sub enviomailInformeConVisualizacion()
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+        Dim sa As New dSolicitudAnalisis
+        Dim p As New dCliente
+        Dim ti As New dTipoInforme
+        Dim nombre_productor As String = ""
+        Dim tipo_analisis As String = ""
+        nficha = idficha
+        sa.ID = nficha
+        sa = sa.buscar
+        If Not sa Is Nothing Then
+            p.ID = sa.IDPRODUCTOR
+            p = p.buscar
+            If Not p Is Nothing Then
+                nombre_productor = p.NOMBRE
+            End If
+            ti.ID = sa.IDTIPOINFORME
+            ti = ti.buscar
+            If Not ti Is Nothing Then
+                tipo_analisis = ti.NOMBRE
+            End If
+        End If
+        Dim texto As String = ""
+        texto = "Nos es grato comunicarle que el informe Nº " & " " & nficha & " - " & tipo_analisis & " (" & nombre_productor & ")," & "se encuentra disponible en la web/app de Colaveco." & vbCrLf _
+            & "Para poder acceder a los resultados debe ir a www.colaveco.com.uy y digitar su usuario y contraseña." & vbCrLf _
+            & "Sino cuenta con usuario y contraseña, favor solicitarla en administración al correo electrónico colaveco@gmail.com o al teléfono 4554 5311." & vbCrLf _
+            & "Agradecemos su confianza y quedamos a sus órdenes." & vbCrLf & vbCrLf _
+            & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
+            & "Administración - COLAVECO"
+        If email <> "" Then
+         
+            'CONFIGURACIÓN DEL STMP 
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
+            ' CONFIGURACION DEL MENSAJE 
+            '_Message.[To].Add("computos@colaveco.com.uy")
+            Try
+                _Message.[To].Add(email)
+                _Message.[To].Add("envios@colaveco.com.uy")
+            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+            End Try
+            'Cuenta de Correo al que se le quiere enviar el e-mail 
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+            'Quien lo envía 
+            _Message.Subject = "Informe" & " Nº " & nficha & " - Colaveco"
+            'Sujeto del e-mail 
+            _Message.SubjectEncoding = System.Text.Encoding.UTF8
+            'Codificacion 
+            _Message.Body = texto
+            'contenido del mail 
+            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+            _Message.Priority = System.Net.Mail.MailPriority.Normal
+            _Message.IsBodyHtml = False
+            ' ADICION DE DATOS ADJUNTOS ‘
+            'Dim _File As String = My.Application.Info.DirectoryPath & "archivo" 'archivo que se quiere adjuntar ‘
+            'Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
+            '_Message.Attachments.Add(_Attachment) 'ENVIO 
+            Try
+                _SMTP.Send(_Message)
+                'MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+            End Try
+        End If
+        email = ""
+        nficha = 0
     End Sub
 End Class

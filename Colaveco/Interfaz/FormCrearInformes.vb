@@ -1213,14 +1213,14 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Gr*"
+            x1hoja.Cells(fila, columna).Formula = "Gr"
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Pr*"
+            x1hoja.Cells(fila, columna).Formula = "Pr"
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
@@ -1234,7 +1234,7 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "ST*"
+            x1hoja.Cells(fila, columna).Formula = "ST"
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)

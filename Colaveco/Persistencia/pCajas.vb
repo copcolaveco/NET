@@ -15,10 +15,20 @@
     End Function
     Public Function modificar(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dCajas = CType(o, dCajas)
-        Dim sql As String = "UPDATE cajas SET codigo='" & obj.CODIGO & "', estado= " & obj.ESTADO & ", idcliente= " & obj.IDCLIENTE & ", fecha='" & obj.FECHA & "'  WHERE id = " & obj.ID & ""
-
+        Dim sql As String = ""
+        Dim sql2 As String = ""
         Dim lista As New ArrayList
-        lista.Add(sql)
+
+        If (obj.ESTADO = 2) Then
+            sql = "UPDATE enviocajas set recibido=0, fecharecibo='0000-00-00' , cargada=22 where id = (SELECT id FROM (select MAX(ec2.id) as id from enviocajas ec2 where ec2.idcaja = '" & obj.CODIGO & "') AS subquery)"
+            sql2 = "UPDATE cajas SET codigo='" & obj.CODIGO & "', estado= " & obj.ESTADO & ", idcliente= " & obj.IDCLIENTE & ", fecha='" & obj.FECHA & "'  WHERE id = " & obj.ID & ""
+
+            lista.Add(sql)
+            lista.Add(sql2)
+        Else
+            sql = "UPDATE cajas SET codigo='" & obj.CODIGO & "', estado= " & obj.ESTADO & ", idcliente= " & obj.IDCLIENTE & ", fecha='" & obj.FECHA & "'  WHERE id = " & obj.ID & ""
+            lista.Add(sql)
+        End If
 
         Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
                                  & "VALUES (now(), 'cajas', 'modificación', " & obj.ID & ", " & usuario.ID & ")"

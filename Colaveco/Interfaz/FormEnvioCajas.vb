@@ -250,8 +250,11 @@ Public Class FormEnvioCajas
         End If
         If email <> "" And email <> "no aportado" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -421,8 +424,11 @@ Public Class FormEnvioCajas
         Dim cantcaracteres As Integer = Len(texto)
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -443,8 +449,8 @@ Public Class FormEnvioCajas
             _Message.SubjectEncoding = System.Text.Encoding.UTF8
             'Codificacion 
             '_Message.Body = "Se han enviado las siguientes cajas:" & " " & ecaja1 & ", " & "por" & " " & eagencia & " " & "envío nº" & " " & eremito & ""
-            '_Message.Body = "Colaveco ha publicado un informe. Ingrese al sitio http://www.colaveco.com.uy/gestor"
-            '_Message.Body = "Colaveco ha publicado un informe. Ingrese al sitio http://www.colaveco.com.uy/gestor"
+            '_Message.Body = "Colaveco ha publicado un informe. Ingrese al sitio https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin"
+            '_Message.Body = "Colaveco ha publicado un informe. Ingrese al sitio https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin"
             'contenido del mail 
             _Message.BodyEncoding = System.Text.Encoding.UTF8 '
             _Message.Priority = System.Net.Mail.MailPriority.Normal
@@ -670,6 +676,7 @@ Public Class FormEnvioCajas
                     ec2.OBSRECIBO = "Caja matada en envío"
                     ec2.RECIBIDO = 1
                     ec2.CARGADA = 0
+                    ec2.CLIENTE = Usuario.ID
                     If (ec2.marcarrecibido(Usuario)) Then
                         Dim c As New dCajas
                         Dim caja As String = ""
@@ -1457,7 +1464,7 @@ Public Class FormEnvioCajas
         ec.RECIBO = "s/n"
         ec.OBSRECIBO = "Entrada manual"
         ec.RECIBIDO = 1
-        ec.CLIENTE = 0
+        ec.CLIENTE = Usuario.ID
         ec.CARGADA = 0
 
         If (ec.marcarrecibido(Usuario)) Then

@@ -554,9 +554,13 @@ Public Class FormAutorizaciones
 
             texto = nombre & " ha autorizado su solicitud: " & tipo & " - " & detalle & vbCrLf _
             & "Observaciones: " & mailobservaciones
+           
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -613,9 +617,13 @@ Public Class FormAutorizaciones
 
             texto = nombre & " no ha autorizado su solicitud: " & tipo & " - " & detalle & vbCrLf _
             & "Observaciones: " & mailobservaciones
+            
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 

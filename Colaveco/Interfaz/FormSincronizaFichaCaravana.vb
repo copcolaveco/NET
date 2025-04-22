@@ -97,14 +97,14 @@ Public Class FormSincronizaFichaCaravana
         x1hoja = Nothing
         objReader.Close()
 
-        Dim proceso As System.Diagnostics.Process()
-        proceso = System.Diagnostics.Process.GetProcessesByName("EXCEL")
-        For Each opro As System.Diagnostics.Process In proceso
-            'antes de iniciar el proceso obtengo la fecha en que inicie el 
-            'proceso para detener todos los procesos que excel que inicio
-            'mi código durante el proceso
-            opro.Kill()
-        Next
+        'Dim proceso As System.Diagnostics.Process()
+        'proceso = System.Diagnostics.Process.GetProcessesByName("EXCEL")
+        'For Each opro As System.Diagnostics.Process In proceso
+        '    'antes de iniciar el proceso obtengo la fecha en que inicie el 
+        '    'proceso para detener todos los procesos que excel que inicio
+        '    'mi código durante el proceso
+        '    opro.Kill()
+        'Next
 
         Dim ca As New dCaravanas
         Dim lista As New ArrayList
@@ -584,14 +584,14 @@ Public Class FormSincronizaFichaCaravana
 
     'End Sub
     Private Sub preinforme_control(ByVal id_sol As Long)
-        Dim proceso1 As System.Diagnostics.Process()
-        proceso1 = System.Diagnostics.Process.GetProcessesByName("EXCEL")
-        For Each opro As System.Diagnostics.Process In proceso1
-            'antes de iniciar el proceso obtengo la fecha en que inicie el 
-            'proceso para detener todos los procesos que excel que inicio
-            'mi código durante el proceso
-            opro.Kill()
-        Next
+        'Dim proceso1 As System.Diagnostics.Process()
+        'proceso1 = System.Diagnostics.Process.GetProcessesByName("EXCEL")
+        'For Each opro As System.Diagnostics.Process In proceso1
+        '    'antes de iniciar el proceso obtengo la fecha en que inicie el 
+        '    'proceso para detener todos los procesos que excel que inicio
+        '    'mi código durante el proceso
+        '    opro.Kill()
+        'Next
 
         Dim x1app As Microsoft.Office.Interop.Excel.Application
         Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
@@ -832,10 +832,18 @@ Public Class FormSincronizaFichaCaravana
                             x1hoja.Cells(fila, columna).Font.Size = 8
                             columna = columna + 1
                         Else
-                            x1hoja.Cells(fila, columna).formula = c.RC
-                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                            x1hoja.Cells(fila, columna).Font.Size = 8
-                            columna = columna + 1
+                            If c.RC > 1000 Then
+                                x1hoja.Cells(fila, columna).formula = c.RC
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 8
+                                x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                                columna = columna + 1
+                            Else
+                                x1hoja.Cells(fila, columna).formula = c.RC
+                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                x1hoja.Cells(fila, columna).Font.Size = 8
+                                columna = columna + 1
+                            End If
                         End If
                     End If
                     If c.GRASA = -1 Or c.GRASA = 0 Then
@@ -1150,10 +1158,18 @@ Public Class FormSincronizaFichaCaravana
                                 x1hoja.Cells(fila, columna).Font.Size = 8
                                 columna = columna + 1
                             Else
-                                x1hoja.Cells(fila, columna).formula = c.RC
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
+                                If c.RC > 1000 Then
+                                    x1hoja.Cells(fila, columna).formula = c.RC
+                                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                    x1hoja.Cells(fila, columna).Font.Size = 8
+                                    x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
+                                    columna = columna + 1
+                                Else
+                                    x1hoja.Cells(fila, columna).formula = c.RC
+                                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                    x1hoja.Cells(fila, columna).Font.Size = 8
+                                    columna = columna + 1
+                                End If
                             End If
                         End If
                         If c.GRASA = -1 Or c.GRASA = 0 Then

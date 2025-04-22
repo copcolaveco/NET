@@ -78,16 +78,20 @@
     <Reference Include="Gma.QrCodeNet.Encoding.Net35">
       <HintPath>..\..\..\..\Downloads\QrCode.Net 0.4 Pre-Release\Gma.QrCodeNet.Encoding.Net35\Gma.QrCodeNet.Encoding.Net35.dll</HintPath>
     </Reference>
-    <Reference Include="itextsharp, Version=5.4.5.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL" />
+    <Reference Include="itextsharp, Version=5.4.5.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca, processorArchitecture=MSIL">
+      <HintPath>bin\debug\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Office.Interop.Excel, Version=12.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c">
       <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0" />
-    <Reference Include="MySql.Data, Version=6.2.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL" />
+    <Reference Include="MySql.Data, Version=6.2.2.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <HintPath>bin\debug\MySql.Data.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json">
-      <HintPath>..\..\..\..\Desktop\jason\Bin\net35\Newtonsoft.Json.dll</HintPath>
+      <HintPath>bin\debug\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -249,6 +253,7 @@
     <Compile Include="Conexion_BD\ConexionMySQL_reloj.vb" />
     <Compile Include="Conexion_BD\ConexionMySQL_tools_com.vb" />
     <Compile Include="Conexion_BD\ConexionMySQL_uy.vb" />
+    <Compile Include="Conexion_BD\ConexionMySQLGestor.vb" />
     <Compile Include="Facturacion\dClient.vb" />
     <Compile Include="Facturacion\dMovCte.vb" />
     <Compile Include="Facturacion\dMovCte2.vb" />
@@ -256,6 +261,9 @@
     <Compile Include="Facturacion\pFactur.vb" />
     <Compile Include="Facturacion\pMovCte.vb" />
     <Compile Include="Facturacion\pMovCte2.vb" />
+    <Compile Include="Gestor\dClienteGestor.vb" />
+    <Compile Include="Gestor\dNGControl.vb" />
+    <Compile Include="Gestor\NuevoGestor.vb" />
     <Compile Include="Gestor\dCelularGestor.vb" />
     <Compile Include="Gestor\dEmailGestor.vb" />
     <Compile Include="Gestor\dFrascosGestor.vb" />
@@ -710,6 +718,8 @@
     <Compile Include="IT\FormPedidosAutomaticos_it.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Logica\dCredenciales.vb" />
+    <Compile Include="Logica\dNuevoGestor.vb" />
     <Compile Include="Logica\dAccionCorrectiva.vb" />
     <Compile Include="Logica\dAcreditacion.vb" />
     <Compile Include="Logica\dAislamientoATB.vb" />
@@ -942,6 +952,7 @@
     <Compile Include="Persistencia\pControlInformesSuelos.vb" />
     <Compile Include="Persistencia\pConvenio.vb" />
     <Compile Include="Persistencia\pCorreos.vb" />
+    <Compile Include="Persistencia\pCredenciales.vb" />
     <Compile Include="Persistencia\pCrioscopia_Control.vb" />
     <Compile Include="Persistencia\pCrioscopia_Fichas.vb" />
     <Compile Include="Persistencia\pCrioscopia_Medias.vb" />
@@ -962,6 +973,7 @@
     <Compile Include="Persistencia\pMicotoxinasLeche.vb" />
     <Compile Include="Persistencia\pMicroATB.vb" />
     <Compile Include="Persistencia\pMorosos.vb" />
+    <Compile Include="Persistencia\pNGControl.vb" />
     <Compile Include="Persistencia\pNoAtendibles.vb" />
     <Compile Include="Persistencia\pNoticias2.vb" />
     <Compile Include="Persistencia\pNuevoAnalisis.vb" />
@@ -3624,7 +3636,9 @@
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram3.cd" />
     <None Include="Colaveco_ClaveTemporal.pfx" />
-    <None Include="My Project\app.manifest" />
+    <None Include="My Project\app.manifest">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

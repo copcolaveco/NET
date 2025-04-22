@@ -1727,14 +1727,14 @@ Public Class FormInicio
         x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
         columna = columna + 1
-        x1hoja.Cells(fila, columna).Formula = "Gr*"
+        x1hoja.Cells(fila, columna).Formula = "Gr"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 8
         x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
         x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
         columna = columna + 1
-        x1hoja.Cells(fila, columna).Formula = "Pr*"
+        x1hoja.Cells(fila, columna).Formula = "Pr"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 8
         x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
@@ -1920,14 +1920,14 @@ Public Class FormInicio
             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Gr*"
+            x1hoja.Cells(fila, columna).Formula = "Gr"
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Pr*"
+            x1hoja.Cells(fila, columna).Formula = "Pr"
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 8
             x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
@@ -2181,14 +2181,14 @@ Public Class FormInicio
         x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
         columna = columna + 1
-        x1hoja.Cells(fila, columna).Formula = "Gr*"
+        x1hoja.Cells(fila, columna).Formula = "Gr"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 8
         x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
         x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
         columna = columna + 1
-        x1hoja.Cells(fila, columna).Formula = "Pr*"
+        x1hoja.Cells(fila, columna).Formula = "Pr"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 8
         x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
@@ -2202,7 +2202,7 @@ Public Class FormInicio
         x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
         columna = columna + 1
-        x1hoja.Cells(fila, columna).Formula = "ST*"
+        x1hoja.Cells(fila, columna).Formula = "ST"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 8
         x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
@@ -3436,7 +3436,7 @@ controltxt:
     Public Sub crea_carpeta()
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -4662,8 +4662,12 @@ controltxt:
         End If
         If enviarcopia <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            'CONFIGURACIÓN DEL STMP 
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -4699,7 +4703,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".xls"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".xls"
@@ -4772,7 +4776,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".pdf"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".pdf"
@@ -4845,7 +4849,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".txt"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".txt"
@@ -4912,7 +4916,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         'Dim dir As String = "ftp://colaveco.com.uy/www/gestor/data_file/1"
         If tipoinforme = 1 Then
             crea_control_lechero_com()
@@ -5027,7 +5031,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         'Dim dir As String = "ftp://colaveco.com.uy/www/gestor/data_file/1"
         If tipoinforme = 1 Then
             crea_control_lechero_com()
@@ -5143,7 +5147,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         If tipoinforme = 1 Then
             'fichero = "\\192.168.1.10\E\NET\INFORMES PARA SUBIR\" & idficha & ".pdf"
             fichero = "C:\INFORMES PARA SUBIR\" & idficha & ".pdf"
@@ -5252,7 +5256,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         If tipoinforme = 1 Then
             'fichero = "\\192.168.1.10\E\NET\INFORMES PARA SUBIR\" & idficha & ".pdf"
             fichero = "\\ROBOT\\INFORMES PARA SUBIR\" & idficha & ".pdf"
@@ -5361,7 +5365,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         If tipoinforme = 1 Then
             'fichero = "\\192.168.1.10\E\NET\INFORMES PARA SUBIR\" & idficha & ".txt"
             fichero = "C:\INFORMES PARA SUBIR\" & idficha & ".txt"
@@ -5415,7 +5419,7 @@ controltxt:
         Dim fichero As String = ""
         Dim destino As String = ""
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         If tipoinforme = 1 Then
             'fichero = "\\192.168.1.10\E\NET\INFORMES PARA SUBIR\" & idficha & ".txt"
             fichero = "\\ROBOT\\INFORMES PARA SUBIR\" & idficha & ".txt"
@@ -6408,15 +6412,19 @@ controltxt:
         End If
         Dim texto As String = ""
         texto = "Nos es grato comunicarle que el informe Nº " & " " & nficha & " - " & tipo_analisis & " (" & nombre_productor & ")," & "se encuentra disponible en la web/app de Colaveco." & vbCrLf _
-            & "Para poder acceder a los resultados debe ir a www.colaveco.com.uy/gestor y digitar su usuario y contraseña." & vbCrLf _
+            & "Para poder acceder a los resultados debe ir a www.colaveco.com.uy y digitar su usuario y contraseña." & vbCrLf _
             & "Sino cuenta con usuario y contraseña, favor solicitarla en administración al correo electrónico colaveco@gmail.com o al teléfono 4554 5311." & vbCrLf _
             & "Agradecemos su confianza y quedamos a sus órdenes." & vbCrLf & vbCrLf _
             & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
             & "Administración - COLAVECO"
         If email <> "" Then
+
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -6588,8 +6596,11 @@ controltxt:
         End If
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -6605,7 +6616,7 @@ controltxt:
             _Message.SubjectEncoding = System.Text.Encoding.UTF8
             'Codificacion 
             '_Message.Body = "Se han enviado las siguientes cajas:" & " " & ecaja1 & ", " & "por" & " " & eagencia & " " & "envío nº" & " " & eremito & ""
-            '_Message.Body = "Colaveco ha publicado un informe. Ingrese al sitio http://www.colaveco.com.uy/gestor"
+            '_Message.Body = "Colaveco ha publicado un informe. Ingrese al sitio https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin"
             'contenido del mail 
             _Message.BodyEncoding = System.Text.Encoding.UTF8 '
             _Message.Priority = System.Net.Mail.MailPriority.Normal
@@ -6633,8 +6644,11 @@ controltxt:
         email = "unepi@mgap.gub.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -6682,8 +6696,11 @@ controltxt:
         email = "decano@fvet.edu.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -6725,7 +6742,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/brucelosis_leche/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6749,7 +6766,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/agro_suelos/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6773,7 +6790,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/control_lechero/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6797,7 +6814,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/agua/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6821,7 +6838,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/antibiograma/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6845,7 +6862,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/parasitologia/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6869,7 +6886,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/productos_subproductos/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6893,7 +6910,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/serologia/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6917,7 +6934,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/patologia/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6941,7 +6958,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/calidad_de_leche/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6965,7 +6982,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/ambiental/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -6989,7 +7006,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/agro_nutricion/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -7013,7 +7030,7 @@ controltxt:
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
         Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim pass As String = "Fmbh23052305"
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/otros_servicios/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -7988,6 +8005,7 @@ controltxt:
         If Not lcontrol Is Nothing Then
             If lcontrol.Count > 0 Then
                 Dim ci As New dControlInformesFQ
+                Dim controlGestor As New dNGControl
                 For Each pi In lcontrol
                     ci.FECHACONTROL = fechad
                     ci.FICHA = pi.FICHA
@@ -7999,6 +8017,25 @@ controltxt:
                     ci.CONTROLADOR = 100
                     ci.CONTROLADO = 0
                     ci.guardar()
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 1 'FQ
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                 Next
             End If
         End If
@@ -8006,6 +8043,7 @@ controltxt:
         If Not lcalidad Is Nothing Then
             If lcalidad.Count > 0 Then
                 Dim ci As New dControlInformesFQ
+                Dim controlGestor As New dNGControl
                 For Each pi In lcalidad
                     ci.FECHACONTROL = fechad
                     ci.FICHA = pi.FICHA
@@ -8017,6 +8055,26 @@ controltxt:
                     ci.CONTROLADOR = 100
                     ci.CONTROLADO = 0
                     ci.guardar()
+
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 1 'FQ
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                 Next
             End If
         End If
@@ -8047,6 +8105,7 @@ controltxt:
         If Not lcalidad Is Nothing Then
             If lcalidad.Count > 0 Then
                 Dim ci As New dControlInformesFQ
+                Dim controlGestor As New dNGControl
                 For Each pi In lcalidad
                     ci.FECHACONTROL = fechad
                     ci.FICHA = pi.FICHA
@@ -8058,6 +8117,26 @@ controltxt:
                     ci.CONTROLADOR = 100
                     ci.CONTROLADO = 0
                     ci.guardar()
+
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 1 'FQ
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                 Next
             End If
         End If
@@ -8065,6 +8144,7 @@ controltxt:
         If Not lagua Is Nothing Then
             If lagua.Count > 0 Then
                 Dim ci As New dControlInformesMicro
+                Dim controlGestor As New dNGControl
                 For Each pi In lagua
                     ci.FECHACONTROL = fechad
                     ci.FICHA = pi.FICHA
@@ -8076,6 +8156,26 @@ controltxt:
                     ci.CONTROLADOR = 100
                     ci.CONTROLADO = 0
                     ci.guardar()
+
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 3 'Micro
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                 Next
             End If
         End If
@@ -8083,6 +8183,7 @@ controltxt:
         If Not lsubproductos Is Nothing Then
             If lsubproductos.Count > 0 Then
                 Dim ci As New dControlInformesMicro
+                Dim controlGestor As New dNGControl
                 For Each pi In lsubproductos
                     ci.FECHACONTROL = fechad
                     ci.FICHA = pi.FICHA
@@ -8094,6 +8195,26 @@ controltxt:
                     ci.CONTROLADOR = 100
                     ci.CONTROLADO = 0
                     ci.guardar()
+
+                    Try
+                        'Registro en Gestor Nuevo
+                        controlGestor.InformeId = pi.FICHA
+                        controlGestor.UsuarioId = _usuario.ID
+                        controlGestor.ControlTipoId = 3 'Micro
+                        controlGestor.ControlCoincide = 0
+                        controlGestor.ControlControlado = 0
+                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                        controlGestor.ControlInformeTipo = pi.TIPO
+                        controlGestor.ControlNoConformidad = 0
+                        controlGestor.ControlObservaciones = "Se creo Control"
+                        controlGestor.ControlOpcMejora = 0
+                        controlGestor.ControlResultado = 0
+                        controlGestor.guardar()
+                    Catch ex As Exception
+
+                    End Try
+
                 Next
             End If
         End If
@@ -8160,8 +8281,11 @@ controltxt:
         End If
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("laboratorio@colaveco.com.uy", "C1nIpB{tFYvp")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("laboratorio")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -8901,7 +9025,7 @@ controltxt:
         Dim cuerpo_analisis As String = ""
         Dim cuerpo_muestras As String = ""
         Dim pie_observaciones As String = ""
-        Dim pie_estadosolicitud As String = "En nuestro sitio web http://www.colaveco.com.uy/gestor, puede ver el estado de su solicitud."
+        Dim pie_estadosolicitud As String = "En nuestro sitio web https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede ver el estado de su solicitud."
         Dim nombre_productor As String = nombreproductorweb
         Dim sm As New dRelSolicitudMuestras
         Dim spal As New dSolicitudPAL
@@ -9540,8 +9664,11 @@ controltxt:
         If tipoinforme = "Nutrición" Or tipoinforme = "Suelos" Then
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "23.111.185.242"
+                ' Llamamos al método buscar para obtener el objeto Credenciales
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+                _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+                _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
@@ -9568,7 +9695,7 @@ controltxt:
                 & "Observaciones:" & vbCrLf _
                 & observaciones & vbCrLf _
                 & vbCrLf _
-                & "En nuestro sitio web, http://www.colaveco.com.uy/gestor, puede ver el estado de su solicitud." & vbCrLf _
+                & "En nuestro sitio web, https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede ver el estado de su solicitud." & vbCrLf _
                 & "Gracias." & vbCrLf _
                 & "COLAVECO"
                 'contenido del mail 
@@ -9586,8 +9713,11 @@ controltxt:
         Else
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "23.111.185.242"
+                ' Llamamos al método buscar para obtener el objeto Credenciales
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+                _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+                _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
@@ -9617,7 +9747,7 @@ controltxt:
                 & "Observaciones:" & vbCrLf _
                 & observaciones & vbCrLf _
                 & vbCrLf _
-                & "En nuestro sitio web, http://www.colaveco.com.uy/gestor, puede ver el estado de su solicitud." & vbCrLf _
+                & "En nuestro sitio web, https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede ver el estado de su solicitud." & vbCrLf _
                 & "Gracias." & vbCrLf & vbCrLf _
                 & "COLAVECO" & vbCrLf _
                 & "Parque El Retiro - Nueva Helvecia - Tel/Fax: 45545311/45545975/45546838" & vbCrLf _
@@ -9754,8 +9884,11 @@ controltxt:
         End If
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -10549,8 +10682,11 @@ controltxt:
         email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -10594,8 +10730,11 @@ controltxt:
         email = "iverocay@hotmail.com"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -10994,4 +11133,50 @@ controltxt:
         Dim v As New FormSubirInformes2(Sesion.Usuario)
         v.Show()
     End Sub
+
+    Private Sub Button1_Click_5(sender As Object, e As EventArgs) Handles Button1.Click
+        ' Llamamos al método buscar para obtener el objeto Credenciales
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("laboratorio")
+        Dim _SMTP2 As New System.Net.Mail.SmtpClient
+        If Not objetoCredenciales Is Nothing Then
+            ' CONFIGURACIÓN DEL SMTP
+            _SMTP2.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP2.Host = objetoCredenciales.CredencialesHost
+            _SMTP2.Port = 25
+            _SMTP2.EnableSsl = False
+
+            ' CONFIGURACIÓN DEL MENSAJE
+            Dim _Message As New System.Net.Mail.MailMessage()
+            _Message.To.Add("sebastianabellauribe@gmail.com")  ' Correo destinatario
+            _Message.To.Add("envios@colaveco.com.uy")  ' Otro destinatario si es necesario
+
+            ' Cuenta de Correo al que se le quiere enviar el e-mail
+            _Message.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+            ' Quién lo envía
+            _Message.Subject = "Orden de compra" & " - " & compraid
+            ' Sujeto del e-mail
+            _Message.SubjectEncoding = System.Text.Encoding.UTF8
+            ' Codificación
+            _Message.Body = "Sres.por medio del presente correo adjuntamos orden de compra. Desde ya gracias. COLAVECO"
+            ' Contenido del mail
+            _Message.BodyEncoding = System.Text.Encoding.UTF8
+            _Message.Priority = System.Net.Mail.MailPriority.Normal
+            _Message.IsBodyHtml = False
+
+
+            ' ENVÍO
+            Try
+                _SMTP2.Send(_Message)
+                MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+
+            Catch ex As System.Net.Mail.SmtpException
+                MessageBox.Show("Falla al enviar el correo!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit Sub
+            End Try
+        Else
+            MessageBox.Show("No se encontraron datos para la descripción 'laboratorio'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+    End Sub
+
+
 End Class

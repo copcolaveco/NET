@@ -78,7 +78,7 @@
     End Function
     Public Function marcarenvia(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dCompras = CType(o, dCompras)
-        Dim sql As String = "UPDATE compras SET  envia= 1 WHERE id = " & obj.ID & ""
+        Dim sql As String = "UPDATE compras SET  envia= 1 and enviado=1 WHERE id = " & obj.ID & ""
 
         Dim lista As New ArrayList
         lista.Add(sql)

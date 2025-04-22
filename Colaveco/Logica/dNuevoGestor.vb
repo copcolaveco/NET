@@ -406,6 +406,11 @@
         Dim s As New NuevoGestor
         Return s.modificarEstado(Me, usuario)
     End Function
+
+    Public Function modificarFechaEnvio(ByVal usuario As dUsuario) As Boolean
+        Dim s As New NuevoGestor
+        Return s.modificarfechaEnvio(Me, usuario)
+    End Function
     
 #End Region
     Public Overrides Function ToString() As String

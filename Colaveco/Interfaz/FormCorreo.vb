@@ -56,7 +56,7 @@
 
         Dim texto As String = ""
         texto = "Nos es grato comunicarle que el informe Nº " & " " & nficha & " - " & tipo_analisis & " (" & nombre_productor & ")," & "se encuentra disponible en la web de Colaveco." & vbCrLf _
-            & "Para poder acceder a los resultados debe ir a http://www.colaveco.com.uy/gestor y digitar su usuario y contraseña." & vbCrLf _
+            & "Para poder acceder a los resultados debe ir a https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin y digitar su usuario y contraseña." & vbCrLf _
             & "Sino cuenta con usuario y contraseña, favor solicitarla en administración al correo electrónico colaveco@gmail.com o al teléfono 4554 5311." & vbCrLf _
             & "Recuerde que los resultados quedan habilitados si el cliente no tiene facturas vencidas." & vbCrLf & vbCrLf _
             & "Agradecemos su confianza y quedamos a sus órdenes." & vbCrLf & vbCrLf _
@@ -161,8 +161,11 @@
         If email <> "" Then
             If TextAdjunto.Text <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "23.111.185.242"
+                ' Llamamos al método buscar para obtener el objeto Credenciales
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+                _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+                _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
@@ -192,8 +195,12 @@
                 End Try
             Else
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "23.111.185.242"
+                'CONFIGURACIÓN DEL STMP 
+                ' Llamamos al método buscar para obtener el objeto Credenciales
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+                _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+                _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 

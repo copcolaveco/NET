@@ -89,5 +89,29 @@ Namespace Conectoras
             End Try
             Return hecho
         End Function
+
+        Public Function EjecutarEscalar(ByVal consulta As String) As Integer
+            Dim resultado As Integer = 0
+            Dim myConnection As New MySqlConnection(Me.CadenaConexion)
+
+            Try
+                myConnection.Open()
+                Dim myCommand As New MySqlCommand(consulta, myConnection)
+                Dim obj As Object = myCommand.ExecuteScalar()
+
+                If obj IsNot Nothing AndAlso Not IsDBNull(obj) Then
+                    resultado = Convert.ToInt32(obj)
+                End If
+
+            Catch ex As Exception
+                Console.WriteLine("Error en EjecutarEscalar: " & ex.Message)
+            Finally
+                myConnection.Close()
+            End Try
+
+            Return resultado
+        End Function
+
+
     End Class
 End Namespace

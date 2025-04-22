@@ -8,7 +8,7 @@ Namespace Conectoras
         End Enum
         'String que contiene la cadena de conexión a BD.
 
-        Private Shared mCadenaConexion As String = "Server=colaveco.com.uy;Database=colaveco_clv_florida;Uid=colaveco;Pwd=NUEVA**!!COL22$%;Convert Zero Datetime=True"
+        Private Shared mCadenaConexion As String = "Server=colaveco.com.uy;Database=colaveco_clv_florida;Uid=colaveco;Pwd=Fmbh23052305;Convert Zero Datetime=True"
 
         Public ReadOnly Property CadenaConexion() As String
             Get

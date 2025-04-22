@@ -162,8 +162,10 @@ controltxt:
     End Sub
     Public Sub crea_carpeta()
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
 
         Dim peticionFTP As FtpWebRequest
 
@@ -193,8 +195,10 @@ controltxt:
     Public Function existeXls() As Boolean
         Dim fichero As String = ""
         Dim destino As String = ""
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".xls"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".xls"
@@ -276,8 +280,10 @@ controltxt:
     Public Function existePdf() As Boolean
         Dim fichero As String = ""
         Dim destino As String = ""
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".pdf"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".pdf"
@@ -358,8 +364,10 @@ controltxt:
     Public Function existeCsv() As Boolean
         Dim fichero As String = ""
         Dim destino As String = ""
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".txt"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".txt"
@@ -560,8 +568,10 @@ controltxt:
     Public Function subirFicheroXls() As String
         Dim fichero As String = ""
         Dim destino As String = ""
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         If tipoinforme = 1 Then
             crea_control_lechero_com()
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".xls"
@@ -688,8 +698,10 @@ controltxt:
     Public Function subirFicheroPdf() As String
         Dim fichero As String = ""
         Dim destino As String = ""
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         If tipoinforme = 1 Then
             crea_control_lechero_com()
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".pdf"
@@ -823,8 +835,10 @@ controltxt:
     Public Function subirFicheroCsv() As String
         Dim fichero As String = ""
         Dim destino As String = ""
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         If tipoinforme = 1 Then
             fichero = "\\192.168.1.10\E\NET\CONTROL_LECHERO\" & idficha & ".txt"
             destino = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & idproductorweb_com & "/control_lechero/" & idficha & ".txt"
@@ -893,8 +907,10 @@ controltxt:
     Public Sub crea_brucelosis_leche_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
 
         Dim peticionFTP As FtpWebRequest
 
@@ -924,8 +940,10 @@ controltxt:
     Public Sub crea_agro_suelos_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
 
         Dim peticionFTP As FtpWebRequest
 
@@ -955,8 +973,10 @@ controltxt:
     Public Sub crea_control_lechero_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
 
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/control_lechero/"
@@ -985,8 +1005,10 @@ controltxt:
     Public Sub crea_agua_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1016,8 +1038,10 @@ controltxt:
     Public Sub crea_antibiograma_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1047,8 +1071,10 @@ controltxt:
     Public Sub crea_parasitologia_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1078,8 +1104,10 @@ controltxt:
     Public Sub crea_productos_subproductos_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
 
         Dim peticionFTP As FtpWebRequest
 
@@ -1109,8 +1137,10 @@ controltxt:
     Public Sub crea_serologia_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/serologia/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1133,8 +1163,10 @@ controltxt:
     Public Sub crea_patologia_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/patologia/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1157,8 +1189,10 @@ controltxt:
     Public Sub crea_calidad_de_leche_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/calidad_de_leche/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1181,8 +1215,10 @@ controltxt:
     Public Sub crea_ambiental_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/ambiental/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1205,8 +1241,10 @@ controltxt:
     Public Sub crea_agro_nutricion_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/agro_nutricion/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1229,8 +1267,10 @@ controltxt:
     Public Sub crea_otros_servicios_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/otros_servicios/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear
@@ -1253,8 +1293,10 @@ controltxt:
     Public Sub crea_efluentes_com()
         Dim carpeta As Long = idproductorweb_com
         Dim pweb_com As New dProductorWeb_com
-        Dim user As String = "colaveco"
-        Dim pass As String = "NUEVA**!!COL22$%"
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("cpanel")
+
+        Dim user As String = objetoCredenciales.CredencialesUsuario
+        Dim pass As String = objetoCredenciales.CredencialesPassword
         Dim peticionFTP As FtpWebRequest
         Dim dir As String = "ftp://colaveco.com.uy/public_html/gestor/data_file/" & carpeta & "/efluentes/"
         ' Creamos una peticion FTP con la dirección del directorio que queremos crear

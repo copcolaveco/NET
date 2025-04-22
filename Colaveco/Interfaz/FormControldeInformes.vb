@@ -1089,6 +1089,17 @@ Public Class FormControldeInformes
             observaciones = row.Cells("Observaciones").Value
             ci.ID = id
             ci.marcarcontrolada(Usuario)
+            'GestorNuevo modificar estado Cotnrol
+            Dim controlGestor As New dNGControl
+            Try
+                'Registro en Gestor Nuevo
+                controlGestor.InformeId = id
+                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
+                controlGestor.ControlControlado = 1
+                controlGestor.modificar()
+            Catch ex As Exception
+
+            End Try
             ci.guardarobservaciones(Usuario, observaciones)
             listarinformes()
         End If

@@ -138,7 +138,7 @@
             ec.FECHARECIBO = fec
             ec.OBSRECIBO = "Entrada manual"
             ec.RECIBIDO = 1
-            ec.CLIENTE = 0
+            ec.CLIENTE = Usuario.ID
             ec.CARGADA = 0
             If recibido = 0 Then
                 If (ec.marcarrecibido(Usuario)) Then

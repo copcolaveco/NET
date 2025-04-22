@@ -433,9 +433,9 @@
         Dim s As New pSolicitudAnalisis
         Return s.desmarcarpago(Me, usuario)
     End Function
-    Public Function marcar(ByVal usuario As dUsuario) As Boolean
+    Public Function marcar(ByVal usuario As dUsuario, ByRef fechaEnvio As String) As Boolean
         Dim s As New pSolicitudAnalisis
-        Return s.marcar(Me, usuario)
+        Return s.marcar(Me, usuario, fechaEnvio)
     End Function
     Public Function marcarlogo(ByVal usuario As dUsuario) As Boolean
         Dim s As New pSolicitudAnalisis
@@ -497,7 +497,7 @@
         pr = pr.buscar
         ti.ID = m_idtipoinforme
         ti = ti.buscar
-        Return m_id & Chr(9) & m_fechaingreso & Chr(9) & m_nmuestras & Chr(9) & ti.NOMBRE & Chr(9) & Chr(9) & pr.NOMBRE ' & m_fechaingreso & Chr(9) & pr.NOMBRE
+        Return m_id & Chr(9) & m_fechaingreso & Chr(9) & m_nmuestras & Chr(9) & ti.NOMBRE & Chr(9) & pr.NOMBRE ' & m_fechaingreso & Chr(9) & pr.NOMBRE
     End Function
     Public Function listar() As ArrayList
         Dim s As New pSolicitudAnalisis

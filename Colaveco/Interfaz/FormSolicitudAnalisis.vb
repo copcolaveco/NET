@@ -7365,7 +7365,7 @@ Public Class FormSolicitudAnalisis
         x1hoja.Cells(fila, columna).Font.Size = 10
         x1hoja.Cells(fila, columna).Font.Bold = True
         'fila = fila + 1
-        'x1hoja.Cells(fila, columna).formula = "Para poder acceder a sus resultados debe ingresar a http://www.colaveco.com.uy/gestor"
+        'x1hoja.Cells(fila, columna).formula = "Para poder acceder a sus resultados debe ingresar a https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin"
         'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         'x1hoja.Cells(fila, columna).Font.Size = 10
         'x1hoja.Cells(fila, columna).Font.Bold = True
@@ -8396,7 +8396,7 @@ Public Class FormSolicitudAnalisis
         x1hoja.Cells(fila, columna).Font.Bold = False
         x1hoja.Cells(fila, columna).Font.Size = 10
         fila = fila + 2
-        'x1hoja.Cells(fila, columna).formula = "En nuestro sitio web http://www.colaveco.com.uy/gestor, puede descargar los resultados, solicite usuario y contraseña."
+        'x1hoja.Cells(fila, columna).formula = "En nuestro sitio web https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede descargar los resultados, solicite usuario y contraseña."
         'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         'x1hoja.Cells(fila, columna).Font.Size = 10
         'x1hoja.Cells(fila, columna).Font.Bold = True
@@ -10637,7 +10637,7 @@ Public Class FormSolicitudAnalisis
         x1hoja.Cells(fila, columna).Font.Bold = False
         x1hoja.Cells(fila, columna).Font.Size = 10
         fila = fila + 2
-        'x1hoja.Cells(fila, columna).formula = "En nuestro sitio web http://www.colaveco.com.uy/gestor, puede descargar los resultados, solicite usuario y contraseña."
+        'x1hoja.Cells(fila, columna).formula = "En nuestro sitio web https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede descargar los resultados, solicite usuario y contraseña."
         'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         'x1hoja.Cells(fila, columna).Font.Size = 10
         'x1hoja.Cells(fila, columna).Font.Bold = True
@@ -15970,7 +15970,7 @@ Public Class FormSolicitudAnalisis
         Dim cuerpo_analisis As String = ""
         Dim cuerpo_muestras As String = ""
         Dim pie_observaciones As String = ""
-        Dim pie_estadosolicitud As String = "En nuestro sitio web http://www.colaveco.com.uy/gestor, puede ver el estado de su solicitud."
+        Dim pie_estadosolicitud As String = "En nuestro sitio web https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede ver el estado de su solicitud."
         Dim pro As New dCliente
         Dim nombre_productor As String = ""
         pro.ID = TextIdProductor.Text.Trim
@@ -16615,8 +16615,11 @@ Public Class FormSolicitudAnalisis
         If tipoinforme = "Nutrición" Or tipoinforme = "Suelos" Then
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "23.111.185.242"
+                ' Llamamos al método buscar para obtener el objeto Credenciales
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+                _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+                _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
@@ -16643,7 +16646,7 @@ Public Class FormSolicitudAnalisis
                 & "Observaciones:" & vbCrLf _
                 & observaciones & vbCrLf _
                 & vbCrLf _
-                & "En nuestro sitio web, http://www.colaveco.com.uy/gestor, puede ver el estado de su solicitud." & vbCrLf _
+                & "En nuestro sitio web, https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede ver el estado de su solicitud." & vbCrLf _
                 & "Gracias." & vbCrLf _
                 & "COLAVECO"
                 'contenido del mail 
@@ -16661,8 +16664,11 @@ Public Class FormSolicitudAnalisis
         Else
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
-                _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-                _SMTP.Host = "23.111.185.242"
+                ' Llamamos al método buscar para obtener el objeto Credenciales
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+                _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+                _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
@@ -16692,7 +16698,7 @@ Public Class FormSolicitudAnalisis
                 & "Observaciones:" & vbCrLf _
                 & observaciones & vbCrLf _
                 & vbCrLf _
-                & "En nuestro sitio web, http://www.colaveco.com.uy/gestor, puede ver el estado de su solicitud." & vbCrLf _
+                & "En nuestro sitio web, https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede ver el estado de su solicitud." & vbCrLf _
                 & "Gracias." & vbCrLf & vbCrLf _
                 & "COLAVECO" & vbCrLf _
                 & "Parque El Retiro - Nueva Helvecia - Tel/Fax: 45545311/45545975/45546838" & vbCrLf _
@@ -16759,8 +16765,11 @@ Public Class FormSolicitudAnalisis
         End If
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -16781,7 +16790,7 @@ Public Class FormSolicitudAnalisis
             & "Subtipo: " & subtipo & "." & vbCrLf _
             & "Tipo de muestra: " & tipo_muestra & "." & vbCrLf _
             & "Muestras ingresadas: " & cantmuestras & "." & vbCrLf & vbCrLf _
-            & "En nuestro sitio web, http://www.colaveco.com.uy/gestor, puede ver el estado de su solicitud." & vbCrLf _
+            & "En nuestro sitio web, https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede ver el estado de su solicitud." & vbCrLf _
             & "Gracias." & vbCrLf _
             & "COLAVECO"
             '_Message.Body = "Su solicitud de análisis Nº " & " " & nficha & ", " & "ha ingresado correctamente al sistema. Gracias."
@@ -16939,8 +16948,11 @@ Public Class FormSolicitudAnalisis
 
         If sms <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 
@@ -16981,8 +16993,11 @@ Public Class FormSolicitudAnalisis
         fichero = "\\192.168.1.10\E\NET\SOLICITUDES\S" & nficha & ".xls"
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
-            _SMTP.Credentials = New System.Net.NetworkCredential("notificaciones@colaveco.com.uy", "-]$]Mo8z1kr3")
-            _SMTP.Host = "23.111.185.242"
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
             _SMTP.Port = 25
             _SMTP.EnableSsl = False
 

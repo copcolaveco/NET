@@ -385,6 +385,7 @@ Partial Class FormInicio
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.Button1 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridTareas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -2807,6 +2808,16 @@ Partial Class FormInicio
         Me.Label4.TabIndex = 38
         Me.Label4.Text = "Preinformes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(821, 49)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(184, 28)
+        Me.Button1.TabIndex = 39
+        Me.Button1.Text = "Credenciales"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FormInicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -2814,6 +2825,7 @@ Partial Class FormInicio
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(1616, 855)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.dgvPreinformes)
         Me.Controls.Add(Me.ButtonCrearInformes)
@@ -3227,4 +3239,5 @@ Partial Class FormInicio
     Friend WithEvents ControlDeInformesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Minerales As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AsfToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class

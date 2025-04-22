@@ -122,8 +122,11 @@
             Dim id As Long = 0
             Dim s As New dSolicitudAnalisis
             id = row.Cells("Ficha").Value
+            Dim _fecha As String
+            Dim fechaactual As Date = Now()
+            _fecha = Format(fechaactual, "yyyy-MM-dd")
             s.ID = id
-            s.marcar(Usuario)
+            s.marcar(Usuario, _fecha)
             listarpendientes()
         End If
     End Sub
