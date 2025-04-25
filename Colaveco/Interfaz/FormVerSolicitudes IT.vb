@@ -112,7 +112,7 @@
         Dim s As New dSolicitudesIT
         Dim u As New dUsuario
         Dim lista As New ArrayList
-        lista = s.listarpendientes
+        lista = s.listarpendientes(dtpDesde.Value, dtpHasta.Value)
 
         DataGridView1.Rows.Clear()
 
@@ -188,7 +188,7 @@
         Dim s As New dSolicitudesIT
         Dim u As New dUsuario
         Dim lista As New ArrayList
-        lista = s.listarfinalizadas
+        lista = s.listarfinalizadas(dtpDesde.Value, dtpHasta.Value)
 
         DataGridView1.Rows.Clear()
 
@@ -265,7 +265,7 @@
         Dim s As New dSolicitudesIT
         Dim u As New dUsuario
         Dim lista As New ArrayList
-        lista = s.listarenproceso
+        lista = s.listarenproceso(dtpDesde.Value, dtpHasta.Value)
 
         DataGridView1.Rows.Clear()
 
@@ -379,4 +379,54 @@
     Private Sub RadioProceso_CheckedChanged(sender As Object, e As EventArgs) Handles RadioProceso.CheckedChanged
         cargar()
     End Sub
+
+    Private Sub releaseObject(ByVal obj As Object)
+        Try
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
+            obj = Nothing
+        Catch ex As Exception
+            obj = Nothing
+        Finally
+            GC.Collect()
+        End Try
+    End Sub
+
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If DataGridView1.Rows.Count = 0 Then
+            MsgBox("No hay datos para exportar.", MsgBoxStyle.Exclamation, "Exportar a Excel")
+            Exit Sub
+        End If
+
+        Dim excelApp As New Microsoft.Office.Interop.Excel.Application
+        Dim excelWorkbook As Microsoft.Office.Interop.Excel.Workbook = excelApp.Workbooks.Add()
+        Dim excelWorksheet As Microsoft.Office.Interop.Excel.Worksheet = CType(excelWorkbook.Sheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+
+        ' Encabezados
+        For i As Integer = 0 To DataGridView1.Columns.Count - 1
+            excelWorksheet.Cells(1, i + 1) = DataGridView1.Columns(i).HeaderText
+        Next
+
+        ' Datos
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            For j As Integer = 0 To DataGridView1.Columns.Count - 1
+                If DataGridView1.Rows(i).Cells(j).Value IsNot Nothing Then
+                    excelWorksheet.Cells(i + 2, j + 1) = DataGridView1.Rows(i).Cells(j).Value.ToString()
+                End If
+            Next
+        Next
+
+        ' Guardar archivo
+        Dim ruta As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) & "\SolicitudesIT_" & Now.ToString("yyyyMMdd_HHmmss") & ".xls"
+        excelWorkbook.SaveAs(ruta)
+        excelWorkbook.Close()
+        excelApp.Quit()
+
+        releaseObject(excelWorksheet)
+        releaseObject(excelWorkbook)
+        releaseObject(excelApp)
+
+        MsgBox("Archivo Excel generado correctamente en: " & ruta, MsgBoxStyle.Information, "Exportación exitosa")
+    End Sub
+
 End Class

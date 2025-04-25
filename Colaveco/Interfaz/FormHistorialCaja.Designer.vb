@@ -25,8 +25,6 @@ Partial Class FormHistorialCaja
         Me.TextCaja = New System.Windows.Forms.TextBox()
         Me.ButtonBuscar = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.ComboCajas = New System.Windows.Forms.ComboBox()
         Me.Productor = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Caja = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.FechaEnvio = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -35,13 +33,17 @@ Partial Class FormHistorialCaja
         Me.FechaRecibo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.ObsRecibo = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.UsuarioNombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.ComboCajas = New System.Windows.Forms.ComboBox()
+        Me.Button1 = New System.Windows.Forms.Button()
+        Me.entradaManual = New System.Windows.Forms.CheckBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TextCaja
         '
         Me.TextCaja.Location = New System.Drawing.Point(324, 30)
-        Me.TextCaja.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextCaja.Margin = New System.Windows.Forms.Padding(4)
         Me.TextCaja.Name = "TextCaja"
         Me.TextCaja.Size = New System.Drawing.Size(100, 22)
         Me.TextCaja.TabIndex = 0
@@ -50,7 +52,7 @@ Partial Class FormHistorialCaja
         'ButtonBuscar
         '
         Me.ButtonBuscar.Location = New System.Drawing.Point(216, 27)
-        Me.ButtonBuscar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonBuscar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonBuscar.Name = "ButtonBuscar"
         Me.ButtonBuscar.Size = New System.Drawing.Size(100, 28)
         Me.ButtonBuscar.TabIndex = 1
@@ -62,32 +64,11 @@ Partial Class FormHistorialCaja
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Productor, Me.Caja, Me.FechaEnvio, Me.Observaciones, Me.Devuelta, Me.FechaRecibo, Me.ObsRecibo, Me.UsuarioNombre})
         Me.DataGridView1.Location = New System.Drawing.Point(20, 63)
-        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(1415, 471)
         Me.DataGridView1.TabIndex = 2
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(16, 11)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(73, 17)
-        Me.Label1.TabIndex = 3
-        Me.Label1.Text = "Nº de caja"
-        '
-        'ComboCajas
-        '
-        Me.ComboCajas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
-        Me.ComboCajas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
-        Me.ComboCajas.FormattingEnabled = True
-        Me.ComboCajas.Location = New System.Drawing.Point(20, 31)
-        Me.ComboCajas.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.ComboCajas.Name = "ComboCajas"
-        Me.ComboCajas.Size = New System.Drawing.Size(187, 24)
-        Me.ComboCajas.TabIndex = 5
         '
         'Productor
         '
@@ -134,19 +115,61 @@ Partial Class FormHistorialCaja
         '
         Me.UsuarioNombre.HeaderText = "UsuarioNombre"
         Me.UsuarioNombre.Name = "UsuarioNombre"
-        Me.ObsRecibo.Width = 200
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(16, 11)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(73, 17)
+        Me.Label1.TabIndex = 3
+        Me.Label1.Text = "Nº de caja"
+        '
+        'ComboCajas
+        '
+        Me.ComboCajas.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend
+        Me.ComboCajas.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems
+        Me.ComboCajas.FormattingEnabled = True
+        Me.ComboCajas.Location = New System.Drawing.Point(20, 31)
+        Me.ComboCajas.Margin = New System.Windows.Forms.Padding(4)
+        Me.ComboCajas.Name = "ComboCajas"
+        Me.ComboCajas.Size = New System.Drawing.Size(187, 24)
+        Me.ComboCajas.TabIndex = 5
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(1335, 24)
+        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(100, 28)
+        Me.Button1.TabIndex = 6
+        Me.Button1.Text = "EXCEL"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
+        'entradaManual
+        '
+        Me.entradaManual.AutoSize = True
+        Me.entradaManual.Location = New System.Drawing.Point(483, 30)
+        Me.entradaManual.Name = "entradaManual"
+        Me.entradaManual.Size = New System.Drawing.Size(130, 21)
+        Me.entradaManual.TabIndex = 7
+        Me.entradaManual.Text = "Entrada manual"
+        Me.entradaManual.UseVisualStyleBackColor = True
         '
         'FormHistorialCaja
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1448, 553)
+        Me.Controls.Add(Me.entradaManual)
+        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.ComboCajas)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.ButtonBuscar)
         Me.Controls.Add(Me.TextCaja)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormHistorialCaja"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Historial de cajas"
@@ -168,4 +191,6 @@ Partial Class FormHistorialCaja
     Friend WithEvents FechaRecibo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ObsRecibo As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents UsuarioNombre As System.Windows.Forms.DataGridViewTextBoxColumn
+    Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents entradaManual As System.Windows.Forms.CheckBox
 End Class

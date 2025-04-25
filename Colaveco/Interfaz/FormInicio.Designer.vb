@@ -386,6 +386,7 @@ Partial Class FormInicio
         Me.btnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Button1 = New System.Windows.Forms.Button()
+        Me.HistoricoEntradaCajaManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridTareas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -658,7 +659,7 @@ Partial Class FormInicio
         '
         'RecepciónToolStripMenuItem
         '
-        Me.RecepciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CompletarEnvíosToolStripMenuItem2, Me.DescarteDeMuestrasToolStripMenuItem, Me.EliminarSolicitudDeAnálisisToolStripMenuItem1, Me.IngresosSinSolicitudToolStripMenuItem1, Me.PedidosAutomáticoToolStripMenuItem, Me.PedidosDeFrascosToolStripMenuItem1, Me.SolicitudDeAnálisisToolStripMenuItem, Me.SolicitudesToolStripMenuItem1, Me.CajasToolStripMenuItem2, Me.BuscarCajasPorNúmeroToolStripMenuItem1, Me.ListadoDeCajasVerdesSinDevolverToolStripMenuItem1, Me.EnvíosDeCajasToolStripMenuItem2, Me.HistorialPorCajaToolStripMenuItem1, Me.InformeDeCajasSinDevolverToolStripMenuItem, Me.HistorialDePedidosToolStripMenuItem2})
+        Me.RecepciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CompletarEnvíosToolStripMenuItem2, Me.DescarteDeMuestrasToolStripMenuItem, Me.EliminarSolicitudDeAnálisisToolStripMenuItem1, Me.IngresosSinSolicitudToolStripMenuItem1, Me.PedidosAutomáticoToolStripMenuItem, Me.PedidosDeFrascosToolStripMenuItem1, Me.SolicitudDeAnálisisToolStripMenuItem, Me.SolicitudesToolStripMenuItem1, Me.CajasToolStripMenuItem2, Me.BuscarCajasPorNúmeroToolStripMenuItem1, Me.ListadoDeCajasVerdesSinDevolverToolStripMenuItem1, Me.EnvíosDeCajasToolStripMenuItem2, Me.HistorialPorCajaToolStripMenuItem1, Me.InformeDeCajasSinDevolverToolStripMenuItem, Me.HistorialDePedidosToolStripMenuItem2, Me.HistoricoEntradaCajaManualToolStripMenuItem})
         Me.RecepciónToolStripMenuItem.Name = "RecepciónToolStripMenuItem"
         Me.RecepciónToolStripMenuItem.Size = New System.Drawing.Size(165, 24)
         Me.RecepciónToolStripMenuItem.Text = "Recepción"
@@ -2818,6 +2819,12 @@ Partial Class FormInicio
         Me.Button1.Text = "Credenciales"
         Me.Button1.UseVisualStyleBackColor = True
         '
+        'HistoricoEntradaCajaManualToolStripMenuItem
+        '
+        Me.HistoricoEntradaCajaManualToolStripMenuItem.Name = "HistoricoEntradaCajaManualToolStripMenuItem"
+        Me.HistoricoEntradaCajaManualToolStripMenuItem.Size = New System.Drawing.Size(424, 24)
+        Me.HistoricoEntradaCajaManualToolStripMenuItem.Text = "Historico entrada caja manual"
+        '
         'FormInicio
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -3240,4 +3247,5 @@ Partial Class FormInicio
     Friend WithEvents Minerales As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AsfToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Button1 As System.Windows.Forms.Button
+    Friend WithEvents HistoricoEntradaCajaManualToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

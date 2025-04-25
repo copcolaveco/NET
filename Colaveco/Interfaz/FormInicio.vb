@@ -11179,4 +11179,9 @@ controltxt:
     End Sub
 
 
+    Private Sub HistoricoEntradaCajaManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HistoricoEntradaCajaManualToolStripMenuItem.Click
+        Dim tipoanalisis As Integer = 10
+        Dim v As New FormHistoricoCajasIngresoManual(Sesion.Usuario)
+        v.Show()
+    End Sub
 End Class

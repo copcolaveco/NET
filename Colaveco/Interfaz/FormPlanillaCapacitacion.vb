@@ -125,11 +125,11 @@
                         Exit For
                     End If
                 Next
-                TextEvaluacion.Text = p.EVALUACION
-                TextDevolucion.Text = p.DEVOLUCION
-                TextMejora.Text = p.MEJORA
-                TextRepercusion.Text = p.REPERCUSION
-                TextComentariosDir.Text = p.COMENTARIOSDIR
+                CbxEvaluacion.Text = p.EVALUACION
+                '    TextDevolucion.Text = p.DEVOLUCION
+                '    TextMejora.Text = p.MEJORA
+                '    TextRepercusion.Text = p.REPERCUSION
+                '    TextComentariosDir.Text = p.COMENTARIOSDIR
             Else
                 'Dim f As New dUsuario
                 'Dim t As New dCapacitacionTipo
@@ -170,7 +170,7 @@
         TextRecomendar.Text = ""
         TextComentarios.Text = ""
         ComboEvaluacionDir.Text = ""
-        TextComentariosDir.Text = ""
+        'TextComentariosDir.Text = ""
         ComboParticipante.Focus()
     End Sub
     Private Sub guardar()
@@ -227,25 +227,25 @@
         End If
         Dim evaluaciondir As dCapacitacionEv = CType(ComboEvaluacionDir.SelectedItem, dCapacitacionEv)
         Dim comentariosdir As String = ""
-        If TextComentariosDir.Text <> "" Then
-            comentariosdir = TextComentariosDir.Text.Trim
-        End If
+        'If TextComentariosDir.Text <> "" Then
+        '    comentariosdir = TextComentariosDir.Text.Trim
+        'End If
         Dim evaluacion As String = ""
-        If TextEvaluacion.Text <> "" Then
-            evaluacion = TextEvaluacion.Text.Trim
+        If CbxEvaluacion.Text <> "" Then
+            evaluacion = CbxEvaluacion.Text.Trim
         End If
         Dim devolucion As String = ""
-        If TextDevolucion.Text <> "" Then
-            devolucion = TextDevolucion.Text.Trim
-        End If
+        'If TextDevolucion.Text <> "" Then
+        '    devolucion = TextDevolucion.Text.Trim
+        'End If
         Dim mejora As String = ""
-        If TextMejora.Text <> "" Then
-            mejora = TextMejora.Text.Trim
-        End If
+        'If TextMejora.Text <> "" Then
+        '    mejora = TextMejora.Text.Trim
+        'End If
         Dim repercusion As String = ""
-        If TextRepercusion.Text <> "" Then
-            repercusion = TextRepercusion.Text.Trim
-        End If
+        'If TextRepercusion.Text <> "" Then
+        '    repercusion = TextRepercusion.Text.Trim
+        'End If
         If TextId.Text.Trim.Length > 0 Then
             Dim p As New dPlanillaCapacitacion
             Dim id As Long = TextId.Text.Trim

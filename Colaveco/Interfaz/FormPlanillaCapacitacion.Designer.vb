@@ -59,232 +59,250 @@ Partial Class FormPlanillaCapacitacion
         Me.Label24 = New System.Windows.Forms.Label()
         Me.Label29 = New System.Windows.Forms.Label()
         Me.ComboEvaluacionDir = New System.Windows.Forms.ComboBox()
-        Me.Label30 = New System.Windows.Forms.Label()
-        Me.TextComentariosDir = New System.Windows.Forms.TextBox()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.TextIdLin = New System.Windows.Forms.TextBox()
-        Me.TextEvaluacion = New System.Windows.Forms.TextBox()
-        Me.TextDevolucion = New System.Windows.Forms.TextBox()
-        Me.TextMejora = New System.Windows.Forms.TextBox()
-        Me.TextRepercusion = New System.Windows.Forms.TextBox()
         Me.Label2 = New System.Windows.Forms.Label()
-        Me.Label16 = New System.Windows.Forms.Label()
-        Me.Label17 = New System.Windows.Forms.Label()
-        Me.Label18 = New System.Windows.Forms.Label()
         Me.Label19 = New System.Windows.Forms.Label()
+        Me.CbxEvaluacion = New System.Windows.Forms.ComboBox()
+        Me.Label16 = New System.Windows.Forms.Label()
         Me.SuspendLayout()
         '
         'ComboParticipante
         '
         Me.ComboParticipante.FormattingEnabled = True
-        Me.ComboParticipante.Location = New System.Drawing.Point(77, 42)
+        Me.ComboParticipante.Location = New System.Drawing.Point(103, 52)
+        Me.ComboParticipante.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboParticipante.Name = "ComboParticipante"
-        Me.ComboParticipante.Size = New System.Drawing.Size(179, 21)
+        Me.ComboParticipante.Size = New System.Drawing.Size(237, 24)
         Me.ComboParticipante.TabIndex = 1
         '
         'ComboTipoActividad
         '
         Me.ComboTipoActividad.FormattingEnabled = True
-        Me.ComboTipoActividad.Location = New System.Drawing.Point(265, 41)
+        Me.ComboTipoActividad.Location = New System.Drawing.Point(353, 50)
+        Me.ComboTipoActividad.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboTipoActividad.Name = "ComboTipoActividad"
-        Me.ComboTipoActividad.Size = New System.Drawing.Size(177, 21)
+        Me.ComboTipoActividad.Size = New System.Drawing.Size(235, 24)
         Me.ComboTipoActividad.TabIndex = 2
         '
         'TextInstructor
         '
-        Me.TextInstructor.Location = New System.Drawing.Point(25, 82)
+        Me.TextInstructor.Location = New System.Drawing.Point(33, 101)
+        Me.TextInstructor.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextInstructor.Name = "TextInstructor"
-        Me.TextInstructor.Size = New System.Drawing.Size(231, 20)
+        Me.TextInstructor.Size = New System.Drawing.Size(307, 22)
         Me.TextInstructor.TabIndex = 3
         '
         'DateInicio
         '
         Me.DateInicio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateInicio.Location = New System.Drawing.Point(25, 123)
+        Me.DateInicio.Location = New System.Drawing.Point(33, 151)
+        Me.DateInicio.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateInicio.Name = "DateInicio"
-        Me.DateInicio.Size = New System.Drawing.Size(98, 20)
+        Me.DateInicio.Size = New System.Drawing.Size(129, 22)
         Me.DateInicio.TabIndex = 5
         '
         'DateFin
         '
         Me.DateFin.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFin.Location = New System.Drawing.Point(129, 123)
+        Me.DateFin.Location = New System.Drawing.Point(172, 151)
+        Me.DateFin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateFin.Name = "DateFin"
-        Me.DateFin.Size = New System.Drawing.Size(98, 20)
+        Me.DateFin.Size = New System.Drawing.Size(129, 22)
         Me.DateFin.TabIndex = 6
         '
         'TextLocal
         '
-        Me.TextLocal.Location = New System.Drawing.Point(262, 82)
+        Me.TextLocal.Location = New System.Drawing.Point(349, 101)
+        Me.TextLocal.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextLocal.Name = "TextLocal"
-        Me.TextLocal.Size = New System.Drawing.Size(238, 20)
+        Me.TextLocal.Size = New System.Drawing.Size(316, 22)
         Me.TextLocal.TabIndex = 4
         '
         'TextHoras
         '
-        Me.TextHoras.Location = New System.Drawing.Point(233, 123)
+        Me.TextHoras.Location = New System.Drawing.Point(311, 151)
+        Me.TextHoras.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextHoras.Name = "TextHoras"
-        Me.TextHoras.Size = New System.Drawing.Size(100, 20)
+        Me.TextHoras.Size = New System.Drawing.Size(132, 22)
         Me.TextHoras.TabIndex = 7
         '
         'TextCosto
         '
-        Me.TextCosto.Location = New System.Drawing.Point(339, 123)
+        Me.TextCosto.Location = New System.Drawing.Point(452, 151)
+        Me.TextCosto.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextCosto.Name = "TextCosto"
-        Me.TextCosto.Size = New System.Drawing.Size(100, 20)
+        Me.TextCosto.Size = New System.Drawing.Size(132, 22)
         Me.TextCosto.TabIndex = 8
         '
         'ComboAutorizacion
         '
         Me.ComboAutorizacion.FormattingEnabled = True
         Me.ComboAutorizacion.Items.AddRange(New Object() {"Si", "No"})
-        Me.ComboAutorizacion.Location = New System.Drawing.Point(28, 168)
+        Me.ComboAutorizacion.Location = New System.Drawing.Point(37, 207)
+        Me.ComboAutorizacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboAutorizacion.Name = "ComboAutorizacion"
-        Me.ComboAutorizacion.Size = New System.Drawing.Size(80, 21)
+        Me.ComboAutorizacion.Size = New System.Drawing.Size(105, 24)
         Me.ComboAutorizacion.TabIndex = 9
         '
         'DateAutorizacion
         '
         Me.DateAutorizacion.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateAutorizacion.Location = New System.Drawing.Point(114, 169)
+        Me.DateAutorizacion.Location = New System.Drawing.Point(152, 208)
+        Me.DateAutorizacion.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.DateAutorizacion.Name = "DateAutorizacion"
-        Me.DateAutorizacion.Size = New System.Drawing.Size(98, 20)
+        Me.DateAutorizacion.Size = New System.Drawing.Size(129, 22)
         Me.DateAutorizacion.TabIndex = 10
         '
         'Label1
         '
         Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(77, 26)
+        Me.Label1.Location = New System.Drawing.Point(103, 32)
+        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(63, 13)
+        Me.Label1.Size = New System.Drawing.Size(83, 17)
         Me.Label1.TabIndex = 11
         Me.Label1.Text = "Participante"
         '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(263, 25)
+        Me.Label3.Location = New System.Drawing.Point(351, 31)
+        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(89, 13)
+        Me.Label3.Size = New System.Drawing.Size(116, 17)
         Me.Label3.TabIndex = 13
         Me.Label3.Text = "Tipo de actividad"
         '
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(22, 66)
+        Me.Label4.Location = New System.Drawing.Point(29, 81)
+        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(107, 13)
+        Me.Label4.Size = New System.Drawing.Size(138, 17)
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Institución/ Instructor"
         '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(25, 107)
+        Me.Label5.Location = New System.Drawing.Point(33, 132)
+        Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
-        Me.Label5.Size = New System.Drawing.Size(64, 13)
+        Me.Label5.Size = New System.Drawing.Size(83, 17)
         Me.Label5.TabIndex = 15
         Me.Label5.Text = "Fecha inicio"
         '
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(126, 107)
+        Me.Label6.Location = New System.Drawing.Point(168, 132)
+        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(92, 13)
+        Me.Label6.Size = New System.Drawing.Size(121, 17)
         Me.Label6.TabIndex = 16
         Me.Label6.Text = "Fecha finalización"
         '
         'Label7
         '
         Me.Label7.AutoSize = True
-        Me.Label7.Location = New System.Drawing.Point(259, 66)
+        Me.Label7.Location = New System.Drawing.Point(345, 81)
+        Me.Label7.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label7.Name = "Label7"
-        Me.Label7.Size = New System.Drawing.Size(33, 13)
+        Me.Label7.Size = New System.Drawing.Size(42, 17)
         Me.Label7.TabIndex = 17
         Me.Label7.Text = "Local"
         '
         'Label8
         '
         Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(234, 107)
+        Me.Label8.Location = New System.Drawing.Point(312, 132)
+        Me.Label8.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(79, 13)
+        Me.Label8.Size = New System.Drawing.Size(105, 17)
         Me.Label8.TabIndex = 18
         Me.Label8.Text = "Horas de curso"
         '
         'Label9
         '
         Me.Label9.AutoSize = True
-        Me.Label9.Location = New System.Drawing.Point(336, 107)
+        Me.Label9.Location = New System.Drawing.Point(448, 132)
+        Me.Label9.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label9.Name = "Label9"
-        Me.Label9.Size = New System.Drawing.Size(34, 13)
+        Me.Label9.Size = New System.Drawing.Size(44, 17)
         Me.Label9.TabIndex = 19
         Me.Label9.Text = "Costo"
         '
         'Label10
         '
         Me.Label10.AutoSize = True
-        Me.Label10.Location = New System.Drawing.Point(25, 152)
+        Me.Label10.Location = New System.Drawing.Point(33, 187)
+        Me.Label10.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label10.Name = "Label10"
-        Me.Label10.Size = New System.Drawing.Size(83, 13)
+        Me.Label10.Size = New System.Drawing.Size(109, 17)
         Me.Label10.TabIndex = 20
         Me.Label10.Text = "Autorización DT"
         '
         'Label11
         '
         Me.Label11.AutoSize = True
-        Me.Label11.Location = New System.Drawing.Point(114, 153)
+        Me.Label11.Location = New System.Drawing.Point(152, 188)
+        Me.Label11.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label11.Name = "Label11"
-        Me.Label11.Size = New System.Drawing.Size(97, 13)
+        Me.Label11.Size = New System.Drawing.Size(128, 17)
         Me.Label11.TabIndex = 21
         Me.Label11.Text = "Fecha autorización"
         '
         'Label12
         '
         Me.Label12.AutoSize = True
-        Me.Label12.Location = New System.Drawing.Point(21, 26)
+        Me.Label12.Location = New System.Drawing.Point(28, 32)
+        Me.Label12.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label12.Name = "Label12"
-        Me.Label12.Size = New System.Drawing.Size(16, 13)
+        Me.Label12.Size = New System.Drawing.Size(19, 17)
         Me.Label12.TabIndex = 22
         Me.Label12.Text = "Id"
         '
         'TextId
         '
-        Me.TextId.Location = New System.Drawing.Point(24, 42)
+        Me.TextId.Location = New System.Drawing.Point(32, 52)
+        Me.TextId.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextId.Name = "TextId"
         Me.TextId.ReadOnly = True
-        Me.TextId.Size = New System.Drawing.Size(47, 20)
+        Me.TextId.Size = New System.Drawing.Size(61, 22)
         Me.TextId.TabIndex = 0
         '
         'Label13
         '
         Me.Label13.AutoSize = True
         Me.Label13.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label13.Location = New System.Drawing.Point(21, 203)
+        Me.Label13.Location = New System.Drawing.Point(28, 250)
+        Me.Label13.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label13.Name = "Label13"
-        Me.Label13.Size = New System.Drawing.Size(492, 13)
+        Me.Label13.Size = New System.Drawing.Size(617, 17)
         Me.Label13.TabIndex = 24
         Me.Label13.Text = "Sección B: EVALUACION DEL EVENTO POR EL PARTICIPANTE (Califique de 1 a 5 )"
         '
         'Label14
         '
         Me.Label14.AutoSize = True
-        Me.Label14.Location = New System.Drawing.Point(22, 258)
+        Me.Label14.Location = New System.Drawing.Point(29, 318)
+        Me.Label14.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label14.Name = "Label14"
-        Me.Label14.Size = New System.Drawing.Size(431, 13)
+        Me.Label14.Size = New System.Drawing.Size(569, 17)
         Me.Label14.TabIndex = 25
         Me.Label14.Text = "1) El contenido del curso/actividad: ¿aportó conocimientos teórico / prácticos de" & _
-            " utilidad?"
+    " utilidad?"
         '
         'Label15
         '
         Me.Label15.AutoSize = True
-        Me.Label15.Location = New System.Drawing.Point(22, 291)
+        Me.Label15.Location = New System.Drawing.Point(29, 358)
+        Me.Label15.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label15.Name = "Label15"
-        Me.Label15.Size = New System.Drawing.Size(170, 13)
+        Me.Label15.Size = New System.Drawing.Size(225, 17)
         Me.Label15.TabIndex = 26
         Me.Label15.Text = "2) ¿cumplió con sus espectativas?"
         '
@@ -292,26 +310,29 @@ Partial Class FormPlanillaCapacitacion
         '
         Me.ComboB1.FormattingEnabled = True
         Me.ComboB1.Items.AddRange(New Object() {"1", "2", "3", "4", "5"})
-        Me.ComboB1.Location = New System.Drawing.Point(458, 250)
+        Me.ComboB1.Location = New System.Drawing.Point(611, 308)
+        Me.ComboB1.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboB1.Name = "ComboB1"
-        Me.ComboB1.Size = New System.Drawing.Size(42, 21)
+        Me.ComboB1.Size = New System.Drawing.Size(55, 24)
         Me.ComboB1.TabIndex = 11
         '
         'ComboB2
         '
         Me.ComboB2.FormattingEnabled = True
         Me.ComboB2.Items.AddRange(New Object() {"1", "2", "3", "4", "5"})
-        Me.ComboB2.Location = New System.Drawing.Point(198, 283)
+        Me.ComboB2.Location = New System.Drawing.Point(264, 348)
+        Me.ComboB2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboB2.Name = "ComboB2"
-        Me.ComboB2.Size = New System.Drawing.Size(42, 21)
+        Me.ComboB2.Size = New System.Drawing.Size(55, 24)
         Me.ComboB2.TabIndex = 12
         '
         'Label20
         '
         Me.Label20.AutoSize = True
-        Me.Label20.Location = New System.Drawing.Point(22, 322)
+        Me.Label20.Location = New System.Drawing.Point(29, 396)
+        Me.Label20.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label20.Name = "Label20"
-        Me.Label20.Size = New System.Drawing.Size(312, 13)
+        Me.Label20.Size = New System.Drawing.Size(413, 17)
         Me.Label20.TabIndex = 37
         Me.Label20.Text = "3) ¿Recomendaría este curso/actividad para otros funcionarios?"
         '
@@ -319,52 +340,58 @@ Partial Class FormPlanillaCapacitacion
         '
         Me.ComboB3.FormattingEnabled = True
         Me.ComboB3.Items.AddRange(New Object() {"Si", "No"})
-        Me.ComboB3.Location = New System.Drawing.Point(340, 314)
+        Me.ComboB3.Location = New System.Drawing.Point(453, 386)
+        Me.ComboB3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboB3.Name = "ComboB3"
-        Me.ComboB3.Size = New System.Drawing.Size(54, 21)
+        Me.ComboB3.Size = New System.Drawing.Size(71, 24)
         Me.ComboB3.TabIndex = 13
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(22, 345)
+        Me.Label21.Location = New System.Drawing.Point(29, 425)
+        Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label21.Name = "Label21"
-        Me.Label21.Size = New System.Drawing.Size(56, 13)
+        Me.Label21.Size = New System.Drawing.Size(74, 17)
         Me.Label21.TabIndex = 39
         Me.Label21.Text = "¿Por que?"
         '
         'TextRecomendar
         '
-        Me.TextRecomendar.Location = New System.Drawing.Point(25, 361)
+        Me.TextRecomendar.Location = New System.Drawing.Point(33, 444)
+        Me.TextRecomendar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextRecomendar.Multiline = True
         Me.TextRecomendar.Name = "TextRecomendar"
-        Me.TextRecomendar.Size = New System.Drawing.Size(463, 46)
+        Me.TextRecomendar.Size = New System.Drawing.Size(616, 56)
         Me.TextRecomendar.TabIndex = 14
         '
         'Label22
         '
         Me.Label22.AutoSize = True
-        Me.Label22.Location = New System.Drawing.Point(21, 410)
+        Me.Label22.Location = New System.Drawing.Point(28, 505)
+        Me.Label22.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label22.Name = "Label22"
-        Me.Label22.Size = New System.Drawing.Size(133, 13)
+        Me.Label22.Size = New System.Drawing.Size(179, 17)
         Me.Label22.TabIndex = 41
         Me.Label22.Text = "4) Comentarios adicionales"
         '
         'TextComentarios
         '
-        Me.TextComentarios.Location = New System.Drawing.Point(25, 426)
+        Me.TextComentarios.Location = New System.Drawing.Point(33, 524)
+        Me.TextComentarios.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextComentarios.Multiline = True
         Me.TextComentarios.Name = "TextComentarios"
-        Me.TextComentarios.Size = New System.Drawing.Size(463, 43)
+        Me.TextComentarios.Size = New System.Drawing.Size(616, 52)
         Me.TextComentarios.TabIndex = 15
         '
         'Label23
         '
         Me.Label23.AutoSize = True
         Me.Label23.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label23.Location = New System.Drawing.Point(21, 9)
+        Me.Label23.Location = New System.Drawing.Point(28, 11)
+        Me.Label23.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label23.Name = "Label23"
-        Me.Label23.Size = New System.Drawing.Size(331, 13)
+        Me.Label23.Size = New System.Drawing.Size(411, 17)
         Me.Label23.TabIndex = 44
         Me.Label23.Text = "Sección A: DATOS DEL EVENTO Y DEL PARTICIPANTE"
         '
@@ -372,18 +399,20 @@ Partial Class FormPlanillaCapacitacion
         '
         Me.Label24.AutoSize = True
         Me.Label24.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label24.Location = New System.Drawing.Point(565, 9)
+        Me.Label24.Location = New System.Drawing.Point(753, 11)
+        Me.Label24.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label24.Name = "Label24"
-        Me.Label24.Size = New System.Drawing.Size(406, 13)
+        Me.Label24.Size = New System.Drawing.Size(503, 17)
         Me.Label24.TabIndex = 45
         Me.Label24.Text = "Sección C: EVALUACIÓN DE LA CAPACITACIÓN POR LA DIRECCIÓN"
         '
         'Label29
         '
         Me.Label29.AutoSize = True
-        Me.Label29.Location = New System.Drawing.Point(24, 478)
+        Me.Label29.Location = New System.Drawing.Point(32, 588)
+        Me.Label29.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label29.Name = "Label29"
-        Me.Label29.Size = New System.Drawing.Size(323, 13)
+        Me.Label29.Size = New System.Drawing.Size(432, 17)
         Me.Label29.TabIndex = 54
         Me.Label29.Text = "1) Evalución final del aprovechamiento del curso por el funcionario:"
         Me.Label29.Visible = False
@@ -391,150 +420,93 @@ Partial Class FormPlanillaCapacitacion
         'ComboEvaluacionDir
         '
         Me.ComboEvaluacionDir.FormattingEnabled = True
-        Me.ComboEvaluacionDir.Location = New System.Drawing.Point(28, 494)
+        Me.ComboEvaluacionDir.Location = New System.Drawing.Point(37, 608)
+        Me.ComboEvaluacionDir.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.ComboEvaluacionDir.Name = "ComboEvaluacionDir"
-        Me.ComboEvaluacionDir.Size = New System.Drawing.Size(337, 21)
+        Me.ComboEvaluacionDir.Size = New System.Drawing.Size(448, 24)
         Me.ComboEvaluacionDir.TabIndex = 16
         Me.ComboEvaluacionDir.Visible = False
         '
-        'Label30
-        '
-        Me.Label30.AutoSize = True
-        Me.Label30.Location = New System.Drawing.Point(565, 391)
-        Me.Label30.Name = "Label30"
-        Me.Label30.Size = New System.Drawing.Size(124, 13)
-        Me.Label30.TabIndex = 56
-        Me.Label30.Text = "Comentarios adicionales:"
-        '
-        'TextComentariosDir
-        '
-        Me.TextComentariosDir.Location = New System.Drawing.Point(568, 407)
-        Me.TextComentariosDir.Multiline = True
-        Me.TextComentariosDir.Name = "TextComentariosDir"
-        Me.TextComentariosDir.Size = New System.Drawing.Size(403, 62)
-        Me.TextComentariosDir.TabIndex = 17
-        '
         'Button2
         '
-        Me.Button2.Location = New System.Drawing.Point(815, 475)
+        Me.Button2.Location = New System.Drawing.Point(1087, 585)
+        Me.Button2.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button2.Name = "Button2"
-        Me.Button2.Size = New System.Drawing.Size(75, 23)
+        Me.Button2.Size = New System.Drawing.Size(100, 28)
         Me.Button2.TabIndex = 18
         Me.Button2.Text = "Guardar"
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
         '
-        Me.Button3.Location = New System.Drawing.Point(896, 475)
+        Me.Button3.Location = New System.Drawing.Point(1195, 585)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Button3.Name = "Button3"
-        Me.Button3.Size = New System.Drawing.Size(75, 23)
+        Me.Button3.Size = New System.Drawing.Size(100, 28)
         Me.Button3.TabIndex = 20
         Me.Button3.Text = "Eliminar"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'TextIdLin
         '
-        Me.TextIdLin.Location = New System.Drawing.Point(448, 41)
+        Me.TextIdLin.Location = New System.Drawing.Point(597, 50)
+        Me.TextIdLin.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.TextIdLin.Name = "TextIdLin"
-        Me.TextIdLin.Size = New System.Drawing.Size(55, 20)
+        Me.TextIdLin.Size = New System.Drawing.Size(72, 22)
         Me.TextIdLin.TabIndex = 61
         Me.TextIdLin.Visible = False
-        '
-        'TextEvaluacion
-        '
-        Me.TextEvaluacion.Location = New System.Drawing.Point(727, 38)
-        Me.TextEvaluacion.Name = "TextEvaluacion"
-        Me.TextEvaluacion.Size = New System.Drawing.Size(81, 20)
-        Me.TextEvaluacion.TabIndex = 66
-        '
-        'TextDevolucion
-        '
-        Me.TextDevolucion.Location = New System.Drawing.Point(727, 66)
-        Me.TextDevolucion.Name = "TextDevolucion"
-        Me.TextDevolucion.Size = New System.Drawing.Size(81, 20)
-        Me.TextDevolucion.TabIndex = 67
-        '
-        'TextMejora
-        '
-        Me.TextMejora.Location = New System.Drawing.Point(568, 123)
-        Me.TextMejora.Multiline = True
-        Me.TextMejora.Name = "TextMejora"
-        Me.TextMejora.Size = New System.Drawing.Size(403, 108)
-        Me.TextMejora.TabIndex = 68
-        '
-        'TextRepercusion
-        '
-        Me.TextRepercusion.Location = New System.Drawing.Point(568, 260)
-        Me.TextRepercusion.Multiline = True
-        Me.TextRepercusion.Name = "TextRepercusion"
-        Me.TextRepercusion.Size = New System.Drawing.Size(403, 120)
-        Me.TextRepercusion.TabIndex = 69
         '
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(565, 41)
+        Me.Label2.Location = New System.Drawing.Point(753, 50)
+        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(60, 13)
+        Me.Label2.Size = New System.Drawing.Size(77, 17)
         Me.Label2.TabIndex = 70
         Me.Label2.Text = "Evaluación"
-        '
-        'Label16
-        '
-        Me.Label16.AutoSize = True
-        Me.Label16.Location = New System.Drawing.Point(565, 69)
-        Me.Label16.Name = "Label16"
-        Me.Label16.Size = New System.Drawing.Size(134, 13)
-        Me.Label16.TabIndex = 71
-        Me.Label16.Text = "Presentación / Devolución"
-        '
-        'Label17
-        '
-        Me.Label17.AutoSize = True
-        Me.Label17.Location = New System.Drawing.Point(565, 107)
-        Me.Label17.Name = "Label17"
-        Me.Label17.Size = New System.Drawing.Size(225, 13)
-        Me.Label17.TabIndex = 72
-        Me.Label17.Text = "Mejora y/o inclusión en la tarea desempeñada"
-        '
-        'Label18
-        '
-        Me.Label18.AutoSize = True
-        Me.Label18.Location = New System.Drawing.Point(565, 244)
-        Me.Label18.Name = "Label18"
-        Me.Label18.Size = New System.Drawing.Size(125, 13)
-        Me.Label18.TabIndex = 73
-        Me.Label18.Text = "Repercusión en el sector"
         '
         'Label19
         '
         Me.Label19.AutoSize = True
         Me.Label19.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.Label19.Location = New System.Drawing.Point(363, 218)
+        Me.Label19.Location = New System.Drawing.Point(484, 268)
+        Me.Label19.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label19.Name = "Label19"
-        Me.Label19.Size = New System.Drawing.Size(150, 13)
+        Me.Label19.Size = New System.Drawing.Size(189, 17)
         Me.Label19.TabIndex = 74
         Me.Label19.Text = "1 = Malo -  5 = Excelente"
         '
+        'CbxEvaluacion
+        '
+        Me.CbxEvaluacion.FormattingEnabled = True
+        Me.CbxEvaluacion.Items.AddRange(New Object() {"Si", "No"})
+        Me.CbxEvaluacion.Location = New System.Drawing.Point(969, 50)
+        Me.CbxEvaluacion.Name = "CbxEvaluacion"
+        Me.CbxEvaluacion.Size = New System.Drawing.Size(107, 24)
+        Me.CbxEvaluacion.TabIndex = 75
+        '
+        'Label16
+        '
+        Me.Label16.AutoSize = True
+        Me.Label16.Location = New System.Drawing.Point(756, 101)
+        Me.Label16.Name = "Label16"
+        Me.Label16.Size = New System.Drawing.Size(447, 17)
+        Me.Label16.TabIndex = 76
+        Me.Label16.Text = "la evaluación de eficiencia por direccion se encuentra en el doc.cc.17"
+        '
         'FormPlanillaCapacitacion
         '
-        Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
+        Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(998, 538)
-        Me.Controls.Add(Me.Label19)
-        Me.Controls.Add(Me.Label18)
-        Me.Controls.Add(Me.Label17)
+        Me.ClientSize = New System.Drawing.Size(1331, 662)
         Me.Controls.Add(Me.Label16)
+        Me.Controls.Add(Me.CbxEvaluacion)
+        Me.Controls.Add(Me.Label19)
         Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.TextRepercusion)
-        Me.Controls.Add(Me.TextMejora)
-        Me.Controls.Add(Me.TextDevolucion)
-        Me.Controls.Add(Me.TextEvaluacion)
         Me.Controls.Add(Me.TextIdLin)
         Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.Button2)
-        Me.Controls.Add(Me.TextComentariosDir)
-        Me.Controls.Add(Me.Label30)
         Me.Controls.Add(Me.ComboEvaluacionDir)
         Me.Controls.Add(Me.Label29)
         Me.Controls.Add(Me.Label24)
@@ -572,6 +544,7 @@ Partial Class FormPlanillaCapacitacion
         Me.Controls.Add(Me.TextInstructor)
         Me.Controls.Add(Me.ComboTipoActividad)
         Me.Controls.Add(Me.ComboParticipante)
+        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
         Me.Name = "FormPlanillaCapacitacion"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "RG.ADM.19 v 02 - PLANILLA DE CAPACITACION Y EVALUACIÓN DE EVENTOS."
@@ -616,18 +589,11 @@ Partial Class FormPlanillaCapacitacion
     Friend WithEvents Label24 As System.Windows.Forms.Label
     Friend WithEvents Label29 As System.Windows.Forms.Label
     Friend WithEvents ComboEvaluacionDir As System.Windows.Forms.ComboBox
-    Friend WithEvents Label30 As System.Windows.Forms.Label
-    Friend WithEvents TextComentariosDir As System.Windows.Forms.TextBox
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents Button3 As System.Windows.Forms.Button
     Friend WithEvents TextIdLin As System.Windows.Forms.TextBox
-    Friend WithEvents TextEvaluacion As System.Windows.Forms.TextBox
-    Friend WithEvents TextDevolucion As System.Windows.Forms.TextBox
-    Friend WithEvents TextMejora As System.Windows.Forms.TextBox
-    Friend WithEvents TextRepercusion As System.Windows.Forms.TextBox
     Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents Label16 As System.Windows.Forms.Label
-    Friend WithEvents Label17 As System.Windows.Forms.Label
-    Friend WithEvents Label18 As System.Windows.Forms.Label
     Friend WithEvents Label19 As System.Windows.Forms.Label
+    Friend WithEvents CbxEvaluacion As System.Windows.Forms.ComboBox
+    Friend WithEvents Label16 As System.Windows.Forms.Label
 End Class

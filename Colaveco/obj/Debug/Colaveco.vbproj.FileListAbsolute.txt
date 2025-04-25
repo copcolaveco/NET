@@ -8,7 +8,6 @@ C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\System.Windows.Forms.DataVisualization.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Microsoft.Office.Interop.Excel.xml
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Interop.IasHelperLib.dll
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.vbprojResolveAssemblyReference.cache
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Interop.IasHelperLib.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.vbproj.ResolveComReference.cache
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormBentleyDeltaHistorial.resources
@@ -313,3 +312,4 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.application
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.exe
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.xml
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.pdb
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoCajasIngresoManual.resources

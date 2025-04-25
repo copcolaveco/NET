@@ -321,6 +321,12 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Interfaz\dTecnicoMuestreo.vb" />
+    <Compile Include="Interfaz\FormHistoricoCajasIngresoManual.Designer.vb">
+      <DependentUpon>FormHistoricoCajasIngresoManual.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormHistoricoCajasIngresoManual.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaz\FormPreinformeEdit.Designer.vb">
       <DependentUpon>FormPreinformeEdit.vb</DependentUpon>
     </Compile>
@@ -3035,6 +3041,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormHistorialCaja.resx">
       <DependentUpon>FormHistorialCaja.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormHistoricoCajasIngresoManual.resx">
+      <DependentUpon>FormHistoricoCajasIngresoManual.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormInformeAgua.resx">
       <DependentUpon>FormInformeAgua.vb</DependentUpon>

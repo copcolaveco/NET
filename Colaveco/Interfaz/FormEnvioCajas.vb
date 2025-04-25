@@ -1446,7 +1446,6 @@ Public Class FormEnvioCajas
     End Sub
 
     Private Sub Button1_Click_3(sender As Object, e As EventArgs) Handles Button1.Click
-
         Dim id As Long = 0
         Dim ec As New dEnvioCajas
         Dim ecItem As New dEnvioCajas
@@ -1467,12 +1466,32 @@ Public Class FormEnvioCajas
         ec.CLIENTE = Usuario.ID
         ec.CARGADA = 0
 
-        If (ec.marcarrecibido(Usuario)) Then
-            Dim c As New dCajas
-            c.CODIGO = caja
-            c.marcarLaboratorioManual(Usuario)
-        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+        ' PRIMER CONFIRMACIÓN
+        Dim mensaje1 As String = "¿Está seguro de que desea realizar esta operación? Se dará entrada manual a la caja = " & caja
+        Dim respuesta1 As DialogResult = MessageBox.Show(mensaje1, "Confirmación", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
+
+        If respuesta1 = DialogResult.Yes Then
+            ' SEGUNDA CONFIRMACIÓN
+            Dim mensaje2 As String = "Se registrará el nombre del usuario que dio ingreso manual: " & Usuario.NOMBRE & vbCrLf & "¿Desea continuar?"
+            Dim respuesta2 As DialogResult = MessageBox.Show(mensaje2, "Registro de usuario", MessageBoxButtons.YesNo, MessageBoxIcon.Information)
+
+            If respuesta2 = DialogResult.Yes Then
+                If (ec.marcarrecibido(Usuario)) Then
+                    Dim c As New dCajas
+                    c.CODIGO = caja
+                    c.marcarLaboratorioManual(Usuario)
+                    MsgBox("Operación realizada correctamente", MsgBoxStyle.Information, "Confirmación")
+                Else
+                    MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                End If
+                cargarComboCajas()
+            Else
+                MsgBox("Operación cancelada", MsgBoxStyle.Information, "Cancelado")
+            End If
+        Else
+            MsgBox("Operación cancelada", MsgBoxStyle.Information, "Cancelado")
         End If
-        cargarComboCajas()
     End Sub
+
+
 End Class

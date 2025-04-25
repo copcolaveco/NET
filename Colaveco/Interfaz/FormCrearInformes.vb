@@ -5085,13 +5085,12 @@ Public Class FormCrearInformes
 
 
         'PROTEGE LA HOJA DE EXCEL
-        If Module1.isAnexoPH Then
-            x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
-            Contents:=True, Scenarios:=True)
-            'GUARDA EL ARCHIVO DE EXCEL
-            x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\anexoPH" & nroficha & ".xls")
-            x1app.Visible = True
-        End If
+        x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
+        Contents:=True, Scenarios:=True)
+        'GUARDA EL ARCHIVO DE EXCEL
+        x1hoja.SaveAs("\\ROBOT\PREINFORMES\SUELOS\anexoPH" & nroficha & ".xls")
+        x1app.Visible = True
+        Module1.isAnexoPH = True
 
         x1app = Nothing
         x1libro = Nothing

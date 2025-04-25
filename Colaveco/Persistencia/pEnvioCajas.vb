@@ -827,6 +827,50 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function listarCajasEntradaManual(ByVal caja As String) As ArrayList
+        Dim sql As String = ("SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, ifnull(obsrecibo,''), responsable, cargada, convenio FROM enviocajas where idcaja = '" & caja & "' and recibido=1 and obsrecibo='Entrada manual' ORDER BY fechaenvio desc ")
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim e As New dEnvioCajas
+                    e.ID = CType(unaFila.Item(0), Long)
+                    e.IDPEDIDO = CType(unaFila.Item(1), Long)
+                    e.IDPRODUCTOR = CType(unaFila.Item(2), Long)
+                    e.IDCAJA = CType(unaFila.Item(3), String)
+                    e.GRADILLA1 = CType(unaFila.Item(4), String)
+                    e.GRADILLA2 = CType(unaFila.Item(5), String)
+                    e.GRADILLA3 = CType(unaFila.Item(6), String)
+                    e.FRASCOS = CType(unaFila.Item(7), Integer)
+                    e.IDEMPRESA = CType(unaFila.Item(8), Integer)
+                    e.ENVIO = CType(unaFila.Item(9), String)
+                    e.FECHAENVIO = CType(unaFila.Item(10), String)
+                    e.OBSERVACIONES = CType(unaFila.Item(11), String)
+                    e.ENVIADO = CType(unaFila.Item(12), Integer)
+                    e.IDAGENCIA = CType(unaFila.Item(13), Integer)
+                    e.RECIBO = CType(unaFila.Item(14), String)
+                    e.FECHARECIBO = CType(unaFila.Item(15), String)
+                    e.RECIBIDO = CType(unaFila.Item(16), Integer)
+                    e.CLIENTE = CType(unaFila.Item(17), Long)
+                    e.OBSRECIBO = CType(unaFila.Item(18), String)
+                    e.RESPONSABLE = CType(unaFila.Item(19), Integer)
+                    e.CARGADA = CType(unaFila.Item(20), Integer)
+                    e.CONVENIO = CType(unaFila.Item(21), Integer)
+                    Lista.Add(e)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
     Public Function listarxcajasindevolver(ByVal caja As String) As ArrayList
         Dim sql As String = ("SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, ifnull(obsrecibo,''), responsable, cargada, convenio FROM enviocajas where idcaja = '" & caja & "' AND recibido =0 ORDER BY fechaenvio desc ")
         Try
@@ -912,6 +956,51 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function listarPorFechaCajasEntradaManual(ByVal desde As String, ByVal hasta As String) As ArrayList
+        'Dim sql As String = ("SELECT id, idpedido, idproductor, idcaja, gradilla1, gradilla2, gradilla3, frascos, idempresa, envio, fechaenvio, observaciones, enviado, idagencia, ifnull(recibo,''), fecharecibo, recibido, ifnull(obsrecibo,'') FROM enviocajas where fecha between ('" & desde & "','" & hasta & "')")
+        Dim sql As String = ("SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, ifnull(obsrecibo,''), responsable, cargada, convenio FROM enviocajas where recibido = 1 and obsrecibo like '%Entrada manual%' and fechaenvio >='" & desde & "' and fechaenvio <='" & hasta & "'")
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim e As New dEnvioCajas
+                    e.ID = CType(unaFila.Item(0), Long)
+                    e.IDPEDIDO = CType(unaFila.Item(1), Long)
+                    e.IDPRODUCTOR = CType(unaFila.Item(2), Long)
+                    e.IDCAJA = CType(unaFila.Item(3), String)
+                    e.GRADILLA1 = CType(unaFila.Item(4), String)
+                    e.GRADILLA2 = CType(unaFila.Item(5), String)
+                    e.GRADILLA3 = CType(unaFila.Item(6), String)
+                    e.FRASCOS = CType(unaFila.Item(7), Integer)
+                    e.IDEMPRESA = CType(unaFila.Item(8), Integer)
+                    e.ENVIO = CType(unaFila.Item(9), String)
+                    e.FECHAENVIO = CType(unaFila.Item(10), String)
+                    e.OBSERVACIONES = CType(unaFila.Item(11), String)
+                    e.ENVIADO = CType(unaFila.Item(12), Integer)
+                    e.IDAGENCIA = CType(unaFila.Item(13), Integer)
+                    e.RECIBO = CType(unaFila.Item(14), String)
+                    e.FECHARECIBO = CType(unaFila.Item(15), String)
+                    e.RECIBIDO = CType(unaFila.Item(16), Integer)
+                    e.CLIENTE = CType(unaFila.Item(17), Long)
+                    e.OBSRECIBO = CType(unaFila.Item(18), String)
+                    e.RESPONSABLE = CType(unaFila.Item(19), Integer)
+                    e.CARGADA = CType(unaFila.Item(20), Integer)
+                    e.CONVENIO = CType(unaFila.Item(21), Integer)
+                    Lista.Add(e)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
     Public Function listarporfechaxcliente(ByVal desde As String, ByVal hasta As String, ByVal cliente As Long) As ArrayList
         Dim sql As String = ("SELECT id, idpedido, idproductor,idcaja, ifnull(gradilla1,''), ifnull(gradilla2,''), ifnull(gradilla3,''), frascos,idempresa, envio, fechaenvio, observaciones, enviado, idagencia, recibo, fecharecibo, recibido, cliente, ifnull(obsrecibo,''), responsable, cargada, convenio FROM enviocajas where idproductor =" & cliente & " and fechaenvio >='" & desde & "' and fechaenvio <='" & hasta & "'")
         Try

@@ -327,6 +327,14 @@
         Dim e As New pEnvioCajas
         Return e.listarxcajatodos(caja)
     End Function
+    Public Function listarCajasEntradaManual(ByVal caja As String) As ArrayList
+        Dim e As New pEnvioCajas
+        Return e.listarCajasEntradaManual(caja)
+    End Function
+    Public Function listarPorFechaCajasEntradaManual(ByVal desde As String, ByVal hasta As String) As ArrayList
+        Dim e As New pEnvioCajas
+        Return e.listarPorFechaCajasEntradaManual(desde, hasta)
+    End Function
     Public Function listarxcajasindevolver(ByVal caja As String) As ArrayList
         Dim e As New pEnvioCajas
         Return e.listarxcajasindevolver(caja)

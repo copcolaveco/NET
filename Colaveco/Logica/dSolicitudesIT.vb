@@ -179,17 +179,17 @@
         Dim s As New pSolicitudesIT
         Return s.listar
     End Function
-    Public Function listarpendientes() As ArrayList
+    Public Function listarpendientes(fechaDesde As Date, fechaHasta As Date) As ArrayList
         Dim s As New pSolicitudesIT
-        Return s.listarpendientes
+        Return s.listarpendientes(fechaDesde, fechaHasta)
     End Function
-    Public Function listarfinalizadas() As ArrayList
+    Public Function listarfinalizadas(fechaDesde As Date, fechaHasta As Date) As ArrayList
         Dim s As New pSolicitudesIT
-        Return s.listarfinalizadas
+        Return s.listarfinalizadas(fechaDesde, fechaHasta)
     End Function
-    Public Function listarenproceso() As ArrayList
+    Public Function listarenproceso(fechaDesde As Date, fechaHasta As Date) As ArrayList
         Dim s As New pSolicitudesIT
-        Return s.listarenproceso
+        Return s.listarenproceso(fechaDesde, fechaHasta)
     End Function
     Public Function listarxusuario(ByVal usuario As Integer) As ArrayList
         Dim s As New pSolicitudesIT

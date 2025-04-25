@@ -44,10 +44,16 @@
             Dim lista As New ArrayList
             Dim fila As Integer = 0
             Dim columna As Integer = 0
-            lista = ec.listarxcajatodos(idcaja)
+
+            If entradaManual.Checked = True Then
+                lista = ec.listarCajasEntradaManual(idcaja)
+            Else
+                lista = ec.listarxcajatodos(idcaja)
+            End If
+
             DataGridView1.Rows.Clear()
             If Not lista Is Nothing Then
-                DataGridView1.ColumnCount = lista.Count
+                DataGridView1.ColumnCount = 8
                 DataGridView1.Rows.Add(lista.Count)
                 If Not lista Is Nothing Then
                     If lista.Count > 0 Then
@@ -109,4 +115,54 @@
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
     End Sub
+
+    Private Sub Button1_Click(sender As Object, e As EventArgs) Handles Button1.Click
+        If DataGridView1.Rows.Count = 0 Then
+            MsgBox("No hay datos para exportar.", MsgBoxStyle.Exclamation, "Exportar a Excel")
+            Exit Sub
+        End If
+
+        Dim excelApp As New Microsoft.Office.Interop.Excel.Application
+        Dim excelWorkbook As Microsoft.Office.Interop.Excel.Workbook = excelApp.Workbooks.Add()
+        Dim excelWorksheet As Microsoft.Office.Interop.Excel.Worksheet = CType(excelWorkbook.Sheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+
+        ' Encabezados
+        For i As Integer = 0 To DataGridView1.Columns.Count - 1
+            excelWorksheet.Cells(1, i + 1) = DataGridView1.Columns(i).HeaderText
+        Next
+
+        ' Celdas
+        For i As Integer = 0 To DataGridView1.Rows.Count - 1
+            For j As Integer = 0 To DataGridView1.Columns.Count - 1
+                If DataGridView1.Rows(i).Cells(j).Value IsNot Nothing Then
+                    excelWorksheet.Cells(i + 2, j + 1) = DataGridView1.Rows(i).Cells(j).Value.ToString()
+                End If
+            Next
+        Next
+
+        ' Guardar archivo
+        Dim ruta As String = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) & "\Reporte_" & Now.ToString("yyyyMMdd_HHmmss") & ".xls"
+        excelWorkbook.SaveAs(ruta)
+        excelWorkbook.Close()
+        excelApp.Quit()
+
+        releaseObject(excelWorksheet)
+        releaseObject(excelWorkbook)
+        releaseObject(excelApp)
+
+        MsgBox("Reporte generado en: " & ruta, MsgBoxStyle.Information, "Exportación a Excel")
+    End Sub
+
+    Private Sub releaseObject(ByVal obj As Object)
+        Try
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
+            obj = Nothing
+        Catch ex As Exception
+            obj = Nothing
+        Finally
+            GC.Collect()
+        End Try
+    End Sub
+
+
 End Class

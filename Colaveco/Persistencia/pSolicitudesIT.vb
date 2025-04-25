@@ -131,8 +131,12 @@
             Return Nothing
         End Try
     End Function
-    Public Function listarpendientes() As ArrayList
-        Dim sql As String = ("select id, fecha, descripcion, solicitante, prioridad, estado, autorizado, autoriza, validado, valida, fechavalidacion, observaciones FROM solicitudes_it WHERE estado = 1 order by fecha desc")
+    Public Function listarpendientes(fechaDesde As Date, fechaHasta As Date) As ArrayList
+        Dim sql As String = "SELECT id, fecha, descripcion, solicitante, prioridad, estado, autorizado, autoriza, validado, valida, fechavalidacion, observaciones " &
+                            "FROM solicitudes_it " &
+                            "WHERE estado = 1 AND fecha >= '" & fechaDesde.ToString("yyyy-MM-dd") & "' AND fecha <= '" & fechaHasta.ToString("yyyy-MM-dd") & "' " &
+                            "ORDER BY fecha DESC"
+
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -163,8 +167,13 @@
             Return Nothing
         End Try
     End Function
-    Public Function listarfinalizadas() As ArrayList
-        Dim sql As String = ("select id, fecha, descripcion, solicitante, prioridad, estado, autorizado, autoriza, valida, validado, fechavalidacion, observaciones FROM solicitudes_it WHERE estado = 3 order by fecha desc")
+
+    Public Function listarfinalizadas(fechaDesde As Date, fechaHasta As Date) As ArrayList
+        Dim sql As String = "SELECT id, fecha, descripcion, solicitante, prioridad, estado, autorizado, autoriza, valida, validado, fechavalidacion, observaciones " &
+                            "FROM solicitudes_it " &
+                            "WHERE estado = 3 AND fecha >= '" & fechaDesde.ToString("yyyy-MM-dd") & "' AND fecha <= '" & fechaHasta.ToString("yyyy-MM-dd") & "' " &
+                            "ORDER BY fecha DESC"
+
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -195,8 +204,12 @@
             Return Nothing
         End Try
     End Function
-    Public Function listarenproceso() As ArrayList
-        Dim sql As String = ("select id, fecha, descripcion, solicitante, prioridad, estado, autorizado, autoriza, valida, validado, fechavalidacion, observaciones FROM solicitudes_it WHERE estado = 2 order by fecha desc")
+
+    Public Function listarenproceso(fechaDesde As Date, fechaHasta As Date) As ArrayList
+        Dim sql As String = "SELECT id, fecha, descripcion, solicitante, prioridad, estado, autorizado, autoriza, valida, validado, fechavalidacion, observaciones " &
+                            "FROM solicitudes_it " &
+                            "WHERE estado = 2 AND fecha >= '" & fechaDesde.ToString("yyyy-MM-dd") & "' AND fecha <= '" & fechaHasta.ToString("yyyy-MM-dd") & "' " &
+                            "ORDER BY fecha DESC"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -227,6 +240,7 @@
             Return Nothing
         End Try
     End Function
+
     Public Function listarxestado(ByVal estado As Integer) As ArrayList
         Dim sql As String = ("select id, fecha, descripcion, solicitante, prioridad, estado, autorizado, autoriza, validado, valida, fechavalidacion, observaciones FROM solicitudes_it WHERE estado= " & estado & " order by fecha desc")
         Try

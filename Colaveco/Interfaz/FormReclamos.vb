@@ -134,6 +134,7 @@
                 If Usuario.USUARIO = "CA" Or Usuario.USUARIO = "JMS" Or Usuario.USUARIO = "MD" Then
                     If (rec.modificar(Usuario)) Then
                         MsgBox("Registro modificado", MsgBoxStyle.Information, "Atención")
+                        enviomail()
                     Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                     End If
                 Else
@@ -163,6 +164,7 @@
                 rec.OBSERVACIONES = observaciones
                 rec.ACREDITADO = acreditado
                 If (rec.guardar(Usuario)) Then
+                    enviomail()
                     MsgBox("Registro guardado", MsgBoxStyle.Information, "Atención")
                     limpiar()
                 Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
@@ -219,5 +221,53 @@
             v.Show()
         End If
        
+    End Sub
+
+
+    Private Sub enviomail()
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+        Dim nombre_productor As String = ""
+        Dim tipo As String = ""
+        tipo = ComboTipo.SelectedItem.ToString
+
+        Dim texto As String = ""
+        texto = "Se ha ingresado un nuevo RECLAMO del tipo: " & tipo & ""
+
+        'CONFIGURACIÓN DEL STMP 
+        ' Llamamos al método buscar para obtener el objeto Credenciales
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+        _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+        _SMTP.Host = objetoCredenciales.CredencialesHost
+        _SMTP.Port = 25
+        _SMTP.EnableSsl = False
+
+        Try
+            _Message.[To].Add("qc.colaveco@gmail.com")
+
+        Catch ex As System.Net.Mail.SmtpException
+
+        End Try
+
+        'Cuenta de Correo al que se le quiere enviar el e-mail 
+        _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+        'Quien lo envía 
+        _Message.Subject = "Reclamo - Colaveco"
+        'Sujeto del e-mail 
+        _Message.SubjectEncoding = System.Text.Encoding.UTF8
+        'Codificacion 
+        _Message.Body = texto
+        'contenido del mail 
+        _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+        _Message.Priority = System.Net.Mail.MailPriority.Normal
+        _Message.IsBodyHtml = False
+        Try
+            _SMTP.Send(_Message)
+            MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As System.Net.Mail.SmtpException
+            MessageBox.Show("Error!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        End Try
+
     End Sub
 End Class

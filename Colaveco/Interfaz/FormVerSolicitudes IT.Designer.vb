@@ -27,7 +27,6 @@ Partial Class FormVerSolicitudes_IT
         Me.RadioPendientes = New System.Windows.Forms.RadioButton()
         Me.RadioFinalizadas = New System.Windows.Forms.RadioButton()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.RadioProceso = New System.Windows.Forms.RadioButton()
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -38,6 +37,12 @@ Partial Class FormVerSolicitudes_IT
         Me.Estados = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.cambiar = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.AgregarObservaciones = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.RadioProceso = New System.Windows.Forms.RadioButton()
+        Me.Label1 = New System.Windows.Forms.Label()
+        Me.dtpDesde = New System.Windows.Forms.DateTimePicker()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.dtpHasta = New System.Windows.Forms.DateTimePicker()
+        Me.Button1 = New System.Windows.Forms.Button()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -96,18 +101,6 @@ Partial Class FormVerSolicitudes_IT
         Me.DataGridView1.RowHeadersVisible = False
         Me.DataGridView1.Size = New System.Drawing.Size(1753, 671)
         Me.DataGridView1.TabIndex = 4
-        '
-        'RadioProceso
-        '
-        Me.RadioProceso.AutoSize = True
-        Me.RadioProceso.Location = New System.Drawing.Point(328, 15)
-        Me.RadioProceso.Margin = New System.Windows.Forms.Padding(4)
-        Me.RadioProceso.Name = "RadioProceso"
-        Me.RadioProceso.Size = New System.Drawing.Size(102, 21)
-        Me.RadioProceso.TabIndex = 5
-        Me.RadioProceso.TabStop = True
-        Me.RadioProceso.Text = "En Proceso"
-        Me.RadioProceso.UseVisualStyleBackColor = True
         '
         'Id
         '
@@ -169,11 +162,69 @@ Partial Class FormVerSolicitudes_IT
         Me.AgregarObservaciones.Text = "Observaciones"
         Me.AgregarObservaciones.UseColumnTextForButtonValue = True
         '
+        'RadioProceso
+        '
+        Me.RadioProceso.AutoSize = True
+        Me.RadioProceso.Location = New System.Drawing.Point(328, 15)
+        Me.RadioProceso.Margin = New System.Windows.Forms.Padding(4)
+        Me.RadioProceso.Name = "RadioProceso"
+        Me.RadioProceso.Size = New System.Drawing.Size(102, 21)
+        Me.RadioProceso.TabIndex = 5
+        Me.RadioProceso.TabStop = True
+        Me.RadioProceso.Text = "En Proceso"
+        Me.RadioProceso.UseVisualStyleBackColor = True
+        '
+        'Label1
+        '
+        Me.Label1.AutoSize = True
+        Me.Label1.Location = New System.Drawing.Point(599, 18)
+        Me.Label1.Name = "Label1"
+        Me.Label1.Size = New System.Drawing.Size(49, 17)
+        Me.Label1.TabIndex = 6
+        Me.Label1.Text = "Desde"
+        '
+        'dtpDesde
+        '
+        Me.dtpDesde.Location = New System.Drawing.Point(655, 13)
+        Me.dtpDesde.Name = "dtpDesde"
+        Me.dtpDesde.Size = New System.Drawing.Size(103, 22)
+        Me.dtpDesde.TabIndex = 7
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(777, 18)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(45, 17)
+        Me.Label2.TabIndex = 8
+        Me.Label2.Text = "Hasta"
+        '
+        'dtpHasta
+        '
+        Me.dtpHasta.Location = New System.Drawing.Point(829, 13)
+        Me.dtpHasta.Name = "dtpHasta"
+        Me.dtpHasta.Size = New System.Drawing.Size(110, 22)
+        Me.dtpHasta.TabIndex = 9
+        '
+        'Button1
+        '
+        Me.Button1.Location = New System.Drawing.Point(965, 12)
+        Me.Button1.Name = "Button1"
+        Me.Button1.Size = New System.Drawing.Size(100, 23)
+        Me.Button1.TabIndex = 10
+        Me.Button1.Text = "EXCEL"
+        Me.Button1.UseVisualStyleBackColor = True
+        '
         'FormVerSolicitudes_IT
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1782, 740)
+        Me.Controls.Add(Me.Button1)
+        Me.Controls.Add(Me.dtpHasta)
+        Me.Controls.Add(Me.Label2)
+        Me.Controls.Add(Me.dtpDesde)
+        Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.RadioProceso)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.RadioFinalizadas)
@@ -203,4 +254,9 @@ Partial Class FormVerSolicitudes_IT
     Friend WithEvents Estados As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents cambiar As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents AgregarObservaciones As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents Label1 As System.Windows.Forms.Label
+    Friend WithEvents dtpDesde As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents dtpHasta As System.Windows.Forms.DateTimePicker
+    Friend WithEvents Button1 As System.Windows.Forms.Button
 End Class
