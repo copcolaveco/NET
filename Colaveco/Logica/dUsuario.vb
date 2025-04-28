@@ -584,6 +584,10 @@
         Dim p As New pUsuario
         Return p.buscarPorPassword(Me)
     End Function
+    Public Function buscarPassSupervisores() As ArrayList
+        Dim p As New pUsuario
+        Return p.buscarPassSupervisores(Me)
+    End Function
 #End Region
 
     Public Overrides Function ToString() As String

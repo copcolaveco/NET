@@ -734,7 +734,7 @@ Public Class FormInicio
                     comprobarlicencias()
                 End If
                 'IT
-                If u.USUARIO = "SA" Or u.USUARIO = "AP" Or u.USUARIO = "SV" Then
+                If u.USUARIO = "SA" Or u.USUARIO = "MCF" Or u.USUARIO = "DF" Then
                     ITToolStripMenuItem.Enabled = True
                     AutorizarCompraToolStripMenuItem.Enabled = True
                     EnviarComprasToolStripMenuItem.Enabled = True

@@ -265,6 +265,75 @@
             Return Nothing
         End Try
     End Function
+    Public Function buscarPassSupervisores(ByVal o As Object) As ArrayList
+        Dim sql As String = "SELECT id, nombre, sexo, ci, tipousuario, sector, usuario, password, eliminado, foto, tipomarca, ifnull(entra,''), ifnull(sale,''), ifnull(entra2,''), ifnull(sale2,''), ifnull(entra3,''), ifnull(sale3,''), ifnull(entra4,''), ifnull(sale4,''), ifnull(entra5,''), ifnull(sale5,''), ifnull(entra6,''), ifnull(sale6,''), ifnull(entrac,''), ifnull(salec,''), ifnull(entrac2,''), ifnull(salec2,''), ifnull(entrac3,''), ifnull(salec3,''), ifnull(entrac4,''), ifnull(salec4,''), ifnull(entrac5,''), ifnull(salec5,''), ifnull(entrac6,''), ifnull(salec6,''), ifnull(entrar,''), ifnull(saler,''), ifnull(entrar2,''), ifnull(saler2,''), ifnull(entrar3,''), ifnull(saler3,''), ifnull(entrar4,''), ifnull(saler4,''), ifnull(entrar5,''), ifnull(saler5,''), ifnull(entrar6,''), ifnull(saler6,''), ifnull(email,''), csalud FROM usuario where usuario in ('MCF','DF') order by nombre asc"
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                Dim unaFila As DataRow
+                For Each unaFila In Ds.Tables(0).Rows
+                    Dim u As New dUsuario
+                    u.ID = CType(unaFila.Item(0), Integer)
+                    u.NOMBRE = CType(unaFila.Item(1), String)
+                    u.SEXO = CType(unaFila.Item(2), String)
+                    u.CI = CType(unaFila.Item(3), String)
+                    u.TIPOUSUARIO = CType(unaFila.Item(4), String)
+                    u.SECTOR = CType(unaFila.Item(5), String)
+                    u.USUARIO = CType(unaFila.Item(6), String)
+                    u.PASSWORD = CType(unaFila.Item(7), String)
+                    u.ELIMINADO = CType(unaFila.Item(8), Integer)
+                    u.FOTO = CType(unaFila.Item(9), String)
+                    u.TIPOMARCA = CType(unaFila.Item(10), Integer)
+                    u.ENTRA = CType(unaFila.Item(11), String)
+                    u.SALE = CType(unaFila.Item(12), String)
+                    u.ENTRA2 = CType(unaFila.Item(13), String)
+                    u.SALE2 = CType(unaFila.Item(14), String)
+                    u.ENTRA3 = CType(unaFila.Item(15), String)
+                    u.SALE3 = CType(unaFila.Item(16), String)
+                    u.ENTRA4 = CType(unaFila.Item(17), String)
+                    u.SALE4 = CType(unaFila.Item(18), String)
+                    u.ENTRA5 = CType(unaFila.Item(19), String)
+                    u.SALE5 = CType(unaFila.Item(20), String)
+                    u.ENTRA6 = CType(unaFila.Item(21), String)
+                    u.SALE6 = CType(unaFila.Item(22), String)
+                    u.ENTRAC = CType(unaFila.Item(23), String)
+                    u.SALEC = CType(unaFila.Item(24), String)
+                    u.ENTRAC2 = CType(unaFila.Item(25), String)
+                    u.SALEC2 = CType(unaFila.Item(26), String)
+                    u.ENTRAC3 = CType(unaFila.Item(27), String)
+                    u.SALEC3 = CType(unaFila.Item(28), String)
+                    u.ENTRAC4 = CType(unaFila.Item(29), String)
+                    u.SALEC4 = CType(unaFila.Item(30), String)
+                    u.ENTRAC5 = CType(unaFila.Item(31), String)
+                    u.SALEC5 = CType(unaFila.Item(32), String)
+                    u.ENTRAC6 = CType(unaFila.Item(33), String)
+                    u.SALEC6 = CType(unaFila.Item(34), String)
+                    u.ENTRAR = CType(unaFila.Item(35), String)
+                    u.SALER = CType(unaFila.Item(36), String)
+                    u.ENTRAR2 = CType(unaFila.Item(37), String)
+                    u.SALER2 = CType(unaFila.Item(38), String)
+                    u.ENTRAR3 = CType(unaFila.Item(39), String)
+                    u.SALER3 = CType(unaFila.Item(40), String)
+                    u.ENTRAR4 = CType(unaFila.Item(41), String)
+                    u.SALER4 = CType(unaFila.Item(42), String)
+                    u.ENTRAR5 = CType(unaFila.Item(43), String)
+                    u.SALER5 = CType(unaFila.Item(44), String)
+                    u.ENTRAR6 = CType(unaFila.Item(45), String)
+                    u.SALER6 = CType(unaFila.Item(46), String)
+                    u.EMAIL = CType(unaFila.Item(47), String)
+                    u.CSALUD = CType(unaFila.Item(48), String)
+                    Lista.Add(u)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
     Public Function listar() As ArrayList
         Dim sql As String = "SELECT id, nombre, sexo, ci, tipousuario, sector, usuario, password, eliminado, foto, tipomarca, ifnull(entra,''), ifnull(sale,''), ifnull(entra2,''), ifnull(sale2,''), ifnull(entra3,''), ifnull(sale3,''), ifnull(entra4,''), ifnull(sale4,''), ifnull(entra5,''), ifnull(sale5,''), ifnull(entra6,''), ifnull(sale6,''), ifnull(entrac,''), ifnull(salec,''), ifnull(entrac2,''), ifnull(salec2,''), ifnull(entrac3,''), ifnull(salec3,''), ifnull(entrac4,''), ifnull(salec4,''), ifnull(entrac5,''), ifnull(salec5,''), ifnull(entrac6,''), ifnull(salec6,''), ifnull(entrar,''), ifnull(saler,''), ifnull(entrar2,''), ifnull(saler2,''), ifnull(entrar3,''), ifnull(saler3,''), ifnull(entrar4,''), ifnull(saler4,''), ifnull(entrar5,''), ifnull(saler5,''), ifnull(entrar6,''), ifnull(saler6,''), ifnull(email,''), csalud FROM usuario where eliminado=0 order by nombre asc"
         Try

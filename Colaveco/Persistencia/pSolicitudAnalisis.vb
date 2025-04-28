@@ -122,6 +122,26 @@
             Return Nothing
         End Try
     End Function
+    Public Function existeSolicitudAnalisis(ByVal id As Long) As Boolean
+        Try
+            ' Ejecutar la consulta SQL para verificar si el ID existe
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL("SELECT COUNT(*) FROM solicitudanalisis WHERE id = " & id)
+
+            ' Verificar si se obtuvo un resultado y si hay alguna fila
+            If Ds.Tables(0).Rows.Count > 0 AndAlso CType(Ds.Tables(0).Rows(0).Item(0), Integer) > 0 Then
+                ' Si el conteo es mayor que cero, significa que el ID existe
+                Return True
+            Else
+                ' Si no se encontró ningún resultado, el ID no existe
+                Return False
+            End If
+        Catch ex As Exception
+            ' Si ocurre un error en la ejecución, retornar False
+            Return False
+        End Try
+    End Function
+
     Public Function listar() As ArrayList
         Dim sql As String = "SELECT id, fechaingreso, idproductor, idtipoinforme, idsubinforme, idtipoficha,observaciones, nmuestras, idmuestra, idtecnico, sinsolicitud, sinconservante, temperatura, derramadas, desvio, idfactura, web, personal, email, fechaenvio, marca, eliminado, tambo, pago, importe, kmts, ifnull(obsinternas,''), ifnull(codigo,''), fechaproceso, muestreo, logo, ifnull(interpretacion,''), fechamuestreo FROM solicitudanalisis where eliminado=0 order by id desc"
         Try

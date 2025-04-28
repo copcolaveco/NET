@@ -400,191 +400,215 @@ Public Class FormSolicitud
             sol.FECHAMUESTREO = fecmuestreo
             sw.FICHA = id
             sw.GESTOR = 0
-            If (sol.modificar(Usuario)) Then
-                If ultimaficha > un.FICHAS Then
-                    un.FICHAS = ultimaficha
-                    un.modificar()
-                End If
 
-                '---------------GestorGX
-                ' tiene que modificar y esta creando
-                Dim gestorNuevo As New dNuevoGestor
-                gestorNuevo.ID = sol.ID
-                gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
-                gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
-                gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
-                gestorNuevo.NMUESTRAS = sol.NMUESTRAS
-                gestorNuevo.IDMUESTRA = idmuestra.ID
-                gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
-                gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
-                gestorNuevo.TEMPERATURA = sol.TEMPERATURA
-                gestorNuevo.DERRAMADAS = sol.DERRAMADAS
-                gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
-                gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
-                gestorNuevo.FECHAENVIO = sol.FECHAENVIO
-                gestorNuevo.guardarNuevoGestor(Usuario)
+            'Sol IT 423, Control por contraseña de supervisor al momento de modificar una solicitud.
+            Dim solicitudAnalisis As New dSolicitudAnalisis
 
-                '-----------------------------------
+            If solicitudAnalisis.verificarExistenciaSolicitud(id) Then
 
-                sw.guardar(Usuario)
-                MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
-                imprimir_solicitud()
-                btnImprimir.Visible = True
-                Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
-                If result2 = DialogResult.Cancel Then
-                    guardar_ticket()
-                ElseIf result2 = DialogResult.No Then
-                    guardar_ticket()
-                ElseIf result2 = DialogResult.Yes Then
-                    Dim result5 = MessageBox.Show("Desea imprimir un ticket para el cliente con usuario y contraseña?", "Atención!", MessageBoxButtons.YesNoCancel)
-                    If result5 = DialogResult.Cancel Then
-                        imprimir_ticket()
-                    ElseIf result5 = DialogResult.No Then
-                        imprimir_ticket()
-                    Else
-                        imprimir_ticket_datos()
-                    End If
+                ' Mostrar el mensaje de advertencia
+                Dim resultado As DialogResult = MessageBox.Show("Esta solicitud necesita de la autorización de un supervisor para ser modificada.", "Autorización requerida", MessageBoxButtons.OKCancel, MessageBoxIcon.Warning)
+
+                ' Si el usuario presiona OK, abrir el formulario FormConfSupervisor
+                If resultado = DialogResult.OK Then
+                    Dim formSupervisor As New FormConfSupervisor()
+                    formSupervisor.ShowDialog()
+
+                    ' Ahora chequeamos si autorizó correctamente
+                    If formSupervisor.AutorizadoCorrecto = True Then
+                        ' ACA PONES TU BLOQUE DE CÓDIGO QUE MODIFICA Y GUARDA
+
+                        If (sol.modificar(Usuario)) Then
+                            If ultimaficha > un.FICHAS Then
+                                un.FICHAS = ultimaficha
+                                un.modificar()
+                            End If
+
+                            '---------------GestorGX
+                            ' tiene que modificar y esta creando
+                            Dim gestorNuevo As New dNuevoGestor
+                            gestorNuevo.ID = sol.ID
+                            gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
+                            gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
+                            gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
+                            gestorNuevo.NMUESTRAS = sol.NMUESTRAS
+                            gestorNuevo.IDMUESTRA = idmuestra.ID
+                            gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
+                            gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
+                            gestorNuevo.TEMPERATURA = sol.TEMPERATURA
+                            gestorNuevo.DERRAMADAS = sol.DERRAMADAS
+                            gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
+                            gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
+                            gestorNuevo.FECHAENVIO = sol.FECHAENVIO
+                            gestorNuevo.guardarNuevoGestor(Usuario)
+
+                            '-----------------------------------
+
+                            sw.guardar(Usuario)
+                            MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
+                            imprimir_solicitud()
+                            btnImprimir.Visible = True
+                            Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
+                            If result2 = DialogResult.Cancel Then
+                                guardar_ticket()
+                            ElseIf result2 = DialogResult.No Then
+                                guardar_ticket()
+                            ElseIf result2 = DialogResult.Yes Then
+                                Dim result5 = MessageBox.Show("Desea imprimir un ticket para el cliente con usuario y contraseña?", "Atención!", MessageBoxButtons.YesNoCancel)
+                                If result5 = DialogResult.Cancel Then
+                                    imprimir_ticket()
+                                ElseIf result5 = DialogResult.No Then
+                                    imprimir_ticket()
+                                Else
+                                    imprimir_ticket_datos()
+                                End If
+                            End If
+                            If idsubinforme.ID = 22 Then
+                                Dim r As New dRosaBengalaDescarte
+                                r.FICHA = id
+                                r.FECHA = fecing
+                                r.DESCARTADA = 0
+                                r.FECHAD = fecing
+                                r.MARCADA = 0
+                                r.FECHAM = fecing
+                                r.guardar(Usuario)
+                            End If
+                            If idproductor = 4870 Then
+                                Dim result = MessageBox.Show("Enviar e-mail a PULSA S.A. con la solicitud de análisis? (Antes de enviar debe cerrar excel)", "Atención!", MessageBoxButtons.YesNoCancel)
+                                If result = DialogResult.Cancel Then
+                                ElseIf result = DialogResult.No Then
+                                ElseIf result = DialogResult.Yes Then
+                                    'enviomailpulsa()
+                                End If
+                            End If
+                            'modificarRegistro(id)
+                            enviomail()
+                            limpiar()
+                            limpiar2()
+                            ' Grabar estado de la ficha
+                            Dim est As New dEstados
+                            est.FICHA = id
+                            est.ESTADO = 1
+                            est.FECHA = fecing
+                            est.guardar(Usuario)
+                            est = Nothing
+                            enviar_notificacion_solicitud(id)
+                            '****************************
+                        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+
+                        End If
+                Else
+                    MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                 End If
-                If idsubinforme.ID = 22 Then
-                    Dim r As New dRosaBengalaDescarte
-                    r.FICHA = id
-                    r.FECHA = fecing
-                    r.DESCARTADA = 0
-                    r.FECHAD = fecing
-                    r.MARCADA = 0
-                    r.FECHAM = fecing
-                    r.guardar(Usuario)
-                End If
-                If idproductor = 4870 Then
-                    Dim result = MessageBox.Show("Enviar e-mail a PULSA S.A. con la solicitud de análisis? (Antes de enviar debe cerrar excel)", "Atención!", MessageBoxButtons.YesNoCancel)
-                    If result = DialogResult.Cancel Then
-                    ElseIf result = DialogResult.No Then
-                    ElseIf result = DialogResult.Yes Then
-                        'enviomailpulsa()
-                    End If
-                End If
-                'modificarRegistro(id)
-                enviomail()
-                limpiar()
-                limpiar2()
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = id
-                est.ESTADO = 1
-                est.FECHA = fecing
-                est.guardar(Usuario)
-                est = Nothing
-                enviar_notificacion_solicitud(id)
-                '****************************
-            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+            Else
+                ' No autorizado, no continúa
+                MsgBox("Acceso no autorizado, operación cancelada.", MsgBoxStyle.Exclamation, "Atención")
             End If
         Else
-            If TextIdProductor.Text.Trim.Length > 0 Then
-                Dim sol As New dSolicitudAnalisis()
-                Dim un As New dUltimoNumero
-                un = un.buscar
-                Dim fecing As String
-                fecing = Format(fechaingreso, "yyyy-MM-dd")
-                sol.ID = id
-                sol.FECHAINGRESO = fecing
-                sol.IDPRODUCTOR = idproductor
-                If Not idtipoinforme Is Nothing Then
-                    sol.IDTIPOINFORME = idtipoinforme.ID
-                End If
-                If Not idsubinforme Is Nothing Then
-                    sol.IDSUBINFORME = idsubinforme.ID
-                End If
-                sol.IDTIPOFICHA = 1
-                sol.OBSERVACIONES = observaciones
-                sol.NMUESTRAS = nmuestras
-                If Not idtecnico Is Nothing Then
-                    sol.IDTECNICO = idtecnico.ID
-                End If
-                sol.SINCOLICITUD = sinsolicitud
-                sol.SINCONSERVANTE = sinconservante
-                sol.TEMPERATURA = temperatura
-                sol.DERRAMADAS = derramadas
-                sol.DESVIOAUTORIZADO = desvioautorizado
-                sol.IDFACTURA = idfactura
-                sol.WEB = web
-                sol.PERSONAL = personal
-                sol.EMAIL = mail
-                sol.FECHAENVIO = fecing
-                sol.PAGO = pago
-                sol.KMTS = kmts
-                sol.OBSINTERNAS = obsinternas
-                sol.CODIGO = codigo
-                sol.FECHAPROCESO = fecing
-                sol.MUESTREO = muestreo
-                sol.INTERPRETACION = idTecnicoMuestreo
-                Dim fecmuestreo As String
-                fecmuestreo = Format(fechamuestreo, "yyyy-MM-dd")
-                sol.FECHAMUESTREO = fecmuestreo
-                If (sol.guardar(Usuario)) Then
-                    If ultimaficha > un.FICHAS Then
-                        un.FICHAS = ultimaficha
-                        un.modificar()
+                If TextIdProductor.Text.Trim.Length > 0 Then
+                    Dim sol2 As New dSolicitudAnalisis()
+                    Dim un2 As New dUltimoNumero
+                    un2 = un.buscar
+                    Dim fecing2 As String
+                    fecing2 = Format(fechaingreso, "yyyy-MM-dd")
+                    sol2.ID = id
+                    sol2.FECHAINGRESO = fecing
+                    sol2.IDPRODUCTOR = idproductor
+                    If Not idtipoinforme Is Nothing Then
+                        sol2.IDTIPOINFORME = idtipoinforme.ID
                     End If
-
-                    '---------------GestorGX
-                    Dim gestorNuevo As New dNuevoGestor
-                    gestorNuevo.ID = sol.ID
-                    gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
-                    gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
-                    gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
-                    gestorNuevo.NMUESTRAS = sol.NMUESTRAS
-                    gestorNuevo.IDMUESTRA = idmuestra.ID
-                    gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
-                    gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
-                    gestorNuevo.TEMPERATURA = sol.TEMPERATURA
-                    gestorNuevo.DERRAMADAS = sol.DERRAMADAS
-                    gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
-                    gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
-                    gestorNuevo.FECHAENVIO = sol.FECHAENVIO
-                    gestorNuevo.guardarNuevoGestor(Usuario)
-                    '----------------------------------------------------
-
-
-                    MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
-                    '***IMPRESIÓN DE SOLICITUD Y TICKETS **************************************************************************************
-                    imprimir_solicitud()
-                    Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
-                    If result2 = DialogResult.Cancel Then
-                    ElseIf result2 = DialogResult.No Then
-                    ElseIf result2 = DialogResult.Yes Then
-                        imprimir_ticket()
-                        'Dim result5 = MessageBox.Show("Desea imprimir un ticket para el cliente con usuario y contraseña?", "Atención!", MessageBoxButtons.YesNoCancel)
-                        'If result5 = DialogResult.Cancel Then
-                        'ElseIf result5 = DialogResult.No Then
-                        'Else
-                        'End If
+                    If Not idsubinforme Is Nothing Then
+                        sol2.IDSUBINFORME = idsubinforme.ID
                     End If
-                    '*****************************************************************************************************************************
-                    If idsubinforme.ID = 22 Then
-                        Dim r As New dRosaBengalaDescarte
-                        r.FICHA = id
-                        r.FECHA = fecing
-                        r.DESCARTADA = 0
-                        r.FECHAD = fecing
-                        r.MARCADA = 0
-                        r.FECHAM = fecing
-                        r.guardar(Usuario)
+                    sol2.IDTIPOFICHA = 1
+                    sol2.OBSERVACIONES = observaciones
+                    sol2.NMUESTRAS = nmuestras
+                    If Not idtecnico Is Nothing Then
+                        sol2.IDTECNICO = idtecnico.ID
                     End If
-                    limpiar()
-                    limpiar2()
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = id
-                    est.ESTADO = 1
-                    est.FECHA = fecing
-                    est.guardar(Usuario)
-                    '****************************
-                    modificarRegistro(id)
-                    enviomail()
-                    enviar_notificacion_solicitud(id)
-                Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                    sol2.SINCOLICITUD = sinsolicitud
+                    sol2.SINCONSERVANTE = sinconservante
+                    sol2.TEMPERATURA = temperatura
+                    sol2.DERRAMADAS = derramadas
+                    sol2.DESVIOAUTORIZADO = desvioautorizado
+                    sol2.IDFACTURA = idfactura
+                    sol2.WEB = web
+                    sol2.PERSONAL = personal
+                    sol2.EMAIL = mail
+                    sol2.FECHAENVIO = fecing
+                    sol2.PAGO = pago
+                    sol2.KMTS = kmts
+                    sol2.OBSINTERNAS = obsinternas
+                    sol2.CODIGO = codigo
+                    sol2.FECHAPROCESO = fecing
+                    sol2.MUESTREO = muestreo
+                    sol2.INTERPRETACION = idTecnicoMuestreo
+                    Dim fecmuestreo2 As String
+                    fecmuestreo2 = Format(fechamuestreo, "yyyy-MM-dd")
+                    sol2.FECHAMUESTREO = fecmuestreo
+
+                    If (sol2.guardar(Usuario)) Then
+                        If ultimaficha > un.FICHAS Then
+                            un2.FICHAS = ultimaficha
+                            un2.modificar()
+                        End If
+
+                        '---------------GestorGX
+                        Dim gestorNuevo As New dNuevoGestor
+                        gestorNuevo.ID = sol.ID
+                        gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
+                        gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
+                        gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
+                        gestorNuevo.NMUESTRAS = sol.NMUESTRAS
+                        gestorNuevo.IDMUESTRA = idmuestra.ID
+                        gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
+                        gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
+                        gestorNuevo.TEMPERATURA = sol.TEMPERATURA
+                        gestorNuevo.DERRAMADAS = sol.DERRAMADAS
+                        gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
+                        gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
+                        gestorNuevo.FECHAENVIO = sol.FECHAENVIO
+                        gestorNuevo.guardarNuevoGestor(Usuario)
+                        '----------------------------------------------------
+
+
+                        MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
+                        '***IMPRESIÓN DE SOLICITUD Y TICKETS **************************************************************************************
+                        imprimir_solicitud()
+                        Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
+                        If result2 = DialogResult.Cancel Then
+                        ElseIf result2 = DialogResult.No Then
+                        ElseIf result2 = DialogResult.Yes Then
+                            imprimir_ticket()
+                        End If
+                        '*****************************************************************************************************************************
+                        If idsubinforme.ID = 22 Then
+                            Dim r As New dRosaBengalaDescarte
+                            r.FICHA = id
+                            r.FECHA = fecing
+                            r.DESCARTADA = 0
+                            r.FECHAD = fecing
+                            r.MARCADA = 0
+                            r.FECHAM = fecing
+                            r.guardar(Usuario)
+                        End If
+                        limpiar()
+                        limpiar2()
+                        ' Grabar estado de la ficha
+                        Dim est As New dEstados
+                        est.FICHA = id
+                        est.ESTADO = 1
+                        est.FECHA = fecing
+                        est.guardar(Usuario)
+                        '****************************
+                        modificarRegistro(id)
+                        enviomail()
+                        enviar_notificacion_solicitud(id)
+                    Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                    End If
                 End If
             End If
+        Else
         End If
         agregar_registro_facturacion()
         buscarultimaficha()

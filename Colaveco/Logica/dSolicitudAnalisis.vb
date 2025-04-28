@@ -485,6 +485,11 @@
         Dim s As New pSolicitudAnalisis
         Return s.buscar(Me)
     End Function
+    Public Function verificarExistenciaSolicitud(ByVal id As Long) As Boolean
+        ' Llamar a la función existeSolicitudAnalisis para verificar la existencia del ID
+        Dim s As New pSolicitudAnalisis
+        Return s.existeSolicitudAnalisis(id)
+    End Function
     Public Function buscarultimoid() As dSolicitudAnalisis
         Dim s As New pSolicitudAnalisis
         Return s.buscarultimoid(Me)
