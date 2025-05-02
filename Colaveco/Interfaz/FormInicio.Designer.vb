@@ -85,6 +85,7 @@ Partial Class FormInicio
         Me.HistorialPorCajaToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.InformeDeCajasSinDevolverToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.HistorialDePedidosToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HistoricoEntradaCajaManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContableToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ContadorDeAnálisisEmpresasNUEVOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.EmbarqueDeCajasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -385,8 +386,7 @@ Partial Class FormInicio
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.Button1 = New System.Windows.Forms.Button()
-        Me.HistoricoEntradaCajaManualToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridTareas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -659,7 +659,7 @@ Partial Class FormInicio
         '
         'RecepciónToolStripMenuItem
         '
-        Me.RecepciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CompletarEnvíosToolStripMenuItem2, Me.DescarteDeMuestrasToolStripMenuItem, Me.EliminarSolicitudDeAnálisisToolStripMenuItem1, Me.IngresosSinSolicitudToolStripMenuItem1, Me.PedidosAutomáticoToolStripMenuItem, Me.PedidosDeFrascosToolStripMenuItem1, Me.SolicitudDeAnálisisToolStripMenuItem, Me.SolicitudesToolStripMenuItem1, Me.CajasToolStripMenuItem2, Me.BuscarCajasPorNúmeroToolStripMenuItem1, Me.ListadoDeCajasVerdesSinDevolverToolStripMenuItem1, Me.EnvíosDeCajasToolStripMenuItem2, Me.HistorialPorCajaToolStripMenuItem1, Me.InformeDeCajasSinDevolverToolStripMenuItem, Me.HistorialDePedidosToolStripMenuItem2, Me.HistoricoEntradaCajaManualToolStripMenuItem})
+        Me.RecepciónToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.CompletarEnvíosToolStripMenuItem2, Me.DescarteDeMuestrasToolStripMenuItem, Me.EliminarSolicitudDeAnálisisToolStripMenuItem1, Me.IngresosSinSolicitudToolStripMenuItem1, Me.PedidosAutomáticoToolStripMenuItem, Me.PedidosDeFrascosToolStripMenuItem1, Me.SolicitudDeAnálisisToolStripMenuItem, Me.SolicitudesToolStripMenuItem1, Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem, Me.CajasToolStripMenuItem2, Me.BuscarCajasPorNúmeroToolStripMenuItem1, Me.ListadoDeCajasVerdesSinDevolverToolStripMenuItem1, Me.EnvíosDeCajasToolStripMenuItem2, Me.HistorialPorCajaToolStripMenuItem1, Me.InformeDeCajasSinDevolverToolStripMenuItem, Me.HistorialDePedidosToolStripMenuItem2, Me.HistoricoEntradaCajaManualToolStripMenuItem})
         Me.RecepciónToolStripMenuItem.Name = "RecepciónToolStripMenuItem"
         Me.RecepciónToolStripMenuItem.Size = New System.Drawing.Size(165, 24)
         Me.RecepciónToolStripMenuItem.Text = "Recepción"
@@ -756,6 +756,12 @@ Partial Class FormInicio
         Me.HistorialDePedidosToolStripMenuItem2.Name = "HistorialDePedidosToolStripMenuItem2"
         Me.HistorialDePedidosToolStripMenuItem2.Size = New System.Drawing.Size(424, 24)
         Me.HistorialDePedidosToolStripMenuItem2.Text = "Historial de pedidos"
+        '
+        'HistoricoEntradaCajaManualToolStripMenuItem
+        '
+        Me.HistoricoEntradaCajaManualToolStripMenuItem.Name = "HistoricoEntradaCajaManualToolStripMenuItem"
+        Me.HistoricoEntradaCajaManualToolStripMenuItem.Size = New System.Drawing.Size(424, 24)
+        Me.HistoricoEntradaCajaManualToolStripMenuItem.Text = "Historico entrada caja manual"
         '
         'ContableToolStripMenuItem
         '
@@ -2809,21 +2815,11 @@ Partial Class FormInicio
         Me.Label4.TabIndex = 38
         Me.Label4.Text = "Preinformes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         '
-        'Button1
+        'HistoricoDeSolicitudesAutorizadasToolStripMenuItem
         '
-        Me.Button1.Location = New System.Drawing.Point(821, 49)
-        Me.Button1.Margin = New System.Windows.Forms.Padding(4)
-        Me.Button1.Name = "Button1"
-        Me.Button1.Size = New System.Drawing.Size(184, 28)
-        Me.Button1.TabIndex = 39
-        Me.Button1.Text = "Credenciales"
-        Me.Button1.UseVisualStyleBackColor = True
-        '
-        'HistoricoEntradaCajaManualToolStripMenuItem
-        '
-        Me.HistoricoEntradaCajaManualToolStripMenuItem.Name = "HistoricoEntradaCajaManualToolStripMenuItem"
-        Me.HistoricoEntradaCajaManualToolStripMenuItem.Size = New System.Drawing.Size(424, 24)
-        Me.HistoricoEntradaCajaManualToolStripMenuItem.Text = "Historico entrada caja manual"
+        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Name = "HistoricoDeSolicitudesAutorizadasToolStripMenuItem"
+        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Size = New System.Drawing.Size(424, 24)
+        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Text = "Historico de Solicitudes autorizadas"
         '
         'FormInicio
         '
@@ -2832,7 +2828,6 @@ Partial Class FormInicio
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(1616, 855)
-        Me.Controls.Add(Me.Button1)
         Me.Controls.Add(Me.Label4)
         Me.Controls.Add(Me.dgvPreinformes)
         Me.Controls.Add(Me.ButtonCrearInformes)
@@ -3246,6 +3241,6 @@ Partial Class FormInicio
     Friend WithEvents ControlDeInformesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Minerales As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AsfToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents Button1 As System.Windows.Forms.Button
     Friend WithEvents HistoricoEntradaCajaManualToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents HistoricoDeSolicitudesAutorizadasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

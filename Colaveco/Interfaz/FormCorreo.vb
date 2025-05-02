@@ -71,7 +71,7 @@
     End Sub
 
     Private Sub ButtonEnviar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonEnviar.Click
-        'enviar_mail()
+        enviar_mail()
         guardar_envio()
         email = ""
         Me.Close()

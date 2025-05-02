@@ -412,6 +412,7 @@ Public Class FormSolicitud
                 ' Si el usuario presiona OK, abrir el formulario FormConfSupervisor
                 If resultado = DialogResult.OK Then
                     Dim formSupervisor As New FormConfSupervisor()
+                    formSupervisor.SolicitudAnalisisId = id
                     formSupervisor.ShowDialog()
 
                     ' Ahora chequeamos si autorizó correctamente

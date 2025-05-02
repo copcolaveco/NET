@@ -850,6 +850,7 @@ Public Class FormEnvioCajas
                             env.RESPONSABLE = responsable
                             env.CONVENIO = idprolesa
                             env.DESEMBARCADA = 0
+                            env.CARGADA = 1
                         End If
                         If (env.modificar(Usuario)) Then
                             Dim c As New dCajas
@@ -866,6 +867,8 @@ Public Class FormEnvioCajas
                         If ComboCajas.Text.Trim.Length > 0 Or txtCajasTipeables.Text <> "" Then
                             Dim env As New dEnvioCajas()
                             Dim fec As String
+                            ' Obtener el ID del ítem seleccionado
+                            Dim selectedItem = ComboAgencia.SelectedItem.ID
                             fec = Format(fechaenvio, "yyyy-MM-dd")
                             env.IDPEDIDO = idpedido
                             env.IDPRODUCTOR = idproductor
@@ -879,11 +882,12 @@ Public Class FormEnvioCajas
                             env.FECHAENVIO = fec
                             env.OBSERVACIONES = observaciones
                             env.ENVIADO = 0
-                            env.IDAGENCIA = 0
+                            env.IDAGENCIA = selectedItem
                             env.RECIBIDO = 0
                             env.RESPONSABLE = responsable
                             env.CONVENIO = idprolesa
                             env.DESEMBARCADA = 0
+                            env.CARGADA = 1
                             If (env.guardar(Usuario)) Then
                                 Dim c As New dCajas
                                 c.CODIGO = idcaja

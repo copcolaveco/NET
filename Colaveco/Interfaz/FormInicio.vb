@@ -11134,54 +11134,59 @@ controltxt:
         v.Show()
     End Sub
 
-    Private Sub Button1_Click_5(sender As Object, e As EventArgs) Handles Button1.Click
-        ' Llamamos al método buscar para obtener el objeto Credenciales
-        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("laboratorio")
-        Dim _SMTP2 As New System.Net.Mail.SmtpClient
-        If Not objetoCredenciales Is Nothing Then
-            ' CONFIGURACIÓN DEL SMTP
-            _SMTP2.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
-            _SMTP2.Host = objetoCredenciales.CredencialesHost
-            _SMTP2.Port = 25
-            _SMTP2.EnableSsl = False
+    'Private Sub Button1_Click_5(sender As Object, e As EventArgs)
+    '    ' Llamamos al método buscar para obtener el objeto Credenciales
+    '    Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("laboratorio")
+    '    Dim _SMTP2 As New System.Net.Mail.SmtpClient
+    '    If Not objetoCredenciales Is Nothing Then
+    '        ' CONFIGURACIÓN DEL SMTP
+    '        _SMTP2.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+    '        _SMTP2.Host = objetoCredenciales.CredencialesHost
+    '        _SMTP2.Port = 25
+    '        _SMTP2.EnableSsl = False
 
-            ' CONFIGURACIÓN DEL MENSAJE
-            Dim _Message As New System.Net.Mail.MailMessage()
-            _Message.To.Add("sebastianabellauribe@gmail.com")  ' Correo destinatario
-            _Message.To.Add("envios@colaveco.com.uy")  ' Otro destinatario si es necesario
+    '        ' CONFIGURACIÓN DEL MENSAJE
+    '        Dim _Message As New System.Net.Mail.MailMessage()
+    '        _Message.To.Add("sebastianabellauribe@gmail.com")  ' Correo destinatario
+    '        _Message.To.Add("envios@colaveco.com.uy")  ' Otro destinatario si es necesario
 
-            ' Cuenta de Correo al que se le quiere enviar el e-mail
-            _Message.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
-            ' Quién lo envía
-            _Message.Subject = "Orden de compra" & " - " & compraid
-            ' Sujeto del e-mail
-            _Message.SubjectEncoding = System.Text.Encoding.UTF8
-            ' Codificación
-            _Message.Body = "Sres.por medio del presente correo adjuntamos orden de compra. Desde ya gracias. COLAVECO"
-            ' Contenido del mail
-            _Message.BodyEncoding = System.Text.Encoding.UTF8
-            _Message.Priority = System.Net.Mail.MailPriority.Normal
-            _Message.IsBodyHtml = False
+    '        ' Cuenta de Correo al que se le quiere enviar el e-mail
+    '        _Message.From = New System.Net.Mail.MailAddress("laboratorio@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+    '        ' Quién lo envía
+    '        _Message.Subject = "Orden de compra" & " - " & compraid
+    '        ' Sujeto del e-mail
+    '        _Message.SubjectEncoding = System.Text.Encoding.UTF8
+    '        ' Codificación
+    '        _Message.Body = "Sres.por medio del presente correo adjuntamos orden de compra. Desde ya gracias. COLAVECO"
+    '        ' Contenido del mail
+    '        _Message.BodyEncoding = System.Text.Encoding.UTF8
+    '        _Message.Priority = System.Net.Mail.MailPriority.Normal
+    '        _Message.IsBodyHtml = False
 
 
-            ' ENVÍO
-            Try
-                _SMTP2.Send(_Message)
-                MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '        ' ENVÍO
+    '        Try
+    '            _SMTP2.Send(_Message)
+    '            MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
-            Catch ex As System.Net.Mail.SmtpException
-                MessageBox.Show("Falla al enviar el correo!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                Exit Sub
-            End Try
-        Else
-            MessageBox.Show("No se encontraron datos para la descripción 'laboratorio'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
-        End If
-    End Sub
+    '        Catch ex As System.Net.Mail.SmtpException
+    '            MessageBox.Show("Falla al enviar el correo!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+    '            Exit Sub
+    '        End Try
+    '    Else
+    '        MessageBox.Show("No se encontraron datos para la descripción 'laboratorio'.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+    '    End If
+    'End Sub
 
 
     Private Sub HistoricoEntradaCajaManualToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HistoricoEntradaCajaManualToolStripMenuItem.Click
         Dim tipoanalisis As Integer = 10
         Dim v As New FormHistoricoCajasIngresoManual(Sesion.Usuario)
+        v.Show()
+    End Sub
+
+    Private Sub HistoricoDeSolicitudesAutorizadasToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Click
+        Dim v As New FormHistoricoSolicitudesAutorizadas(Sesion.Usuario)
         v.Show()
     End Sub
 End Class

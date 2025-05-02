@@ -28,7 +28,7 @@
     End Function
     Public Function marcarautoriza(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dCompras = CType(o, dCompras)
-        Dim sql As String = "UPDATE compras SET  usuarioautoriza= " & obj.USUARIOAUTORIZA & ", fechaautoriza= '" & obj.FECHAAUTORIZA & "', autoriza= 1 WHERE id = " & obj.ID & ""
+        Dim sql As String = "UPDATE compras SET  usuarioautoriza= " & obj.USUARIOAUTORIZA & ", fechaautoriza= '" & obj.FECHAAUTORIZA & "', autoriza= 1, envia=1 WHERE id = " & obj.ID & ""
 
         Dim lista As New ArrayList
         lista.Add(sql)

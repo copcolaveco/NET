@@ -317,83 +317,76 @@ Public Class FormAutorizarCompra
     End Sub
 
     Private Sub ButtonAutorizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonAutorizar.Click
-        'Dim c As New dCompras
-        'Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
-        'Dim fecaut As String
-        'fecaut = Format(fechaautoriza, "yyyy-MM-dd")
-        'c.ID = TextIdCompra.Text
-        'c.USUARIOAUTORIZA = Usuario.ID
-        'c.FECHAAUTORIZA = fecaut
-        'If (c.marcarautoriza(Usuario)) Then
+        Dim c As New dCompras
+        Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
+        Dim fecaut As String
+        fecaut = Format(fechaautoriza, "yyyy-MM-dd")
+        c.ID = TextIdCompra.Text
+        c.USUARIOAUTORIZA = Usuario.ID
+        c.FECHAAUTORIZA = fecaut
+        If (c.marcarautoriza(Usuario)) Then
 
-        If TextIdCompra.Text <> "" Then
-            generaroc()
+            If TextIdCompra.Text <> "" Then
+                generaroc()
 
-            '*** Mata los procesos de excel para poder abrir la orden de compra ***
-            Dim proceso As System.Diagnostics.Process()
-            proceso = System.Diagnostics.Process.GetProcessesByName("EXCEL")
+                '*** Mata los procesos de excel para poder abrir la orden de compra ***
+                Dim proceso As System.Diagnostics.Process()
+                proceso = System.Diagnostics.Process.GetProcessesByName("EXCEL")
 
-            For Each opro As System.Diagnostics.Process In proceso
-                'antes de iniciar el proceso obtengo la fecha en que inicie el 
-                'proceso para detener todos los procesos que excel que inicio
-                'mi código durante el proceso
-                opro.Kill()
+                For Each opro As System.Diagnostics.Process In proceso
+                    'antes de iniciar el proceso obtengo la fecha en que inicie el 
+                    'proceso para detener todos los procesos que excel que inicio
+                    'mi código durante el proceso
+                    opro.Kill()
 
-            Next
+                Next
 
-            'ABRE EL ARCHIVO EXCEL *********************************************
-            'Dim Arch1 As String
-            'Arch1 = "\\192.168.1.10\E\NET\COMPRAS\OC\OC_" & compraid & ".xls"
-            'System.Diagnostics.Process.Start(Arch1)
-
-            Dim comp As New dCompras
-            Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
-            Dim fecaut As String
-            fecaut = Format(fechaautoriza, "yyyy-MM-dd")
-            comp.ID = TextIdCompra.Text
-            comp.USUARIOAUTORIZA = Usuario.ID
-            comp.FECHAAUTORIZA = fecaut
-            comp.marcarautoriza(Usuario)
-            limpiar()
-            listarcompras()
+                'ABRE EL ARCHIVO EXCEL *********************************************
+                'Dim Arch1 As String
+                'Arch1 = "\\192.168.1.10\E\NET\COMPRAS\OC\OC_" & compraid & ".xls"
+                'System.Diagnostics.Process.Start(Arch1)
 
 
-            ''*** Para enviar correo electrónico ********************************
-            'Dim result = MessageBox.Show("Desea enviar un correo electrónico con la órden de compra?", "Atención!", MessageBoxButtons.YesNoCancel)
-            'If result = DialogResult.Cancel Then
-            '    Exit Sub
-            'ElseIf result = DialogResult.No Then
-            '    '--------------------------------------------------------------------------
-            '    Dim comp As New dCompras
-            '    Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
-            '    Dim fecaut As String
-            '    fecaut = Format(fechaautoriza, "yyyy-MM-dd")
-            '    comp.ID = TextIdCompra.Text
-            '    comp.USUARIOAUTORIZA = Usuario.ID
-            '    comp.FECHAAUTORIZA = fecaut
-            '    comp.marcarautoriza(Usuario)
-            '    comp.marcarnoenvia(Usuario)
-            '    '--------------------------------------------------------------------------
-            '    limpiar()
-            '    listarcompras()
-            'ElseIf result = DialogResult.Yes Then
-            '    enviaremail()
-            '    '--------------------------------------------------------------------------
-            '    Dim comp As New dCompras
-            '    Dim fechaautoriza As Date = DateAutorizacion.Value.ToString("yyyy-MM-dd")
-            '    Dim fecaut As String
-            '    fecaut = Format(fechaautoriza, "yyyy-MM-dd")
-            '    comp.ID = TextIdCompra.Text
-            '    comp.USUARIOAUTORIZA = Usuario.ID
-            '    comp.FECHAAUTORIZA = fecaut
-            '    comp.marcarautoriza(Usuario)
-            '    comp.marcarenvia(Usuario)
-            '    '--------------------------------------------------------------------------
-            '    limpiar()
-            '    listarcompras()
-            'End If
-            '*******************************************************************
+                '*** Para enviar correo electrónico ********************************
+                Dim result = MessageBox.Show("Desea enviar un correo electrónico con la órden de compra?", "Atención!", MessageBoxButtons.YesNoCancel)
+                If result = DialogResult.Cancel Then
+                    '--------------------------------------------------------------------------
+                    Dim comp As New dCompras
+                    fecaut = Format(fechaautoriza, "yyyy-MM-dd")
+                    comp.ID = TextIdCompra.Text
+                    comp.USUARIOAUTORIZA = Usuario.ID
+                    comp.FECHAAUTORIZA = fecaut
+                    comp.marcarautoriza(Usuario)
+                    '--------------------------------------------------------------------------
+                    limpiar()
+                    listarcompras()
+                ElseIf result = DialogResult.No Then
+                    '--------------------------------------------------------------------------
+                    Dim comp As New dCompras
+                    fecaut = Format(fechaautoriza, "yyyy-MM-dd")
+                    comp.ID = TextIdCompra.Text
+                    comp.USUARIOAUTORIZA = Usuario.ID
+                    comp.FECHAAUTORIZA = fecaut
+                    comp.marcarautoriza(Usuario)
+                    '--------------------------------------------------------------------------
+                    limpiar()
+                    listarcompras()
+                ElseIf result = DialogResult.Yes Then
 
+                    '--------------------------------------------------------------------------
+                    Dim comp As New dCompras
+                    fecaut = Format(fechaautoriza, "yyyy-MM-dd")
+                    comp.ID = TextIdCompra.Text
+                    comp.USUARIOAUTORIZA = Usuario.ID
+                    comp.FECHAAUTORIZA = fecaut
+                    comp.marcarautoriza(Usuario)
+                    '--------------------------------------------------------------------------
+                    limpiar()
+                    listarcompras()
+                    enviaremail()
+                End If
+                '*******************************************************************
+            End If
         End If
 
     End Sub
@@ -447,7 +440,7 @@ Public Class FormAutorizarCompra
         x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
         x1libro = CType(x1app.Workbooks.Add, Microsoft.Office.Interop.Excel.Workbook)
         x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        x1hoja.PageSetup.Orientation = XlPageOrientation.xlLandscape
+        'x1hoja.PageSetup.Orientation = XlPageOrientation.xlLandscape
 
         'x1hoja.PageSetup.TopMargin = x1app.CentimetersToPoints(1)
         'x1hoja.PageSetup.LeftMargin = x1app.CentimetersToPoints(1.9)
@@ -861,5 +854,9 @@ Public Class FormAutorizarCompra
         Dim c As New dCompras
         c.ID = compraid
         c.marcarenviado()
+    End Sub
+
+    Private Sub FormAutorizarCompra_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
     End Sub
 End Class

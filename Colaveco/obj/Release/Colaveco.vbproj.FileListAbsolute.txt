@@ -109,7 +109,9 @@ C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\Colaveco.application
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\Colaveco.exe
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\Colaveco.pdb
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\Colaveco.xml
+C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\itextsharp.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\Microsoft.Office.Interop.Excel.dll
+C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\MySql.Data.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\Newtonsoft.Json.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\System.Windows.Forms.DataVisualization.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\Microsoft.Office.Interop.Excel.xml
@@ -211,6 +213,7 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormCompletoUnidad2.reso
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormCompras.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormComprasInformes.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormComunicacionTecnica.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormConfSupervisor.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormContadorAnalisisEmpresas.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormContadorAnalisisEmpresas2.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormControldeInformes.resources
@@ -255,6 +258,7 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormFrascosDevueltos.res
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormFrascosRotos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormFrascosSangreSinFacturar.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormHistorialCaja.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormHistoricoCajasIngresoManual.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormInformeAgua.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormInformeAntibiograma.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormInformeBrucelosis.resources
@@ -418,6 +422,4 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.application
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.exe
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.xml
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.pdb
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.vbprojResolveAssemblyReference.cache
-C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\itextsharp.dll
-C:\Users\Pepo\Desktop\NET\Colaveco\bin\Release\MySql.Data.dll
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Release\Colaveco.FormHistoricoSolicitudesAutorizadas.resources

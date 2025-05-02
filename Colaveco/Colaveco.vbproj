@@ -333,6 +333,12 @@
     <Compile Include="Interfaz\FormHistoricoCajasIngresoManual.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaz\FormHistoricoSolicitudesAutorizadas.Designer.vb">
+      <DependentUpon>FormHistoricoSolicitudesAutorizadas.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormHistoricoSolicitudesAutorizadas.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaz\FormPreinformeEdit.Designer.vb">
       <DependentUpon>FormPreinformeEdit.vb</DependentUpon>
     </Compile>
@@ -898,6 +904,7 @@
     <Compile Include="Logica\dSolicitudRodeo.vb" />
     <Compile Include="Logica\dSolicitudSuelos.vb" />
     <Compile Include="Logica\dSolicitudWeb.vb" />
+    <Compile Include="Logica\dSolicitud_autorizacion.vb" />
     <Compile Include="Logica\dSolucionTrabajo.vb" />
     <Compile Include="Logica\dSolucionTrabajoBajas.vb" />
     <Compile Include="Logica\dSolucionTrabajoReceta.vb" />
@@ -1022,6 +1029,7 @@
     <Compile Include="Persistencia\pSolicitudanalisisTecnicoMuestreo.vb" />
     <Compile Include="Persistencia\pSolicitudRodeo.vb" />
     <Compile Include="Persistencia\pSolicitudWeb.vb" />
+    <Compile Include="Persistencia\pSolicitud_autorizacion.vb" />
     <Compile Include="Persistencia\pSolucionTrabajo.vb" />
     <Compile Include="Persistencia\pSolucionTrabajoBajas.vb" />
     <Compile Include="Persistencia\pSolucionTrabajoReceta.vb" />
@@ -3053,6 +3061,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormHistoricoCajasIngresoManual.resx">
       <DependentUpon>FormHistoricoCajasIngresoManual.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormHistoricoSolicitudesAutorizadas.resx">
+      <DependentUpon>FormHistoricoSolicitudesAutorizadas.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormInformeAgua.resx">
       <DependentUpon>FormInformeAgua.vb</DependentUpon>

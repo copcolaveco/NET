@@ -313,5 +313,5 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.exe
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.xml
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.pdb
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoCajasIngresoManual.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.vbprojResolveAssemblyReference.cache
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormConfSupervisor.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoSolicitudesAutorizadas.resources
