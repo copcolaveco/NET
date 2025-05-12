@@ -25,6 +25,7 @@ Public Class FormSolicitud
     Dim idcaja As String
     Dim idCliente As Long = 0
     Dim cajasImp As String = ""
+    Private solicitudModificada As Boolean = False
 
     Public Property Usuario() As dUsuario
         Get
@@ -72,7 +73,7 @@ Public Class FormSolicitud
                         Exit For
                     End If
                 Next
-                guardar()
+                'guardar()
                 ComboTipoInforme.Focus()
                 If CheckMuestreo.Checked = True Then
                     cbxTecnicoMuestreo.Visible = True
@@ -424,6 +425,8 @@ Public Class FormSolicitud
                                 un.FICHAS = ultimaficha
                                 un.modificar()
                             End If
+
+                            solicitudModificada = True
 
                             '---------------GestorGX
                             ' tiene que modificar y esta creando
@@ -2317,7 +2320,7 @@ Public Class FormSolicitud
 
         End If
         If TextId.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de ficha", MsgBoxStyle.Exclamation, "Atención") : TextId.Focus() : Exit Sub
-        guardar()
+        'guardar()
 
 
 
@@ -3213,6 +3216,22 @@ Public Class FormSolicitud
             x1hoja.Cells(fila, columna).Font.Size = 14
             fila = fila + 1
         End If
+        If solicitudModificada = True Then
+            Dim Supervisor As New dSolicitud_Autorizacion
+            Supervisor = Supervisor.listarPorSolicitud(TextId.Text.Trim)
+
+            Dim usuario As New dUsuario
+            usuario.ID = Supervisor.USUARIO_AUTORIZA_ID
+            usuario = usuario.buscar()
+
+            x1hoja.Cells(fila, columna).formula = "SOLICITUD CORREGIDA - Autorizada por : " + usuario.NOMBRE
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Font.Size = 14
+            fila = fila + 1
+
+
+        End If
         'CONTROLA SI EL CLIENTE TIENE ALGUN CONVENIO*****************************************
         Dim sa2 As New dSolicitudAnalisis
         Dim cli As Integer = 0
@@ -3515,18 +3534,6 @@ Public Class FormSolicitud
                 ficha = TextId.Text.Trim
                 'listar_solicitud_cajas(idCliente)
                 listaranalisis2()
-                '*********************************************
-                Dim nam As New dNuevoAnalisis
-                Dim nmuestras As New ArrayList
-                nmuestras = nam.listarporficha(ficha)
-                If Not nmuestras Is Nothing Then
-                    TextNMuestras.Text = nmuestras.Count
-                Else
-                    TextNMuestras.Text = 0
-                End If
-                nam = Nothing
-                nmuestras = Nothing
-                '*********************************************
             End If
         End If
     End Sub

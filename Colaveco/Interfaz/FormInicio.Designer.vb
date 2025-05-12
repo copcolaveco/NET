@@ -78,6 +78,7 @@ Partial Class FormInicio
         Me.PedidosDeFrascosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.SolicitudDeAnálisisToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.SolicitudesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
+        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.CajasToolStripMenuItem2 = New System.Windows.Forms.ToolStripMenuItem()
         Me.BuscarCajasPorNúmeroToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ListadoDeCajasVerdesSinDevolverToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
@@ -386,7 +387,6 @@ Partial Class FormInicio
         Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.btnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Label4 = New System.Windows.Forms.Label()
-        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridTareas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -711,6 +711,12 @@ Partial Class FormInicio
         Me.SolicitudesToolStripMenuItem1.Name = "SolicitudesToolStripMenuItem1"
         Me.SolicitudesToolStripMenuItem1.Size = New System.Drawing.Size(424, 24)
         Me.SolicitudesToolStripMenuItem1.Text = "Solicitudes de análisis o actividades no atendibles"
+        '
+        'HistoricoDeSolicitudesAutorizadasToolStripMenuItem
+        '
+        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Name = "HistoricoDeSolicitudesAutorizadasToolStripMenuItem"
+        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Size = New System.Drawing.Size(424, 24)
+        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Text = "Solicitudes Modificadas"
         '
         'CajasToolStripMenuItem2
         '
@@ -2814,12 +2820,6 @@ Partial Class FormInicio
         Me.Label4.Size = New System.Drawing.Size(84, 17)
         Me.Label4.TabIndex = 38
         Me.Label4.Text = "Preinformes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
-        '
-        'HistoricoDeSolicitudesAutorizadasToolStripMenuItem
-        '
-        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Name = "HistoricoDeSolicitudesAutorizadasToolStripMenuItem"
-        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Size = New System.Drawing.Size(424, 24)
-        Me.HistoricoDeSolicitudesAutorizadasToolStripMenuItem.Text = "Historico de Solicitudes autorizadas"
         '
         'FormInicio
         '

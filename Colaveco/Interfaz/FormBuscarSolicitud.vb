@@ -25,11 +25,11 @@ Public Class FormBuscarSolicitud
         InitializeComponent()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Usuario = u
-        RadioButtonSolicitud.Checked = True
+
         Dim dtFecha As Date = DateSerial(Year(Date.Today), Month(Date.Today), 1)
         DateTimeDesde.Value = dtFecha
         DateTimeHasta.Value = Date.Today
-        ocultar_campos()
+
         cargarComboInformes()
     End Sub
 #End Region
@@ -48,42 +48,7 @@ Public Class FormBuscarSolicitud
         TextProductor.Text = ""
         'ListSolicitudes.Items.Clear()
     End Sub
-    Private Sub ocultar_campos()
-        If RadioButtonSolicitud.Checked = True Then
-            Textficha.Enabled = True
-            TextIdProductor.Enabled = False
-            TextProductor.Enabled = False
-            ButtonBuscarProductor.Enabled = False
-            DateTimeDesde.Enabled = False
-            DateTimeHasta.Enabled = False
-        ElseIf RadioButtonProductor.Checked = True Then
-            Textficha.Enabled = False
-            TextIdProductor.Enabled = True
-            TextProductor.Enabled = True
-            ButtonBuscarProductor.Enabled = True
-            DateTimeDesde.Enabled = True
-            DateTimeHasta.Enabled = True
-        Else
-            Textficha.Enabled = False
-            TextIdProductor.Enabled = False
-            TextProductor.Enabled = False
-            ButtonBuscarProductor.Enabled = False
-            DateTimeDesde.Enabled = True
-            DateTimeHasta.Enabled = True
-        End If
-    End Sub
 
-    Private Sub RadioButtonSolicitud_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButtonSolicitud.CheckedChanged
-        ocultar_campos()
-    End Sub
-
-    Private Sub RadioButtonProductor_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles RadioButtonProductor.CheckedChanged
-        ocultar_campos()
-    End Sub
-
-    Private Sub RadioButtonFechas_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
-        ocultar_campos()
-    End Sub
     Private Sub listarporid()
      
         Dim s As New dSolicitudAnalisis
@@ -430,16 +395,7 @@ Public Class FormBuscarSolicitud
     End Sub
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        'ListSolicitudes.Items.Clear()
-        If RadioButtonSolicitud.Checked = True Then
-            listarporid()
-        ElseIf RadioButtonProductor.Checked = True Then
-            listarporproductor()
-        ElseIf rbTipoInfome.Checked = True Then
-            listarportipoinforme()
-        Else
-            listarporfecha()
-        End If
+        listarPorFiltros()
     End Sub
 
     Private Sub ListSolicitudes_SelectedIndexChanged(ByVal sender As System.Object, ByVal e As System.EventArgs)
@@ -716,26 +672,55 @@ Public Class FormBuscarSolicitud
         End If
     End Sub
 
-    Private Sub listarportipoinforme()
+    Private Sub listarPorFiltros()
 
         Dim s As New dSolicitudAnalisis
-        Dim fechadesde As Date = DateTimeDesde.Value.ToString("yyyy-MM-dd")
-        Dim fechahasta As Date = DateTimeHasta.Value.ToString("yyyy-MM-dd")
-        Dim fechad As String = Format(fechadesde, "yyyy-MM-dd")
-        Dim fechah As String = Format(fechahasta, "yyyy-MM-dd")
 
-        Dim idtipoinforme As dTipoInforme = CType(cbxTipoInforme.SelectedItem, dTipoInforme)
-        Dim tipoinforme As Long = idtipoinforme.ID
+        ' Validar fechas (asegurar que tengan valor antes de convertir)
+        Dim fechad As String = ""
+        Dim fechah As String = ""
+
+        If Not String.IsNullOrEmpty(DateTimeDesde.Text) Then
+            fechad = Format(DateTimeDesde.Value, "yyyy-MM-dd")
+        End If
+
+        If Not String.IsNullOrEmpty(DateTimeHasta.Text) Then
+            fechah = Format(DateTimeHasta.Value, "yyyy-MM-dd")
+        End If
+
+        ' Validar solicitudAnalisisId (si es numérico y no está vacío)
+        Dim solicitudAnalisisId As Long = 0
+        If Not String.IsNullOrEmpty(Textficha.Text.Trim) AndAlso IsNumeric(Textficha.Text.Trim) Then
+            solicitudAnalisisId = CLng(Textficha.Text.Trim)
+        End If
+
+        ' Validar productor (igual que anterior)
+        Dim productor As Long = 0
+        If Not String.IsNullOrEmpty(TextIdProductor.Text.Trim) AndAlso IsNumeric(TextIdProductor.Text.Trim) Then
+            productor = CLng(TextIdProductor.Text.Trim)
+        End If
+
+        ' Validar si hay un tipo de informe seleccionado
+        Dim tipoinforme As Long = 0
+        If cbxTipoInforme.SelectedItem IsNot Nothing Then
+            Dim idtipoinforme As dTipoInforme = CType(cbxTipoInforme.SelectedItem, dTipoInforme)
+            tipoinforme = idtipoinforme.ID
+        End If
+
+        ' Llamar al método solo con los parámetros que correspondan
         Dim lista As New ArrayList
-        lista = s.listarportipoinforme(tipoinforme, fechad, fechah)
+        lista = s.listarSolAnalisisFiltros(solicitudAnalisisId, productor, fechad, fechah, tipoinforme)
+
         Dim fila As Integer = 0
         Dim columna As Integer = 0
         DataGridView1.Rows.Clear()
         If Not lista Is Nothing Then
             DataGridView1.Rows.Add(lista.Count)
         End If
+
         If Not lista Is Nothing Then
             If lista.Count > 0 Then
+                DataGridView1.RowCount = lista.Count + 5
                 For Each s In lista
                     DataGridView1(columna, fila).Value = s.ID
                     columna = columna + 1
@@ -812,19 +797,22 @@ Public Class FormBuscarSolicitud
                     End If
                     If s.PAGO = 1 Then
                         DataGridView1(columna, fila).Value = "Si"
-                        columna = 0
-                        fila = fila + 1
+                        columna = columna + 1
                     Else
                         DataGridView1(columna, fila).Value = "No"
-                        columna = 0
-                        fila = fila + 1
+                        columna = columna + 1
                     End If
                     DataGridView1(columna, fila).Value = s.OBSINTERNAS
                     columna = columna + 1
                     Dim tipoMuestra As New dMuestras
                     tipoMuestra.ID = s.IDMUESTRA
                     tipoMuestra = tipoMuestra.buscar
-                    DataGridView1(columna, fila).Value = tipoMuestra.NOMBRE
+                    If tipoMuestra Is Nothing Then
+                        DataGridView1(columna, fila).Value = " "
+                    Else
+                        DataGridView1(columna, fila).Value = tipoMuestra.NOMBRE
+                    End If
+
                     columna = 0
                     fila = fila + 1
                 Next
@@ -832,4 +820,5 @@ Public Class FormBuscarSolicitud
         End If
     End Sub
 
+   
 End Class

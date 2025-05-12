@@ -90,6 +90,10 @@
         Return p.listarPorFiltros(fechaDesde, fechaHasta, solicitudId)
     End Function
 
+    Public Function listarPorSolicitud(solicitudId As Long) As dSolicitud_Autorizacion
+        Dim p As New pSolicitud_autorizacion
+        Return p.listarPorId(solicitudId)
+    End Function
 
 End Class
 

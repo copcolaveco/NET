@@ -24,8 +24,6 @@ Partial Class FormBuscarSolicitud
     Private Sub InitializeComponent()
         Dim DataGridViewCellStyle1 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormBuscarSolicitud))
-        Me.RadioButtonSolicitud = New System.Windows.Forms.RadioButton()
-        Me.RadioButtonProductor = New System.Windows.Forms.RadioButton()
         Me.Textficha = New System.Windows.Forms.TextBox()
         Me.TextIdProductor = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -35,9 +33,6 @@ Partial Class FormBuscarSolicitud
         Me.DateTimeDesde = New System.Windows.Forms.DateTimePicker()
         Me.Button2 = New System.Windows.Forms.Button()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.RadioFecha = New System.Windows.Forms.RadioButton()
-        Me.rbTipoInfome = New System.Windows.Forms.RadioButton()
-        Me.cbxTipoInforme = New System.Windows.Forms.ComboBox()
         Me.Ficha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Muestras = New System.Windows.Forms.DataGridViewTextBoxColumn()
@@ -52,44 +47,25 @@ Partial Class FormBuscarSolicitud
         Me.Pagook = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Seleccionar = New System.Windows.Forms.DataGridViewButtonColumn()
         Me.Excel = New System.Windows.Forms.DataGridViewButtonColumn()
+        Me.cbxTipoInforme = New System.Windows.Forms.ComboBox()
+        Me.Label2 = New System.Windows.Forms.Label()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.Label4 = New System.Windows.Forms.Label()
+        Me.Label5 = New System.Windows.Forms.Label()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'RadioButtonSolicitud
-        '
-        Me.RadioButtonSolicitud.AutoSize = True
-        Me.RadioButtonSolicitud.Location = New System.Drawing.Point(20, 39)
-        Me.RadioButtonSolicitud.Margin = New System.Windows.Forms.Padding(4)
-        Me.RadioButtonSolicitud.Name = "RadioButtonSolicitud"
-        Me.RadioButtonSolicitud.Size = New System.Drawing.Size(119, 21)
-        Me.RadioButtonSolicitud.TabIndex = 0
-        Me.RadioButtonSolicitud.TabStop = True
-        Me.RadioButtonSolicitud.Text = "Nº de solicitud"
-        Me.RadioButtonSolicitud.UseVisualStyleBackColor = True
-        '
-        'RadioButtonProductor
-        '
-        Me.RadioButtonProductor.AutoSize = True
-        Me.RadioButtonProductor.Location = New System.Drawing.Point(20, 73)
-        Me.RadioButtonProductor.Margin = New System.Windows.Forms.Padding(4)
-        Me.RadioButtonProductor.Name = "RadioButtonProductor"
-        Me.RadioButtonProductor.Size = New System.Drawing.Size(91, 21)
-        Me.RadioButtonProductor.TabIndex = 1
-        Me.RadioButtonProductor.TabStop = True
-        Me.RadioButtonProductor.Text = "Productor"
-        Me.RadioButtonProductor.UseVisualStyleBackColor = True
-        '
         'Textficha
         '
-        Me.Textficha.Location = New System.Drawing.Point(152, 38)
+        Me.Textficha.Location = New System.Drawing.Point(165, 38)
         Me.Textficha.Margin = New System.Windows.Forms.Padding(4)
         Me.Textficha.Name = "Textficha"
-        Me.Textficha.Size = New System.Drawing.Size(103, 22)
+        Me.Textficha.Size = New System.Drawing.Size(75, 22)
         Me.Textficha.TabIndex = 4
         '
         'TextIdProductor
         '
-        Me.TextIdProductor.Location = New System.Drawing.Point(152, 70)
+        Me.TextIdProductor.Location = New System.Drawing.Point(165, 70)
         Me.TextIdProductor.Margin = New System.Windows.Forms.Padding(4)
         Me.TextIdProductor.Name = "TextIdProductor"
         Me.TextIdProductor.Size = New System.Drawing.Size(75, 22)
@@ -107,7 +83,7 @@ Partial Class FormBuscarSolicitud
         '
         'ButtonBuscarProductor
         '
-        Me.ButtonBuscarProductor.Location = New System.Drawing.Point(236, 73)
+        Me.ButtonBuscarProductor.Location = New System.Drawing.Point(248, 70)
         Me.ButtonBuscarProductor.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonBuscarProductor.Name = "ButtonBuscarProductor"
         Me.ButtonBuscarProductor.Size = New System.Drawing.Size(28, 23)
@@ -117,28 +93,28 @@ Partial Class FormBuscarSolicitud
         '
         'TextProductor
         '
-        Me.TextProductor.Location = New System.Drawing.Point(272, 71)
+        Me.TextProductor.Location = New System.Drawing.Point(294, 73)
         Me.TextProductor.Margin = New System.Windows.Forms.Padding(4)
         Me.TextProductor.Name = "TextProductor"
-        Me.TextProductor.Size = New System.Drawing.Size(343, 22)
+        Me.TextProductor.Size = New System.Drawing.Size(244, 22)
         Me.TextProductor.TabIndex = 8
         '
         'DateTimeHasta
         '
         Me.DateTimeHasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimeHasta.Location = New System.Drawing.Point(283, 103)
+        Me.DateTimeHasta.Location = New System.Drawing.Point(344, 103)
         Me.DateTimeHasta.Margin = New System.Windows.Forms.Padding(4)
         Me.DateTimeHasta.Name = "DateTimeHasta"
-        Me.DateTimeHasta.Size = New System.Drawing.Size(121, 22)
+        Me.DateTimeHasta.Size = New System.Drawing.Size(194, 22)
         Me.DateTimeHasta.TabIndex = 9
         '
         'DateTimeDesde
         '
         Me.DateTimeDesde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateTimeDesde.Location = New System.Drawing.Point(152, 103)
+        Me.DateTimeDesde.Location = New System.Drawing.Point(165, 104)
         Me.DateTimeDesde.Margin = New System.Windows.Forms.Padding(4)
         Me.DateTimeDesde.Name = "DateTimeDesde"
-        Me.DateTimeDesde.Size = New System.Drawing.Size(121, 22)
+        Me.DateTimeDesde.Size = New System.Drawing.Size(171, 22)
         Me.DateTimeDesde.TabIndex = 10
         '
         'Button2
@@ -155,44 +131,12 @@ Partial Class FormBuscarSolicitud
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Ficha, Me.Fecha, Me.Muestras, Me.NoAptas, Me.Analisis, Me.Cliente, Me.Observaciones, Me.Estado, Me.Pago, Me.ObsInternas, Me.TipoMuestra, Me.Pagook, Me.Seleccionar, Me.Excel})
-        Me.DataGridView1.Location = New System.Drawing.Point(20, 148)
+        Me.DataGridView1.Location = New System.Drawing.Point(19, 180)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(1605, 521)
+        Me.DataGridView1.Size = New System.Drawing.Size(1605, 468)
         Me.DataGridView1.TabIndex = 14
-        '
-        'RadioFecha
-        '
-        Me.RadioFecha.AutoSize = True
-        Me.RadioFecha.Location = New System.Drawing.Point(20, 107)
-        Me.RadioFecha.Margin = New System.Windows.Forms.Padding(4)
-        Me.RadioFecha.Name = "RadioFecha"
-        Me.RadioFecha.Size = New System.Drawing.Size(68, 21)
-        Me.RadioFecha.TabIndex = 15
-        Me.RadioFecha.TabStop = True
-        Me.RadioFecha.Text = "Fecha"
-        Me.RadioFecha.UseVisualStyleBackColor = True
-        '
-        'rbTipoInfome
-        '
-        Me.rbTipoInfome.AutoSize = True
-        Me.rbTipoInfome.Location = New System.Drawing.Point(702, 39)
-        Me.rbTipoInfome.Margin = New System.Windows.Forms.Padding(4)
-        Me.rbTipoInfome.Name = "rbTipoInfome"
-        Me.rbTipoInfome.Size = New System.Drawing.Size(115, 21)
-        Me.rbTipoInfome.TabIndex = 16
-        Me.rbTipoInfome.TabStop = True
-        Me.rbTipoInfome.Text = "Área analìtica"
-        Me.rbTipoInfome.UseVisualStyleBackColor = True
-        '
-        'cbxTipoInforme
-        '
-        Me.cbxTipoInforme.FormattingEnabled = True
-        Me.cbxTipoInforme.Location = New System.Drawing.Point(824, 36)
-        Me.cbxTipoInforme.Name = "cbxTipoInforme"
-        Me.cbxTipoInforme.Size = New System.Drawing.Size(199, 24)
-        Me.cbxTipoInforme.TabIndex = 17
         '
         'Ficha
         '
@@ -288,14 +232,60 @@ Partial Class FormBuscarSolicitud
         Me.Excel.Text = "Excel/Pdf"
         Me.Excel.UseColumnTextForButtonValue = True
         '
+        'cbxTipoInforme
+        '
+        Me.cbxTipoInforme.FormattingEnabled = True
+        Me.cbxTipoInforme.Location = New System.Drawing.Point(165, 133)
+        Me.cbxTipoInforme.Name = "cbxTipoInforme"
+        Me.cbxTipoInforme.Size = New System.Drawing.Size(373, 24)
+        Me.cbxTipoInforme.TabIndex = 17
+        '
+        'Label2
+        '
+        Me.Label2.AutoSize = True
+        Me.Label2.Location = New System.Drawing.Point(17, 43)
+        Me.Label2.Name = "Label2"
+        Me.Label2.Size = New System.Drawing.Size(101, 17)
+        Me.Label2.TabIndex = 18
+        Me.Label2.Text = "N° de Solicitud"
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(18, 76)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(70, 17)
+        Me.Label3.TabIndex = 19
+        Me.Label3.Text = "Productor"
+        '
+        'Label4
+        '
+        Me.Label4.AutoSize = True
+        Me.Label4.Location = New System.Drawing.Point(18, 109)
+        Me.Label4.Name = "Label4"
+        Me.Label4.Size = New System.Drawing.Size(140, 17)
+        Me.Label4.TabIndex = 20
+        Me.Label4.Text = "Fecha desde y hasta"
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(18, 140)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(87, 17)
+        Me.Label5.TabIndex = 21
+        Me.Label5.Text = "Tipo Informe"
+        '
         'FormBuscarSolicitud
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1637, 683)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.Label4)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.cbxTipoInforme)
-        Me.Controls.Add(Me.rbTipoInfome)
-        Me.Controls.Add(Me.RadioFecha)
         Me.Controls.Add(Me.DataGridView1)
         Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.DateTimeDesde)
@@ -305,8 +295,6 @@ Partial Class FormBuscarSolicitud
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextIdProductor)
         Me.Controls.Add(Me.Textficha)
-        Me.Controls.Add(Me.RadioButtonProductor)
-        Me.Controls.Add(Me.RadioButtonSolicitud)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormBuscarSolicitud"
@@ -317,8 +305,6 @@ Partial Class FormBuscarSolicitud
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents RadioButtonSolicitud As System.Windows.Forms.RadioButton
-    Friend WithEvents RadioButtonProductor As System.Windows.Forms.RadioButton
     Friend WithEvents Textficha As System.Windows.Forms.TextBox
     Friend WithEvents TextIdProductor As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
@@ -328,8 +314,6 @@ Partial Class FormBuscarSolicitud
     Friend WithEvents DateTimeDesde As System.Windows.Forms.DateTimePicker
     Friend WithEvents Button2 As System.Windows.Forms.Button
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents RadioFecha As System.Windows.Forms.RadioButton
-    Friend WithEvents rbTipoInfome As System.Windows.Forms.RadioButton
     Friend WithEvents cbxTipoInforme As System.Windows.Forms.ComboBox
     Friend WithEvents Ficha As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -345,4 +329,8 @@ Partial Class FormBuscarSolicitud
     Friend WithEvents Pagook As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Seleccionar As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents Excel As System.Windows.Forms.DataGridViewButtonColumn
+    Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents Label3 As System.Windows.Forms.Label
+    Friend WithEvents Label4 As System.Windows.Forms.Label
+    Friend WithEvents Label5 As System.Windows.Forms.Label
 End Class
