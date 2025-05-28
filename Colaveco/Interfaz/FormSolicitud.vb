@@ -26,6 +26,8 @@ Public Class FormSolicitud
     Dim idCliente As Long = 0
     Dim cajasImp As String = ""
     Private solicitudModificada As Boolean = False
+    Private productorId As Long = 0
+    Private brucelosisPositiva As Boolean = False
 
     Public Property Usuario() As dUsuario
         Get
@@ -226,6 +228,7 @@ Public Class FormSolicitud
         Dim fechaingreso As Date = DateFechaIngreso.Value.ToString("yyyy-MM-dd")
         If TextIdProductor.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de productor", MsgBoxStyle.Exclamation, "Atención") : TextIdProductor.Focus() : Exit Sub
         Dim idproductor As Long = TextIdProductor.Text.Trim
+        productorId = idproductor
         Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
         Dim idsubinforme As dSubInforme = CType(ComboSubInforme.SelectedItem, dSubInforme)
 
@@ -280,7 +283,15 @@ Public Class FormSolicitud
             Exit Sub
             TextNMuestras.Focus()
         End If
-        Dim idmuestra As dMuestras = CType(ComboMuestra.SelectedItem, dMuestras)
+        Dim idmuestra As New dMuestras
+        If ComboMuestra.SelectedItem Is Nothing Then
+            MsgBox("Debe ingresar el tipo de muestra!")
+            Exit Sub
+            ComboMuestra.Focus()
+        Else
+            idmuestra = CType(ComboMuestra.SelectedItem, dMuestras)
+        End If
+
         Dim idtecnico As dCliente = CType(ComboTecnico.SelectedItem, dCliente)
         Dim sinsolicitud As Integer
         If CheckSinSolicitud.Checked = True Then
@@ -352,7 +363,7 @@ Public Class FormSolicitud
                 Dim solTecnMuestreo As New dSolicitudanalisis_TecMuestreo()
                 solTecnMuestreo.ID_SOLICITUDANALISIS = id
                 solTecnMuestreo.ID_TECNICOMUESTREO = idTecnicoMuestreo
-                solTecnMuestreo.guardar()
+                'solTecnMuestreo.guardar()
             End If
             
 
@@ -448,7 +459,7 @@ Public Class FormSolicitud
 
                             '-----------------------------------
 
-                            sw.guardar(Usuario)
+                            'sw.guardar(Usuario)
                             MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
                             imprimir_solicitud()
                             btnImprimir.Visible = True
@@ -487,8 +498,7 @@ Public Class FormSolicitud
                             End If
                             'modificarRegistro(id)
                             enviomail()
-                            limpiar()
-                            limpiar2()
+                            
                             ' Grabar estado de la ficha
                             Dim est As New dEstados
                             est.FICHA = id
@@ -496,7 +506,10 @@ Public Class FormSolicitud
                             est.FECHA = fecing
                             est.guardar(Usuario)
                             est = Nothing
-                            enviar_notificacion_solicitud(id)
+                            'enviar_notificacion_solicitud(id)
+
+                            limpiar()
+                            limpiar2()
                             '****************************
                         Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
 
@@ -529,6 +542,9 @@ Public Class FormSolicitud
                     sol2.NMUESTRAS = nmuestras
                     If Not idtecnico Is Nothing Then
                         sol2.IDTECNICO = idtecnico.ID
+                    End If
+                    If Not idmuestra Is Nothing Then
+                        sol2.IDMUESTRA = idmuestra.ID
                     End If
                     sol2.SINCOLICITUD = sinsolicitud
                     sol2.SINCONSERVANTE = sinconservante
@@ -596,8 +612,7 @@ Public Class FormSolicitud
                             r.FECHAM = fecing
                             r.guardar(Usuario)
                         End If
-                        limpiar()
-                        limpiar2()
+                       
                         ' Grabar estado de la ficha
                         Dim est As New dEstados
                         est.FICHA = id
@@ -605,9 +620,11 @@ Public Class FormSolicitud
                         est.FECHA = fecing
                         est.guardar(Usuario)
                         '****************************
-                        modificarRegistro(id)
+                        'modificarRegistro(id)
                         enviomail()
-                        enviar_notificacion_solicitud(id)
+                        'enviar_notificacion_solicitud(id)
+                        limpiar()
+                        limpiar2()
                     Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                     End If
                 End If
@@ -619,97 +636,97 @@ Public Class FormSolicitud
     End Sub
 
     Public Sub modificarRegistro(ByVal id As Integer)
-        Dim idnet As Long = 0
-        Dim sa_ As New dSolicitudAnalisis
-        sa_.ID = id
-        sa_ = sa_.buscar
-        If Not sa_ Is Nothing Then
-            idnet = sa_.IDPRODUCTOR
-            tipoinforme = sa_.IDTIPOINFORME
-            Dim c As New dCliente
-            c.ID = sa_.IDPRODUCTOR
-            c = c.buscar
-            If Not c Is Nothing Then
-                productorweb_com = c.USUARIO_WEB
-                Dim pw_com As New dProductorWeb_com
-                pw_com.USUARIO = productorweb_com
-                pw_com = pw_com.buscar
-                If Not pw_com Is Nothing Then
-                    idproductorweb_com = pw_com.ID
-                    '
-                End If
-            End If
-        End If
+        'Dim idnet As Long = 0
+        'Dim sa_ As New dSolicitudAnalisis
+        'sa_.ID = id
+        'sa_ = sa_.buscar
+        'If Not sa_ Is Nothing Then
+        '    idnet = sa_.IDPRODUCTOR
+        '    tipoinforme = sa_.IDTIPOINFORME
+        '    Dim c As New dCliente
+        '    c.ID = sa_.IDPRODUCTOR
+        '    c = c.buscar
+        '    If Not c Is Nothing Then
+        '        productorweb_com = c.USUARIO_WEB
+        '        Dim pw_com As New dProductorWeb_com
+        '        pw_com.USUARIO = productorweb_com
+        '        pw_com = pw_com.buscar
+        '        If Not pw_com Is Nothing Then
+        '            idproductorweb_com = pw_com.ID
+        '            '
+        '        End If
+        '    End If
+        'End If
 
-        'enviar_notificacion_resultado()
+        ''enviar_notificacion_resultado()
 
-        '*** CREA RESULTADO EN GESTOR NUEVO *******************************************************************************************
-        Dim resultado As New Dictionary(Of String, dResultado)
-        Dim carpeta As String = ""
-        If tipoinforme = 1 Then
-            carpeta = "control_lechero"
-        ElseIf tipoinforme = 3 Then
-            carpeta = "agua"
-        ElseIf tipoinforme = 4 Then
-            carpeta = "antibiograma"
-        ElseIf tipoinforme = 6 Then
-            carpeta = "parasitologia"
-        ElseIf tipoinforme = 7 Then
-            carpeta = "productos_subproductos"
-        ElseIf tipoinforme = 8 Then
-            carpeta = "serologia"
-        ElseIf tipoinforme = 9 Then
-            carpeta = "patologia"
-        ElseIf tipoinforme = 10 Then
-            carpeta = "calidad_de_leche"
-        ElseIf tipoinforme = 11 Then
-            carpeta = "ambiental"
-        ElseIf tipoinforme = 13 Then
-            carpeta = "agro_nutricion"
-        ElseIf tipoinforme = 14 Or tipoinforme = 19 Then
-            carpeta = "agro_suelos"
-        ElseIf tipoinforme = 15 Then
-            carpeta = "brucelosis_leche"
-        ElseIf tipoinforme = 16 Then
-            carpeta = "efluentes"
-        ElseIf tipoinforme = 17 Then
-            carpeta = "antibiograma"
-        ElseIf tipoinforme = 18 Then
-            carpeta = "antibiograma"
-        ElseIf tipoinforme = 19 Then
-            carpeta = "agro_suelos"
-        ElseIf tipoinforme = 20 Then
-            carpeta = "patologia"
-        ElseIf tipoinforme = 21 Then
-            carpeta = "calidad_de_leche"
-            tipoinforme = 10
-        End If
+        ''*** CREA RESULTADO EN GESTOR NUEVO *******************************************************************************************
+        'Dim resultado As New Dictionary(Of String, dResultado)
+        'Dim carpeta As String = ""
+        'If tipoinforme = 1 Then
+        '    carpeta = "control_lechero"
+        'ElseIf tipoinforme = 3 Then
+        '    carpeta = "agua"
+        'ElseIf tipoinforme = 4 Then
+        '    carpeta = "antibiograma"
+        'ElseIf tipoinforme = 6 Then
+        '    carpeta = "parasitologia"
+        'ElseIf tipoinforme = 7 Then
+        '    carpeta = "productos_subproductos"
+        'ElseIf tipoinforme = 8 Then
+        '    carpeta = "serologia"
+        'ElseIf tipoinforme = 9 Then
+        '    carpeta = "patologia"
+        'ElseIf tipoinforme = 10 Then
+        '    carpeta = "calidad_de_leche"
+        'ElseIf tipoinforme = 11 Then
+        '    carpeta = "ambiental"
+        'ElseIf tipoinforme = 13 Then
+        '    carpeta = "agro_nutricion"
+        'ElseIf tipoinforme = 14 Or tipoinforme = 19 Then
+        '    carpeta = "agro_suelos"
+        'ElseIf tipoinforme = 15 Then
+        '    carpeta = "brucelosis_leche"
+        'ElseIf tipoinforme = 16 Then
+        '    carpeta = "efluentes"
+        'ElseIf tipoinforme = 17 Then
+        '    carpeta = "antibiograma"
+        'ElseIf tipoinforme = 18 Then
+        '    carpeta = "antibiograma"
+        'ElseIf tipoinforme = 19 Then
+        '    carpeta = "agro_suelos"
+        'ElseIf tipoinforme = 20 Then
+        '    carpeta = "patologia"
+        'ElseIf tipoinforme = 21 Then
+        '    carpeta = "calidad_de_leche"
+        '    tipoinforme = 10
+        'End If
 
-        Dim rg As New dResultado
+        'Dim rg As New dResultado
 
-        Dim fechaemi2 As String
-        Dim fecha_emision2 As Date = DateFechaIngreso.Value.ToString("yyyy-MM-dd")
-        'fechaemi2 = Format(fecha_emision2, "yyyy-MM-dd")
-        fechaemi2 = fecha_emision2
+        'Dim fechaemi2 As String
+        'Dim fecha_emision2 As Date = DateFechaIngreso.Value.ToString("yyyy-MM-dd")
+        ''fechaemi2 = Format(fecha_emision2, "yyyy-MM-dd")
+        'fechaemi2 = fecha_emision2
 
-        rg.ficha = id
-        'rg.comentarios = _comentarios
-        rg.idnet_usuario = idnet
-        rg.abonado = 0
-        rg.fecha_creado = fechaemi2
-        rg.fecha_emision = fechaemi2
-        rg.path_excel = "/home/colaveco/public_html/gestor/data_file/" & idproductorweb_com & "/" & carpeta & "/" & id & ".xls"
-        rg.path_pdf = "/home/colaveco/public_html/gestor/data_file/" & idproductorweb_com & "/" & carpeta & "/" & id & ".pdf"
-        rg.path_csv = "/home/colaveco/public_html/gestor/data_file/" & idproductorweb_com & "/" & carpeta & "/" & id & ".txt"
-        rg.id_estado = 1
-        rg.id_libro = id
-        rg.idnet_tipo_informe = tipoinforme
-        resultado.Add("resultado", rg)
+        'rg.ficha = id
+        ''rg.comentarios = _comentarios
+        'rg.idnet_usuario = idnet
+        'rg.abonado = 0
+        'rg.fecha_creado = fechaemi2
+        'rg.fecha_emision = fechaemi2
+        'rg.path_excel = "/home/colaveco/public_html/gestor/data_file/" & idproductorweb_com & "/" & carpeta & "/" & id & ".xls"
+        'rg.path_pdf = "/home/colaveco/public_html/gestor/data_file/" & idproductorweb_com & "/" & carpeta & "/" & id & ".pdf"
+        'rg.path_csv = "/home/colaveco/public_html/gestor/data_file/" & idproductorweb_com & "/" & carpeta & "/" & id & ".txt"
+        'rg.id_estado = 1
+        'rg.id_libro = id
+        'rg.idnet_tipo_informe = tipoinforme
+        'resultado.Add("resultado", rg)
 
-        Dim parameters As String = JsonConvert.SerializeObject(resultado, Formatting.None)
+        'Dim parameters As String = JsonConvert.SerializeObject(resultado, Formatting.None)
 
-        Dim status As HttpStatusCode = HttpStatusCode.ExpectationFailed
-        Dim response As Byte() = PostResponse("http://colaveco-gestor.herokuapp.com/resultados", "POST", parameters, status)
+        'Dim status As HttpStatusCode = HttpStatusCode.ExpectationFailed
+        'Dim response As Byte() = PostResponse("http://colaveco-gestor.herokuapp.com/resultados", "POST", parameters, status)
     End Sub
 
     Public Function PostResponse(ByVal url As String, ByVal metodo As String, ByVal content As String, ByRef statusCode As HttpStatusCode) As Byte()
@@ -2037,6 +2054,7 @@ Public Class FormSolicitud
 
     Private Sub ButtonGuardar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonGuardar.Click
         Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
+        nuevaFicha = TextId.Text.Trim
         If Not idtipoinforme Is Nothing Then
             Dim tipoinforme As Integer = idtipoinforme.ID
             cajasImp = ""
@@ -2101,48 +2119,7 @@ Public Class FormSolicitud
         guardar2()
         ListCajas.Items.Clear()
     End Sub
-    Private Sub enviomailpulsa()
-        Dim _Message As New System.Net.Mail.MailMessage()
-        Dim _SMTP As New System.Net.Mail.SmtpClient
-        nficha = TextId.Text.Trim
-        Dim fichero As String = ""
-        fichero = "\\192.168.1.10\E\NET\SOLICITUDES\S" & nficha & ".xls"
-        If email <> "" Then
-            'CONFIGURACIÓN DEL STMP 
-            ' Llamamos al método buscar para obtener el objeto Credenciales
-            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
-
-            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
-            _SMTP.Host = objetoCredenciales.CredencialesHost
-            _SMTP.Port = 25
-            _SMTP.EnableSsl = False
-
-            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
-            ' CONFIGURACION DEL MENSAJE 
-            _Message.[To].Add(email)
-            'Quien lo envía 
-            _Message.Subject = "Solicitud de análisis"
-            'Sujeto del e-mail 
-            _Message.SubjectEncoding = System.Text.Encoding.UTF8
-            'Codificacion 
-            _Message.Body = "Su solicitud de análisis Nº " & " " & nficha & ", " & "ha ingresado correctamente al sistema. Gracias."
-            'contenido del mail 
-            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
-            _Message.Priority = System.Net.Mail.MailPriority.Normal
-            _Message.IsBodyHtml = False
-            ' ADICION DE DATOS ADJUNTOS ‘
-            'Dim _File As String = My.Application.Info.DirectoryPath & "archivo" 'archivo que se quiere adjuntar ‘
-            'Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
-            '_Message.Attachments.Add(_Attachment) 'ENVIO 
-            Try
-                _SMTP.Send(_Message)
-                'MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
-            End Try
-        End If
-        email = ""
-        nficha = ""
-    End Sub
+   
 
     Private Sub ComboTipoInforme_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboTipoInforme.SelectedIndexChanged
         Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
@@ -2328,99 +2305,99 @@ Public Class FormSolicitud
     End Sub
     Public Sub guardar()
 
-        If TextId.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de ficha", MsgBoxStyle.Exclamation, "Atención") : TextId.Focus() : Exit Sub
-        Dim id As Long = TextId.Text.Trim
-        nuevaFicha = TextId.Text.Trim
-        'VERIFICA SI LA FICHA EXISTE********
-        Dim s As New dSolicitudAnalisis
-        Dim modifica As Integer = 0
-        s.ID = id
-        s = s.buscar
-        If Not s Is Nothing Then
-            modifica = 1
-        End If
-        '**********************************
-        Dim fechaingreso As Date = DateFechaIngreso.Value.ToString("yyyy-MM-dd")
-        If TextIdProductor.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de productor", MsgBoxStyle.Exclamation, "Atención") : TextIdProductor.Focus() : Exit Sub
-        Dim idproductor As Long = TextIdProductor.Text.Trim
-        Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
-        Dim idsubinforme As dSubInforme = CType(ComboSubInforme.SelectedItem, dSubInforme)
-        Dim observaciones As String = TextObservaciones.Text.Trim
-        Dim nmuestras As Integer
-        If TextNMuestras.Text <> "" Then
-            nmuestras = TextNMuestras.Text.Trim
-        End If
-        Dim idmuestra As dMuestras = CType(ComboMuestra.SelectedItem, dMuestras)
-        Dim idtecnico As dCliente = CType(ComboTecnico.SelectedItem, dCliente)
-        Dim sinsolicitud As Integer
-        If CheckSinSolicitud.Checked = True Then
-            sinsolicitud = 1
-        Else
-            sinsolicitud = 0
-        End If
-        Dim sinconservante As Integer
-        If CheckSinConservante.Checked = True Then
-            sinconservante = 1
-        Else
-            sinconservante = 0
-        End If
-        Dim temperatura As Double
-        If TextTemperatura.Text <> "" Then
-            temperatura = TextTemperatura.Text.Trim
-        End If
-        Dim derramadas As Integer
-        If CheckDerramadas.Checked = True Then
-            derramadas = 1
-        Else
-            derramadas = 0
-        End If
-        Dim desvioautorizado As Integer
-        If CheckDesvio.Checked = True Then
-            desvioautorizado = 1
-        Else
-            desvioautorizado = 0
-        End If
-        Dim idfactura As Long = 0
-        Dim web As Integer = 0
-        Dim personal As Integer = 0
-        Dim mail As Integer = 0
-        Dim sol As New dSolicitudAnalisis()
-        Dim fecing As String
-        fecing = Format(fechaingreso, "yyyy-MM-dd")
-        sol.ID = id
-        sol.FECHAINGRESO = fecing
-        sol.IDPRODUCTOR = idproductor
-        If Not idtipoinforme Is Nothing Then
-            sol.IDTIPOINFORME = idtipoinforme.ID
-        End If
-        If Not idsubinforme Is Nothing Then
-            sol.IDSUBINFORME = idsubinforme.ID
-        End If
-        sol.IDTIPOFICHA = 1
-        sol.OBSERVACIONES = observaciones
-        sol.NMUESTRAS = nmuestras
-        If Not idtecnico Is Nothing Then
-            sol.IDTECNICO = idtecnico.ID
-        End If
-        sol.SINCOLICITUD = sinsolicitud
-        sol.SINCONSERVANTE = sinconservante
-        sol.TEMPERATURA = temperatura
-        sol.DERRAMADAS = derramadas
-        sol.DESVIOAUTORIZADO = desvioautorizado
-        sol.IDFACTURA = idfactura
-        sol.WEB = web
-        sol.PERSONAL = personal
-        sol.EMAIL = mail
-        sol.FECHAENVIO = fecing
-        If modifica = 0 Then
-            If (sol.guardar(Usuario)) Then
-            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
-            End If
-        Else
-            If (sol.modificar(Usuario)) Then
-            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
-            End If
-        End If
+        'If TextId.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de ficha", MsgBoxStyle.Exclamation, "Atención") : TextId.Focus() : Exit Sub
+        'Dim id As Long = TextId.Text.Trim
+        'nuevaFicha = TextId.Text.Trim
+        ''VERIFICA SI LA FICHA EXISTE********
+        'Dim s As New dSolicitudAnalisis
+        'Dim modifica As Integer = 0
+        's.ID = id
+        's = s.buscar
+        'If Not s Is Nothing Then
+        '    modifica = 1
+        'End If
+        ''**********************************
+        'Dim fechaingreso As Date = DateFechaIngreso.Value.ToString("yyyy-MM-dd")
+        'If TextIdProductor.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de productor", MsgBoxStyle.Exclamation, "Atención") : TextIdProductor.Focus() : Exit Sub
+        'Dim idproductor As Long = TextIdProductor.Text.Trim
+        'Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
+        'Dim idsubinforme As dSubInforme = CType(ComboSubInforme.SelectedItem, dSubInforme)
+        'Dim observaciones As String = TextObservaciones.Text.Trim
+        'Dim nmuestras As Integer
+        'If TextNMuestras.Text <> "" Then
+        '    nmuestras = TextNMuestras.Text.Trim
+        'End If
+        'Dim idmuestra As dMuestras = CType(ComboMuestra.SelectedItem, dMuestras)
+        'Dim idtecnico As dCliente = CType(ComboTecnico.SelectedItem, dCliente)
+        'Dim sinsolicitud As Integer
+        'If CheckSinSolicitud.Checked = True Then
+        '    sinsolicitud = 1
+        'Else
+        '    sinsolicitud = 0
+        'End If
+        'Dim sinconservante As Integer
+        'If CheckSinConservante.Checked = True Then
+        '    sinconservante = 1
+        'Else
+        '    sinconservante = 0
+        'End If
+        'Dim temperatura As Double
+        'If TextTemperatura.Text <> "" Then
+        '    temperatura = TextTemperatura.Text.Trim
+        'End If
+        'Dim derramadas As Integer
+        'If CheckDerramadas.Checked = True Then
+        '    derramadas = 1
+        'Else
+        '    derramadas = 0
+        'End If
+        'Dim desvioautorizado As Integer
+        'If CheckDesvio.Checked = True Then
+        '    desvioautorizado = 1
+        'Else
+        '    desvioautorizado = 0
+        'End If
+        'Dim idfactura As Long = 0
+        'Dim web As Integer = 0
+        'Dim personal As Integer = 0
+        'Dim mail As Integer = 0
+        'Dim sol As New dSolicitudAnalisis()
+        'Dim fecing As String
+        'fecing = Format(fechaingreso, "yyyy-MM-dd")
+        'sol.ID = id
+        'sol.FECHAINGRESO = fecing
+        'sol.IDPRODUCTOR = idproductor
+        'If Not idtipoinforme Is Nothing Then
+        '    sol.IDTIPOINFORME = idtipoinforme.ID
+        'End If
+        'If Not idsubinforme Is Nothing Then
+        '    sol.IDSUBINFORME = idsubinforme.ID
+        'End If
+        'sol.IDTIPOFICHA = 1
+        'sol.OBSERVACIONES = observaciones
+        'sol.NMUESTRAS = nmuestras
+        'If Not idtecnico Is Nothing Then
+        '    sol.IDTECNICO = idtecnico.ID
+        'End If
+        'sol.SINCOLICITUD = sinsolicitud
+        'sol.SINCONSERVANTE = sinconservante
+        'sol.TEMPERATURA = temperatura
+        'sol.DERRAMADAS = derramadas
+        'sol.DESVIOAUTORIZADO = desvioautorizado
+        'sol.IDFACTURA = idfactura
+        'sol.WEB = web
+        'sol.PERSONAL = personal
+        'sol.EMAIL = mail
+        'sol.FECHAENVIO = fecing
+        'If modifica = 0 Then
+        '    If (sol.guardar(Usuario)) Then
+        '    Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+        '    End If
+        'Else
+        '    If (sol.modificar(Usuario)) Then
+        '    Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+        '    End If
+        'End If
 
 
     End Sub
@@ -3216,6 +3193,8 @@ Public Class FormSolicitud
             x1hoja.Cells(fila, columna).Font.Size = 14
             fila = fila + 1
         End If
+
+        'Autorización por correción de Solicitud
         If solicitudModificada = True Then
             Dim Supervisor As New dSolicitud_Autorizacion
             Supervisor = Supervisor.listarPorSolicitud(TextId.Text.Trim)
@@ -3230,8 +3209,22 @@ Public Class FormSolicitud
             x1hoja.Cells(fila, columna).Font.Size = 14
             fila = fila + 1
 
-
+            solicitudModificada = False
         End If
+
+        'Aviso en el RG.ADM.36 por antiguis resultados en Brucelosis POSITIVO
+        Dim productorBrucelosis As New dBrucelosis
+
+        If productorBrucelosis.existeResultadoPositivoPorCliente(productorId) Then
+            x1hoja.Cells(fila, columna).formula = "Atención: Cliente con antecedentes de Brucelosis positivo"
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Font.Size = 14
+            fila = fila + 1
+            productorId = 0
+            brucelosisPositiva = True
+        End If
+
         'CONTROLA SI EL CLIENTE TIENE ALGUN CONVENIO*****************************************
         Dim sa2 As New dSolicitudAnalisis
         Dim cli As Integer = 0
@@ -4781,716 +4774,716 @@ Public Class FormSolicitud
     End Sub
 
     Private Sub enviar_notificacion_solicitud(ByVal id As Integer)
-        Dim fechaactual As Date = Now()
-        Dim _fecha As String
-        _fecha = Format(fechaactual, "yyyy-MM-dd")
-        Dim notificacion As New Dictionary(Of String, dNotificaciones)
-        Dim nt As New dNotificaciones
-        Dim _tipo As String = ""
-        Dim _mensaje As String = ""
-        Dim nuevoid As Long = 0
-        Dim _detalle As String = ""
-        Dim _tipoinforme As String = ""
-        Dim _subtipo As String = ""
-        Dim _nombrecliente As String = ""
-        Dim _muestrasingresadas As String = ""
-        Dim _tipomuestra As String = ""
-        Dim _tiempo As String = 0
-        Dim sa As New dSolicitudAnalisis
-        sa.ID = id
-        sa = sa.buscar
-        If Not sa Is Nothing Then
-            Dim ti As New dTipoInforme
-            ti.ID = sa.IDTIPOINFORME
-            ti = ti.buscar
-            If Not ti Is Nothing Then
-                _tipoinforme = ti.NOMBRE
-            End If
-            Dim sti As New dSubInforme
-            sti.ID = sa.IDSUBINFORME
-            sti = sti.buscar
-            If Not sti Is Nothing Then
-                _subtipo = sti.NOMBRE
-            End If
-            nuevoid = sa.IDPRODUCTOR
-            Dim pro As New dCliente
-            pro.ID = sa.IDPRODUCTOR
-            pro = pro.buscar
-            If Not pro Is Nothing Then
-                _nombrecliente = pro.NOMBRE
-            Else
-                _nombrecliente = ""
-            End If
-            If sa.NMUESTRAS = 0 Then
-                _muestrasingresadas = "n/a"
-            Else
-                _muestrasingresadas = sa.NMUESTRAS
-            End If
-            Dim m As New dMuestras
-            m.ID = sa.IDMUESTRA
-            m = m.buscar
-            If Not m Is Nothing Then
-                _tipomuestra = m.NOMBRE
-            End If
-        End If
-        _tipo = "solicitud_creada"
-        _mensaje = "Ha ingresado una solicitud de análisis de " & _tipoinforme & ", con el número " & id
-        '******************************************************************************************************************************************
-        Dim texto As String = ""
-        Dim texto2 As String = ""
-        Dim texto3 As String = ""
-        Dim sm As New dRelSolicitudMuestras
-        Dim spal As New dSolicitudPAL
-        Dim csm As New dCalidadSolicitudMuestra
-        Dim cs As New dControlSolicitud
-        Dim a2 As New dAntibiograma2
-        Dim sn As New dSolicitudNutricion
-        Dim ss As New dSolicitudSuelos
-        Dim bl As New dBrucelosis
-        Dim lista2 As New ArrayList
-        Dim lista3 As New ArrayList
-        Dim lista4 As New ArrayList
-        Dim lista5 As New ArrayList
-        Dim lista6 As New ArrayList
-        Dim lista7 As New ArrayList
-        Dim lista10 As New ArrayList
-        Dim listabl As New ArrayList
-        Dim listanutricion As New ArrayList
-        Dim listasuelos As New ArrayList
-        lista4 = sm.listarporficha(idficha)
-        lista5 = csm.listarporsolicitud3(idficha)
-        lista6 = cs.listarporsolicitud(idficha)
-        lista7 = a2.listarporsolicitud(idficha)
-        lista10 = spal.listarporsolicitud(idficha)
-        listanutricion = sn.listarporsolicitud(idficha)
-        listasuelos = ss.listarporsolicitud(idficha)
-        listabl = sm.listarporficha(idficha)
-        ' SI ES PRODUCTOS LÁCTEOS ********************************************************************************
-        If _tipoinforme = "Alimentos" Then
-            _tiempo = "3"
-            Dim sp As New dSubproducto
-            Dim lista As New ArrayList
-            texto = ""
-            lista = sp.listarporsolicitud(idficha)
-            If Not lista Is Nothing Then
-                If lista.Count > 0 Then
-                    For Each sp In lista
-                        If sp.ESTAFCOAGPOSITIVO = 1 Then
-                            texto = texto + " - Estaf. Coag. Positivo"
-                        End If
-                        If sp.CF = 1 Then
-                            texto = texto + " - CF"
-                        End If
-                        If sp.MOHOSYLEVADURAS = 1 Then
-                            texto = texto + " - Mohos y levaduras"
-                            _tiempo = "5"
-                        End If
-                        If sp.CT = 1 Then
-                            texto = texto + " - Coliformes Totales"
-                        End If
-                        If sp.ECOLI = 1 Then
-                            texto = texto + " - E. Coli"
-                        End If
-                        If sp.SALMONELLA = 1 Then
-                            texto = texto + " - Salmonella"
-                            _tiempo = "7"
-                        End If
-                        If sp.LISTERIASPP = 1 Then
-                            texto = texto + " - Listeria spp"
-                            _tiempo = "7"
-                        End If
-                        If sp.HUMEDAD = 1 Then
-                            texto = texto + " - Humedad"
-                        End If
-                        If sp.MGRASA = 1 Then
-                            texto = texto + " - M. Grasa"
-                        End If
-                        If sp.PH = 1 Then
-                            texto = texto + " - pH"
-                        End If
-                        If sp.CLORUROS = 1 Then
-                            texto = texto + " - Cloruros"
-                        End If
-                        If sp.PROTEINAS = 1 Then
-                            texto = texto + " - Proteínas"
-                        End If
-                        If sp.ENTEROBACTERIAS = 1 Then
-                            texto = texto + " - Enterobacterias"
-                        End If
-                        If sp.LISTERIAAMBIENTAL = 1 Then
-                            texto = texto + " - Listeria Ambiental"
-                            _tiempo = "7"
-                        End If
-                        If sp.ESPORANAERMESOFILO = 1 Then
-                            texto = texto + " - Espor. Anaer. Mesófilos"
-                        End If
-                        If sp.TERMOFILOS = 1 Then
-                            texto = texto + " - Termodúricos"
-                        End If
-                        If sp.PSICROTROFOS = 1 Then
-                            texto = texto + " - Psicrótrofos"
-                        End If
-                        If sp.RB = 1 Then
-                            texto = texto + " - RB"
-                        End If
-                        If sp.TABLANUTRICIONAL = 1 Then
-                            texto = texto + " - Tabla nutricional"
-                        End If
-                        If sp.LISTERIAMONOCITOGENES = 1 Then
-                            texto = texto + " - Listeria monocitógenes"
-                            _tiempo = "7"
-                        End If
-                        If sp.CENIZAS = 1 Then
-                            texto = texto + " - Cenizas"
-                        End If
-                    Next
-                End If
-            End If
-            ' SI ES AGUA ********************************************************************************
-        ElseIf _tipoinforme = "Agua" Then
-            _tiempo = "2"
-            Dim a1 As New dAgua
-            texto = ""
-            a1.ID = idficha
-            a1 = a1.buscar()
-            texto = _subtipo
-            If Not a1 Is Nothing Then
-                If a1.HET22 = 1 Then
-                    texto = texto & " " & " - Heterotróficos 22"
-                End If
-                If a1.HET35 = 1 Then
-                    texto = texto & " " & " - Heterotróficos 35"
-                End If
-                If a1.HET37 = 1 Then
-                    texto = texto & " " & " - Heterotróficos 37"
-                End If
-                If a1.CLORO = 1 Then
-                    texto = texto & " " & " - Cloro"
-                End If
-                If a1.CONDUCTIVIDAD = 1 Then
-                    texto = texto & " " & " - Conductividad"
-                End If
-                If a1.PH = 1 Then
-                    texto = texto & " " & " - pH"
-                End If
-                If a1.ECOLI = 1 Then
-                    texto = texto & " " & " - Ecoli"
-                End If
-            End If
-            ' SI ES CALIDAD DE LECHE ********************************************************************************
-        ElseIf _tipoinforme = "Calidad de leche" Then
-            _tiempo = "1"
-            Dim rb As Integer = 0
-            Dim rc As Integer = 0
-            Dim comp As Integer = 0
-            Dim criosc As Integer = 0
-            Dim inh As Integer = 0
-            Dim espor As Integer = 0
-            Dim urea As Integer = 0
-            Dim term As Integer = 0
-            Dim psicr As Integer = 0
-            Dim crioscopo As Integer = 0
-            texto = ""
-            If Not lista5 Is Nothing Then
-                If lista5.Count > 0 Then
-                    For Each csm In lista5
-                        If csm.RB = 1 Then
-                            rb = 1
-                        End If
-                        If csm.RC = 1 Then
-                            rc = 1
-                        End If
-                        If csm.COMPOSICION = 1 Then
-                            comp = 1
-                        End If
-                        If csm.CRIOSCOPIA = 1 Then
-                            criosc = 1
-                        End If
-                        If csm.INHIBIDORES = 1 Then
-                            inh = 1
-                        End If
-                        If csm.ESPORULADOS = 1 Then
-                            espor = 1
-                        End If
-                        If csm.UREA = 1 Then
-                            urea = 1
-                        End If
-                        If csm.TERMOFILOS = 1 Then
-                            term = 1
-                        End If
-                        If csm.PSICROTROFOS = 1 Then
-                            psicr = 1
-                        End If
-                        If csm.CRIOSCOPIA_CRIOSCOPO = 1 Then
-                            crioscopo = 1
-                        End If
-                    Next
-                End If
-            End If
-            If rb = 1 Then
-                texto = texto + " - RB"
-            End If
-            If rc = 1 Then
-                texto = texto + " - RC"
-            End If
-            If comp = 1 Then
-                texto = texto + " - Composición"
-            End If
-            If criosc = 1 Then
-                texto = texto + " - Crioscopía"
-            End If
-            If inh = 1 Then
-                texto = texto + " - Inhibidores"
-            End If
-            If espor = 1 Then
-                texto = texto + " - Esporulados"
-                _tiempo = "7"
-            End If
-            If urea = 1 Then
-                texto = texto + " - Urea"
-            End If
-            If term = 1 Then
-                texto = texto + " - Termófilos"
-            End If
-            If psicr = 1 Then
-                texto = texto + " - Psicrótrofos"
-            End If
-            If crioscopo = 1 Then
-                texto = texto + " - Crioscopía (crióscopo)"
-            End If
-            ' SI ES CONTROL LECHERO ********************************************************************************
-        ElseIf _tipoinforme = "Control Lechero" Then
-            _tiempo = "1"
-            Dim rc As Integer = 0
-            Dim comp As Integer = 0
-            Dim urea As Integer = 0
-            texto = ""
-            If Not lista6 Is Nothing Then
-                If lista6.Count > 0 Then
-                    For Each cs In lista6
-                        If cs.RC = 1 Then
-                            rc = 1
-                        End If
-                        If cs.COMPOSICION = 1 Then
-                            comp = 1
-                        End If
-                        If cs.UREA = 1 Then
-                            urea = 1
-                        End If
-                    Next
-                End If
-            End If
-            If rc = 1 Then
-                texto = texto + " - RC"
-            End If
-            If comp = 1 Then
-                texto = texto + " - Composición"
-            End If
-            If urea = 1 Then
-                texto = texto + " - Urea"
-            End If
-            ' SI ANTIBIOGRAMA ********************************************************************************
-        ElseIf _tipoinforme = "Bacteriología y Antibiograma" Then
-            _tiempo = "3"
-            Dim aislamiento As Integer = 0
-            Dim antibiograma As Integer = 0
-            texto = ""
-            If Not lista7 Is Nothing Then
-                If lista7.Count > 0 Then
-                    For Each a2 In lista7
-                        If a2.AISLAMIENTO = 1 Then
-                            aislamiento = 1
-                        End If
-                        If a2.ANTIBIOGRAMA = 1 Then
-                            antibiograma = 1
-                        End If
-                    Next
-                End If
-            End If
-            If aislamiento = 1 Then
-                texto = texto + " - Aislamiento"
-            End If
-            If antibiograma = 1 Then
-                texto = texto + " - Antibiograma"
-            End If
-            ' SI ES AMBIENTAL ********************************************************************************
-        ElseIf _tipoinforme = "Ambiental" Then
-            _tiempo = "2"
-            Dim ambs As New dAmbientalSolicitud
-            Dim lista8 As ArrayList
-            lista8 = ambs.listarporsolicitud(idficha)
-            Dim enterobacterias As Integer = 0
-            Dim listambiental As Integer = 0
-            Dim listmono As Integer = 0
-            Dim salmonella As Integer = 0
-            Dim ecoli As Integer = 0
-            Dim mohosylevaduras As Integer = 0
-            Dim rb As Integer = 0
-            Dim ct As Integer = 0
-            Dim cf As Integer = 0
-            Dim pseudomonaspp As Integer = 0
-            texto = ""
-            If Not lista8 Is Nothing Then
-                If lista8.Count > 0 Then
-                    For Each ambs In lista8
-                        If ambs.ENTEROBACTERIAS = 1 Then
-                            enterobacterias = 1
-                        End If
-                        If ambs.LISTAMBIENTAL = 1 Then
-                            listambiental = 1
-                        End If
-                        If ambs.LISTMONO = 1 Then
-                            listmono = 1
-                        End If
-                        If ambs.SALMONELLA = 1 Then
-                            salmonella = 1
-                        End If
-                        If ambs.ECOLI = 1 Then
-                            ecoli = 1
-                        End If
-                        If ambs.MOHOSYLEVADURAS = 1 Then
-                            mohosylevaduras = 1
-                        End If
-                        If ambs.RB = 1 Then
-                            rb = 1
-                        End If
-                        If ambs.CT = 1 Then
-                            ct = 1
-                        End If
-                        If ambs.CF = 1 Then
-                            cf = 1
-                        End If
-                        If ambs.PSEUDOMONASPP = 1 Then
-                            pseudomonaspp = 1
-                        End If
-                    Next
-                End If
-            End If
-            If enterobacterias = 1 Then
-                texto = texto + " - Enterobacterias"
-            End If
-            If listambiental = 1 Then
-                texto = texto + " - Listeria ambiental"
-            End If
-            If listmono = 1 Then
-                texto = texto + " - Listeria monocitógenes"
-            End If
-            If salmonella = 1 Then
-                texto = texto + " - Salmonella"
-            End If
-            If ecoli = 1 Then
-                texto = texto + " - E. Coli"
-            End If
-            If mohosylevaduras = 1 Then
-                texto = texto + " - Mohos y levaduras"
-            End If
-            If rb = 1 Then
-                texto = texto + " - RB"
-            End If
-            If ct = 1 Then
-                texto = texto + " - Coliformes totales"
-            End If
-            If cf = 1 Then
-                texto = texto + " - CF"
-            End If
-            If pseudomonaspp = 1 Then
-                texto = texto + " - Pseudomona spp"
-            End If
-            ' SI ES PARASITOLOGÍA ********************************************************************************
-        ElseIf _tipoinforme = "Parasitología" Then
-            _tiempo = "2"
-            Dim p As New dParasitologiaSolicitud
-            Dim lista9 As ArrayList
-            lista9 = p.listarporsolicitud(idficha)
-            Dim gastrointestinales As Integer = 0
-            Dim fasciola As Integer = 0
-            Dim coccidias As Integer = 0
-            texto = ""
-            If Not lista9 Is Nothing Then
-                If lista9.Count > 0 Then
-                    For Each p In lista9
-                        If p.GASTROINTESTINALES = 1 Then
-                            gastrointestinales = 1
-                        End If
-                        If p.FASCIOLA = 1 Then
-                            fasciola = 1
-                        End If
-                        If p.COCCIDIAS = 1 Then
-                            coccidias = 1
-                        End If
-                    Next
-                End If
-            End If
-            If gastrointestinales = 1 Then
-                texto = texto + " - Gastrointestinales"
-            End If
-            If fasciola = 1 Then
-                texto = texto + " - Fasciola"
-            End If
-            If coccidias = 1 Then
-                texto = texto + " - Coccidias"
-            End If
-            ' SI ES NUTRICIÓN ********************************************************************************
-        ElseIf _tipoinforme = "Nutrición" Then
-            _tiempo = "4"
-            Dim mga As Integer = 0
-            Dim mgb As Integer = 0
-            Dim ensilados As Integer = 0
-            Dim pasturas As Integer = 0
-            Dim extetereo As Integer = 0
-            Dim nida As Integer = 0
-            texto = ""
-            If Not listanutricion Is Nothing Then
-                If listanutricion.Count > 0 Then
-                    For Each sn In listanutricion
-                        texto = texto & " // " & sn.MUESTRA & " - "
-                        If sn.MGA = 1 Then
-                            texto = texto & "MGA - "
-                        End If
-                        If sn.MGB = 1 Then
-                            texto = texto & "MGB - "
-                        End If
-                        If sn.ENSILADOS = 1 Then
-                            texto = texto & "Ensilados - "
-                        End If
-                        If sn.PASTURAS = 1 Then
-                            texto = texto & "Pasturas - "
-                        End If
-                        If sn.EXTETEREO = 1 Then
-                            texto = texto & "Extracto etéreo - "
-                        End If
-                        If sn.NIDA = 1 Then
-                            texto = texto & "NIDA - "
-                        End If
-                    Next
-                End If
-            End If
-            ' SI ES SUELOS ********************************************************************************
-        ElseIf _tipoinforme = "Suelos" Then
-            _tiempo = "2"
-            Dim nitratos As Integer = 0
-            Dim mineralizacion As Integer = 0
-            Dim fosforobray As Integer = 0
-            Dim fosforocitrico As Integer = 0
-            Dim phagua As Integer = 0
-            Dim phkci As Integer = 0
-            Dim materiaorg As Integer = 0
-            Dim potasioint As Integer = 0
-            Dim sulfatos As Integer = 0
-            Dim nitrogenovegetal As Integer = 0
-            texto = ""
-            If Not listasuelos Is Nothing Then
-                If listasuelos.Count > 0 Then
-                    For Each ss In listasuelos
-                        texto = texto & " // " & ss.MUESTRA & " - "
-                        If ss.NITRATOS = 1 Then
-                            texto = texto & "Nitratos - "
-                        End If
-                        If ss.MINERALIZACION = 1 Then
-                            texto = texto & "Mineralización - "
-                        End If
-                        If ss.FOSFOROBRAY = 1 Then
-                            texto = texto & "Fósforo Bray I - "
-                        End If
-                        If ss.FOSFOROCITRICO = 1 Then
-                            texto = texto & "Fósforo Ac.Cítrico - "
-                        End If
-                        If ss.PHAGUA = 1 Then
-                            texto = texto & "pH Agua - "
-                        End If
-                        If ss.PHKCI = 1 Then
-                            texto = texto & "pH KCI - "
-                        End If
-                        If ss.MATERIAORG = 1 Then
-                            texto = texto & "Materia orgánica - "
-                        End If
-                        If ss.POTASIOINT = 1 Then
-                            texto = texto & "Potasio intercambiable - "
-                        End If
-                        If ss.SULFATOS = 1 Then
-                            texto = texto & "Sulfatos - "
-                        End If
-                        If ss.NITROGENOVEGETAL = 1 Then
-                            texto = texto & "Nitrógeno vegetal - "
-                        End If
-                    Next
-                End If
-            End If
-        ElseIf _tipoinforme = "Otros" Then
-            _tiempo = "7"
-        ElseIf _tipoinforme = "Serología" Then
-            If _subtipo = "Brucelosis" Then
-                _tiempo = "2"
-            ElseIf _subtipo = "Serología otros" Then
-                _tiempo = "10"
-            End If
-        ElseIf _tipoinforme = "Patología - Toxicología" Then
-            _tiempo = "5"
-        End If
-        '*** LISTADO DE MUESTRAS *********************************************************************************
-        ' SI ES PRODUCTOS LÁCTEOS ********************************************************************************
-        If _tipoinforme = "Alimentos" Then
-            texto2 = ""
-            If Not lista4 Is Nothing Then
-                If lista4.Count > 0 Then
-                    For Each sm In lista4
-                        texto2 = texto2 + sm.IDMUESTRA & " - "
-                    Next
-                End If
-            End If
-            ' SI ES AGUA ********************************************************************************
-        ElseIf _tipoinforme = "Agua" Then
-            texto2 = ""
-            If Not lista4 Is Nothing Then
-                If lista4.Count > 0 Then
-                    For Each sm In lista4
-                        texto2 = texto2 + sm.IDMUESTRA & " - "
-                    Next
-                End If
-            End If
-            ' SI ES CALIDAD ********************************************************************************
-        ElseIf _tipoinforme = "Calidad de leche" Then
-            texto2 = ""
-            Dim cuenta_rb As Integer = 0
-            Dim cuenta_rc As Integer = 0
-            Dim cuenta_comp As Integer = 0
-            Dim cuenta_criosc As Integer = 0
-            Dim cuenta_inhib As Integer = 0
-            Dim cuenta_espor As Integer = 0
-            Dim cuenta_urea As Integer = 0
-            Dim cuenta_termo As Integer = 0
-            Dim cuenta_psicro As Integer = 0
-            Dim cuenta_criosc_criosc As Integer = 0
-            Dim cuenta_caseina As Integer = 0
-            If Not lista5 Is Nothing Then
-                If lista5.Count > 0 Then
-                    For Each csm In lista5
-                        texto2 = texto2 + csm.MUESTRA
-                        If csm.RB = 1 Then
-                            cuenta_rb = cuenta_rb + 1
-                        End If
-                        If csm.RC = 1 Then
-                            cuenta_rc = cuenta_rc + 1
-                        End If
-                        If csm.COMPOSICION = 1 Then
-                            cuenta_comp = cuenta_comp + 1
-                        End If
-                        If csm.CRIOSCOPIA = 1 Then
-                            cuenta_criosc = cuenta_criosc + 1
-                        End If
-                        If csm.INHIBIDORES = 1 Then
-                            cuenta_inhib = cuenta_inhib + 1
-                        End If
-                        If csm.ESPORULADOS = 1 Then
-                            cuenta_espor = cuenta_espor + 1
-                        End If
-                        If csm.UREA = 1 Then
-                            cuenta_urea = cuenta_urea + 1
-                        End If
-                        If csm.TERMOFILOS = 1 Then
-                            cuenta_termo = cuenta_termo + 1
-                        End If
-                        If csm.PSICROTROFOS = 1 Then
-                            cuenta_psicro = cuenta_psicro + 1
-                        End If
-                        If csm.CRIOSCOPIA_CRIOSCOPO = 1 Then
-                            cuenta_criosc_criosc = cuenta_criosc_criosc + 1
-                        End If
-                        If csm.CASEINA = 1 Then
-                            cuenta_caseina = cuenta_caseina + 1
-                        End If
-                        texto2 = texto2 + " - "
-                    Next
-                End If
-            End If
-            If cuenta_rb > 0 Then
-                texto3 = texto3 & cuenta_rb & " RB - "
-            End If
-            If cuenta_rc > 0 Then
-                texto3 = texto3 & cuenta_rc & " RC - "
-            End If
-            If cuenta_comp > 0 Then
-                texto3 = texto3 & cuenta_comp & " Comp. - "
-            End If
-            If cuenta_criosc > 0 Then
-                texto3 = texto3 & cuenta_criosc & " Criosc. - "
-            End If
-            If cuenta_inhib > 0 Then
-                texto3 = texto3 & cuenta_inhib & " Inhib. - "
-            End If
-            If cuenta_espor > 0 Then
-                texto3 = texto3 & cuenta_espor & " Espor. - "
-            End If
-            If cuenta_urea > 0 Then
-                texto3 = texto3 & cuenta_urea & " Urea - "
-            End If
-            If cuenta_termo > 0 Then
-                texto3 = texto3 & cuenta_termo & " Termof. - "
-            End If
-            If cuenta_psicro > 0 Then
-                texto3 = texto3 & cuenta_psicro & " Psicro. - "
-            End If
-            If cuenta_criosc_criosc > 0 Then
-                texto3 = texto3 & cuenta_criosc_criosc & " Criosc.(Crióscopo) - "
-            End If
-            If cuenta_caseina > 0 Then
-                texto3 = texto3 & cuenta_caseina & " Caseina - "
-            End If
-            ' SI ES CONTROL LECHERO ********************************************************************************
-        ElseIf _tipoinforme = "Control Lechero" Then
-            texto2 = ""
-            ' SI ES ANTIBIOGRAMA ********************************************************************************
-        ElseIf _tipoinforme = "Bacteriología y Antibiograma" Then
-            texto2 = ""
-            If Not lista4 Is Nothing Then
-                If lista4.Count > 0 Then
-                    For Each sm In lista4
-                        texto2 = texto2 + sm.IDMUESTRA & " - "
-                    Next
-                End If
-            End If
-            ' SI ES AMBIENTAL ********************************************************************************
-        ElseIf _tipoinforme = "Ambiental" Then
-            texto2 = ""
-            If Not lista4 Is Nothing Then
-                If lista4.Count > 0 Then
-                    For Each sm In lista4
-                        texto2 = texto2 + sm.IDMUESTRA & " - "
-                    Next
-                End If
-            End If
-            ' SI ES PARASITOLOGÍA ********************************************************************************
-        ElseIf _tipoinforme = "Parasitología" Then
-            texto2 = ""
-            If Not lista4 Is Nothing Then
-                If lista4.Count > 0 Then
-                    For Each sm In lista4
-                        texto2 = texto2 + sm.IDMUESTRA & " - "
-                    Next
-                End If
-            End If
-            ' SI ES BRUCELOSIS LECHE ********************************************************************************
-        ElseIf _tipoinforme = "Brucelosis en leche" Then
-            _tiempo = "3"
-            texto2 = ""
-            If Not listabl Is Nothing Then
-                If listabl.Count > 0 Then
-                    For Each sm In listabl
-                        texto2 = texto2 + sm.IDMUESTRA & " - "
-                    Next
-                End If
-            End If
-        End If
-        '********************************************************************************************************************
-        _detalle = "<p><b>Fecha de recepción:</b> " + _fecha + " </p><p><b>A nombre de:</b> " + _nombrecliente + " </p><p><b>Muestras ingresadas:</b> " + _muestrasingresadas + " </p><p><b>Tipo de muestra:</b> " + _tipomuestra + " </p><p><b>Tipo de informe:</b> " + _tipoinforme + " </p><p><b>Subtipo:</b> " + _subtipo + " </p><p><b>Análisis Solicitado:</b> " + texto + " </p><p><b>Identificación de las muestras:</b> " + texto2 + " </p><p><b>Tiempo estimado de entrega:</b> " + _tiempo + " </p>"
-        nt.fecha = _fecha
-        nt.tipo = _tipo
-        nt.mensaje = _mensaje
-        nt.idnet_usuario = nuevoid
-        notificacion.Add("notification", nt)
-        Dim parameters As String = JsonConvert.SerializeObject(notificacion, Formatting.None)
-        Dim status As HttpStatusCode = HttpStatusCode.ExpectationFailed
-        Dim response As Byte() = PostResponse("http://colaveco-gestor.herokuapp.com/notifications", "POST", parameters, status)
+        'Dim fechaactual As Date = Now()
+        'Dim _fecha As String
+        '_fecha = Format(fechaactual, "yyyy-MM-dd")
+        'Dim notificacion As New Dictionary(Of String, dNotificaciones)
+        'Dim nt As New dNotificaciones
+        'Dim _tipo As String = ""
+        'Dim _mensaje As String = ""
+        'Dim nuevoid As Long = 0
+        'Dim _detalle As String = ""
+        'Dim _tipoinforme As String = ""
+        'Dim _subtipo As String = ""
+        'Dim _nombrecliente As String = ""
+        'Dim _muestrasingresadas As String = ""
+        'Dim _tipomuestra As String = ""
+        'Dim _tiempo As String = 0
+        'Dim sa As New dSolicitudAnalisis
+        'sa.ID = id
+        'sa = sa.buscar
+        'If Not sa Is Nothing Then
+        '    Dim ti As New dTipoInforme
+        '    ti.ID = sa.IDTIPOINFORME
+        '    ti = ti.buscar
+        '    If Not ti Is Nothing Then
+        '        _tipoinforme = ti.NOMBRE
+        '    End If
+        '    Dim sti As New dSubInforme
+        '    sti.ID = sa.IDSUBINFORME
+        '    sti = sti.buscar
+        '    If Not sti Is Nothing Then
+        '        _subtipo = sti.NOMBRE
+        '    End If
+        '    nuevoid = sa.IDPRODUCTOR
+        '    Dim pro As New dCliente
+        '    pro.ID = sa.IDPRODUCTOR
+        '    pro = pro.buscar
+        '    If Not pro Is Nothing Then
+        '        _nombrecliente = pro.NOMBRE
+        '    Else
+        '        _nombrecliente = ""
+        '    End If
+        '    If sa.NMUESTRAS = 0 Then
+        '        _muestrasingresadas = "n/a"
+        '    Else
+        '        _muestrasingresadas = sa.NMUESTRAS
+        '    End If
+        '    Dim m As New dMuestras
+        '    m.ID = sa.IDMUESTRA
+        '    m = m.buscar
+        '    If Not m Is Nothing Then
+        '        _tipomuestra = m.NOMBRE
+        '    End If
+        'End If
+        '_tipo = "solicitud_creada"
+        '_mensaje = "Ha ingresado una solicitud de análisis de " & _tipoinforme & ", con el número " & id
+        ''******************************************************************************************************************************************
+        'Dim texto As String = ""
+        'Dim texto2 As String = ""
+        'Dim texto3 As String = ""
+        'Dim sm As New dRelSolicitudMuestras
+        'Dim spal As New dSolicitudPAL
+        'Dim csm As New dCalidadSolicitudMuestra
+        'Dim cs As New dControlSolicitud
+        'Dim a2 As New dAntibiograma2
+        'Dim sn As New dSolicitudNutricion
+        'Dim ss As New dSolicitudSuelos
+        'Dim bl As New dBrucelosis
+        'Dim lista2 As New ArrayList
+        'Dim lista3 As New ArrayList
+        'Dim lista4 As New ArrayList
+        'Dim lista5 As New ArrayList
+        'Dim lista6 As New ArrayList
+        'Dim lista7 As New ArrayList
+        'Dim lista10 As New ArrayList
+        'Dim listabl As New ArrayList
+        'Dim listanutricion As New ArrayList
+        'Dim listasuelos As New ArrayList
+        'lista4 = sm.listarporficha(idficha)
+        'lista5 = csm.listarporsolicitud3(idficha)
+        'lista6 = cs.listarporsolicitud(idficha)
+        'lista7 = a2.listarporsolicitud(idficha)
+        'lista10 = spal.listarporsolicitud(idficha)
+        'listanutricion = sn.listarporsolicitud(idficha)
+        'listasuelos = ss.listarporsolicitud(idficha)
+        'listabl = sm.listarporficha(idficha)
+        '' SI ES PRODUCTOS LÁCTEOS ********************************************************************************
+        'If _tipoinforme = "Alimentos" Then
+        '    _tiempo = "3"
+        '    Dim sp As New dSubproducto
+        '    Dim lista As New ArrayList
+        '    texto = ""
+        '    lista = sp.listarporsolicitud(idficha)
+        '    If Not lista Is Nothing Then
+        '        If lista.Count > 0 Then
+        '            For Each sp In lista
+        '                If sp.ESTAFCOAGPOSITIVO = 1 Then
+        '                    texto = texto + " - Estaf. Coag. Positivo"
+        '                End If
+        '                If sp.CF = 1 Then
+        '                    texto = texto + " - CF"
+        '                End If
+        '                If sp.MOHOSYLEVADURAS = 1 Then
+        '                    texto = texto + " - Mohos y levaduras"
+        '                    _tiempo = "5"
+        '                End If
+        '                If sp.CT = 1 Then
+        '                    texto = texto + " - Coliformes Totales"
+        '                End If
+        '                If sp.ECOLI = 1 Then
+        '                    texto = texto + " - E. Coli"
+        '                End If
+        '                If sp.SALMONELLA = 1 Then
+        '                    texto = texto + " - Salmonella"
+        '                    _tiempo = "7"
+        '                End If
+        '                If sp.LISTERIASPP = 1 Then
+        '                    texto = texto + " - Listeria spp"
+        '                    _tiempo = "7"
+        '                End If
+        '                If sp.HUMEDAD = 1 Then
+        '                    texto = texto + " - Humedad"
+        '                End If
+        '                If sp.MGRASA = 1 Then
+        '                    texto = texto + " - M. Grasa"
+        '                End If
+        '                If sp.PH = 1 Then
+        '                    texto = texto + " - pH"
+        '                End If
+        '                If sp.CLORUROS = 1 Then
+        '                    texto = texto + " - Cloruros"
+        '                End If
+        '                If sp.PROTEINAS = 1 Then
+        '                    texto = texto + " - Proteínas"
+        '                End If
+        '                If sp.ENTEROBACTERIAS = 1 Then
+        '                    texto = texto + " - Enterobacterias"
+        '                End If
+        '                If sp.LISTERIAAMBIENTAL = 1 Then
+        '                    texto = texto + " - Listeria Ambiental"
+        '                    _tiempo = "7"
+        '                End If
+        '                If sp.ESPORANAERMESOFILO = 1 Then
+        '                    texto = texto + " - Espor. Anaer. Mesófilos"
+        '                End If
+        '                If sp.TERMOFILOS = 1 Then
+        '                    texto = texto + " - Termodúricos"
+        '                End If
+        '                If sp.PSICROTROFOS = 1 Then
+        '                    texto = texto + " - Psicrótrofos"
+        '                End If
+        '                If sp.RB = 1 Then
+        '                    texto = texto + " - RB"
+        '                End If
+        '                If sp.TABLANUTRICIONAL = 1 Then
+        '                    texto = texto + " - Tabla nutricional"
+        '                End If
+        '                If sp.LISTERIAMONOCITOGENES = 1 Then
+        '                    texto = texto + " - Listeria monocitógenes"
+        '                    _tiempo = "7"
+        '                End If
+        '                If sp.CENIZAS = 1 Then
+        '                    texto = texto + " - Cenizas"
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        '    ' SI ES AGUA ********************************************************************************
+        'ElseIf _tipoinforme = "Agua" Then
+        '    _tiempo = "2"
+        '    Dim a1 As New dAgua
+        '    texto = ""
+        '    a1.ID = idficha
+        '    a1 = a1.buscar()
+        '    texto = _subtipo
+        '    If Not a1 Is Nothing Then
+        '        If a1.HET22 = 1 Then
+        '            texto = texto & " " & " - Heterotróficos 22"
+        '        End If
+        '        If a1.HET35 = 1 Then
+        '            texto = texto & " " & " - Heterotróficos 35"
+        '        End If
+        '        If a1.HET37 = 1 Then
+        '            texto = texto & " " & " - Heterotróficos 37"
+        '        End If
+        '        If a1.CLORO = 1 Then
+        '            texto = texto & " " & " - Cloro"
+        '        End If
+        '        If a1.CONDUCTIVIDAD = 1 Then
+        '            texto = texto & " " & " - Conductividad"
+        '        End If
+        '        If a1.PH = 1 Then
+        '            texto = texto & " " & " - pH"
+        '        End If
+        '        If a1.ECOLI = 1 Then
+        '            texto = texto & " " & " - Ecoli"
+        '        End If
+        '    End If
+        '    ' SI ES CALIDAD DE LECHE ********************************************************************************
+        'ElseIf _tipoinforme = "Calidad de leche" Then
+        '    _tiempo = "1"
+        '    Dim rb As Integer = 0
+        '    Dim rc As Integer = 0
+        '    Dim comp As Integer = 0
+        '    Dim criosc As Integer = 0
+        '    Dim inh As Integer = 0
+        '    Dim espor As Integer = 0
+        '    Dim urea As Integer = 0
+        '    Dim term As Integer = 0
+        '    Dim psicr As Integer = 0
+        '    Dim crioscopo As Integer = 0
+        '    texto = ""
+        '    If Not lista5 Is Nothing Then
+        '        If lista5.Count > 0 Then
+        '            For Each csm In lista5
+        '                If csm.RB = 1 Then
+        '                    rb = 1
+        '                End If
+        '                If csm.RC = 1 Then
+        '                    rc = 1
+        '                End If
+        '                If csm.COMPOSICION = 1 Then
+        '                    comp = 1
+        '                End If
+        '                If csm.CRIOSCOPIA = 1 Then
+        '                    criosc = 1
+        '                End If
+        '                If csm.INHIBIDORES = 1 Then
+        '                    inh = 1
+        '                End If
+        '                If csm.ESPORULADOS = 1 Then
+        '                    espor = 1
+        '                End If
+        '                If csm.UREA = 1 Then
+        '                    urea = 1
+        '                End If
+        '                If csm.TERMOFILOS = 1 Then
+        '                    term = 1
+        '                End If
+        '                If csm.PSICROTROFOS = 1 Then
+        '                    psicr = 1
+        '                End If
+        '                If csm.CRIOSCOPIA_CRIOSCOPO = 1 Then
+        '                    crioscopo = 1
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        '    If rb = 1 Then
+        '        texto = texto + " - RB"
+        '    End If
+        '    If rc = 1 Then
+        '        texto = texto + " - RC"
+        '    End If
+        '    If comp = 1 Then
+        '        texto = texto + " - Composición"
+        '    End If
+        '    If criosc = 1 Then
+        '        texto = texto + " - Crioscopía"
+        '    End If
+        '    If inh = 1 Then
+        '        texto = texto + " - Inhibidores"
+        '    End If
+        '    If espor = 1 Then
+        '        texto = texto + " - Esporulados"
+        '        _tiempo = "7"
+        '    End If
+        '    If urea = 1 Then
+        '        texto = texto + " - Urea"
+        '    End If
+        '    If term = 1 Then
+        '        texto = texto + " - Termófilos"
+        '    End If
+        '    If psicr = 1 Then
+        '        texto = texto + " - Psicrótrofos"
+        '    End If
+        '    If crioscopo = 1 Then
+        '        texto = texto + " - Crioscopía (crióscopo)"
+        '    End If
+        '    ' SI ES CONTROL LECHERO ********************************************************************************
+        'ElseIf _tipoinforme = "Control Lechero" Then
+        '    _tiempo = "1"
+        '    Dim rc As Integer = 0
+        '    Dim comp As Integer = 0
+        '    Dim urea As Integer = 0
+        '    texto = ""
+        '    If Not lista6 Is Nothing Then
+        '        If lista6.Count > 0 Then
+        '            For Each cs In lista6
+        '                If cs.RC = 1 Then
+        '                    rc = 1
+        '                End If
+        '                If cs.COMPOSICION = 1 Then
+        '                    comp = 1
+        '                End If
+        '                If cs.UREA = 1 Then
+        '                    urea = 1
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        '    If rc = 1 Then
+        '        texto = texto + " - RC"
+        '    End If
+        '    If comp = 1 Then
+        '        texto = texto + " - Composición"
+        '    End If
+        '    If urea = 1 Then
+        '        texto = texto + " - Urea"
+        '    End If
+        '    ' SI ANTIBIOGRAMA ********************************************************************************
+        'ElseIf _tipoinforme = "Bacteriología y Antibiograma" Then
+        '    _tiempo = "3"
+        '    Dim aislamiento As Integer = 0
+        '    Dim antibiograma As Integer = 0
+        '    texto = ""
+        '    If Not lista7 Is Nothing Then
+        '        If lista7.Count > 0 Then
+        '            For Each a2 In lista7
+        '                If a2.AISLAMIENTO = 1 Then
+        '                    aislamiento = 1
+        '                End If
+        '                If a2.ANTIBIOGRAMA = 1 Then
+        '                    antibiograma = 1
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        '    If aislamiento = 1 Then
+        '        texto = texto + " - Aislamiento"
+        '    End If
+        '    If antibiograma = 1 Then
+        '        texto = texto + " - Antibiograma"
+        '    End If
+        '    ' SI ES AMBIENTAL ********************************************************************************
+        'ElseIf _tipoinforme = "Ambiental" Then
+        '    _tiempo = "2"
+        '    Dim ambs As New dAmbientalSolicitud
+        '    Dim lista8 As ArrayList
+        '    lista8 = ambs.listarporsolicitud(idficha)
+        '    Dim enterobacterias As Integer = 0
+        '    Dim listambiental As Integer = 0
+        '    Dim listmono As Integer = 0
+        '    Dim salmonella As Integer = 0
+        '    Dim ecoli As Integer = 0
+        '    Dim mohosylevaduras As Integer = 0
+        '    Dim rb As Integer = 0
+        '    Dim ct As Integer = 0
+        '    Dim cf As Integer = 0
+        '    Dim pseudomonaspp As Integer = 0
+        '    texto = ""
+        '    If Not lista8 Is Nothing Then
+        '        If lista8.Count > 0 Then
+        '            For Each ambs In lista8
+        '                If ambs.ENTEROBACTERIAS = 1 Then
+        '                    enterobacterias = 1
+        '                End If
+        '                If ambs.LISTAMBIENTAL = 1 Then
+        '                    listambiental = 1
+        '                End If
+        '                If ambs.LISTMONO = 1 Then
+        '                    listmono = 1
+        '                End If
+        '                If ambs.SALMONELLA = 1 Then
+        '                    salmonella = 1
+        '                End If
+        '                If ambs.ECOLI = 1 Then
+        '                    ecoli = 1
+        '                End If
+        '                If ambs.MOHOSYLEVADURAS = 1 Then
+        '                    mohosylevaduras = 1
+        '                End If
+        '                If ambs.RB = 1 Then
+        '                    rb = 1
+        '                End If
+        '                If ambs.CT = 1 Then
+        '                    ct = 1
+        '                End If
+        '                If ambs.CF = 1 Then
+        '                    cf = 1
+        '                End If
+        '                If ambs.PSEUDOMONASPP = 1 Then
+        '                    pseudomonaspp = 1
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        '    If enterobacterias = 1 Then
+        '        texto = texto + " - Enterobacterias"
+        '    End If
+        '    If listambiental = 1 Then
+        '        texto = texto + " - Listeria ambiental"
+        '    End If
+        '    If listmono = 1 Then
+        '        texto = texto + " - Listeria monocitógenes"
+        '    End If
+        '    If salmonella = 1 Then
+        '        texto = texto + " - Salmonella"
+        '    End If
+        '    If ecoli = 1 Then
+        '        texto = texto + " - E. Coli"
+        '    End If
+        '    If mohosylevaduras = 1 Then
+        '        texto = texto + " - Mohos y levaduras"
+        '    End If
+        '    If rb = 1 Then
+        '        texto = texto + " - RB"
+        '    End If
+        '    If ct = 1 Then
+        '        texto = texto + " - Coliformes totales"
+        '    End If
+        '    If cf = 1 Then
+        '        texto = texto + " - CF"
+        '    End If
+        '    If pseudomonaspp = 1 Then
+        '        texto = texto + " - Pseudomona spp"
+        '    End If
+        '    ' SI ES PARASITOLOGÍA ********************************************************************************
+        'ElseIf _tipoinforme = "Parasitología" Then
+        '    _tiempo = "2"
+        '    Dim p As New dParasitologiaSolicitud
+        '    Dim lista9 As ArrayList
+        '    lista9 = p.listarporsolicitud(idficha)
+        '    Dim gastrointestinales As Integer = 0
+        '    Dim fasciola As Integer = 0
+        '    Dim coccidias As Integer = 0
+        '    texto = ""
+        '    If Not lista9 Is Nothing Then
+        '        If lista9.Count > 0 Then
+        '            For Each p In lista9
+        '                If p.GASTROINTESTINALES = 1 Then
+        '                    gastrointestinales = 1
+        '                End If
+        '                If p.FASCIOLA = 1 Then
+        '                    fasciola = 1
+        '                End If
+        '                If p.COCCIDIAS = 1 Then
+        '                    coccidias = 1
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        '    If gastrointestinales = 1 Then
+        '        texto = texto + " - Gastrointestinales"
+        '    End If
+        '    If fasciola = 1 Then
+        '        texto = texto + " - Fasciola"
+        '    End If
+        '    If coccidias = 1 Then
+        '        texto = texto + " - Coccidias"
+        '    End If
+        '    ' SI ES NUTRICIÓN ********************************************************************************
+        'ElseIf _tipoinforme = "Nutrición" Then
+        '    _tiempo = "4"
+        '    Dim mga As Integer = 0
+        '    Dim mgb As Integer = 0
+        '    Dim ensilados As Integer = 0
+        '    Dim pasturas As Integer = 0
+        '    Dim extetereo As Integer = 0
+        '    Dim nida As Integer = 0
+        '    texto = ""
+        '    If Not listanutricion Is Nothing Then
+        '        If listanutricion.Count > 0 Then
+        '            For Each sn In listanutricion
+        '                texto = texto & " // " & sn.MUESTRA & " - "
+        '                If sn.MGA = 1 Then
+        '                    texto = texto & "MGA - "
+        '                End If
+        '                If sn.MGB = 1 Then
+        '                    texto = texto & "MGB - "
+        '                End If
+        '                If sn.ENSILADOS = 1 Then
+        '                    texto = texto & "Ensilados - "
+        '                End If
+        '                If sn.PASTURAS = 1 Then
+        '                    texto = texto & "Pasturas - "
+        '                End If
+        '                If sn.EXTETEREO = 1 Then
+        '                    texto = texto & "Extracto etéreo - "
+        '                End If
+        '                If sn.NIDA = 1 Then
+        '                    texto = texto & "NIDA - "
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        '    ' SI ES SUELOS ********************************************************************************
+        'ElseIf _tipoinforme = "Suelos" Then
+        '    _tiempo = "2"
+        '    Dim nitratos As Integer = 0
+        '    Dim mineralizacion As Integer = 0
+        '    Dim fosforobray As Integer = 0
+        '    Dim fosforocitrico As Integer = 0
+        '    Dim phagua As Integer = 0
+        '    Dim phkci As Integer = 0
+        '    Dim materiaorg As Integer = 0
+        '    Dim potasioint As Integer = 0
+        '    Dim sulfatos As Integer = 0
+        '    Dim nitrogenovegetal As Integer = 0
+        '    texto = ""
+        '    If Not listasuelos Is Nothing Then
+        '        If listasuelos.Count > 0 Then
+        '            For Each ss In listasuelos
+        '                texto = texto & " // " & ss.MUESTRA & " - "
+        '                If ss.NITRATOS = 1 Then
+        '                    texto = texto & "Nitratos - "
+        '                End If
+        '                If ss.MINERALIZACION = 1 Then
+        '                    texto = texto & "Mineralización - "
+        '                End If
+        '                If ss.FOSFOROBRAY = 1 Then
+        '                    texto = texto & "Fósforo Bray I - "
+        '                End If
+        '                If ss.FOSFOROCITRICO = 1 Then
+        '                    texto = texto & "Fósforo Ac.Cítrico - "
+        '                End If
+        '                If ss.PHAGUA = 1 Then
+        '                    texto = texto & "pH Agua - "
+        '                End If
+        '                If ss.PHKCI = 1 Then
+        '                    texto = texto & "pH KCI - "
+        '                End If
+        '                If ss.MATERIAORG = 1 Then
+        '                    texto = texto & "Materia orgánica - "
+        '                End If
+        '                If ss.POTASIOINT = 1 Then
+        '                    texto = texto & "Potasio intercambiable - "
+        '                End If
+        '                If ss.SULFATOS = 1 Then
+        '                    texto = texto & "Sulfatos - "
+        '                End If
+        '                If ss.NITROGENOVEGETAL = 1 Then
+        '                    texto = texto & "Nitrógeno vegetal - "
+        '                End If
+        '            Next
+        '        End If
+        '    End If
+        'ElseIf _tipoinforme = "Otros" Then
+        '    _tiempo = "7"
+        'ElseIf _tipoinforme = "Serología" Then
+        '    If _subtipo = "Brucelosis" Then
+        '        _tiempo = "2"
+        '    ElseIf _subtipo = "Serología otros" Then
+        '        _tiempo = "10"
+        '    End If
+        'ElseIf _tipoinforme = "Patología - Toxicología" Then
+        '    _tiempo = "5"
+        'End If
+        ''*** LISTADO DE MUESTRAS *********************************************************************************
+        '' SI ES PRODUCTOS LÁCTEOS ********************************************************************************
+        'If _tipoinforme = "Alimentos" Then
+        '    texto2 = ""
+        '    If Not lista4 Is Nothing Then
+        '        If lista4.Count > 0 Then
+        '            For Each sm In lista4
+        '                texto2 = texto2 + sm.IDMUESTRA & " - "
+        '            Next
+        '        End If
+        '    End If
+        '    ' SI ES AGUA ********************************************************************************
+        'ElseIf _tipoinforme = "Agua" Then
+        '    texto2 = ""
+        '    If Not lista4 Is Nothing Then
+        '        If lista4.Count > 0 Then
+        '            For Each sm In lista4
+        '                texto2 = texto2 + sm.IDMUESTRA & " - "
+        '            Next
+        '        End If
+        '    End If
+        '    ' SI ES CALIDAD ********************************************************************************
+        'ElseIf _tipoinforme = "Calidad de leche" Then
+        '    texto2 = ""
+        '    Dim cuenta_rb As Integer = 0
+        '    Dim cuenta_rc As Integer = 0
+        '    Dim cuenta_comp As Integer = 0
+        '    Dim cuenta_criosc As Integer = 0
+        '    Dim cuenta_inhib As Integer = 0
+        '    Dim cuenta_espor As Integer = 0
+        '    Dim cuenta_urea As Integer = 0
+        '    Dim cuenta_termo As Integer = 0
+        '    Dim cuenta_psicro As Integer = 0
+        '    Dim cuenta_criosc_criosc As Integer = 0
+        '    Dim cuenta_caseina As Integer = 0
+        '    If Not lista5 Is Nothing Then
+        '        If lista5.Count > 0 Then
+        '            For Each csm In lista5
+        '                texto2 = texto2 + csm.MUESTRA
+        '                If csm.RB = 1 Then
+        '                    cuenta_rb = cuenta_rb + 1
+        '                End If
+        '                If csm.RC = 1 Then
+        '                    cuenta_rc = cuenta_rc + 1
+        '                End If
+        '                If csm.COMPOSICION = 1 Then
+        '                    cuenta_comp = cuenta_comp + 1
+        '                End If
+        '                If csm.CRIOSCOPIA = 1 Then
+        '                    cuenta_criosc = cuenta_criosc + 1
+        '                End If
+        '                If csm.INHIBIDORES = 1 Then
+        '                    cuenta_inhib = cuenta_inhib + 1
+        '                End If
+        '                If csm.ESPORULADOS = 1 Then
+        '                    cuenta_espor = cuenta_espor + 1
+        '                End If
+        '                If csm.UREA = 1 Then
+        '                    cuenta_urea = cuenta_urea + 1
+        '                End If
+        '                If csm.TERMOFILOS = 1 Then
+        '                    cuenta_termo = cuenta_termo + 1
+        '                End If
+        '                If csm.PSICROTROFOS = 1 Then
+        '                    cuenta_psicro = cuenta_psicro + 1
+        '                End If
+        '                If csm.CRIOSCOPIA_CRIOSCOPO = 1 Then
+        '                    cuenta_criosc_criosc = cuenta_criosc_criosc + 1
+        '                End If
+        '                If csm.CASEINA = 1 Then
+        '                    cuenta_caseina = cuenta_caseina + 1
+        '                End If
+        '                texto2 = texto2 + " - "
+        '            Next
+        '        End If
+        '    End If
+        '    If cuenta_rb > 0 Then
+        '        texto3 = texto3 & cuenta_rb & " RB - "
+        '    End If
+        '    If cuenta_rc > 0 Then
+        '        texto3 = texto3 & cuenta_rc & " RC - "
+        '    End If
+        '    If cuenta_comp > 0 Then
+        '        texto3 = texto3 & cuenta_comp & " Comp. - "
+        '    End If
+        '    If cuenta_criosc > 0 Then
+        '        texto3 = texto3 & cuenta_criosc & " Criosc. - "
+        '    End If
+        '    If cuenta_inhib > 0 Then
+        '        texto3 = texto3 & cuenta_inhib & " Inhib. - "
+        '    End If
+        '    If cuenta_espor > 0 Then
+        '        texto3 = texto3 & cuenta_espor & " Espor. - "
+        '    End If
+        '    If cuenta_urea > 0 Then
+        '        texto3 = texto3 & cuenta_urea & " Urea - "
+        '    End If
+        '    If cuenta_termo > 0 Then
+        '        texto3 = texto3 & cuenta_termo & " Termof. - "
+        '    End If
+        '    If cuenta_psicro > 0 Then
+        '        texto3 = texto3 & cuenta_psicro & " Psicro. - "
+        '    End If
+        '    If cuenta_criosc_criosc > 0 Then
+        '        texto3 = texto3 & cuenta_criosc_criosc & " Criosc.(Crióscopo) - "
+        '    End If
+        '    If cuenta_caseina > 0 Then
+        '        texto3 = texto3 & cuenta_caseina & " Caseina - "
+        '    End If
+        '    ' SI ES CONTROL LECHERO ********************************************************************************
+        'ElseIf _tipoinforme = "Control Lechero" Then
+        '    texto2 = ""
+        '    ' SI ES ANTIBIOGRAMA ********************************************************************************
+        'ElseIf _tipoinforme = "Bacteriología y Antibiograma" Then
+        '    texto2 = ""
+        '    If Not lista4 Is Nothing Then
+        '        If lista4.Count > 0 Then
+        '            For Each sm In lista4
+        '                texto2 = texto2 + sm.IDMUESTRA & " - "
+        '            Next
+        '        End If
+        '    End If
+        '    ' SI ES AMBIENTAL ********************************************************************************
+        'ElseIf _tipoinforme = "Ambiental" Then
+        '    texto2 = ""
+        '    If Not lista4 Is Nothing Then
+        '        If lista4.Count > 0 Then
+        '            For Each sm In lista4
+        '                texto2 = texto2 + sm.IDMUESTRA & " - "
+        '            Next
+        '        End If
+        '    End If
+        '    ' SI ES PARASITOLOGÍA ********************************************************************************
+        'ElseIf _tipoinforme = "Parasitología" Then
+        '    texto2 = ""
+        '    If Not lista4 Is Nothing Then
+        '        If lista4.Count > 0 Then
+        '            For Each sm In lista4
+        '                texto2 = texto2 + sm.IDMUESTRA & " - "
+        '            Next
+        '        End If
+        '    End If
+        '    ' SI ES BRUCELOSIS LECHE ********************************************************************************
+        'ElseIf _tipoinforme = "Brucelosis en leche" Then
+        '    _tiempo = "3"
+        '    texto2 = ""
+        '    If Not listabl Is Nothing Then
+        '        If listabl.Count > 0 Then
+        '            For Each sm In listabl
+        '                texto2 = texto2 + sm.IDMUESTRA & " - "
+        '            Next
+        '        End If
+        '    End If
+        'End If
+        ''********************************************************************************************************************
+        '_detalle = "<p><b>Fecha de recepción:</b> " + _fecha + " </p><p><b>A nombre de:</b> " + _nombrecliente + " </p><p><b>Muestras ingresadas:</b> " + _muestrasingresadas + " </p><p><b>Tipo de muestra:</b> " + _tipomuestra + " </p><p><b>Tipo de informe:</b> " + _tipoinforme + " </p><p><b>Subtipo:</b> " + _subtipo + " </p><p><b>Análisis Solicitado:</b> " + texto + " </p><p><b>Identificación de las muestras:</b> " + texto2 + " </p><p><b>Tiempo estimado de entrega:</b> " + _tiempo + " </p>"
+        'nt.fecha = _fecha
+        'nt.tipo = _tipo
+        'nt.mensaje = _mensaje
+        'nt.idnet_usuario = nuevoid
+        'notificacion.Add("notification", nt)
+        'Dim parameters As String = JsonConvert.SerializeObject(notificacion, Formatting.None)
+        'Dim status As HttpStatusCode = HttpStatusCode.ExpectationFailed
+        'Dim response As Byte() = PostResponse("http://colaveco-gestor.herokuapp.com/notifications", "POST", parameters, status)
     End Sub
 
     Private Sub CheckMuestreo_CheckedChanged(sender As Object, e As EventArgs) Handles CheckMuestreo.CheckedChanged

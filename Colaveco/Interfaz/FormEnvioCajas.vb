@@ -47,6 +47,10 @@ Public Class FormEnvioCajas
         MsgBox("Recuerde cargar los pedidos automáticos, si es la primera vez en el día que carga esta pantalla!.")
         'CargarPedidosAutomaticos()
         'limpiar()
+        DateFechaEnvio.Format = DateTimePickerFormat.Custom
+        DateFechaEnvio.CustomFormat = "yyyy/MM/dd HH:mm:ss"
+
+
     End Sub
 #End Region
 
@@ -821,7 +825,7 @@ Public Class FormEnvioCajas
                     Dim frascos As Integer = TextFrascos.Text.Trim
                     Dim agencia As dEmpresaT = CType(ComboAgencia.SelectedItem, dEmpresaT)
                     Dim envio As String = TextEnvio.Text.Trim
-                    Dim fechaenvio As Date = DateFechaEnvio.Value.ToString("yyyy-MM-dd")
+                    Dim fechaenvio As Date = DateFechaEnvio.Value.ToString("yyyy/MM/dd HH:mm:ss")
                     Dim observaciones As String = TextObservacionesE.Text.Trim
                     Dim prolesa As dProlesa = CType(ComboProlesa.SelectedItem, dProlesa)
                     Dim idprolesa As Integer = 0
@@ -832,7 +836,7 @@ Public Class FormEnvioCajas
                         Dim env As New dEnvioCajas()
                         If TextCaja.Text.Trim.Length > 0 Then
                             Dim fec As String
-                            fec = Format(fechaenvio, "yyyy-MM-dd")
+                            fec = DateFechaEnvio.Value.ToString("yyyy/MM/dd HH:mm:ss")
                             id = TextIdEnvio.Text.Trim
                             env.ID = id
                             env.IDPEDIDO = idpedido
@@ -869,7 +873,7 @@ Public Class FormEnvioCajas
                             Dim fec As String
                             ' Obtener el ID del ítem seleccionado
                             Dim selectedItem = ComboAgencia.SelectedItem.ID
-                            fec = Format(fechaenvio, "yyyy-MM-dd")
+                            fec = DateFechaEnvio.Value.ToString("yyyy/MM/dd HH:mm:ss")
                             env.IDPEDIDO = idpedido
                             env.IDPRODUCTOR = idproductor
                             env.IDCAJA = idcaja

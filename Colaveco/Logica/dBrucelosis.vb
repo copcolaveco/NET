@@ -232,4 +232,9 @@
         Dim c As New pBrucelosis
         Return c.marcarxficha(ficha, usuario)
     End Function
+    Public Function existeResultadoPositivoPorCliente(ByVal productorId As Long) As Boolean
+        Dim c As New pBrucelosis
+        Return c.existeResultadoPositivoPorCliente(productorId)
+    End Function
+
 End Class

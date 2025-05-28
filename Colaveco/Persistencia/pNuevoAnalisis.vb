@@ -22,7 +22,7 @@
     End Function
     Public Function actualizar_resultado(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dNuevoAnalisis = CType(o, dNuevoAnalisis)
-        Dim sql As String = "UPDATE nuevoanalisis SET resultado='" & obj.RESULTADO & "',resultado2='" & obj.RESULTADO2 & "', mostrar_r=" & obj.M & " WHERE ID = " & obj.ID & ""
+        Dim sql As String = "UPDATE nuevoanalisis SET resultado='" & obj.RESULTADO & "',resultado2='" & obj.RESULTADO2 & "', mostrar_r=" & obj.M & ",operador=" & usuario.ID & " WHERE ID = " & obj.ID & ""
         Dim lista As New ArrayList
         lista.Add(sql)
         Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
@@ -32,7 +32,7 @@
     End Function
     Public Function actualizar_resultado2(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dNuevoAnalisis = CType(o, dNuevoAnalisis)
-        Dim sql As String = "UPDATE nuevoanalisis SET resultado='" & obj.RESULTADO & "' WHERE ficha = " & obj.FICHA & " AND muestra = '" & obj.MUESTRA & "'"
+        Dim sql As String = "UPDATE nuevoanalisis SET resultado='" & obj.RESULTADO & ",operador=" & usuario.ID & " WHERE ficha = " & obj.FICHA & " AND muestra = '" & obj.MUESTRA & "'"
         Dim lista As New ArrayList
         lista.Add(sql)
         Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _

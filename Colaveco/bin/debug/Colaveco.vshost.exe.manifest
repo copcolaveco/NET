@@ -87,14 +87,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Colaveco.exe" size="16935936">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="Colaveco.exe" size="16934400">
       <assemblyIdentity name="Colaveco" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>JbiDz2k74uXsAiYi+/xa13YvFfc=</dsig:DigestValue>
+        <dsig:DigestValue>i/OfSQGwbaS/UMGk5NMU1DXMhL4=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
@@ -118,7 +118,7 @@
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1" />
-        <dsig:DigestValue>LYD3Ic4TjIwt+McPuu6M/B839yA=</dsig:DigestValue>
+        <dsig:DigestValue>MfWx/9QXJdYNZjIrhcf3OKkch2M=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>

@@ -894,6 +894,7 @@
     <Compile Include="Logica\dSaldos.vb" />
     <Compile Include="Logica\dSecale.vb" />
     <Compile Include="Logica\dSectores.vb" />
+    <Compile Include="Logica\dSectorTipoInforme.vb" />
     <Compile Include="Logica\dSinaveleFicha.vb" />
     <Compile Include="Logica\dSinSolicitud.vb" />
     <Compile Include="Logica\dSinVisualizacion.vb" />
@@ -913,6 +914,7 @@
     <Compile Include="Logica\dTiempos.vb" />
     <Compile Include="Logica\dTipoControl.vb" />
     <Compile Include="Logica\dUnidades.vb" />
+    <Compile Include="Logica\dUsuarioSector.vb" />
     <Compile Include="Logica\dValorReferencia.vb" />
     <Compile Include="Graficas\FormGraficaControlIBC.Designer.vb">
       <DependentUpon>FormGraficaControlIBC.vb</DependentUpon>
@@ -1025,6 +1027,7 @@
     <Compile Include="Persistencia\pRosaBengalaDescarte.vb" />
     <Compile Include="Persistencia\pSaldos.vb" />
     <Compile Include="Persistencia\pSecale.vb" />
+    <Compile Include="Persistencia\pSectorTipoInforme.vb" />
     <Compile Include="Persistencia\pSinVisualizacion.vb" />
     <Compile Include="Persistencia\pSolicitudanalisisTecnicoMuestreo.vb" />
     <Compile Include="Persistencia\pSolicitudRodeo.vb" />
@@ -1901,6 +1904,7 @@
     <Compile Include="Interfaz\FormVerSolicitudes IT.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Persistencia\pUsuarioSector.vb" />
     <Compile Include="Pruebas\dFactur.vb" />
     <Compile Include="Gestor\dFichasenMasa.vb" />
     <Compile Include="Pruebas\FormClientesPorEmpresa.Designer.vb">

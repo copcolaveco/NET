@@ -463,36 +463,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
-            Dim p As New dCliente
-            'Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
 
+
+            'Email
+            Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
             p = p.buscar
-
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            ElseIf Not p.NOT_EMAIL_ANALISIS1 Is Nothing Then
-                If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                    email = RTrim(p.NOT_EMAIL_ANALISIS1)
-                ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                    email = RTrim(p.NOT_EMAIL_ANALISIS2)
-                ElseIf p.EMAIL <> "" Then
-                    email = RTrim(p.EMAIL)
-                End If
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -726,23 +713,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -907,6 +894,7 @@ Public Class FormSubirInformes2
             nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
             nuevoGestor.modificar(Usuario)
 
+           'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -918,8 +906,7 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
             productorweb_com = Nothing
@@ -1024,23 +1011,22 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -1069,11 +1055,9 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -1268,23 +1252,22 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -1386,23 +1369,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -1431,11 +1414,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
+
             v.Show()
-            productorweb_com = Nothing
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -1534,23 +1516,24 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
+
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -1578,11 +1561,11 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
+
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -1945,23 +1928,24 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
+
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -1978,6 +1962,7 @@ Public Class FormSubirInformes2
             nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
             nuevoGestor.modificar(Usuario)
 
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -1989,11 +1974,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -2162,23 +2146,24 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
+
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -2195,6 +2180,7 @@ Public Class FormSubirInformes2
             nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
             nuevoGestor.modificar(Usuario)
 
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -2206,11 +2192,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -2309,23 +2294,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -2342,6 +2327,7 @@ Public Class FormSubirInformes2
             nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
             nuevoGestor.modificar(Usuario)
 
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -2353,11 +2339,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -2555,23 +2540,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -2588,6 +2573,7 @@ Public Class FormSubirInformes2
             nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
             nuevoGestor.modificar(Usuario)
 
+           'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -2599,11 +2585,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -2684,107 +2669,6 @@ Public Class FormSubirInformes2
             ' Cerramos el documento
             Doc.Close()
         End Try
-
-
-        'If isAnexo Then
-        '    '****************************************************************************************
-        '    'JUNTAR LOS 2 PDF ***************************************************************************
-        '    ' Creamos una lista de archivos para concatenar
-        '    Dim Listax As New List(Of String)
-        '    ' Identificamos los documentos que queremos unir
-        '    Dim sFile1 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-        '    Dim sFile2 As String = "\\ROBOT\PREINFORMES\SUELOS\anexo" & ficha & ".pdf"
-        '    Dim sFile3 As String = "\\ROBOT\PREINFORMES\SUELOS\anexoPH" & ficha & ".pdf"
-        '    Dim sFile4 As String = "\\ROBOT\PREINFORMES\SUELOS\anexoCationes" & ficha & ".pdf"
-        '    ' Los añadimos a la lista
-        '    Listax.Add(sFile1)
-        '    Listax.Add(sFile2)
-        '    AnexosFerCreados = True
-
-        '    'Si es con anexo de PH
-        '    If isAnexoPH Then
-        '        Listax.Add(sFile3)
-        '        AnexosPHCreados = True
-        '    End If
-
-        '    'Si es con anexo de cationes
-        '    If isAnexoCationes Then
-        '        Listax.Add(sFile4)
-        '        AnexosCationesCreados = True
-        '    End If
-
-        '    ' Nombre del documento resultante
-        '    Dim sFileJoin As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        '    Dim Doc As New Document()
-        '    Try
-        '        Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
-        '        Dim copy As New PdfCopy(Doc, fs)
-        '        Doc.Open()
-        '        Dim Rd As PdfReader
-        '        Dim n As Integer 'Número de páginas de cada pdf
-        '        For Each file In Listax
-        '            Rd = New PdfReader(file)
-        '            n = Rd.NumberOfPages
-        '            Dim page As Integer = 0
-        '            Do While page < n
-        '                page += 1
-        '                copy.AddPage(copy.GetImportedPage(Rd, page))
-        '            Loop
-        '            copy.FreeReader(Rd)
-        '            Rd.Close()
-        '        Next
-        '    Catch ex As Exception
-        '        MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf, si el informe no lleva ANEXO por conversiòn de fertilizante proceguir.")
-        '    Finally
-        '        ' Cerramos el documento
-        '        Doc.Close()
-        '    End Try
-        '    '********************************************************************************************
-        'End If
-
-        'If isAnexoPH And AnexosPHCreados = False Then
-
-        '    '****************************************************************************************
-        '    'JUNTAR LOS 2 PDF ***************************************************************************
-        '    ' Creamos una lista de archivos para concatenar
-        '    Dim Listax As New List(Of String)
-        '    ' Identificamos los documentos que queremos unir
-        '    Dim sFile1 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-        '    Dim sFile3 As String = "\\ROBOT\PREINFORMES\SUELOS\anexoPH" & ficha & ".pdf"
-        '    ' Los añadimos a la lista
-        '    Listax.Add(sFile1)
-        '    'Si es con anexo de PH
-        '    Listax.Add(sFile3)
-
-        '    ' Nombre del documento resultante
-        '    Dim sFileJoin As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        '    Dim Doc As New Document()
-        '    Try
-        '        Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
-        '        Dim copy As New PdfCopy(Doc, fs)
-        '        Doc.Open()
-        '        Dim Rd As PdfReader
-        '        Dim n As Integer 'Número de páginas de cada pdf
-        '        For Each file In Listax
-        '            Doc.SetPageSize(iTextSharp.text.PageSize.A4.Rotate())
-        '            Rd = New PdfReader(file)
-        '            n = Rd.NumberOfPages
-        '            Dim page As Integer = 0
-        '            Do While page < n
-        '                page += 1
-        '                copy.AddPage(copy.GetImportedPage(Rd, page))
-        '            Loop
-        '            copy.FreeReader(Rd)
-        '            Rd.Close()
-        '        Next
-        '    Catch ex As Exception
-        '        MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf, si el informe no lleva ANEXO por conversiòn de fertilizante proceguir.")
-        '    Finally
-        '        ' Cerramos el documento
-        '        Doc.Close()
-        '    End Try
-        '    '********************************************************************************************
-        'End If
 
         '****************************************************************************************
         '*** MOVER ARCHIVO XLS***********************************************************************
@@ -2942,23 +2826,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -3089,23 +2973,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -3133,11 +3017,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -3333,23 +3216,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -3366,6 +3249,7 @@ Public Class FormSubirInformes2
             nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
             nuevoGestor.modificar(Usuario)
 
+           'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -3377,11 +3261,9 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -3480,23 +3362,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -3524,11 +3406,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -3660,6 +3541,7 @@ Public Class FormSubirInformes2
             nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
             nuevoGestor.modificar(Usuario)
 
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
             p.ID = sol.IDPRODUCTOR
@@ -3671,11 +3553,11 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -3872,23 +3754,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -3916,11 +3798,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing
@@ -4019,23 +3900,23 @@ Public Class FormSubirInformes2
             sv.FECHAVISUALIZACION = fecact
             sv.OBSERVACIONES = observaciones
             sv.guardar()
+
+            'Email
             Dim p As New dCliente
             Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
+            p.ID = sol.IDPRODUCTOR
+            p = p.buscar
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
             End If
 
             Dim v As New FormCorreoMorosos(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
+
             p = Nothing
             prod = Nothing
             sv = Nothing
@@ -4063,11 +3944,10 @@ Public Class FormSubirInformes2
             ElseIf p.EMAIL <> "" Then
                 email = RTrim(p.EMAIL)
             End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
+
             Dim v As New FormCorreo(Usuario, email, ficha)
             v.Show()
-            productorweb_com = Nothing
+
             p = Nothing
             prod = Nothing
             sol = Nothing

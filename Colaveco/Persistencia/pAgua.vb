@@ -99,6 +99,27 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function tieneRefrendacionTambo(ByVal fichaId As Long) As Boolean
+        Dim sql As String = "SELECT refrendacion_tambo FROM analisisdeagua WHERE ficha = " & fichaId
+        Try
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count > 0 Then
+                ' Verifica si alguno tiene refrendacion_tambo = 1
+                For Each fila As DataRow In Ds.Tables(0).Rows
+                    If Not IsDBNull(fila("refrendacion_tambo")) AndAlso CType(fila("refrendacion_tambo"), Integer) = 1 Then
+                        Return True
+                    End If
+                Next
+            End If
+            Return False
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+
     Public Function buscarxficha(ByVal o As Object) As dAgua
         Dim obj As dAgua = CType(o, dAgua)
         Dim a As New dAgua

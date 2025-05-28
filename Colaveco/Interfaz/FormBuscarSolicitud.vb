@@ -720,7 +720,7 @@ Public Class FormBuscarSolicitud
 
         If Not lista Is Nothing Then
             If lista.Count > 0 Then
-                DataGridView1.RowCount = lista.Count + 5
+                DataGridView1.RowCount = lista.Count
                 For Each s In lista
                     DataGridView1(columna, fila).Value = s.ID
                     columna = columna + 1
@@ -816,6 +816,9 @@ Public Class FormBuscarSolicitud
                     columna = 0
                     fila = fila + 1
                 Next
+                DataGridView1.AllowUserToAddRows = False
+                DataGridView1.Refresh()
+
             End If
         End If
     End Sub

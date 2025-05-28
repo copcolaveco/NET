@@ -236,6 +236,27 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function existeResultadoPositivoPorCliente(ByVal productorId As Long) As Boolean
+        Dim sql As String = "SELECT COUNT(*) " &
+                            "FROM brucelosis b " &
+                            "INNER JOIN solicitudanalisis s ON b.ficha = s.id " &
+                            "INNER JOIN cliente c ON s.idproductor = c.id " &
+                            "WHERE c.id = " & productorId & " AND b.resultado = 1 AND b.marca = 1"
+        Try
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count > 0 Then
+                Dim cantidad As Integer = CType(Ds.Tables(0).Rows(0).Item(0), Integer)
+                Return cantidad > 0
+            End If
+            Return False
+        Catch ex As Exception
+            Return False
+        End Try
+    End Function
+
+
     Public Function listarporfichapos(ByVal texto As Long) As ArrayList
         Dim sql As String = ("SELECT id, idgrupal, columna, fila, fecha, ficha, muestra, resultado, operador, marca FROM brucelosis where ficha = " & texto & " and resultado =1 ORDER BY muestra ASC")
         Try

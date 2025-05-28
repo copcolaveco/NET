@@ -34,7 +34,7 @@
   </Table>
   <Table>
     <id>5</id>
-    <nombre>Lab. Industrial Montevideo S.A.</nombre>
+    <nombre>Lab. Industrial Montevideo S.A. LIMSA</nombre>
   </Table>
   <Table>
     <id>6</id>
@@ -51,5 +51,9 @@
   <Table>
     <id>9</id>
     <nombre>Labo Litoral</nombre>
+  </Table>
+  <Table>
+    <id>10</id>
+    <nombre>BORO</nombre>
   </Table>
 </NewDataSet>

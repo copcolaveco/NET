@@ -538,4 +538,8 @@
         Dim a As New pAgua
         Return a.listarporfecha(fechadesde, fechahasta)
     End Function
+    Public Function tieneRefrendacionTambo(ByVal fichaId As Long) As Boolean
+        Dim a As New pAgua
+        Return a.tieneRefrendacionTambo(fichaId)
+    End Function
 End Class

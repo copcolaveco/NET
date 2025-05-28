@@ -10,11 +10,13 @@ Imports System.Globalization
 
 Public Class FormCrearInformes
     Private contador_rc As Integer = 0
+    Private dAgua As New dAgua
 #Region "Atributos"
     Private _usuario As dUsuario
     Private idti As Integer = 0
     Private nroficha As Long = 0
     Public isAnexo As Boolean = False
+    Private brucelosisPositivo As Boolean = False
     Public Property Usuario() As dUsuario
         Get
             Return _usuario
@@ -32,6 +34,7 @@ Public Class FormCrearInformes
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Usuario = u
         cargarComboTI()
+
     End Sub
 #End Region
     Public Sub cargarComboTI()
@@ -312,6 +315,11 @@ Public Class FormCrearInformes
                     End If
                 End If
             End If
+
+            If brucelosisPositivo Then
+                envioMailBrucelosis()
+            End If
+
             abrirventanaenvio()
             limpiar()
         ElseIf idti = 16 Then '*** Efluentes **************************************************
@@ -3013,6 +3021,17 @@ Public Class FormCrearInformes
                                 x1hoja.Cells(fila, columna).Font.Size = 10
                                 columna = columna + 1
                             End If
+                        Else
+                            x1hoja.Cells(fila, columna).formula = ""
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                            x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
+                            x1hoja.Cells(fila, columna).Font.Size = 10
+                            columna = columna + 1
+                            x1hoja.Cells(fila, columna).formula = ""
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
+                            x1hoja.Cells(fila, columna).Font.Size = 10
+                            columna = columna + 1
                         End If
                         If b.RESULTADO = 0 Then
                             x1hoja.Cells(fila, columna).formula = "Negativo"
@@ -3028,6 +3047,7 @@ Public Class FormCrearInformes
                             x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
                             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
                             x1hoja.Cells(fila, columna).Font.Size = 10
+                            brucelosisPositivo = True
                             columna = 1
                             fila = fila + 1
                         Else
@@ -3389,6 +3409,7 @@ Public Class FormCrearInformes
                             x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
                             x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
                             x1hoja.Cells(fila, columna).Font.Size = 10
+                            brucelosisPositivo = True
                             columna = 1
                             fila = fila + 1
                         Else
@@ -3535,7 +3556,7 @@ Public Class FormCrearInformes
         Dim xanalisis As Integer = 0
         Dim vec(xanalisis) As Integer
         Dim informefinal As Integer = 0
-        Dim nombre_operador As String = "José L. García"
+        Dim nombre_operador As String = "Eugenia Alfonso, Agustín Rey"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         Dim sin_asterisco As Integer = 1
 
@@ -4109,7 +4130,7 @@ Public Class FormCrearInformes
         Dim xanalisis As Integer = 0
         Dim vec(xanalisis) As Integer
         Dim informefinal As Integer = 0
-        Dim nombre_operador As String = "José L. García"
+        Dim nombre_operador As String = "Eugenia Alfonso, Agustín Rey"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         Dim sin_asterisco As Integer = 1
 
@@ -5120,7 +5141,7 @@ Public Class FormCrearInformes
         Dim xanalisis As Integer = 0
         Dim vec(xanalisis) As Integer
         Dim informefinal As Integer = 0
-        Dim nombre_operador As String = "José L. García"
+        Dim nombre_operador As String = "Eugenia Alfonso, Agustín Rey"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         Dim sin_asterisco As Integer = 1
 
@@ -5599,7 +5620,7 @@ Public Class FormCrearInformes
             .Interior.Color = RGB(211, 211, 211) ' Gris claro
         End With
 
-        
+
 
         '' Definir los encabezados de la tabla
         'x1hoja.Cells(10, 8).Value = "Interpretación"
@@ -5764,7 +5785,7 @@ Public Class FormCrearInformes
         'End With
 
         fila = fila + 1
-        
+
         ' Definir los encabezados de la grilla
         x1hoja.Cells(fila + 1, 2).Value = "CATION"
         x1hoja.Cells(fila + 1, 3).Value = "IDEAL %"
@@ -6040,7 +6061,7 @@ Public Class FormCrearInformes
         Dim xanalisis As Integer = 0
         Dim vec(xanalisis) As Integer
         Dim informefinal As Integer = 0
-        Dim nombre_operador As String = "José L. García"
+        Dim nombre_operador As String = "Eugenia Alfonso, Agustín Rey"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         Dim sin_asterisco As Integer = 1
 
@@ -7416,7 +7437,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-               x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "O" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "O" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -7918,7 +7939,7 @@ Public Class FormCrearInformes
                 fila = fila + 2
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-               x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "G" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "G" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -7991,7 +8012,7 @@ Public Class FormCrearInformes
         Dim xanalisis As Integer = 0
         Dim vec(xanalisis) As Integer
         Dim informefinal As Integer = 0
-        Dim nombre_operador As String = "José L. García"
+        Dim nombre_operador As String = "Eugenia Alfonso, Agustín Rey"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         '*****************************
         nroficha = TextFicha.Text.Trim
@@ -8385,7 +8406,7 @@ Public Class FormCrearInformes
                 columna = 1
                 '*** PIE DE PAGINA ******************************************************
                 x1hoja.Cells(fila, columna).rowheight = 25
-               x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
+                x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
                 x1hoja.Range("A" & fila, "O" & fila).WrapText = True
                 x1hoja.Range("A" & fila, "O" & fila).Merge()
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
@@ -8458,7 +8479,7 @@ Public Class FormCrearInformes
         Dim xanalisis As Integer = 0
         Dim vec(xanalisis) As Integer
         Dim informefinal As Integer = 0
-        Dim nombre_operador As String = "José L. García"
+        Dim nombre_operador As String = "Eugenia Alfonso, Agustín Rey"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         '*****************************
         nroficha = TextFicha.Text.Trim
@@ -8968,7 +8989,7 @@ Public Class FormCrearInformes
         Dim xanalisis As Integer = 0
         Dim vec(xanalisis) As Integer
         Dim informefinal As Integer = 0
-        Dim nombre_operador As String = "José L. García"
+        Dim nombre_operador As String = "Eugenia Alfonso, Agustín Rey"
         Dim nombre_tecnico As String = "Ing. Agr. Victor González"
         'Dim nombre_tecnico2 As String = "PhD. Analía Pérez Ruchel"
         'Dim nombre_tecnico2 As String = "MSc Sebastián Brambillasca"
@@ -9852,13 +9873,23 @@ Public Class FormCrearInformes
                 fila = fila - 1
                 Dim filax As Integer = fila_tope
                 Dim columnax As Integer = 4
+                Dim matriz As Boolean = False
+                If dAgua.tieneRefrendacionTambo(sa.ID) = False Then
+                    matriz = True
+                    columnax = 3
+                End If
                 For i = 1 To vec.Length
                     If lista.Count = 1 Then
                         x1hoja.Cells(filax, columnax).Borders.Color = RGB(0, 0, 0)
                         x1hoja.Cells(filax, columnax).Formula = "-"
                         x1hoja.Cells(filax, columnax).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         x1hoja.Cells(filax, columnax).VerticalAlignment = XlVAlign.xlVAlignTop
-                        columnax = 4
+                        If matriz Then
+                            columnax = 3
+                        Else
+                            columnax = 4
+                        End If
+
                         filax = filax + 1
                     ElseIf lista.Count = 2 Then
                         x1hoja.Cells(filax, columnax).Borders.Color = RGB(0, 0, 0)
@@ -9870,7 +9901,11 @@ Public Class FormCrearInformes
                         x1hoja.Cells(filax, columnax).Formula = "-"
                         x1hoja.Cells(filax, columnax).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         x1hoja.Cells(filax, columnax).VerticalAlignment = XlVAlign.xlVAlignTop
-                        columnax = 4
+                        If matriz Then
+                            columnax = 3
+                        Else
+                            columnax = 4
+                        End If
                         filax = filax + 1
                     ElseIf lista.Count = 3 Then
                         x1hoja.Cells(filax, columnax).Borders.Color = RGB(0, 0, 0)
@@ -9887,7 +9922,11 @@ Public Class FormCrearInformes
                         x1hoja.Cells(filax, columnax).Formula = "-"
                         x1hoja.Cells(filax, columnax).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         x1hoja.Cells(filax, columnax).VerticalAlignment = XlVAlign.xlVAlignTop
-                        columnax = 4
+                        If matriz Then
+                            columnax = 3
+                        Else
+                            columnax = 4
+                        End If
                         filax = filax + 1
                     ElseIf lista.Count = 4 Then
                         x1hoja.Cells(filax, columnax).Borders.Color = RGB(0, 0, 0)
@@ -9909,7 +9948,11 @@ Public Class FormCrearInformes
                         x1hoja.Cells(filax, columnax).Formula = "-"
                         x1hoja.Cells(filax, columnax).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         x1hoja.Cells(filax, columnax).VerticalAlignment = XlVAlign.xlVAlignTop
-                        columnax = 4
+                        If matriz Then
+                            columnax = 3
+                        Else
+                            columnax = 4
+                        End If
                         filax = filax + 1
                     End If
                 Next
@@ -9923,15 +9966,20 @@ Public Class FormCrearInformes
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 8
                 columna = columna + 1
-                x1hoja.Cells(fila, columna).Formula = "Valor permitido"
-                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                x1hoja.Cells(fila, columna).WrapText = True
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                x1hoja.Cells(fila, columna).Font.Bold = True
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
+
+                'Si tiene Refrendación de tabo
+                If dAgua.tieneRefrendacionTambo(sa.ID) Then
+                    x1hoja.Cells(fila, columna).Formula = "Valor permitido"
+                    x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                    x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                    x1hoja.Cells(fila, columna).WrapText = True
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                    x1hoja.Cells(fila, columna).Font.Bold = True
+                    x1hoja.Cells(fila, columna).Font.Size = 8
+                    columna = columna + 1
+                End If
+                  
                 For Each na In lista
                     x1hoja.Cells(fila, columna).Formula = na.MUESTRA
                     x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
@@ -10057,25 +10105,28 @@ Public Class FormCrearInformes
                                     x1hoja.Cells(fila, columna).Font.Bold = False
                                     x1hoja.Cells(fila, columna).Font.Size = 8
 
-                                    If cli.TIPOUSUARIO <> 2 And a.REFRENDACION_TAMBO = 1 Then
-                                        columna = columna + 1
-                                        x1hoja.Cells(fila, columna).Formula = r.REFERENCIA1
-                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                                        x1hoja.Cells(fila, columna).WrapText = True
-                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                                        x1hoja.Cells(fila, columna).Font.Bold = False
-                                        x1hoja.Cells(fila, columna).Font.Size = 8
-                                    Else
-                                        columna = columna + 1
-                                        x1hoja.Cells(fila, columna).Formula = "-"
-                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                                        x1hoja.Cells(fila, columna).WrapText = True
-                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                                        x1hoja.Cells(fila, columna).Font.Bold = False
-                                        x1hoja.Cells(fila, columna).Font.Size = 8
+                                    If dAgua.tieneRefrendacionTambo(sa.ID) Then
+                                        If cli.TIPOUSUARIO <> 2 And a.REFRENDACION_TAMBO = 1 Then
+                                            columna = columna + 1
+                                            x1hoja.Cells(fila, columna).Formula = r.REFERENCIA1
+                                            x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                            x1hoja.Cells(fila, columna).WrapText = True
+                                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                            x1hoja.Cells(fila, columna).Font.Bold = False
+                                            x1hoja.Cells(fila, columna).Font.Size = 8
+                                        Else
+                                            columna = columna + 1
+                                            x1hoja.Cells(fila, columna).Formula = "-"
+                                            x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                            x1hoja.Cells(fila, columna).WrapText = True
+                                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                            x1hoja.Cells(fila, columna).Font.Bold = False
+                                            x1hoja.Cells(fila, columna).Font.Size = 8
+                                        End If
                                     End If
+                                    
                                     columna = 2
                                 End If
                             Else
@@ -10091,24 +10142,26 @@ Public Class FormCrearInformes
                                     x1hoja.Cells(fila, columna).Font.Bold = False
                                     x1hoja.Cells(fila, columna).Font.Size = 8
 
-                                    If cli.TIPOUSUARIO <> 2 And a.REFRENDACION_TAMBO = 1 Then
-                                        columna = columna + 1
-                                        x1hoja.Cells(fila, columna).Formula = r.REFERENCIA2
-                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                                        x1hoja.Cells(fila, columna).WrapText = True
-                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                                        x1hoja.Cells(fila, columna).Font.Bold = False
-                                        x1hoja.Cells(fila, columna).Font.Size = 8
-                                    Else
-                                        columna = columna + 1
-                                        x1hoja.Cells(fila, columna).Formula = "-"
-                                        x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
-                                        x1hoja.Cells(fila, columna).WrapText = True
-                                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                                        x1hoja.Cells(fila, columna).Font.Bold = False
-                                        x1hoja.Cells(fila, columna).Font.Size = 8
+                                    If dAgua.tieneRefrendacionTambo(sa.ID) Then
+                                        If cli.TIPOUSUARIO <> 2 And a.REFRENDACION_TAMBO = 1 Then
+                                            columna = columna + 1
+                                            x1hoja.Cells(fila, columna).Formula = r.REFERENCIA1
+                                            x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                            x1hoja.Cells(fila, columna).WrapText = True
+                                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                            x1hoja.Cells(fila, columna).Font.Bold = False
+                                            x1hoja.Cells(fila, columna).Font.Size = 8
+                                        Else
+                                            columna = columna + 1
+                                            x1hoja.Cells(fila, columna).Formula = "-"
+                                            x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                                            x1hoja.Cells(fila, columna).WrapText = True
+                                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                                            x1hoja.Cells(fila, columna).Font.Bold = False
+                                            x1hoja.Cells(fila, columna).Font.Size = 8
+                                        End If
                                     End If
                                     columna = 2
                                 End If
@@ -10173,7 +10226,12 @@ Public Class FormCrearInformes
                 Next
                 '*******************************************************************************
                 'End If  'cambio 18/11/2020
-                columna = 4
+                If dAgua.tieneRefrendacionTambo(sa.ID) Then
+                    columna = 4
+                Else
+                    columna = 3
+                End If
+
                 For Each na In lista
 
                     fila = fila_tope
@@ -10416,191 +10474,191 @@ Public Class FormCrearInformes
                 columna = 1
                 fila = fila + 2
             End If 'cambio 28/11/2020
-        End If 'cambio 28/11/2020
+            End If 'cambio 28/11/2020
 
-        If acreditado = 1 Then
-            x1hoja.Shapes.AddPicture("c:\Debug\encabezado_con_oua2.png", _
-    Microsoft.Office.Core.MsoTriState.msoFalse, _
-    Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 452, 42)
-        Else
-            x1hoja.Shapes.AddPicture("c:\Debug\encabezado_sin_oua2.png", _
-    Microsoft.Office.Core.MsoTriState.msoFalse, _
-    Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 452, 42)
-        End If
+            If acreditado = 1 Then
+                x1hoja.Shapes.AddPicture("c:\Debug\encabezado_con_oua2.png", _
+        Microsoft.Office.Core.MsoTriState.msoFalse, _
+        Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 452, 42)
+            Else
+                x1hoja.Shapes.AddPicture("c:\Debug\encabezado_sin_oua2.png", _
+        Microsoft.Office.Core.MsoTriState.msoFalse, _
+        Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 452, 42)
+            End If
 
-        'ANALISIS TERCERIZADOS***************************************************
-        Dim at2 As New dAnalisisTercerizado
-        Dim listaat As New ArrayList
-        listaat = at2.listarporficha4(nroficha)
-        If Not listaat Is Nothing Then
-            x1hoja.Cells(fila, columna).Formula = "ANÁLISIS TERCERIZADOS"
-            x1hoja.Range("A" & fila, "G" & fila).Merge()
-            x1hoja.Cells(fila, columna).Interior.Color = RGB(215, 219, 221)
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 10
-            fila = fila + 1
-            x1hoja.Cells(fila, columna).Formula = "Muestra"
-            x1hoja.Cells(fila, columna).WrapText = True
-            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 8
-            columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Análisis"
-            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 8
-            columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Resultado"
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 8
-            columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Unidad"
-            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 8
-            columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Método"
-            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 8
-            columna = columna + 1
-            x1hoja.Cells(fila, columna).Formula = "Laboratorio"
-            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 8
-            columna = 1
-            fila = fila + 1
-            For Each at2 In listaat
-                x1hoja.Cells(fila, columna).Formula = at2.MUESTRA
+            'ANALISIS TERCERIZADOS***************************************************
+            Dim at2 As New dAnalisisTercerizado
+            Dim listaat As New ArrayList
+            listaat = at2.listarporficha4(nroficha)
+            If Not listaat Is Nothing Then
+                x1hoja.Cells(fila, columna).Formula = "ANÁLISIS TERCERIZADOS"
+                x1hoja.Range("A" & fila, "G" & fila).Merge()
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(215, 219, 221)
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 10
+                fila = fila + 1
+                x1hoja.Cells(fila, columna).Formula = "Muestra"
                 x1hoja.Cells(fila, columna).WrapText = True
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 8
                 columna = columna + 1
-                Dim att As New dAnalisisTercerizadoTipo
-                att.ID = at2.ANALISIS
-                att = att.buscar
-                If Not att Is Nothing Then
-                    x1hoja.Cells(fila, columna).Formula = att.NOMBRE
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                    x1hoja.Cells(fila, columna).Font.Size = 8
-                    columna = columna + 1
-                Else
-                    x1hoja.Cells(fila, columna).Formula = ""
-                    x1hoja.Cells(fila, columna).WrapText = True
-                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-                    x1hoja.Cells(fila, columna).Font.Size = 8
-                    columna = columna + 1
-                End If
-                x1hoja.Cells(fila, columna).Formula = at2.RESULTADO
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-                x1hoja.Cells(fila, columna).Formula = at2.UNIDAD
-                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-                x1hoja.Cells(fila, columna).Font.Size = 8
-                columna = columna + 1
-                x1hoja.Cells(fila, columna).Formula = at2.METODO
+                x1hoja.Cells(fila, columna).Formula = "Análisis"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 8
                 columna = columna + 1
-                Dim ol As New dOtrosLaboratorios
-                ol.ID = at2.LABORATORIO
-                ol = ol.buscar
-                If Not ol Is Nothing Then
-                    x1hoja.Cells(fila, columna).Formula = ol.NOMBRE
+                x1hoja.Cells(fila, columna).Formula = "Resultado"
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).Formula = "Unidad"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).Formula = "Método"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = columna + 1
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio"
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                columna = 1
+                fila = fila + 1
+                For Each at2 In listaat
+                    x1hoja.Cells(fila, columna).Formula = at2.MUESTRA
+                    x1hoja.Cells(fila, columna).WrapText = True
                     x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                     x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
                     x1hoja.Cells(fila, columna).Font.Size = 8
-                    columna = 1
-                    fila = fila + 1
-                Else
-                    x1hoja.Cells(fila, columna).Formula = ""
+                    columna = columna + 1
+                    Dim att As New dAnalisisTercerizadoTipo
+                    att.ID = at2.ANALISIS
+                    att = att.buscar
+                    If Not att Is Nothing Then
+                        x1hoja.Cells(fila, columna).Formula = att.NOMBRE
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = columna + 1
+                    Else
+                        x1hoja.Cells(fila, columna).Formula = ""
+                        x1hoja.Cells(fila, columna).WrapText = True
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = columna + 1
+                    End If
+                    x1hoja.Cells(fila, columna).Formula = at2.RESULTADO
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).Font.Size = 8
+                    columna = columna + 1
+                    x1hoja.Cells(fila, columna).Formula = at2.UNIDAD
+                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                    x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                    x1hoja.Cells(fila, columna).Font.Size = 8
+                    columna = columna + 1
+                    x1hoja.Cells(fila, columna).Formula = at2.METODO
                     x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                     x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
                     x1hoja.Cells(fila, columna).Font.Size = 8
-                    columna = 1
-                    fila = fila + 1
-                End If
-            Next
+                    columna = columna + 1
+                    Dim ol As New dOtrosLaboratorios
+                    ol.ID = at2.LABORATORIO
+                    ol = ol.buscar
+                    If Not ol Is Nothing Then
+                        x1hoja.Cells(fila, columna).Formula = ol.NOMBRE
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = 1
+                        fila = fila + 1
+                    Else
+                        x1hoja.Cells(fila, columna).Formula = ""
+                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+                        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+                        x1hoja.Cells(fila, columna).Font.Size = 8
+                        columna = 1
+                        fila = fila + 1
+                    End If
+                Next
+                fila = fila + 1
+            End If
+            '************************************************************************************************************
+            '*** PONER FIRMA ********************************************************
+            x1libro.Worksheets(1).cells(fila, columna).select()
+            Dim rangeFirma As String = "A" + fila.ToString
+            x1libro.ActiveSheet.Range(rangeFirma).select()
+            InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
+            x1libro.Worksheets(1).cells(2, 1).select()
+            fila = fila + 4
+            columna = 1
             fila = fila + 1
-        End If
-        '************************************************************************************************************
-        '*** PONER FIRMA ********************************************************
-        x1libro.Worksheets(1).cells(fila, columna).select()
-        Dim rangeFirma As String = "A" + fila.ToString
-        x1libro.ActiveSheet.Range(rangeFirma).select()
-        InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
-        x1libro.Worksheets(1).cells(2, 1).select()
-        fila = fila + 4
-        columna = 1
-        fila = fila + 1
-        x1hoja.Range("A" & fila, "G" & fila).WrapText = True
-        x1hoja.Range("A" & fila, "G" & fila).Merge()
-        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-        x1hoja.Cells(fila, columna).Font.Size = 8
-        fila = fila + 1
+            x1hoja.Range("A" & fila, "G" & fila).WrapText = True
+            x1hoja.Range("A" & fila, "G" & fila).Merge()
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+            x1hoja.Cells(fila, columna).Font.Size = 8
+            fila = fila + 1
 
-        '*** PIE DE PAGINA ******************************************************
-        x1hoja.Cells(fila, columna).rowheight = 25
-        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
-       x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
-        x1hoja.Range("A" & fila, "G" & fila).WrapText = True
-        x1hoja.Range("A" & fila, "G" & fila).Merge()
-        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
-        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
-        x1hoja.Cells(fila, columna).Font.Size = 6
-        '************************************************************************
-        fila = fila + 1
-        x1hoja.Range("A" & fila, "G" & fila).Merge()
-        x1hoja.Cells(fila, columna).Interior.Color = RGB(215, 219, 221)
-        x1hoja.Cells(fila, columna).rowheight = 8
-        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-        x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
-        x1hoja.Cells(fila, columna).Formula = "Fin del informe."
-        x1hoja.Cells(fila, columna).Font.Bold = True
-        x1hoja.Cells(fila, columna).Font.Size = 7
-        'End If cambio 18/11/2020
-        'Insert tabla preinformes**************************
-        Dim pi As New dPreinformes
-        Dim fechaactual As Date = Now()
-        Dim _fecha As String
-        _fecha = Format(fechaactual, "yyyy-MM-dd")
-        pi.FICHA = nroficha
-        pi = pi.buscar
-        If Not pi Is Nothing Then
-        Else
-            Dim pi2 As New dPreinformes
-            pi2.FICHA = nroficha
-            pi2.TIPO = 3
-            pi2.CREADO = 1
-            pi2.FECHA = _fecha
-            pi2.guardar()
-            pi2 = Nothing
-        End If
-        pi = Nothing
-        '***********************************************************
-        'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
-        'PROTEGE LA HOJA DE EXCEL
-        x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
-        Contents:=True, Scenarios:=True)
-        'GUARDA EL ARCHIVO DE EXCEL
-        x1hoja.SaveAs("\\ROBOT\PREINFORMES\AGUA\" & nroficha & ".xls")
-        x1app.Visible = True
-        x1app = Nothing
-        x1libro = Nothing
-        x1hoja = Nothing
+            '*** PIE DE PAGINA ******************************************************
+            x1hoja.Cells(fila, columna).rowheight = 25
+            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
+            x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
+            x1hoja.Range("A" & fila, "G" & fila).WrapText = True
+            x1hoja.Range("A" & fila, "G" & fila).Merge()
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignTop
+            x1hoja.Cells(fila, columna).Font.Size = 6
+            '************************************************************************
+            fila = fila + 1
+            x1hoja.Range("A" & fila, "G" & fila).Merge()
+            x1hoja.Cells(fila, columna).Interior.Color = RGB(215, 219, 221)
+            x1hoja.Cells(fila, columna).rowheight = 8
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+            x1hoja.Cells(fila, columna).VerticalAlignment = XlVAlign.xlVAlignCenter
+            x1hoja.Cells(fila, columna).Formula = "Fin del informe."
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Font.Size = 7
+            'End If cambio 18/11/2020
+            'Insert tabla preinformes**************************
+            Dim pi As New dPreinformes
+            Dim fechaactual As Date = Now()
+            Dim _fecha As String
+            _fecha = Format(fechaactual, "yyyy-MM-dd")
+            pi.FICHA = nroficha
+            pi = pi.buscar
+            If Not pi Is Nothing Then
+            Else
+                Dim pi2 As New dPreinformes
+                pi2.FICHA = nroficha
+                pi2.TIPO = 3
+                pi2.CREADO = 1
+                pi2.FECHA = _fecha
+                pi2.guardar()
+                pi2 = Nothing
+            End If
+            pi = Nothing
+            '***********************************************************
+            'x1hoja.PageSetup.CenterFooter = "Página &P" ' de " & paginas
+            'PROTEGE LA HOJA DE EXCEL
+            x1hoja.Protect(Password:="1582782", DrawingObjects:=True, _
+            Contents:=True, Scenarios:=True)
+            'GUARDA EL ARCHIVO DE EXCEL
+            x1hoja.SaveAs("\\ROBOT\PREINFORMES\AGUA\" & nroficha & ".xls")
+            x1app.Visible = True
+            x1app = Nothing
+            x1libro = Nothing
+            x1hoja = Nothing
     End Sub
     Private Sub informe_agua_funciona_si_hay_analisis_propios()
         Dim x1app As Microsoft.Office.Interop.Excel.Application
@@ -19057,6 +19115,46 @@ Public Class FormCrearInformes
     Private Sub DataGridView1_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
 
     End Sub
+
+    Private Sub envioMailBrucelosis()
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+
+        'CONFIGURACIÓN DEL STMP 
+        ' Llamamos al método buscar para obtener el objeto Credenciales
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+        _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+        _SMTP.Host = objetoCredenciales.CredencialesHost
+        _SMTP.Port = 25
+        _SMTP.EnableSsl = False
+
+        _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+        ' CONFIGURACION DEL MENSAJE 
+        _Message.[To].Add("colavecolab@gmail.com")          'Cecilia
+        _Message.[To].Add("gerencia.colaveco@gmail.com")    'Mauricio
+
+        'Quien lo envía 
+        _Message.Subject = "Brucelosis Positiva"
+        'Sujeto del e-mail 
+        _Message.SubjectEncoding = System.Text.Encoding.UTF8
+        'Codificacion 
+        _Message.Body = "Aviso importante, se detecto Brucelosis POSITIVO en la Ficha Nº " & " " & nroficha & ", " & ", que fue enviada en el día de hoy"
+        'contenido del mail 
+        _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+        _Message.Priority = System.Net.Mail.MailPriority.Normal
+        _Message.IsBodyHtml = False
+        ' ADICION DE DATOS ADJUNTOS ‘
+        'Dim _File As String = My.Application.Info.DirectoryPath & "archivo" 'archivo que se quiere adjuntar ‘
+        'Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
+        '_Message.Attachments.Add(_Attachment) 'ENVIO 
+        Try
+            _SMTP.Send(_Message)
+            'MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+        Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+        End Try
+
+    End Sub
 End Class
 
 Public Class Analisis
@@ -19074,4 +19172,5 @@ Public Class Analisis
         Me.RelacionCaK = relacionCaK
         Me.RelacionCaMgK = relacionCaMgK
     End Sub
+   
 End Class

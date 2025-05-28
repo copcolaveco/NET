@@ -525,17 +525,17 @@ Partial Class FormEnvioCajas
         'DateFechaEnvio
         '
         Me.DateFechaEnvio.Enabled = False
-        Me.DateFechaEnvio.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFechaEnvio.Location = New System.Drawing.Point(879, 529)
+        Me.DateFechaEnvio.Format = System.Windows.Forms.DateTimePickerFormat.Custom
+        Me.DateFechaEnvio.Location = New System.Drawing.Point(759, 546)
         Me.DateFechaEnvio.Margin = New System.Windows.Forms.Padding(4)
         Me.DateFechaEnvio.Name = "DateFechaEnvio"
-        Me.DateFechaEnvio.Size = New System.Drawing.Size(132, 22)
+        Me.DateFechaEnvio.Size = New System.Drawing.Size(248, 22)
         Me.DateFechaEnvio.TabIndex = 53
         '
         'Label21
         '
         Me.Label21.AutoSize = True
-        Me.Label21.Location = New System.Drawing.Point(760, 534)
+        Me.Label21.Location = New System.Drawing.Point(760, 526)
         Me.Label21.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label21.Name = "Label21"
         Me.Label21.Size = New System.Drawing.Size(105, 17)
