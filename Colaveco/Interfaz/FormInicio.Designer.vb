@@ -162,7 +162,7 @@ Partial Class FormInicio
         Me.ControlDeInformesNutriciónToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlDeInformesSuelosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ControlDeInformesToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
-        Me.AsfToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.INFORMESPENDIENTESUSUARIOToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.FrascosToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CajasToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.CompletarEnvíosToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -1014,10 +1014,10 @@ Partial Class FormInicio
         '
         'AnálisisToolStripMenuItem
         '
-        Me.AnálisisToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AguaToolStripMenuItem, Me.AguaNuevoToolStripMenuItem, Me.AlimentosNuevoToolStripMenuItem, Me.AmbientalNuevoToolStripMenuItem, Me.AntibiogramasToolStripMenuItem, Me.AntibiogramasNuevoToolStripMenuItem1, Me.BacteriologíaClínicaAeróbicaToolStripMenuItem, Me.BacteriologíaDeTanqueNuevoToolStripMenuItem, Me.BrucelosisToolStripMenuItem1, Me.EfluentesnuevoToolStripMenuItem, Me.EsporuladosToolStripMenuItem, Me.FoliaresNuevoToolStripMenuItem, Me.InhibidoresToolStripMenuItem, Me.Minerales, Me.LeucosisToolStripMenuItem, Me.MicotoxinasEnLecheToolStripMenuItem, Me.NutriciónNuevoToolStripMenuItem, Me.OtrosServiciosToolStripMenuItem, Me.ParasitologíaNuevoToolStripMenuItem, Me.PatologíaNuevoToolStripMenuItem, Me.PsicrótrofosToolStripMenuItem, Me.SerologíaNuevoToolStripMenuItem, Me.SuelosNuevoToolStripMenuItem, Me.ToxicologíaToolStripMenuItem, Me.DevoluciónDeFrascosToolStripMenuItem2, Me.DescartarMuestrasRosaDeBengToolStripMenuItem, Me.DevoluciónDeFrascosToolStripMenuItem3, Me.ToolStripMenuItem4, Me.CONTROLESToolStripMenuItem1, Me.AsfToolStripMenuItem})
+        Me.AnálisisToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.AguaToolStripMenuItem, Me.AguaNuevoToolStripMenuItem, Me.AlimentosNuevoToolStripMenuItem, Me.AmbientalNuevoToolStripMenuItem, Me.AntibiogramasToolStripMenuItem, Me.AntibiogramasNuevoToolStripMenuItem1, Me.BacteriologíaClínicaAeróbicaToolStripMenuItem, Me.BacteriologíaDeTanqueNuevoToolStripMenuItem, Me.BrucelosisToolStripMenuItem1, Me.EfluentesnuevoToolStripMenuItem, Me.EsporuladosToolStripMenuItem, Me.FoliaresNuevoToolStripMenuItem, Me.InhibidoresToolStripMenuItem, Me.Minerales, Me.LeucosisToolStripMenuItem, Me.MicotoxinasEnLecheToolStripMenuItem, Me.NutriciónNuevoToolStripMenuItem, Me.OtrosServiciosToolStripMenuItem, Me.ParasitologíaNuevoToolStripMenuItem, Me.PatologíaNuevoToolStripMenuItem, Me.PsicrótrofosToolStripMenuItem, Me.SerologíaNuevoToolStripMenuItem, Me.SuelosNuevoToolStripMenuItem, Me.ToxicologíaToolStripMenuItem, Me.DevoluciónDeFrascosToolStripMenuItem2, Me.DescartarMuestrasRosaDeBengToolStripMenuItem, Me.DevoluciónDeFrascosToolStripMenuItem3, Me.ToolStripMenuItem4, Me.CONTROLESToolStripMenuItem1, Me.INFORMESPENDIENTESUSUARIOToolStripMenuItem})
         Me.AnálisisToolStripMenuItem.Name = "AnálisisToolStripMenuItem"
-        Me.AnálisisToolStripMenuItem.Size = New System.Drawing.Size(71, 24)
-        Me.AnálisisToolStripMenuItem.Text = "Análisis"
+        Me.AnálisisToolStripMenuItem.Size = New System.Drawing.Size(79, 24)
+        Me.AnálisisToolStripMenuItem.Text = "Informes"
         '
         'AguaToolStripMenuItem
         '
@@ -1256,11 +1256,11 @@ Partial Class FormInicio
         Me.ControlDeInformesToolStripMenuItem1.Size = New System.Drawing.Size(175, 24)
         Me.ControlDeInformesToolStripMenuItem1.Text = "Efluentes"
         '
-        'AsfToolStripMenuItem
+        'INFORMESPENDIENTESUSUARIOToolStripMenuItem
         '
-        Me.AsfToolStripMenuItem.Name = "AsfToolStripMenuItem"
-        Me.AsfToolStripMenuItem.Size = New System.Drawing.Size(332, 24)
-        Me.AsfToolStripMenuItem.Text = "asf"
+        Me.INFORMESPENDIENTESUSUARIOToolStripMenuItem.Name = "INFORMESPENDIENTESUSUARIOToolStripMenuItem"
+        Me.INFORMESPENDIENTESUSUARIOToolStripMenuItem.Size = New System.Drawing.Size(332, 24)
+        Me.INFORMESPENDIENTESUSUARIOToolStripMenuItem.Text = "INFORMES PENDIENTES USUARIO"
         '
         'FrascosToolStripMenuItem1
         '
@@ -3240,7 +3240,7 @@ Partial Class FormInicio
     Friend WithEvents HistorialDePedidosToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ControlDeInformesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Minerales As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents AsfToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HistoricoEntradaCajaManualToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HistoricoDeSolicitudesAutorizadasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents INFORMESPENDIENTESUSUARIOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
 End Class

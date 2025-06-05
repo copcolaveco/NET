@@ -298,12 +298,23 @@
                     e.FRASCOS = CType(unaFila.Item(7), Integer)
                     e.IDEMPRESA = CType(unaFila.Item(8), Integer)
                     e.ENVIO = CType(unaFila.Item(9), String)
-                    e.FECHAENVIO = CType(unaFila.Item(10), String)
+                    If Not IsDBNull(unaFila.Item(10)) Then
+                        e.FECHAENVIO = CType(unaFila.Item(10), DateTime).ToString("yyyy-MM-dd HH:mm:ss")
+                    Else
+                        e.FECHAENVIO = ""
+                    End If
+
+                    If Not IsDBNull(unaFila.Item(15)) Then
+                        e.FECHARECIBO = CType(unaFila.Item(15), DateTime).ToString("yyyy-MM-dd HH:mm:ss")
+                    Else
+                        e.FECHARECIBO = ""
+                    End If
+
                     e.OBSERVACIONES = CType(unaFila.Item(11), String)
                     e.ENVIADO = CType(unaFila.Item(12), Integer)
                     e.IDAGENCIA = CType(unaFila.Item(13), Integer)
                     e.RECIBO = CType(unaFila.Item(14), String)
-                    e.FECHARECIBO = CType(unaFila.Item(15), String)
+                    'e.FECHARECIBO = CType(unaFila.Item(15), String)
                     e.RECIBIDO = CType(unaFila.Item(16), Integer)
                     e.CLIENTE = CType(unaFila.Item(17), Long)
                     e.OBSRECIBO = CType(unaFila.Item(18), String)

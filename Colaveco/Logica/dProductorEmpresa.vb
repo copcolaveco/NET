@@ -77,7 +77,12 @@
         Dim pe As New pProductorEmpresa
         Return pe.buscarproductorempresa2(Me)
     End Function
-   
+    Public Function ListarBrucelosisPositivaPorFicha(ByVal ficha As Long) As List(Of dProductorEmpresaResultado)
+        Dim pe As New pProductorEmpresa
+        Return pe.AntecedentesBrucelosisPorFicha(ficha)
+    End Function
+
+
 #End Region
 
     Public Overrides Function ToString() As String

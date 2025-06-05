@@ -11189,4 +11189,9 @@ controltxt:
         Dim v As New FormHistoricoSolicitudesAutorizadas(Sesion.Usuario)
         v.Show()
     End Sub
+
+    Private Sub INFORMESPENDIENTESUSUARIOToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles INFORMESPENDIENTESUSUARIOToolStripMenuItem.Click
+        Dim v As New FormInformesPendientesUsuario(Sesion.Usuario)
+        v.Show()
+    End Sub
 End Class

@@ -4667,4 +4667,51 @@
             Return Nothing
         End Try
     End Function
+
+   Public Function listar_informes_usuario_filtro(ByVal usuario_id As Integer, ByVal desde As String, ByVal hasta As String, ByVal idinforme As String) As ArrayList
+        Dim sql As String = ""
+        sql &= "SELECT na.ficha, sa.fechaingreso, ti.nombre, sa.nmuestras " &
+               "FROM solicitudanalisis sa " &
+               "INNER JOIN nuevoanalisis na ON na.ficha = sa.id " &
+               "INNER JOIN analisis_usuario au ON au.analisis_id = na.analisis " &
+               "INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme " &
+               "WHERE sa.marca = 0 AND sa.eliminado = 0 AND au.usuario_id = " & usuario_id & " "
+
+        If Not String.IsNullOrEmpty(desde) And Not String.IsNullOrEmpty(hasta) Then
+            sql &= "AND sa.fechaingreso BETWEEN '" & desde & "' AND '" & hasta & "' "
+        ElseIf Not String.IsNullOrEmpty(desde) Then
+            sql &= "AND sa.fechaingreso >= '" & desde & "' "
+        ElseIf Not String.IsNullOrEmpty(hasta) Then
+            sql &= "AND sa.fechaingreso <= '" & hasta & "' "
+        End If
+
+        If Not String.IsNullOrEmpty(idinforme) Then
+            sql &= "AND sa.id = " & idinforme & " "
+        End If
+
+        sql &= "GROUP BY sa.id ORDER BY na.ficha DESC"
+
+        Try
+            Dim lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                For Each fila As DataRow In Ds.Tables(0).Rows
+                    Dim d As New dInformeAnalisis
+                    d.FICHA = CType(fila.Item(0), Long)
+                    d.FECHAINGRESO = CType(fila.Item(1), String)
+                    d.NOMBRETIPOINFORME = CType(fila.Item(2), String)
+                    d.NMUESTRAS = CType(fila.Item(3), Integer)
+                    lista.Add(d)
+                Next
+                Return lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+
 End Class

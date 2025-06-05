@@ -10438,20 +10438,22 @@ Public Class FormCrearInformes
                 x1hoja.Cells(fila, columna).Font.Size = 7
                 fila = fila + 1
                 columna = columna - 1
-                x1hoja.Cells(fila, columna).Formula = "Valor permitido"
-                x1hoja.Cells(fila, columna).Font.Bold = True
-                x1hoja.Cells(fila, columna).Font.Size = 7
-                columna = columna + 1
-                Dim texto As String = ""
-                If unit = 1 Then
-                    texto = "UNIT 833:2008"
-                Else
-                    texto = "Decreto 315/94 R.B.N. y sus modificaciones"
-                End If
-                x1hoja.Cells(fila, columna).Formula = "Según: " & texto
-                x1hoja.Cells(fila, columna).Font.Bold = False
-                x1hoja.Cells(fila, columna).Font.Size = 7
 
+                If dAgua.tieneRefrendacionTambo(sa.ID) Then
+                    x1hoja.Cells(fila, columna).Formula = "Valor permitido"
+                    x1hoja.Cells(fila, columna).Font.Bold = True
+                    x1hoja.Cells(fila, columna).Font.Size = 7
+                    columna = columna + 1
+                    Dim texto As String = ""
+                    If unit = 1 Then
+                        texto = "UNIT 833:2008"
+                    Else
+                        texto = "Decreto 315/94 R.B.N. y sus modificaciones"
+                    End If
+                    x1hoja.Cells(fila, columna).Formula = "Según: " & texto
+                    x1hoja.Cells(fila, columna).Font.Bold = False
+                    x1hoja.Cells(fila, columna).Font.Size = 7
+                End If
 
                 columna = 1
                 'CABEZAL CON O SIN LOGO OUA
@@ -11343,19 +11345,22 @@ Public Class FormCrearInformes
             x1hoja.Cells(fila, columna).Font.Size = 7
             fila = fila + 1
             columna = columna - 1
-            x1hoja.Cells(fila, columna).Formula = "Valor permitido"
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 7
-            columna = columna + 1
-            Dim texto As String = ""
-            If unit = 1 Then
-                texto = "UNIT 833:2008"
-            Else
-                texto = "Decreto 315/94 R.B.N. y sus modificaciones"
+
+            If dAgua.tieneRefrendacionTambo(sa.ID) Then
+                x1hoja.Cells(fila, columna).Formula = "Valor permitido"
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 7
+                columna = columna + 1
+                Dim texto As String = ""
+                If unit = 1 Then
+                    texto = "UNIT 833:2008"
+                Else
+                    texto = "Decreto 315/94 R.B.N. y sus modificaciones"
+                End If
+                x1hoja.Cells(fila, columna).Formula = "Según: " & texto
+                x1hoja.Cells(fila, columna).Font.Bold = False
+                x1hoja.Cells(fila, columna).Font.Size = 7
             End If
-            x1hoja.Cells(fila, columna).Formula = "Según: " & texto
-            x1hoja.Cells(fila, columna).Font.Bold = False
-            x1hoja.Cells(fila, columna).Font.Size = 7
 
             columna = 1
             'CABEZAL CON O SIN LOGO OUA

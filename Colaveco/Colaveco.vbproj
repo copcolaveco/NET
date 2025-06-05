@@ -339,6 +339,12 @@
     <Compile Include="Interfaz\FormHistoricoSolicitudesAutorizadas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaz\FormInformesPendientesUsuario.Designer.vb">
+      <DependentUpon>FormInformesPendientesUsuario.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormInformesPendientesUsuario.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaz\FormPreinformeEdit.Designer.vb">
       <DependentUpon>FormPreinformeEdit.vb</DependentUpon>
     </Compile>
@@ -737,6 +743,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logica\dCredenciales.vb" />
+    <Compile Include="Logica\dInformeAnalisis.vb" />
     <Compile Include="Logica\dNuevoGestor.vb" />
     <Compile Include="Logica\dAccionCorrectiva.vb" />
     <Compile Include="Logica\dAcreditacion.vb" />
@@ -875,6 +882,7 @@
     <Compile Include="Logica\dPreinformes.vb" />
     <Compile Include="Logica\dPresentacionUnidades.vb" />
     <Compile Include="Logica\dProductorEmpresa.vb" />
+    <Compile Include="Logica\dProductorEmpresaResultado.vb" />
     <Compile Include="Logica\dProductos.vb" />
     <Compile Include="Logica\dProlesa.vb" />
     <Compile Include="Logica\dProveedores.vb" />
@@ -941,6 +949,7 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logica\dNuevoAnalisis_Factura.vb" />
+    <Compile Include="Logica\ResultadoBrucelosisPositivo.vb" />
     <Compile Include="Module2.vb" />
     <Compile Include="Facturacion\dMovimientos2.vb" />
     <Compile Include="Persistencia\pAccionCorrectiva.vb" />
@@ -3144,6 +3153,9 @@
     <EmbeddedResource Include="Interfaz\FormInformesPendientes.resx">
       <DependentUpon>FormInformesPendientes.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormInformesPendientesUsuario.resx">
+      <DependentUpon>FormInformesPendientesUsuario.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormInformesSubidos.resx">
       <DependentUpon>FormInformesSubidos.vb</DependentUpon>

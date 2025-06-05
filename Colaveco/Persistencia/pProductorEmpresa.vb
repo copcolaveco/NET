@@ -177,4 +177,37 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function AntecedentesBrucelosisPorFicha(fichaId As Long) As List(Of dProductorEmpresaResultado)
+        Dim resultados As New List(Of dProductorEmpresaResultado)
+        Try
+            Dim sql As String = ""
+            sql &= "SELECT DISTINCT b.muestra, c.nombre " & vbCrLf
+            sql &= "FROM brucelosis b " & vbCrLf
+            sql &= "JOIN nuevoanalisis na ON na.muestra = b.muestra " & vbCrLf
+            sql &= "JOIN solicitudanalisis sa ON sa.id = na.ficha " & vbCrLf
+            sql &= "JOIN cliente c ON c.id = sa.idproductor " & vbCrLf
+            sql &= "WHERE b.resultado = 1 " & vbCrLf
+            sql &= "AND b.fecha >= DATE_SUB(CURDATE(), INTERVAL 1 YEAR) " & vbCrLf
+            sql &= "AND sa.id = " & fichaId
+
+            Dim Ds As DataSet = Me.EjecutarSQL(sql)
+            If Ds IsNot Nothing AndAlso Ds.Tables.Count > 0 Then
+                For Each row As DataRow In Ds.Tables(0).Rows
+                    Dim res As New dProductorEmpresaResultado
+                    res.Muestra = row("muestra").ToString()
+                    res.NombreProductor = row("nombre").ToString()
+                    resultados.Add(res)
+                Next
+            End If
+        Catch ex As Exception
+            ' Manejo de errores si es necesario
+        End Try
+        Return resultados
+    End Function
+
+
+
 End Class
+
+

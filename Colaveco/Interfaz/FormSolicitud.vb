@@ -3213,17 +3213,35 @@ Public Class FormSolicitud
         End If
 
         'Aviso en el RG.ADM.36 por antiguis resultados en Brucelosis POSITIVO
-        Dim productorBrucelosis As New dBrucelosis
+        Dim ppe As New pProductorEmpresa
+        Dim listaAntecedentes As List(Of dProductorEmpresaResultado) = ppe.AntecedentesBrucelosisPorFicha(ficha)
+        Dim muestraProductor As String = ""
+        fila = fila + 1
 
-        If productorBrucelosis.existeResultadoPositivoPorCliente(productorId) Then
-            x1hoja.Cells(fila, columna).formula = "Atención: Cliente con antecedentes de Brucelosis positivo"
-            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+        If listaAntecedentes.Count > 0 Then
+
+            Dim mat As String = "Alerta de Bioseguridad"
+
+            x1hoja.Cells(fila, columna).formula = mat
+            'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Font.Size = 18
+            fila = fila + 1
+
+            For Each item In listaAntecedentes
+
+                muestraProductor &= "- Matrícula: " & item.Muestra & " "
+
+            Next
+
+            x1hoja.Cells(fila, columna).formula = muestraProductor
+            'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
             x1hoja.Cells(fila, columna).Font.Bold = True
             x1hoja.Cells(fila, columna).Font.Size = 14
             fila = fila + 1
-            productorId = 0
-            brucelosisPositiva = True
+
         End If
+
 
         'CONTROLA SI EL CLIENTE TIENE ALGUN CONVENIO*****************************************
         Dim sa2 As New dSolicitudAnalisis

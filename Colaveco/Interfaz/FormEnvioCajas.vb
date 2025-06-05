@@ -758,10 +758,10 @@ Public Class FormEnvioCajas
             End If
 
 
-            ElseIf ComboCajas.Text.Trim <> "" Then
-                Dim caja As New dCajas
-                caja.CODIGO = ComboCajas.Text.Trim
-                lista = caja.buscarPorCodigo(caja.CODIGO)
+        ElseIf ComboCajas.Text.Trim <> "" Then
+            Dim caja As New dCajas
+            caja.CODIGO = ComboCajas.Text.Trim
+            lista = caja.buscarPorCodigo(caja.CODIGO)
 
             If lista IsNot Nothing Then
                 For Each e In lista
@@ -791,9 +791,9 @@ Public Class FormEnvioCajas
                 MsgBox("Cadigo de caja no existe", MsgBoxStyle.Critical, "Atención")
             End If
 
-            Else
-                MsgBox("Ingrese codigo de la Caja", MsgBoxStyle.Critical, "Atención")
-            End If
+        Else
+            MsgBox("Ingrese codigo de la Caja", MsgBoxStyle.Critical, "Atención")
+        End If
 
         If cajaExiste Then
             If marcadaCaja Then
@@ -864,7 +864,7 @@ Public Class FormEnvioCajas
                                 c.marcar(Usuario)
                                 MsgBox("Caja modificada", MsgBoxStyle.Information, "Atención")
                             End If
-                            
+
                         Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                         End If
                     Else
@@ -902,7 +902,7 @@ Public Class FormEnvioCajas
                                 End If
                             Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                             End If
-                            End If
+                        End If
                     End If
                 End If
             End If
@@ -1388,7 +1388,7 @@ Public Class FormEnvioCajas
     End Sub
 
     Private Sub CheckPendiente_CheckedChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles CheckPendiente.CheckedChanged
-      
+
     End Sub
 
     Private Sub CheckPendiente_MouseClick(ByVal sender As Object, ByVal e As System.Windows.Forms.MouseEventArgs) Handles CheckPendiente.MouseClick
