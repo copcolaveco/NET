@@ -4713,5 +4713,39 @@
         End Try
     End Function
 
+    Public Function listar_analisis_con_descripcion(ByVal usuarioId As Integer, ByVal solicitudId As Long) As ArrayList
+        Dim sql As String = ""
+        sql &= "SELECT DISTINCT(na.analisis), sa.id, lp.descripcion " &
+               "FROM solicitudanalisis sa " &
+               "INNER JOIN nuevoanalisis na ON na.ficha = sa.id " &
+               "INNER JOIN analisis_usuario au ON au.analisis_id = na.analisis " &
+               "INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme " &
+               "INNER JOIN listadeprecios lp ON lp.id = na.analisis " &
+               "WHERE sa.marca = 0 AND sa.eliminado = 0 " &
+               "AND au.usuario_id = " & usuarioId & " " &
+               "AND sa.id = " & solicitudId & " " &
+               "ORDER BY na.ficha DESC"
+
+        Try
+            Dim lista As New ArrayList
+            Dim Ds As DataSet = Me.EjecutarSQL(sql)
+
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                For Each fila As DataRow In Ds.Tables(0).Rows
+                    Dim item As New dAnalisisConDescripcion
+                    item.ANALISIS = Convert.ToInt32(fila(0))
+                    item.ID_SOLICITUD = Convert.ToInt64(fila(1))
+                    item.DESCRIPCION = fila(2).ToString()
+                    lista.Add(item)
+                Next
+                Return lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
 
 End Class

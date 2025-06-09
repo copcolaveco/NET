@@ -28,16 +28,9 @@ Partial Class FormInformesPendientesUsuario
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
-        Me.Ficha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Column2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Informe = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Muestras = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.tbxInforme = New System.Windows.Forms.TextBox()
         Me.btn_excel = New System.Windows.Forms.Button()
         Me.DataGridView2 = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.analisis = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btnBuscar = New System.Windows.Forms.Button()
@@ -48,12 +41,11 @@ Partial Class FormInformesPendientesUsuario
         'DataGridView1
         '
         Me.DataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView1.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Ficha, Me.Column1, Me.Column2, Me.Informe, Me.Muestras})
         Me.DataGridView1.Location = New System.Drawing.Point(13, 217)
         Me.DataGridView1.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView1.Name = "DataGridView1"
         Me.DataGridView1.RowHeadersVisible = False
-        Me.DataGridView1.Size = New System.Drawing.Size(645, 321)
+        Me.DataGridView1.Size = New System.Drawing.Size(586, 321)
         Me.DataGridView1.TabIndex = 5
         '
         'Hasta
@@ -64,7 +56,6 @@ Partial Class FormInformesPendientesUsuario
         Me.Hasta.Name = "Hasta"
         Me.Hasta.Size = New System.Drawing.Size(128, 22)
         Me.Hasta.TabIndex = 7
-        Me.Hasta.Visible = False
         '
         'Desde
         '
@@ -74,7 +65,6 @@ Partial Class FormInformesPendientesUsuario
         Me.Desde.Name = "Desde"
         Me.Desde.Size = New System.Drawing.Size(128, 22)
         Me.Desde.TabIndex = 6
-        Me.Desde.Visible = False
         '
         'Label1
         '
@@ -103,34 +93,6 @@ Partial Class FormInformesPendientesUsuario
         Me.Label3.TabIndex = 10
         Me.Label3.Text = "Informe"
         '
-        'Ficha
-        '
-        Me.Ficha.HeaderText = "Informe"
-        Me.Ficha.Name = "Ficha"
-        '
-        'Column1
-        '
-        Me.Column1.HeaderText = "Fecha solicitud"
-        Me.Column1.Name = "Column1"
-        '
-        'Column2
-        '
-        Me.Column2.HeaderText = "Atraso (dias)"
-        Me.Column2.Name = "Column2"
-        Me.Column2.Width = 70
-        '
-        'Informe
-        '
-        Me.Informe.HeaderText = "Tipo de Informe"
-        Me.Informe.Name = "Informe"
-        Me.Informe.Width = 200
-        '
-        'Muestras
-        '
-        Me.Muestras.HeaderText = "Muestras"
-        Me.Muestras.Name = "Muestras"
-        Me.Muestras.ReadOnly = True
-        '
         'tbxInforme
         '
         Me.tbxInforme.Location = New System.Drawing.Point(138, 77)
@@ -150,23 +112,12 @@ Partial Class FormInformesPendientesUsuario
         'DataGridView2
         '
         Me.DataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridView2.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.analisis})
-        Me.DataGridView2.Location = New System.Drawing.Point(694, 217)
+        Me.DataGridView2.Location = New System.Drawing.Point(623, 217)
         Me.DataGridView2.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridView2.Name = "DataGridView2"
         Me.DataGridView2.RowHeadersVisible = False
-        Me.DataGridView2.Size = New System.Drawing.Size(389, 321)
+        Me.DataGridView2.Size = New System.Drawing.Size(602, 321)
         Me.DataGridView2.TabIndex = 13
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Informe"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        '
-        'analisis
-        '
-        Me.analisis.HeaderText = "Análisis"
-        Me.analisis.Name = "analisis"
         '
         'Label4
         '
@@ -199,7 +150,7 @@ Partial Class FormInformesPendientesUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1118, 551)
+        Me.ClientSize = New System.Drawing.Size(1298, 551)
         Me.Controls.Add(Me.btnBuscar)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -226,16 +177,9 @@ Partial Class FormInformesPendientesUsuario
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents Ficha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Column2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Informe As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Muestras As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents tbxInforme As System.Windows.Forms.TextBox
     Friend WithEvents btn_excel As System.Windows.Forms.Button
     Friend WithEvents DataGridView2 As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents analisis As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents btnBuscar As System.Windows.Forms.Button

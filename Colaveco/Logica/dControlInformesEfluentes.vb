@@ -1,4 +1,7 @@
 ﻿Public Class dControlInformesEfluentes
+
+    Inherits dControlBase
+
 #Region "Atributos"
     Private m_id As Long
     Private m_fechacontrol As String
@@ -146,7 +149,7 @@
 #End Region
 
 #Region "Métodos ABM"
-    Public Function guardar() As Boolean
+    Public Overrides Function guardar() As Boolean
         Dim c As New pControlInformesEfluentes
         Return c.guardar(Me)
     End Function
@@ -180,7 +183,7 @@
         Dim c As New pControlInformesEfluentes
         Return c.listarxfecha(desde, hasta)
     End Function
-    Public Function listarxtipoxfecha(ByVal tipo As Integer, ByVal desde As String, ByVal hasta As String) As ArrayList
+    Public Overloads Function listarxtipoxfecha(ByVal tipo As Integer, ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim c As New pControlInformesEfluentes
         Return c.listarxtipoxfecha(tipo, desde, hasta)
     End Function
@@ -231,5 +234,9 @@
     Public Function guardarobservaciones(ByVal usuario As dUsuario, ByVal obs As String) As Boolean
         Dim ci As New pControlInformesEfluentes
         Return ci.guardarobservaciones(Me, usuario, obs)
+    End Function
+
+    Public Overloads Overrides Function listarxtipoxfecha(tipo As String, fechad As Date, fechah As Date) As ArrayList
+
     End Function
 End Class

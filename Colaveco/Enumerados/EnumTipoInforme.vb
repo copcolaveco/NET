@@ -1,0 +1,22 @@
+﻿Public Enum EnumTipoInforme
+    ControlLechero = 1
+    Agua = 3
+    AislamientoAntibiograma = 4
+    PAL = 5
+    Parasitologia = 6
+    Alimentos = 7
+    Serologia = 8
+    Patologia = 9
+    CalidadLeche = 10
+    Ambiental = 11
+    LactometrosChequeos = 12
+    Nutricion = 13
+    OtrosServicios = 99
+    Suelos = 14
+    BrucelosisLeche = 15
+    Efluentes = 16
+    BacteriologiaTanque = 17
+    BacteriologiaClinica = 18
+    Foliares = 19
+    Toxicologia = 20
+End Enum

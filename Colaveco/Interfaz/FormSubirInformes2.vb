@@ -18,13 +18,25 @@ Public Class FormSubirInformes2
     Private idficha As String
     Private tipoinforme As Integer
     Private _usuario As dUsuario
-    Dim email As String
-    Dim celular As String
-    Dim nficha As String
-    Dim mensaje As String = ""
-    Dim excel As Integer = 0
-    Dim pdf As Integer = 0
-    Dim csv As Integer = 0
+    Public email As String
+    Public celular As String
+    Public nficha As String
+    Public mensaje As String = ""
+    Public excel As Integer = 0
+    Public pdf As Integer = 0
+    Public csv As Integer = 0
+    Public Informe As Integer = 0
+    Public ficha As Long = 0
+    Public abonado As Integer = 0
+    Public comentario As String = ""
+    Public copia As String = ""
+    Public cliente As Integer = 0
+    Dim sFile1 As String = ""
+    Dim sFile2 As String = ""
+    Dim sFile3 As String = ""
+    Dim sFile4 As String = ""
+    Dim Listax As New List(Of String)
+
     Public Property Usuario() As dUsuario
         Get
             Return _usuario
@@ -33,6 +45,7 @@ Public Class FormSubirInformes2
             _usuario = value
         End Set
     End Property
+
 #Region "Constructores"
     Public Sub New(ByVal u As dUsuario)
         ' Llamada necesaria para el Diseñador de Windows Forms.
@@ -42,6 +55,7 @@ Public Class FormSubirInformes2
         marcarxdefecto()
     End Sub
 #End Region
+
     Private Sub marcarxdefecto()
         CheckXls.Checked = True
         CheckPdf.Checked = True
@@ -49,7 +63,8 @@ Public Class FormSubirInformes2
         CheckCom.Checked = True
     End Sub
     Private Sub ButtonSubirInforme_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSubirInforme.Click
-        'subirinforme()
+
+
         Dim saMarcar As New dSolicitudAnalisis
         saMarcar.ID = idficha
         Dim pi As New dPreinformes
@@ -57,530 +72,546 @@ Public Class FormSubirInformes2
         Dim _fecha As String
         _fecha = Format(fechaactual, "yyyy-MM-dd")
         pi.FICHA = idficha
+        Informe = idficha
 
-        If tipoinforme = 1 Then
-            subir_control() '_control()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
+        Try
+            If tipoinforme = 1 Then
+                subir_control() '_control()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 3 Then
+                subir_agua()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 4 Then
+                subir_atb()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 6 Then
+                subir_parasitologia()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 7 Then
+                subir_alimentos()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 8 Then
+                subir_serologia()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 9 Then
+                subir_patologia()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 10 Then
+                subir_calidad()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 11 Then
+                subir_ambiental()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 13 Then
+                subir_nutricion()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 14 Then
+                subir_suelos()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 15 Then
+                subir_brucelosis()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 16 Then
+                subir_efluentes()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 17 Then
+                subir_bacteriologia()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 18 Then
+                subir_bacteriologia_clinica()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 19 Then
+                subir_foliares()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 20 Then
+                subir_toxicologia()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+            ElseIf tipoinforme = 21 Then
+                subir_mineralesenleche()
+                saMarcar.marcar(Usuario, _fecha)
+                pi.marcarsubido(_fecha)
+               
+            End If
 
             '---------------GestorGX
             Dim gestorNuevo As New dNuevoGestor
             gestorNuevo.ID = idficha
             gestorNuevo.FECHAENVIO = _fecha
             gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 3 Then
-            subir_agua()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 4 Then
-            subir_atb()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 6 Then
-            subir_parasitologia()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 7 Then
-            subir_alimentos()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 8 Then
-            subir_serologia()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 9 Then
-            subir_patologia()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 10 Then
-            subir_calidad()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 11 Then
-            subir_ambiental()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 13 Then
-            subir_nutricion()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 14 Or tipoinforme = 19 Then
-            subir_suelos()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 15 Then
-            subir_brucelosis()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 16 Then
-            subir_efluentes()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 17 Then
-            subir_bacteriologia()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 18 Then
-            subir_bacteriologia_clinica()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 19 Then
-            subir_foliares()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 20 Then
-            subir_toxicologia()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        ElseIf tipoinforme = 21 Then
-            subir_mineralesenleche()
-            saMarcar.marcar(Usuario, _fecha)
-            pi.marcarsubido(_fecha)
-            '---------------GestorGX
-            Dim gestorNuevo As New dNuevoGestor
-            gestorNuevo.ID = idficha
-            gestorNuevo.FECHAENVIO = _fecha
-            gestorNuevo.modificarFechaEnvio(Usuario)
-        End If
+        Catch ex As Exception
+
+        End Try
+
+        
     End Sub
     Private Sub subir_control()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        'JUNTAR LOS 2 PDF ***************************************************************************
-        ' Creamos una lista de archivos para concatenar
-        Dim Listax As New List(Of String)
-        ' Identificamos los documentos que queremos unir
-        Dim sFile1 As String = "\\192.168.1.10\E\NET\CONTROL_LECHERO\Graficas\" & ficha & ".pdf"
-        Dim sFile2 As String = "\\192.168.1.10\E\NET\CONTROL_LECHERO\Graficas\x" & ficha & ".pdf"
-        ' Los añadimos a la lista
-        Listax.Add(sFile1)
-        Listax.Add(sFile2)
-        ' Nombre del documento resultante
-        Dim sFileJoin As String = "\\ROBOT\PREINFORMES\CONTROL\" & ficha & ".pdf"
-        Dim Doc As New Document()
-        Try
-            Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
-            Dim copy As New PdfCopy(Doc, fs)
-            Doc.Open()
-            Dim Rd As PdfReader
-            Dim n As Integer 'Número de páginas de cada pdf
-            For Each file In Listax
-                Rd = New PdfReader(file)
-                n = Rd.NumberOfPages
-                Dim page As Integer = 0
-                Do While page < n
-                    page += 1
-                    copy.AddPage(copy.GetImportedPage(Rd, page))
-                Loop
-                copy.FreeReader(Rd)
-                Rd.Close()
-            Next
-        Catch ex As Exception
-            'MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf")
-        Finally
-            ' Cerramos el documento
-            Doc.Close()
-        End Try
-        '********************************************************************************************
 
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CONTROL\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                           sRutaDestino, _
-                                            True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CONTROL\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                            sRutaDestino2, _
-                                            True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO TXT***********************************************************************
-        Dim sArchivoOrigen3 As String = "\\ROBOT\PREINFORMES\CONTROL\" & ficha & ".txt"
-        Dim sRutaDestino3 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".txt"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen3, _
-                                            sRutaDestino3, _
-                                            True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        'AGREGRA A LISTA PARA CONTROLAR ***************************
-        Dim fechadesde As Date = Now
-        Dim fechahasta As Date = Now
-        Dim fechad As String
-        Dim fechah As String
-        Dim tipo As Integer = 1
-        fechad = Format(fechadesde, "yyyy-MM-dd")
-        fechah = Format(fechahasta, "yyyy-MM-dd")
-        Dim ci As New dControlInformesFQ
-        Dim lista As New ArrayList
-        lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-        If Not lista Is Nothing Then
-            If lista.Count < 6 Then
-                Dim cifq As New dControlInformesFQ
-                cifq.FECHACONTROL = fechad
-                cifq.FICHA = ficha
-                cifq.FECHA = fechad
-                cifq.TIPO = 1
-                cifq.RESULTADO = 0
-                cifq.COINCIDE = 0
-                cifq.OBSERVACIONES = ""
-                cifq.CONTROLADOR = 100
-                cifq.CONTROLADO = 0
-                cifq.guardar()
-                cifq = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 1 'FQ
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-        Else
-            Dim cifq As New dControlInformesFQ
-            cifq.FECHACONTROL = fechad
-            cifq.FICHA = ficha
-            cifq.FECHA = fechad
-            cifq.TIPO = 1
-            cifq.RESULTADO = 0
-            cifq.COINCIDE = 0
-            cifq.OBSERVACIONES = ""
-            cifq.CONTROLADOR = 100
-            cifq.CONTROLADO = 0
-            cifq.guardar()
-            cifq = Nothing
-
-            Dim controlGestor As New dNGControl
-            Try
-                'Registro en Gestor Nuevo
-                controlGestor.InformeId = pi.FICHA
-                controlGestor.UsuarioId = _usuario.ID
-                controlGestor.ControlTipoId = 1 'FQ
-                controlGestor.ControlCoincide = 0
-                controlGestor.ControlControlado = 0
-                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlInformeTipo = pi.TIPO
-                controlGestor.ControlNoConformidad = 0
-                controlGestor.ControlObservaciones = "Se creo Control"
-                controlGestor.ControlOpcMejora = 0
-                controlGestor.ControlResultado = 0
-                controlGestor.guardar()
-            Catch ex As Exception
-
-            End Try
-
-            ' Grabar estado de la ficha
-            Dim est As New dEstados
-            est.FICHA = ficha
-            est.ESTADO = 6
-            est.FECHA = fechad
-            est.guardar2()
-            est = Nothing
-            '****************************
-        End If
-        '*****************************************************************************
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-            productorweb_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-
-        End If
-        '****************************
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.CONTROL_LECHERO, EnumTipoInforme.ControlLechero)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        agregar_control_informe(EnumTipoControles.FisicoQuimico)
         limpiar()
         marcarxdefecto()
 
     End Sub
     Private Sub subir_agua()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
+
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.AGUA, EnumTipoInforme.Agua)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        agregar_control_informe(EnumTipoControles.Microbiologia)
+        limpiar()
+        marcarxdefecto()
+
+    End Sub
+    Private Sub subir_atb()
+
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.ANTIBIOGRAMA, EnumTipoInforme.AislamientoAntibiograma)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+
+    End Sub
+    Private Sub subir_parasitologia()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.PARASITOLOGIA, EnumTipoInforme.Parasitologia)
+        actualizar_preInforme()
+        actualizar_estados(abonado)
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_alimentos()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.ALIMENTOS, EnumTipoInforme.Alimentos)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        agregar_control_informe(EnumTipoControles.Microbiologia)
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_serologia()
+        estadoPago()
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_patologia()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.PATOLOGIA, EnumTipoInforme.Patologia)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_calidad()
+       
+        estadoPago()
+        cliente = TextIdCliente.Text.Trim
+        mover_archivos(EnumCarpetaInforme.CALIDAD, EnumTipoInforme.CalidadLeche)
+        agregar_control_informe(EnumTipoControles.FisicoQuimico)
+
+        Dim csm As New dCalidadSolicitudMuestra
+        csm.FICHA = ficha
+        csm = csm.buscarxsolicitud
+
+        If csm.RB = 1 Or csm.INHIBIDORES = 1 Or csm.ESPORULADOS = 1 Or csm.PSICROTROFOS = 1 Then
+            agregar_control_informe(EnumTipoControles.Microbiologia)
         End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
+
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+
+    Private Sub subir_mineralesenleche()
+        estadoPago()
+        cliente = TextIdCliente.Text.Trim
+        mover_archivos(EnumCarpetaInforme.CALIDAD, EnumTipoInforme.CalidadLeche)
+        agregar_control_informe(EnumTipoControles.FisicoQuimico)
+
+        Dim csm As New dCalidadSolicitudMuestra
+        csm.FICHA = ficha
+        csm = csm.buscarxsolicitud
+
+        If csm.RB = 1 Or csm.INHIBIDORES = 1 Or csm.ESPORULADOS = 1 Or csm.PSICROTROFOS = 1 Then
+            agregar_control_informe(EnumTipoControles.Microbiologia)
         End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
+
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_ambiental()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.AMBIENTAL, EnumTipoInforme.Ambiental)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_nutricion()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.NUTRICION, EnumTipoInforme.Nutricion)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        agregar_control_informe(EnumTipoControles.Nutricion)
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_suelos()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.SUELOS, EnumTipoInforme.Suelos)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        agregar_control_informe(EnumTipoControles.Suelos)
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_brucelosis()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.BRUCELOSIS_LECHE, EnumTipoInforme.BrucelosisLeche)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_efluentes()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.EFLUENTES, EnumTipoInforme.Efluentes)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        agregar_control_informe(EnumTipoControles.Efluentes)
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_bacteriologia()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.BACTERIOLOGIA, EnumTipoInforme.BacteriologiaTanque)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_bacteriologia_clinica()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.BACTERIOLOGIA, EnumTipoInforme.BacteriologiaClinica)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_foliares()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.TOXICOLOGIA, EnumTipoInforme.Foliares)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        agregar_control_informe(EnumTipoControles.Suelos)
+        limpiar()
+        marcarxdefecto()
+    End Sub
+    Private Sub subir_toxicologia()
+        estadoPago()
+        mover_archivos(EnumCarpetaInforme.TOXICOLOGIA, EnumTipoInforme.Toxicologia)
+        actualizar_estados(abonado)
+        actualizar_preInforme()
+        limpiar()
+        marcarxdefecto()
+    End Sub
+   
+    Private Sub limpiar()
+        TextIdCliente.Text = ""
+        TextNombreCliente.Text = ""
+        TextFicha.Text = ""
+        TextComentarios.Text = ""
+        TextEnviarCopia.Text = ""
+    End Sub
+
+    Private Sub ButtonSeleccionarCliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSeleccionarCliente.Click
+        Dim v As New FormBuscarCliente
+        v.ShowDialog()
+
+        If Not v.Cliente Is Nothing Then
+            Dim cli As dCliente = v.Cliente
+            TextIdCliente.Text = cli.ID
+            TextNombreCliente.Text = cli.NOMBRE
+
+            If cli.USUARIO_WEB = "" Then
+                MsgBox("El cliente no tiene usuario web")
+                Exit Sub
+                limpiar()
+                marcarxdefecto()
+            End If
+            
+            If cli.FAC_CONTADO = 1 Then
+                MsgBox("El cliente es CONTADO!")
+            End If
+
+            If cli.PROLESA = 1 Then
+                MsgBox("El cliente realiza el pago por PROLESA.")
+                ButtonSeleccionarFicha.Focus()
+            End If
+
+            ButtonSeleccionarFicha.Focus()
         End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\AGUA\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                           sRutaDestino, _
-                                            True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\AGUA\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                            sRutaDestino2, _
-                                            True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        'AGREGRA A LISTA PARA CONTROLAR ***************************
+    End Sub
+
+    Private Sub enviar_correo_AFB()
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+        Dim email As String = ""
+        Dim destinatario As String = ""
+        Dim archivo As String = ""
+        archivo = TextFicha.Text.Trim
+        email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
+        If email <> "" Then
+            'CONFIGURACIÓN DEL STMP 
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
+            ' CONFIGURACION DEL MENSAJE 
+            _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
+            'Cuenta de Correo al que se le quiere enviar el e-mail 
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+            'Quien lo envía 
+            _Message.Subject = "Colaveco - Calidad de leche"
+            'Sujeto del e-mail 
+            _Message.SubjectEncoding = System.Text.Encoding.UTF8
+            'Codificacion 
+            _Message.Body = "Adjuntamos informe de Calidad de leche."
+            'contenido del mail 
+            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+            _Message.Priority = System.Net.Mail.MailPriority.Normal
+            _Message.IsBodyHtml = False
+            ' ADICION DE DATOS ADJUNTOS ‘
+            Dim _File As String = "\\ROBOT\INFORMES PARA SUBIR\" & archivo & ".pdf" 'archivo que se quiere adjuntar ‘
+            Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
+            _Message.Attachments.Add(_Attachment) 'ENVIO 
+            Try
+                _SMTP.Send(_Message)
+                MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                _Attachment = Nothing
+                _File = ""
+            Catch ex As System.Net.Mail.SmtpException
+            End Try
+        End If
+        email = ""
+    End Sub
+    Private Sub enviar_correo_AFB2()
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+        Dim email As String = ""
+        Dim destinatario As String = ""
+        Dim archivo As String = ""
+        archivo = TextFicha.Text.Trim
+        email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
+        If email <> "" Then
+            'CONFIGURACIÓN DEL STMP 
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
+            ' CONFIGURACION DEL MENSAJE 
+            _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
+            'Cuenta de Correo al que se le quiere enviar el e-mail 
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+            'Quien lo envía 
+            _Message.Subject = "Colaveco - Calidad de leche - TXT"
+            'Sujeto del e-mail 
+            _Message.SubjectEncoding = System.Text.Encoding.UTF8
+            'Codificacion 
+            _Message.Body = "Adjuntamos informe de Calidad de leche."
+            'contenido del mail 
+            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+            _Message.Priority = System.Net.Mail.MailPriority.Normal
+            _Message.IsBodyHtml = False
+            ' ADICION DE DATOS ADJUNTOS ‘
+            Dim _File As String = "\\192.168.1.10\E\NET\CALIDAD\" & archivo & ".txt" 'archivo que se quiere adjuntar ‘
+            Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
+            _Message.Attachments.Add(_Attachment) 'ENVIO 
+            Try
+                _SMTP.Send(_Message)
+                MessageBox.Show("TXT enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                _Attachment = Nothing
+                _File = ""
+            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+            End Try
+        End If
+        email = ""
+    End Sub
+    Private Sub enviar_correo_IS()
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+        Dim email As String = ""
+        Dim destinatario As String = ""
+        Dim archivo As String = ""
+        archivo = TextFicha.Text.Trim
+        email = "iverocay@hotmail.com"
+        If email <> "" Then
+      
+            'CONFIGURACIÓN DEL STMP 
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
+            ' CONFIGURACION DEL MENSAJE 
+            _Message.[To].Add(email)
+            _Message.[To].Add("envios@colaveco.com.uy")
+            'Cuenta de Correo al que se le quiere enviar el e-mail 
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+            'Quien lo envía 
+            _Message.Subject = "Colaveco - Calidad de leche - TXT"
+            'Sujeto del e-mail 
+            _Message.SubjectEncoding = System.Text.Encoding.UTF8
+            'Codificacion 
+            _Message.Body = "Adjuntamos informe de Calidad de leche."
+            'contenido del mail 
+            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+            _Message.Priority = System.Net.Mail.MailPriority.Normal
+            _Message.IsBodyHtml = False
+            ' ADICION DE DATOS ADJUNTOS ‘
+            Dim _File As String = "\\192.168.1.10\E\NET\CALIDAD\" & archivo & ".txt" 'archivo que se quiere adjuntar ‘
+            Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
+            _Message.Attachments.Add(_Attachment) 'ENVIO 
+            Try
+                _SMTP.Send(_Message)
+                MessageBox.Show("TXT enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                _Attachment = Nothing
+                _File = ""
+            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+            End Try
+        End If
+        email = ""
+    End Sub
+
+    Private Sub enviomailInformeConVisualizacion()
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+        Dim sa As New dSolicitudAnalisis
+        Dim p As New dCliente
+        Dim ti As New dTipoInforme
+        Dim nombre_productor As String = ""
+        Dim tipo_analisis As String = ""
+        nficha = idficha
+        sa.ID = nficha
+        sa = sa.buscar
+        If Not sa Is Nothing Then
+            p.ID = sa.IDPRODUCTOR
+            p = p.buscar
+            If Not p Is Nothing Then
+                nombre_productor = p.NOMBRE
+            End If
+            ti.ID = sa.IDTIPOINFORME
+            ti = ti.buscar
+            If Not ti Is Nothing Then
+                tipo_analisis = ti.NOMBRE
+            End If
+        End If
+        Dim texto As String = ""
+        texto = "Nos es grato comunicarle que el informe Nº " & " " & nficha & " - " & tipo_analisis & " (" & nombre_productor & ")," & "se encuentra disponible en la web/app de Colaveco." & vbCrLf _
+            & "Para poder acceder a los resultados debe ir a www.colaveco.com.uy y digitar su usuario y contraseña." & vbCrLf _
+            & "Sino cuenta con usuario y contraseña, favor solicitarla en administración al correo electrónico colaveco@gmail.com o al teléfono 4554 5311." & vbCrLf _
+            & "Agradecemos su confianza y quedamos a sus órdenes." & vbCrLf & vbCrLf _
+            & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
+            & "Administración - COLAVECO"
+        If email <> "" Then
+         
+            'CONFIGURACIÓN DEL STMP 
+            ' Llamamos al método buscar para obtener el objeto Credenciales
+            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+            _SMTP.Host = objetoCredenciales.CredencialesHost
+            _SMTP.Port = 25
+            _SMTP.EnableSsl = False
+
+            ' CONFIGURACION DEL MENSAJE 
+            '_Message.[To].Add("computos@colaveco.com.uy")
+            Try
+                _Message.[To].Add(email)
+                _Message.[To].Add("envios@colaveco.com.uy")
+            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+            End Try
+            'Cuenta de Correo al que se le quiere enviar el e-mail 
+            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+            'Quien lo envía 
+            _Message.Subject = "Informe" & " Nº " & nficha & " - Colaveco"
+            'Sujeto del e-mail 
+            _Message.SubjectEncoding = System.Text.Encoding.UTF8
+            'Codificacion 
+            _Message.Body = texto
+            'contenido del mail 
+            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+            _Message.Priority = System.Net.Mail.MailPriority.Normal
+            _Message.IsBodyHtml = False
+
+            Try
+                _SMTP.Send(_Message)
+                MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Catch ex As System.Net.Mail.SmtpException
+            End Try
+        End If
+
+        If cliente = 6299 Then
+            enviar_correo_AFB()
+            enviar_correo_AFB2()
+        ElseIf cliente = 2705 Then
+            enviar_correo_IS()
+        End If
+
+        email = ""
+        nficha = 0
+    End Sub
+
+    Private Sub subir_informe_gestor()
+
+        'Gestor 
+        Dim nuevoGestor As New dNuevoGestor
+        nuevoGestor.ID = Informe
+        nuevoGestor.SOLICITUDESTADOID = 3
+        nuevoGestor.modificar(Usuario)
+
+        'Envio de Email
+        enviomailInformeConVisualizacion()
+    End Sub
+
+    Public Sub agregar_control_informe(ByVal tipoControl As Integer)
         Dim fechadesde As Date = Now
         Dim fechahasta As Date = Now
         Dim fechad As String
@@ -588,1151 +619,47 @@ Public Class FormSubirInformes2
         Dim tipo As Integer = 3
         fechad = Format(fechadesde, "yyyy-MM-dd")
         fechah = Format(fechahasta, "yyyy-MM-dd")
-        Dim ci As New dControlInformesMicro
-        Dim lista As New ArrayList
-        lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
+        Informe = TextFicha.Text.Trim
+
+        Dim Control As dControlBase
+        Select Case tipoControl
+            Case EnumTipoControles.Efluentes
+                Control = New dControlInformesEfluentes
+            Case EnumTipoControles.FisicoQuimico
+                Control = New dControlInformesFQ
+            Case EnumTipoControles.Microbiologia
+                Control = New dControlInformesMicro
+            Case EnumTipoControles.Nutricion
+                Control = New dControlInformesNutricion
+            Case EnumTipoControles.Suelos
+                Control = New dControlInformesSuelos
+        End Select
+
+        Dim lista As ArrayList = Control.listarxtipoxfecha(tipoControl, fechad, fechah)
         If Not lista Is Nothing Then
             If lista.Count < 6 Then
-                Dim cimicro As New dControlInformesMicro
-                cimicro.FECHACONTROL = fechad
-                cimicro.FICHA = ficha
-                cimicro.FECHA = fechad
-                cimicro.TIPO = 3
-                cimicro.RESULTADO = 0
-                cimicro.COINCIDE = 0
-                cimicro.OBSERVACIONES = ""
-                cimicro.CONTROLADOR = 100
-                cimicro.CONTROLADO = 0
-                cimicro.guardar()
-                cimicro = Nothing
+                Control.FECHACONTROL = fechad
+                Control.FICHA = Informe
+                Control.FECHA = fechad
+                Control.TIPO = tipoControl
+                Control.RESULTADO = 0
+                Control.COINCIDE = 0
+                Control.OBSERVACIONES = ""
+                Control.CONTROLADOR = 100
+                Control.CONTROLADO = 0
+                Control.guardar()
 
                 Dim controlGestor As New dNGControl
                 Try
                     'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
+                    controlGestor.InformeId = Informe
                     controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 3 'Micro
+                    controlGestor.ControlTipoId = tipoControl
                     controlGestor.ControlCoincide = 0
                     controlGestor.ControlControlado = 0
                     controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
                     controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-        Else
-            Dim cimicro As New dControlInformesMicro
-            cimicro.FECHACONTROL = fechad
-            cimicro.FICHA = ficha
-            cimicro.FECHA = fechad
-            cimicro.TIPO = 3
-            cimicro.RESULTADO = 0
-            cimicro.COINCIDE = 0
-            cimicro.OBSERVACIONES = ""
-            cimicro.CONTROLADOR = 100
-            cimicro.CONTROLADO = 0
-            cimicro.guardar()
-            cimicro = Nothing
-
-            Dim controlGestor As New dNGControl
-            Try
-                'Registro en Gestor Nuevo
-                controlGestor.InformeId = pi.FICHA
-                controlGestor.UsuarioId = _usuario.ID
-                controlGestor.ControlTipoId = 3 'Micro
-                controlGestor.ControlCoincide = 0
-                controlGestor.ControlControlado = 0
-                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlInformeTipo = pi.TIPO
-                controlGestor.ControlNoConformidad = 0
-                controlGestor.ControlObservaciones = "Se creo Control"
-                controlGestor.ControlOpcMejora = 0
-                controlGestor.ControlResultado = 0
-                controlGestor.guardar()
-            Catch ex As Exception
-
-            End Try
-            ' Grabar estado de la ficha
-            Dim est As New dEstados
-            est.FICHA = ficha
-            est.ESTADO = 6
-            est.FECHA = fechad
-            est.guardar2()
-            est = Nothing
-            '****************************
-        End If
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-            productorweb_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_atb()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\ANTIBIOGRAMA\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\ANTIBIOGRAMA\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-            Else
-                MsgBox("No coincide el usuario web (.com)")
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-           'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-            productorweb_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_parasitologia()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\PARASITOLOGIA\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\PARASITOLOGIA\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                            sRutaDestino2, _
-                                            True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_alimentos()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\ALIMENTOS\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\ALIMENTOS\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        'AGREGRA A LISTA PARA CONTROLAR ***************************
-        Dim fechadesde As Date = Now
-        Dim fechahasta As Date = Now
-        Dim fechad As String
-        Dim fechah As String
-        Dim tipo As Integer = 7
-        fechad = Format(fechadesde, "yyyy-MM-dd")
-        fechah = Format(fechahasta, "yyyy-MM-dd")
-        Dim ci As New dControlInformesMicro
-        Dim lista As New ArrayList
-        lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-        If Not lista Is Nothing Then
-            If lista.Count < 6 Then
-                Dim cimicro As New dControlInformesMicro
-                cimicro.FECHACONTROL = fechad
-                cimicro.FICHA = ficha
-                cimicro.FECHA = fechad
-                cimicro.TIPO = 7
-                cimicro.RESULTADO = 0
-                cimicro.COINCIDE = 0
-                cimicro.OBSERVACIONES = ""
-                cimicro.CONTROLADOR = 100
-                cimicro.CONTROLADO = 0
-                cimicro.guardar()
-                cimicro = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 3 'Micro
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-        Else
-            Dim cimicro As New dControlInformesMicro
-            cimicro.FECHACONTROL = fechad
-            cimicro.FICHA = ficha
-            cimicro.FECHA = fechad
-            cimicro.TIPO = 7
-            cimicro.RESULTADO = 0
-            cimicro.COINCIDE = 0
-            cimicro.OBSERVACIONES = ""
-            cimicro.CONTROLADOR = 100
-            cimicro.CONTROLADO = 0
-            cimicro.guardar()
-            cimicro = Nothing
-
-            Dim controlGestor As New dNGControl
-            Try
-                'Registro en Gestor Nuevo
-                controlGestor.InformeId = pi.FICHA
-                controlGestor.UsuarioId = _usuario.ID
-                controlGestor.ControlTipoId = 3 'Micro
-                controlGestor.ControlCoincide = 0
-                controlGestor.ControlControlado = 0
-                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlInformeTipo = pi.TIPO
-                controlGestor.ControlNoConformidad = 0
-                controlGestor.ControlObservaciones = "Se creo Control"
-                controlGestor.ControlOpcMejora = 0
-                controlGestor.ControlResultado = 0
-                controlGestor.guardar()
-            Catch ex As Exception
-
-            End Try
-            ' Grabar estado de la ficha
-            Dim est As New dEstados
-            est.FICHA = ficha
-            est.ESTADO = 6
-            est.FECHA = fechad
-            est.guardar2()
-            est = Nothing
-            '****************************
-        End If
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-            productorweb_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_serologia()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-
-            v.Show()
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_patologia()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\PATOLOGIA\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\PATOLOGIA\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3       'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_calidad()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        Dim marcarPago As Integer = 0
-        marcarPago = abonado
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        Dim cliente As Integer = 0
-        cliente = TextIdCliente.Text.Trim
-
-        'ABRE TXT PARA CONTROL ****************************************************************************************************************
-        If cliente = 6299 Then 'Or cliente = 2705 Then
-            'If RadioAbonado.Checked = True Or RadioNoAbonadocv.Checked = True Then
-            Dim arch As String = ""
-            arch = "\\192.168.1.10\E\NET\CALIDAD\" & ficha & ".txt"
-            If File.Exists(arch) Then
-                System.Diagnostics.Process.Start(arch)
-            End If
-            'End If
-            Dim result = MessageBox.Show("Desea enviar un correo electrónico con el archivo txt?", "Atención!", MessageBoxButtons.YesNoCancel)
-            If result = DialogResult.Cancel Then
-                Exit Sub
-            ElseIf result = DialogResult.No Then
-                Exit Sub
-            ElseIf result = DialogResult.Yes Then
-                '*** MOVER ARCHIVO XLS ***********************************************************************
-                Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".xls"
-                Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-                Try
-                    ' Mover el fichero.si existe lo sobreescribe  
-                    My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                                    sRutaDestino, _
-                                                    True)
-                    'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                    ' errores  
-                Catch ex As Exception
-                    MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-                End Try
-                '*** MOVER ARCHIVO PDF ***********************************************************************
-                Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".pdf"
-                Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-                Try
-                    ' Mover el fichero.si existe lo sobreescribe  
-                    My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                                    sRutaDestino2, _
-                                                    True)
-                    'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                    ' errores  
-                Catch ex As Exception
-                    MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-                End Try
-                '*****************************************************************************************
-                If RadioAbonado.Checked = True Or RadioNoAbonadocv.Checked = True Then
-                    If cliente = 6299 Then
-                        enviar_correo_AFB()
-                        enviar_correo_AFB2()
-                    ElseIf cliente = 2705 Then
-                        enviar_correo_IS()
-                    End If
-                End If
-            End If
-            'enviar_correo_AFB()
-            'enviar_correo_AFB2()
-        Else
-            '*** MOVER ARCHIVO XLS ***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                                sRutaDestino, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF ***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                                sRutaDestino2, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*****************************************************************************************
-        End If
-
-        '***********************************
-        Dim pi As New dPreinformes
-        Dim fechaactual As Date = Now()
-        Dim fecactual As String
-        fecactual = Format(fechaactual, "yyyy-MM-dd")
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.FECHA = fecactual
-        pi.modificar2()
-        'AGREGRA A LISTA PARA CONTROLAR FQ***************************
-        Dim fechadesde As Date = Now
-        Dim fechahasta As Date = Now
-        Dim fechad As String
-        Dim fechah As String
-        Dim tipo As Integer = 10
-        fechad = Format(fechadesde, "yyyy-MM-dd")
-        fechah = Format(fechahasta, "yyyy-MM-dd")
-        Dim ci As New dControlInformesFQ
-        Dim lista As New ArrayList
-        lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-        If Not lista Is Nothing Then
-            If lista.Count < 6 Then
-                Dim cifq As New dControlInformesFQ
-                cifq.FECHACONTROL = fechad
-                cifq.FICHA = ficha
-                cifq.FECHA = fechad
-                cifq.TIPO = 10
-                cifq.RESULTADO = 0
-                cifq.COINCIDE = 0
-                cifq.OBSERVACIONES = ""
-                cifq.CONTROLADOR = 100
-                cifq.CONTROLADO = 0
-                cifq.guardar()
-                cifq = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 1 'FQ
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
+                    controlGestor.ControlInformeTipo = tipoinforme
                     controlGestor.ControlNoConformidad = 0
                     controlGestor.ControlObservaciones = "Se creo Control"
                     controlGestor.ControlOpcMejora = 0
@@ -1744,7 +671,7 @@ Public Class FormSubirInformes2
 
                 ' Grabar estado de la ficha
                 Dim est As New dEstados
-                est.FICHA = ficha
+                est.FICHA = Informe
                 est.ESTADO = 6
                 est.FECHA = fechad
                 est.guardar2()
@@ -1752,30 +679,29 @@ Public Class FormSubirInformes2
                 '****************************
             End If
         Else
-            Dim cifq As New dControlInformesFQ
-            cifq.FECHACONTROL = fechad
-            cifq.FICHA = ficha
-            cifq.FECHA = fechad
-            cifq.TIPO = 10
-            cifq.RESULTADO = 0
-            cifq.COINCIDE = 0
-            cifq.OBSERVACIONES = ""
-            cifq.CONTROLADOR = 100
-            cifq.CONTROLADO = 0
-            cifq.guardar()
-            cifq = Nothing
+            Control.FECHACONTROL = fechad
+            Control.FICHA = Informe
+            Control.FECHA = fechad
+            Control.TIPO = tipoControl
+            Control.RESULTADO = 0
+            Control.COINCIDE = 0
+            Control.OBSERVACIONES = ""
+            Control.CONTROLADOR = 100
+            Control.CONTROLADO = 0
+            Control.guardar()
+            Control = Nothing
 
             Dim controlGestor As New dNGControl
             Try
                 'Registro en Gestor Nuevo
-                controlGestor.InformeId = pi.FICHA
+                controlGestor.InformeId = Informe
                 controlGestor.UsuarioId = _usuario.ID
-                controlGestor.ControlTipoId = 1 'FQ
+                controlGestor.ControlTipoId = tipoControl
                 controlGestor.ControlCoincide = 0
                 controlGestor.ControlControlado = 0
                 controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
                 controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlInformeTipo = pi.TIPO
+                controlGestor.ControlInformeTipo = tipoinforme
                 controlGestor.ControlNoConformidad = 0
                 controlGestor.ControlObservaciones = "Se creo Control"
                 controlGestor.ControlOpcMejora = 0
@@ -1787,2452 +713,129 @@ Public Class FormSubirInformes2
 
             ' Grabar estado de la ficha
             Dim est As New dEstados
-            est.FICHA = ficha
-            est.ESTADO = 6
-            est.FECHA = fechad
-            est.guardar2()
-            est = Nothing
-
-            '****************************
-        End If
-        'AGREGRA A LISTA PARA CONTROLAR MICRO***************************
-        Dim csm As New dCalidadSolicitudMuestra
-        csm.FICHA = ficha
-        csm = csm.buscarxsolicitud
-        If csm.RB = 1 Or csm.INHIBIDORES = 1 Or csm.ESPORULADOS = 1 Or csm.PSICROTROFOS = 1 Then
-            Dim cim As New dControlInformesMicro
-            Dim listam As New ArrayList
-            listam = cim.listarxtipoxfecha(tipo, fechad, fechah)
-            If Not listam Is Nothing Then
-                If listam.Count < 6 Then
-                    Dim cimicro As New dControlInformesMicro
-                    cimicro.FECHACONTROL = fechad
-                    cimicro.FICHA = ficha
-                    cimicro.FECHA = fechad
-                    cimicro.TIPO = 10
-                    cimicro.RESULTADO = 0
-                    cimicro.COINCIDE = 0
-                    cimicro.OBSERVACIONES = ""
-                    cimicro.CONTROLADOR = 100
-                    cimicro.CONTROLADO = 0
-                    cimicro.guardar()
-                    cimicro = Nothing
-
-                    Dim controlGestor As New dNGControl
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 3 'Micro
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
-
-                    End Try
-
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            Else
-                Dim cimicro As New dControlInformesMicro
-                cimicro.FECHACONTROL = fechad
-                cimicro.FICHA = ficha
-                cimicro.FECHA = fechad
-                cimicro.TIPO = 10
-                cimicro.RESULTADO = 0
-                cimicro.COINCIDE = 0
-                cimicro.OBSERVACIONES = ""
-                cimicro.CONTROLADOR = 100
-                cimicro.CONTROLADO = 0
-                cimicro.guardar()
-                cimicro = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 3 'Micro
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-        End If
-
-
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        '**Marcar pago en SA***
-        Dim solicitud As New dSolicitudAnalisis
-        solicitud.ID = ficha
-        solicitud = solicitud.buscar
-        If marcarPago = 0 Then
-            solicitud.PAGO = 0
-            solicitud.marcarpago2(Usuario)
-        End If
-        If marcarPago = 1 Then
-            solicitud.PAGO = 1
-            solicitud.marcarpago2(Usuario)
-        End If
-        If marcarPago = 2 Then
-            solicitud.PAGO = 2
-            solicitud.marcarpago2(Usuario)
-        End If
-        limpiar()
-        marcarxdefecto()
-    End Sub
-
-    Private Sub subir_mineralesenleche()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        Dim cliente As Integer = 0
-        cliente = TextIdCliente.Text.Trim
-
-        'ABRE TXT PARA CONTROL ****************************************************************************************************************
-        If cliente = 6299 Then 'Or cliente = 2705 Then
-            'If RadioAbonado.Checked = True Or RadioNoAbonadocv.Checked = True Then
-            Dim arch As String = ""
-            arch = "\\192.168.1.10\E\NET\CALIDAD\" & ficha & ".txt"
-            If File.Exists(arch) Then
-                System.Diagnostics.Process.Start(arch)
-            End If
-            'End If
-            Dim result = MessageBox.Show("Desea enviar un correo electrónico con el archivo txt?", "Atención!", MessageBoxButtons.YesNoCancel)
-            If result = DialogResult.Cancel Then
-                Exit Sub
-            ElseIf result = DialogResult.No Then
-                Exit Sub
-            ElseIf result = DialogResult.Yes Then
-                '*** MOVER ARCHIVO XLS ***********************************************************************
-                Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".xls"
-                Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-                Try
-                    ' Mover el fichero.si existe lo sobreescribe  
-                    My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                                    sRutaDestino, _
-                                                    True)
-                    'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                    ' errores  
-                Catch ex As Exception
-                    MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-                End Try
-                '*** MOVER ARCHIVO PDF ***********************************************************************
-                Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".pdf"
-                Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-                Try
-                    ' Mover el fichero.si existe lo sobreescribe  
-                    My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                                    sRutaDestino2, _
-                                                    True)
-                    'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                    ' errores  
-                Catch ex As Exception
-                    MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-                End Try
-                '*****************************************************************************************
-                If RadioAbonado.Checked = True Or RadioNoAbonadocv.Checked = True Then
-                    If cliente = 6299 Then
-                        enviar_correo_AFB()
-                        enviar_correo_AFB2()
-                    ElseIf cliente = 2705 Then
-                        enviar_correo_IS()
-                    End If
-                End If
-            End If
-            'enviar_correo_AFB()
-            'enviar_correo_AFB2()
-        Else
-            '*** MOVER ARCHIVO XLS ***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                                sRutaDestino, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF ***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                                sRutaDestino2, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*****************************************************************************************
-        End If
-
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_ambiental()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\AMBIENTAL\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\AMBIENTAL\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_nutricion()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\NUTRICION\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\NUTRICION\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        'AGREGRA A LISTA PARA CONTROLAR ***************************
-        Dim fechadesde As Date = Now
-        Dim fechahasta As Date = Now
-        Dim fechad As String
-        Dim fechah As String
-        Dim tipo As Integer = 13
-        fechad = Format(fechadesde, "yyyy-MM-dd")
-        fechah = Format(fechahasta, "yyyy-MM-dd")
-        Dim ci As New dControlInformesNutricion
-        Dim lista As New ArrayList
-        lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-        If Not lista Is Nothing Then
-            If lista.Count < 6 Then
-                Dim cinutricion As New dControlInformesNutricion
-                cinutricion.FECHACONTROL = fechad
-                cinutricion.FICHA = ficha
-                cinutricion.FECHA = fechad
-                cinutricion.TIPO = 13
-                cinutricion.RESULTADO = 0
-                cinutricion.COINCIDE = 0
-                cinutricion.OBSERVACIONES = ""
-                cinutricion.CONTROLADOR = 100
-                cinutricion.CONTROLADO = 0
-                cinutricion.guardar()
-                cinutricion = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 4 'Nutricion
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-        Else
-            Dim cinutricion As New dControlInformesNutricion
-            cinutricion.FECHACONTROL = fechad
-            cinutricion.FICHA = ficha
-            cinutricion.FECHA = fechad
-            cinutricion.TIPO = 13
-            cinutricion.RESULTADO = 0
-            cinutricion.COINCIDE = 0
-            cinutricion.OBSERVACIONES = ""
-            cinutricion.CONTROLADOR = 100
-            cinutricion.CONTROLADO = 0
-            cinutricion.guardar()
-            cinutricion = Nothing
-
-            Dim controlGestor As New dNGControl
-            Try
-                'Registro en Gestor Nuevo
-                controlGestor.InformeId = pi.FICHA
-                controlGestor.UsuarioId = _usuario.ID
-                controlGestor.ControlTipoId = 4 'Nutricion
-                controlGestor.ControlCoincide = 0
-                controlGestor.ControlControlado = 0
-                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlInformeTipo = pi.TIPO
-                controlGestor.ControlNoConformidad = 0
-                controlGestor.ControlObservaciones = "Se creo Control"
-                controlGestor.ControlOpcMejora = 0
-                controlGestor.ControlResultado = 0
-                controlGestor.guardar()
-            Catch ex As Exception
-
-            End Try
-
-            ' Grabar estado de la ficha
-            Dim est As New dEstados
-            est.FICHA = ficha
+            est.FICHA = Informe
             est.ESTADO = 6
             est.FECHA = fechad
             est.guardar2()
             est = Nothing
             '****************************
         End If
-        '*****************************************************************************
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
 
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-           'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
     End Sub
-    Private Sub subir_suelos()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        Dim AnexosPHCreados = False
-        Dim AnexosFerCreados = False
-        Dim AnexosCationesCreados = False
 
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
+    Public Sub mover_archivos(ByVal enumCarpeta As EnumCarpetaInforme, ByVal tipoInforme As Long)
 
-        Dim sFile1 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-        Dim sFile2 As String = "\\ROBOT\PREINFORMES\SUELOS\anexo" & ficha & ".pdf"
-        Dim sFile3 As String = "\\ROBOT\PREINFORMES\SUELOS\anexoPH" & ficha & ".pdf"
-        Dim sFile4 As String = "\\ROBOT\PREINFORMES\SUELOS\anexoCationes" & ficha & ".pdf"
+        Dim carpetaInforme As String = EnumCarpetaInformeToString(enumCarpeta)
+
+        '****************************************************************************************
+        'JUNTAR LOS 2 PDF ***************************************************************************
+        ' Creamos una lista de archivos para concatenar
         Dim Listax As New List(Of String)
+        ' Identificamos los documentos que queremos unir
+        Dim sFile1 As String = "\\192.168.1.10\E\NET\" + carpetaInforme + "\Graficas\" & Informe & ".pdf"
+        Dim sFile2 As String = "\\192.168.1.10\E\NET\" + carpetaInforme + "\Graficas\x" & Informe & ".pdf"
+        ' Los añadimos a la lista
         Listax.Add(sFile1)
+        Listax.Add(sFile2)
 
-        If isAnexo Then 'fertilizantes
-            Listax.Add(sFile2)
-        End If
+        ' Unir PDFs y Mover TXT
+        If tipoInforme = EnumTipoInforme.ControlLechero Then
 
-        If isAnexoPH Then 'PH
-            Listax.Add(sFile3)
-        End If
+            Dim sFileJoin As String = ""
 
-        If isAnexoCationes Then 'PH
-            Listax.Add(sFile4)
-        End If
-
-        ' Nombre del documento resultante
-        Dim sFileJoin As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Dim Doc As New Document()
-        Try
-            Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
-            Dim copy As New PdfCopy(Doc, fs)
-            Doc.Open()
-            Dim Rd As PdfReader
-            Dim n As Integer 'Número de páginas de cada pdf
-            For Each file In Listax
-                Rd = New PdfReader(file)
-                n = Rd.NumberOfPages
-                Dim page As Integer = 0
-                Do While page < n
-                    page += 1
-                    copy.AddPage(copy.GetImportedPage(Rd, page))
-                Loop
-                copy.FreeReader(Rd)
-                Rd.Close()
-            Next
-        Catch ex As Exception
-            MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf, si el informe no lleva ANEXO por conversiòn de fertilizante proceguir.")
-        Finally
-            ' Cerramos el documento
-            Doc.Close()
-        End Try
-
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        'AGREGRA A LISTA PARA CONTROLAR ***************************
-        Dim fechadesde As Date = Now
-        Dim fechahasta As Date = Now
-        Dim fechad As String
-        Dim fechah As String
-        Dim tipo As Integer = 14
-        fechad = Format(fechadesde, "yyyy-MM-dd")
-        fechah = Format(fechahasta, "yyyy-MM-dd")
-        Dim ci As New dControlInformesSuelos
-        Dim lista As New ArrayList
-        lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-        If Not lista Is Nothing Then
-            If lista.Count < 6 Then
-                Dim cisuelos As New dControlInformesSuelos
-                cisuelos.FECHACONTROL = fechad
-                cisuelos.FICHA = ficha
-                cisuelos.FECHA = fechad
-                cisuelos.TIPO = 14
-                cisuelos.RESULTADO = 0
-                cisuelos.COINCIDE = 0
-                cisuelos.OBSERVACIONES = ""
-                cisuelos.CONTROLADOR = 100
-                cisuelos.CONTROLADO = 0
-                cisuelos.guardar()
-                cisuelos = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 5 'suelos
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-        Else
-            Dim cisuelos As New dControlInformesSuelos
-            cisuelos.FECHACONTROL = fechad
-            cisuelos.FICHA = ficha
-            cisuelos.FECHA = fechad
-            cisuelos.TIPO = 14
-            cisuelos.RESULTADO = 0
-            cisuelos.COINCIDE = 0
-            cisuelos.OBSERVACIONES = ""
-            cisuelos.CONTROLADOR = 100
-            cisuelos.CONTROLADO = 0
-            cisuelos.guardar()
-            cisuelos = Nothing
-
-            Dim controlGestor As New dNGControl
-            Try
-                'Registro en Gestor Nuevo
-                controlGestor.InformeId = pi.FICHA
-                controlGestor.UsuarioId = _usuario.ID
-                controlGestor.ControlTipoId = 5 'suelos
-                controlGestor.ControlCoincide = 0
-                controlGestor.ControlControlado = 0
-                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlInformeTipo = pi.TIPO
-                controlGestor.ControlNoConformidad = 0
-                controlGestor.ControlObservaciones = "Se creo Control"
-                controlGestor.ControlOpcMejora = 0
-                controlGestor.ControlResultado = 0
-                controlGestor.guardar()
-            Catch ex As Exception
-
-            End Try
-
-            ' Grabar estado de la ficha
-            Dim est As New dEstados
-            est.FICHA = ficha
-            est.ESTADO = 6
-            est.FECHA = fechad
-            est.guardar2()
-            est = Nothing
-            '****************************
-        End If
-        '*****************************************************************************
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-            productorweb_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_brucelosis()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\BRUCELOSIS_LECHE\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\BRUCELOSIS_LECHE\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_efluentes()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\EFLUENTES\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\EFLUENTES\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        'AGREGRA A LISTA PARA CONTROLAR ***************************
-        Dim fechadesde As Date = Now
-        Dim fechahasta As Date = Now
-        Dim fechad As String
-        Dim fechah As String
-        Dim tipo As Integer = 16
-        fechad = Format(fechadesde, "yyyy-MM-dd")
-        fechah = Format(fechahasta, "yyyy-MM-dd")
-        Dim ci As New dControlInformesEfluentes
-        Dim lista As New ArrayList
-        lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-        If Not lista Is Nothing Then
-            If lista.Count < 6 Then
-                Dim ciefluentes As New dControlInformesEfluentes
-                ciefluentes.FECHACONTROL = fechad
-                ciefluentes.FICHA = ficha
-                ciefluentes.FECHA = fechad
-                ciefluentes.TIPO = 16
-                ciefluentes.RESULTADO = 0
-                ciefluentes.COINCIDE = 0
-                ciefluentes.OBSERVACIONES = ""
-                ciefluentes.CONTROLADOR = 100
-                ciefluentes.CONTROLADO = 0
-                ciefluentes.guardar()
-                ciefluentes = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 2 'Efluentes
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-        Else
-            Dim ciefluentes As New dControlInformesEfluentes
-            ciefluentes.FECHACONTROL = fechad
-            ciefluentes.FICHA = ficha
-            ciefluentes.FECHA = fechad
-            ciefluentes.TIPO = 16
-            ciefluentes.RESULTADO = 0
-            ciefluentes.COINCIDE = 0
-            ciefluentes.OBSERVACIONES = ""
-            ciefluentes.CONTROLADOR = 100
-            ciefluentes.CONTROLADO = 0
-            ciefluentes.guardar()
-            ciefluentes = Nothing
-
-            Dim controlGestor As New dNGControl
-            Try
-                'Registro en Gestor Nuevo
-                controlGestor.InformeId = pi.FICHA
-                controlGestor.UsuarioId = _usuario.ID
-                controlGestor.ControlTipoId = 2 'Efluentes
-                controlGestor.ControlCoincide = 0
-                controlGestor.ControlControlado = 0
-                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlInformeTipo = pi.TIPO
-                controlGestor.ControlNoConformidad = 0
-                controlGestor.ControlObservaciones = "Se creo Control"
-                controlGestor.ControlOpcMejora = 0
-                controlGestor.ControlResultado = 0
-                controlGestor.guardar()
-            Catch ex As Exception
-
-            End Try
-            ' Grabar estado de la ficha
-            Dim est As New dEstados
-            est.FICHA = ficha
-            est.ESTADO = 6
-            est.FECHA = fechad
-            est.guardar2()
-            est = Nothing
-            '****************************
-        End If
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-           'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_bacteriologia()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\BACTERIOLOGIA\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\BACTERIOLOGIA\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_bacteriologia_clinica()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\BACTERIOLOGIA\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\BACTERIOLOGIA\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                email = RTrim(pw_com.ENVIAR_EMAIL)
+            If tipoInforme = EnumTipoInforme.ControlLechero Then
+                sFileJoin = "\\ROBOT\PREINFORMES\CONTROL\" & Informe & ".pdf"
             Else
-                MsgBox("No coincide el usuario web (.com)")
+                sFileJoin = "\\ROBOT\PREINFORMES\" + carpetaInforme + "\" & Informe & ".pdf"
             End If
 
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-            productorweb_com = Nothing
-            pw_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3        'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_foliares()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        'AGREGRA A LISTA PARA CONTROLAR ***************************
-        Dim fechadesde As Date = Now
-        Dim fechahasta As Date = Now
-        Dim fechad As String
-        Dim fechah As String
-        Dim tipo As Integer = 19
-        fechad = Format(fechadesde, "yyyy-MM-dd")
-        fechah = Format(fechahasta, "yyyy-MM-dd")
-        Dim ci As New dControlInformesSuelos
-        Dim lista As New ArrayList
-        lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-        If Not lista Is Nothing Then
-            If lista.Count < 6 Then
-                Dim cisuelos As New dControlInformesSuelos
-                cisuelos.FECHACONTROL = fechad
-                cisuelos.FICHA = ficha
-                cisuelos.FECHA = fechad
-                cisuelos.TIPO = 19
-                cisuelos.RESULTADO = 0
-                cisuelos.COINCIDE = 0
-                cisuelos.OBSERVACIONES = ""
-                cisuelos.CONTROLADOR = 100
-                cisuelos.CONTROLADO = 0
-                cisuelos.guardar()
-                cisuelos = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 5 'suelo
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-        Else
-            Dim cisuelos As New dControlInformesSuelos
-            cisuelos.FECHACONTROL = fechad
-            cisuelos.FICHA = ficha
-            cisuelos.FECHA = fechad
-            cisuelos.TIPO = 19
-            cisuelos.RESULTADO = 0
-            cisuelos.COINCIDE = 0
-            cisuelos.OBSERVACIONES = ""
-            cisuelos.CONTROLADOR = 100
-            cisuelos.CONTROLADO = 0
-            cisuelos.guardar()
-            cisuelos = Nothing
-
-            Dim controlGestor As New dNGControl
+            Dim Doc As New Document()
             Try
-                'Registro en Gestor Nuevo
-                controlGestor.InformeId = pi.FICHA
-                controlGestor.UsuarioId = _usuario.ID
-                controlGestor.ControlTipoId = 5 'Suelo
-                controlGestor.ControlCoincide = 0
-                controlGestor.ControlControlado = 0
-                controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                controlGestor.ControlInformeTipo = pi.TIPO
-                controlGestor.ControlNoConformidad = 0
-                controlGestor.ControlObservaciones = "Se creo Control"
-                controlGestor.ControlOpcMejora = 0
-                controlGestor.ControlResultado = 0
-                controlGestor.guardar()
+                Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
+                Dim copy As New PdfCopy(Doc, fs)
+                Doc.Open()
+                Dim Rd As PdfReader
+                Dim n As Integer
+                For Each file In Listax
+                    Rd = New PdfReader(file)
+                    n = Rd.NumberOfPages
+                    Dim page As Integer = 0
+                    Do While page < n
+                        page += 1
+                        copy.AddPage(copy.GetImportedPage(Rd, page))
+                    Loop
+                    copy.FreeReader(Rd)
+                    Rd.Close()
+                Next
             Catch ex As Exception
 
+            Finally
+                Doc.Close()
             End Try
 
-            ' Grabar estado de la ficha
-            Dim est As New dEstados
-            est.FICHA = ficha
-            est.ESTADO = 6
-            est.FECHA = fechad
-            est.guardar2()
-            est = Nothing
-            '****************************
-        End If
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
+            '*** MOVER ARCHIVO TXT***********************************************************************
 
-            'gestorColaveco
+            Dim sArchivoOrigenTxt As String = ""
 
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
+            If tipoInforme = EnumTipoInforme.ControlLechero Then
+                sArchivoOrigenTxt = "\\ROBOT\PREINFORMES\CONTROL\" & Informe & ".txt"
+            Else
+                sArchivoOrigenTxt = "\\ROBOT\PREINFORMES\" + carpetaInforme + "\" & Informe & ".txt"
             End If
 
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
+            Dim sRutaDestino3 As String = "\\ROBOT\INFORMES PARA SUBIR\" & Informe & ".txt"
 
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subir_toxicologia()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        '****************************************************************************************
-        '*** MOVER ARCHIVO XLS***********************************************************************
-        Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\TOXICOLOGIA\" & ficha & ".xls"
-        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '*** MOVER ARCHIVO PDF***********************************************************************
-        Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\TOXICOLOGIA\" & ficha & ".pdf"
-        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-        Try
-            ' Mover el fichero.si existe lo sobreescribe  
-            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-            'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-            ' errores  
-        Catch ex As Exception
-            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-        End Try
-        '***********************************
-        Dim pi As New dPreinformes
-        pi.FICHA = ficha
-        pi.ABONADO = abonado
-        pi.COMENTARIO = comentario
-        pi.COPIA = copia
-        pi.PARASUBIR = 1
-        pi.modificar2()
-        '****************************************************************************************
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 2         'sin visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol Is Nothing Then
-                muestras = sol.NMUESTRAS
-            End If
-            Dim importe As Double = sol.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-
-            'Email
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol = Nothing
-        Else
-            Dim sol As New dSolicitudAnalisis
-            sol.ID = ficha
-            sol = sol.buscar
-
-            'gestorColaveco
-
-            Dim nuevoGestor As New dNuevoGestor
-            nuevoGestor.ID = ficha
-            nuevoGestor.SOLICITUDESTADOID = 3         'con visualizacion
-            nuevoGestor.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol.IDPRODUCTOR
-            p.ID = sol.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-
-            p = Nothing
-            prod = Nothing
-            sol = Nothing
-
-            'Gestor, envio mail al cliente
-            enviomailInformeConVisualizacion()
-        End If
-        '****************************
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub subirinforme()
-        Dim ficha As Long = 0
-        Dim abonado As Integer = 0
-        Dim comentario As String = ""
-        Dim copia As String = ""
-        ficha = TextFicha.Text.Trim
-        If RadioAbonado.Checked = True Then
-            abonado = 2
-        ElseIf RadioNoAbonadocv.Checked = True Then
-            abonado = 1
-        ElseIf RadioNoAbonadosv.Checked = True Then
-            abonado = 0
-        End If
-        If TextComentarios.Text <> "" Then
-            comentario = TextComentarios.Text
-        End If
-        If TextEnviarCopia.Text <> "" Then
-            copia = TextEnviarCopia.Text
-        End If
-        If TextTipoAnalisis.Text = "Calidad de leche" Then
-            Dim cliente As Integer = 0
-            cliente = TextIdCliente.Text.Trim
-            '*** MOVER ARCHIVO XLS ***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
             Try
                 ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                                sRutaDestino, _
+                My.Computer.FileSystem.MoveFile(sArchivoOrigenTxt, _
+                                                sRutaDestino3, _
                                                 True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
             Catch ex As Exception
                 MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
             End Try
-            '*** MOVER ARCHIVO PDF ***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CALIDAD\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                                sRutaDestino2, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            Dim fechaactual As Date = Now()
-            Dim fecactual As String
-            fecactual = Format(fechaactual, "yyyy-MM-dd")
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.FECHA = fecactual
-            pi.modificar2()
-            'AGREGRA A LISTA PARA CONTROLAR FQ***************************
-            Dim fechadesde As Date = Now
-            Dim fechahasta As Date = Now
-            Dim fechad As String
-            Dim fechah As String
-            Dim tipo As Integer = 10
-            fechad = Format(fechadesde, "yyyy-MM-dd")
-            fechah = Format(fechahasta, "yyyy-MM-dd")
-            Dim ci As New dControlInformesFQ
-            Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-            If Not lista Is Nothing Then
-                If lista.Count < 6 Then
-                    Dim cifq As New dControlInformesFQ
-                    cifq.FECHACONTROL = fechad
-                    cifq.FICHA = ficha
-                    cifq.FECHA = fechad
-                    cifq.TIPO = 10
-                    cifq.RESULTADO = 0
-                    cifq.COINCIDE = 0
-                    cifq.OBSERVACIONES = ""
-                    cifq.CONTROLADOR = 100
-                    cifq.CONTROLADO = 0
-                    cifq.guardar()
-                    cifq = Nothing
 
-                    Dim controlGestor As New dNGControl
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 1 'FQ
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
+        End If
 
-                    End Try
+        '*** MOVER ARCHIVO XLS***********************************************************************
+        Dim sArchivoOrigen As String = ""
+        If tipoInforme = EnumTipoInforme.ControlLechero Then
+            sArchivoOrigen = "\\ROBOT\PREINFORMES\CONTROL\" & Informe & ".xls"
+        Else
+            sArchivoOrigen = "\\ROBOT\PREINFORMES\" + carpetaInforme + "\" & Informe & ".xls"
+        End If
 
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            Else
-                Dim cifq As New dControlInformesFQ
-                cifq.FECHACONTROL = fechad
-                cifq.FICHA = ficha
-                cifq.FECHA = fechad
-                cifq.TIPO = 10
-                cifq.RESULTADO = 0
-                cifq.COINCIDE = 0
-                cifq.OBSERVACIONES = ""
-                cifq.CONTROLADOR = 100
-                cifq.CONTROLADO = 0
-                cifq.guardar()
-                cifq = Nothing
+        Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & Informe & ".xls"
+        Try
+            ' Mover el fichero.si existe lo sobreescribe  
+            My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
+                                           sRutaDestino, _
+                                            True)
+        Catch ex As Exception
+            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+        End Try
 
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 1 'FQ
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-            'AGREGRA A LISTA PARA CONTROLAR MICRO***************************
-            Dim csm As New dCalidadSolicitudMuestra
-            csm.FICHA = ficha
-            csm = csm.buscarxsolicitud
-            If csm.RB = 1 Or csm.INHIBIDORES = 1 Or csm.ESPORULADOS = 1 Or csm.PSICROTROFOS = 1 Then
-                Dim cim As New dControlInformesMicro
-                Dim listam As New ArrayList
-                listam = cim.listarxtipoxfecha(tipo, fechad, fechah)
-                If Not listam Is Nothing Then
-                    If listam.Count < 6 Then
-                        Dim cimicro As New dControlInformesMicro
-                        cimicro.FECHACONTROL = fechad
-                        cimicro.FICHA = ficha
-                        cimicro.FECHA = fechad
-                        cimicro.TIPO = 10
-                        cimicro.RESULTADO = 0
-                        cimicro.COINCIDE = 0
-                        cimicro.OBSERVACIONES = ""
-                        cimicro.CONTROLADOR = 100
-                        cimicro.CONTROLADO = 0
-                        cimicro.guardar()
-                        cimicro = Nothing
-
-                        Dim controlGestor As New dNGControl
-                        Try
-                            'Registro en Gestor Nuevo
-                            controlGestor.InformeId = pi.FICHA
-                            controlGestor.UsuarioId = _usuario.ID
-                            controlGestor.ControlTipoId = 3 'Micro
-                            controlGestor.ControlCoincide = 0
-                            controlGestor.ControlControlado = 0
-                            controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                            controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                            controlGestor.ControlInformeTipo = pi.TIPO
-                            controlGestor.ControlNoConformidad = 0
-                            controlGestor.ControlObservaciones = "Se creo Control"
-                            controlGestor.ControlOpcMejora = 0
-                            controlGestor.ControlResultado = 0
-                            controlGestor.guardar()
-                        Catch ex As Exception
-
-                        End Try
-
-                        ' Grabar estado de la ficha
-                        Dim est As New dEstados
-                        est.FICHA = ficha
-                        est.ESTADO = 6
-                        est.FECHA = fechad
-                        est.guardar2()
-                        est = Nothing
-                        '****************************
-                    End If
-                Else
-                    Dim cimicro As New dControlInformesMicro
-                    cimicro.FECHACONTROL = fechad
-                    cimicro.FICHA = ficha
-                    cimicro.FECHA = fechad
-                    cimicro.TIPO = 10
-                    cimicro.RESULTADO = 0
-                    cimicro.COINCIDE = 0
-                    cimicro.OBSERVACIONES = ""
-                    cimicro.CONTROLADOR = 100
-                    cimicro.CONTROLADO = 0
-                    cimicro.guardar()
-                    cimicro = Nothing
-
-                    Dim controlGestor As New dNGControl
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 3 'Micro
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
-
-                    End Try
-
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            End If
-            If cliente = 6299 Then
-                If RadioAbonado.Checked = True Or RadioNoAbonadocv.Checked = True Then
-                    enviar_correo_AFB()
-                    enviar_correo_AFB2()
-
-                End If
-            End If
-            '*****************************************************************************
-        ElseIf TextTipoAnalisis.Text = "Control Lechero" Then
-            'JUNTAR LOS 2 PDF ***************************************************************************
-            ' Creamos una lista de archivos para concatenar
-            Dim Listax As New List(Of String)
-            ' Identificamos los documentos que queremos unir
-            Dim sFile1 As String = "\\192.168.1.10\E\NET\CONTROL_LECHERO\Graficas\" & ficha & ".pdf"
-            Dim sFile2 As String = "\\192.168.1.10\E\NET\CONTROL_LECHERO\Graficas\x" & ficha & ".pdf"
-            ' Los añadimos a la lista
+        '*** MOVER ARCHIVO PDF***********************************************************************
+        If tipoInforme = EnumTipoInforme.Suelos Then
+            sFile1 = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
+            sFile2 = "\\ROBOT\PREINFORMES\SUELOS\anexo" & ficha & ".pdf"
+            sFile3 = "\\ROBOT\PREINFORMES\SUELOS\anexoPH" & ficha & ".pdf"
+            sFile4 = "\\ROBOT\PREINFORMES\SUELOS\anexoCationes" & ficha & ".pdf"
             Listax.Add(sFile1)
-            Listax.Add(sFile2)
+
+            If isAnexo Then 'fertilizantes
+                Listax.Add(sFile2)
+            End If
+
+            If isAnexoPH Then 'PH
+                Listax.Add(sFile3)
+            End If
+
+            If isAnexoCationes Then 'PH
+                Listax.Add(sFile4)
+            End If
+
             ' Nombre del documento resultante
-            Dim sFileJoin As String = "\\ROBOT\PREINFORMES\CONTROL\" & ficha & ".pdf"
+            Dim sFileJoin As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
             Dim Doc As New Document()
             Try
                 Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
@@ -4252,1190 +855,34 @@ Public Class FormSubirInformes2
                     Rd.Close()
                 Next
             Catch ex As Exception
-                'MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf")
+                MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf, si el informe no lleva ANEXO por conversiòn de fertilizante proceguir.")
             Finally
                 ' Cerramos el documento
                 Doc.Close()
             End Try
-            '********************************************************************************************
-
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\CONTROL\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                               sRutaDestino, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\CONTROL\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                                sRutaDestino2, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO TXT***********************************************************************
-            Dim sArchivoOrigen3 As String = "\\ROBOT\PREINFORMES\CONTROL\" & ficha & ".txt"
-            Dim sRutaDestino3 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".txt"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen3, _
-                                                sRutaDestino3, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-            'AGREGRA A LISTA PARA CONTROLAR ***************************
-            Dim fechadesde As Date = Now
-            Dim fechahasta As Date = Now
-            Dim fechad As String
-            Dim fechah As String
-            Dim tipo As Integer = 1
-            fechad = Format(fechadesde, "yyyy-MM-dd")
-            fechah = Format(fechahasta, "yyyy-MM-dd")
-            Dim ci As New dControlInformesFQ
-            Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-            If Not lista Is Nothing Then
-                If lista.Count < 6 Then
-                    Dim cifq As New dControlInformesFQ
-                    cifq.FECHACONTROL = fechad
-                    cifq.FICHA = ficha
-                    cifq.FECHA = fechad
-                    cifq.TIPO = 1
-                    cifq.RESULTADO = 0
-                    cifq.COINCIDE = 0
-                    cifq.OBSERVACIONES = ""
-                    cifq.CONTROLADOR = 100
-                    cifq.CONTROLADO = 0
-                    cifq.guardar()
-                    cifq = Nothing
-
-                    Dim controlGestor As New dNGControl
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 1 'FQ
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
-
-                    End Try
-
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            Else
-                Dim cifq As New dControlInformesFQ
-                cifq.FECHACONTROL = fechad
-                cifq.FICHA = ficha
-                cifq.FECHA = fechad
-                cifq.TIPO = 1
-                cifq.RESULTADO = 0
-                cifq.COINCIDE = 0
-                cifq.OBSERVACIONES = ""
-                cifq.CONTROLADOR = 100
-                cifq.CONTROLADO = 0
-                cifq.guardar()
-                cifq = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 1 'FQ
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-            '*****************************************************************************
-        ElseIf TextTipoAnalisis.Text = "Agua" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\AGUA\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-                                               sRutaDestino, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\AGUA\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                                sRutaDestino2, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-            'AGREGRA A LISTA PARA CONTROLAR ***************************
-            Dim fechadesde As Date = Now
-            Dim fechahasta As Date = Now
-            Dim fechad As String
-            Dim fechah As String
-            Dim tipo As Integer = 3
-            fechad = Format(fechadesde, "yyyy-MM-dd")
-            fechah = Format(fechahasta, "yyyy-MM-dd")
-            Dim ci As New dControlInformesMicro
-            Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-            If Not lista Is Nothing Then
-                If lista.Count < 6 Then
-                    Dim cimicro As New dControlInformesMicro
-                    cimicro.FECHACONTROL = fechad
-                    cimicro.FICHA = ficha
-                    cimicro.FECHA = fechad
-                    cimicro.TIPO = 3
-                    cimicro.RESULTADO = 0
-                    cimicro.COINCIDE = 0
-                    cimicro.OBSERVACIONES = ""
-                    cimicro.CONTROLADOR = 100
-                    cimicro.CONTROLADO = 0
-                    cimicro.guardar()
-                    cimicro = Nothing
-
-                    Dim controlGestor As New dNGControl
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 3 'micro
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
-
-                    End Try
-
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            Else
-                Dim cimicro As New dControlInformesMicro
-                cimicro.FECHACONTROL = fechad
-                cimicro.FICHA = ficha
-                cimicro.FECHA = fechad
-                cimicro.TIPO = 3
-                cimicro.RESULTADO = 0
-                cimicro.COINCIDE = 0
-                cimicro.OBSERVACIONES = ""
-                cimicro.CONTROLADOR = 100
-                cimicro.CONTROLADO = 0
-                cimicro.guardar()
-                cimicro = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 3 'Micro
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-            '*****************************************************************************
-        ElseIf TextTipoAnalisis.Text = "Alimentos" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\ALIMENTOS\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\ALIMENTOS\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-            'AGREGRA A LISTA PARA CONTROLAR ***************************
-            Dim fechadesde As Date = Now
-            Dim fechahasta As Date = Now
-            Dim fechad As String
-            Dim fechah As String
-            Dim tipo As Integer = 7
-            fechad = Format(fechadesde, "yyyy-MM-dd")
-            fechah = Format(fechahasta, "yyyy-MM-dd")
-            Dim ci As New dControlInformesMicro
-            Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-            If Not lista Is Nothing Then
-                If lista.Count < 6 Then
-                    Dim cimicro As New dControlInformesMicro
-                    cimicro.FECHACONTROL = fechad
-                    cimicro.FICHA = ficha
-                    cimicro.FECHA = fechad
-                    cimicro.TIPO = 7
-                    cimicro.RESULTADO = 0
-                    cimicro.COINCIDE = 0
-                    cimicro.OBSERVACIONES = ""
-                    cimicro.CONTROLADOR = 100
-                    cimicro.CONTROLADO = 0
-                    cimicro.guardar()
-                    cimicro = Nothing
-
-                    Dim controlGestor As New dNGControl
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 3 'micro
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
-
-                    End Try
-
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            Else
-                Dim cimicro As New dControlInformesMicro
-                cimicro.FECHACONTROL = fechad
-                cimicro.FICHA = ficha
-                cimicro.FECHA = fechad
-                cimicro.TIPO = 7
-                cimicro.RESULTADO = 0
-                cimicro.COINCIDE = 0
-                cimicro.OBSERVACIONES = ""
-                cimicro.CONTROLADOR = 100
-                cimicro.CONTROLADO = 0
-                cimicro.guardar()
-                cimicro = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 3 'micro
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-            '*****************************************************************************
-        ElseIf TextTipoAnalisis.Text = "Aislamiento y Antibiograma" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\ANTIBIOGRAMA\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\ANTIBIOGRAMA\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-        ElseIf TextTipoAnalisis.Text = "Bacteriología de tanque" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\BACTERIOLOGIA\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\BACTERIOLOGIA\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-        ElseIf TextTipoAnalisis.Text = "Bacteriología clínica aeróbica" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\BACTERIOLOGIA\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\BACTERIOLOGIA\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-        ElseIf TextTipoAnalisis.Text = "Ambiental" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\AMBIENTAL\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\AMBIENTAL\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-        ElseIf TextTipoAnalisis.Text = "Brucelosis en leche" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\BRUCELOSIS_LECHE\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\BRUCELOSIS_LECHE\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-        ElseIf TextTipoAnalisis.Text = "Nutrición" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\NUTRICION\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\NUTRICION\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-            'AGREGRA A LISTA PARA CONTROLAR ***************************
-            Dim fechadesde As Date = Now
-            Dim fechahasta As Date = Now
-            Dim fechad As String
-            Dim fechah As String
-            Dim tipo As Integer = 13
-            fechad = Format(fechadesde, "yyyy-MM-dd")
-            fechah = Format(fechahasta, "yyyy-MM-dd")
-            Dim ci As New dControlInformesNutricion
-            Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-            If Not lista Is Nothing Then
-                If lista.Count < 6 Then
-                    Dim cinutricion As New dControlInformesNutricion
-                    cinutricion.FECHACONTROL = fechad
-                    cinutricion.FICHA = ficha
-                    cinutricion.FECHA = fechad
-                    cinutricion.TIPO = 13
-                    cinutricion.RESULTADO = 0
-                    cinutricion.COINCIDE = 0
-                    cinutricion.OBSERVACIONES = ""
-                    cinutricion.CONTROLADOR = 100
-                    cinutricion.CONTROLADO = 0
-                    cinutricion.guardar()
-                    cinutricion = Nothing
-
-                    Dim controlGestor As New dNGControl
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 4 'nutricion
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
-
-                    End Try
-
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            Else
-                Dim cinutricion As New dControlInformesNutricion
-                cinutricion.FECHACONTROL = fechad
-                cinutricion.FICHA = ficha
-                cinutricion.FECHA = fechad
-                cinutricion.TIPO = 13
-                cinutricion.RESULTADO = 0
-                cinutricion.COINCIDE = 0
-                cinutricion.OBSERVACIONES = ""
-                cinutricion.CONTROLADOR = 100
-                cinutricion.CONTROLADO = 0
-                cinutricion.guardar()
-                cinutricion = Nothing
-
-                Dim controlGestor As New dNGControl
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 4 'nutricion
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-            '*****************************************************************************
-        ElseIf TextTipoAnalisis.Text = "Parasitología" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\PARASITOLOGIA\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\PARASITOLOGIA\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-                                                sRutaDestino2, _
-                                                True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-
-
-            '*****************************************************************************
-        ElseIf TextTipoAnalisis.Text = "Toxicología" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\TOXICOLOGIA\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\TOXICOLOGIA\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-
-            '*****************************************************************************
-        ElseIf TextTipoAnalisis.Text = "Efluentes" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\EFLUENTES\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\EFLUENTES\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-            'AGREGRA A LISTA PARA CONTROLAR ***************************
-            Dim fechadesde As Date = Now
-            Dim fechahasta As Date = Now
-            Dim fechad As String
-            Dim fechah As String
-            Dim tipo As Integer = 16
-            fechad = Format(fechadesde, "yyyy-MM-dd")
-            fechah = Format(fechahasta, "yyyy-MM-dd")
-            Dim ci As New dControlInformesMicro
-            Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-            If Not lista Is Nothing Then
-                If lista.Count < 6 Then
-                    Dim cimicro As New dControlInformesMicro
-                    cimicro.FECHACONTROL = fechad
-                    cimicro.FICHA = ficha
-                    cimicro.FECHA = fechad
-                    cimicro.TIPO = 16
-                    cimicro.RESULTADO = 0
-                    cimicro.COINCIDE = 0
-                    cimicro.OBSERVACIONES = ""
-                    cimicro.CONTROLADOR = 100
-                    cimicro.CONTROLADO = 0
-                    cimicro.guardar()
-                    cimicro = Nothing
-
-                    Dim controlGestor As New dNGControl
-
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 3 'micro
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
-
-                    End Try
-
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            Else
-                Dim cimicro As New dControlInformesMicro
-                cimicro.FECHACONTROL = fechad
-                cimicro.FICHA = ficha
-                cimicro.FECHA = fechad
-                cimicro.TIPO = 16
-                cimicro.RESULTADO = 0
-                cimicro.COINCIDE = 0
-                cimicro.OBSERVACIONES = ""
-                cimicro.CONTROLADOR = 100
-                cimicro.CONTROLADO = 0
-                cimicro.guardar()
-                cimicro = Nothing
-
-                Dim controlGestor As New dNGControl
-
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 3 'micro
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-            '*****************************************************************************
-
-        ElseIf TextTipoAnalisis.Text = "Suelos" Or TextTipoAnalisis.Text = "Foliares" Then
-            '*** MOVER ARCHIVO XLS***********************************************************************
-            Dim sArchivoOrigen As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".xls"
-            Dim sRutaDestino As String = "\\SERVERGESTOR\Informes\" & ficha & ".xls"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.CopyFile(sArchivoOrigen, sRutaDestino, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '*** MOVER ARCHIVO PDF***********************************************************************
-            Dim sArchivoOrigen2 As String = "\\ROBOT\PREINFORMES\SUELOS\" & ficha & ".pdf"
-            Dim sRutaDestino2 As String = "\\SERVERGESTOR\Informes\" & ficha & ".pdf"
-            Try
-                ' Mover el fichero.si existe lo sobreescribe  
-                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, sRutaDestino2, True)
-                'MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-                ' errores  
-            Catch ex As Exception
-                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-            End Try
-            '***********************************
-            Dim pi As New dPreinformes
-            pi.FICHA = ficha
-            pi.ABONADO = abonado
-            pi.COMENTARIO = comentario
-            pi.COPIA = copia
-            pi.PARASUBIR = 1
-            pi.modificar2()
-            'AGREGRA A LISTA PARA CONTROLAR ***************************
-            Dim fechadesde As Date = Now
-            Dim fechahasta As Date = Now
-            Dim fechad As String
-            Dim fechah As String
-            Dim tipo As Integer = 14
-            fechad = Format(fechadesde, "yyyy-MM-dd")
-            fechah = Format(fechahasta, "yyyy-MM-dd")
-            Dim ci As New dControlInformesSuelos
-            Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
-            If Not lista Is Nothing Then
-                If lista.Count < 6 Then
-                    Dim cisuelos As New dControlInformesSuelos
-                    cisuelos.FECHACONTROL = fechad
-                    cisuelos.FICHA = ficha
-                    cisuelos.FECHA = fechad
-                    cisuelos.TIPO = 14
-                    cisuelos.RESULTADO = 0
-                    cisuelos.COINCIDE = 0
-                    cisuelos.OBSERVACIONES = ""
-                    cisuelos.CONTROLADOR = 100
-                    cisuelos.CONTROLADO = 0
-                    cisuelos.guardar()
-                    cisuelos = Nothing
-
-                    Dim controlGestor As New dNGControl
-
-                    Try
-                        'Registro en Gestor Nuevo
-                        controlGestor.InformeId = pi.FICHA
-                        controlGestor.UsuarioId = _usuario.ID
-                        controlGestor.ControlTipoId = 5 'suelos
-                        controlGestor.ControlCoincide = 0
-                        controlGestor.ControlControlado = 0
-                        controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                        controlGestor.ControlInformeTipo = pi.TIPO
-                        controlGestor.ControlNoConformidad = 0
-                        controlGestor.ControlObservaciones = "Se creo Control"
-                        controlGestor.ControlOpcMejora = 0
-                        controlGestor.ControlResultado = 0
-                        controlGestor.guardar()
-                    Catch ex As Exception
-
-                    End Try
-
-                    ' Grabar estado de la ficha
-                    Dim est As New dEstados
-                    est.FICHA = ficha
-                    est.ESTADO = 6
-                    est.FECHA = fechad
-                    est.guardar2()
-                    est = Nothing
-                    '****************************
-                End If
-            Else
-                Dim cisuelos As New dControlInformesSuelos
-                cisuelos.FECHACONTROL = fechad
-                cisuelos.FICHA = ficha
-                cisuelos.FECHA = fechad
-                cisuelos.TIPO = 14
-                cisuelos.RESULTADO = 0
-                cisuelos.COINCIDE = 0
-                cisuelos.OBSERVACIONES = ""
-                cisuelos.CONTROLADOR = 100
-                cisuelos.CONTROLADO = 0
-                cisuelos.guardar()
-                cisuelos = Nothing
-
-                Dim controlGestor As New dNGControl
-
-                Try
-                    'Registro en Gestor Nuevo
-                    controlGestor.InformeId = pi.FICHA
-                    controlGestor.UsuarioId = _usuario.ID
-                    controlGestor.ControlTipoId = 5 'suelos
-                    controlGestor.ControlCoincide = 0
-                    controlGestor.ControlControlado = 0
-                    controlGestor.ControlFechaIngreso = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlFechaRealizado = Today.ToString("yyyy-MM-dd HH:mm:ss")
-                    controlGestor.ControlInformeTipo = pi.TIPO
-                    controlGestor.ControlNoConformidad = 0
-                    controlGestor.ControlObservaciones = "Se creo Control"
-                    controlGestor.ControlOpcMejora = 0
-                    controlGestor.ControlResultado = 0
-                    controlGestor.guardar()
-                Catch ex As Exception
-
-                End Try
-
-                ' Grabar estado de la ficha
-                Dim est As New dEstados
-                est.FICHA = ficha
-                est.ESTADO = 6
-                est.FECHA = fechad
-                est.guardar2()
-                est = Nothing
-                '****************************
-            End If
-            '*****************************************************************************
-        End If
-        ' Grabar si es sin visualización
-        If RadioNoAbonadosv.Checked = True Then
-            Dim fechaact As Date = Now()
-            Dim fecact As String
-            fecact = Format(fechaact, "yyyy-MM-dd")
-            Dim sol3 As New dSolicitudAnalisis
-            sol3.ID = ficha
-            sol3 = sol3.buscar
-
-            'gestorColaveco
-            sol3.SOLICITUDESTADOID = 4
-            sol3.modificar(Usuario)
-
-            Dim muestras As Integer = 0
-            If Not sol3 Is Nothing Then
-                muestras = sol3.NMUESTRAS
-            End If
-            Dim importe As Double = sol3.IMPORTE
-            Dim visualizacion As Integer = 0
-            Dim observaciones As String = ""
-            If TextComentarios.Text <> "" Then
-                observaciones = TextComentarios.Text.Trim
-            End If
-            Dim sv As New dSinVisualizacion
-            sv.FICHA = ficha
-            fichasv = ficha
-            sv.FECHA = fecact
-            sv.MUESTRAS = muestras
-            sv.IMPORTE = importe
-            sv.VISUALIZACION = visualizacion
-            sv.FECHAVISUALIZACION = fecact
-            sv.OBSERVACIONES = observaciones
-            sv.guardar()
-            Dim p As New dCliente
-            Dim prod As Long = sol3.IDPRODUCTOR
-            Dim productorweb_com As String = ""
-            productorweb_com = p.USUARIO_WEB
-            'Dim pw_com As New dProductorWeb_com
-            'pw_com.USUARIO = productorweb_com
-            'pw_com = pw_com.buscar
-            'If Not pw_com Is Nothing Then
-            '    email = RTrim(pw_com.ENVIAR_EMAIL)
-            'Else
-            '    MsgBox("No coincide el usuario web (.com)")
-            'End If
-
-            Dim v As New FormCorreoMorosos(Usuario, email, ficha)
-            v.Show()
-            'productorweb_com = Nothing
-            'pw_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sv = Nothing
-            sol3 = Nothing
         Else
-            Dim sol2 As New dSolicitudAnalisis
-            sol2.ID = ficha
-            sol2 = sol2.buscar
-
-            'gestorColaveco
-            sol2.SOLICITUDESTADOID = 5
-            sol2.modificar(Usuario)
-
-            Dim p As New dCliente
-            Dim prod As Long = sol2.IDPRODUCTOR
-            p.ID = sol2.IDPRODUCTOR
-            p = p.buscar
-            If p.NOT_EMAIL_ANALISIS1 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS1)
-            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
-                email = RTrim(p.NOT_EMAIL_ANALISIS2)
-            ElseIf p.EMAIL <> "" Then
-                email = RTrim(p.EMAIL)
-            End If
-            'Dim productorweb_com As String = ""
-            'productorweb_com = p.USUARIO_WEB
-            'Dim pw_com As New dProductorWeb_com
-            'pw_com.USUARIO = productorweb_com
-            'pw_com = pw_com.buscar
-            'If Not pw_com Is Nothing Then
-            '    'email = RTrim(pw_com.ENVIAR_EMAIL)
-            'Else
-            '    MsgBox("No coincide el usuario web (.com)")
-            'End If
-            Dim v As New FormCorreo(Usuario, email, ficha)
-            v.Show()
-            productorweb_com = Nothing
-            'pw_com = Nothing
-            p = Nothing
-            prod = Nothing
-            sol2 = Nothing
-        End If
-        '****************************
-        Dim sol As New dSolicitudAnalisis
-        sol.ID = ficha
-        sol = sol.buscar
-        sol.FECHAENVIO = Today
-        sol.modificar(Usuario)
-
-
-        limpiar()
-        marcarxdefecto()
-    End Sub
-    Private Sub limpiar()
-        TextIdCliente.Text = ""
-        TextNombreCliente.Text = ""
-        TextFicha.Text = ""
-        TextComentarios.Text = ""
-        TextEnviarCopia.Text = ""
-    End Sub
-    Private Sub ButtonSeleccionarCliente_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSeleccionarCliente.Click
-        Dim v As New FormBuscarCliente
-        v.ShowDialog()
-        productorweb_com = ""
-        If Not v.Cliente Is Nothing Then
-            Dim cli As dCliente = v.Cliente
-            TextIdCliente.Text = cli.ID
-            TextNombreCliente.Text = cli.NOMBRE
-            If cli.USUARIO_WEB = "" Then
-                MsgBox("El cliente no tiene usuario web")
-                Exit Sub
-                limpiar()
-                marcarxdefecto()
-            End If
-            productorweb_com = cli.USUARIO_WEB
-            Dim pw_com As New dProductorWeb_com
-            pw_com.USUARIO = productorweb_com
-            pw_com = pw_com.buscar
-            If Not pw_com Is Nothing Then
-                idproductorweb_com = pw_com.ID
-                email = RTrim(pw_com.ENVIAR_EMAIL)
-                celular = Replace(pw_com.ENVIAR_SMS, " ", "")
+            Dim sArchivoOrigen2 As String = ""
+            If tipoInforme = EnumTipoInforme.ControlLechero Then
+                sArchivoOrigen2 = "\\ROBOT\PREINFORMES\CONTROL\" & Informe & ".pdf"
             Else
-                MsgBox("No coincide el usuario web (.com)")
-                Exit Sub
+                sArchivoOrigen2 = "\\ROBOT\PREINFORMES\" + carpetaInforme + "\" & Informe & ".pdf"
             End If
-            If cli.FAC_CONTADO = 1 Then
-                MsgBox("El cliente es CONTADO!")
-            End If
-            If cli.PROLESA = 1 Then
-                MsgBox("El cliente realiza el pago por PROLESA.")
-                ButtonSeleccionarFicha.Focus()
-            End If
-            ButtonSeleccionarFicha.Focus()
+
+            Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & Informe & ".pdf"
+            Try
+                ' Mover el fichero.si existe lo sobreescribe  
+                My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
+                                                sRutaDestino2, _
+                                                True)
+            Catch ex As Exception
+                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
+            End Try
         End If
+        
+
     End Sub
-    Private Sub ButtonSeleccionarFicha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSeleccionarFicha.Click
+
+    Public Sub ButtonSeleccionarFicha_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSeleccionarFicha.Click
         Dim cliente As Long = TextIdCliente.Text.Trim
         Dim v As New FormListarFichas(cliente)
         Dim vencido As Integer = 0
@@ -5577,237 +1024,125 @@ Public Class FormSubirInformes2
         End If
     End Sub
 
-    Private Sub ButtonEnviarCopia_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonEnviarCopia.Click
-        Dim v As New FormBuscarTecnico
-        v.ShowDialog()
-        Dim mailproductor As String = ""
-        If Not v.Productor Is Nothing Then
-            Dim pro As dProductorWeb_com = v.Productor
-            TextEnviarCopia.Text = pro.ENVIAR_EMAIL
-        End If
-    End Sub
-    Private Sub enviar_correo_AFB()
-        Dim _Message As New System.Net.Mail.MailMessage()
-        Dim _SMTP As New System.Net.Mail.SmtpClient
-        Dim email As String = ""
-        Dim destinatario As String = ""
-        Dim archivo As String = ""
-        archivo = TextFicha.Text.Trim
-        email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
-        If email <> "" Then
-            'CONFIGURACIÓN DEL STMP 
-            ' Llamamos al método buscar para obtener el objeto Credenciales
-            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+    Public Function EnumCarpetaInformeToString(carpeta As EnumCarpetaInforme) As String
+        Return carpeta.ToString()
+    End Function
 
-            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
-            _SMTP.Host = objetoCredenciales.CredencialesHost
-            _SMTP.Port = 25
-            _SMTP.EnableSsl = False
+    Public Sub actualizar_estados(ByVal abonado As Long)
+        Dim sol As New dSolicitudAnalisis
 
-            ' CONFIGURACION DEL MENSAJE 
-            _Message.[To].Add(email)
-            _Message.[To].Add("envios@colaveco.com.uy")
-            'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
-            'Quien lo envía 
-            _Message.Subject = "Colaveco - Calidad de leche"
-            'Sujeto del e-mail 
-            _Message.SubjectEncoding = System.Text.Encoding.UTF8
-            'Codificacion 
-            _Message.Body = "Adjuntamos informe de Calidad de leche."
-            'contenido del mail 
-            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
-            _Message.Priority = System.Net.Mail.MailPriority.Normal
-            _Message.IsBodyHtml = False
-            ' ADICION DE DATOS ADJUNTOS ‘
-            'Dim _File As String = "\\ROBOT\PREINFORMES\CALIDAD\" & archivo & ".pdf" 'archivo que se quiere adjuntar ‘
-            Dim _File As String = "\\ROBOT\INFORMES PARA SUBIR\" & archivo & ".pdf" 'archivo que se quiere adjuntar ‘
-            Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
-            _Message.Attachments.Add(_Attachment) 'ENVIO 
-            Try
-                _SMTP.Send(_Message)
-                MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                _Attachment = Nothing
-                _File = ""
-            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
-            End Try
-        End If
-        email = ""
-    End Sub
-    Private Sub enviar_correo_AFB2()
-        Dim _Message As New System.Net.Mail.MailMessage()
-        Dim _SMTP As New System.Net.Mail.SmtpClient
-        Dim email As String = ""
-        Dim destinatario As String = ""
-        Dim archivo As String = ""
-        archivo = TextFicha.Text.Trim
-        email = "jgarello@lasibila.com.ar, pdemaio@lasibila.com.ar, amrodriguez@afb.com.uy, hvilche@afb.com.uy, lab.fisicoquimico@afb.com.uy, mcornejo@afb.com.uy"
-        If email <> "" Then
-            'CONFIGURACIÓN DEL STMP 
-            ' Llamamos al método buscar para obtener el objeto Credenciales
-            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+        ' Grabar si es NO abonado sin visualización
+        If abonado = 0 Then
+            Dim fechaact As Date = Now()
+            Dim fecact As String
+            Dim muestras As Integer = 0
+            fecact = Format(fechaact, "yyyy-MM-dd")
 
-            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
-            _SMTP.Host = objetoCredenciales.CredencialesHost
-            _SMTP.Port = 25
-            _SMTP.EnableSsl = False
+            Dim sv As New dSinVisualizacion
+            sol.ID = Informe
+            sol = sol.buscar
 
-            ' CONFIGURACION DEL MENSAJE 
-            _Message.[To].Add(email)
-            _Message.[To].Add("envios@colaveco.com.uy")
-            'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
-            'Quien lo envía 
-            _Message.Subject = "Colaveco - Calidad de leche - TXT"
-            'Sujeto del e-mail 
-            _Message.SubjectEncoding = System.Text.Encoding.UTF8
-            'Codificacion 
-            _Message.Body = "Adjuntamos informe de Calidad de leche."
-            'contenido del mail 
-            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
-            _Message.Priority = System.Net.Mail.MailPriority.Normal
-            _Message.IsBodyHtml = False
-            ' ADICION DE DATOS ADJUNTOS ‘
-            Dim _File As String = "\\192.168.1.10\E\NET\CALIDAD\" & archivo & ".txt" 'archivo que se quiere adjuntar ‘
-            Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
-            _Message.Attachments.Add(_Attachment) 'ENVIO 
-            Try
-                _SMTP.Send(_Message)
-                MessageBox.Show("TXT enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                _Attachment = Nothing
-                _File = ""
-            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
-            End Try
-        End If
-        email = ""
-    End Sub
-    Private Sub enviar_correo_IS()
-        Dim _Message As New System.Net.Mail.MailMessage()
-        Dim _SMTP As New System.Net.Mail.SmtpClient
-        Dim email As String = ""
-        Dim destinatario As String = ""
-        Dim archivo As String = ""
-        archivo = TextFicha.Text.Trim
-        email = "iverocay@hotmail.com"
-        If email <> "" Then
-      
-            'CONFIGURACIÓN DEL STMP 
-            ' Llamamos al método buscar para obtener el objeto Credenciales
-            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+            Dim nuevoGestor As New dNuevoGestor
+            nuevoGestor.ID = Informe
+            nuevoGestor.SOLICITUDESTADOID = 2
+            nuevoGestor.modificar(Usuario)
 
-            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
-            _SMTP.Host = objetoCredenciales.CredencialesHost
-            _SMTP.Port = 25
-            _SMTP.EnableSsl = False
+            If Not sol Is Nothing Then
+                muestras = sol.NMUESTRAS
+            End If
 
-            ' CONFIGURACION DEL MENSAJE 
-            _Message.[To].Add(email)
-            _Message.[To].Add("envios@colaveco.com.uy")
-            'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
-            'Quien lo envía 
-            _Message.Subject = "Colaveco - Calidad de leche - TXT"
-            'Sujeto del e-mail 
-            _Message.SubjectEncoding = System.Text.Encoding.UTF8
-            'Codificacion 
-            _Message.Body = "Adjuntamos informe de Calidad de leche."
-            'contenido del mail 
-            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
-            _Message.Priority = System.Net.Mail.MailPriority.Normal
-            _Message.IsBodyHtml = False
-            ' ADICION DE DATOS ADJUNTOS ‘
-            Dim _File As String = "\\192.168.1.10\E\NET\CALIDAD\" & archivo & ".txt" 'archivo que se quiere adjuntar ‘
-            Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
-            _Message.Attachments.Add(_Attachment) 'ENVIO 
-            Try
-                _SMTP.Send(_Message)
-                MessageBox.Show("TXT enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-                _Attachment = Nothing
-                _File = ""
-            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
-            End Try
-        End If
-        email = ""
-    End Sub
-    Private Sub DataRepeater1_CurrentItemIndexChanged(sender As Object, e As EventArgs)
+            Dim importe As Double = sol.IMPORTE
+            Dim visualizacion As Integer = 0
+            Dim observaciones As String = ""
 
-    End Sub
+            If TextComentarios.Text <> "" Then
+                observaciones = TextComentarios.Text.Trim
+            End If
 
-    Private Sub FormSubirInformes2_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+            sv.FICHA = Informe
+            fichasv = Informe
+            sv.FECHA = fecact
+            sv.MUESTRAS = muestras
+            sv.IMPORTE = importe
+            sv.VISUALIZACION = visualizacion
+            sv.FECHAVISUALIZACION = fecact
+            sv.OBSERVACIONES = observaciones
+            sv.guardar()
 
-    End Sub
-
-    Private Sub enviomailInformeConVisualizacion()
-        Dim _Message As New System.Net.Mail.MailMessage()
-        Dim _SMTP As New System.Net.Mail.SmtpClient
-        Dim sa As New dSolicitudAnalisis
-        Dim p As New dCliente
-        Dim ti As New dTipoInforme
-        Dim nombre_productor As String = ""
-        Dim tipo_analisis As String = ""
-        nficha = idficha
-        sa.ID = nficha
-        sa = sa.buscar
-        If Not sa Is Nothing Then
-            p.ID = sa.IDPRODUCTOR
+            Dim p As New dCliente
+            Dim prod As Long = sol.IDPRODUCTOR
+            p.ID = sol.IDPRODUCTOR
             p = p.buscar
-            If Not p Is Nothing Then
-                nombre_productor = p.NOMBRE
-            End If
-            ti.ID = sa.IDTIPOINFORME
-            ti = ti.buscar
-            If Not ti Is Nothing Then
-                tipo_analisis = ti.NOMBRE
-            End If
-        End If
-        Dim texto As String = ""
-        texto = "Nos es grato comunicarle que el informe Nº " & " " & nficha & " - " & tipo_analisis & " (" & nombre_productor & ")," & "se encuentra disponible en la web/app de Colaveco." & vbCrLf _
-            & "Para poder acceder a los resultados debe ir a www.colaveco.com.uy y digitar su usuario y contraseña." & vbCrLf _
-            & "Sino cuenta con usuario y contraseña, favor solicitarla en administración al correo electrónico colaveco@gmail.com o al teléfono 4554 5311." & vbCrLf _
-            & "Agradecemos su confianza y quedamos a sus órdenes." & vbCrLf & vbCrLf _
-            & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
-            & "Administración - COLAVECO"
-        If email <> "" Then
-         
-            'CONFIGURACIÓN DEL STMP 
-            ' Llamamos al método buscar para obtener el objeto Credenciales
-            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
 
-            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
-            _SMTP.Host = objetoCredenciales.CredencialesHost
-            _SMTP.Port = 25
-            _SMTP.EnableSsl = False
+            If p.NOT_EMAIL_ANALISIS1 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS1)
+            ElseIf p.NOT_EMAIL_ANALISIS2 <> "" Then
+                email = RTrim(p.NOT_EMAIL_ANALISIS2)
+            ElseIf p.EMAIL <> "" Then
+                email = RTrim(p.EMAIL)
+            End If
 
-            ' CONFIGURACION DEL MENSAJE 
-            '_Message.[To].Add("computos@colaveco.com.uy")
-            Try
-                _Message.[To].Add(email)
-                _Message.[To].Add("envios@colaveco.com.uy")
-            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
-            End Try
-            'Cuenta de Correo al que se le quiere enviar el e-mail 
-            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
-            'Quien lo envía 
-            _Message.Subject = "Informe" & " Nº " & nficha & " - Colaveco"
-            'Sujeto del e-mail 
-            _Message.SubjectEncoding = System.Text.Encoding.UTF8
-            'Codificacion 
-            _Message.Body = texto
-            'contenido del mail 
-            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
-            _Message.Priority = System.Net.Mail.MailPriority.Normal
-            _Message.IsBodyHtml = False
-            ' ADICION DE DATOS ADJUNTOS ‘
-            'Dim _File As String = My.Application.Info.DirectoryPath & "archivo" 'archivo que se quiere adjuntar ‘
-            'Dim _Attachment As New System.Net.Mail.Attachment(_File, System.Net.Mime.MediaTypeNames.Application.Octet) '
-            '_Message.Attachments.Add(_Attachment) 'ENVIO 
-            Try
-                _SMTP.Send(_Message)
-                'MessageBox.Show("Correo enviado!", "Correo", MessageBoxButtons.OK, MessageBoxIcon.Information)
-            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
-            End Try
+            'Email a informes no abonados sin visualización
+            Dim v As New FormCorreoMorosos(Usuario, email, Informe)
+            v.Show()
+
+            p = Nothing
+            prod = Nothing
+            sv = Nothing
+            sol = Nothing
+
+            'No abonado con visualización o Abonado
+        ElseIf abonado = 2 Or abonado = 1 Then
+
+            sol.ID = Informe
+            sol = sol.buscar
+
+            'Gestor, envio mail al cliente, verifico si tiene Control pendiente de aprovación 
+
+            Dim fichaControl As New dControlInformesFQ
+            Dim estado As Integer = fichaControl.obtener_estado_control_ficha(Informe)
+            Dim control As EnumControles = CType(estado, EnumControles)
+
+            Select Case control
+                Case EnumControles.Controlado
+                    subir_informe_gestor()
+                    MsgBox("Se finalizó el proceso y se notifico al cliente por mail, el informe fué controlado por un técnmico y subido al Gestor modificando a su nuevo estado.")
+                Case EnumControles.NoControlado
+                    MsgBox("Informe en proceso, debe ser controlado por un técnico para ser Finalizado.")
+                Case EnumControles.NoTieneControl
+                    subir_informe_gestor()
+                    MsgBox("Se finalizó el proceso y se notifico al cliente por mail, Informe no tenía asociado un control para hacerse por lo tanto fué subido al Gestor y modificado su estado.")
+            End Select
+
+            sol = Nothing
+
         End If
-        email = ""
-        nficha = 0
     End Sub
+
+    Public Sub estadoPago()
+        If RadioAbonado.Checked = True Then
+            abonado = 2
+        ElseIf RadioNoAbonadocv.Checked = True Then
+            abonado = 1
+        ElseIf RadioNoAbonadosv.Checked = True Then
+            abonado = 0
+        End If
+        If TextComentarios.Text <> "" Then
+            comentario = TextComentarios.Text
+        End If
+        If TextEnviarCopia.Text <> "" Then
+            copia = TextEnviarCopia.Text
+        End If
+    End Sub
+
+    Public Sub actualizar_preInforme()
+        Dim pi As New dPreinformes
+        pi.FICHA = Informe
+        pi.ABONADO = abonado
+        pi.COMENTARIO = comentario
+        pi.COPIA = copia
+        pi.PARASUBIR = 1
+        pi.modificar2()
+    End Sub
+
 End Class

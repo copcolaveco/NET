@@ -348,4 +348,42 @@
 
         Return EjecutarTransaccion(lista)
     End Function
+
+    Public Function obtener_estado_control_ficha(ByVal ficha As Long) As Integer
+        Dim sql As String = ""
+        sql &= "SELECT "
+        sql &= "  CASE "
+        sql &= "    WHEN EXISTS (SELECT 1 FROM controlinformesfq WHERE ficha = " & ficha & ") THEN (SELECT controlado FROM controlinformesfq WHERE ficha = " & ficha & ") "
+        sql &= "    WHEN EXISTS (SELECT 1 FROM controlinformesmicro WHERE ficha = " & ficha & ") THEN (SELECT controlado FROM controlinformesmicro WHERE ficha = " & ficha & ") "
+        sql &= "    WHEN EXISTS (SELECT 1 FROM controlinformesefluentes WHERE ficha = " & ficha & ") THEN (SELECT controlado FROM controlinformesefluentes WHERE ficha = " & ficha & ") "
+        sql &= "    WHEN EXISTS (SELECT 1 FROM controlinformesnutricion WHERE ficha = " & ficha & ") THEN (SELECT controlado FROM controlinformesnutricion WHERE ficha = " & ficha & ") "
+        sql &= "    WHEN EXISTS (SELECT 1 FROM controlinformessuelos WHERE ficha = " & ficha & ") THEN (SELECT controlado FROM controlinformessuelos WHERE ficha = " & ficha & ") "
+        sql &= "    ELSE -1 " ' No tiene control asignado
+        sql &= "  END AS EstadoControl;"
+
+        Try
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+
+            If Ds IsNot Nothing AndAlso Ds.Tables.Count > 0 AndAlso Ds.Tables(0).Rows.Count > 0 Then
+
+                Dim resultadoObj As Integer = CType(Ds.Tables(0).Rows(0).Item(0), Integer)
+
+                If Integer.TryParse(resultadoObj.ToString(), resultadoObj) Then
+                    Return resultadoObj
+                Else
+                    Return -1 ' Error de conversión
+                End If
+                
+            Else
+                Return -1 ' Sin resultados
+            End If
+        Catch ex As Exception
+            MsgBox("Error: " & ex.Message)
+            Return -1 ' Error
+        End Try
+    End Function
+
+
+
 End Class

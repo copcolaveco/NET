@@ -1,4 +1,7 @@
 ﻿Public Class dControlInformesNutricion
+
+    Inherits dControlBase
+
 #Region "Atributos"
     Private m_id As Long
     Private m_fechacontrol As String
@@ -146,7 +149,7 @@
 #End Region
 
 #Region "Métodos ABM"
-    Public Function guardar() As Boolean
+    Public Overrides Function guardar() As Boolean
         Dim c As New pControlInformesNutricion
         Return c.guardar(Me)
     End Function
@@ -180,9 +183,9 @@
         Dim c As New pControlInformesNutricion
         Return c.listarxfecha(desde, hasta)
     End Function
-    Public Function listarxtipoxfecha(ByVal tipo As Integer, ByVal desde As String, ByVal hasta As String) As ArrayList
+    Public Overrides Function listarxtipoxfecha(tipo As String, fechad As Date, fechah As Date) As ArrayList
         Dim c As New pControlInformesNutricion
-        Return c.listarxtipoxfecha(tipo, desde, hasta)
+        Return c.listarxtipoxfecha(tipo, fechad, fechah)
     End Function
     Public Function listarxfechanc(ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim c As New pControlInformesNutricion
@@ -232,4 +235,5 @@
         Dim ci As New pControlInformesNutricion
         Return ci.guardarobservaciones(Me, usuario, obs)
     End Function
+
 End Class

@@ -1,4 +1,7 @@
 ﻿Public Class dControlInformesFQ
+
+    Inherits dControlBase
+
 #Region "Atributos"
     Private m_id As Long
     Private m_fechacontrol As String
@@ -146,20 +149,20 @@
 #End Region
 
 #Region "Métodos ABM"
-    Public Function guardar() As Boolean
+    Public Overrides Function guardar() As Boolean
         Dim c As New pControlInformesFQ
         Return c.guardar(Me)
     End Function
     Public Function modificar(ByVal usuario As dUsuario) As Boolean
-        Dim c As New pcontrolinformesfq
+        Dim c As New pControlInformesFQ
         Return c.modificar(Me, usuario)
     End Function
     Public Function eliminar(ByVal usuario As dUsuario) As Boolean
-        Dim c As New pcontrolinformesfq
+        Dim c As New pControlInformesFQ
         Return c.eliminar(Me, usuario)
     End Function
     Public Function buscar() As dControlInformesFQ
-        Dim c As New pcontrolinformesfq
+        Dim c As New pControlInformesFQ
         Return c.buscar(Me)
     End Function
     Public Function buscarxficha() As dControlInformesFQ
@@ -173,64 +176,70 @@
         Return m_ficha
     End Function
     Public Function listar() As ArrayList
-        Dim c As New pcontrolinformesfq
+        Dim c As New pControlInformesFQ
         Return c.listar
     End Function
     Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
-        Dim c As New pcontrolinformesfq
+        Dim c As New pControlInformesFQ
         Return c.listarxfecha(desde, hasta)
     End Function
-    Public Function listarxtipoxfecha(ByVal tipo As Integer, ByVal desde As String, ByVal hasta As String) As ArrayList
+    Public Overrides Function listarxtipoxfecha(tipo As String, fechad As Date, fechah As Date) As ArrayList
         Dim c As New pControlInformesFQ
-        Return c.listarxtipoxfecha(tipo, desde, hasta)
+        Return c.listarxtipoxfecha(tipo, fechad, fechah)
     End Function
     Public Function listarxfechanc(ByVal desde As String, ByVal hasta As String) As ArrayList
-        Dim c As New pcontrolinformesfq
+        Dim c As New pControlInformesFQ
         Return c.listarxfechanc(desde, hasta)
     End Function
 
     Public Function listarxfechaom(ByVal desde As String, ByVal hasta As String) As ArrayList
-        Dim c As New pcontrolinformesfq
+        Dim c As New pControlInformesFQ
         Return c.listarxfechaom(desde, hasta)
     End Function
     Public Function marcarresultado(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.marcarresultado(Me, usuario)
     End Function
     Public Function desmarcarresultado(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.desmarcarresultado(Me, usuario)
     End Function
     Public Function marcarcoincide(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.marcarcoincide(Me, usuario)
     End Function
     Public Function desmarcarcoincide(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.desmarcarcoincide(Me, usuario)
     End Function
     Public Function marcarom(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.marcarom(Me, usuario)
     End Function
     Public Function desmarcarom(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.desmarcarom(Me, usuario)
     End Function
     Public Function marcarnc(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.marcarnc(Me, usuario)
     End Function
     Public Function desmarcarnc(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.desmarcarnc(Me, usuario)
     End Function
     Public Function marcarcontrolada(ByVal usuario As dUsuario) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.marcarcontrolada(Me, usuario)
     End Function
     Public Function guardarobservaciones(ByVal usuario As dUsuario, ByVal obs As String) As Boolean
-        Dim ci As New pcontrolinformesfq
+        Dim ci As New pControlInformesFQ
         Return ci.guardarobservaciones(Me, usuario, obs)
     End Function
+    Public Function obtener_estado_control_ficha(ByVal ficha As Long) As Boolean
+        Dim ci As New pControlInformesFQ
+        Return ci.obtener_estado_control_ficha(ficha)
+    End Function
+
+    
 End Class

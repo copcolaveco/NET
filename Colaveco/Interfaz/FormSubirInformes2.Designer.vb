@@ -26,7 +26,6 @@ Partial Class FormSubirInformes2
         Me.ButtonSubirInforme = New System.Windows.Forms.Button()
         Me.CheckCom = New System.Windows.Forms.CheckBox()
         Me.TextEnviarCopia = New System.Windows.Forms.TextBox()
-        Me.ButtonEnviarCopia = New System.Windows.Forms.Button()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.TextComentarios = New System.Windows.Forms.TextBox()
         Me.RadioAbonado = New System.Windows.Forms.RadioButton()
@@ -46,7 +45,7 @@ Partial Class FormSubirInformes2
         'TextTipoAnalisis
         '
         Me.TextTipoAnalisis.Location = New System.Drawing.Point(16, 153)
-        Me.TextTipoAnalisis.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextTipoAnalisis.Margin = New System.Windows.Forms.Padding(4)
         Me.TextTipoAnalisis.Name = "TextTipoAnalisis"
         Me.TextTipoAnalisis.ReadOnly = True
         Me.TextTipoAnalisis.Size = New System.Drawing.Size(431, 22)
@@ -55,7 +54,7 @@ Partial Class FormSubirInformes2
         'ButtonSubirInforme
         '
         Me.ButtonSubirInforme.Location = New System.Drawing.Point(452, 524)
-        Me.ButtonSubirInforme.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonSubirInforme.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonSubirInforme.Name = "ButtonSubirInforme"
         Me.ButtonSubirInforme.Size = New System.Drawing.Size(125, 28)
         Me.ButtonSubirInforme.TabIndex = 38
@@ -66,7 +65,7 @@ Partial Class FormSubirInformes2
         '
         Me.CheckCom.AutoSize = True
         Me.CheckCom.Location = New System.Drawing.Point(16, 496)
-        Me.CheckCom.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckCom.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckCom.Name = "CheckCom"
         Me.CheckCom.Size = New System.Drawing.Size(202, 21)
         Me.CheckCom.TabIndex = 36
@@ -76,20 +75,10 @@ Partial Class FormSubirInformes2
         'TextEnviarCopia
         '
         Me.TextEnviarCopia.Location = New System.Drawing.Point(16, 464)
-        Me.TextEnviarCopia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextEnviarCopia.Margin = New System.Windows.Forms.Padding(4)
         Me.TextEnviarCopia.Name = "TextEnviarCopia"
         Me.TextEnviarCopia.Size = New System.Drawing.Size(369, 22)
         Me.TextEnviarCopia.TabIndex = 35
-        '
-        'ButtonEnviarCopia
-        '
-        Me.ButtonEnviarCopia.Location = New System.Drawing.Point(16, 428)
-        Me.ButtonEnviarCopia.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
-        Me.ButtonEnviarCopia.Name = "ButtonEnviarCopia"
-        Me.ButtonEnviarCopia.Size = New System.Drawing.Size(100, 28)
-        Me.ButtonEnviarCopia.TabIndex = 34
-        Me.ButtonEnviarCopia.Text = "Enviar copia"
-        Me.ButtonEnviarCopia.UseVisualStyleBackColor = True
         '
         'Label1
         '
@@ -104,7 +93,7 @@ Partial Class FormSubirInformes2
         'TextComentarios
         '
         Me.TextComentarios.Location = New System.Drawing.Point(16, 309)
-        Me.TextComentarios.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextComentarios.Margin = New System.Windows.Forms.Padding(4)
         Me.TextComentarios.Multiline = True
         Me.TextComentarios.Name = "TextComentarios"
         Me.TextComentarios.Size = New System.Drawing.Size(369, 96)
@@ -114,7 +103,7 @@ Partial Class FormSubirInformes2
         '
         Me.RadioAbonado.AutoSize = True
         Me.RadioAbonado.Location = New System.Drawing.Point(16, 250)
-        Me.RadioAbonado.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RadioAbonado.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioAbonado.Name = "RadioAbonado"
         Me.RadioAbonado.Size = New System.Drawing.Size(86, 21)
         Me.RadioAbonado.TabIndex = 31
@@ -126,7 +115,7 @@ Partial Class FormSubirInformes2
         '
         Me.RadioNoAbonadocv.AutoSize = True
         Me.RadioNoAbonadocv.Location = New System.Drawing.Point(16, 222)
-        Me.RadioNoAbonadocv.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RadioNoAbonadocv.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioNoAbonadocv.Name = "RadioNoAbonadocv"
         Me.RadioNoAbonadocv.Size = New System.Drawing.Size(228, 21)
         Me.RadioNoAbonadocv.TabIndex = 30
@@ -138,7 +127,7 @@ Partial Class FormSubirInformes2
         '
         Me.RadioNoAbonadosv.AutoSize = True
         Me.RadioNoAbonadosv.Location = New System.Drawing.Point(16, 193)
-        Me.RadioNoAbonadosv.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.RadioNoAbonadosv.Margin = New System.Windows.Forms.Padding(4)
         Me.RadioNoAbonadosv.Name = "RadioNoAbonadosv"
         Me.RadioNoAbonadosv.Size = New System.Drawing.Size(223, 21)
         Me.RadioNoAbonadosv.TabIndex = 29
@@ -150,7 +139,7 @@ Partial Class FormSubirInformes2
         '
         Me.DateFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
         Me.DateFecha.Location = New System.Drawing.Point(16, 15)
-        Me.DateFecha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.DateFecha.Margin = New System.Windows.Forms.Padding(4)
         Me.DateFecha.Name = "DateFecha"
         Me.DateFecha.Size = New System.Drawing.Size(137, 22)
         Me.DateFecha.TabIndex = 28
@@ -159,7 +148,7 @@ Partial Class FormSubirInformes2
         '
         Me.CheckTxt.AutoSize = True
         Me.CheckTxt.Location = New System.Drawing.Point(429, 124)
-        Me.CheckTxt.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckTxt.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckTxt.Name = "CheckTxt"
         Me.CheckTxt.Size = New System.Drawing.Size(44, 21)
         Me.CheckTxt.TabIndex = 27
@@ -170,7 +159,7 @@ Partial Class FormSubirInformes2
         '
         Me.CheckPdf.AutoSize = True
         Me.CheckPdf.Location = New System.Drawing.Point(367, 124)
-        Me.CheckPdf.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckPdf.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckPdf.Name = "CheckPdf"
         Me.CheckPdf.Size = New System.Drawing.Size(50, 21)
         Me.CheckPdf.TabIndex = 26
@@ -181,7 +170,7 @@ Partial Class FormSubirInformes2
         '
         Me.CheckXls.AutoSize = True
         Me.CheckXls.Location = New System.Drawing.Point(308, 124)
-        Me.CheckXls.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.CheckXls.Margin = New System.Windows.Forms.Padding(4)
         Me.CheckXls.Name = "CheckXls"
         Me.CheckXls.Size = New System.Drawing.Size(46, 21)
         Me.CheckXls.TabIndex = 25
@@ -191,7 +180,7 @@ Partial Class FormSubirInformes2
         'TextFicha
         '
         Me.TextFicha.Location = New System.Drawing.Point(167, 119)
-        Me.TextFicha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextFicha.Margin = New System.Windows.Forms.Padding(4)
         Me.TextFicha.Name = "TextFicha"
         Me.TextFicha.Size = New System.Drawing.Size(132, 22)
         Me.TextFicha.TabIndex = 24
@@ -199,7 +188,7 @@ Partial Class FormSubirInformes2
         'ButtonSeleccionarFicha
         '
         Me.ButtonSeleccionarFicha.Location = New System.Drawing.Point(16, 117)
-        Me.ButtonSeleccionarFicha.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonSeleccionarFicha.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonSeleccionarFicha.Name = "ButtonSeleccionarFicha"
         Me.ButtonSeleccionarFicha.Size = New System.Drawing.Size(143, 28)
         Me.ButtonSeleccionarFicha.TabIndex = 23
@@ -209,7 +198,7 @@ Partial Class FormSubirInformes2
         'ButtonSeleccionarCliente
         '
         Me.ButtonSeleccionarCliente.Location = New System.Drawing.Point(16, 49)
-        Me.ButtonSeleccionarCliente.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonSeleccionarCliente.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonSeleccionarCliente.Name = "ButtonSeleccionarCliente"
         Me.ButtonSeleccionarCliente.Size = New System.Drawing.Size(143, 28)
         Me.ButtonSeleccionarCliente.TabIndex = 22
@@ -219,7 +208,7 @@ Partial Class FormSubirInformes2
         'TextNombreCliente
         '
         Me.TextNombreCliente.Location = New System.Drawing.Point(157, 85)
-        Me.TextNombreCliente.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextNombreCliente.Margin = New System.Windows.Forms.Padding(4)
         Me.TextNombreCliente.Name = "TextNombreCliente"
         Me.TextNombreCliente.ReadOnly = True
         Me.TextNombreCliente.Size = New System.Drawing.Size(419, 22)
@@ -228,7 +217,7 @@ Partial Class FormSubirInformes2
         'TextIdCliente
         '
         Me.TextIdCliente.Location = New System.Drawing.Point(16, 85)
-        Me.TextIdCliente.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextIdCliente.Margin = New System.Windows.Forms.Padding(4)
         Me.TextIdCliente.Name = "TextIdCliente"
         Me.TextIdCliente.ReadOnly = True
         Me.TextIdCliente.Size = New System.Drawing.Size(132, 22)
@@ -243,7 +232,6 @@ Partial Class FormSubirInformes2
         Me.Controls.Add(Me.ButtonSubirInforme)
         Me.Controls.Add(Me.CheckCom)
         Me.Controls.Add(Me.TextEnviarCopia)
-        Me.Controls.Add(Me.ButtonEnviarCopia)
         Me.Controls.Add(Me.Label1)
         Me.Controls.Add(Me.TextComentarios)
         Me.Controls.Add(Me.RadioAbonado)
@@ -258,7 +246,7 @@ Partial Class FormSubirInformes2
         Me.Controls.Add(Me.ButtonSeleccionarCliente)
         Me.Controls.Add(Me.TextNombreCliente)
         Me.Controls.Add(Me.TextIdCliente)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormSubirInformes2"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Subir Informes (Nuevo)"
@@ -270,7 +258,6 @@ Partial Class FormSubirInformes2
     Friend WithEvents ButtonSubirInforme As System.Windows.Forms.Button
     Friend WithEvents CheckCom As System.Windows.Forms.CheckBox
     Friend WithEvents TextEnviarCopia As System.Windows.Forms.TextBox
-    Friend WithEvents ButtonEnviarCopia As System.Windows.Forms.Button
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents TextComentarios As System.Windows.Forms.TextBox
     Friend WithEvents RadioAbonado As System.Windows.Forms.RadioButton

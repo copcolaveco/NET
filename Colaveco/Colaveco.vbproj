@@ -254,6 +254,8 @@
     <Compile Include="Conexion_BD\ConexionMySQL_tools_com.vb" />
     <Compile Include="Conexion_BD\ConexionMySQL_uy.vb" />
     <Compile Include="Conexion_BD\ConexionMySQLGestor.vb" />
+    <Compile Include="Enumerados\EnumCarpetaInforme.vb" />
+    <Compile Include="Enumerados\EnumTipoInforme.vb" />
     <Compile Include="Facturacion\dClient.vb" />
     <Compile Include="Facturacion\dMovCte.vb" />
     <Compile Include="Facturacion\dMovCte2.vb" />
@@ -742,6 +744,8 @@
     <Compile Include="IT\FormPedidosAutomaticos_it.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Logica\dAnalisisConDescripcion.vb" />
+    <Compile Include="Logica\dControlBase.vb" />
     <Compile Include="Logica\dCredenciales.vb" />
     <Compile Include="Logica\dInformeAnalisis.vb" />
     <Compile Include="Logica\dNuevoGestor.vb" />
@@ -949,6 +953,8 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Logica\dNuevoAnalisis_Factura.vb" />
+    <Compile Include="Enumerados\EnumControles.vb" />
+    <Compile Include="Enumerados\EnumTipoControles.vb" />
     <Compile Include="Logica\ResultadoBrucelosisPositivo.vb" />
     <Compile Include="Module2.vb" />
     <Compile Include="Facturacion\dMovimientos2.vb" />
