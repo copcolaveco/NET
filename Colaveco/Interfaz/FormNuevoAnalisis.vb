@@ -449,7 +449,7 @@
                     Dim listaatb2 As New ArrayList
                     listaatb2 = atb2.listarxfichaxmuestra(ficha, _muestra)
                     If Not listaatb2 Is Nothing Then
-                        If idanal = 11 Or idanal = 316 Or atb.AISLAMIENTO = 1 Or atb.AISLAMIENTO = 2 Then
+                        If idanal = 11 Or idanal = 316 Or idanal = 658 Or atb.AISLAMIENTO = 1 Or atb.AISLAMIENTO = 2 Then
                             Dim na As New dNuevoAnalisis
                             na.FICHA = ficha
                             na.MUESTRA = _muestra

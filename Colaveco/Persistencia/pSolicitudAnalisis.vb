@@ -4668,14 +4668,24 @@
         End Try
     End Function
 
-   Public Function listar_informes_usuario_filtro(ByVal usuario_id As Integer, ByVal desde As String, ByVal hasta As String, ByVal idinforme As String) As ArrayList
+    Public Function listar_informes_usuario_filtro(ByVal usuario_id As Integer, ByVal desde As String, ByVal hasta As String, ByVal idinforme As String, ByVal sector_id As Integer) As ArrayList
         Dim sql As String = ""
         sql &= "SELECT na.ficha, sa.fechaingreso, ti.nombre, sa.nmuestras " &
                "FROM solicitudanalisis sa " &
                "INNER JOIN nuevoanalisis na ON na.ficha = sa.id " &
                "INNER JOIN analisis_usuario au ON au.analisis_id = na.analisis " &
-               "INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme " &
-               "WHERE sa.marca = 0 AND sa.eliminado = 0 AND au.usuario_id = " & usuario_id & " "
+               "INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme "
+
+        If sector_id > 0 Then
+            sql &= "INNER JOIN usuario_sector us ON us.usuario_id = au.usuario_id " &
+                   "INNER JOIN sector_tipoinforme sti ON sti.tipo_informe_id = sa.idtipoinforme "
+        End If
+
+        sql &= "WHERE sa.marca = 0 AND sa.eliminado = 0 AND au.usuario_id = " & usuario_id & " "
+
+        If sector_id > 0 Then
+            sql &= "AND sti.sector_id = " & sector_id & " AND us.usuario_id = au.usuario_id "
+        End If
 
         If Not String.IsNullOrEmpty(desde) And Not String.IsNullOrEmpty(hasta) Then
             sql &= "AND sa.fechaingreso BETWEEN '" & desde & "' AND '" & hasta & "' "
@@ -4712,6 +4722,8 @@
             Return Nothing
         End Try
     End Function
+
+
 
     Public Function listar_analisis_con_descripcion(ByVal usuarioId As Integer, ByVal solicitudId As Long) As ArrayList
         Dim sql As String = ""

@@ -596,6 +596,20 @@ Public Class FormControlInformesNutricion
             & "Agradecemos su confianza y quedamos a sus órdenes." & vbCrLf & vbCrLf _
             & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
             & "Administración - COLAVECO"
+
+        Dim sol As New dSolicitudAnalisis
+        Dim cli As New dCliente
+        Dim prod As Long = sol.IDPRODUCTOR
+        cli.ID = sa.IDPRODUCTOR
+        cli = cli.buscar
+        If cli.NOT_EMAIL_ANALISIS1 <> "" Then
+            email = RTrim(cli.NOT_EMAIL_ANALISIS1)
+        ElseIf cli.NOT_EMAIL_ANALISIS2 <> "" Then
+            email = RTrim(cli.NOT_EMAIL_ANALISIS2)
+        ElseIf cli.EMAIL <> "" Then
+            email = RTrim(cli.EMAIL)
+        End If
+
         If email <> "" Then
             'CONFIGURACIÓN DEL STMP 
             ' Llamamos al método buscar para obtener el objeto Credenciales

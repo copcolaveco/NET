@@ -59,7 +59,7 @@
         End Try
     End Function
     Public Function listar() As ArrayList
-        Dim sql As String = "SELECT id, nombre FROM sectores ORDER by nombre asc"
+        Dim sql As String = "SELECT id, nombre FROM sectores where eliminado = 0 ORDER by nombre asc"
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet

@@ -921,9 +921,9 @@
         Dim s As New pSolicitudAnalisis
         Return s.lista_sol_semen(fechadesde, fechahasta)
     End Function
-    Public Function listar_informes_usuario_filtro(ByVal usuario_id As Integer, ByVal desde As String, ByVal hasta As String, ByVal idinforme As String) As ArrayList
+    Public Function listar_informes_usuario_filtro(ByVal usuario_id As Integer, ByVal desde As String, ByVal hasta As String, ByVal idinforme As String, ByVal sector_id As Integer) As ArrayList
         Dim s As New pSolicitudAnalisis
-        Return s.listar_informes_usuario_filtro(usuario_id, desde, hasta, idinforme)
+        Return s.listar_informes_usuario_filtro(usuario_id, desde, hasta, idinforme, sector_id)
     End Function
     Public Function listar_analisis_con_descripcion(ByVal usuario_id As Integer, ByVal idinforme As String) As ArrayList
         Dim s As New pSolicitudAnalisis

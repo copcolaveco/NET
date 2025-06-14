@@ -6,6 +6,10 @@ Public Class FormInformesPendientesUsuario
 
     Private _sesion As New dSesion
     Private _usuario As dUsuario
+    Dim informe As String = ""
+    Dim fecdesde As String = ""
+    Dim fechasta As String = ""
+    Dim sector_id As Integer = 0
 
     Public Property Usuario() As dUsuario
         Get
@@ -30,7 +34,7 @@ Public Class FormInformesPendientesUsuario
 
         ' Llamada necesaria para el Diseñador de Windows Forms.
         InitializeComponent()
-
+        cargarSectores()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Usuario = u
 
@@ -40,19 +44,23 @@ Public Class FormInformesPendientesUsuario
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Dim lista As New ArrayList
         Dim solicitudAnalisis As New dSolicitudAnalisis
-        Dim informe As String = ""
         Dim parmDesde As Date = Desde.Value.ToString("yyyy-MM-dd")
         Dim parmHasta As Date = Hasta.Value.ToString("yyyy-MM-dd")
-        Dim fecdesde As String
-        Dim fechasta As String
         fecdesde = Format(parmDesde, "yyyy-MM-dd")
         fechasta = Format(parmHasta, "yyyy-MM-dd")
+        Dim sector As dSectores = CType(cbxSectores.SelectedItem, dSectores)
+
+        If sector Is Nothing Then
+            sector_id = 0
+        Else
+            sector_id = sector.ID
+        End If
 
         If tbxInforme.Text <> "" Then
             informe = tbxInforme.Text
         End If
 
-        lista = solicitudAnalisis.listar_informes_usuario_filtro(_usuario.ID, fecdesde, fechasta, informe)
+        lista = solicitudAnalisis.listar_informes_usuario_filtro(_usuario.ID, fecdesde, fechasta, informe, sector_id)
         DataGridView1.Rows.Clear()
 
         With DataGridView1
@@ -119,6 +127,15 @@ Public Class FormInformesPendientesUsuario
         Dim workbook As Excel.Workbook = excelApp.Workbooks.Add()
         Dim worksheet As Excel.Worksheet = workbook.Sheets(1)
         worksheet.Name = "Informe por Usuario"
+        Dim sector As dSectores = CType(cbxSectores.SelectedItem, dSectores)
+        fecdesde = Format(desde, "yyyy-MM-dd")
+        fechasta = Format(hasta, "yyyy-MM-dd")
+
+        If sector Is Nothing Then
+            sector_id = 0
+        Else
+            sector_id = sector.ID
+        End If
 
         ' Fila 1: Título del reporte
         Dim titulo As String = "Reporte de análisis para ser realizados"
@@ -143,7 +160,7 @@ Public Class FormInformesPendientesUsuario
 
         ' Cargar datos
         Dim solicitudAnalisis As New dSolicitudAnalisis
-        Dim listaSolicitudes As ArrayList = solicitudAnalisis.listar_informes_usuario_filtro(usuarioId, desde.ToString("yyyy-MM-dd"), hasta.ToString("yyyy-MM-dd"), idInforme)
+        Dim listaSolicitudes As ArrayList = solicitudAnalisis.listar_informes_usuario_filtro(usuarioId, fecdesde, fechasta, idInforme, sector_id)
 
         If listaSolicitudes IsNot Nothing Then
             For Each solicitud As dInformeAnalisis In listaSolicitudes
@@ -182,9 +199,8 @@ Public Class FormInformesPendientesUsuario
 
         ' Mostrar Excel al usuario
         excelApp.Visible = True
+
     End Sub
-
-
 
     Private Sub btn_excel_Click(sender As Object, e As EventArgs) Handles btn_excel.Click
         Dim parmDesde As Date = Desde.Value.ToString("yyyy-MM-dd")
@@ -195,4 +211,18 @@ Public Class FormInformesPendientesUsuario
         fechasta = Format(parmHasta, "yyyy-MM-dd")
         ExportarReporteExcel(_usuario.ID, fecdesde, fechasta, tbxInforme.Text)
     End Sub
+
+    Public Sub cargarSectores()
+        Dim s As New dSectores
+        Dim lista As New ArrayList
+        lista = s.listar
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                For Each s In lista
+                    cbxSectores.Items.Add(s)
+                Next
+            End If
+        End If
+    End Sub
+
 End Class

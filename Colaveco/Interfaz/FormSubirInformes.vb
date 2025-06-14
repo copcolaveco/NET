@@ -318,7 +318,7 @@ controlcsv:
             fechah = Format(fechahasta, "yyyy-MM-dd")
             Dim ci As New dControlInformesFQ
             Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
+            lista = ci.listarxtipoxfecha(tipo.ToString, fechad, fechah)
             If Not lista Is Nothing Then
                 If lista.Count < 6 Then
                     Dim cifq As New dControlInformesFQ
@@ -520,7 +520,7 @@ controlcsv:
             fechah = Format(fechahasta, "yyyy-MM-dd")
             Dim ci As New dControlInformesFQ
             Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
+            lista = ci.listarxtipoxfecha(tipo.ToString, fechad, fechah)
             If Not lista Is Nothing Then
                 If lista.Count < 6 Then
                     Dim cifq As New dControlInformesFQ
@@ -944,7 +944,7 @@ controlcsv:
             fechah = Format(fechahasta, "yyyy-MM-dd")
             Dim ci As New dControlInformesNutricion
             Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
+            lista = ci.listarxtipoxfecha(tipo.ToString, fechad, fechah)
             If Not lista Is Nothing Then
                 If lista.Count < 6 Then
                     Dim cinutricion As New dControlInformesNutricion
@@ -1049,7 +1049,7 @@ controlcsv:
             fechah = Format(fechahasta, "yyyy-MM-dd")
             Dim ci As New dControlInformesSuelos
             Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo, fechad, fechah)
+            lista = ci.listarxtipoxfecha(tipo.ToString, fechad, fechah)
             If Not lista Is Nothing Then
                 If lista.Count < 6 Then
                     Dim cisuelos As New dControlInformesSuelos

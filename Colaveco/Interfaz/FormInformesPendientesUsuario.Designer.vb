@@ -34,6 +34,8 @@ Partial Class FormInformesPendientesUsuario
         Me.Label4 = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.btnBuscar = New System.Windows.Forms.Button()
+        Me.Label6 = New System.Windows.Forms.Label()
+        Me.cbxSectores = New System.Windows.Forms.ComboBox()
         CType(Me.DataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridView2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -146,11 +148,30 @@ Partial Class FormInformesPendientesUsuario
         Me.btnBuscar.Text = "Buscar"
         Me.btnBuscar.UseVisualStyleBackColor = True
         '
+        'Label6
+        '
+        Me.Label6.AutoSize = True
+        Me.Label6.Location = New System.Drawing.Point(13, 109)
+        Me.Label6.Name = "Label6"
+        Me.Label6.Size = New System.Drawing.Size(49, 17)
+        Me.Label6.TabIndex = 17
+        Me.Label6.Text = "Sector"
+        '
+        'cbxSectores
+        '
+        Me.cbxSectores.FormattingEnabled = True
+        Me.cbxSectores.Location = New System.Drawing.Point(138, 109)
+        Me.cbxSectores.Name = "cbxSectores"
+        Me.cbxSectores.Size = New System.Drawing.Size(128, 24)
+        Me.cbxSectores.TabIndex = 18
+        '
         'FormInformesPendientesUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1298, 551)
+        Me.Controls.Add(Me.cbxSectores)
+        Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.btnBuscar)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Label4)
@@ -183,4 +204,6 @@ Partial Class FormInformesPendientesUsuario
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents btnBuscar As System.Windows.Forms.Button
+    Friend WithEvents Label6 As System.Windows.Forms.Label
+    Friend WithEvents cbxSectores As System.Windows.Forms.ComboBox
 End Class

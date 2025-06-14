@@ -230,21 +230,21 @@ Public Class FormSubirInformes2
         estadoPago()
         cliente = TextIdCliente.Text.Trim
         mover_archivos(EnumCarpetaInforme.CALIDAD, EnumTipoInforme.CalidadLeche)
-        agregar_control_informe(EnumTipoControles.FisicoQuimico)
 
         Dim csm As New dCalidadSolicitudMuestra
-        csm.FICHA = ficha
+        csm.FICHA = Informe
         csm = csm.buscarxsolicitud
+        agregar_control_informe(EnumTipoControles.FisicoQuimico)
 
         If csm.RB = 1 Or csm.INHIBIDORES = 1 Or csm.ESPORULADOS = 1 Or csm.PSICROTROFOS = 1 Then
             agregar_control_informe(EnumTipoControles.Microbiologia)
         End If
 
+        actualizar_estados(abonado)
         actualizar_preInforme()
         limpiar()
         marcarxdefecto()
     End Sub
-
     Private Sub subir_mineralesenleche()
         estadoPago()
         cliente = TextIdCliente.Text.Trim
@@ -550,6 +550,20 @@ Public Class FormSubirInformes2
             & "Agradecemos su confianza y quedamos a sus órdenes." & vbCrLf & vbCrLf _
             & "Sin mas, saluda muy atte." & vbCrLf & vbCrLf _
             & "Administración - COLAVECO"
+
+        Dim sol As New dSolicitudAnalisis
+        Dim cli As New dCliente
+        Dim prod As Long = sol.IDPRODUCTOR
+        cli.ID = sa.IDPRODUCTOR
+        cli = cli.buscar
+        If cli.NOT_EMAIL_ANALISIS1 <> "" Then
+            email = RTrim(cli.NOT_EMAIL_ANALISIS1)
+        ElseIf cli.NOT_EMAIL_ANALISIS2 <> "" Then
+            email = RTrim(cli.NOT_EMAIL_ANALISIS2)
+        ElseIf cli.EMAIL <> "" Then
+            email = RTrim(cli.EMAIL)
+        End If
+
         If email <> "" Then
          
             'CONFIGURACIÓN DEL STMP 
