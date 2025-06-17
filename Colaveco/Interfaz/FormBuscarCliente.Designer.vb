@@ -22,18 +22,20 @@ Partial Class FormBuscarCliente
     'No lo modifique con el editor de código.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Me.ButtonTodos = New System.Windows.Forms.Button()
         Me.ListClientes = New System.Windows.Forms.ListBox()
         Me.TextBuscar = New System.Windows.Forms.TextBox()
         Me.TextBuscarDicose = New System.Windows.Forms.TextBox()
         Me.Label1 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
+        Me.TimerBuscar = New System.Windows.Forms.Timer(Me.components)
         Me.SuspendLayout()
         '
         'ButtonTodos
         '
         Me.ButtonTodos.Location = New System.Drawing.Point(275, 18)
-        Me.ButtonTodos.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ButtonTodos.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonTodos.Name = "ButtonTodos"
         Me.ButtonTodos.Size = New System.Drawing.Size(100, 28)
         Me.ButtonTodos.TabIndex = 5
@@ -46,7 +48,7 @@ Partial Class FormBuscarCliente
         Me.ListClientes.FormattingEnabled = True
         Me.ListClientes.ItemHeight = 16
         Me.ListClientes.Location = New System.Drawing.Point(16, 117)
-        Me.ListClientes.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.ListClientes.Margin = New System.Windows.Forms.Padding(4)
         Me.ListClientes.Name = "ListClientes"
         Me.ListClientes.Size = New System.Drawing.Size(356, 484)
         Me.ListClientes.TabIndex = 4
@@ -54,7 +56,7 @@ Partial Class FormBuscarCliente
         'TextBuscar
         '
         Me.TextBuscar.Location = New System.Drawing.Point(16, 35)
-        Me.TextBuscar.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.TextBuscar.Margin = New System.Windows.Forms.Padding(4)
         Me.TextBuscar.Name = "TextBuscar"
         Me.TextBuscar.Size = New System.Drawing.Size(249, 22)
         Me.TextBuscar.TabIndex = 3
@@ -85,6 +87,10 @@ Partial Class FormBuscarCliente
         Me.Label2.TabIndex = 8
         Me.Label2.Text = "Dicose"
         '
+        'TimerBuscar
+        '
+        Me.TimerBuscar.Interval = 500
+        '
         'FormBuscarCliente
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -96,7 +102,7 @@ Partial Class FormBuscarCliente
         Me.Controls.Add(Me.ButtonTodos)
         Me.Controls.Add(Me.ListClientes)
         Me.Controls.Add(Me.TextBuscar)
-        Me.Margin = New System.Windows.Forms.Padding(4, 4, 4, 4)
+        Me.Margin = New System.Windows.Forms.Padding(4)
         Me.Name = "FormBuscarCliente"
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
         Me.Text = "Seleccionar Cliente"
@@ -110,4 +116,5 @@ Partial Class FormBuscarCliente
     Friend WithEvents TextBuscarDicose As System.Windows.Forms.TextBox
     Friend WithEvents Label1 As System.Windows.Forms.Label
     Friend WithEvents Label2 As System.Windows.Forms.Label
+    Friend WithEvents TimerBuscar As System.Windows.Forms.Timer
 End Class

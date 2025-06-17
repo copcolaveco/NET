@@ -48,22 +48,47 @@
         Me.Close()
     End Sub
 
-    Private Sub TextBuscar_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBuscar.TextChanged
-        Dim nombre As String = TextBuscar.Text.Trim
+    'Private Sub TextBuscar_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles TextBuscar.TextChanged
+    '    Dim nombre As String = TextBuscar.Text.Trim
+    '    ListClientes.Items.Clear()
+    '    If nombre.Length > 0 Then
+    '        Dim unCli As New dCliente
+    '        Dim lista As New ArrayList
+    '        lista = unCli.buscarPorNombre(nombre)
+    '        If Not lista Is Nothing And lista.Count > 0 Then
+    '            For Each c As dCliente In lista
+    '                ListClientes.Items.Add(c)
+    '            Next
+    '            ListClientes.Sorted = True
+    '        End If
+    '    Else : ListClientes.Items.Clear()
+    '    End If
+    'End Sub
+
+    Private Sub TextBuscar_TextChanged(sender As Object, e As EventArgs) Handles TextBuscar.TextChanged
+        TimerBuscar.Stop()
+        TimerBuscar.Start()
+    End Sub
+
+    Private Sub TimerBuscar_Tick(sender As Object, e As EventArgs) Handles TimerBuscar.Tick
+        TimerBuscar.Stop()
+        RealizarBusquedaClientes(TextBuscar.Text.Trim)
+    End Sub
+
+    Private Sub RealizarBusquedaClientes(nombre As String)
         ListClientes.Items.Clear()
-        If nombre.Length > 0 Then
+        If nombre.Length >= 2 Then
             Dim unCli As New dCliente
-            Dim lista As New ArrayList
-            lista = unCli.buscarPorNombre(nombre)
-            If Not lista Is Nothing And lista.Count > 0 Then
+            Dim lista As ArrayList = unCli.buscarPorNombreBasico(nombre)
+            If lista IsNot Nothing AndAlso lista.Count > 0 Then
                 For Each c As dCliente In lista
                     ListClientes.Items.Add(c)
                 Next
                 ListClientes.Sorted = True
             End If
-        Else : ListClientes.Items.Clear()
         End If
     End Sub
+
 
     Private Sub TextBox1_TextChanged(sender As Object, e As EventArgs) Handles TextBuscarDicose.TextChanged
         Dim dicose As String = TextBuscarDicose.Text.Trim

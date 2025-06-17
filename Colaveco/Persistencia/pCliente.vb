@@ -1,4 +1,6 @@
-﻿Public Class pCliente
+﻿Imports MySql.Data.MySqlClient
+
+Public Class pCliente
     Inherits Conectoras.ConexionMySQL
     Public Function guardar(ByVal o As Object, ByVal usuario As dUsuario) As Boolean
         Dim obj As dCliente = CType(o, dCliente)
@@ -57,8 +59,8 @@
         Return EjecutarTransaccion(lista)
     End Function
     Public Function buscar(ByVal o As Object) As dCliente
-        Dim obj As dcliente = CType(o, dcliente)
-        Dim p As New dcliente
+        Dim obj As dCliente = CType(o, dCliente)
+        Dim p As New dCliente
         Try
             Dim Ds As New DataSet
             Ds = Me.EjecutarSQL("SELECT id, nombre, ifnull(email,''), ifnull(nombre_email1,''), ifnull(email1,''), ifnull(nombre_email2,''), ifnull(email2,''), ifnull(envio,''), ifnull(usuario_web,''), ifnull(nombre_celular1,''), ifnull(celular,''), ifnull(nombre_celular2,''), ifnull(celular2,''), ifnull(codigofigaro,''), ifnull(tipousuario,1), ifnull(direccion,''), ifnull(nombre_telefono1,''), ifnull(telefono1,''), ifnull(nombre_telefono2,''), ifnull(telefono2,''), ifnull(fax,''), ifnull(dicose,''), ifnull(iddepartamento,999), ifnull(idlocalidad,999), ifnull(tecnico1,3197), ifnull(tecnico2,3197), ifnull(idagencia,8), contrato, socio, nousar, codbar, caravanas, prolesa, ifnull(prolesasuc,0), prolesamat, ifnull(observaciones,''), ifnull(fac_rsocial,''), ifnull(fac_cedula,''), ifnull(fac_rut,''), ifnull(fac_direccion,''), ifnull(fac_localidad,''), ifnull(fac_departamento,0), ifnull(fac_cpostal,''), ifnull(fac_giro,0), ifnull(cob_nombre_telefono1,''), ifnull(fac_telefonos,''), ifnull(cob_nombre_telefono2,''), ifnull(cob_telefono2,''), ifnull(cob_nombre_celular1,''), ifnull(cob_celular1,''), ifnull(cob_nombre_celular2,''), ifnull(cob_celular2,''), ifnull(cob_nombre_email1,''), ifnull(cob_email1,''), ifnull(cob_nombre_email2,''), ifnull(cob_email2,''), ifnull(fac_fax,''), ifnull(fac_email,''), ifnull(fac_contacto,''), ifnull(fac_observaciones,''), fac_lista, fac_contado, ifnull(not_email_frascos1,''), ifnull(not_email_frascos2,''), ifnull(not_email_muestras1,''), ifnull(not_email_muestras2,''), ifnull(not_email_analisis1,''), ifnull(not_email_analisis2,''), ifnull(not_email_general1,''), ifnull(not_email_general2,''), incobrable, tecnico_suelo_nutri FROM cliente WHERE id = " & obj.ID & "")
@@ -324,8 +326,8 @@
         End Try
     End Function
     Public Function buscarPorUsuarioWeb(ByVal o As Object) As dCliente
-        Dim obj As dcliente = CType(o, dcliente)
-        Dim p As New dcliente
+        Dim obj As dCliente = CType(o, dCliente)
+        Dim p As New dCliente
         Try
             Dim Ds As New DataSet
             Ds = Me.EjecutarSQL("SELECT id, nombre, ifnull(email,''), ifnull(nombre_email1,''), ifnull(email1,''), ifnull(nombre_email2,''), ifnull(email2,''), ifnull(envio,''), ifnull(usuario_web,''), ifnull(nombre_celular1,''), ifnull(celular,''), ifnull(nombre_celular2,''), ifnull(celular2,''), ifnull(codigofigaro,''), ifnull(tipousuario,1), ifnull(direccion,''), ifnull(nombre_telefono1,''), ifnull(telefono1,''), ifnull(nombre_telefono2,''), ifnull(telefono2,''), ifnull(fax,''), ifnull(dicose,''), ifnull(iddepartamento,999), ifnull(idlocalidad,999), ifnull(tecnico1,3197), ifnull(tecnico2,3197), ifnull(idagencia,8), contrato, socio, nousar, codbar, caravanas, prolesa, ifnull(prolesasuc,0), prolesamat, ifnull(observaciones,''), ifnull(fac_rsocial,''), ifnull(fac_cedula,''), ifnull(fac_rut,''), ifnull(fac_direccion,''), ifnull(fac_localidad,''), ifnull(fac_departamento,0), ifnull(fac_cpostal,''), ifnull(fac_giro,0), ifnull(cob_nombre_telefono1,''), ifnull(fac_telefonos,''), ifnull(cob_nombre_telefono2,''), ifnull(cob_telefono2,''), ifnull(cob_nombre_celular1,''), ifnull(cob_celular1,''), ifnull(cob_nombre_celular2,''), ifnull(cob_celular2,''), ifnull(cob_nombre_email1,''), ifnull(cob_email1,''), ifnull(cob_nombre_email2,''), ifnull(cob_email2,''), ifnull(fac_fax,''), ifnull(fac_email,''), ifnull(fac_contacto,''), ifnull(fac_observaciones,''), fac_lista, fac_contado, ifnull(not_email_frascos1,''), ifnull(not_email_frascos2,''), ifnull(not_email_muestras1,''), ifnull(not_email_muestras2,''), ifnull(not_email_analisis1,''), ifnull(not_email_analisis2,''), ifnull(not_email_general1,''), ifnull(not_email_general2,''), incobrable, tecnico_suelo_nutri FROM cliente WHERE usuario_web = '" & obj.USUARIO_WEB & "'")
@@ -423,7 +425,7 @@
             Else
                 Dim unaFila As DataRow
                 For Each unaFila In Ds.Tables(0).Rows
-                    Dim p As New dcliente
+                    Dim p As New dCliente
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -607,7 +609,7 @@
             Else
                 Dim unaFila As DataRow
                 For Each unaFila In Ds.Tables(0).Rows
-                    Dim p As New dcliente
+                    Dim p As New dCliente
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -699,7 +701,7 @@
             Else
                 Dim unaFila As DataRow
                 For Each unaFila In Ds.Tables(0).Rows
-                    Dim p As New dcliente
+                    Dim p As New dCliente
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -791,7 +793,7 @@
             Else
                 Dim unaFila As DataRow
                 For Each unaFila In Ds.Tables(0).Rows
-                    Dim p As New dcliente
+                    Dim p As New dCliente
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -976,7 +978,7 @@
             Else
                 Dim unaFila As DataRow
                 For Each unaFila In Ds.Tables(0).Rows
-                    Dim p As New dcliente
+                    Dim p As New dCliente
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -1068,7 +1070,7 @@
 
             If Ds.Tables(0).Rows.Count > 0 Then
                 For Each unaFila As DataRow In Ds.Tables(0).Rows
-                    Dim p As New dcliente()
+                    Dim p As New dCliente()
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -1150,6 +1152,34 @@
             Return listaResultado
         End Try
     End Function
+
+    Public Function buscarPorNombreBasico(ByVal pNombre As String) As ArrayList
+        Dim listaResultado As New ArrayList
+
+        Try
+            Dim Ds As New DataSet
+            Dim nombreEscapado As String = pNombre.Replace("'", "''")
+            Dim sql As String = "SELECT id, nombre FROM cliente WHERE nombre LIKE '%" & nombreEscapado & "%' AND nousar = 0 LIMIT 50"
+            Ds = Me.EjecutarSQL(sql)
+
+            If Ds IsNot Nothing AndAlso Ds.Tables(0).Rows.Count > 0 Then
+                For Each unaFila As DataRow In Ds.Tables(0).Rows
+                    Dim p As New dCliente
+                    p.ID = CType(unaFila.Item(0), Long)
+                    p.NOMBRE = CType(unaFila.Item(1), String)
+                    listaResultado.Add(p)
+                Next
+            End If
+
+        Catch ex As Exception
+            ' Manejo básico de errores
+        End Try
+
+        Return listaResultado
+    End Function
+
+
+
     Public Function buscarPorNombre(ByVal pNombre As String) As ArrayList
         Dim listaResultado As New ArrayList
 
@@ -1161,7 +1191,7 @@
 
             If Ds.Tables(0).Rows.Count > 0 Then
                 For Each unaFila As DataRow In Ds.Tables(0).Rows
-                    Dim p As New dcliente()
+                    Dim p As New dCliente()
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -1255,7 +1285,7 @@
 
             If Ds.Tables(0).Rows.Count > 0 Then
                 For Each unaFila As DataRow In Ds.Tables(0).Rows
-                    Dim p As New dcliente()
+                    Dim p As New dCliente()
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -1348,7 +1378,7 @@
 
             If Ds.Tables(0).Rows.Count > 0 Then
                 For Each unaFila As DataRow In Ds.Tables(0).Rows
-                    Dim p As New dcliente()
+                    Dim p As New dCliente()
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -1441,7 +1471,7 @@
 
             If Ds.Tables(0).Rows.Count > 0 Then
                 For Each unaFila As DataRow In Ds.Tables(0).Rows
-                    Dim p As New dcliente()
+                    Dim p As New dCliente()
                     p.ID = CType(unaFila.Item(0), Long)
                     p.NOMBRE = CType(unaFila.Item(1), String)
                     p.EMAIL = CType(unaFila.Item(2), String)
@@ -1618,7 +1648,7 @@
         End Try
     End Function
 
-  
+
     Public Function actualizardireccion(ByVal idcliente As Integer, ByVal direnvio As String, ByVal usuario As dUsuario) As Boolean
         Dim sql As String = "UPDATE cliente SET envio = '" & direnvio & "' WHERE id = " & idcliente
 
@@ -1628,7 +1658,7 @@
         Dim lista As New ArrayList : lista.Add(sql) : lista.Add(sqlAccion)
         Return EjecutarTransaccion(lista)
     End Function
-  
+
     Public Function actualizartecnico1(ByVal idcliente As Integer, ByVal tec As Long, ByVal usuario As dUsuario) As Boolean
         Dim sql As String = "UPDATE cliente SET tecnico1 = '" & tec & "' WHERE id = " & idcliente & ""
 
@@ -1656,7 +1686,7 @@
         Dim lista As New ArrayList : lista.Add(sql) : lista.Add(sqlAccion)
         Return EjecutarTransaccion(lista)
     End Function
-   
+
     Public Function actualizardicose(ByVal idcliente As Integer, ByVal dicose As String, ByVal usuario As dUsuario) As Boolean
         Dim sql As String = "UPDATE cliente SET dicose = '" & dicose & "' WHERE id = " & idcliente
 
@@ -1673,6 +1703,6 @@
         Dim lista As New ArrayList : lista.Add(sql)
         Return EjecutarTransaccion(lista)
     End Function
-   
-  
+
+
 End Class
