@@ -146,7 +146,7 @@
     End Sub
 #End Region
 
-    Public MustOverride Function listarxtipoxfecha(tipo As String, fechad As String, fechah As String) As ArrayList
+    Public MustOverride Function listarxtipoxfecha(tipo As String, fechad As String, fechah As String, ByVal ficha As Long) As ArrayList
 
     Public MustOverride Function guardar() As Boolean
 

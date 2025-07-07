@@ -925,9 +925,17 @@
         Dim s As New pSolicitudAnalisis
         Return s.listar_informes_usuario_filtro(usuario_id, desde, hasta, idinforme, sector_id)
     End Function
+
+    Public Function listar_informes_usuario_pendientes(ByVal usuario_id As Integer, ByVal idinforme As String, ByVal sector_id As Integer) As ArrayList
+        Dim s As New pSolicitudAnalisis
+        Return s.listar_informes_usuario_pendientes(usuario_id, idinforme, sector_id)
+    End Function
     Public Function listar_analisis_con_descripcion(ByVal usuario_id As Integer, ByVal idinforme As String) As ArrayList
         Dim s As New pSolicitudAnalisis
         Return s.listar_analisis_con_descripcion(usuario_id, idinforme)
     End Function
-
+    Public Function buscarDatosFicha(ByVal ficha As Long) As DataRow
+        Dim s As New pSolicitudAnalisis
+        Return s.buscarDatosFicha(ficha)
+    End Function
 End Class

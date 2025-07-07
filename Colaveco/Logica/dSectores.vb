@@ -61,4 +61,9 @@
         Dim p As New pSectores
         Return p.listar
     End Function
+
+    Public Function listar_por_usuario(ByRef usuario_id As Long) As ArrayList
+        Dim p As New pSectores
+        Return p.listar_por_usuario(usuario_id)
+    End Function
 End Class

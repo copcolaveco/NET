@@ -200,6 +200,15 @@
         Dim p As New pPreinformes
         Return p.listarparasubir
     End Function
+    Public Function listar_informes_gestor(ByVal desde As String, ByVal hasta As String, ByVal filtroEstado As String, ByVal ficha As String) As ArrayList
+        Dim p As New pPreinformes
+        Return p.listar_informes_gestor(desde, hasta, filtroEstado, ficha)
+    End Function
+
+    Public Function listar_informes_gestor_deldia() As ArrayList
+        Dim p As New pPreinformes
+        Return p.listar_informes_gestor_deldia()
+    End Function
     Public Function listarparasubidos(ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim p As New pPreinformes
         Return p.listarparasubidos(desde, hasta)

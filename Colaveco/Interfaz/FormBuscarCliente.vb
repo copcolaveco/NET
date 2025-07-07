@@ -79,7 +79,7 @@
         ListClientes.Items.Clear()
         If nombre.Length >= 2 Then
             Dim unCli As New dCliente
-            Dim lista As ArrayList = unCli.buscarPorNombreBasico(nombre)
+            Dim lista As ArrayList = unCli.buscarPorNombre(nombre)
             If lista IsNot Nothing AndAlso lista.Count > 0 Then
                 For Each c As dCliente In lista
                     ListClientes.Items.Add(c)

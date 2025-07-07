@@ -1,15 +1,28 @@
 ﻿Public Class pControlInformesNutricion
     Inherits Conectoras.ConexionMySQL
+    
+
     Public Function guardar(ByVal o As Object) As Boolean
         Dim obj As dControlInformesNutricion = CType(o, dControlInformesNutricion)
-        Dim sql As String = "INSERT INTO controlinformesnutricion (id, fechacontrol, ficha, fecha, tipo, resultado, coincide, opcionmejora, noconformidad, observaciones,  controlador, controlado) VALUES (" & obj.ID & ",'" & obj.FECHACONTROL & "'," & obj.FICHA & ", '" & obj.FECHA & "'," & obj.TIPO & ", " & obj.RESULTADO & "," & obj.COINCIDE & "," & obj.OM & "," & obj.NC & ",'" & obj.OBSERVACIONES & "'," & obj.CONTROLADOR & "," & obj.CONTROLADO & ")"
+
+        ' 1. Verificar si ya existe una ficha igual
+        Dim sqlVerificar As String = "SELECT COUNT(*) FROM controlinformesnutricion WHERE ficha = " & obj.FICHA
+        Dim ds As DataSet = Me.EjecutarSQL(sqlVerificar)
+
+        If ds IsNot Nothing AndAlso ds.Tables.Count > 0 AndAlso ds.Tables(0).Rows.Count > 0 Then
+            Dim cantidad As Integer = Convert.ToInt32(ds.Tables(0).Rows(0)(0))
+            If cantidad > 0 Then
+                
+                Return False
+            End If
+        End If
+
+        ' 2. Si no existe, se guarda el nuevo registro
+        Dim sql As String = "INSERT INTO controlinformesnutricion (id, fechacontrol, ficha, fecha, tipo, resultado, coincide, opcionmejora, noconformidad, observaciones, controlador, controlado) " &
+                            "VALUES (" & obj.ID & ",'" & obj.FECHACONTROL & "'," & obj.FICHA & ", '" & obj.FECHA & "'," & obj.TIPO & ", " & obj.RESULTADO & "," & obj.COINCIDE & "," & obj.OM & "," & obj.NC & ",'" & obj.OBSERVACIONES & "'," & obj.CONTROLADOR & "," & obj.CONTROLADO & ")"
 
         Dim lista As New ArrayList
         lista.Add(sql)
-
-        'Dim sqlAccion As String = "INSERT INTO actividad (act_fecha, act_tabla, act_accion, act_registro, u_id) " _
-        '                         & "VALUES (now(), 'controlinformesnutricion', 'alta', last_insert_id(), " & usuario.ID & ")"
-        'lista.Add(sqlAccion)
 
         Return EjecutarTransaccion(lista)
     End Function
@@ -161,8 +174,12 @@
             Return Nothing
         End Try
     End Function
-    Public Function listarxtipoxfecha(ByVal tipo As Integer, ByVal desde As String, ByVal hasta As String) As ArrayList
-        Dim sql As String = ("select id, fechacontrol, ficha, fecha, tipo, resultado, coincide,opcionmejora, noconformidad, observaciones,  controlador, controlado FROM controlinformesnutricion WHERE tipo= " & tipo & " AND fecha >='" & desde & "' and fecha <='" & hasta & "'")
+    Public Function listarxtipoxfecha(ByVal tipo As Integer, ByVal desde As String, ByVal hasta As String, ByVal ficha As Long) As ArrayList
+        Dim sql As String = "SELECT id, fechacontrol, ficha, fecha, tipo, resultado, coincide, opcionmejora, noconformidad, observaciones, controlador, controlado " &
+                            "FROM controlinformesnutricion " &
+                            "WHERE tipo = " & tipo & " AND fecha >= '" & desde & "' AND fecha <= '" & hasta & "' " &
+                            "AND ficha <> " & ficha
+
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
@@ -170,8 +187,7 @@
             If Ds.Tables(0).Rows.Count = 0 Then
                 Return Nothing
             Else
-                Dim unaFila As DataRow
-                For Each unaFila In Ds.Tables(0).Rows
+                For Each unaFila As DataRow In Ds.Tables(0).Rows
                     Dim c As New dControlInformesFQ
                     c.ID = CType(unaFila.Item(0), Long)
                     c.FECHACONTROL = CType(unaFila.Item(1), String)
@@ -193,6 +209,7 @@
             Return Nothing
         End Try
     End Function
+
     Public Function listarxfechanc(ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim sql As String = ("select id, fechacontrol, ficha, fecha, tipo, resultado, coincide,opcionmejora, noconformidad, observaciones,  controlador, controlado FROM controlinformesnutricion WHERE fecha >='" & desde & "' and fecha <='" & hasta & "' AND controlado = 1 AND noconformidad=1 order by tipo asc")
         Try

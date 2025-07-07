@@ -23,10 +23,6 @@ Partial Class FormInformesPendientesUsuario
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
         Me.DataGridView1 = New System.Windows.Forms.DataGridView()
-        Me.Hasta = New System.Windows.Forms.DateTimePicker()
-        Me.Desde = New System.Windows.Forms.DateTimePicker()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.Label2 = New System.Windows.Forms.Label()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.tbxInforme = New System.Windows.Forms.TextBox()
         Me.btn_excel = New System.Windows.Forms.Button()
@@ -50,46 +46,10 @@ Partial Class FormInformesPendientesUsuario
         Me.DataGridView1.Size = New System.Drawing.Size(586, 321)
         Me.DataGridView1.TabIndex = 5
         '
-        'Hasta
-        '
-        Me.Hasta.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.Hasta.Location = New System.Drawing.Point(138, 43)
-        Me.Hasta.Margin = New System.Windows.Forms.Padding(4)
-        Me.Hasta.Name = "Hasta"
-        Me.Hasta.Size = New System.Drawing.Size(128, 22)
-        Me.Hasta.TabIndex = 7
-        '
-        'Desde
-        '
-        Me.Desde.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.Desde.Location = New System.Drawing.Point(138, 13)
-        Me.Desde.Margin = New System.Windows.Forms.Padding(4)
-        Me.Desde.Name = "Desde"
-        Me.Desde.Size = New System.Drawing.Size(128, 22)
-        Me.Desde.TabIndex = 6
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(13, 17)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(49, 17)
-        Me.Label1.TabIndex = 8
-        Me.Label1.Text = "Desde"
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(13, 48)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(45, 17)
-        Me.Label2.TabIndex = 9
-        Me.Label2.Text = "Hasta"
-        '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(13, 77)
+        Me.Label3.Location = New System.Drawing.Point(25, 14)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(55, 17)
         Me.Label3.TabIndex = 10
@@ -97,16 +57,16 @@ Partial Class FormInformesPendientesUsuario
         '
         'tbxInforme
         '
-        Me.tbxInforme.Location = New System.Drawing.Point(138, 77)
+        Me.tbxInforme.Location = New System.Drawing.Point(97, 14)
         Me.tbxInforme.Name = "tbxInforme"
-        Me.tbxInforme.Size = New System.Drawing.Size(128, 22)
+        Me.tbxInforme.Size = New System.Drawing.Size(181, 22)
         Me.tbxInforme.TabIndex = 11
         '
         'btn_excel
         '
-        Me.btn_excel.Location = New System.Drawing.Point(311, 11)
+        Me.btn_excel.Location = New System.Drawing.Point(28, 117)
         Me.btn_excel.Name = "btn_excel"
-        Me.btn_excel.Size = New System.Drawing.Size(141, 23)
+        Me.btn_excel.Size = New System.Drawing.Size(250, 23)
         Me.btn_excel.TabIndex = 12
         Me.btn_excel.Text = "Imprimir EXCEL"
         Me.btn_excel.UseVisualStyleBackColor = True
@@ -133,7 +93,7 @@ Partial Class FormInformesPendientesUsuario
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(691, 193)
+        Me.Label5.Location = New System.Drawing.Point(620, 193)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(130, 17)
         Me.Label5.TabIndex = 15
@@ -141,9 +101,9 @@ Partial Class FormInformesPendientesUsuario
         '
         'btnBuscar
         '
-        Me.btnBuscar.Location = New System.Drawing.Point(311, 48)
+        Me.btnBuscar.Location = New System.Drawing.Point(28, 88)
         Me.btnBuscar.Name = "btnBuscar"
-        Me.btnBuscar.Size = New System.Drawing.Size(141, 23)
+        Me.btnBuscar.Size = New System.Drawing.Size(250, 23)
         Me.btnBuscar.TabIndex = 16
         Me.btnBuscar.Text = "Buscar"
         Me.btnBuscar.UseVisualStyleBackColor = True
@@ -151,7 +111,7 @@ Partial Class FormInformesPendientesUsuario
         'Label6
         '
         Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(13, 109)
+        Me.Label6.Location = New System.Drawing.Point(25, 46)
         Me.Label6.Name = "Label6"
         Me.Label6.Size = New System.Drawing.Size(49, 17)
         Me.Label6.TabIndex = 17
@@ -160,16 +120,16 @@ Partial Class FormInformesPendientesUsuario
         'cbxSectores
         '
         Me.cbxSectores.FormattingEnabled = True
-        Me.cbxSectores.Location = New System.Drawing.Point(138, 109)
+        Me.cbxSectores.Location = New System.Drawing.Point(97, 46)
         Me.cbxSectores.Name = "cbxSectores"
-        Me.cbxSectores.Size = New System.Drawing.Size(128, 24)
+        Me.cbxSectores.Size = New System.Drawing.Size(181, 24)
         Me.cbxSectores.TabIndex = 18
         '
         'FormInformesPendientesUsuario
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1298, 551)
+        Me.ClientSize = New System.Drawing.Size(1242, 551)
         Me.Controls.Add(Me.cbxSectores)
         Me.Controls.Add(Me.Label6)
         Me.Controls.Add(Me.btnBuscar)
@@ -179,10 +139,6 @@ Partial Class FormInformesPendientesUsuario
         Me.Controls.Add(Me.btn_excel)
         Me.Controls.Add(Me.tbxInforme)
         Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.Hasta)
-        Me.Controls.Add(Me.Desde)
         Me.Controls.Add(Me.DataGridView1)
         Me.Name = "FormInformesPendientesUsuario"
         Me.Text = "FormInformesPendientesUsuario"
@@ -193,10 +149,6 @@ Partial Class FormInformesPendientesUsuario
 
     End Sub
     Friend WithEvents DataGridView1 As System.Windows.Forms.DataGridView
-    Friend WithEvents Hasta As System.Windows.Forms.DateTimePicker
-    Friend WithEvents Desde As System.Windows.Forms.DateTimePicker
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents tbxInforme As System.Windows.Forms.TextBox
     Friend WithEvents btn_excel As System.Windows.Forms.Button

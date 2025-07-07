@@ -183,9 +183,9 @@
         Dim c As New pControlInformesFQ
         Return c.listarxfecha(desde, hasta)
     End Function
-    Public Overrides Function listarxtipoxfecha(ByVal tipo As String, ByVal desde As String, ByVal hasta As String) As ArrayList
+    Public Overrides Function listarxtipoxfecha(ByVal tipo As String, ByVal desde As String, ByVal hasta As String, ByVal ficha As Long) As ArrayList
         Dim c As New pControlInformesFQ
-        Return c.listarxtipoxfecha(tipo, desde, hasta)
+        Return c.listarxtipoxfecha(tipo, desde, hasta, ficha)
     End Function
     Public Function listarxfechanc(ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim c As New pControlInformesFQ

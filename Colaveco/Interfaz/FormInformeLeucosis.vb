@@ -27,8 +27,8 @@ Public Class FormInformeLeucosis
         listarfichas()
     End Sub
     Private Sub abrirventanaenvio()
-        Dim v As New FormSubirInformes(Usuario)
-        v.ShowDialog()
+        'Dim v As New FormSubirInformes(Usuario)
+        'v.ShowDialog()
     End Sub
     Private Sub listarfichas()
         Dim s As New dSolicitudAnalisis

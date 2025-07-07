@@ -28,8 +28,8 @@ Public Class FormInformeBrucelosis
         listarfichas()
     End Sub
     Private Sub abrirventanaenvio()
-        Dim v As New FormSubirInformes(Usuario)
-        v.Show()
+        'Dim v As New FormSubirInformes(Usuario)
+        'v.Show()
     End Sub
     Private Sub listarfichas()
         Dim s As New dSolicitudAnalisis

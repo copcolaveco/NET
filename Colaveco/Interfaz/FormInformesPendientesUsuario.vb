@@ -31,12 +31,12 @@ Public Class FormInformesPendientesUsuario
 
 #Region "Constructores"
     Public Sub New(ByVal u As dUsuario)
-
+        Usuario = u
         ' Llamada necesaria para el Diseñador de Windows Forms.
         InitializeComponent()
         cargarSectores()
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
-        Usuario = u
+
 
     End Sub
 #End Region
@@ -44,10 +44,6 @@ Public Class FormInformesPendientesUsuario
     Private Sub btnBuscar_Click(sender As Object, e As EventArgs) Handles btnBuscar.Click
         Dim lista As New ArrayList
         Dim solicitudAnalisis As New dSolicitudAnalisis
-        Dim parmDesde As Date = Desde.Value.ToString("yyyy-MM-dd")
-        Dim parmHasta As Date = Hasta.Value.ToString("yyyy-MM-dd")
-        fecdesde = Format(parmDesde, "yyyy-MM-dd")
-        fechasta = Format(parmHasta, "yyyy-MM-dd")
         Dim sector As dSectores = CType(cbxSectores.SelectedItem, dSectores)
 
         If sector Is Nothing Then
@@ -60,7 +56,7 @@ Public Class FormInformesPendientesUsuario
             informe = tbxInforme.Text
         End If
 
-        lista = solicitudAnalisis.listar_informes_usuario_filtro(_usuario.ID, fecdesde, fechasta, informe, sector_id)
+        lista = solicitudAnalisis.listar_informes_usuario_pendientes(_usuario.ID, informe, sector_id)
         DataGridView1.Rows.Clear()
 
         With DataGridView1
@@ -108,49 +104,49 @@ Public Class FormInformesPendientesUsuario
 
         If DataGridView2.Columns.Count = 0 Then
             DataGridView2.Columns.Add("ANALISIS", "Análisis")
-            DataGridView2.Columns.Add("ID_SOLICITUD", "Solicitud ID")
             DataGridView2.Columns.Add("DESCRIPCION", "Descripción")
+            DataGridView2.Columns.Add("SECTOR", "Sector")
         End If
 
-        ' Asegurarse de que los datos ya estén cargados si vas a usar AllCells.
+        ' Opcional: ajusta solo la columna de descripción para que se vea bien
         DataGridView2.Columns("DESCRIPCION").AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells
 
         If lista IsNot Nothing Then
             For Each item As dAnalisisConDescripcion In lista
-                DataGridView2.Rows.Add(item.ANALISIS, item.ID_SOLICITUD, item.DESCRIPCION)
+                DataGridView2.Rows.Add(item.ANALISIS, item.DESCRIPCION, item.NOMBRE_SECTOR)
             Next
         End If
     End Sub
 
-    Public Sub ExportarReporteExcel(usuarioId As Integer, desde As Date, hasta As Date, idInforme As String)
+    Public Sub ExportarReporteExcel(usuarioId As Integer, idInforme As String)
         Dim excelApp As New Excel.Application
         Dim workbook As Excel.Workbook = excelApp.Workbooks.Add()
         Dim worksheet As Excel.Worksheet = workbook.Sheets(1)
         worksheet.Name = "Informe por Usuario"
-        Dim sector As dSectores = CType(cbxSectores.SelectedItem, dSectores)
-        fecdesde = Format(desde, "yyyy-MM-dd")
-        fechasta = Format(hasta, "yyyy-MM-dd")
 
-        If sector Is Nothing Then
-            sector_id = 0
-        Else
-            sector_id = sector.ID
+        ' Obtener sector seleccionado
+        Dim sector As dSectores = CType(cbxSectores.SelectedItem, dSectores)
+        Dim sector_id As Integer = If(sector Is Nothing, 0, sector.ID)
+
+        ' Obtener nombre del usuario
+        Dim nombreUsuario As String = ""
+        Dim usuario As New dUsuario
+        usuario.ID = usuarioId
+        usuario = usuario.buscar() ' Método que busca y devuelve el usuario completo
+        If usuario IsNot Nothing Then
+            nombreUsuario = usuario.NOMBRE
         End If
 
-        ' Fila 1: Título del reporte
-        Dim titulo As String = "Reporte de análisis para ser realizados"
-        worksheet.Cells(1, 1) = titulo
-
-        ' Aplicar formato en negrita
+        ' Título con nombre del usuario
+        worksheet.Cells(1, 1) = "Reporte de análisis pendientes - Usuario: " & nombreUsuario
         Dim tituloRange As Excel.Range = worksheet.Range("A1", "D1")
         tituloRange.Merge()
         tituloRange.Font.Bold = True
         tituloRange.Font.Size = 12
 
-        ' Fila 2 vacía
         Dim row As Integer = 3
 
-        ' Encabezados de solicitudes
+        ' Encabezados
         worksheet.Cells(row, 1) = "FICHA"
         worksheet.Cells(row, 2) = "FECHA INGRESO"
         worksheet.Cells(row, 3) = "TIPO INFORME"
@@ -158,9 +154,9 @@ Public Class FormInformesPendientesUsuario
         worksheet.Range("A3:D3").Font.Bold = True
         row += 1
 
-        ' Cargar datos
+        ' Obtener solicitudes pendientes
         Dim solicitudAnalisis As New dSolicitudAnalisis
-        Dim listaSolicitudes As ArrayList = solicitudAnalisis.listar_informes_usuario_filtro(usuarioId, fecdesde, fechasta, idInforme, sector_id)
+        Dim listaSolicitudes As ArrayList = solicitudAnalisis.listar_informes_usuario_pendientes(usuarioId, idInforme, sector_id)
 
         If listaSolicitudes IsNot Nothing Then
             For Each solicitud As dInformeAnalisis In listaSolicitudes
@@ -170,52 +166,47 @@ Public Class FormInformesPendientesUsuario
                 worksheet.Cells(row, 4) = solicitud.NMUESTRAS
                 row += 1
 
-                ' Encabezados de análisis
+                ' Encabezado de análisis
                 worksheet.Cells(row, 2) = "Análisis"
-                worksheet.Cells(row, 3) = "ID Solicitud"
-                worksheet.Cells(row, 4) = "Descripción"
+                worksheet.Cells(row, 3) = "Descripción"
+                worksheet.Cells(row, 4) = "Sector"
                 worksheet.Range("B" & row & ":D" & row).Font.Bold = True
                 row += 1
 
-                ' Buscar los análisis relacionados
+                ' Análisis asociados
                 Dim datos As New pSolicitudAnalisis
                 Dim listaAnalisis As ArrayList = datos.listar_analisis_con_descripcion(usuarioId, solicitud.FICHA)
 
                 If listaAnalisis IsNot Nothing Then
                     For Each analisis As dAnalisisConDescripcion In listaAnalisis
                         worksheet.Cells(row, 2) = analisis.ANALISIS
-                        worksheet.Cells(row, 3) = analisis.ID_SOLICITUD
-                        worksheet.Cells(row, 4) = analisis.DESCRIPCION
+                        worksheet.Cells(row, 3) = analisis.DESCRIPCION
+                        worksheet.Cells(row, 4) = analisis.NOMBRE_SECTOR
                         row += 1
                     Next
                 End If
 
-                row += 1 ' Línea vacía entre solicitudes
+                row += 1 ' Línea vacía
             Next
         End If
 
         ' Autoajustar columnas
         worksheet.Columns.AutoFit()
 
-        ' Mostrar Excel al usuario
+        ' Mostrar Excel
         excelApp.Visible = True
-
     End Sub
+
 
     Private Sub btn_excel_Click(sender As Object, e As EventArgs) Handles btn_excel.Click
-        Dim parmDesde As Date = Desde.Value.ToString("yyyy-MM-dd")
-        Dim parmHasta As Date = Hasta.Value.ToString("yyyy-MM-dd")
-        Dim fecdesde As String
-        Dim fechasta As String
-        fecdesde = Format(parmDesde, "yyyy-MM-dd")
-        fechasta = Format(parmHasta, "yyyy-MM-dd")
-        ExportarReporteExcel(_usuario.ID, fecdesde, fechasta, tbxInforme.Text)
+        ExportarReporteExcel(Usuario.ID, tbxInforme.Text)
     End Sub
+
 
     Public Sub cargarSectores()
         Dim s As New dSectores
         Dim lista As New ArrayList
-        lista = s.listar
+        lista = s.listar_por_usuario(Usuario.ID)
         If Not lista Is Nothing Then
             If lista.Count > 0 Then
                 For Each s In lista
@@ -225,4 +216,7 @@ Public Class FormInformesPendientesUsuario
         End If
     End Sub
 
+    Private Sub cbxSectores_SelectedIndexChanged(sender As Object, e As EventArgs) Handles cbxSectores.SelectedIndexChanged
+
+    End Sub
 End Class

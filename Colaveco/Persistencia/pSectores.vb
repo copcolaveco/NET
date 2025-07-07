@@ -80,4 +80,30 @@
             Return Nothing
         End Try
     End Function
+    Public Function listar_por_usuario(usuario_id As Integer) As ArrayList
+        Dim sql As String = "SELECT s.id, s.nombre " &
+                            "FROM sectores s " &
+                            "INNER JOIN usuario_sector us ON us.sector_id = s.id " &
+                            "WHERE s.eliminado = 0 AND us.usuario_id = " & usuario_id & " " &
+                            "ORDER BY s.nombre ASC"
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                For Each unaFila As DataRow In Ds.Tables(0).Rows
+                    Dim l As New dSectores
+                    l.ID = CType(unaFila.Item(0), Integer)
+                    l.NOMBRE = CType(unaFila.Item(1), String)
+                    Lista.Add(l)
+                Next
+                Return Lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
 End Class

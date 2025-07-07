@@ -365,6 +365,7 @@ Public Class FormSubirInformes2
             ' Si hay carpeta definida, mover archivos
             If parametros.Carpeta.HasValue Then
                 mover_archivos(parametros.Carpeta.Value, parametros.TipoInforme.Value)
+
             End If
 
             ' Si hay que agregar control de informe
@@ -379,12 +380,12 @@ Public Class FormSubirInformes2
                 End If
             End If
 
+            ' Estado pago y demás (si es necesario que se llame antes o después, ajusta)
+            estadoPago()
+
             ' Actualizar estados y preinforme
             actualizar_estados(abonado)
             actualizar_preInforme()
-
-            ' Estado pago y demás (si es necesario que se llame antes o después, ajusta)
-            estadoPago()
 
             ' Limpiar controles y marcar por defecto
             limpiar()
@@ -399,8 +400,6 @@ Public Class FormSubirInformes2
             gestorNuevo.ID = idficha
             gestorNuevo.FECHAENVIO = fechaActual
             gestorNuevo.modificarFechaEnvio(Usuario)
-
-            MsgBox("El informe ha sido subido y marcado correctamente.", MsgBoxStyle.Information, "Operación Exitosa")
 
         Catch ex As Exception
             MsgBox("Se produjo un error al subir el informe: " & ex.Message, MsgBoxStyle.Critical, "Error")
@@ -447,187 +446,6 @@ Public Class FormSubirInformes2
             MsgBox("Error al subir informe: " & ex.Message, MsgBoxStyle.Critical)
         End Try
     End Sub
-
-
-
-    'Private Sub subir_control()
-
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.CONTROL_LECHERO, EnumTipoInforme.ControlLechero)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    agregar_control_informe(EnumTipoControles.FisicoQuimico)
-    '    limpiar()
-    '    marcarxdefecto()
-
-    'End Sub
-    'Private Sub subir_agua()
-
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.AGUA, EnumTipoInforme.Agua)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    agregar_control_informe(EnumTipoControles.Microbiologia)
-    '    limpiar()
-    '    marcarxdefecto()
-
-    'End Sub
-    'Private Sub subir_atb()
-
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.ANTIBIOGRAMA, EnumTipoInforme.AislamientoAntibiograma)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-
-    ''End Sub
-    'Private Sub subir_parasitologia()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.PARASITOLOGIA, EnumTipoInforme.Parasitologia)
-    '    actualizar_preInforme()
-    '    actualizar_estados(abonado)
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_alimentos()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.ALIMENTOS, EnumTipoInforme.Alimentos)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    agregar_control_informe(EnumTipoControles.Microbiologia)
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_serologia()
-    '    estadoPago()
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_patologia()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.PATOLOGIA, EnumTipoInforme.Patologia)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_calidad()
-
-    '    estadoPago()
-    '    cliente = TextIdCliente.Text.Trim
-    '    mover_archivos(EnumCarpetaInforme.CALIDAD, EnumTipoInforme.CalidadLeche)
-
-    '    Dim csm As New dCalidadSolicitudMuestra
-    '    csm.FICHA = Informe
-    '    csm = csm.buscarxsolicitud
-    '    agregar_control_informe(EnumTipoControles.FisicoQuimico)
-
-    '    If csm.RB = 1 Or csm.INHIBIDORES = 1 Or csm.ESPORULADOS = 1 Or csm.PSICROTROFOS = 1 Then
-    '        agregar_control_informe(EnumTipoControles.Microbiologia)
-    '    End If
-
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_mineralesenleche()
-    '    estadoPago()
-    '    cliente = TextIdCliente.Text.Trim
-    '    mover_archivos(EnumCarpetaInforme.CALIDAD, EnumTipoInforme.CalidadLeche)
-    '    agregar_control_informe(EnumTipoControles.FisicoQuimico)
-
-    '    Dim csm As New dCalidadSolicitudMuestra
-    '    csm.FICHA = TextFicha.Text.Trim
-    '    csm = csm.buscarxsolicitud
-
-    '    If csm.RB = 1 Or csm.INHIBIDORES = 1 Or csm.ESPORULADOS = 1 Or csm.PSICROTROFOS = 1 Then
-    '        agregar_control_informe(EnumTipoControles.Microbiologia)
-    '    End If
-
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_ambiental()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.AMBIENTAL, EnumTipoInforme.Ambiental)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_nutricion()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.NUTRICION, EnumTipoInforme.Nutricion)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    agregar_control_informe(EnumTipoControles.Nutricion)
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_suelos()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.SUELOS, EnumTipoInforme.Suelos)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    agregar_control_informe(EnumTipoControles.Suelos)
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_brucelosis()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.BRUCELOSIS_LECHE, EnumTipoInforme.BrucelosisLeche)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_efluentes()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.EFLUENTES, EnumTipoInforme.Efluentes)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    agregar_control_informe(EnumTipoControles.Efluentes)
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_bacteriologia()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.BACTERIOLOGIA, EnumTipoInforme.BacteriologiaTanque)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_bacteriologia_clinica()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.BACTERIOLOGIA, EnumTipoInforme.BacteriologiaClinica)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
-    'Private Sub subir_foliares()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.TOXICOLOGIA, EnumTipoInforme.Foliares)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    agregar_control_informe(EnumTipoControles.Suelos)
-    '    limpiar()
-    '    marcarxdefecto()
-    ''End Sub
-    'Private Sub subir_toxicologia()
-    '    estadoPago()
-    '    mover_archivos(EnumCarpetaInforme.TOXICOLOGIA, EnumTipoInforme.Toxicologia)
-    '    actualizar_estados(abonado)
-    '    actualizar_preInforme()
-    '    limpiar()
-    '    marcarxdefecto()
-    'End Sub
    
     Private Sub limpiar()
         TextIdCliente.Text = ""
@@ -902,16 +720,23 @@ Public Class FormSubirInformes2
         nficha = 0
     End Sub
 
-    Private Sub subir_informe_gestor()
+    Private Sub cambiar_estado_gestor(ByVal nuevoEstado As Integer, ByVal control As EnumControles)
 
         'Gestor 
         Dim nuevoGestor As New dNuevoGestor
         nuevoGestor.ID = Informe
-        nuevoGestor.SOLICITUDESTADOID = 3
+        nuevoGestor.SOLICITUDESTADOID = nuevoEstado
         nuevoGestor.modificar(Usuario)
 
-        'Envio de Email
-        enviomailInformeConVisualizacion()
+        'Envio de Email si esta controlado y es con visualizacion 
+        If nuevoEstado = EnumEstadoGestor.Finalizado_con_Visualización And control = EnumControles.NoControlado Then
+            Return
+        ElseIf nuevoEstado = EnumEstadoGestor.Finalizado_sin_Visualización Then
+            Return
+        ElseIf nuevoEstado = EnumEstadoGestor.Finalizado_con_Visualización And control = EnumControles.NoTieneControl Then
+            enviomailInformeConVisualizacion()
+        End If
+
     End Sub
 
     'Public Sub agregar_control_informe(ByVal tipoControl As Integer)
@@ -1047,7 +872,7 @@ Public Class FormSubirInformes2
                 Exit Sub
         End Select
 
-        Dim lista As ArrayList = Control.listarxtipoxfecha(tipoControl, fechaActual, fechaActual)
+        Dim lista As ArrayList = Control.listarxtipoxfecha(tipoControl, fechaActual, fechaActual, Informe)
         Dim debeAgregarControl As Boolean = (lista Is Nothing) OrElse (lista.Count < 6)
 
         If debeAgregarControl Then
@@ -1099,178 +924,6 @@ Public Class FormSubirInformes2
 
         Control = Nothing
     End Sub
-
-
-    'Public Sub mover_archivos(ByVal enumCarpeta As EnumCarpetaInforme, ByVal tipoInforme As Long)
-
-    '    Dim carpetaInforme As String = EnumCarpetaInformeToString(enumCarpeta)
-
-    '    '****************************************************************************************
-    '    'JUNTAR LOS 2 PDF ***************************************************************************
-    '    ' Creamos una lista de archivos para concatenar
-    '    Dim Listax As New List(Of String)
-    '    ' Identificamos los documentos que queremos unir
-
-
-    '    ' Unir PDFs y Mover TXT
-    '    If tipoInforme = EnumTipoInforme.ControlLechero Then
-
-    '        Dim sFile1 As String = "\\192.168.1.10\E\NET\" + carpetaInforme + "\Graficas\" & Informe & ".pdf"
-    '        Dim sFile2 As String = "\\192.168.1.10\E\NET\" + carpetaInforme + "\Graficas\x" & Informe & ".pdf"
-    '        ' Los añadimos a la lista
-    '        Listax.Add(sFile1)
-    '        Listax.Add(sFile2)
-
-    '        Dim sFileJoin As String = ""
-
-    '        If tipoInforme = EnumTipoInforme.ControlLechero Then
-    '            sFileJoin = "\\ROBOT\PREINFORMES\CONTROL\" & Informe & ".pdf"
-    '        Else
-    '            sFileJoin = "\\ROBOT\PREINFORMES\" + carpetaInforme + "\" & Informe & ".pdf"
-    '        End If
-
-    '        Dim Doc As New Document()
-    '        Try
-    '            Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
-    '            Dim copy As New PdfCopy(Doc, fs)
-    '            Doc.Open()
-    '            Dim Rd As PdfReader
-    '            Dim n As Integer
-    '            For Each file In Listax
-    '                Rd = New PdfReader(file)
-    '                n = Rd.NumberOfPages
-    '                Dim page As Integer = 0
-    '                Do While page < n
-    '                    page += 1
-    '                    copy.AddPage(copy.GetImportedPage(Rd, page))
-    '                Loop
-    '                copy.FreeReader(Rd)
-    '                Rd.Close()
-    '            Next
-    '        Catch ex As Exception
-
-    '        Finally
-    '            Doc.Close()
-    '        End Try
-
-    '        '*** MOVER ARCHIVO TXT***********************************************************************
-
-    '        Dim sArchivoOrigenTxt As String = ""
-
-    '        If tipoInforme = EnumTipoInforme.ControlLechero Then
-    '            sArchivoOrigenTxt = "\\ROBOT\PREINFORMES\CONTROL\" & Informe & ".txt"
-    '        Else
-    '            sArchivoOrigenTxt = "\\ROBOT\PREINFORMES\" + carpetaInforme + "\" & Informe & ".txt"
-    '        End If
-
-    '        Dim sRutaDestino3 As String = "\\ROBOT\INFORMES PARA SUBIR\" & Informe & ".txt"
-
-    '        Try
-    '            ' Mover el fichero.si existe lo sobreescribe  
-    '            My.Computer.FileSystem.MoveFile(sArchivoOrigenTxt, _
-    '                                            sRutaDestino3, _
-    '                                            True)
-    '        Catch ex As Exception
-    '            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-    '        End Try
-
-    '    End If
-
-    '    '*** MOVER ARCHIVO XLS***********************************************************************
-    '    Dim sArchivoOrigen As String = ""
-    '    If tipoInforme = EnumTipoInforme.ControlLechero Then
-    '        sArchivoOrigen = "\\ROBOT\PREINFORMES\CONTROL\" & Informe & ".xls"
-    '    Else
-    '        sArchivoOrigen = "\\ROBOT\PREINFORMES\" + carpetaInforme + "\" & Informe & ".xls"
-    '    End If
-
-    '    Dim sRutaDestino As String = "\\ROBOT\INFORMES PARA SUBIR\" & Informe & ".xls"
-    '    Try
-    '        ' Mover el fichero.si existe lo sobreescribe  
-    '        My.Computer.FileSystem.MoveFile(sArchivoOrigen, _
-    '                                       sRutaDestino, _
-    '                                        True)
-    '    Catch ex As Exception
-    '        MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-    '    End Try
-
-    '    '*** MOVER ARCHIVO PDF***********************************************************************
-    '    If tipoInforme = EnumTipoInforme.Suelos Then
-    '        sFile1 = "\\ROBOT\PREINFORMES\SUELOS\" & Informe & ".pdf"
-    '        sFile2 = "\\ROBOT\PREINFORMES\SUELOS\anexo" & Informe & ".pdf"
-    '        sFile3 = "\\ROBOT\PREINFORMES\SUELOS\anexoPH" & Informe & ".pdf"
-    '        sFile4 = "\\ROBOT\PREINFORMES\SUELOS\anexoCationes" & Informe & ".pdf"
-    '        Listax.Add(sFile1)
-
-    '        If isAnexo Then 'fertilizantes
-    '            Listax.Add(sFile2)
-    '        End If
-
-    '        If isAnexoPH Then 'PH
-    '            Listax.Add(sFile3)
-    '        End If
-
-    '        If isAnexoCationes Then 'PH
-    '            Listax.Add(sFile4)
-    '        End If
-
-    '        ' Nombre del documento resultante
-    '        Dim sFileJoin As String = "\\ROBOT\INFORMES PARA SUBIR\" & Informe & ".pdf"
-    '        Dim Doc As New Document()
-    '        Try
-    '            Dim fs As New FileStream(sFileJoin, FileMode.Create, FileAccess.Write, FileShare.None)
-    '            Dim copy As New PdfCopy(Doc, fs)
-    '            Doc.Open()
-    '            Dim Rd As PdfReader
-    '            Dim n As Integer 'Número de páginas de cada pdf
-    '            For Each file In Listax
-    '                Rd = New PdfReader(file)
-    '                n = Rd.NumberOfPages
-    '                Dim page As Integer = 0
-    '                Do While page < n
-    '                    page += 1
-    '                    copy.AddPage(copy.GetImportedPage(Rd, page))
-    '                Loop
-    '                copy.FreeReader(Rd)
-    '                Rd.Close()
-    '            Next
-
-    '            Dim sArchivoOrigenSuelo As String = "\\ROBOT\PREINFORMES\SUELOS\" & Informe & ".pdf"
-    '            Try
-    '                My.Computer.FileSystem.MoveFile(sArchivoOrigenSuelo, sFileJoin, True)
-    '                MsgBox("Ok.", MsgBoxStyle.Information, "Mover archivo")
-    '            Catch ex As Exception
-    '                MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-    '            End Try
-
-
-    '        Catch ex As Exception
-    '            MsgBox(ex.Message, vbExclamation, "Error uniendo los pdf, si el informe no lleva ANEXO por conversiòn de fertilizante proceguir.")
-    '        Finally
-    '            ' Cerramos el documento
-    '            Doc.Close()
-    '        End Try
-    '    Else
-    '        Dim sArchivoOrigen2 As String = ""
-    '        If tipoInforme = EnumTipoInforme.ControlLechero Then
-    '            sArchivoOrigen2 = "\\ROBOT\PREINFORMES\CONTROL\" & Informe & ".pdf"
-    '        Else
-    '            sArchivoOrigen2 = "\\ROBOT\PREINFORMES\" + carpetaInforme + "\" & Informe & ".pdf"
-    '        End If
-
-    '        Dim sRutaDestino2 As String = "\\ROBOT\INFORMES PARA SUBIR\" & Informe & ".pdf"
-    '        Try
-    '            ' Mover el fichero.si existe lo sobreescribe  
-    '            My.Computer.FileSystem.MoveFile(sArchivoOrigen2, _
-    '                                            sRutaDestino2, _
-    '                                            True)
-    '        Catch ex As Exception
-    '            MsgBox(ex.Message.ToString, MsgBoxStyle.Critical)
-    '        End Try
-    '    End If
-
-
-    'End Sub
 
     Public Sub mover_archivos(ByVal enumCarpeta As EnumCarpetaInforme, ByVal tipoInforme As Long)
         Dim carpetaInforme As String
@@ -1379,7 +1032,6 @@ ErrorPDF:
             Next i
 
             Doc2.Close()
-            MsgBox("PDF generado correctamente.", vbInformation)
 ErrorPDFSuelos:
         Else
             ' OTROS INFORMES - mover PDF directamente
@@ -1392,6 +1044,8 @@ ErrorPDFSuelos:
 
             Call MoverArchivo(origenPdf, rutaDestinoBase & nombreInforme & ".pdf")
         End If
+
+        CopiarArchivosalGestor(Informe)
     End Sub
 
     '--------------------------
@@ -1705,8 +1359,13 @@ ErrorPDFSuelos:
             ' Mostrar formulario de envío de correo
             Dim correoForm As New FormCorreoMorosos(Usuario, emailCliente, Informe)
             correoForm.Show()
+            Dim fichaControl As New dControlInformesFQ
+            Dim estadoControl As Integer = fichaControl.obtener_estado_control_ficha(Informe)
+            Dim control As EnumControles = CType(estadoControl, EnumControles)
 
-            MsgBox("El informe fue registrado correctamente como no abonado sin visualización. Se notificará al cliente por correo electrónico.", vbInformation, "Registro completado")
+            cambiar_estado_gestor(EnumEstadoGestor.Finalizado_sin_Visualización, control)
+
+            MsgBox("Informe finalizado Sin Visualización.", vbInformation, "Subir Informe")
 
         ElseIf abonado = 1 Or abonado = 2 Then
             ' Caso: Abonado o No abonado con visualización
@@ -1715,18 +1374,15 @@ ErrorPDFSuelos:
             Dim fichaControl As New dControlInformesFQ
             Dim estadoControl As Integer = fichaControl.obtener_estado_control_ficha(Informe)
             Dim control As EnumControles = CType(estadoControl, EnumControles)
+            Dim nuevoEstado As Integer = EnumEstadoGestor.Finalizado_con_Visualización
 
             Select Case control
-                Case EnumControles.Controlado
-                    subir_informe_gestor()
-                    MsgBox("El proceso finalizó correctamente. El informe fue revisado por un técnico y se ha subido al Gestor.", vbInformation, "Proceso finalizado")
-
                 Case EnumControles.NoControlado
-                    MsgBox("El informe aún no ha sido revisado por un técnico. Para finalizar el proceso, debe ser controlado previamente.", vbExclamation, "Control pendiente")
-
+                    cambiar_estado_gestor(nuevoEstado, control)
+                    MsgBox("Informe finalizado con visualización, para controlar por un técnico.", vbExclamation, "Subir Informe")
                 Case EnumControles.NoTieneControl
-                    subir_informe_gestor()
-                    MsgBox("El proceso finalizó correctamente. El informe no requería control técnico, por lo tanto fue subido directamente al Gestor.", vbInformation, "Proceso finalizado")
+                    cambiar_estado_gestor(nuevoEstado, control)
+                    MsgBox("Informe finalizado con visualización, no se le asigna control.", vbInformation, "Subir Informe")
             End Select
         End If
     End Sub
@@ -1756,6 +1412,39 @@ ErrorPDFSuelos:
         pi.COPIA = copia
         pi.PARASUBIR = 1
         pi.modificar2()
+    End Sub
+
+    Public Sub CopiarArchivosalGestor(ByVal ficha As Long)
+        Dim rutaOrigen As String = "\\ROBOT\INFORMES PARA SUBIR\"
+        Dim rutaDestino As String = "\\192.168.1.118\Informes"
+
+        ' Asegura que la carpeta destino exista
+        If Not Directory.Exists(rutaDestino) Then
+            Directory.CreateDirectory(rutaDestino)
+        End If
+
+        ' Extensiones a mover
+        Dim extensiones() As String = {".pdf", ".xls", ".xlsx", ".txt"}
+
+        For Each ext As String In extensiones
+            Dim archivoOrigen As String = Path.Combine(rutaOrigen, ficha & ext)
+            Dim archivoDestino As String = Path.Combine(rutaDestino, ficha & ext)
+
+            If File.Exists(archivoOrigen) Then
+                If Not File.Exists(archivoDestino) Then
+                    Try
+                        File.Copy(archivoOrigen, archivoDestino)
+                    Catch ex As Exception
+                        MessageBox.Show("Error al copiar archivo " & ficha & ext & ": " & ex.Message)
+                    End Try
+                Else
+                    ' Archivo ya existe en destino, podés decidir qué hacer
+                    ' Por ejemplo, eliminar y copiar de nuevo, o renombrar, o simplemente ignorar
+                    ' Aquí lo dejamos como ignorado
+                    'MessageBox.Show("El archivo ya existe: " & archivoDestino)
+                End If
+            End If
+        Next
     End Sub
 
 End Class

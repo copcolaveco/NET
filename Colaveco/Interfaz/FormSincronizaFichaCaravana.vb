@@ -923,7 +923,11 @@ Public Class FormSincronizaFichaCaravana
                             columna = columna + 1
                         Else
                             Dim valorurea As Integer
-                            valorurea = c.UREA * 0.466
+                            If c.EQUIPO = "B6" Then
+                                valorurea = c.UREA
+                            Else
+                                valorurea = c.UREA * 0.466
+                            End If
                             If valorurea > 20 Or valorurea < 9 Then
                                 x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                             End If
@@ -1250,7 +1254,11 @@ Public Class FormSincronizaFichaCaravana
                                 columna = columna + 1
                             Else
                                 Dim valorurea As Integer
-                                valorurea = c.UREA * 0.466
+                                If c.EQUIPO = "B6" Then
+                                    valorurea = c.UREA
+                                Else
+                                    valorurea = c.UREA * 0.466
+                                End If
                                 If valorurea > 20 Or valorurea < 9 Then
                                     x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
                                 End If

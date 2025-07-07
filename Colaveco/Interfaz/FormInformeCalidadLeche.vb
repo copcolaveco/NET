@@ -66,8 +66,8 @@ Public Class FormInformeCalidadLeche
         listarfichas()
     End Sub
     Private Sub abrirventanaenvio()
-        Dim v As New FormSubirInformes(Usuario)
-        v.ShowDialog()
+        'Dim v As New FormSubirInformes(Usuario)
+        'v.ShowDialog()
     End Sub
   
 

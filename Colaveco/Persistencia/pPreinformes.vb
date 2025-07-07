@@ -1,4 +1,6 @@
-﻿Public Class pPreinformes
+﻿Imports System.Text
+
+Public Class pPreinformes
     Inherits Conectoras.ConexionMySQL
     Public Function guardar(ByVal o As Object) As Boolean
         Dim obj As dPreinformes = CType(o, dPreinformes)
@@ -456,6 +458,126 @@
             Return Nothing
         End Try
     End Function
+        
+    Public Function listar_informes_gestor(ByVal desde As String, ByVal hasta As String, ByVal filtroEstado As String, ByVal ficha As String) As ArrayList
+        Dim sql As New StringBuilder()
+        Dim filtroFicha As String = ""
+
+        ' Validar si ficha tiene valor y es numérica
+        If Not String.IsNullOrEmpty(ficha) AndAlso IsNumeric(ficha) Then
+            filtroFicha = " AND sa.id = " & ficha & " "
+        End If
+
+        If filtroEstado = "SUBIDO" Or filtroEstado = "AMBOS" Then
+            sql.Append("SELECT sa.id AS ficha, sa.fechaingreso, c.nombre AS cliente, ti.nombre AS tipoinforme, 'SUBIDO' AS estado ")
+            sql.Append("FROM solicitudanalisis sa ")
+            sql.Append("INNER JOIN cliente c ON c.id = sa.idproductor ")
+            sql.Append("INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme ")
+            sql.Append("WHERE sa.marca = 1 AND (")
+            sql.Append("EXISTS (SELECT 1 FROM controlinformesfq WHERE ficha = sa.id AND controlado = 1) ")
+            sql.Append("OR EXISTS (SELECT 1 FROM controlinformesmicro WHERE ficha = sa.id AND controlado = 1) ")
+            sql.Append("OR EXISTS (SELECT 1 FROM controlinformesefluentes WHERE ficha = sa.id AND controlado = 1) ")
+            sql.Append("OR EXISTS (SELECT 1 FROM controlinformesnutricion WHERE ficha = sa.id AND controlado = 1) ")
+            sql.Append("OR EXISTS (SELECT 1 FROM controlinformessuelos WHERE ficha = sa.id AND controlado = 1)) ")
+            sql.Append("AND sa.FECHAENVIO BETWEEN '" & desde & "' AND '" & hasta & "' ")
+            sql.Append(filtroFicha)
+        End If
+
+        If filtroEstado = "AMBOS" Then
+            sql.Append("UNION ")
+        End If
+
+        If filtroEstado = "PENDIENTE" Or filtroEstado = "AMBOS" Then
+            sql.Append("SELECT sa.id AS ficha, sa.fechaingreso, c.nombre AS cliente, ti.nombre AS tipoinforme, 'PENDIENTE' AS estado ")
+            sql.Append("FROM solicitudanalisis sa ")
+            sql.Append("INNER JOIN cliente c ON c.id = sa.idproductor ")
+            sql.Append("INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme ")
+            sql.Append("WHERE (sa.marca = 0 OR ")
+            sql.Append("EXISTS (SELECT 1 FROM controlinformesfq WHERE ficha = sa.id AND controlado = 0) ")
+            sql.Append("OR EXISTS (SELECT 1 FROM controlinformesmicro WHERE ficha = sa.id AND controlado = 0) ")
+            sql.Append("OR EXISTS (SELECT 1 FROM controlinformesefluentes WHERE ficha = sa.id AND controlado = 0) ")
+            sql.Append("OR EXISTS (SELECT 1 FROM controlinformesnutricion WHERE ficha = sa.id AND controlado = 0) ")
+            sql.Append("OR EXISTS (SELECT 1 FROM controlinformessuelos WHERE ficha = sa.id AND controlado = 0)) ")
+            sql.Append("AND sa.FECHAENVIO BETWEEN '" & desde & "' AND '" & hasta & "' ")
+            sql.Append(filtroFicha)
+        End If
+
+        sql.Append("ORDER BY fechaingreso DESC")
+
+        Try
+            Dim lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql.ToString())
+
+            For Each fila As DataRow In Ds.Tables(0).Rows
+                Dim i As New dInformeGestor
+                i.FICHA = CType(fila.Item("ficha"), Long)
+                i.FECHAINGRESO = CType(fila.Item("fechaingreso"), String)
+                i.CLIENTE = CType(fila.Item("cliente"), String)
+                i.TIPOINFORME = CType(fila.Item("tipoinforme"), String)
+                i.ESTADO = CType(fila.Item("estado"), String)
+                lista.Add(i)
+            Next
+            Return lista
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+    Public Function listar_informes_gestor_deldia() As ArrayList
+        Dim sql As New StringBuilder()
+
+        sql.Append("SELECT sa.id AS ficha, sa.fechaingreso, sa.fechaenvio, c.nombre AS cliente, ti.nombre AS tipoinforme, 'SUBIDO' AS estado ")
+        sql.Append("FROM solicitudanalisis sa ")
+        sql.Append("INNER JOIN cliente c ON c.id = sa.idproductor ")
+        sql.Append("INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme ")
+        sql.Append("WHERE sa.marca = 1 AND (")
+        sql.Append("EXISTS (SELECT 1 FROM controlinformesfq WHERE ficha = sa.id AND controlado = 1) ")
+        sql.Append("OR EXISTS (SELECT 1 FROM controlinformesmicro WHERE ficha = sa.id AND controlado = 1) ")
+        sql.Append("OR EXISTS (SELECT 1 FROM controlinformesefluentes WHERE ficha = sa.id AND controlado = 1) ")
+        sql.Append("OR EXISTS (SELECT 1 FROM controlinformesnutricion WHERE ficha = sa.id AND controlado = 1) ")
+        sql.Append("OR EXISTS (SELECT 1 FROM controlinformessuelos WHERE ficha = sa.id AND controlado = 1)) ")
+        sql.Append("AND sa.FECHAENVIO BETWEEN CURDATE() AND CURDATE() ")
+
+        sql.Append(" UNION ")
+
+        sql.Append("SELECT sa.id AS ficha, sa.fechaingreso, sa.fechaenvio, c.nombre AS cliente, ti.nombre AS tipoinforme, 'PENDIENTE' AS estado ")
+        sql.Append("FROM solicitudanalisis sa ")
+        sql.Append("INNER JOIN cliente c ON c.id = sa.idproductor ")
+        sql.Append("INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme ")
+        sql.Append("WHERE (sa.marca = 0 OR ")
+        sql.Append("EXISTS (SELECT 1 FROM controlinformesfq WHERE ficha = sa.id AND controlado = 0) ")
+        sql.Append("OR EXISTS (SELECT 1 FROM controlinformesmicro WHERE ficha = sa.id AND controlado = 0) ")
+        sql.Append("OR EXISTS (SELECT 1 FROM controlinformesefluentes WHERE ficha = sa.id AND controlado = 0) ")
+        sql.Append("OR EXISTS (SELECT 1 FROM controlinformesnutricion WHERE ficha = sa.id AND controlado = 0) ")
+        sql.Append("OR EXISTS (SELECT 1 FROM controlinformessuelos WHERE ficha = sa.id AND controlado = 0)) ")
+        sql.Append("AND sa.FECHAENVIO <= CURDATE() ")
+
+        sql.Append("ORDER BY fechaingreso DESC")
+
+        Try
+            Dim lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql.ToString())
+
+            For Each fila As DataRow In Ds.Tables(0).Rows
+                Dim i As New dInformeGestor
+                i.FICHA = CType(fila.Item("ficha"), Long)
+                i.FECHAINGRESO = CType(fila.Item("fechaingreso"), String)
+                i.FECHAENVIO = CType(fila.Item("fechaenvio"), String)  ' Aquí la nueva propiedad
+                i.CLIENTE = CType(fila.Item("cliente"), String)
+                i.TIPOINFORME = CType(fila.Item("tipoinforme"), String)
+                i.ESTADO = CType(fila.Item("estado"), String)
+                lista.Add(i)
+            Next
+            Return lista
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
+
+
+
 
     Public Function listarparasubircontrol() As ArrayList
         Dim sql As String = "SELECT id, ficha, tipo, creado, abonado, ifnull(comentario,''),ifnull(copia,''), parasubir, subido, fecha, control FROM preinformes WHERE tipo = 1 AND parasubir =1 AND subido = 0"

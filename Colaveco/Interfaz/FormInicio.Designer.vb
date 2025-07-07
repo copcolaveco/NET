@@ -27,8 +27,6 @@ Partial Class FormInicio
         Dim DataGridViewCellStyle2 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle3 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim DataGridViewCellStyle4 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle5 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
-        Dim DataGridViewCellStyle6 As System.Windows.Forms.DataGridViewCellStyle = New System.Windows.Forms.DataGridViewCellStyle()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(FormInicio))
         Me.MenuStrip1 = New System.Windows.Forms.MenuStrip()
         Me.SesiónToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -311,7 +309,6 @@ Partial Class FormInicio
         Me.ResponsableTareaP = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.CreadorTareaP = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
-        Me.ButtonSolicitudAnalisis = New System.Windows.Forms.Button()
         Me.StatusStrip1 = New System.Windows.Forms.StatusStrip()
         Me.ToolStripStatusLabel1 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.ToolStripStatusLabel2 = New System.Windows.Forms.ToolStripStatusLabel()
@@ -320,26 +317,7 @@ Partial Class FormInicio
         Me.ToolStripStatusLabel5 = New System.Windows.Forms.ToolStripStatusLabel()
         Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
         Me.Timer3 = New System.Windows.Forms.Timer(Me.components)
-        Me.DataGridViewParaSubir = New System.Windows.Forms.DataGridView()
-        Me.IdParaSubir = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FichaParaSubir = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TipoParaSubir = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewSubidas = New System.Windows.Forms.DataGridView()
-        Me.IdSubidas = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FichaSubida = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaSubidas = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TipoSubidas = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridTareasG = New System.Windows.Forms.DataGridView()
-        Me.DataGridViewTextBoxColumn1 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn3 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn4 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn5 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Label5 = New System.Windows.Forms.Label()
-        Me.DataGridPedidos = New System.Windows.Forms.DataGridView()
-        Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Cliente = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label6 = New System.Windows.Forms.Label()
         Me.Timer4 = New System.Windows.Forms.Timer(Me.components)
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
@@ -359,42 +337,17 @@ Partial Class FormInicio
         Me.DataGridViewTextBoxColumn13 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn14 = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.DataGridViewTextBoxColumn15 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TabControl3 = New System.Windows.Forms.TabControl()
-        Me.TabPage5 = New System.Windows.Forms.TabPage()
-        Me.TabPage6 = New System.Windows.Forms.TabPage()
         Me.ButtonNuevaSolicitud = New System.Windows.Forms.Button()
-        Me.DataGridAutorizaciones = New System.Windows.Forms.DataGridView()
-        Me.IdAutorizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.FechaAutorizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombreAutorizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.TipoAutorizacion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label1 = New System.Windows.Forms.Label()
-        Me.DataGridNotificaciones = New System.Windows.Forms.DataGridView()
-        Me.IdNot = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Fecha = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Nombre = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Descripcion = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label2 = New System.Windows.Forms.Label()
-        Me.DataGridViewPP = New System.Windows.Forms.DataGridView()
-        Me.IdPend = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.NombrePend = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.ButtonCrearInformes = New System.Windows.Forms.Button()
-        Me.dgvPreinformes = New System.Windows.Forms.DataGridView()
-        Me.id2 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.fichaColumn = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn18 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.DataGridViewTextBoxColumn19 = New System.Windows.Forms.DataGridViewTextBoxColumn()
-        Me.btnEdit = New System.Windows.Forms.DataGridViewButtonColumn()
-        Me.Label4 = New System.Windows.Forms.Label()
+        Me.ToolTip1 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.ToolTip2 = New System.Windows.Forms.ToolTip(Me.components)
+        Me.Button3 = New System.Windows.Forms.Button()
+        Me.Timer5 = New System.Windows.Forms.Timer(Me.components)
+        Me.Button4 = New System.Windows.Forms.Button()
         Me.MenuStrip1.SuspendLayout()
         CType(Me.DataGridTareas, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.StatusStrip1.SuspendLayout()
-        CType(Me.DataGridViewParaSubir, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewSubidas, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridTareasG, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridPedidos, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         Me.TabPage2.SuspendLayout()
@@ -403,13 +356,6 @@ Partial Class FormInicio
         Me.TabPage3.SuspendLayout()
         Me.TabPage4.SuspendLayout()
         CType(Me.DataGridTareasR, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.TabControl3.SuspendLayout()
-        Me.TabPage5.SuspendLayout()
-        Me.TabPage6.SuspendLayout()
-        CType(Me.DataGridAutorizaciones, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridNotificaciones, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.DataGridViewPP, System.ComponentModel.ISupportInitialize).BeginInit()
-        CType(Me.dgvPreinformes, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'MenuStrip1
@@ -2095,10 +2041,10 @@ Partial Class FormInicio
         '
         Me.DateFecha.Enabled = False
         Me.DateFecha.Format = System.Windows.Forms.DateTimePickerFormat.[Short]
-        Me.DateFecha.Location = New System.Drawing.Point(16, 48)
+        Me.DateFecha.Location = New System.Drawing.Point(40, 48)
         Me.DateFecha.Margin = New System.Windows.Forms.Padding(4)
         Me.DateFecha.Name = "DateFecha"
-        Me.DateFecha.Size = New System.Drawing.Size(136, 22)
+        Me.DateFecha.Size = New System.Drawing.Size(184, 22)
         Me.DateFecha.TabIndex = 6
         '
         'DataGridTareas
@@ -2114,11 +2060,11 @@ Partial Class FormInicio
         DataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridTareas.DefaultCellStyle = DataGridViewCellStyle1
-        Me.DataGridTareas.Location = New System.Drawing.Point(8, 4)
+        Me.DataGridTareas.Location = New System.Drawing.Point(0, 4)
         Me.DataGridTareas.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridTareas.Name = "DataGridTareas"
         Me.DataGridTareas.RowHeadersVisible = False
-        Me.DataGridTareas.Size = New System.Drawing.Size(383, 288)
+        Me.DataGridTareas.Size = New System.Drawing.Size(499, 114)
         Me.DataGridTareas.TabIndex = 8
         '
         'IdTarea
@@ -2162,11 +2108,11 @@ Partial Class FormInicio
         DataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText
         DataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
         Me.DataGridtareasP.DefaultCellStyle = DataGridViewCellStyle2
-        Me.DataGridtareasP.Location = New System.Drawing.Point(21, 4)
+        Me.DataGridtareasP.Location = New System.Drawing.Point(8, 8)
         Me.DataGridtareasP.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridtareasP.Name = "DataGridtareasP"
         Me.DataGridtareasP.RowHeadersVisible = False
-        Me.DataGridtareasP.Size = New System.Drawing.Size(376, 289)
+        Me.DataGridtareasP.Size = New System.Drawing.Size(491, 110)
         Me.DataGridtareasP.TabIndex = 9
         '
         'IdTareaP
@@ -2200,16 +2146,6 @@ Partial Class FormInicio
         'Timer1
         '
         Me.Timer1.Interval = 180000
-        '
-        'ButtonSolicitudAnalisis
-        '
-        Me.ButtonSolicitudAnalisis.Location = New System.Drawing.Point(196, 49)
-        Me.ButtonSolicitudAnalisis.Margin = New System.Windows.Forms.Padding(4)
-        Me.ButtonSolicitudAnalisis.Name = "ButtonSolicitudAnalisis"
-        Me.ButtonSolicitudAnalisis.Size = New System.Drawing.Size(159, 28)
-        Me.ButtonSolicitudAnalisis.TabIndex = 11
-        Me.ButtonSolicitudAnalisis.Text = "Solicitud de análisis"
-        Me.ButtonSolicitudAnalisis.UseVisualStyleBackColor = True
         '
         'StatusStrip1
         '
@@ -2254,160 +2190,15 @@ Partial Class FormInicio
         '
         Me.Timer3.Interval = 120000
         '
-        'DataGridViewParaSubir
-        '
-        Me.DataGridViewParaSubir.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewParaSubir.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdParaSubir, Me.FichaParaSubir, Me.TipoParaSubir})
-        Me.DataGridViewParaSubir.Location = New System.Drawing.Point(8, 7)
-        Me.DataGridViewParaSubir.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridViewParaSubir.Name = "DataGridViewParaSubir"
-        Me.DataGridViewParaSubir.RowHeadersVisible = False
-        Me.DataGridViewParaSubir.Size = New System.Drawing.Size(264, 165)
-        Me.DataGridViewParaSubir.TabIndex = 13
-        '
-        'IdParaSubir
-        '
-        Me.IdParaSubir.HeaderText = "Id"
-        Me.IdParaSubir.Name = "IdParaSubir"
-        Me.IdParaSubir.Visible = False
-        '
-        'FichaParaSubir
-        '
-        Me.FichaParaSubir.HeaderText = "Ficha"
-        Me.FichaParaSubir.Name = "FichaParaSubir"
-        Me.FichaParaSubir.Width = 60
-        '
-        'TipoParaSubir
-        '
-        Me.TipoParaSubir.HeaderText = "Tipo"
-        Me.TipoParaSubir.Name = "TipoParaSubir"
-        Me.TipoParaSubir.Width = 80
-        '
-        'DataGridViewSubidas
-        '
-        Me.DataGridViewSubidas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewSubidas.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdSubidas, Me.FichaSubida, Me.FechaSubidas, Me.TipoSubidas})
-        Me.DataGridViewSubidas.Location = New System.Drawing.Point(9, 7)
-        Me.DataGridViewSubidas.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridViewSubidas.Name = "DataGridViewSubidas"
-        Me.DataGridViewSubidas.RowHeadersVisible = False
-        Me.DataGridViewSubidas.Size = New System.Drawing.Size(297, 165)
-        Me.DataGridViewSubidas.TabIndex = 15
-        '
-        'IdSubidas
-        '
-        Me.IdSubidas.HeaderText = "Id"
-        Me.IdSubidas.Name = "IdSubidas"
-        Me.IdSubidas.Visible = False
-        '
-        'FichaSubida
-        '
-        Me.FichaSubida.HeaderText = "Ficha"
-        Me.FichaSubida.Name = "FichaSubida"
-        Me.FichaSubida.Width = 60
-        '
-        'FechaSubidas
-        '
-        Me.FechaSubidas.HeaderText = "Fecha"
-        Me.FechaSubidas.Name = "FechaSubidas"
-        Me.FechaSubidas.Width = 80
-        '
-        'TipoSubidas
-        '
-        Me.TipoSubidas.HeaderText = "Tipo"
-        Me.TipoSubidas.Name = "TipoSubidas"
-        Me.TipoSubidas.Width = 80
-        '
-        'DataGridTareasG
-        '
-        Me.DataGridTareasG.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.DataGridTareasG.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridTareasG.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn1, Me.DataGridViewTextBoxColumn2, Me.DataGridViewTextBoxColumn3, Me.DataGridViewTextBoxColumn4, Me.DataGridViewTextBoxColumn5})
-        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridTareasG.DefaultCellStyle = DataGridViewCellStyle3
-        Me.DataGridTareasG.Location = New System.Drawing.Point(869, 496)
-        Me.DataGridTareasG.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridTareasG.Name = "DataGridTareasG"
-        Me.DataGridTareasG.RowHeadersVisible = False
-        Me.DataGridTareasG.Size = New System.Drawing.Size(380, 230)
-        Me.DataGridTareasG.TabIndex = 17
-        '
-        'DataGridViewTextBoxColumn1
-        '
-        Me.DataGridViewTextBoxColumn1.HeaderText = "Id"
-        Me.DataGridViewTextBoxColumn1.Name = "DataGridViewTextBoxColumn1"
-        Me.DataGridViewTextBoxColumn1.Visible = False
-        '
-        'DataGridViewTextBoxColumn2
-        '
-        Me.DataGridViewTextBoxColumn2.HeaderText = "Descripción"
-        Me.DataGridViewTextBoxColumn2.Name = "DataGridViewTextBoxColumn2"
-        Me.DataGridViewTextBoxColumn2.Width = 200
-        '
-        'DataGridViewTextBoxColumn3
-        '
-        Me.DataGridViewTextBoxColumn3.HeaderText = "Vencimiento"
-        Me.DataGridViewTextBoxColumn3.Name = "DataGridViewTextBoxColumn3"
-        Me.DataGridViewTextBoxColumn3.Width = 80
-        '
-        'DataGridViewTextBoxColumn4
-        '
-        Me.DataGridViewTextBoxColumn4.HeaderText = "Sector"
-        Me.DataGridViewTextBoxColumn4.Name = "DataGridViewTextBoxColumn4"
-        '
-        'DataGridViewTextBoxColumn5
-        '
-        Me.DataGridViewTextBoxColumn5.HeaderText = "Creador"
-        Me.DataGridViewTextBoxColumn5.Name = "DataGridViewTextBoxColumn5"
-        '
         'Label5
         '
         Me.Label5.AutoSize = True
-        Me.Label5.Location = New System.Drawing.Point(865, 476)
+        Me.Label5.Location = New System.Drawing.Point(1220, 316)
         Me.Label5.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(120, 17)
         Me.Label5.TabIndex = 18
         Me.Label5.Text = "Tareas generales"
-        '
-        'DataGridPedidos
-        '
-        Me.DataGridPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridPedidos.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.Id, Me.Cliente})
-        Me.DataGridPedidos.Location = New System.Drawing.Point(27, 343)
-        Me.DataGridPedidos.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridPedidos.Name = "DataGridPedidos"
-        Me.DataGridPedidos.RowHeadersVisible = False
-        Me.DataGridPedidos.Size = New System.Drawing.Size(272, 118)
-        Me.DataGridPedidos.TabIndex = 19
-        '
-        'Id
-        '
-        Me.Id.HeaderText = "Id"
-        Me.Id.Name = "Id"
-        Me.Id.Visible = False
-        '
-        'Cliente
-        '
-        Me.Cliente.HeaderText = "Cliente"
-        Me.Cliente.Name = "Cliente"
-        Me.Cliente.Width = 200
-        '
-        'Label6
-        '
-        Me.Label6.AutoSize = True
-        Me.Label6.Location = New System.Drawing.Point(23, 324)
-        Me.Label6.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label6.Name = "Label6"
-        Me.Label6.Size = New System.Drawing.Size(168, 17)
-        Me.Label6.TabIndex = 20
-        Me.Label6.Text = "Pedidos de frascos (web)"
         '
         'Timer4
         '
@@ -2417,11 +2208,11 @@ Partial Class FormInicio
         '
         Me.TabControl1.Controls.Add(Me.TabPage1)
         Me.TabControl1.Controls.Add(Me.TabPage2)
-        Me.TabControl1.Location = New System.Drawing.Point(21, 469)
+        Me.TabControl1.Location = New System.Drawing.Point(1088, 153)
         Me.TabControl1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl1.Name = "TabControl1"
         Me.TabControl1.SelectedIndex = 0
-        Me.TabControl1.Size = New System.Drawing.Size(416, 257)
+        Me.TabControl1.Size = New System.Drawing.Size(515, 155)
         Me.TabControl1.TabIndex = 21
         '
         'TabPage1
@@ -2431,7 +2222,7 @@ Partial Class FormInicio
         Me.TabPage1.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage1.Name = "TabPage1"
         Me.TabPage1.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage1.Size = New System.Drawing.Size(408, 228)
+        Me.TabPage1.Size = New System.Drawing.Size(507, 126)
         Me.TabPage1.TabIndex = 0
         Me.TabPage1.Text = "Tareas personales pendientes"
         Me.TabPage1.UseVisualStyleBackColor = True
@@ -2443,7 +2234,7 @@ Partial Class FormInicio
         Me.TabPage2.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage2.Name = "TabPage2"
         Me.TabPage2.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage2.Size = New System.Drawing.Size(408, 228)
+        Me.TabPage2.Size = New System.Drawing.Size(507, 126)
         Me.TabPage2.TabIndex = 1
         Me.TabPage2.Text = "Tareas personales realizadas"
         Me.TabPage2.UseVisualStyleBackColor = True
@@ -2453,14 +2244,14 @@ Partial Class FormInicio
         Me.DataGridTareasPR.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridTareasPR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridTareasPR.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn6, Me.DataGridViewTextBoxColumn7, Me.DataGridViewTextBoxColumn8, Me.DataGridViewTextBoxColumn9, Me.DataGridViewTextBoxColumn10})
-        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridTareasPR.DefaultCellStyle = DataGridViewCellStyle4
+        DataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle3.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridTareasPR.DefaultCellStyle = DataGridViewCellStyle3
         Me.DataGridTareasPR.Location = New System.Drawing.Point(20, 4)
         Me.DataGridTareasPR.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridTareasPR.Name = "DataGridTareasPR"
@@ -2500,11 +2291,11 @@ Partial Class FormInicio
         '
         Me.TabControl2.Controls.Add(Me.TabPage3)
         Me.TabControl2.Controls.Add(Me.TabPage4)
-        Me.TabControl2.Location = New System.Drawing.Point(445, 469)
+        Me.TabControl2.Location = New System.Drawing.Point(1088, 336)
         Me.TabControl2.Margin = New System.Windows.Forms.Padding(4)
         Me.TabControl2.Name = "TabControl2"
         Me.TabControl2.SelectedIndex = 0
-        Me.TabControl2.Size = New System.Drawing.Size(416, 257)
+        Me.TabControl2.Size = New System.Drawing.Size(515, 155)
         Me.TabControl2.TabIndex = 22
         '
         'TabPage3
@@ -2514,7 +2305,7 @@ Partial Class FormInicio
         Me.TabPage3.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage3.Size = New System.Drawing.Size(408, 228)
+        Me.TabPage3.Size = New System.Drawing.Size(507, 126)
         Me.TabPage3.TabIndex = 0
         Me.TabPage3.Text = "Tareas pendientes por sector"
         Me.TabPage3.UseVisualStyleBackColor = True
@@ -2526,7 +2317,7 @@ Partial Class FormInicio
         Me.TabPage4.Margin = New System.Windows.Forms.Padding(4)
         Me.TabPage4.Name = "TabPage4"
         Me.TabPage4.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage4.Size = New System.Drawing.Size(408, 228)
+        Me.TabPage4.Size = New System.Drawing.Size(507, 126)
         Me.TabPage4.TabIndex = 1
         Me.TabPage4.Text = "Tareas realizadas por sector"
         Me.TabPage4.UseVisualStyleBackColor = True
@@ -2536,14 +2327,14 @@ Partial Class FormInicio
         Me.DataGridTareasR.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
         Me.DataGridTareasR.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
         Me.DataGridTareasR.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.DataGridViewTextBoxColumn11, Me.DataGridViewTextBoxColumn12, Me.DataGridViewTextBoxColumn13, Me.DataGridViewTextBoxColumn14, Me.DataGridViewTextBoxColumn15})
-        DataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window
-        DataGridViewCellStyle5.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        DataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText
-        DataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight
-        DataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText
-        DataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.DataGridTareasR.DefaultCellStyle = DataGridViewCellStyle5
+        DataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
+        DataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window
+        DataGridViewCellStyle4.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        DataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText
+        DataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight
+        DataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText
+        DataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
+        Me.DataGridTareasR.DefaultCellStyle = DataGridViewCellStyle4
         Me.DataGridTareasR.Location = New System.Drawing.Point(8, 4)
         Me.DataGridTareasR.Margin = New System.Windows.Forms.Padding(4)
         Me.DataGridTareasR.Name = "DataGridTareasR"
@@ -2579,247 +2370,48 @@ Partial Class FormInicio
         Me.DataGridViewTextBoxColumn15.HeaderText = "Creador"
         Me.DataGridViewTextBoxColumn15.Name = "DataGridViewTextBoxColumn15"
         '
-        'TabControl3
-        '
-        Me.TabControl3.Controls.Add(Me.TabPage5)
-        Me.TabControl3.Controls.Add(Me.TabPage6)
-        Me.TabControl3.Location = New System.Drawing.Point(21, 105)
-        Me.TabControl3.Margin = New System.Windows.Forms.Padding(4)
-        Me.TabControl3.Name = "TabControl3"
-        Me.TabControl3.SelectedIndex = 0
-        Me.TabControl3.Size = New System.Drawing.Size(333, 217)
-        Me.TabControl3.TabIndex = 23
-        '
-        'TabPage5
-        '
-        Me.TabPage5.BackColor = System.Drawing.SystemColors.GradientActiveCaption
-        Me.TabPage5.Controls.Add(Me.DataGridViewParaSubir)
-        Me.TabPage5.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage5.Margin = New System.Windows.Forms.Padding(4)
-        Me.TabPage5.Name = "TabPage5"
-        Me.TabPage5.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage5.Size = New System.Drawing.Size(325, 188)
-        Me.TabPage5.TabIndex = 0
-        Me.TabPage5.Text = "Fichas para subir"
-        '
-        'TabPage6
-        '
-        Me.TabPage6.Controls.Add(Me.DataGridViewSubidas)
-        Me.TabPage6.Location = New System.Drawing.Point(4, 25)
-        Me.TabPage6.Margin = New System.Windows.Forms.Padding(4)
-        Me.TabPage6.Name = "TabPage6"
-        Me.TabPage6.Padding = New System.Windows.Forms.Padding(4)
-        Me.TabPage6.Size = New System.Drawing.Size(325, 188)
-        Me.TabPage6.TabIndex = 1
-        Me.TabPage6.Text = "Fichas subidas"
-        Me.TabPage6.UseVisualStyleBackColor = True
-        '
         'ButtonNuevaSolicitud
         '
-        Me.ButtonNuevaSolicitud.Location = New System.Drawing.Point(496, 49)
+        Me.ButtonNuevaSolicitud.Location = New System.Drawing.Point(40, 106)
         Me.ButtonNuevaSolicitud.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonNuevaSolicitud.Name = "ButtonNuevaSolicitud"
-        Me.ButtonNuevaSolicitud.Size = New System.Drawing.Size(125, 28)
+        Me.ButtonNuevaSolicitud.Size = New System.Drawing.Size(184, 28)
         Me.ButtonNuevaSolicitud.TabIndex = 29
         Me.ButtonNuevaSolicitud.Text = "Nueva Solicitud"
         Me.ButtonNuevaSolicitud.UseVisualStyleBackColor = True
         '
-        'DataGridAutorizaciones
-        '
-        Me.DataGridAutorizaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridAutorizaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdAutorizacion, Me.FechaAutorizacion, Me.NombreAutorizacion, Me.TipoAutorizacion})
-        Me.DataGridAutorizaciones.Location = New System.Drawing.Point(652, 139)
-        Me.DataGridAutorizaciones.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridAutorizaciones.Name = "DataGridAutorizaciones"
-        Me.DataGridAutorizaciones.RowHeadersVisible = False
-        Me.DataGridAutorizaciones.Size = New System.Drawing.Size(597, 170)
-        Me.DataGridAutorizaciones.TabIndex = 30
-        Me.DataGridAutorizaciones.Visible = False
-        '
-        'IdAutorizacion
-        '
-        Me.IdAutorizacion.HeaderText = "IdAutorizacion"
-        Me.IdAutorizacion.Name = "IdAutorizacion"
-        Me.IdAutorizacion.Visible = False
-        '
-        'FechaAutorizacion
-        '
-        Me.FechaAutorizacion.HeaderText = "Fecha"
-        Me.FechaAutorizacion.Name = "FechaAutorizacion"
-        Me.FechaAutorizacion.Width = 80
-        '
-        'NombreAutorizacion
-        '
-        Me.NombreAutorizacion.HeaderText = "Nombre"
-        Me.NombreAutorizacion.Name = "NombreAutorizacion"
-        Me.NombreAutorizacion.Width = 200
-        '
-        'TipoAutorizacion
-        '
-        Me.TipoAutorizacion.HeaderText = "Tipo"
-        Me.TipoAutorizacion.Name = "TipoAutorizacion"
-        Me.TipoAutorizacion.Width = 150
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Location = New System.Drawing.Point(648, 119)
-        Me.Label1.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(199, 17)
-        Me.Label1.TabIndex = 31
-        Me.Label1.Text = "Pedidos autorización personal"
-        Me.Label1.Visible = False
-        '
-        'DataGridNotificaciones
-        '
-        Me.DataGridNotificaciones.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells
-        Me.DataGridNotificaciones.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridNotificaciones.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdNot, Me.Fecha, Me.Nombre, Me.Descripcion})
-        Me.DataGridNotificaciones.Location = New System.Drawing.Point(652, 343)
-        Me.DataGridNotificaciones.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridNotificaciones.Name = "DataGridNotificaciones"
-        Me.DataGridNotificaciones.RowHeadersVisible = False
-        Me.DataGridNotificaciones.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders
-        Me.DataGridNotificaciones.Size = New System.Drawing.Size(597, 108)
-        Me.DataGridNotificaciones.TabIndex = 32
-        Me.DataGridNotificaciones.Visible = False
-        '
-        'IdNot
-        '
-        Me.IdNot.HeaderText = "Id"
-        Me.IdNot.Name = "IdNot"
-        Me.IdNot.Visible = False
-        '
-        'Fecha
-        '
-        Me.Fecha.HeaderText = "Fecha"
-        Me.Fecha.Name = "Fecha"
-        Me.Fecha.Width = 80
-        '
-        'Nombre
-        '
-        Me.Nombre.HeaderText = "Nombre"
-        Me.Nombre.Name = "Nombre"
-        '
-        'Descripcion
-        '
-        DataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft
-        DataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.Descripcion.DefaultCellStyle = DataGridViewCellStyle6
-        Me.Descripcion.HeaderText = "Descripción"
-        Me.Descripcion.Name = "Descripcion"
-        Me.Descripcion.Width = 250
-        '
-        'Label2
-        '
-        Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(648, 324)
-        Me.Label2.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(96, 17)
-        Me.Label2.TabIndex = 33
-        Me.Label2.Text = "Notificaciones"
-        Me.Label2.Visible = False
-        '
-        'DataGridViewPP
-        '
-        Me.DataGridViewPP.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.DataGridViewPP.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.IdPend, Me.NombrePend})
-        Me.DataGridViewPP.Location = New System.Drawing.Point(363, 132)
-        Me.DataGridViewPP.Margin = New System.Windows.Forms.Padding(4)
-        Me.DataGridViewPP.Name = "DataGridViewPP"
-        Me.DataGridViewPP.RowHeadersVisible = False
-        Me.DataGridViewPP.Size = New System.Drawing.Size(281, 185)
-        Me.DataGridViewPP.TabIndex = 34
-        '
-        'IdPend
-        '
-        Me.IdPend.HeaderText = "IdPend"
-        Me.IdPend.Name = "IdPend"
-        Me.IdPend.Visible = False
-        '
-        'NombrePend
-        '
-        Me.NombrePend.HeaderText = "Nombre"
-        Me.NombrePend.Name = "NombrePend"
-        Me.NombrePend.Width = 200
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(363, 112)
-        Me.Label3.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(133, 17)
-        Me.Label3.TabIndex = 35
-        Me.Label3.Text = "Pedidos pendientes"
-        '
         'ButtonCrearInformes
         '
-        Me.ButtonCrearInformes.Location = New System.Drawing.Point(629, 49)
+        Me.ButtonCrearInformes.Location = New System.Drawing.Point(40, 142)
         Me.ButtonCrearInformes.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonCrearInformes.Name = "ButtonCrearInformes"
         Me.ButtonCrearInformes.Size = New System.Drawing.Size(184, 28)
         Me.ButtonCrearInformes.TabIndex = 36
-        Me.ButtonCrearInformes.Text = "Crear Informes (Nuevo)"
+        Me.ButtonCrearInformes.Text = "Crear Informes "
         Me.ButtonCrearInformes.UseVisualStyleBackColor = True
         '
-        'dgvPreinformes
+        'Button3
         '
-        Me.dgvPreinformes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize
-        Me.dgvPreinformes.Columns.AddRange(New System.Windows.Forms.DataGridViewColumn() {Me.id2, Me.fichaColumn, Me.DataGridViewTextBoxColumn18, Me.DataGridViewTextBoxColumn19, Me.btnEdit})
-        Me.dgvPreinformes.Location = New System.Drawing.Point(1270, 139)
-        Me.dgvPreinformes.Margin = New System.Windows.Forms.Padding(4)
-        Me.dgvPreinformes.Name = "dgvPreinformes"
-        Me.dgvPreinformes.RowHeadersVisible = False
-        Me.dgvPreinformes.Size = New System.Drawing.Size(333, 312)
-        Me.dgvPreinformes.TabIndex = 37
+        Me.Button3.Location = New System.Drawing.Point(40, 178)
+        Me.Button3.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button3.Name = "Button3"
+        Me.Button3.Size = New System.Drawing.Size(184, 28)
+        Me.Button3.TabIndex = 51
+        Me.Button3.Text = "Importacion de archivos"
+        Me.Button3.UseVisualStyleBackColor = True
         '
-        'id2
+        'Timer5
         '
-        Me.id2.DataPropertyName = "id"
-        Me.id2.HeaderText = "idPreinformes"
-        Me.id2.MinimumWidth = 7
-        Me.id2.Name = "id2"
-        Me.id2.Resizable = System.Windows.Forms.DataGridViewTriState.[True]
-        Me.id2.Visible = False
         '
-        'fichaColumn
+        'Button4
         '
-        Me.fichaColumn.HeaderText = "Ficha"
-        Me.fichaColumn.Name = "fichaColumn"
-        Me.fichaColumn.ReadOnly = True
-        Me.fichaColumn.Width = 50
-        '
-        'DataGridViewTextBoxColumn18
-        '
-        Me.DataGridViewTextBoxColumn18.HeaderText = "Tipo"
-        Me.DataGridViewTextBoxColumn18.Name = "DataGridViewTextBoxColumn18"
-        Me.DataGridViewTextBoxColumn18.Width = 50
-        '
-        'DataGridViewTextBoxColumn19
-        '
-        Me.DataGridViewTextBoxColumn19.HeaderText = "Creado"
-        Me.DataGridViewTextBoxColumn19.Name = "DataGridViewTextBoxColumn19"
-        Me.DataGridViewTextBoxColumn19.Width = 80
-        '
-        'btnEdit
-        '
-        Me.btnEdit.HeaderText = ""
-        Me.btnEdit.Name = "btnEdit"
-        Me.btnEdit.Text = "Edit"
-        Me.btnEdit.Width = 50
-        '
-        'Label4
-        '
-        Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(1267, 118)
-        Me.Label4.Margin = New System.Windows.Forms.Padding(4, 0, 4, 0)
-        Me.Label4.Name = "Label4"
-        Me.Label4.Size = New System.Drawing.Size(84, 17)
-        Me.Label4.TabIndex = 38
-        Me.Label4.Text = "Preinformes" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Button4.Location = New System.Drawing.Point(40, 214)
+        Me.Button4.Margin = New System.Windows.Forms.Padding(4)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(253, 28)
+        Me.Button4.TabIndex = 54
+        Me.Button4.Text = "Reporte estado de informes"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'FormInicio
         '
@@ -2828,25 +2420,14 @@ Partial Class FormInicio
         Me.BackColor = System.Drawing.SystemColors.GradientActiveCaption
         Me.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center
         Me.ClientSize = New System.Drawing.Size(1616, 855)
-        Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.dgvPreinformes)
+        Me.Controls.Add(Me.Button4)
+        Me.Controls.Add(Me.Button3)
         Me.Controls.Add(Me.ButtonCrearInformes)
-        Me.Controls.Add(Me.Label3)
-        Me.Controls.Add(Me.DataGridViewPP)
-        Me.Controls.Add(Me.Label2)
-        Me.Controls.Add(Me.DataGridNotificaciones)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.DataGridAutorizaciones)
         Me.Controls.Add(Me.ButtonNuevaSolicitud)
-        Me.Controls.Add(Me.TabControl3)
         Me.Controls.Add(Me.TabControl2)
         Me.Controls.Add(Me.TabControl1)
-        Me.Controls.Add(Me.Label6)
-        Me.Controls.Add(Me.DataGridPedidos)
         Me.Controls.Add(Me.Label5)
-        Me.Controls.Add(Me.DataGridTareasG)
         Me.Controls.Add(Me.StatusStrip1)
-        Me.Controls.Add(Me.ButtonSolicitudAnalisis)
         Me.Controls.Add(Me.DateFecha)
         Me.Controls.Add(Me.MenuStrip1)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D
@@ -2863,10 +2444,6 @@ Partial Class FormInicio
         CType(Me.DataGridtareasP, System.ComponentModel.ISupportInitialize).EndInit()
         Me.StatusStrip1.ResumeLayout(False)
         Me.StatusStrip1.PerformLayout()
-        CType(Me.DataGridViewParaSubir, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewSubidas, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridTareasG, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridPedidos, System.ComponentModel.ISupportInitialize).EndInit()
         Me.TabControl1.ResumeLayout(False)
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage2.ResumeLayout(False)
@@ -2875,13 +2452,6 @@ Partial Class FormInicio
         Me.TabPage3.ResumeLayout(False)
         Me.TabPage4.ResumeLayout(False)
         CType(Me.DataGridTareasR, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.TabControl3.ResumeLayout(False)
-        Me.TabPage5.ResumeLayout(False)
-        Me.TabPage6.ResumeLayout(False)
-        CType(Me.DataGridAutorizaciones, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridNotificaciones, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.DataGridViewPP, System.ComponentModel.ISupportInitialize).EndInit()
-        CType(Me.dgvPreinformes, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -2986,7 +2556,6 @@ Partial Class FormInicio
     Friend WithEvents Timer1 As System.Windows.Forms.Timer
     Friend WithEvents NoticiasToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ListadoDeCajasVerdesYConservadorasSinDevolverToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents ButtonSolicitudAnalisis As System.Windows.Forms.Button
     Friend WithEvents ListadoDeSolicitudesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ComprasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RealizarCompraToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -3046,11 +2615,6 @@ Partial Class FormInicio
     Friend WithEvents RelojToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents LicenciaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents VerPlanDeLicenciaAnualToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DataGridViewParaSubir As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewSubidas As System.Windows.Forms.DataGridView
-    Friend WithEvents IdParaSubir As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FichaParaSubir As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TipoParaSubir As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ControlDeGrasaYProteínaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GrasaYProteínaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InformesRelojToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -3063,12 +2627,6 @@ Partial Class FormInicio
     Friend WithEvents AguaToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SubproductosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BacteriologíaYAntibiogramaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DataGridTareasG As System.Windows.Forms.DataGridView
-    Friend WithEvents DataGridViewTextBoxColumn1 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn3 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn4 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn5 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Label5 As System.Windows.Forms.Label
     Friend WithEvents ImportarSoloIBCToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents MarcarFichasRosaDeBengalaComoSubidasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -3078,10 +2636,6 @@ Partial Class FormInicio
     Friend WithEvents CalidadDeLecheToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ComprasToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents SuelosToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents IdSubidas As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FichaSubida As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FechaSubidas As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TipoSubidas As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents ContadorDeAnálisisEmpresasNUEVOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents DescarteMuestrasRosaDeBengalaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RGLAB31ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -3100,10 +2654,6 @@ Partial Class FormInicio
     Friend WithEvents SolicitudesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents InformesSinVisualizaciónToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ComunicacionesTécnicasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DataGridPedidos As System.Windows.Forms.DataGridView
-    Friend WithEvents Label6 As System.Windows.Forms.Label
-    Friend WithEvents Id As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Cliente As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents Timer4 As System.Windows.Forms.Timer
     Friend WithEvents EnviarComprasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TabControl1 As System.Windows.Forms.TabControl
@@ -3112,9 +2662,6 @@ Partial Class FormInicio
     Friend WithEvents TabControl2 As System.Windows.Forms.TabControl
     Friend WithEvents TabPage3 As System.Windows.Forms.TabPage
     Friend WithEvents TabPage4 As System.Windows.Forms.TabPage
-    Friend WithEvents TabControl3 As System.Windows.Forms.TabControl
-    Friend WithEvents TabPage5 As System.Windows.Forms.TabPage
-    Friend WithEvents TabPage6 As System.Windows.Forms.TabPage
     Friend WithEvents DataGridTareasPR As System.Windows.Forms.DataGridView
     Friend WithEvents DataGridViewTextBoxColumn6 As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents DataGridViewTextBoxColumn7 As System.Windows.Forms.DataGridViewTextBoxColumn
@@ -3158,18 +2705,6 @@ Partial Class FormInicio
     Friend WithEvents CrearInformesNUEVOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents EnvíoDeNotificacionesAClientesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents GraficaRCToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DataGridAutorizaciones As System.Windows.Forms.DataGridView
-    Friend WithEvents Label1 As System.Windows.Forms.Label
-    Friend WithEvents IdAutorizacion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents FechaAutorizacion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NombreAutorizacion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents TipoAutorizacion As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridNotificaciones As System.Windows.Forms.DataGridView
-    Friend WithEvents Label2 As System.Windows.Forms.Label
-    Friend WithEvents IdNot As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Fecha As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Nombre As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents Descripcion As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents NotificacionesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents BentleyDeltaDelta2ToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents RGLAB102ResumenControlesBentleyDeltaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -3203,10 +2738,6 @@ Partial Class FormInicio
     Friend WithEvents ControlDeInformesSuelosToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents AntibiogramasNuevoToolStripMenuItem1 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ConveniosToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents DataGridViewPP As System.Windows.Forms.DataGridView
-    Friend WithEvents Label3 As System.Windows.Forms.Label
-    Friend WithEvents IdPend As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents NombrePend As System.Windows.Forms.DataGridViewTextBoxColumn
     Friend WithEvents PatologíaNuevoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ProlesaToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents FoliaresNuevoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
@@ -3230,17 +2761,15 @@ Partial Class FormInicio
     Friend WithEvents ActualizarGestorToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TimepoDeEnvíoDeInformesToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents TecnicosMuestreoToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
-    Friend WithEvents dgvPreinformes As System.Windows.Forms.DataGridView
-    Friend WithEvents Label4 As System.Windows.Forms.Label
-    Friend WithEvents id2 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents fichaColumn As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn18 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents DataGridViewTextBoxColumn19 As System.Windows.Forms.DataGridViewTextBoxColumn
-    Friend WithEvents btnEdit As System.Windows.Forms.DataGridViewButtonColumn
     Friend WithEvents HistorialDePedidosToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents ControlDeInformesToolStripMenuItem2 As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents Minerales As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HistoricoEntradaCajaManualToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents HistoricoDeSolicitudesAutorizadasToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
     Friend WithEvents INFORMESPENDIENTESUSUARIOToolStripMenuItem As System.Windows.Forms.ToolStripMenuItem
+    Friend WithEvents ToolTip1 As System.Windows.Forms.ToolTip
+    Friend WithEvents ToolTip2 As System.Windows.Forms.ToolTip
+    Friend WithEvents Button3 As System.Windows.Forms.Button
+    Friend WithEvents Timer5 As System.Windows.Forms.Timer
+    Friend WithEvents Button4 As System.Windows.Forms.Button
 End Class

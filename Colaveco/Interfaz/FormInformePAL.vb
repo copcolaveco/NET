@@ -66,8 +66,8 @@ Public Class FormInformePAL
         End If
     End Sub
     Private Sub abrirventanaenvio()
-        Dim v As New FormSubirInformes(Usuario)
-        v.ShowDialog()
+        'Dim v As New FormSubirInformes(Usuario)
+        'v.ShowDialog()
     End Sub
     Private Sub creainformeexcel()
         Dim x1app As Microsoft.Office.Interop.Excel.Application

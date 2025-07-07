@@ -79,8 +79,8 @@ Public Class FormInicio
             chequearcsalud()
             cargaractas()
             buscarcomunicaciontecnica()
-            cargarfichasparasubir()
-            cargarfichassubidas()
+
+            'cargarfichassubidas()
             cargarAutorizaciones()
             cargarNotificaciones()
             cargarPreinformes()
@@ -110,8 +110,8 @@ Public Class FormInicio
             cargarnoticias()
             cargarnoticias2()
             chequearcsalud()
-            cargarfichasparasubir()
-            cargarfichassubidas()
+
+            'cargarfichassubidas()
             cargarAutorizaciones()
             cargarNotificaciones()
             cargarPreinformes()
@@ -539,48 +539,48 @@ Public Class FormInicio
         idusuario = usuario.ID
         idsector = usuario.SECTOR
         lista = t.listargenerales(hoy2)
-        DataGridTareasG.Rows.Clear()
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                DataGridTareasG.Rows.Add(lista.Count)
-            End If
-        End If
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                For Each t In lista
-                    DataGridTareasG(columna, fila).Value = t.ID
-                    columna = columna + 1
-                    DataGridTareasG(columna, fila).Value = t.DESCRIPCION
-                    columna = columna + 1
-                    DataGridTareasG(columna, fila).Value = t.FINALIZACION
-                    columna = columna + 1
-                    Dim sector As New dSectores
-                    sector.ID = t.SECTOR
-                    sector = sector.buscar
-                    If Not sector Is Nothing Then
-                        DataGridTareasG(columna, fila).Value = sector.NOMBRE
-                        columna = columna + 1
-                    Else
-                        DataGridTareasG(columna, fila).Value = ""
-                        columna = columna + 1
-                    End If
-                    sector = Nothing
-                    Dim creador As New dUsuario
-                    creador.ID = t.CREADOR
-                    creador = creador.buscar
-                    If Not creador Is Nothing Then
-                        DataGridTareasG(columna, fila).Value = creador.NOMBRE
-                        columna = columna + 1
-                    Else
-                        DataGridTareasG(columna, fila).Value = ""
-                        columna = columna + 1
-                    End If
-                    creador = Nothing
-                    columna = 0
-                    fila = fila + 1
-                Next
-            End If
-        End If
+        'DataGridTareasG.Rows.Clear()
+        'If Not lista Is Nothing Then
+        '    If lista.Count > 0 Then
+        '        DataGridTareasG.Rows.Add(lista.Count)
+        '    End If
+        'End If
+        'If Not lista Is Nothing Then
+        '    If lista.Count > 0 Then
+        '        For Each t In lista
+        '            DataGridTareasG(columna, fila).Value = t.ID
+        '            columna = columna + 1
+        '            DataGridTareasG(columna, fila).Value = t.DESCRIPCION
+        '            columna = columna + 1
+        '            DataGridTareasG(columna, fila).Value = t.FINALIZACION
+        '            columna = columna + 1
+        '            Dim sector As New dSectores
+        '            sector.ID = t.SECTOR
+        '            sector = sector.buscar
+        '            If Not sector Is Nothing Then
+        '                DataGridTareasG(columna, fila).Value = sector.NOMBRE
+        '                columna = columna + 1
+        '            Else
+        '                DataGridTareasG(columna, fila).Value = ""
+        '                columna = columna + 1
+        '            End If
+        '            sector = Nothing
+        '            Dim creador As New dUsuario
+        '            creador.ID = t.CREADOR
+        '            creador = creador.buscar
+        '            If Not creador Is Nothing Then
+        '                DataGridTareasG(columna, fila).Value = creador.NOMBRE
+        '                columna = columna + 1
+        '            Else
+        '                DataGridTareasG(columna, fila).Value = ""
+        '                columna = columna + 1
+        '            End If
+        '            creador = Nothing
+        '            columna = 0
+        '            fila = fila + 1
+        '        Next
+        '    End If
+        'End If
     End Sub
     Public Sub abrirSesion()
         Dim v As New FormLogin
@@ -656,7 +656,7 @@ Public Class FormInicio
         FeriadosToolStripMenuItem.Enabled = False
         FuncionariosToolStripMenuItem.Enabled = False
         InformesRelojToolStripMenuItem.Enabled = False
-        ButtonSolicitudAnalisis.Enabled = False
+        'ButtonSolicitudAnalisis.Enabled = False
     End Sub
     Public Sub desbloquearVentana()
         ' *** Se bloquea todo.
@@ -680,7 +680,7 @@ Public Class FormInicio
         FeriadosToolStripMenuItem.Enabled = False
         FuncionariosToolStripMenuItem.Enabled = False
         InformesRelojToolStripMenuItem.Enabled = False
-        ButtonSolicitudAnalisis.Enabled = False
+        'ButtonSolicitudAnalisis.Enabled = False
         EnviarComprasToolStripMenuItem.Enabled = False
         EstadísticasToolStripMenuItem.Enabled = False
 
@@ -700,24 +700,24 @@ Public Class FormInicio
                 'Menú INFORMES
                 InformesToolStripMenuItem.Enabled = True
                 'Autorizaciones
-                If u.USUARIO = "MCF" Or u.USUARIO = "CA" Or u.USUARIO = "JMS" Or u.USUARIO = "DF" Then
-                    Label1.Visible = True
-                    DataGridAutorizaciones.Visible = True
-                Else
-                    Label1.Visible = False
-                    DataGridAutorizaciones.Visible = False
-                End If
-                'Notificaciones
-                If u.USUARIO = "SA" Or u.USUARIO = "DF" Or u.USUARIO = "MCF" Then
-                    Label2.Visible = True
-                    DataGridNotificaciones.Visible = True
-                Else
-                    Label2.Visible = False
-                    DataGridNotificaciones.Visible = False
-                End If
+                'If u.USUARIO = "MCF" Or u.USUARIO = "CA" Or u.USUARIO = "JMS" Or u.USUARIO = "DF" Then
+                '    Label1.Visible = True
+                '    DataGridAutorizaciones.Visible = True
+                'Else
+                '    Label1.Visible = False
+                '    DataGridAutorizaciones.Visible = False
+                'End If
+                ''Notificaciones
+                'If u.USUARIO = "SA" Or u.USUARIO = "DF" Or u.USUARIO = "MCF" Then
+                '    Label2.Visible = True
+                '    DataGridNotificaciones.Visible = True
+                'Else
+                '    Label2.Visible = False
+                '    DataGridNotificaciones.Visible = False
+                'End If
                 'Administración
                 AdministraciónToolStripMenuItem.Enabled = True
-                ButtonSolicitudAnalisis.Enabled = True
+                'ButtonSolicitudAnalisis.Enabled = True
                 'Direccion
                 If u.USUARIO = "MCF" Or u.USUARIO = "SA" Or u.USUARIO = "CA" Or u.USUARIO = "AP" Or u.USUARIO = "JMS" Or u.USUARIO = "DF" Then
                     DirecciónToolStripMenuItem.Enabled = True
@@ -785,7 +785,7 @@ Public Class FormInicio
                 'Menú IMPORTADOR
                 'Administración
                 AdministraciónToolStripMenuItem.Enabled = True
-                ButtonSolicitudAnalisis.Enabled = True
+                'ButtonSolicitudAnalisis.Enabled = True
                 'Estadísticas
                 EstadísticasATBToolStripMenuItem.Enabled = True
                 'Registros
@@ -795,15 +795,15 @@ Public Class FormInicio
                 'Personal
                 PersonalToolStripMenuItem.Enabled = True
                 If u.USUARIO = "GB" Or u.USUARIO = "M" Or u.USUARIO = "AZ" Or u.USUARIO = "JMS" Then
-                    Label1.Visible = True
-                    DataGridAutorizaciones.Visible = True
-                    Label2.Visible = True
-                    DataGridNotificaciones.Visible = True
+                    'Label1.Visible = True
+                    'DataGridAutorizaciones.Visible = True
+                    'Label2.Visible = True
+                    'DataGridNotificaciones.Visible = True
                     'Autorizaciones
                     AutorizacionesToolStripMenuItem.Enabled = True
                 Else
-                    Label1.Visible = False
-                    DataGridAutorizaciones.Visible = False
+                    'Label1.Visible = False
+                    'DataGridAutorizaciones.Visible = False
                     'Autorizaciones
                     AutorizacionesToolStripMenuItem.Enabled = False
                 End If
@@ -1093,8 +1093,8 @@ Public Class FormInicio
         v.Show()
     End Sub
     Private Sub SubirInformesToolStripMenuItem1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles SubirInformesToolStripMenuItem1.Click
-        Dim v As New FormSubirInformes(Sesion.Usuario)
-        v.Show()
+        'Dim v As New FormSubirInformes(Sesion.Usuario)
+        'v.Show()
     End Sub
     Private Sub VerResultadosInhibidoresToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim v As New FormInformeInhibidores()
@@ -1409,8 +1409,6 @@ Public Class FormInicio
     Private Sub Timer1_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer1.Tick
         cargartareas()
         cargartareasp()
-        cargarfichasparasubir()
-        cargarfichassubidas()
         listarpedidosweb()
         listarpedidospendientes()
         cargarAutorizaciones()
@@ -1435,7 +1433,7 @@ Public Class FormInicio
         Dim v As New FormListadoCajasVerdesSinDevolver(Sesion.Usuario)
         v.Show()
     End Sub
-    Private Sub ButtonSolicitudAnalisis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSolicitudAnalisis.Click
+    Private Sub ButtonSolicitudAnalisis_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
         Dim v As New FormSolicitudAnalisis(Sesion.Usuario, 0)
         v.Show()
     End Sub
@@ -2880,8 +2878,6 @@ Public Class FormInicio
             subir_informes_subproductos()
             subir_informes_calidad()
             subir_informes_brucelosis()
-            cargarfichasparasubir()
-            cargarfichassubidas()
             'Enviar correos a proveedores
             Dim fecha As Date
             fecha = DateFecha.Value.ToString("yyyy-MM-dd")
@@ -3314,8 +3310,6 @@ controltxt:
                 Next
             End If
         End If
-        cargarfichasparasubir()
-        cargarfichassubidas()
     End Sub
     Private Sub subir_informes2b()
         Dim pi As New dPreinformes
@@ -3430,8 +3424,6 @@ controltxt:
                 Next
             End If
         End If
-        cargarfichasparasubir()
-        cargarfichassubidas()
     End Sub
     Public Sub crea_carpeta()
         Dim pweb_com As New dProductorWeb_com
@@ -3682,8 +3674,6 @@ controltxt2:
                 Next
             End If
         End If
-        cargarfichasparasubir()
-        cargarfichassubidas()
     End Sub
     Private Sub subir_informes_agua()
         Dim pi As New dPreinformes
@@ -3903,8 +3893,6 @@ controltxt2:
                 Next
             End If
         End If
-        cargarfichasparasubir()
-        cargarfichassubidas()
     End Sub
     Private Sub subir_informes_atb()
         Dim pi As New dPreinformes
@@ -4124,8 +4112,7 @@ controltxt2:
                 Next
             End If
         End If
-        cargarfichasparasubir()
-        cargarfichassubidas()
+
     End Sub
     Private Sub subir_informes_subproductos()
         Dim pi As New dPreinformes
@@ -4347,8 +4334,7 @@ controltxt2:
                 Next
             End If
         End If
-        cargarfichasparasubir()
-        cargarfichassubidas()
+
     End Sub
     Private Sub subir_informes_calidad()
         Dim pi As New dPreinformes
@@ -4490,8 +4476,6 @@ controltxt:
                 Next
             End If
         End If
-        cargarfichasparasubir()
-        cargarfichassubidas()
     End Sub
     Private Sub subir_informes_brucelosis()
         Dim pi As New dPreinformes
@@ -4604,8 +4588,6 @@ controltxt:
                 Next
             End If
         End If
-        cargarfichasparasubir()
-        cargarfichassubidas()
     End Sub
     Private Sub enviocopia()
         Dim _Message As New System.Net.Mail.MailMessage()
@@ -7560,156 +7542,94 @@ controltxt:
         Dim v As New FormUsuarios(Sesion.Usuario)
         v.Show()
     End Sub
-    Private Sub cargarfichasparasubir()
-        Dim pi As New dPreinformes
-        Dim lista As New ArrayList
-        lista = pi.listarparasubir
-        Dim fila As Integer = 0
-        Dim columna As Integer = 0
-        DataGridViewParaSubir.Rows.Clear()
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                DataGridViewParaSubir.Rows.Add(lista.Count)
-                For Each pi In lista
-                    DataGridViewParaSubir(columna, fila).Value = pi.ID
-                    columna = columna + 1
-                    DataGridViewParaSubir(columna, fila).Value = pi.FICHA
-                    columna = columna + 1
-                    If pi.TIPO = 1 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Control"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 3 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Agua"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 4 Then
-                        DataGridViewParaSubir(columna, fila).Value = "ATB"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 6 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Parasitología"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 7 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Alimentos"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 10 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Calidad"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 11 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Ambiental"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 13 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Nutrición"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 14 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Suelos"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 15 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Brucelosis"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 16 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Efluentes"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 17 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Bact. Tanque"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 18 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Bact. clínica aer."
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 19 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Foliares"
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 20 Then
-                        DataGridViewParaSubir(columna, fila).Value = "Toxicología"
-                        columna = 0
-                        fila = fila + 1
-                    Else
-                        DataGridViewParaSubir(columna, fila).Value = ""
-                        columna = 0
-                        fila = fila + 1
-                    End If
-                Next
-            End If
-        End If
-    End Sub
-    Private Sub cargarfichassubidas()
-        Dim pi As New dPreinformes
-        Dim lista As New ArrayList
-        lista = pi.listarsubidas
-        Dim fila As Integer = 0
-        Dim columna As Integer = 0
-        DataGridViewSubidas.Rows.Clear()
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                DataGridViewSubidas.Rows.Add(lista.Count)
-                For Each pi In lista
-                    DataGridViewSubidas(columna, fila).Value = pi.ID
-                    DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                    columna = columna + 1
-                    DataGridViewSubidas(columna, fila).Value = pi.FICHA
-                    DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                    columna = columna + 1
-                    DataGridViewSubidas(columna, fila).Value = pi.FECHA
-                    DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                    columna = columna + 1
-                    If pi.TIPO = 1 Then
-                        DataGridViewSubidas(columna, fila).Value = "Control"
-                        DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 3 Then
-                        DataGridViewSubidas(columna, fila).Value = "Agua"
-                        DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 4 Then
-                        DataGridViewSubidas(columna, fila).Value = "ATB"
-                        DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 7 Then
-                        DataGridViewSubidas(columna, fila).Value = "Alimentos"
-                        DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 10 Then
-                        DataGridViewSubidas(columna, fila).Value = "Calidad"
-                        DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 15 Then
-                        DataGridViewSubidas(columna, fila).Value = "Brucelosis"
-                        DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                        columna = 0
-                        fila = fila + 1
-                    ElseIf pi.TIPO = 16 Then
-                        DataGridViewSubidas(columna, fila).Value = "Efluentes"
-                        DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                        columna = 0
-                        fila = fila + 1
-                    Else
-                        DataGridViewSubidas(columna, fila).Value = ""
-                        DataGridViewSubidas(columna, fila).Style.BackColor = Color.SkyBlue
-                        columna = 0
-                        fila = fila + 1
-                    End If
-                Next
-            End If
-        End If
-        DataGridViewSubidas.Sort(DataGridViewSubidas.Columns(2), System.ComponentModel.ListSortDirection.Descending)
-    End Sub
+    'Private Sub CargarInformesGestor()
+    '    Dim pi As New dPreinformes
+    '    Dim lista As New ArrayList
+    '    lista = pi.listarparasubir
+    '    Dim fila As Integer = 0
+    '    Dim columna As Integer = 0
+    '    DataGridViewParaSubir.Rows.Clear()
+    '    If Not lista Is Nothing Then
+    '        If lista.Count > 0 Then
+    '            DataGridViewParaSubir.Rows.Add(lista.Count)
+    '            For Each pi In lista
+    '                DataGridViewParaSubir(columna, fila).Value = pi.ID
+    '                columna = columna + 1
+    '                DataGridViewParaSubir(columna, fila).Value = pi.FICHA
+    '                columna = columna + 1
+    '                If pi.TIPO = 1 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Control"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 3 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Agua"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 4 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "ATB"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 6 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Parasitología"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 7 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Alimentos"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 10 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Calidad"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 11 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Ambiental"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 13 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Nutrición"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 14 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Suelos"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 15 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Brucelosis"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 16 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Efluentes"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 17 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Bact. Tanque"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 18 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Bact. clínica aer."
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 19 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Foliares"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                ElseIf pi.TIPO = 20 Then
+    '                    DataGridViewParaSubir(columna, fila).Value = "Toxicología"
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                Else
+    '                    DataGridViewParaSubir(columna, fila).Value = ""
+    '                    columna = 0
+    '                    fila = fila + 1
+    '                End If
+    '            Next
+    '        End If
+    '    End If
+    'End Sub
+
+   
+
+
     Private Sub LicenciaToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles LicenciaToolStripMenuItem.Click
         Dim v As New FormLicencias(Sesion.Usuario)
         v.Show()
@@ -8367,29 +8287,29 @@ controltxt:
         lista = pw.listar
         Dim fila As Integer = 0
         Dim columna As Integer = 0
-        DataGridPedidos.Rows.Clear()
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                DataGridPedidos.Rows.Add(lista.Count)
-                For Each pw In lista
-                    DataGridPedidos(columna, fila).Value = pw.ID
-                    columna = columna + 1
-                    Dim p As New dCliente
-                    p.ID = pw.CODIGO
-                    p = p.buscar
-                    If Not p Is Nothing Then
-                        DataGridPedidos(columna, fila).Value = p.NOMBRE
-                        columna = 0
-                        fila = fila + 1
-                    Else
-                        DataGridPedidos(columna, fila).Value = "Cliente no encontrado"
-                        columna = 0
-                        fila = fila + 1
-                    End If
-                    p = Nothing
-                Next
-            End If
-        End If
+        'DataGridPedidos.Rows.Clear()
+        'If Not lista Is Nothing Then
+        '    If lista.Count > 0 Then
+        '        DataGridPedidos.Rows.Add(lista.Count)
+        '        For Each pw In lista
+        '            DataGridPedidos(columna, fila).Value = pw.ID
+        '            columna = columna + 1
+        '            Dim p As New dCliente
+        '            p.ID = pw.CODIGO
+        '            p = p.buscar
+        '            If Not p Is Nothing Then
+        '                DataGridPedidos(columna, fila).Value = p.NOMBRE
+        '                columna = 0
+        '                fila = fila + 1
+        '            Else
+        '                DataGridPedidos(columna, fila).Value = "Cliente no encontrado"
+        '                columna = 0
+        '                fila = fila + 1
+        '            End If
+        '            p = Nothing
+        '        Next
+        '    End If
+        'End If
     End Sub
     Private Sub listarpedidospendientes()
         Dim p As New dPedidos
@@ -8397,44 +8317,44 @@ controltxt:
         lista = p.listarpendientes
         Dim fila As Integer = 0
         Dim columna As Integer = 0
-        DataGridViewPP.Rows.Clear()
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                DataGridViewPP.Rows.Add(lista.Count)
-                For Each p In lista
-                    DataGridViewPP(columna, fila).Value = p.ID
-                    columna = columna + 1
-                    Dim c As New dCliente
-                    c.ID = p.IDPRODUCTOR
-                    c = c.buscar
-                    If Not c Is Nothing Then
-                        DataGridViewPP(columna, fila).Value = c.NOMBRE
-                        columna = 0
-                        fila = fila + 1
-                    Else
-                        DataGridViewPP(columna, fila).Value = "Cliente no encontrado"
-                        columna = 0
-                        fila = fila + 1
-                    End If
-                    p = Nothing
-                Next
-            End If
-        End If
+        'DataGridViewPP.Rows.Clear()
+        'If Not lista Is Nothing Then
+        '    If lista.Count > 0 Then
+        '        DataGridViewPP.Rows.Add(lista.Count)
+        '        For Each p In lista
+        '            DataGridViewPP(columna, fila).Value = p.ID
+        '            columna = columna + 1
+        '            Dim c As New dCliente
+        '            c.ID = p.IDPRODUCTOR
+        '            c = c.buscar
+        '            If Not c Is Nothing Then
+        '                DataGridViewPP(columna, fila).Value = c.NOMBRE
+        '                columna = 0
+        '                fila = fila + 1
+        '            Else
+        '                DataGridViewPP(columna, fila).Value = "Cliente no encontrado"
+        '                columna = 0
+        '                fila = fila + 1
+        '            End If
+        '            p = Nothing
+        '        Next
+        '    End If
+        'End If
     End Sub
-    Private Sub DataGridPedidos_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridPedidos.CellClick
-        If DataGridPedidos.Columns(e.ColumnIndex).Name = "Cliente" Then
-            Dim row As DataGridViewRow = DataGridPedidos.Rows(e.RowIndex)
-            Dim id As Long = 0
-            Dim pw As New dPedidosWeb
-            id = row.Cells("Id").Value
-            pw.ID = id
-            pw = pw.buscar
-            If Not pw Is Nothing Then
-                Dim v As New FormPedidoFrascosWeb(Sesion.Usuario, id)
-                v.ShowDialog()
-            End If
-            listarpedidosweb()
-        End If
+    Private Sub DataGridPedidos_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
+        '    If DataGridPedidos.Columns(e.ColumnIndex).Name = "Cliente" Then
+        '        Dim row As DataGridViewRow = DataGridPedidos.Rows(e.RowIndex)
+        '        Dim id As Long = 0
+        '        Dim pw As New dPedidosWeb
+        '        id = row.Cells("Id").Value
+        '        pw.ID = id
+        '        pw = pw.buscar
+        '        If Not pw Is Nothing Then
+        '            Dim v As New FormPedidoFrascosWeb(Sesion.Usuario, id)
+        '            v.ShowDialog()
+        '        End If
+        '        listarpedidosweb()
+        '    End If
     End Sub
     Private Sub Timer4_Tick(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Timer4.Tick
         If nombre_pc = "ROBOT" Or nombre_pc = "IT" Then
@@ -10222,143 +10142,143 @@ controltxt:
         v.Show()
     End Sub
     Private Sub cargarAutorizaciones()
-        Dim fecha As Date = Now
-        Dim fec As String = Format(fecha, "yyyy-MM-dd")
-        Dim fechadesde As Date = Now
-        Dim fechahasta As Date = Now
-        Dim dia As Integer = Now.DayOfWeek
-        If dia = 1 Then
-            fechadesde = Now
-            fechahasta = Now.AddDays(5)
-        ElseIf dia = 2 Then
-            fechadesde = Now.AddDays(-1)
-            fechahasta = Now.AddDays(4)
-        ElseIf dia = 3 Then
-            fechadesde = Now.AddDays(-2)
-            fechahasta = Now.AddDays(3)
-        ElseIf dia = 4 Then
-            fechadesde = Now.AddDays(-3)
-            fechahasta = Now.AddDays(2)
-        ElseIf dia = 5 Then
-            fechadesde = Now.AddDays(-4)
-            fechahasta = Now.AddDays(1)
-        ElseIf dia = 6 Then
-            fechadesde = Now.AddDays(-5)
-            fechahasta = Now
-        ElseIf dia = 7 Then
-            fechadesde = Now.AddDays(-6)
-            fechahasta = Now.AddDays(-1)
-        End If
-        Dim fecdesde As String = Format(fechadesde, "yyyy-MM-dd")
-        Dim fechasta As String = Format(fechahasta, "yyyy-MM-dd")
-        DataGridAutorizaciones.Rows.Clear()
-        Dim a As New dAutorizaciones
-        Dim lista As New ArrayList
-        Dim fila As Integer = 0
-        Dim columna As Integer = 0
-        lista = a.listarsemana(fecdesde, fechasta)
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                DataGridAutorizaciones.Rows.Clear()
-                DataGridAutorizaciones.Rows.Add(lista.Count)
-                For Each a In lista
-                    If a.AUTORIZADA = 0 Then
-                        DataGridAutorizaciones(columna, fila).Value = a.ID
-                        columna = columna + 1
-                        DataGridAutorizaciones(columna, fila).Value = a.FECHAEVENTO
-                        DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Yellow
-                        DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.Black
-                        columna = columna + 1
-                        Dim u As New dUsuario
-                        u.ID = a.IDUSUARIO
-                        u = u.buscar
-                        DataGridAutorizaciones(columna, fila).Value = u.NOMBRE
-                        DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Yellow
-                        DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.Black
-                        columna = columna + 1
-                        Dim t As New dTipoAutorizacion
-                        t.ID = a.TIPO
-                        t = t.buscar
-                        DataGridAutorizaciones(columna, fila).Value = t.NOMBRE
-                        DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Yellow
-                        DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.Black
-                        columna = 0
-                        fila = fila + 1
-                    Else
-                        DataGridAutorizaciones(columna, fila).Value = a.ID
-                        columna = columna + 1
-                        DataGridAutorizaciones(columna, fila).Value = a.FECHAEVENTO
-                        DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Green
-                        DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.White
-                        columna = columna + 1
-                        Dim u As New dUsuario
-                        u.ID = a.IDUSUARIO
-                        u = u.buscar
-                        DataGridAutorizaciones(columna, fila).Value = u.NOMBRE
-                        DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Green
-                        DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.White
-                        columna = columna + 1
-                        Dim t As New dTipoAutorizacion
-                        t.ID = a.TIPO
-                        t = t.buscar
-                        DataGridAutorizaciones(columna, fila).Value = t.NOMBRE
-                        DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Green
-                        DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.White
-                        columna = 0
-                        fila = fila + 1
-                    End If
-                Next
-            End If
-        End If
+        'Dim fecha As Date = Now
+        'Dim fec As String = Format(fecha, "yyyy-MM-dd")
+        'Dim fechadesde As Date = Now
+        'Dim fechahasta As Date = Now
+        'Dim dia As Integer = Now.DayOfWeek
+        'If dia = 1 Then
+        '    fechadesde = Now
+        '    fechahasta = Now.AddDays(5)
+        'ElseIf dia = 2 Then
+        '    fechadesde = Now.AddDays(-1)
+        '    fechahasta = Now.AddDays(4)
+        'ElseIf dia = 3 Then
+        '    fechadesde = Now.AddDays(-2)
+        '    fechahasta = Now.AddDays(3)
+        'ElseIf dia = 4 Then
+        '    fechadesde = Now.AddDays(-3)
+        '    fechahasta = Now.AddDays(2)
+        'ElseIf dia = 5 Then
+        '    fechadesde = Now.AddDays(-4)
+        '    fechahasta = Now.AddDays(1)
+        'ElseIf dia = 6 Then
+        '    fechadesde = Now.AddDays(-5)
+        '    fechahasta = Now
+        'ElseIf dia = 7 Then
+        '    fechadesde = Now.AddDays(-6)
+        '    fechahasta = Now.AddDays(-1)
+        'End If
+        'Dim fecdesde As String = Format(fechadesde, "yyyy-MM-dd")
+        'Dim fechasta As String = Format(fechahasta, "yyyy-MM-dd")
+        'DataGridAutorizaciones.Rows.Clear()
+        'Dim a As New dAutorizaciones
+        'Dim lista As New ArrayList
+        'Dim fila As Integer = 0
+        'Dim columna As Integer = 0
+        'lista = a.listarsemana(fecdesde, fechasta)
+        'If Not lista Is Nothing Then
+        '    If lista.Count > 0 Then
+        '        DataGridAutorizaciones.Rows.Clear()
+        '        DataGridAutorizaciones.Rows.Add(lista.Count)
+        '        For Each a In lista
+        '            If a.AUTORIZADA = 0 Then
+        '                DataGridAutorizaciones(columna, fila).Value = a.ID
+        '                columna = columna + 1
+        '                DataGridAutorizaciones(columna, fila).Value = a.FECHAEVENTO
+        '                DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Yellow
+        '                DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.Black
+        '                columna = columna + 1
+        '                Dim u As New dUsuario
+        '                u.ID = a.IDUSUARIO
+        '                u = u.buscar
+        '                DataGridAutorizaciones(columna, fila).Value = u.NOMBRE
+        '                DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Yellow
+        '                DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.Black
+        '                columna = columna + 1
+        '                Dim t As New dTipoAutorizacion
+        '                t.ID = a.TIPO
+        '                t = t.buscar
+        '                DataGridAutorizaciones(columna, fila).Value = t.NOMBRE
+        '                DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Yellow
+        '                DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.Black
+        '                columna = 0
+        '                fila = fila + 1
+        '            Else
+        '                DataGridAutorizaciones(columna, fila).Value = a.ID
+        '                columna = columna + 1
+        '                DataGridAutorizaciones(columna, fila).Value = a.FECHAEVENTO
+        '                DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Green
+        '                DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.White
+        '                columna = columna + 1
+        '                Dim u As New dUsuario
+        '                u.ID = a.IDUSUARIO
+        '                u = u.buscar
+        '                DataGridAutorizaciones(columna, fila).Value = u.NOMBRE
+        '                DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Green
+        '                DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.White
+        '                columna = columna + 1
+        '                Dim t As New dTipoAutorizacion
+        '                t.ID = a.TIPO
+        '                t = t.buscar
+        '                DataGridAutorizaciones(columna, fila).Value = t.NOMBRE
+        '                DataGridAutorizaciones(columna, fila).Style.BackColor = Color.Green
+        '                DataGridAutorizaciones(columna, fila).Style.ForeColor = Color.White
+        '                columna = 0
+        '                fila = fila + 1
+        '            End If
+        '        Next
+        '    End If
+        'End If
     End Sub
 
     Private Sub cargarPreinformes()
 
-        Dim preInforme As New dPreinformes
-        Dim ListaPreimformes As New ArrayList
-        ListaPreimformes = preInforme.ListaControlCalidad()
-        Dim fila As Integer = 0
-        Dim columna As Integer = 0
+        'Dim preInforme As New dPreinformes
+        'Dim ListaPreimformes As New ArrayList
+        'ListaPreimformes = preInforme.ListaControlCalidad()
+        'Dim fila As Integer = 0
+        'Dim columna As Integer = 0
 
-        If Not ListaPreimformes Is Nothing Then
-            dgvPreinformes.Rows.Clear()
-            dgvPreinformes.Rows.Add(ListaPreimformes.Count)
-            For Each preInforme In ListaPreimformes
-                If preInforme.TIPO = 1 Then
-                    dgvPreinformes(columna, fila).Value = preInforme.ID
-                    columna = columna + 1
-                    dgvPreinformes(columna, fila).Value = preInforme.FICHA
-                    columna = columna + 1
-                    dgvPreinformes(columna, fila).Value = "Control" 'Tipo
-                    columna = columna + 1
-                    If preInforme.CREADO = 1 Then
-                        dgvPreinformes(columna, fila).Value = "Creado"
-                        columna = columna + 1
-                    Else
-                        dgvPreinformes(columna, fila).Value = "No creado"
-                        columna = columna + 1
-                    End If
-                    columna = 0
-                    fila = fila + 1
-                ElseIf preInforme.TIPO = 10 Then
-                    dgvPreinformes(columna, fila).Value = preInforme.ID
-                    columna = columna + 1
-                    dgvPreinformes(columna, fila).Value = preInforme.FICHA
-                    columna = columna + 1
-                    dgvPreinformes(columna, fila).Value = "Calidad" 'Tipo
-                    columna = columna + 1
-                    If preInforme.CREADO = 1 Then
-                        dgvPreinformes(columna, fila).Value = "Creado"
-                        columna = columna + 1
-                    Else
-                        dgvPreinformes(columna, fila).Value = "No creado"
-                        columna = columna + 1
-                    End If
-                    columna = 0
-                    fila = fila + 1
-                End If
-            Next
-        End If
+        'If Not ListaPreimformes Is Nothing Then
+        '    dgvPreinformes.Rows.Clear()
+        '    dgvPreinformes.Rows.Add(ListaPreimformes.Count)
+        '    For Each preInforme In ListaPreimformes
+        '        If preInforme.TIPO = 1 Then
+        '            dgvPreinformes(columna, fila).Value = preInforme.ID
+        '            columna = columna + 1
+        '            dgvPreinformes(columna, fila).Value = preInforme.FICHA
+        '            columna = columna + 1
+        '            dgvPreinformes(columna, fila).Value = "Control" 'Tipo
+        '            columna = columna + 1
+        '            If preInforme.CREADO = 1 Then
+        '                dgvPreinformes(columna, fila).Value = "Creado"
+        '                columna = columna + 1
+        '            Else
+        '                dgvPreinformes(columna, fila).Value = "No creado"
+        '                columna = columna + 1
+        '            End If
+        '            columna = 0
+        '            fila = fila + 1
+        '        ElseIf preInforme.TIPO = 10 Then
+        '            dgvPreinformes(columna, fila).Value = preInforme.ID
+        '            columna = columna + 1
+        '            dgvPreinformes(columna, fila).Value = preInforme.FICHA
+        '            columna = columna + 1
+        '            dgvPreinformes(columna, fila).Value = "Calidad" 'Tipo
+        '            columna = columna + 1
+        '            If preInforme.CREADO = 1 Then
+        '                dgvPreinformes(columna, fila).Value = "Creado"
+        '                columna = columna + 1
+        '            Else
+        '                dgvPreinformes(columna, fila).Value = "No creado"
+        '                columna = columna + 1
+        '            End If
+        '            columna = 0
+        '            fila = fila + 1
+        '        End If
+        '    Next
+        'End If
     End Sub
 
     Private Sub cargarNotificaciones()
@@ -10391,32 +10311,32 @@ controltxt:
         End If
         Dim fecdesde As String = Format(fechadesde, "yyyy-MM-dd")
         Dim fechasta As String = Format(fechahasta, "yyyy-MM-dd")
-        DataGridNotificaciones.Rows.Clear()
-        Dim n As New dNotificaciones_reloj
-        Dim lista As New ArrayList
-        Dim fila As Integer = 0
-        Dim columna As Integer = 0
-        lista = n.listarsemana(fecdesde, fechasta)
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                DataGridNotificaciones.Rows.Clear()
-                DataGridNotificaciones.Rows.Add(lista.Count)
-                For Each n In lista
-                    DataGridNotificaciones(columna, fila).Value = n.ID
-                    columna = columna + 1
-                    DataGridNotificaciones(columna, fila).Value = n.FECHAEVENTO
-                    columna = columna + 1
-                    Dim u As New dUsuario
-                    u.ID = n.IDUSUARIO
-                    u = u.buscar
-                    DataGridNotificaciones(columna, fila).Value = u.USUARIO
-                    columna = columna + 1
-                    DataGridNotificaciones(columna, fila).Value = n.DETALLE
-                    columna = 0
-                    fila = fila + 1
-                Next
-            End If
-        End If
+        'DataGridNotificaciones.Rows.Clear()
+        'Dim n As New dNotificaciones_reloj
+        'Dim lista As New ArrayList
+        'Dim fila As Integer = 0
+        'Dim columna As Integer = 0
+        'lista = n.listarsemana(fecdesde, fechasta)
+        'If Not lista Is Nothing Then
+        '    If lista.Count > 0 Then
+        '        DataGridNotificaciones.Rows.Clear()
+        '        DataGridNotificaciones.Rows.Add(lista.Count)
+        '        For Each n In lista
+        '            DataGridNotificaciones(columna, fila).Value = n.ID
+        '            columna = columna + 1
+        '            DataGridNotificaciones(columna, fila).Value = n.FECHAEVENTO
+        '            columna = columna + 1
+        '            Dim u As New dUsuario
+        '            u.ID = n.IDUSUARIO
+        '            u = u.buscar
+        '            DataGridNotificaciones(columna, fila).Value = u.USUARIO
+        '            columna = columna + 1
+        '            DataGridNotificaciones(columna, fila).Value = n.DETALLE
+        '            columna = 0
+        '            fila = fila + 1
+        '        Next
+        '    End If
+        'End If
     End Sub
     Private Sub NotificacionesToolStripMenuItem_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles NotificacionesToolStripMenuItem.Click
         Dim v As New FormNotificacionesReloj
@@ -10907,26 +10827,26 @@ controltxt:
         v.Show()
     End Sub
 
-    Private Sub DataGridPedidos_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridPedidos.CellContentClick
+    Private Sub DataGridPedidos_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
 
     End Sub
 
-    Private Sub DataGridViewPP_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridViewPP.CellClick
-        If DataGridViewPP.Columns(e.ColumnIndex).Name = "NombrePend" Then
-            Dim row As DataGridViewRow = DataGridViewPP.Rows(e.RowIndex)
-            Dim id As Long = 0
-            Dim pp As New dPedidosPendientes
-            id = row.Cells("IdPend").Value
-            pp.PEDIDO = id
-            pp = pp.buscar
-            If Not pp Is Nothing Then
-                MsgBox("Observaciones: " & pp.OBSERVACIONES)
-            End If
-        End If
+    Private Sub DataGridViewPP_CellClick(ByVal sender As Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
+        'If DataGridViewPP.Columns(e.ColumnIndex).Name = "NombrePend" Then
+        '    Dim row As DataGridViewRow = DataGridViewPP.Rows(e.RowIndex)
+        '    Dim id As Long = 0
+        '    Dim pp As New dPedidosPendientes
+        '    id = row.Cells("IdPend").Value
+        '    pp.PEDIDO = id
+        '    pp = pp.buscar
+        '    If Not pp Is Nothing Then
+        '        MsgBox("Observaciones: " & pp.OBSERVACIONES)
+        '    End If
+        'End If
     End Sub
 
    
-    Private Sub DataGridViewPP_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridViewPP.CellContentClick
+    Private Sub DataGridViewPP_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
 
     End Sub
 
@@ -10963,38 +10883,38 @@ controltxt:
         v.Show()
     End Sub
 
-    Private Sub DataGridViewParaSubir_CellClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridViewParaSubir.CellClick
-        If DataGridViewParaSubir.Columns(e.ColumnIndex).Name = "FichaParaSubir" Then
-            Dim id As Long = 0
-            Dim row As DataGridViewRow = DataGridViewParaSubir.Rows(e.RowIndex)
-            id = row.Cells("FichaParaSubir").Value
-            Dim p As New dPreinformes
-            If MsgBox("Desea quitar la ficha del listado?", MsgBoxStyle.OkCancel, "Atención") = MsgBoxResult.Ok Then
-                p.FICHA = id
-                p.desmarcarcreadoysubir()
-                MsgBox("Listo!")
-                cargarfichasparasubir()
-            Else
-                Exit Sub
-            End If
-        End If
-        If DataGridViewParaSubir.Columns(e.ColumnIndex).Name = "TipoParaSubir" Then
-            Dim id As Long = 0
-            Dim row As DataGridViewRow = DataGridViewParaSubir.Rows(e.RowIndex)
-            id = row.Cells("FichaParaSubir").Value
-            Dim p As New dPreinformes
-            If MsgBox("Desea quitar la ficha del listado?", MsgBoxStyle.OkCancel, "Atención") = MsgBoxResult.Ok Then
-                p.FICHA = id
-                p.desmarcarcreadoysubir()
-                MsgBox("Listo!")
-                cargarfichasparasubir()
-            Else
-                Exit Sub
-            End If
-        End If
-    End Sub
+    'Private Sub DataGridViewParaSubir_CellClick(sender As Object, e As DataGridViewCellEventArgs)
+    '    If DataGridViewParaSubir.Columns(e.ColumnIndex).Name = "FichaParaSubir" Then
+    '        Dim id As Long = 0
+    '        Dim row As DataGridViewRow = DataGridViewParaSubir.Rows(e.RowIndex)
+    '        id = row.Cells("FichaParaSubir").Value
+    '        Dim p As New dPreinformes
+    '        If MsgBox("Desea quitar la ficha del listado?", MsgBoxStyle.OkCancel, "Atención") = MsgBoxResult.Ok Then
+    '            p.FICHA = id
+    '            p.desmarcarcreadoysubir()
+    '            MsgBox("Listo!")
+    '            CargarInformesGestor()
+    '        Else
+    '            Exit Sub
+    '        End If
+    '    End If
+    '    If DataGridViewParaSubir.Columns(e.ColumnIndex).Name = "TipoParaSubir" Then
+    '        Dim id As Long = 0
+    '        Dim row As DataGridViewRow = DataGridViewParaSubir.Rows(e.RowIndex)
+    '        id = row.Cells("FichaParaSubir").Value
+    '        Dim p As New dPreinformes
+    '        If MsgBox("Desea quitar la ficha del listado?", MsgBoxStyle.OkCancel, "Atención") = MsgBoxResult.Ok Then
+    '            p.FICHA = id
+    '            p.desmarcarcreadoysubir()
+    '            MsgBox("Listo!")
+    '            CargarInformesGestor()
+    '        Else
+    '            Exit Sub
+    '        End If
+    '    End If
+    'End Sub
 
-    Private Sub DataGridViewParaSubir_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridViewParaSubir.CellContentClick
+    Private Sub DataGridViewParaSubir_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs)
 
     End Sub
 
@@ -11073,27 +10993,27 @@ controltxt:
         v.Show()
     End Sub
 
-    Private Sub dgvPreinformes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles dgvPreinformes.CellContentClick
-        If Sesion.Usuario.ID = 32 Or Sesion.Usuario.ID = 116 Or Sesion.Usuario.ID = 112 Then
-            If dgvPreinformes.Columns(e.ColumnIndex).Name = "btnEdit" Then
-                Dim row As DataGridViewRow = dgvPreinformes.Rows(e.RowIndex)
-                Dim ficha As Long = 0
-                ficha = row.Cells("fichaColumn").Value
-                Dim dPre As New dPreinformes
+    Private Sub dgvPreinformes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
+        'If Sesion.Usuario.ID = 32 Or Sesion.Usuario.ID = 116 Or Sesion.Usuario.ID = 112 Then
+        '    If dgvPreinformes.Columns(e.ColumnIndex).Name = "btnEdit" Then
+        '        Dim row As DataGridViewRow = dgvPreinformes.Rows(e.RowIndex)
+        '        Dim ficha As Long = 0
+        '        ficha = row.Cells("fichaColumn").Value
+        '        Dim dPre As New dPreinformes
 
-                dPre = dPre.buscarPorId(ficha)
+        '        dPre = dPre.buscarPorId(ficha)
 
-                If Not dPre Is Nothing Then
+        '        If Not dPre Is Nothing Then
 
-                    Dim v As New FormPreinformeEdit(dPre)
-                    v.ShowDialog()
+        '            Dim v As New FormPreinformeEdit(dPre)
+        '            v.ShowDialog()
 
-                End If
+        '        End If
 
-            End If
-        Else
-            MsgBox("Permisos insuficientes")
-        End If
+        '    End If
+        'Else
+        '    MsgBox("Permisos insuficientes")
+        'End If
     End Sub
 
     Private Sub HistorialDePedidosToolStripMenuItem2_Click(sender As Object, e As EventArgs) Handles HistorialDePedidosToolStripMenuItem2.Click
@@ -11125,7 +11045,7 @@ controltxt:
         v.Show()
     End Sub
 
-    Private Sub DataGridAutorizaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs) Handles DataGridAutorizaciones.CellContentClick
+    Private Sub DataGridAutorizaciones_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
 
     End Sub
 
@@ -11194,4 +11114,106 @@ controltxt:
         Dim v As New FormInformesPendientesUsuario(Sesion.Usuario)
         v.Show()
     End Sub
+
+    Private Sub cbEstadoGestor_SelectedIndexChanged(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Private Sub Button1_Click_5(sender As Object, e As EventArgs)
+
+    End Sub
+
+    Public Sub ExportarDataGridViewAExcel(ByVal dgv As DataGridView)
+        Try
+            Dim xlApp As New Excel.Application
+            Dim xlLibro As Excel.Workbook = xlApp.Workbooks.Add()
+            Dim xlHoja As Excel.Worksheet = CType(xlLibro.Sheets(1), Excel.Worksheet)
+
+            ' Exportar encabezados
+            For col As Integer = 0 To dgv.Columns.Count - 1
+                xlHoja.Cells(1, col + 1).Value = dgv.Columns(col).HeaderText
+                xlHoja.Cells(1, col + 1).Font.Bold = True
+            Next
+
+            ' Exportar contenido
+            For fila As Integer = 0 To dgv.Rows.Count - 1
+                For col As Integer = 0 To dgv.Columns.Count - 1
+                    xlHoja.Cells(fila + 2, col + 1).Value = dgv.Rows(fila).Cells(col).Value
+                Next
+            Next
+
+            xlApp.Visible = True ' Mostrar Excel al usuario
+        Catch ex As Exception
+            MessageBox.Show("Error al exportar a Excel: " & ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End Try
+    End Sub
+
+    Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
+        Dim v As New FormImportacionArchivos(Sesion.Usuario)
+        v.Show()
+    End Sub
+
+    Private Sub FormInicio_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        'InicializarGrillas()
+        Timer5.Interval = 30000 ' cada 5 segundos
+        Timer5.Start()
+        ActualizarGrillaInformes()
+    End Sub
+
+    Private Sub Timer5_Tick(sender As Object, e As EventArgs) Handles Timer5.Tick
+        ActualizarGrillaInformes()
+    End Sub
+
+    Private Sub ActualizarGrillaInformes()
+        'Try
+        '    Dim gestor As New dPreinformes()
+        '    Dim lista As ArrayList = gestor.listar_informes_gestor_deldia()
+
+        '    dgvPendientes.Rows.Clear()
+        '    dgvSubidos.Rows.Clear()
+
+        '    For Each inf As dInformeGestor In lista
+        '        If inf.ESTADO = "PENDIENTE" Then
+        '            dgvPendientes.Rows.Add(inf.FICHA, inf.FECHAINGRESO, inf.FECHAENVIO, inf.CLIENTE, inf.TIPOINFORME, inf.ESTADO)
+        '        ElseIf inf.ESTADO = "SUBIDO" Then
+        '            dgvSubidos.Rows.Add(inf.FICHA, inf.FECHAINGRESO, inf.FECHAENVIO, inf.CLIENTE, inf.TIPOINFORME, inf.ESTADO)
+        '        End If
+        '    Next
+        'Catch ex As Exception
+        '    ' Manejá el error si querés
+        'End Try
+    End Sub
+
+    'Private Sub InicializarGrillas()
+    '    ' Inicializar dgvPendientes
+    '    If dgvPendientes.Columns.Count = 0 Then
+    '        dgvPendientes.Columns.Add("Ficha", "Ficha")
+    '        dgvPendientes.Columns.Add("FechaIngreso", "Fecha de Ingreso")
+    '        dgvPendientes.Columns.Add("FechaEnvio", "Fecha de Envío")
+    '        dgvPendientes.Columns.Add("Cliente", "Cliente")
+    '        dgvPendientes.Columns.Add("TipoInforme", "Tipo de Informe")
+    '        dgvPendientes.Columns.Add("Estado", "Estado")
+    '    End If
+
+    '    ' Inicializar dgvSubidos
+    '    If dgvSubidos.Columns.Count = 0 Then
+    '        dgvSubidos.Columns.Add("Ficha", "Ficha")
+    '        dgvSubidos.Columns.Add("FechaIngreso", "Fecha de Ingreso")
+    '        dgvSubidos.Columns.Add("FechaEnvio", "Fecha de Envío")
+    '        dgvSubidos.Columns.Add("Cliente", "Cliente")
+    '        dgvSubidos.Columns.Add("TipoInforme", "Tipo de Informe")
+    '        dgvSubidos.Columns.Add("Estado", "Estado")
+    '    End If
+    'End Sub
+
+    Private Sub Button4_Click(sender As Object, e As EventArgs) Handles Button4.Click
+        Dim v As New FormReporteEstadoInforme()
+        v.Show()
+    End Sub
+
+    Private Sub dgvPendientes_CellContentClick(sender As Object, e As DataGridViewCellEventArgs)
+
+    End Sub
+
+
 End Class

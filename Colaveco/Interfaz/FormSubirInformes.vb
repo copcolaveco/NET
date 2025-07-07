@@ -318,7 +318,7 @@ controlcsv:
             fechah = Format(fechahasta, "yyyy-MM-dd")
             Dim ci As New dControlInformesFQ
             Dim lista As New ArrayList
-            lista = ci.listarxtipoxfecha(tipo.ToString, fechad, fechah)
+            lista = ci.listarxtipoxfecha(tipo.ToString, fechad, fechah, ficha)
             If Not lista Is Nothing Then
                 If lista.Count < 6 Then
                     Dim cifq As New dControlInformesFQ

@@ -17,6 +17,7 @@
     Private m_caseina As Double
     Private m_densidad As Double
     Private m_ph As Double
+    Private m_bhb As Double
 
 #End Region
 
@@ -157,7 +158,14 @@
             m_ph = value
         End Set
     End Property
-
+    Public Property BHB() As Double
+        Get
+            Return m_bhb
+        End Get
+        Set(ByVal value As Double)
+            m_bhb = value
+        End Set
+    End Property
 #End Region
 
 #Region "Constructores"
@@ -179,13 +187,14 @@
         m_caseina = 0
         m_densidad = 0
         m_ph = 0
+        m_bhb = 0
     End Sub
     Public Sub New(ByVal id As Long, ByVal ficha As String, ByVal fecha As String, _
                    ByVal equipo As String, ByVal producto As String, ByVal muestra As String, _
                    ByVal rc As Integer, ByVal grasa As Double, ByVal proteina As Double, _
                    ByVal lactosa As Double, ByVal st As Double, ByVal crioscopia As Integer, _
                    ByVal urea As Integer, ByVal proteinav As Double, ByVal caseina As Double, ByVal densidad As Double, _
-                   ByVal ph As Double)
+                   ByVal ph As Double, ByVal bhb As Double)
         m_id = id
         m_ficha = ficha
         m_fecha = fecha
@@ -203,6 +212,7 @@
         m_caseina = caseina
         m_densidad = densidad
         m_ph = ph
+        m_bhb = bhb
     End Sub
 #End Region
 

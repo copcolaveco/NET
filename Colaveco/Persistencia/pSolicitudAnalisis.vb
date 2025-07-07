@@ -4723,18 +4723,58 @@
         End Try
     End Function
 
+    Public Function listar_informes_usuario_pendientes(ByVal usuario_id As Integer, ByVal idinforme As String, ByVal sector_id As Integer) As ArrayList
+        Dim sql As String = ""
+        sql &= "SELECT DISTINCT na.ficha, sa.fechaingreso, ti.nombre, sa.nmuestras " &
+               "FROM solicitudanalisis sa " &
+               "INNER JOIN nuevoanalisis na ON na.ficha = sa.id " &
+               "INNER JOIN analisis_sector ase ON ase.analisis_id = na.analisis " &
+               "INNER JOIN usuario_sector us ON us.sector_id = ase.sector_id AND us.usuario_id = " & usuario_id & " " &
+               "INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme " &
+               "WHERE sa.marca = 0 AND sa.eliminado = 0 "
 
+        If sector_id > 0 Then
+            sql &= "AND ase.sector_id = " & sector_id & " "
+        End If
+
+        If Not String.IsNullOrEmpty(idinforme) Then
+            sql &= "AND sa.id = " & idinforme & " "
+        End If
+
+        sql &= "GROUP BY sa.id ORDER BY na.ficha DESC"
+
+        Try
+            Dim lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                For Each fila As DataRow In Ds.Tables(0).Rows
+                    Dim d As New dInformeAnalisis
+                    d.FICHA = CType(fila.Item(0), Long)
+                    d.FECHAINGRESO = CType(fila.Item(1), String)
+                    d.NOMBRETIPOINFORME = CType(fila.Item(2), String)
+                    d.NMUESTRAS = CType(fila.Item(3), Integer)
+                    lista.Add(d)
+                Next
+                Return lista
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
 
     Public Function listar_analisis_con_descripcion(ByVal usuarioId As Integer, ByVal solicitudId As Long) As ArrayList
         Dim sql As String = ""
-        sql &= "SELECT DISTINCT(na.analisis), sa.id, lp.descripcion " &
+        sql &= "SELECT DISTINCT na.analisis, lp.descripcion, s.nombre " &
                "FROM solicitudanalisis sa " &
                "INNER JOIN nuevoanalisis na ON na.ficha = sa.id " &
-               "INNER JOIN analisis_usuario au ON au.analisis_id = na.analisis " &
-               "INNER JOIN tipoinforme ti ON ti.id = sa.idtipoinforme " &
+               "INNER JOIN analisis_sector ase ON ase.analisis_id = na.analisis " &
+               "INNER JOIN usuario_sector us ON us.sector_id = ase.sector_id AND us.usuario_id = " & usuarioId & " " &
                "INNER JOIN listadeprecios lp ON lp.id = na.analisis " &
+               "INNER JOIN sectores s ON s.id = ase.sector_id " &
                "WHERE sa.marca = 0 AND sa.eliminado = 0 " &
-               "AND au.usuario_id = " & usuarioId & " " &
                "AND sa.id = " & solicitudId & " " &
                "ORDER BY na.ficha DESC"
 
@@ -4748,8 +4788,8 @@
                 For Each fila As DataRow In Ds.Tables(0).Rows
                     Dim item As New dAnalisisConDescripcion
                     item.ANALISIS = Convert.ToInt32(fila(0))
-                    item.ID_SOLICITUD = Convert.ToInt64(fila(1))
-                    item.DESCRIPCION = fila(2).ToString()
+                    item.DESCRIPCION = fila(1).ToString()
+                    item.NOMBRE_SECTOR = fila(2).ToString()
                     lista.Add(item)
                 Next
                 Return lista
@@ -4759,5 +4799,20 @@
         End Try
     End Function
 
+
+    Public Function buscarDatosFicha(ByVal ficha As Long) As DataRow
+        Dim sql As String = "SELECT sa.fechaingreso, c.nombre AS cliente, ti.nombre AS tipoinforme " &
+                            "FROM solicitudanalisis sa " &
+                            "INNER JOIN cliente c ON sa.idproductor = c.id " &
+                            "INNER JOIN tipoinforme ti ON sa.idtipoinforme = ti.id " &
+                            "WHERE sa.id = " & ficha
+        Dim ds As New DataSet
+        ds = Me.EjecutarSQL(sql)
+        If ds.Tables.Count > 0 AndAlso ds.Tables(0).Rows.Count > 0 Then
+            Return ds.Tables(0).Rows(0)
+        Else
+            Return Nothing
+        End If
+    End Function
 
 End Class

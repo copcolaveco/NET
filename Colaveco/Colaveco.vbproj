@@ -255,6 +255,7 @@
     <Compile Include="Conexion_BD\ConexionMySQL_uy.vb" />
     <Compile Include="Conexion_BD\ConexionMySQLGestor.vb" />
     <Compile Include="Enumerados\EnumCarpetaInforme.vb" />
+    <Compile Include="Enumerados\EnumEstadoGestor.vb" />
     <Compile Include="Enumerados\EnumTipoInforme.vb" />
     <Compile Include="Facturacion\dClient.vb" />
     <Compile Include="Facturacion\dMovCte.vb" />
@@ -341,6 +342,12 @@
     <Compile Include="Interfaz\FormHistoricoSolicitudesAutorizadas.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Interfaz\FormImportacionArchivos.Designer.vb">
+      <DependentUpon>FormImportacionArchivos.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormImportacionArchivos.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Interfaz\FormInformesPendientesUsuario.Designer.vb">
       <DependentUpon>FormInformesPendientesUsuario.vb</DependentUpon>
     </Compile>
@@ -351,6 +358,12 @@
       <DependentUpon>FormPreinformeEdit.vb</DependentUpon>
     </Compile>
     <Compile Include="Interfaz\FormPreinformeEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormReporteEstadoInforme.Designer.vb">
+      <DependentUpon>FormReporteEstadoInforme.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormReporteEstadoInforme.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Interfaz\FormTecnicoMuestreo.Designer.vb">
@@ -744,10 +757,12 @@
     <Compile Include="IT\FormPedidosAutomaticos_it.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Logica\ArchivoSeleccionado.vb" />
     <Compile Include="Logica\dAnalisisConDescripcion.vb" />
     <Compile Include="Logica\dControlBase.vb" />
     <Compile Include="Logica\dCredenciales.vb" />
     <Compile Include="Logica\dInformeAnalisis.vb" />
+    <Compile Include="Logica\dInformeGestor.vb" />
     <Compile Include="Logica\dNuevoGestor.vb" />
     <Compile Include="Logica\dAccionCorrectiva.vb" />
     <Compile Include="Logica\dAcreditacion.vb" />
@@ -2262,12 +2277,6 @@
     <Compile Include="Interfaz\FormSolicitudControlLechero.vb">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Interfaz\FormSubirInformes.Designer.vb">
-      <DependentUpon>FormSubirInformes.vb</DependentUpon>
-    </Compile>
-    <Compile Include="Interfaz\FormSubirInformes.vb">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Include="web\com\pAgroNutricionWeb_com.vb" />
     <Compile Include="web\com\pAgroSuelosWeb_com.vb" />
     <Compile Include="web\com\pAguaWeb_com.vb" />
@@ -3084,6 +3093,9 @@
     <EmbeddedResource Include="Interfaz\FormHistoricoSolicitudesAutorizadas.resx">
       <DependentUpon>FormHistoricoSolicitudesAutorizadas.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormImportacionArchivos.resx">
+      <DependentUpon>FormImportacionArchivos.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormInformeAgua.resx">
       <DependentUpon>FormInformeAgua.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -3412,6 +3424,9 @@
     <EmbeddedResource Include="Interfaz\FormReferencias.resx">
       <DependentUpon>FormReferencias.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormReporteEstadoInforme.resx">
+      <DependentUpon>FormReporteEstadoInforme.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormReproducibilidad.resx">
       <DependentUpon>FormReproducibilidad.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -3622,10 +3637,6 @@
       <DependentUpon>FormSubInformes.vb</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Interfaz\FormSubirInformes.resx">
-      <DependentUpon>FormSubirInformes.vb</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormSubproductos.resx">
       <DependentUpon>FormSubproductos.vb</DependentUpon>
       <SubType>Designer</SubType>
@@ -3687,6 +3698,7 @@
     <None Include="ClassDiagram2.cd" />
     <None Include="ClassDiagram3.cd" />
     <None Include="Colaveco_ClaveTemporal.pfx" />
+    <None Include="Logica\dInformeGestor.cd" />
     <None Include="My Project\app.manifest">
       <SubType>Designer</SubType>
     </None>

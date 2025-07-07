@@ -291,7 +291,6 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormSolicitudPAL.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormSolicitudParasitologia.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormSolicitudSubproductos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormSubInformes.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormSubirInformes.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormSubproductos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormTecnicos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormTiempos.resources
@@ -316,3 +315,5 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoCajasIngresoM
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormConfSupervisor.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoSolicitudesAutorizadas.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformesPendientesUsuario.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormImportacionArchivos.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormReporteEstadoInforme.resources
