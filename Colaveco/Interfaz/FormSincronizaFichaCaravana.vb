@@ -44,82 +44,218 @@ Public Class FormSincronizaFichaCaravana
     Private Sub ButtonSincronizar_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonSincronizar.Click
         'sincronizarcaravanas()
         actualizarcaravanas()
+        id_sol = TextFicha.Text.Trim
         preinforme_control(id_sol)
     End Sub
+    'Private Sub actualizarcaravanas()
+    '    Label3.Text = ""
+    '    If TextFicha.Text.Trim.Length = 0 Then MsgBox("Ingrese el número de ficha.", MsgBoxStyle.Exclamation, "Atención") : TextFicha.Focus() : Exit Sub
+    '    If TextArchivo.Text.Trim.Length = 0 Then MsgBox("Seleccione el archivo excel a procesar.", MsgBoxStyle.Exclamation, "Atención") : TextArchivo.Focus() : Exit Sub
+    '    Dim ficha As String = ""
+    '    ficha = TextFicha.Text.Trim
+    '    Dim nombrearchivo As String = ""
+    '    Dim linea As Integer
+    '    Dim ruta As String = TextArchivo.Text.Trim
+    '    linea = 1
+    '    Dim objReader As New StreamReader(ruta)
+    '    Dim sLine As String = ""
+    '    Dim numero As String = ""
+    '    Dim caravana As String = ""
+
+    '    Dim c As New dCaravanas
+    '    Dim c2 As New dCaravanas
+    '    c2.FICHA = ficha
+    '    c2.eliminarxficha(Usuario)
+    '    Dim Arch As String, CantFilas As Integer
+    '    Arch = ruta
+    '    Dim x1app As Microsoft.Office.Interop.Excel.Application
+    '    Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
+    '    Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet
+    '    x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
+    '    x1libro = CType(x1app.Workbooks.Open(Arch), Microsoft.Office.Interop.Excel.Workbook)
+    '    x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+    '    Dim bandera As Integer = 0
+    '    CantFilas = x1app.Range("a1").CurrentRegion.Rows.Count
+    '    For i = 1 To CantFilas
+    '        If Trim(x1hoja.Cells(i, 1).formula) <> "" Then
+    '            numero = x1hoja.Cells(i, 1).value
+    '        End If
+    '        If Trim(x1hoja.Cells(i, 2).formula) <> "" Then
+    '            caravana = x1hoja.Cells(i, 2).value
+    '        End If
+
+    '        id_sol = ficha
+    '        c.FICHA = ficha
+    '        c.NUMERO = numero
+    '        c.CARAVANA = caravana
+    '        c.guardar(Usuario)
+    '    Next
+    '    c = Nothing
+    '    ' Cierro Excel
+    '    x1libro.Close()
+    '    x1app = Nothing
+    '    x1libro = Nothing
+    '    x1hoja = Nothing
+    '    objReader.Close()
+
+    '    'Dim proceso As System.Diagnostics.Process()
+    '    'proceso = System.Diagnostics.Process.GetProcessesByName("EXCEL")
+    '    'For Each opro As System.Diagnostics.Process In proceso
+    '    '    'antes de iniciar el proceso obtengo la fecha en que inicie el 
+    '    '    'proceso para detener todos los procesos que excel que inicio
+    '    '    'mi código durante el proceso
+    '    '    opro.Kill()
+    '    'Next
+
+    '    Dim ca As New dCaravanas
+    '    Dim lista As New ArrayList
+    '    lista = ca.listarxficha(ficha)
+    '    If Not lista Is Nothing Then
+    '        If lista.Count > 0 Then
+    '            For Each ca In lista
+    '                Dim co As New dControl
+    '                co.modificar2(ca.FICHA, ca.NUMERO, ca.CARAVANA)
+    '                co = Nothing
+    '            Next
+    '        End If
+    '    End If
+
+    'End Sub
+
     Private Sub actualizarcaravanas()
         Label3.Text = ""
-        If TextFicha.Text.Trim.Length = 0 Then MsgBox("Ingrese el número de ficha.", MsgBoxStyle.Exclamation, "Atención") : TextFicha.Focus() : Exit Sub
-        If TextArchivo.Text.Trim.Length = 0 Then MsgBox("Seleccione el archivo excel a procesar.", MsgBoxStyle.Exclamation, "Atención") : TextArchivo.Focus() : Exit Sub
-        Dim ficha As String = ""
-        ficha = TextFicha.Text.Trim
-        Dim nombrearchivo As String = ""
-        Dim linea As Integer
-        Dim ruta As String = TextArchivo.Text.Trim
-        linea = 1
-        Dim objReader As New StreamReader(ruta)
-        Dim sLine As String = ""
-        Dim numero As String = ""
-        Dim caravana As String = ""
 
-        Dim c As New dCaravanas
+        If TextFicha.Text.Trim.Length = 0 Then
+            MsgBox("Ingrese el número de ficha.", MsgBoxStyle.Exclamation, "Atención")
+            TextFicha.Focus()
+            Exit Sub
+        End If
+
+        If TextArchivo.Text.Trim.Length = 0 Then
+            MsgBox("Seleccione el archivo a procesar.", MsgBoxStyle.Exclamation, "Atención")
+            TextArchivo.Focus()
+            Exit Sub
+        End If
+
+        Dim ficha As String = TextFicha.Text.Trim
+        Dim ruta As String = TextArchivo.Text.Trim
+
+        If Not IO.File.Exists(ruta) Then
+            MsgBox("El archivo no existe.", MsgBoxStyle.Critical)
+            Exit Sub
+        End If
+
+        ' Eliminar caravanas existentes
         Dim c2 As New dCaravanas
         c2.FICHA = ficha
         c2.eliminarxficha(Usuario)
-        Dim Arch As String, CantFilas As Integer
-        Arch = ruta
-        Dim x1app As Microsoft.Office.Interop.Excel.Application
-        Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
-        Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet
-        x1app = CType(CreateObject("Excel.Application"), Microsoft.Office.Interop.Excel.Application)
-        x1libro = CType(x1app.Workbooks.Open(Arch), Microsoft.Office.Interop.Excel.Workbook)
-        x1hoja = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
-        Dim bandera As Integer = 0
-        CantFilas = x1app.Range("a1").CurrentRegion.Rows.Count
-        For i = 1 To CantFilas
-            If Trim(x1hoja.Cells(i, 1).formula) <> "" Then
-                numero = x1hoja.Cells(i, 1).value
+
+        Dim extension As String = IO.Path.GetExtension(ruta).ToLower()
+
+        Try
+            If extension = ".csv" Or extension = ".txt" Then
+                ' Procesar como archivo de texto plano
+                Using objReader As New StreamReader(ruta)
+                    Dim linea As String
+                    While Not objReader.EndOfStream
+                        linea = objReader.ReadLine().Trim()
+                        If linea <> "" Then
+                            Dim partes() As String
+                            If linea.Contains(";") Then
+                                partes = linea.Split(";"c)
+                            Else
+                                partes = linea.Split(","c)
+                            End If
+
+                            If partes.Length >= 2 Then
+                                Dim numero As String = partes(0).Trim()
+                                Dim caravana As String = partes(1).Trim()
+
+                                Dim c As New dCaravanas
+                                c.FICHA = ficha
+                                c.NUMERO = numero
+                                c.CARAVANA = caravana
+                                c.guardar(Usuario)
+                            End If
+                        End If
+                    End While
+                End Using
+
+            ElseIf extension = ".xls" Or extension = ".xlsx" Then
+                ' Procesar como archivo Excel con Interop
+                Dim x1app As New Microsoft.Office.Interop.Excel.Application
+                x1app.DisplayAlerts = False
+                x1app.Visible = False
+
+                Dim x1libro As Microsoft.Office.Interop.Excel.Workbook = x1app.Workbooks.Open(ruta)
+                Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet = CType(x1libro.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
+
+                Dim CantFilas As Integer = x1hoja.UsedRange.Rows.Count
+
+                For i = 1 To CantFilas
+                    Dim numero As String = ""
+                    Dim caravana As String = ""
+
+                    If Not IsNothing(x1hoja.Cells(i, 1).value) Then
+                        numero = x1hoja.Cells(i, 1).value.ToString().Trim()
+                    End If
+                    If Not IsNothing(x1hoja.Cells(i, 2).value) Then
+                        caravana = x1hoja.Cells(i, 2).value.ToString().Trim()
+                    End If
+
+                    If numero <> "" And caravana <> "" Then
+                        Dim c As New dCaravanas
+                        c.FICHA = ficha
+                        c.NUMERO = numero
+                        c.CARAVANA = caravana
+                        c.guardar(Usuario)
+                    End If
+                Next
+
+                x1libro.Close(False)
+                x1app.Quit()
+
+                ' Liberar recursos
+                ReleaseComObject(x1hoja)
+                ReleaseComObject(x1libro)
+                ReleaseComObject(x1app)
+            Else
+                MsgBox("Tipo de archivo no compatible. Use .csv, .txt, .xls o .xlsx", MsgBoxStyle.Critical)
+                Exit Sub
             End If
-            If Trim(x1hoja.Cells(i, 2).formula) <> "" Then
-                caravana = x1hoja.Cells(i, 2).value
-            End If
 
-            id_sol = ficha
-            c.FICHA = ficha
-            c.NUMERO = numero
-            c.CARAVANA = caravana
-            c.guardar(Usuario)
-        Next
-        c = Nothing
-        ' Cierro Excel
-        x1libro.Close()
-        x1app = Nothing
-        x1libro = Nothing
-        x1hoja = Nothing
-        objReader.Close()
+        Catch ex As Exception
+            MsgBox("Error al procesar el archivo: " & ex.Message, MsgBoxStyle.Critical)
+            Exit Sub
+        End Try
 
-        'Dim proceso As System.Diagnostics.Process()
-        'proceso = System.Diagnostics.Process.GetProcessesByName("EXCEL")
-        'For Each opro As System.Diagnostics.Process In proceso
-        '    'antes de iniciar el proceso obtengo la fecha en que inicie el 
-        '    'proceso para detener todos los procesos que excel que inicio
-        '    'mi código durante el proceso
-        '    opro.Kill()
-        'Next
-
+        ' Actualizar control
         Dim ca As New dCaravanas
         Dim lista As New ArrayList
         lista = ca.listarxficha(ficha)
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
-                For Each ca In lista
-                    Dim co As New dControl
-                    co.modificar2(ca.FICHA, ca.NUMERO, ca.CARAVANA)
-                    co = Nothing
-                Next
-            End If
+
+        If Not lista Is Nothing AndAlso lista.Count > 0 Then
+            For Each ca In lista
+                Dim co As New dControl
+                co.modificar2(ca.FICHA, ca.NUMERO, ca.CARAVANA)
+                co = Nothing
+            Next
         End If
-       
     End Sub
+
+    Private Sub ReleaseComObject(ByVal obj As Object)
+        Try
+            If obj IsNot Nothing Then
+                System.Runtime.InteropServices.Marshal.ReleaseComObject(obj)
+                obj = Nothing
+            End If
+        Catch
+            obj = Nothing
+        End Try
+        GC.Collect()
+    End Sub
+
+
     'Private Sub preinforme_control(ByVal id_sol As Long)
     '    Dim x1app As Microsoft.Office.Interop.Excel.Application
     '    Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
@@ -1386,7 +1522,7 @@ Public Class FormSincronizaFichaCaravana
 
 
             ficha = TextFicha.Text.Trim
-
+            id_sol = ficha
             c.modificar2(ficha, id, caravana)
 
         Next

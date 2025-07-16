@@ -496,6 +496,7 @@ Public Class FormSolicitud
                                     'enviomailpulsa()
                                 End If
                             End If
+
                             'modificarRegistro(id)
                             enviomail()
                             
@@ -4790,6 +4791,78 @@ Public Class FormSolicitud
             nficha = ""
         End If
     End Sub
+
+    'Private Sub enviomail()
+    '    Dim _Message As New System.Net.Mail.MailMessage()
+    '    Dim _SMTP As New System.Net.Mail.SmtpClient
+    '    '******************************************************************************************************************************************
+    '    Dim ficha As String = TextId.Text.Trim
+    '    Dim fecha As Date = DateFechaIngreso.Value
+    '    Dim nmuestras As String
+    '    If TextNMuestras.Text <> "" Then
+    '        nmuestras = TextNMuestras.Text.Trim
+    '    Else
+    '        nmuestras = ""
+    '    End If
+
+    '    '********************************************************************************************************************
+
+    '            'CONFIGURACIÓN DEL STMP 
+    '            ' Llamamos al método buscar para obtener el objeto Credenciales
+    '            Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+
+    '            _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+    '            _SMTP.Host = objetoCredenciales.CredencialesHost
+    '            _SMTP.Port = 25
+    '            _SMTP.EnableSsl = False
+
+    '            _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+    '            ' CONFIGURACION DEL MENSAJE 
+    '            _Message.[To].Add(LTrim(email))
+    '            _Message.[To].Add(LTrim("envios@colaveco.com.uy"))
+    '            'Quien lo envía 
+    '            _Message.Subject = "Solicitud de análisis"
+    '            'Sujeto del e-mail 
+    '            _Message.SubjectEncoding = System.Text.Encoding.UTF8
+    '            'Codificacion 
+    '            _Message.Body = "Ha ingresado una solicitud con el número" & " " & ficha & vbCrLf _
+    '            & "Fecha/Hora de recepción: " & fecha & "." & vbCrLf _
+    '            & "A nombre de: " & nombre_productor & "." & vbCrLf _
+    '            & "Muestras ingresadas: " & nmuestras & "." & vbCrLf _
+    '            & "Tipo de muestra: " & muestra & "." & vbCrLf _
+    '            & "Análisis requerido: " & tipoinforme & "." & vbCrLf _
+    '            & "Subtipo: " & subtipoinforme & "." & vbCrLf _
+    '            & vbCrLf _
+    '            & texto & vbCrLf _
+    '            & vbCrLf _
+    '            & "Identificación de las muestras:" & vbCrLf _
+    '            & texto2 & vbCrLf _
+    '            & vbCrLf _
+    '            & "Observaciones:" & vbCrLf _
+    '            & observaciones & vbCrLf _
+    '            & vbCrLf _
+    '            & "En nuestro sitio web, https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/com.labcol.colavecologin, puede ver el estado de su solicitud." & vbCrLf _
+    '            & "Gracias." & vbCrLf & vbCrLf _
+    '            & "COLAVECO" & vbCrLf _
+    '            & "Parque El Retiro - Nueva Helvecia - Tel/Fax: 45545311/45545975/45546838" & vbCrLf _
+    '            & "Email: colaveco@gmail.com - web: http://www.colaveco.com.uy" & vbCrLf & vbCrLf _
+    '            & "-------------------------------------------------------------------------------------" & vbCrLf _
+    '            & "Cuando el cliente solicite suspender el servicio ya presupuestado y en ejecución, o una parte del mismo," & vbCrLf _
+    '            & "los costos de las actividades ya realizadas en el momento de la suspensión deberán pagarse."
+    '            'contenido del mail 
+    '            _Message.BodyEncoding = System.Text.Encoding.UTF8 '
+    '            _Message.Priority = System.Net.Mail.MailPriority.Normal
+    '            _Message.IsBodyHtml = False
+    '            ' ADICION DE DATOS ADJUNTOS ‘
+    '            Try
+    '                _SMTP.Send(_Message)
+    '            Catch ex As System.Net.Mail.SmtpException ' MessageBox.Show(ex.ToString) 
+    '            End Try
+
+    '        email = ""
+    '        nficha = ""
+
+    'End Sub
 
     Private Sub enviar_notificacion_solicitud(ByVal id As Integer)
         'Dim fechaactual As Date = Now()

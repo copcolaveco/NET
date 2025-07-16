@@ -3,6 +3,8 @@ Imports Newtonsoft.Json
 Imports System.IO
 Imports Microsoft.Office.Interop
 Imports Microsoft.Office.Interop.Excel
+Imports System.Runtime.InteropServices
+Imports System.Threading
 
 
 Public Class FormImportacionArchivos
@@ -274,8 +276,12 @@ Public Class FormImportacionArchivos
                                         procesadoCorrectamente = True
                                     Case Else
                                         errores.Add(String.Format("{0} → Extensión '{1}' no soportada para CONTROL desde Delta600.", archivo.Nombre, extension))
-
                                 End Select
+
+                                If procesadoCorrectamente Then
+                                    ' Pre informe Control
+                                    PrepararYGenerarExcelControl(ficha)
+                                End If
 
                             Case "CALIDAD"
                                 Select Case extension
@@ -286,12 +292,12 @@ Public Class FormImportacionArchivos
                                         ProcesarArchivoCalidadXlsCsv(archivo.Ruta, archivo.Nombre)
                                         procesadoCorrectamente = True
                                     Case Else
-                                        errores.Add(String.Format("{0} → Extensión '{1}' no soportada para CONTROL/Calidad desde Delta600.", archivo.Nombre, extension))
-
+                                        errores.Add(String.Format("{0} → Extensión '{1}' no soportada para CALIDAD desde Delta600.", archivo.Nombre, extension))
                                 End Select
 
+
                             Case Else
-                                errores.Add(String.Format("{0} → Extensión '{1}' no soportada para CONTROL/Calidad desde Delta600.", archivo.Nombre, extension))
+                                errores.Add(String.Format("{0} → Tipo de informe '{1}' no soportado desde Delta600.", archivo.Nombre, archivo.TipoInforme))
                         End Select
 
                     Case "BENTLEY600"
@@ -299,16 +305,27 @@ Public Class FormImportacionArchivos
                             Case "CONTROL LECHERO"
                                 ProcesarArchivoControlB6(archivo.Ruta, archivo.Nombre)
                                 procesadoCorrectamente = True
+
+                                'If procesadoCorrectamente Then
+                                '    PrepararYGenerarExcelControl(ficha)
+                                'End If
+
                             Case "CALIDAD"
                                 ProcesarArchivoCalidadB6Csv(archivo.Ruta, archivo.Nombre)
                                 procesadoCorrectamente = True
-                            Case Else
-                                errores.Add(String.Format("{0} → Extensión '{1}' no soportada para CONTROL/CALIDAD desde Bentley600.", archivo.Nombre, extension))
+                                
+                                'If procesadoCorrectamente Then
+                                '    If VerificarDatosCalidad(ficha) Then
+                                '        GenerarExcelCalidad(archivo)
+                                '    End If
+                                'End If
 
+                            Case Else
+                                errores.Add(String.Format("{0} → Tipo de informe '{1}' no soportado desde Bentley600.", archivo.Nombre, archivo.TipoInforme))
                         End Select
 
                     Case Else
-                        errores.Add(String.Format("{0} → Extensión '{1}' no soportada para CONTROL/Calidad desde Delta600/Benley600.", archivo.Nombre, extension))
+                        errores.Add(String.Format("{0} → Origen '{1}' no soportado.", archivo.Nombre, archivo.Origen))
                 End Select
 
                 If procesadoCorrectamente Then
@@ -317,7 +334,6 @@ Public Class FormImportacionArchivos
 
             Catch ex As Exception
                 errores.Add(String.Format("{0} → Error en procesamiento: {1}", archivo.Nombre, ex.Message))
-
             End Try
         Next
 
@@ -331,6 +347,7 @@ Public Class FormImportacionArchivos
 
         MsgBox(mensajeFinal, MsgBoxStyle.Information, "Resultado final")
     End Sub
+
 
 
     Private Sub ProcesarArchivoCalidadFat(rutaArchivo As String, nombreArchivo As String)
@@ -425,7 +442,7 @@ Public Class FormImportacionArchivos
 
                 Loop
 
-                MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
+                'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 
                 ' Insertar en preinformes
                 Dim pi As New dPreinformes
@@ -469,7 +486,7 @@ Public Class FormImportacionArchivos
         Dim linea As Integer = 1
 
         If nombrearchivo.Length > 12 Then ' controlo si el archivo es de delta nuevo
-            Dim objReader As New StreamReader(rutaArchivo)
+            Dim objReader As New StreamReader(rutaArchivo + "\" + nombrearchivo)
             Dim sLine As String = ""
             Dim arraytext() As String
             Dim matricula As String = ""
@@ -596,7 +613,7 @@ Public Class FormImportacionArchivos
                 Loop
                 objReader.Close()
 
-                MoverArchivoProcesado(rutaArchivo, nombrearchivo) ' muestra MsgBox
+                'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 
                 ' Preinforme
                 Dim pi As New dPreinformes
@@ -767,7 +784,7 @@ Public Class FormImportacionArchivos
         End If
 
         ' Mover archivo
-        MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
+        'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 
     End Sub
 
@@ -931,7 +948,7 @@ Public Class FormImportacionArchivos
             ReleaseComObject(x1libro)
             ReleaseComObject(x1app)
 
-            MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
+            'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 
             ' Insertar en preinformes
             Dim pi As New dPreinformes
@@ -1033,7 +1050,7 @@ Public Class FormImportacionArchivos
         Dim linea As Integer = 1
 
         If extension.ToLower() = "csv" Then
-            Dim objReader As New StreamReader(rutaArchivo)
+            Dim objReader As New StreamReader(rutaArchivo + "\" + nombreArchivo)
             Dim sLine As String = ""
             Dim arraytext() As String
             Dim matricula As String = ""
@@ -1302,7 +1319,7 @@ Public Class FormImportacionArchivos
 
             objReader.Close()
 
-            MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
+            'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 
             ' Insert tabla preinforme_calidad
             Dim pi As New dPreinformes
@@ -1340,6 +1357,7 @@ Public Class FormImportacionArchivos
             est = Nothing
 
         End If
+
     End Sub
 
     Private Function ParseDoubleSafe(arr() As String, index As Integer) As Double
@@ -1363,7 +1381,7 @@ Public Class FormImportacionArchivos
     End Function
 
     Private Sub ProcesarArchivoControlB6(ByVal rutaArchivo As String, ByVal nombreArchivo As String)
-        Dim rutaArchivoOrigen As String = rutaArchivo
+        Dim rutaArchivoOrigen As String = rutaArchivo + "\" + nombreArchivo
         Dim rutaArchivoDestino As String = "\\192.168.1.20\e\Documentos\SECRETARIA\Analisis\Leche\Bentley-delta\Pasados NET\" & nombreArchivo
         Dim extension As String = Path.GetExtension(nombreArchivo).ToLower().Replace(".", "")
         Dim linea As Integer = 1
@@ -1502,7 +1520,7 @@ Public Class FormImportacionArchivos
             Loop Until sLine Is Nothing
             objReader.Close()
 
-            MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
+            'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 
             Dim pi As New dPreinformes
             Dim fechaactual As Date = Now()
@@ -1552,136 +1570,215 @@ Public Class FormImportacionArchivos
         End If
     End Sub
 
-    Private Sub GenerarExcelCalidad(idsol As Long, lista As ArrayList)
+    Private Function VerificarDatosCalidad(ficha As Long) As Boolean
+        Dim csm As New dCalidadSolicitudMuestra
+        Dim listacsm As New ArrayList
+        Dim creapreinforme As Boolean = True
+
+        listacsm = csm.listarporsolicitud(ficha)
+        If listacsm Is Nothing OrElse listacsm.Count = 0 Then Return False
+
+        For Each csm In listacsm
+            If csm.RB = 1 Then
+                Dim ibc As New dIbc
+                ibc.FICHA = csm.FICHA
+                ibc.MUESTRA = csm.MUESTRA
+                ibc = ibc.buscarxfichaxmuestra
+                If ibc Is Nothing Then Return False
+            End If
+
+            If csm.PSICROTROFOS = 1 Then
+                Dim psi As New dPsicrotrofos
+                psi.FICHA = csm.FICHA
+                psi.MUESTRA = csm.MUESTRA
+                psi = psi.buscarxfichaxmuestra
+                If psi Is Nothing Then Return False
+            End If
+
+            If csm.ESPORULADOS = 1 Then
+                Dim esp As New dEsporulados
+                esp.FICHA = csm.FICHA
+                esp.MUESTRA = csm.MUESTRA
+                esp = esp.buscarxfichaxmuestra
+                If esp Is Nothing Then Return False
+            End If
+
+            If csm.INHIBIDORES = 1 Then
+                Dim inh As New dInhibidores
+                inh.FICHA = csm.FICHA
+                inh.MUESTRA = csm.MUESTRA
+                inh = inh.buscarxfichaxmuestra
+                If inh Is Nothing Or inh.MARCA = 0 Then Return False
+            End If
+        Next
+
+        Return creapreinforme
+    End Function
+
+    Private Sub GenerarExcelCalidad(archivo As ArchivoSeleccionado)
+
+        Dim idsol As Long = ficha
+        Dim lista As New ArrayList()
+
+        ' Aquí armás la lista igual que antes, por ejemplo:
+        Dim csm As New dCalidadSolicitudMuestra
+        lista = csm.listarporsolicitud(idsol)
+
+        If lista Is Nothing OrElse lista.Count = 0 Then
+            MsgBox("No hay datos para generar el preinforme de calidad para la ficha: " & idsol)
+            Return
+        End If
+
         Dim x1app As New Excel.Application
         Dim x1libro As Excel.Workbook = x1app.Workbooks.Add
         Dim x1hoja As Excel.Worksheet = x1libro.Sheets(1)
         Dim fila As Integer = 2
         Dim columna As Integer = 1
+        Try
+            If Not lista Is Nothing AndAlso lista.Count > 0 Then
+                For Each csm In lista
+                    Dim c As New dCalidad With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
+                    c = c.buscarxfichaxmuestra()
 
-        If Not lista Is Nothing AndAlso lista.Count > 0 Then
-            For Each csm In lista
-                Dim c As New dCalidad With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
-                c = c.buscarxfichaxmuestra()
+                    ' Muestra
+                    EscribirCelda(x1hoja, fila, columna, If(csm.MUESTRA <> "", csm.MUESTRA, "-")) : columna += 1
 
-                ' Muestra
-                EscribirCelda(x1hoja, fila, columna, If(csm.MUESTRA <> "", csm.MUESTRA, "-")) : columna += 1
-
-                ' RC
-                If csm.RC = 1 AndAlso Not c Is Nothing Then
-                    EscribirCelda(x1hoja, fila, columna, c.RC) : columna += 1
-                Else
-                    EscribirNA(x1hoja, fila, columna) : columna += 1
-                End If
-
-                ' RB
-                If csm.RB = 1 Then
-                    Dim ibc As New dIbc With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
-                    ibc = ibc.buscarxfichaxmuestra()
-                    EscribirCelda(x1hoja, fila, columna, If(ibc IsNot Nothing, ibc.RB.ToString(), "-")) : columna += 1
-                Else
-                    EscribirNA(x1hoja, fila, columna) : columna += 1
-                End If
-
-                ' Composición: GRASA, PROTEINA, LACTOSA, ST
-                If csm.COMPOSICION = 1 OrElse csm.COMPOSICIONSUERO = 1 Then
-                    ' GRASA
-                    Dim fueraRangoGrasa = Not c Is Nothing AndAlso (Val(c.GRASA) < 2.5 Or Val(c.GRASA) > 5)
-                    EscribirCeldaConFondo(x1hoja, fila, columna, If(Not c Is Nothing, c.GRASA.ToString("##,##0.00"), "-"), fueraRangoGrasa) : columna += 1
-
-                    ' PROTEINA
-                    Dim fueraRangoProteina = Not c Is Nothing AndAlso (Val(c.PROTEINA) < 2.5 Or Val(c.PROTEINA) > 4)
-                    EscribirCeldaConFondo(x1hoja, fila, columna, If(Not c Is Nothing, c.PROTEINA.ToString("##,##0.00"), "-"), fueraRangoProteina) : columna += 1
-
-                    ' LACTOSA
-                    EscribirCelda(x1hoja, fila, columna, If(Not c Is Nothing, c.LACTOSA.ToString("##,##0.00"), "-")) : columna += 1
-
-                    ' ST
-                    EscribirCelda(x1hoja, fila, columna, If(Not c Is Nothing, c.ST.ToString("##,##0.00"), "-")) : columna += 1
-                Else
-                    For i = 1 To 4
+                    ' RC
+                    If csm.RC = 1 AndAlso Not c Is Nothing Then
+                        EscribirCelda(x1hoja, fila, columna, c.RC) : columna += 1
+                    Else
                         EscribirNA(x1hoja, fila, columna) : columna += 1
-                    Next
-                End If
+                    End If
 
-                ' CRIOSCOPIA
-                If (csm.CRIOSCOPIA = 1 OrElse csm.CRIOSCOPIA_CRIOSCOPO = 1) AndAlso Not c Is Nothing AndAlso c.CRIOSCOPIA <> -1 Then
-                    Dim valcrio As Double = Val(c.CRIOSCOPIA) * -1 / 1000
-                    Dim fueraRangoCrio = (valcrio > -0.512 And valcrio < 0)
-                    EscribirCeldaConFondo(x1hoja, fila, columna, valcrio.ToString("##,###0.000"), fueraRangoCrio)
-                Else
-                    EscribirNA(x1hoja, fila, columna)
-                End If
-                columna += 1
+                    ' RB
+                    If csm.RB = 1 Then
+                        Dim ibc As New dIbc With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
+                        ibc = ibc.buscarxfichaxmuestra()
+                        EscribirCelda(x1hoja, fila, columna, If(ibc IsNot Nothing, ibc.RB.ToString(), "-")) : columna += 1
+                    Else
+                        EscribirNA(x1hoja, fila, columna) : columna += 1
+                    End If
 
-                ' UREA
-                If csm.UREA = 1 AndAlso Not c Is Nothing AndAlso c.UREA <> -1 Then
-                    Dim valorurea As Double = If(c.EQUIPO = "Bentley600", c.UREA, c.UREA * 0.466)
-                    Dim fueraRangoUrea = (valorurea > 20 Or valorurea < 9)
-                    EscribirCeldaConFondo(x1hoja, fila, columna, valorurea.ToString("##,##0.00"), fueraRangoUrea)
-                Else
-                    EscribirNA(x1hoja, fila, columna)
-                End If
-                columna += 1
+                    ' Composición: GRASA, PROTEINA, LACTOSA, ST
+                    If csm.COMPOSICION = 1 OrElse csm.COMPOSICIONSUERO = 1 Then
+                        ' GRASA
+                        Dim fueraRangoGrasa = Not c Is Nothing AndAlso (Val(c.GRASA) < 2.5 Or Val(c.GRASA) > 5)
+                        EscribirCeldaConFondo(x1hoja, fila, columna, If(Not c Is Nothing, c.GRASA.ToString("##,##0.00"), "-"), fueraRangoGrasa) : columna += 1
 
-                ' INHIBIDORES
-                Dim inh As New dInhibidores With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
-                inh = inh.buscarxfichaxmuestra()
-                Dim resultadoInh As String = If(inh IsNot Nothing, If(inh.RESULTADO = 0, "Negativo", "Positivo"), "-")
-                EscribirCelda(x1hoja, fila, columna, resultadoInh) : columna += 1
+                        ' PROTEINA
+                        Dim fueraRangoProteina = Not c Is Nothing AndAlso (Val(c.PROTEINA) < 2.5 Or Val(c.PROTEINA) > 4)
+                        EscribirCeldaConFondo(x1hoja, fila, columna, If(Not c Is Nothing, c.PROTEINA.ToString("##,##0.00"), "-"), fueraRangoProteina) : columna += 1
 
-                ' ESPORULADOS
-                Dim esp As New dEsporulados With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
-                esp = esp.buscarxfichaxmuestra()
-                EscribirCelda(x1hoja, fila, columna, If(esp IsNot Nothing, esp.RESULTADO.ToString(), "-")) : columna += 1
+                        ' LACTOSA
+                        EscribirCelda(x1hoja, fila, columna, If(Not c Is Nothing, c.LACTOSA.ToString("##,##0.00"), "-")) : columna += 1
 
-                ' PSICROTROFOS
-                Dim psi As New dPsicrotrofos With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
-                psi = psi.buscarxfichaxmuestra()
-                EscribirCelda(x1hoja, fila, columna, If(psi IsNot Nothing, psi.PROMEDIO.ToString(), "-")) : columna += 1
+                        ' ST
+                        EscribirCelda(x1hoja, fila, columna, If(Not c Is Nothing, c.ST.ToString("##,##0.00"), "-")) : columna += 1
+                    Else
+                        For i = 1 To 4
+                            EscribirNA(x1hoja, fila, columna) : columna += 1
+                        Next
+                    End If
 
-                ' CASEINA
-                If csm.CASEINA = 1 AndAlso Not c Is Nothing AndAlso c.CASEINA <> -1 Then
-                    EscribirCelda(x1hoja, fila, columna, c.CASEINA) : columna += 1
-                Else
-                    EscribirNA(x1hoja, fila, columna) : columna += 1
-                End If
+                    ' CRIOSCOPIA
+                    If (csm.CRIOSCOPIA = 1 OrElse csm.CRIOSCOPIA_CRIOSCOPO = 1) AndAlso Not c Is Nothing AndAlso c.CRIOSCOPIA <> -1 Then
+                        Dim valcrio As Double = Val(c.CRIOSCOPIA) * -1 / 1000
+                        Dim fueraRangoCrio = (valcrio > -0.512 And valcrio < 0)
+                        EscribirCeldaConFondo(x1hoja, fila, columna, valcrio.ToString("##,###0.000"), fueraRangoCrio)
+                    Else
+                        EscribirNA(x1hoja, fila, columna)
+                    End If
+                    columna += 1
 
-                ' AFLATOXINA M1
-                Dim m As New dMicotoxinasLeche With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
-                m = m.buscarxfichaxmuestra()
-                EscribirCelda(x1hoja, fila, columna, If(m IsNot Nothing, m.RESULTADO.ToString(), "-"))
+                    ' UREA
+                    If csm.UREA = 1 AndAlso Not c Is Nothing AndAlso c.UREA <> -1 Then
+                        Dim valorurea As Double = If(c.EQUIPO = "Bentley600", c.UREA, c.UREA * 0.466)
+                        Dim fueraRangoUrea = (valorurea > 20 Or valorurea < 9)
+                        EscribirCeldaConFondo(x1hoja, fila, columna, valorurea.ToString("##,##0.00"), fueraRangoUrea)
+                    Else
+                        EscribirNA(x1hoja, fila, columna)
+                    End If
+                    columna += 1
 
-                ' Reinicio
-                columna = 1
-                fila += 1
+                    ' INHIBIDORES
+                    Dim inh As New dInhibidores With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
+                    inh = inh.buscarxfichaxmuestra()
+                    Dim resultadoInh As String = If(inh IsNot Nothing, If(inh.RESULTADO = 0, "Negativo", "Positivo"), "-")
+                    EscribirCelda(x1hoja, fila, columna, resultadoInh) : columna += 1
+
+                    ' ESPORULADOS
+                    Dim esp As New dEsporulados With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
+                    esp = esp.buscarxfichaxmuestra()
+                    EscribirCelda(x1hoja, fila, columna, If(esp IsNot Nothing, esp.RESULTADO.ToString(), "-")) : columna += 1
+
+                    ' PSICROTROFOS
+                    Dim psi As New dPsicrotrofos With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
+                    psi = psi.buscarxfichaxmuestra()
+                    EscribirCelda(x1hoja, fila, columna, If(psi IsNot Nothing, psi.PROMEDIO.ToString(), "-")) : columna += 1
+
+                    ' CASEINA
+                    If csm.CASEINA = 1 AndAlso Not c Is Nothing AndAlso c.CASEINA <> -1 Then
+                        EscribirCelda(x1hoja, fila, columna, c.CASEINA) : columna += 1
+                    Else
+                        EscribirNA(x1hoja, fila, columna) : columna += 1
+                    End If
+
+                    ' AFLATOXINA M1
+                    Dim m As New dMicotoxinasLeche With {.FICHA = idsol, .MUESTRA = Trim(csm.MUESTRA)}
+                    m = m.buscarxfichaxmuestra()
+                    EscribirCelda(x1hoja, fila, columna, If(m IsNot Nothing, m.RESULTADO.ToString(), "-"))
+
+                    ' Reinicio
+                    columna = 1
+                    fila += 1
+                Next
+            End If
+
+            ' Pie de página y guardado
+            x1hoja.PageSetup.CenterFooter = "Página &P"
+            x1app.DisplayAlerts = False
+            x1hoja.SaveAs("\\ROBOT\preinformes\CALIDAD\" & idsol & ".xls")
+
+            ' Marcar como creado
+            Dim preinf As New dPreinformes With {.FICHA = idsol}
+            preinf.marcarcreado()
+
+            ' Limpieza
+            x1app.Visible = False
+            x1libro.Close()
+            x1app.Quit()
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(x1hoja)
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(x1libro)
+            System.Runtime.InteropServices.Marshal.ReleaseComObject(x1app)
+            x1hoja = Nothing : x1libro = Nothing : x1app = Nothing
+
+            creartxt2(idsol)
+
+            ' Cierra procesos Excel
+            For Each opro As Process In Process.GetProcessesByName("EXCEL")
+                opro.Kill()
             Next
-        End If
+        Catch ex As Exception
+        Finally
+            ' Liberar recursos COM
+            If x1hoja IsNot Nothing Then
+                Marshal.ReleaseComObject(x1hoja)
+                x1hoja = Nothing
+            End If
+            If x1libro IsNot Nothing Then
+                x1libro.Close(False)
+                Marshal.ReleaseComObject(x1libro)
+                x1libro = Nothing
+            End If
+            If x1app IsNot Nothing Then
+                x1app.Quit()
+                Marshal.ReleaseComObject(x1app)
+                x1app = Nothing
+            End If
 
-        ' Pie de página y guardado
-        x1hoja.PageSetup.CenterFooter = "Página &P"
-        x1app.DisplayAlerts = False
-        x1hoja.SaveAs("\\ROBOT\preinformes\CALIDAD\" & idsol & ".xls")
-
-        ' Marcar como creado
-        Dim preinf As New dPreinformes With {.FICHA = idsol}
-        preinf.marcarcreado()
-
-        ' Limpieza
-        x1app.Visible = False
-        x1libro.Close()
-        x1app.Quit()
-        System.Runtime.InteropServices.Marshal.ReleaseComObject(x1hoja)
-        System.Runtime.InteropServices.Marshal.ReleaseComObject(x1libro)
-        System.Runtime.InteropServices.Marshal.ReleaseComObject(x1app)
-        x1hoja = Nothing : x1libro = Nothing : x1app = Nothing
-
-        creartxt2(idsol)
-
-        ' Cierra procesos Excel
-        For Each opro As Process In Process.GetProcessesByName("EXCEL")
-            opro.Kill()
-        Next
+            GC.Collect()
+            GC.WaitForPendingFinalizers()
+        End Try
     End Sub
 
     Private Sub creartxt2(ByVal idsol As Long)
@@ -1803,7 +1900,6 @@ Public Class FormImportacionArchivos
         hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
         hoja.Cells(fila, columna).Font.Size = tamañoFuente
     End Sub
-
     Private Sub EscribirConColor(ByRef hoja As Excel.Worksheet, ByVal fila As Integer, ByVal columna As Integer, ByVal valor As Object, ByVal min As Double, ByVal max As Double, ByVal formato As String)
         If valor IsNot Nothing Then
             Dim dval As Double = Val(valor)
@@ -1817,7 +1913,6 @@ Public Class FormImportacionArchivos
         hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
         hoja.Cells(fila, columna).Font.Size = 8
     End Sub
-
     Private Sub EscribirCeldaConFondo(ByRef hoja As Excel.Worksheet, fila As Integer, columna As Integer, valor As String, fueraDeRango As Boolean)
         hoja.Cells(fila, columna).Formula = valor
         hoja.Cells(fila, columna).HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter
@@ -1833,5 +1928,31 @@ Public Class FormImportacionArchivos
         hoja.Cells(fila, columna).Font.Size = 8
     End Sub
 
+    Public Sub PrepararYGenerarExcelControl(idficha As Long)
+        Dim lista As New ArrayList
+        Dim lista2 As New ArrayList
+        Dim bhb As Integer = 0
+
+        ' Obtener resultados del control lechero por ficha
+        Dim c As New dControl
+        lista = c.listarporsolicitud(idficha)
+
+        ' Obtener resultados ordenados por RC
+        lista2 = c.listarporrc(idficha)
+
+        ' Verificar si tiene BHB asociado
+        Dim na As New dNuevoAnalisis
+        Dim tieneBhb As Boolean = False
+        Dim analisisLista As ArrayList = na.listarporficha2(idficha)
+        If Not analisisLista Is Nothing Then
+            For Each a As dNuevoAnalisis In analisisLista
+                If a.ANALISIS = 158 Then
+                    bhb = 1
+                    Exit For
+                End If
+            Next
+        End If
+
+    End Sub
 
 End Class
