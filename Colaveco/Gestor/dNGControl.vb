@@ -165,6 +165,18 @@
         Dim c As New pNGControl
         Return c.modificarControl(Me)
     End Function
+    Public Function resultadoControl() As Boolean
+        Dim c As New pNGControl
+        Return c.resultadoControl(Me)
+    End Function
+    Public Function opcionMejoraControl() As Boolean
+        Dim c As New pNGControl
+        Return c.opcionMejoraControl(Me)
+    End Function
+    Public Function noConformidadControl() As Boolean
+        Dim c As New pNGControl
+        Return c.noConformidadControl(Me)
+    End Function
     Public Function coincideControl() As Boolean
         Dim c As New pNGControl
         Return c.coincideControl(Me)

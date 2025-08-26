@@ -1,4 +1,5 @@
 ﻿Imports System.IO
+Imports System.Collections.Generic
 
 Public Class FormControldeInformes
     Public check_resultado As Integer = 0
@@ -25,113 +26,112 @@ Public Class FormControldeInformes
 
         ' Agregue cualquier inicialización después de la llamada a InitializeComponent().
         Usuario = u
+        cargarControladores()
+        cargarComboInformes()
         ' listarinformes()
     End Sub
 
 #End Region
-    Private Sub ButtonBuscarInformes_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ButtonBuscarInformes.Click
-        buscarinformes()
-        'listarinformes()
-    End Sub
+
     Private Sub listarinformes()
-        Dim ci As New dControldeInformes
+        'Dim ci As New dControldeInformes
 
-        Dim lista As New ArrayList
-        lista = ci.listar
-        DataGridView1.Rows.Clear()
+        'Dim lista As New ArrayList
+        'lista = ci.listar
+        'DataGridView1.Rows.Clear()
 
-        If Not lista Is Nothing Then
-            If lista.Count > 0 Then
+        'If Not lista Is Nothing Then
+        '    If lista.Count > 0 Then
 
 
-                Dim fila As Integer = 0
-                Dim columna As Integer = 0
-                DataGridView1.Rows.Add(lista.Count)
-                For Each ci In lista
-                    Dim m As New dMuestras
-                    Dim ti As New dTipoInforme
-                    Dim si As New dSubInforme
-                    Dim s As New dSinaveleFicha
+        '        Dim fila As Integer = 0
+        '        Dim columna As Integer = 0
+        '        DataGridView1.Rows.Add(lista.Count)
+        '        For Each ci In lista
+        '            Dim m As New dMuestras
+        '            Dim ti As New dTipoInforme
+        '            Dim si As New dSubInforme
+        '            Dim s As New dSinaveleFicha
 
-                    DataGridView1(columna, fila).Value = ci.ID
-                    columna = columna + 1
-                    DataGridView1(columna, fila).Value = ci.FECHACONTROL
-                    columna = columna + 1
-                    DataGridView1(columna, fila).Value = ci.FICHA
-                    columna = columna + 1
-                    s.FICHA = ci.FICHA
-                    s = s.buscar
-                    If Not s Is Nothing Then
-                        DataGridView1(columna, fila).Value = s.SINAVELE
-                        columna = columna + 1
-                    Else
-                        DataGridView1(columna, fila).Value = ""
-                        columna = columna + 1
-                    End If
-                    DataGridView1(columna, fila).Value = ci.FECHA
-                    columna = columna + 1
-                    m.ID = ci.MUESTRA
-                    m = m.buscar
-                    If Not m Is Nothing Then
-                        DataGridView1(columna, fila).Value = m.NOMBRE
-                        columna = columna + 1
-                    Else
-                        DataGridView1(columna, fila).Value = "vacío"
-                        columna = columna + 1
-                    End If
-                    ti.ID = ci.TIPO
-                    ti = ti.buscar
-                    DataGridView1(columna, fila).Value = ti.NOMBRE
-                    columna = columna + 1
-                    si.ID = ci.SUBTIPO
-                    si = si.buscar
-                    If Not si Is Nothing Then
-                        DataGridView1(columna, fila).Value = si.NOMBRE
-                        columna = columna + 1
-                    Else
-                        DataGridView1(columna, fila).Value = ""
-                        columna = columna + 1
-                    End If
-                    If ci.RESULTADO = 0 Then
-                        DataGridView1(columna, fila).Value = False
-                    Else
-                        DataGridView1(columna, fila).Value = True
-                    End If
-                    columna = columna + 1
-                    If ci.COINCIDE = 0 Then
-                        DataGridView1(columna, fila).Value = False
-                    Else
-                        DataGridView1(columna, fila).Value = True
-                    End If
-                    columna = columna + 1
-                    If ci.OM = 0 Then
-                        DataGridView1(columna, fila).Value = False
-                    Else
-                        DataGridView1(columna, fila).Value = True
-                    End If
-                    columna = columna + 1
-                    If ci.NC = 0 Then
-                        DataGridView1(columna, fila).Value = False
-                    Else
-                        DataGridView1(columna, fila).Value = True
-                    End If
-                    columna = columna + 1
-                    DataGridView1(columna, fila).Value = ci.OBSERVACIONES
-                    columna = columna + 1
-                    DataGridView1(columna, fila).Value = Usuario.NOMBRE
-                    columna = columna + 1
-                    DataGridView1(columna, fila).Value = "Ver informe"
-                    columna = columna + 1
-                    If ci.CONTROLADO = 0 Then
-                        DataGridView1(columna, fila).Value = False
-                    Else
-                        DataGridView1(columna, fila).Value = True
-                    End If
-                    columna = 0
-                    fila = fila + 1
-                Next
-            End If
-        End If
+        '            DataGridView1(columna, fila).Value = ci.ID
+        '            columna = columna + 1
+        '            DataGridView1(columna, fila).Value = ci.FECHACONTROL
+        '            columna = columna + 1
+        '            DataGridView1(columna, fila).Value = ci.FICHA
+        '            columna = columna + 1
+        '            s.FICHA = ci.FICHA
+        '            s = s.buscar
+        '            If Not s Is Nothing Then
+        '                DataGridView1(columna, fila).Value = s.SINAVELE
+        '                columna = columna + 1
+        '            Else
+        '                DataGridView1(columna, fila).Value = ""
+        '                columna = columna + 1
+        '            End If
+        '            DataGridView1(columna, fila).Value = ci.FECHA
+        '            columna = columna + 1
+        '            m.ID = ci.MUESTRA
+        '            m = m.buscar
+        '            If Not m Is Nothing Then
+        '                DataGridView1(columna, fila).Value = m.NOMBRE
+        '                columna = columna + 1
+        '            Else
+        '                DataGridView1(columna, fila).Value = "vacío"
+        '                columna = columna + 1
+        '            End If
+        '            ti.ID = ci.TIPO
+        '            ti = ti.buscar
+        '            DataGridView1(columna, fila).Value = ti.NOMBRE
+        '            columna = columna + 1
+        '            si.ID = ci.SUBTIPO
+        '            si = si.buscar
+        '            If Not si Is Nothing Then
+        '                DataGridView1(columna, fila).Value = si.NOMBRE
+        '                columna = columna + 1
+        '            Else
+        '                DataGridView1(columna, fila).Value = ""
+        '                columna = columna + 1
+        '            End If
+        '            If ci.RESULTADO = 0 Then
+        '                DataGridView1(columna, fila).Value = False
+        '            Else
+        '                DataGridView1(columna, fila).Value = True
+        '            End If
+        '            columna = columna + 1
+        '            If ci.COINCIDE = 0 Then
+        '                DataGridView1(columna, fila).Value = False
+        '            Else
+        '                DataGridView1(columna, fila).Value = True
+        '            End If
+        '            columna = columna + 1
+        '            If ci.OM = 0 Then
+        '                DataGridView1(columna, fila).Value = False
+        '            Else
+        '                DataGridView1(columna, fila).Value = True
+        '            End If
+        '            columna = columna + 1
+        '            If ci.NC = 0 Then
+        '                DataGridView1(columna, fila).Value = False
+        '            Else
+        '                DataGridView1(columna, fila).Value = True
+        '            End If
+        '            columna = columna + 1
+        '            DataGridView1(columna, fila).Value = ci.OBSERVACIONES
+        '            columna = columna + 1
+        '            DataGridView1(columna, fila).Value = Usuario.NOMBRE
+        '            columna = columna + 1
+        '            DataGridView1(columna, fila).Value = "Ver informe"
+        '            columna = columna + 1
+        '            If ci.CONTROLADO = 0 Then
+        '                DataGridView1(columna, fila).Value = False
+        '            Else
+        '                DataGridView1(columna, fila).Value = True
+        '            End If
+        '            columna = 0
+        '            fila = fila + 1
+        '        Next
+        '    End If
+        'End If
     End Sub
     Private Sub buscarinformes()
         Dim sa As New dSolicitudAnalisis
@@ -863,6 +863,26 @@ Public Class FormControldeInformes
                     Dim si As New dSubInforme
                     Dim s As New dSinaveleFicha
 
+                    Dim controlConControlado As dControlBase
+
+                    Select Case ci.IDTIPOINFORME
+                        Case EnumTipoControles.Efluentes
+                            controlConControlado = New dControlInformesEfluentes
+                        Case EnumTipoControles.FisicoQuimico
+                            controlConControlado = New dControlInformesFQ
+                        Case EnumTipoControles.Microbiologia
+                            controlConControlado = New dControlInformesMicro
+                        Case EnumTipoControles.Nutricion
+                            controlConControlado = New dControlInformesNutricion
+                        Case EnumTipoControles.Suelos
+                            controlConControlado = New dControlInformesSuelos
+                        Case Else
+                            MsgBox("Tipo de control no válido.", MsgBoxStyle.Exclamation, "Atención")
+                            Exit Sub
+                    End Select
+
+                    Dim lstConNom As dControlBase = controlConControlado.lstConNom(ci.id)
+
                     DataGridView1(columna, fila).Value = ci.ID
                     columna = columna + 1
                     DataGridView1(columna, fila).Value = ci.FECHAINGRESO
@@ -897,7 +917,7 @@ Public Class FormControldeInformes
                             ciControlado = i.CONTROLADO
                         Next
                     End If
-                    
+
                     m = m.buscar
                     If Not m Is Nothing Then
                         DataGridView1(columna, fila).Value = m.NOMBRE
@@ -951,9 +971,16 @@ Public Class FormControldeInformes
                     columna = columna + 1
                     If ciControlado = 0 Then
                         DataGridView1(columna, fila).Value = False
+                        columna = columna + 1
                     Else
                         DataGridView1(columna, fila).Value = True
+                        columna = columna + 1
                     End If
+                    DataGridView1(columna, fila).Value = lstConNom.CONTROLADOString 'Si o No
+                    columna = columna + 1
+                    DataGridView1(columna, fila).Value = lstConNom.CONTROLADOR ' Nombre de Técnico
+
+
                     columna = 0
                     fila = fila + 1
                 Next
@@ -1000,11 +1027,10 @@ Public Class FormControldeInformes
    
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
-        'Dim Arch1 As String, Arch2 As String, Arch3 As String, Arch4 As String, Arch5 As String, Arch6 As String, Arch7 As String, Arch8 As String
         Dim Arch1 As String, Arch2 As String, Arch3 As String, Arch4 As String, Arch5 As String, Arch6 As String, Arch7 As String
        
 
-        If DataGridView1.Columns(e.ColumnIndex).Name = "Resultado" Then
+        If DataGridView1.Columns(e.ColumnIndex).Name = "resultado" Then
             If check_resultado = 0 Then
                 Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
                 Dim id As Long = 0
@@ -1023,7 +1049,7 @@ Public Class FormControldeInformes
                 listarinformes()
             End If
         End If
-        If DataGridView1.Columns(e.ColumnIndex).Name = "Coincide" Then
+        If DataGridView1.Columns(e.ColumnIndex).Name = "coincide" Then
             If check_coincide = 0 Then
                 Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
                 Dim id As Long = 0
@@ -1042,7 +1068,7 @@ Public Class FormControldeInformes
                 listarinformes()
             End If
         End If
-        If DataGridView1.Columns(e.ColumnIndex).Name = "OM" Then
+        If DataGridView1.Columns(e.ColumnIndex).Name = "opcionmejora" Then
             If check_om = 0 Then
                 Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
                 Dim id As Long = 0
@@ -1061,7 +1087,7 @@ Public Class FormControldeInformes
                 listarinformes()
             End If
         End If
-        If DataGridView1.Columns(e.ColumnIndex).Name = "NC" Then
+        If DataGridView1.Columns(e.ColumnIndex).Name = "noconformidad" Then
             If check_nc = 0 Then
                 Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
                 Dim id As Long = 0
@@ -1080,14 +1106,17 @@ Public Class FormControldeInformes
                 listarinformes()
             End If
         End If
-        If DataGridView1.Columns(e.ColumnIndex).Name = "Controlada" Then
+        If DataGridView1.Columns(e.ColumnIndex).Name = "Controles" Then
             Dim row As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
             Dim id As Long = 0
             Dim observaciones As String = ""
             Dim ci As New dControldeInformes
-            id = row.Cells("Ficha").Value
+            id = row.Cells("id").Value
             observaciones = row.Cells("Observaciones").Value
             ci.ID = id
+            Dim datefechacontrol As Date = Today
+            Dim fechaControl As String = datefechacontrol.ToString("yyyy-MM-dd")
+            ci.FECHACONTROL = fechaControl
             ci.marcarcontrolada(Usuario)
             'GestorNuevo modificar estado Cotnrol
             Dim controlGestor As New dNGControl
@@ -1431,4 +1460,125 @@ Public Class FormControldeInformes
         End If
         listarinformes()
     End Sub
+
+    Private Sub cargarControladores()
+        Dim u As New dUsuario
+        Dim lista As New ArrayList
+        lista = u.listar
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                For Each u In lista
+                    If u.TIPOUSUARIO = 98 Then
+                        cbxControladores.Items.Add(u)
+                    End If
+                Next
+            End If
+        End If
+    End Sub
+
+    Public Sub cargarComboInformes()
+        Dim ti As New dTipoInforme
+        Dim lista As New ArrayList
+        lista = ti.listar
+        If Not lista Is Nothing Then
+            If lista.Count > 0 Then
+                For Each ti In lista
+                    cbxTipoInfome.Items.Add(ti)
+                Next
+            End If
+        End If
+    End Sub
+
+
+    Private Sub ButtonBuscarInformes_Click(sender As Object, e As EventArgs) Handles ButtonBuscarInformes.Click
+        Dim fechad As String = DateDesde.Value.ToString("yyyy-MM-dd")
+        Dim fechah As String = DateHasta.Value.ToString("yyyy-MM-dd")
+
+        Dim controlador As Integer = 0
+        If cbxControladores.SelectedIndex > -1 Then
+            Dim uSel As dUsuario = TryCast(cbxControladores.SelectedItem, dUsuario)
+            If uSel IsNot Nothing Then controlador = CInt(uSel.ID) ' ← acá tomás el ID real
+        End If
+
+        Dim tipo As Integer = 0
+        If cbxTipoInfome.SelectedIndex > -1 Then
+            ' Igual lógica según cómo cargues este combo:
+            ' si también usás Items.Add(obj), hacé TryCast al tipo correcto y saca su ID
+            If IsNumeric(cbxTipoInfome.SelectedValue) Then
+                tipo = CInt(cbxTipoInfome.SelectedValue)
+            Else
+                ' fallback si también agregás objetos al Items:
+                Dim tSel = TryCast(cbxTipoInfome.SelectedItem, dTipoInforme) ' o el tipo que uses
+                If tSel IsNot Nothing Then tipo = CInt(tSel.ID)
+            End If
+        End If
+
+        Dim p As New pControldeInformes
+        Dim dt As DataTable = p.listarIngenieria_Grilla(fechad, fechah, tipo, controlador)
+        CargarGrillaIngenieria(dt)
+    End Sub
+
+
+    Private Sub CargarGrillaIngenieria(dt As DataTable)
+        DataGridView1.SuspendLayout()
+        DataGridView1.Columns.Clear()
+        DataGridView1.AutoGenerateColumns = False
+        DataGridView1.DataSource = Nothing
+
+        ' Encabezados visibles
+        Dim headerMap As New Dictionary(Of String, String) From {
+            {"ficha", "Ficha"},
+            {"fechacontrol", "Fecha control"},
+            {"fecha", "Fecha"},
+            {"muestra", "Muestra"},
+            {"tipo", "Tipo"},
+            {"resultado", "Resulta"},
+            {"coincide", "Coincid"},
+            {"opcionmejora", "OM"},
+            {"noconformidad", "NC"},
+            {"observaciones", "Observaciones"},
+            {"TecnicoNombre", "Técnico"},
+            {"InformeControlado", "Informe controlado"}
+        }
+
+        ' Columnas que deben ser checkbox (case-insensitive)
+        Dim asCheck As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
+        asCheck.UnionWith(New String() {
+            "resultado", "coincide", "opcionmejora", "noconformidad"
+        })
+
+        For Each dc As DataColumn In dt.Columns
+            Dim name As String = dc.ColumnName
+            Dim col As DataGridViewColumn
+
+            If asCheck.Contains(name) OrElse dc.DataType Is GetType(Boolean) Then
+                Dim c As New DataGridViewCheckBoxColumn()
+                c.TrueValue = 1 : c.FalseValue = 0 : c.ThreeState = False
+                col = c
+            Else
+                Dim t As New DataGridViewTextBoxColumn()
+                If name.ToLower().Contains("fecha") Then t.DefaultCellStyle.Format = "yyyy-MM-dd"
+                col = t
+            End If
+
+            col.DataPropertyName = name
+            col.Name = name
+            col.HeaderText = If(headerMap.ContainsKey(name), headerMap(name), name)
+            DataGridView1.Columns.Add(col)
+        Next
+
+        ' Extras opcionales:
+        Dim colBtn As New DataGridViewButtonColumn() With {.Name = "VerInforme", .HeaderText = "Ver Informe", .Text = "Ver", .UseColumnTextForButtonValue = True}
+        DataGridView1.Columns.Add(colBtn)
+
+        Dim colChk As New DataGridViewCheckBoxColumn() With {.Name = "Controles", .HeaderText = "Control"}
+        DataGridView1.Columns.Add(colChk)
+
+        DataGridView1.DataSource = dt
+        DataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.DisplayedCells
+        DataGridView1.RowHeadersVisible = False
+        DataGridView1.ResumeLayout()
+    End Sub
+
+
 End Class

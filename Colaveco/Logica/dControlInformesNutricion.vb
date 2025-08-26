@@ -179,7 +179,7 @@
         Dim c As New pControlInformesNutricion
         Return c.listar
     End Function
-    Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+    Public Overrides Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim c As New pControlInformesNutricion
         Return c.listarxfecha(desde, hasta)
     End Function
@@ -195,7 +195,7 @@
         Dim c As New pControlInformesNutricion
         Return c.listarxfechaom(desde, hasta)
     End Function
-    Public Function marcarresultado(ByVal usuario As dUsuario) As Boolean
+    Public Overrides Function marcarresultado(ByVal usuario As dUsuario) As Boolean
         Dim ci As New pControlInformesNutricion
         Return ci.marcarresultado(Me, usuario)
     End Function
@@ -235,5 +235,8 @@
         Dim ci As New pControlInformesNutricion
         Return ci.guardarobservaciones(Me, usuario, obs)
     End Function
-
+    Public Overrides Function lstConNom(ByVal Ficha As Long) As dControlBase
+        Dim c As New pControlInformesNutricion
+        Return c.lstConNom(FICHA)
+    End Function
 End Class

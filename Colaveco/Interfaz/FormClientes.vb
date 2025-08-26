@@ -10,6 +10,7 @@ Imports System.IO
 Imports System.Collections
 Imports Newtonsoft.Json
 
+
 Public Class FormClientes
     Private carpeta As Long = 0
     Private clienteweb_com As String = ""
@@ -609,24 +610,6 @@ Public Class FormClientes
                 Dim pw_com2 As New dClienteWeb_com
                 Dim nocargaenweb As Integer = 0
 
-                pw_com.USUARIO = TextUsuarioWeb.Text.Trim
-                pw_com = pw_com.buscar
-                Dim idclienteweb_com As Long
-
-
-                If Not pw_com Is Nothing Then
-                    idclienteweb_com = pw_com.ID
-                Else
-                    Dim result = MessageBox.Show("No existe el usuario web, desea continuar de todos modos?", "Atención", MessageBoxButtons.YesNo)
-                    If result = DialogResult.No Then
-                        Exit Sub
-                    ElseIf result = DialogResult.Yes Then
-                        nocargaenweb = 1
-                    End If
-
-                End If
-              
-
                 'NET*************************************
                 Dim id As Long = TextId.Text.Trim
                 cli.ID = id
@@ -737,131 +720,49 @@ Public Class FormClientes
                 cli.NOT_EMAIL_GENERAL2 = notemail_general2
                 cli.INCOBRABLE = incobrable
                 'COM**********************************
-                If nocargaenweb = 0 Then
-                    pw_com.ID = idclienteweb_com
-                    pw_com.NOMBRE = nombre
-                    pw_com.EMAIL_1 = email
-                    pw_com.USUARIO = usuarioweb
-                    pw_com.PASSWORD = usuarioweb
-                    pw_com.RAZON_SOCIAL = facrsocial
-                    pw_com.CELULAR_1 = celular1
-                    pw_com.RUT = fac_rut
-                    pw_com.TIPO_USUARIO_ID = tipousuario.ID
-                    pw_com.DIRECCION = direccion
-                    pw_com.TELEFONO_1 = telefono1
-                    pw_com.DICOSE = dicose
-                    pw_com.VER_CONTROL_LECHERO = 1
-                    pw_com.VER_AGUA = 1
-                    pw_com.VER_PAL = 1
-                    pw_com.VER_SEROLOGIA = 1
-                    pw_com.VER_ANTIBIOGRAMA = 1
-                    pw_com.VER_PARASITOLOGIA = 1
-                    pw_com.VER_PRODUCTOS_SUBPRODUCTOS = 1
-                    pw_com.VER_PATOLOGIA = 1
-                    pw_com.VER_CALIDAD_DE_LECHE = 1
-                Else
-                    pw_com2.ID = idclienteweb_com
-                    pw_com2.NOMBRE = nombre
-                    pw_com2.EMAIL_1 = email
-                    pw_com2.USUARIO = usuarioweb
-                    pw_com2.PASSWORD = usuarioweb
-                    pw_com2.RAZON_SOCIAL = facrsocial
-                    pw_com2.CELULAR_1 = celular1
-                    pw_com2.RUT = fac_rut
-                    pw_com2.TIPO_USUARIO_ID = tipousuario.ID
-                    pw_com2.DIRECCION = direccion
-                    pw_com2.TELEFONO_1 = telefono1
-                    pw_com2.DICOSE = dicose
-                    pw_com2.VER_CONTROL_LECHERO = 1
-                    pw_com2.VER_AGUA = 1
-                    pw_com2.VER_PAL = 1
-                    pw_com2.VER_SEROLOGIA = 1
-                    pw_com2.VER_ANTIBIOGRAMA = 1
-                    pw_com2.VER_PARASITOLOGIA = 1
-                    pw_com2.VER_PRODUCTOS_SUBPRODUCTOS = 1
-                    pw_com2.VER_PATOLOGIA = 1
-                    pw_com2.VER_CALIDAD_DE_LECHE = 1
-                End If
 
                 If (cli.modificar(Usuario)) Then
-                    If nocargaenweb = 0 Then
-                        pw_com.modificar(Usuario)
-                    Else
-                        pw_com2.guardar(Usuario)
-                    End If
-                    'pw_uy.modificar(Usuario)
 
                     MsgBox("cliente modificado", MsgBoxStyle.Information, "Atención")
                     limpiar()
                     cargarLista()
                     cargarLista2()
 
-                    '*** CREA USUARIO EN GESTOR NUEVO *******************************************************************************************
-                    Dim usuariogestor As New Dictionary(Of String, dUsuarioGestor)
+                    'Enviar a Gestor GX
+                    Dim cliente As New SDTCliente With {
+.Tecnico = New List(Of Tecnico)
+}
+                    Dim tecnico As New Tecnico
 
-                    Dim ug As New dUsuarioGestor
+                    cliente.ClienteId = id
+                    cliente.ClienteCaravanas = If(cli.CARAVANAS = 1, "1", "0")
+                    cliente.ClienteCodFigaro = cli.CODIGOFIGARO
+                    cliente.ClienteContrato = If(cli.CONTRATO = 1, "1", "0")
+                    cliente.ClienteDicose = cli.DICOSE
+                    cliente.ClienteDirDepto = cli.DIRECCION
+                    cliente.ClienteDireccion = cli.DIRECCION
+                    cliente.ClienteNombre = cli.NOMBRE
+                    cliente.ClienteApellido = ""
+                    cliente.ClientePassword = cli.USUARIO_WEB
+                    cliente.ClienteProlesaMatricula = cli.PROLESAMAT
+                    cliente.ClienteSocio = If(cli.SOCIO = 1, "1", "0")
+                    cliente.ClienteTipoId = cli.TIPOUSUARIO
+                    cliente.ClienteUsuario = cli.USUARIO_WEB
+                    cliente.ProlesaId = If(cli.PROLESA = 0, 1, cli.PROLESA)
 
-                    ug.email = email
-                    'ug.password = usuarioweb
-                    'ug.password_confirmation = usuarioweb
-                    ug.usuario_web = usuarioweb
-                    ug.nombre = nombre
-                    ug.direccion = direccion
-                    ug.dicose = dicose
-                    ug.razon_social = facrsocial
-                    ug.cedula = fac_cedula
-                    ug.rut = fac_rut
-                    ug.idnet = id
-                    ug.direccion_frasco = envio
-                    ug.agencia_frasco = agencia.ID
-                    ug.notificacion_frasco_1 = notemail_frasco1
-                    ug.notificacion_frasco_2 = notemail_frasco2
-                    ug.notificacion_solicitud_1 = notemail_muestra1
-                    ug.notificacion_solicitud_2 = notemail_muestra2
-                    ug.notificacion_resultado_1 = notemail_analisis1
-                    ug.notificacion_resultado_2 = notemail_analisis2
-                    ug.notificacion_avisos_1 = notemail_general1
-                    ug.notificacion_avisos_2 = notemail_general2
-                    ug.tecnico_celular_1 = celular1
-                    ug.tecnico_celular_2 = celular2
-                    ug.tecnico_celular_nombre_1 = ncelular1
-                    ug.tecnico_celular_nombre_2 = ncelular2
-                    ug.tecnico_telefono_1 = telefono1
-                    ug.tecnico_telefono_2 = telefono2
-                    ug.tecnico_telefono_nombre_1 = ntelefono1
-                    ug.tecnico_telefono_nombre_2 = ntelefono2
-                    ug.tecnico_email_1 = email1
-                    ug.tecnico_email_2 = email2
-                    ug.tecnico_email_nombre_1 = nemail1
-                    ug.tecnico_email_nombre_2 = nemail2
-                    ug.fac_direccion = facdireccion
-                    ug.fac_localidad = faclocalidad
-                    ug.fac_departamento = facdepartamento.ID
-                    ug.fac_email_envio = facemail_fe
-                    ug.cobranza_celular_1 = cobcelular1
-                    ug.cobranza_celular_2 = cobcelular2
-                    ug.cobranza_celular_nombre_1 = cobncelular1
-                    ug.cobranza_celular_nombre_2 = cobncelular2
-                    ug.cobranza_telefono_1 = cobtelefono1
-                    ug.cobranza_telefono_2 = cobtelefono2
-                    ug.cobranza_telefono_nombre_1 = cobntelefono1
-                    ug.cobranza_telefono_nombre_2 = cobntelefono2
-                    ug.cobranza_email_1 = cobemail1
-                    ug.cobranza_email_2 = cobemail2
-                    ug.cobranza_email_nombre_1 = cobnemail1
-                    ug.cobranza_email_nombre_2 = cobnemail2
-                    ug.admin = admin
-                    ug.id_tecnico_1 = tecnico1.ID
-                    ug.id_tecnico_2 = tecnico2.ID
-                    usuariogestor.Add("user", ug)
+                    Dim tec1 As New Tecnico
+                    tec1.ClienteTecnicoId = cli.TECNICO1
+                    tec1.ClienteTecnicoNombre = ""
+                    tec1.ClienteTecnicoApellido = ""
 
-                    Dim parameters As String = JsonConvert.SerializeObject(usuariogestor, Formatting.None)
+                    Dim tec2 As New Tecnico
+                    tec2.ClienteTecnicoId = cli.TECNICO2
+                    tec2.ClienteTecnicoNombre = ""
+                    tec2.ClienteTecnicoApellido = ""
 
-                    Dim status As HttpStatusCode = HttpStatusCode.ExpectationFailed
-                    Dim response As Byte() = PostResponse("http://colaveco-gestor.herokuapp.com/users", "POST", parameters, status)
+                    ModificarClienteAGeneXus(cliente)
 
-                    '****************************************************************************************************************************
-
+                    
                 Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                 End If
             End If
@@ -880,7 +781,6 @@ Public Class FormClientes
                 cli.EMAIL2 = email2
                 cli.ENVIO = envio
                 cli.USUARIO_WEB = usuarioweb
-                clienteweb_com = usuarioweb
                 cli.NOMBRE_CELULAR1 = ncelular1
                 cli.CELULAR = celular1
                 cli.NOMBRE_CELULAR2 = ncelular2
@@ -976,34 +876,9 @@ Public Class FormClientes
                 cli.NOT_EMAIL_GENERAL1 = notemail_general1
                 cli.NOT_EMAIL_GENERAL2 = notemail_general2
                 cli.INCOBRABLE = incobrable
-                'COM**********************************
-                'cw_com.ID = idclienteweb_com
-                cw_com.NOMBRE = nombre
-                cw_com.EMAIL_1 = email
-                cw_com.USUARIO = usuarioweb
-                cw_com.PASSWORD = usuarioweb
-                clienteweb_uy = usuarioweb
-                cw_com.RAZON_SOCIAL = facrsocial
-                cw_com.CELULAR_1 = celular1
-                cw_com.RUT = fac_rut
-                cw_com.TIPO_USUARIO_ID = tipousuario.ID
-                cw_com.DIRECCION = direccion
-                cw_com.TELEFONO_1 = telefono1
-                cw_com.DICOSE = dicose
-                cw_com.VER_CONTROL_LECHERO = 1
-                cw_com.VER_AGUA = 1
-                cw_com.VER_PAL = 1
-                cw_com.VER_SEROLOGIA = 1
-                cw_com.VER_ANTIBIOGRAMA = 1
-                cw_com.VER_PARASITOLOGIA = 1
-                cw_com.VER_PRODUCTOS_SUBPRODUCTOS = 1
-                cw_com.VER_PATOLOGIA = 1
-                cw_com.VER_CALIDAD_DE_LECHE = 1
-
-
 
                 If (cli.guardar(Usuario)) Then
-                    cw_com.guardar(Usuario)
+
                     'BUSCAR ULTIMO ID **************
                     Dim c As New dCliente
                     Dim nuevoid As Long = 0
@@ -1011,76 +886,43 @@ Public Class FormClientes
                     If Not c Is Nothing Then
                         nuevoid = c.ID
                     End If
-                    '*******************************
-                    '*** CREA USUARIO EN GESTOR NUEVO *******************************************************************************************
-                    Dim usuariogestor As New Dictionary(Of String, dUsuarioGestor)
 
-                    Dim ug As New dUsuarioGestor
+                    'Enviar a Gestor GX
+                    Dim cliente As New SDTCliente With {
+    .Tecnico = New List(Of Tecnico)
+}
 
-                    ug.email = email
-                    ug.password = usuarioweb
-                    ug.password_confirmation = usuarioweb
-                    ug.usuario_web = usuarioweb
-                    ug.nombre = nombre
-                    ug.direccion = direccion
-                    ug.dicose = dicose
-                    ug.razon_social = facrsocial
-                    ug.cedula = fac_cedula
-                    ug.rut = fac_rut
-                    ug.idnet = nuevoid
-                    ug.direccion_frasco = envio
-                    ug.agencia_frasco = agencia.ID
-                    ug.notificacion_frasco_1 = notemail_frasco1
-                    ug.notificacion_frasco_2 = notemail_frasco2
-                    ug.notificacion_solicitud_1 = notemail_muestra1
-                    ug.notificacion_solicitud_2 = notemail_muestra2
-                    ug.notificacion_resultado_1 = notemail_analisis1
-                    ug.notificacion_resultado_2 = notemail_analisis2
-                    ug.notificacion_avisos_1 = notemail_general1
-                    ug.notificacion_avisos_2 = notemail_general2
-                    ug.tecnico_celular_1 = celular1
-                    ug.tecnico_celular_2 = celular2
-                    ug.tecnico_celular_nombre_1 = ncelular1
-                    ug.tecnico_celular_nombre_2 = ncelular2
-                    ug.tecnico_telefono_1 = telefono1
-                    ug.tecnico_telefono_2 = telefono2
-                    ug.tecnico_telefono_nombre_1 = ntelefono1
-                    ug.tecnico_telefono_nombre_2 = ntelefono2
-                    ug.tecnico_email_1 = email1
-                    ug.tecnico_email_2 = email2
-                    ug.tecnico_email_nombre_1 = nemail1
-                    ug.tecnico_email_nombre_2 = nemail2
-                    ug.fac_direccion = facdireccion
-                    ug.fac_localidad = faclocalidad
-                    ug.fac_departamento = fac_departamento
-                    ug.fac_email_envio = facemail_fe
-                    ug.cobranza_celular_1 = cobcelular1
-                    ug.cobranza_celular_2 = cobcelular2
-                    ug.cobranza_celular_nombre_1 = cobncelular1
-                    ug.cobranza_celular_nombre_2 = cobncelular2
-                    ug.cobranza_telefono_1 = cobtelefono1
-                    ug.cobranza_telefono_2 = cobtelefono2
-                    ug.cobranza_telefono_nombre_1 = cobntelefono1
-                    ug.cobranza_telefono_nombre_2 = cobntelefono2
-                    ug.cobranza_email_1 = cobemail1
-                    ug.cobranza_email_2 = cobemail2
-                    ug.cobranza_email_nombre_1 = cobnemail1
-                    ug.cobranza_email_nombre_2 = cobnemail2
-                    ug.admin = admin
-                    ug.id_tecnico_1 = tecnico_1
-                    ug.id_tecnico_2 = tecnico_2
-                    usuariogestor.Add("user", ug)
+                    cliente.ClienteId = nuevoid
+                    cliente.ClienteCaravanas = If(cli.CARAVANAS = 1, "1", "0")
+                    cliente.ClienteCodFigaro = cli.CODIGOFIGARO
+                    cliente.ClienteContrato = If(cli.CONTRATO = 1, "1", "0")
+                    cliente.ClienteDicose = cli.DICOSE
+                    cliente.ClienteDirDepto = cli.DIRECCION
+                    cliente.ClienteDireccion = cli.DIRECCION
+                    cliente.ClienteNombre = cli.NOMBRE
+                    cliente.ClienteApellido = ""
+                    cliente.ClientePassword = cli.USUARIO_WEB
+                    cliente.ClienteProlesaMatricula = cli.PROLESAMAT
+                    cliente.ClienteSocio = If(cli.SOCIO = 1, "1", "0")
+                    cliente.ClienteTipoId = cli.TIPOUSUARIO
+                    cliente.ClienteUsuario = cli.USUARIO_WEB
+                    cliente.ProlesaId = If(cli.PROLESA = 0, 1, cli.PROLESA)
 
-                    Dim parameters As String = JsonConvert.SerializeObject(usuariogestor, Formatting.None)
+                    Dim tec1 As New Tecnico
+                    tec1.ClienteTecnicoId = cli.TECNICO1
+                    tec1.ClienteTecnicoNombre = ""
+                    tec1.ClienteTecnicoApellido = ""
 
-                    Dim status As HttpStatusCode = HttpStatusCode.ExpectationFailed
-                    Dim response As Byte() = PostResponse("http://colaveco-gestor.herokuapp.com/users", "POST", parameters, status)
+                    Dim tec2 As New Tecnico
+                    tec2.ClienteTecnicoId = cli.TECNICO2
+                    tec2.ClienteTecnicoNombre = ""
+                    tec2.ClienteTecnicoApellido = ""
 
-                    '****************************************************************************************************************************
+                    cliente.Tecnico.Add(tec1)
+                    cliente.Tecnico.Add(tec2)
 
+                    EnviarClienteAGeneXus(cliente)
 
-
-                    crearcarpetas_com()
                     MsgBox("Cliente guardado", MsgBoxStyle.Information, "Atención")
                     MsgBox("Dar de alta en el sistema de gestión", MsgBoxStyle.Information, "Atención")
                     limpiar()
@@ -2574,39 +2416,13 @@ Public Class FormClientes
         If TextEmailGeneral2.Text <> "" Then
             notemail_general2 = TextEmailGeneral2.Text.Trim
         End If
-        'If Not ListClientes.SelectedItem Is Nothing And TextId.Text.Trim.Length > 0 Then
+
         If TextId.Text.Trim.Length > 0 Then
             If TextNombre.Text.Trim.Length > 0 Then
                 Dim cli As New dCliente()
                 Dim pw_com As New dClienteWeb_com
                 Dim nocargaenweb As Integer = 0
-                'Dim pw_uy As New dclienteWeb_uy
-                pw_com.USUARIO = TextUsuarioWeb.Text.Trim
-                pw_com = pw_com.buscar
-                Dim idclienteweb_com As Long
-                'Dim idclienteweb_uy As Long
-
-                If Not pw_com Is Nothing Then
-                    idclienteweb_com = pw_com.ID
-                Else
-                    Dim result = MessageBox.Show("No existe el usuario web, desea continuar de todos modos?", "Atención", MessageBoxButtons.YesNo)
-                    If result = DialogResult.No Then
-                        Exit Sub
-                    ElseIf result = DialogResult.Yes Then
-                        nocargaenweb = 1
-                        'idclienteweb_com = 4119
-                    End If
-
-                End If
-                'pw_uy.USUARIO = TextUsuarioWeb.Text.Trim
-                'pw_uy = pw_uy.buscar
-                'If Not pw_uy Is Nothing Then
-                'idclienteweb_uy = pw_uy.ID
-                'Else
-                'MsgBox("No existe el usuario web (.uy)")
-                'Exit Sub
-                'End If
-
+               
                 'NET*************************************
                 Dim id As Long = TextId.Text.Trim
                 cli.ID = id
@@ -2708,50 +2524,47 @@ Public Class FormClientes
                 cli.NOT_EMAIL_ANALISIS2 = notemail_analisis2
                 cli.NOT_EMAIL_GENERAL1 = notemail_general1
                 cli.NOT_EMAIL_GENERAL2 = notemail_general2
-                'COM**********************************
-                If nocargaenweb = 0 Then
-                    pw_com.ID = idclienteweb_com
-                    pw_com.NOMBRE = nombre
-                    pw_com.EMAIL_1 = email
-                    pw_com.USUARIO = usuarioweb
-                    pw_com.PASSWORD = usuarioweb
-                    pw_com.RAZON_SOCIAL = facrsocial
-                    pw_com.CELULAR_1 = celular1
-                    pw_com.RUT = fac_rut
-                    pw_com.TIPO_USUARIO_ID = tipousuario.ID
-                    pw_com.DIRECCION = direccion
-                    pw_com.TELEFONO_1 = telefono1
-                    pw_com.DICOSE = dicose
-                    pw_com.VER_CONTROL_LECHERO = 1
-                    pw_com.VER_AGUA = 1
-                    pw_com.VER_PAL = 1
-                    pw_com.VER_SEROLOGIA = 1
-                    pw_com.VER_ANTIBIOGRAMA = 1
-                    pw_com.VER_PARASITOLOGIA = 1
-                    pw_com.VER_PRODUCTOS_SUBPRODUCTOS = 1
-                    pw_com.VER_PATOLOGIA = 1
-                    pw_com.VER_CALIDAD_DE_LECHE = 1
-                End If
 
                 If (cli.modificar(Usuario)) Then
-                    If nocargaenweb = 0 Then
-                        pw_com.modificar(Usuario)
-                    End If
-                    'pw_uy.modificar(Usuario)
-
                     MsgBox("cliente modificado", MsgBoxStyle.Information, "Atención")
-                    'limpiar()
-                    'cargarLista()
+
+                    'Enviar a Gestor GX
+                    Dim cliente As New SDTCliente
+                    Dim tecnico As New Tecnico
+
+                    cliente.ClienteId = cli.ID
+                    cliente.ClienteCaravanas = cli.CARAVANAS
+                    cliente.ClienteCodFigaro = cli.CODIGOFIGARO
+                    cliente.ClienteContrato = cli.CONTRATO
+                    cliente.ClienteDicose = cli.DICOSE
+                    cliente.ClienteDirDepto = cli.DIRECCION
+                    cliente.ClienteDireccion = cli.DIRECCION
+                    cliente.ClienteNombre = cli.NOMBRE
+                    cliente.ClientePassword = cli.USUARIO_WEB
+                    cliente.ClienteProlesaMatricula = cli.PROLESAMAT
+                    cliente.ClienteSocio = cli.SOCIO
+                    cliente.ClienteTipoId = cli.TIPOUSUARIO
+                    cliente.ClienteUsuario = cli.USUARIO_WEB
+
+                    Dim tec1 As New Tecnico
+                    tec1.ClienteTecnicoId = tecnico1.ID
+
+                    Dim tec2 As New Tecnico
+                    tec2.ClienteTecnicoId = tecnico2.ID
+
+                    cliente.Tecnico.Add(tec1)
+                    cliente.Tecnico.Add(tec2)
+
+                    ModificarClienteAGeneXus(cliente)
+
+
                 Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                 End If
             End If
         Else
             If TextNombre.Text.Trim.Length > 0 Then
                 Dim cli As New dCliente()
-                Dim cw_com As New dClienteWeb_com
-                'Dim pw_uy As New dclienteWeb_uy
-                'NET***********************************
-                'cli.ID = id
+              
                 cli.NOMBRE = nombre
                 cli.EMAIL = email
                 cli.NOMBRE_EMAIL1 = nemail1
@@ -2851,34 +2664,10 @@ Public Class FormClientes
                 cli.NOT_EMAIL_ANALISIS2 = notemail_analisis2
                 cli.NOT_EMAIL_GENERAL1 = notemail_general1
                 cli.NOT_EMAIL_GENERAL2 = notemail_general2
-                'COM**********************************
-                'cw_com.ID = idclienteweb_com
-                cw_com.NOMBRE = nombre
-                cw_com.EMAIL_1 = email
-                cw_com.USUARIO = usuarioweb
-                cw_com.PASSWORD = usuarioweb
-                clienteweb_uy = usuarioweb
-                cw_com.RAZON_SOCIAL = facrsocial
-                cw_com.CELULAR_1 = celular1
-                cw_com.RUT = fac_rut
-                cw_com.TIPO_USUARIO_ID = tipousuario.ID
-                cw_com.DIRECCION = direccion
-                cw_com.TELEFONO_1 = telefono1
-                cw_com.DICOSE = dicose
-                cw_com.VER_CONTROL_LECHERO = 1
-                cw_com.VER_AGUA = 1
-                cw_com.VER_PAL = 1
-                cw_com.VER_SEROLOGIA = 1
-                cw_com.VER_ANTIBIOGRAMA = 1
-                cw_com.VER_PARASITOLOGIA = 1
-                cw_com.VER_PRODUCTOS_SUBPRODUCTOS = 1
-                cw_com.VER_PATOLOGIA = 1
-                cw_com.VER_CALIDAD_DE_LECHE = 1
-
-
+                
 
                 If (cli.guardar(Usuario)) Then
-                    cw_com.guardar(Usuario)
+
                     'BUSCAR ULTIMO ID **************
                     Dim c As New dCliente
                     Dim nuevoid As Long = 0
@@ -2886,75 +2675,38 @@ Public Class FormClientes
                     If Not c Is Nothing Then
                         nuevoid = c.ID
                     End If
-                    '*******************************
-                    '*** CREA USUARIO EN GESTOR NUEVO *******************************************************************************************
-                    Dim usuariogestor As New Dictionary(Of String, dUsuarioGestor)
 
-                    Dim ug As New dUsuarioGestor
+                    'Enviar a Gestor GX
+                    Dim cliente As New SDTCliente
+                    Dim tecnico As New Tecnico
 
-                    ug.email = email
-                    ug.password = usuarioweb
-                    ug.password_confirmation = usuarioweb
-                    ug.usuario_web = usuarioweb
-                    ug.nombre = nombre
-                    ug.direccion = direccion
-                    ug.dicose = dicose
-                    ug.razon_social = facrsocial
-                    ug.rut = fac_rut
-                    ug.idnet = nuevoid
-                    ug.direccion_frasco = envio
-                    ug.agencia_frasco = agencia.ID
-                    ug.notificacion_frasco_1 = notemail_frasco1
-                    ug.notificacion_frasco_2 = notemail_frasco2
-                    ug.notificacion_solicitud_1 = notemail_muestra1
-                    ug.notificacion_solicitud_2 = notemail_muestra2
-                    ug.notificacion_resultado_1 = notemail_analisis1
-                    ug.notificacion_resultado_2 = notemail_analisis2
-                    ug.notificacion_avisos_1 = notemail_general1
-                    ug.notificacion_avisos_2 = notemail_general2
-                    ug.tecnico_celular_1 = celular1
-                    ug.tecnico_celular_2 = celular2
-                    ug.tecnico_celular_nombre_1 = ncelular1
-                    ug.tecnico_celular_nombre_2 = ncelular2
-                    ug.tecnico_telefono_1 = telefono1
-                    ug.tecnico_telefono_2 = telefono2
-                    ug.tecnico_telefono_nombre_1 = ntelefono1
-                    ug.tecnico_telefono_nombre_2 = ntelefono2
-                    ug.tecnico_email_1 = email1
-                    ug.tecnico_email_2 = email2
-                    ug.tecnico_email_nombre_1 = nemail1
-                    ug.tecnico_email_nombre_2 = nemail2
-                    ug.fac_direccion = facdireccion
-                    ug.fac_localidad = faclocalidad
-                    ug.fac_departamento = facdepartamento.ID
-                    ug.fac_email_envio = facemail_fe
-                    ug.cobranza_celular_1 = cobcelular1
-                    ug.cobranza_celular_2 = cobcelular2
-                    ug.cobranza_celular_nombre_1 = cobncelular1
-                    ug.cobranza_celular_nombre_2 = cobncelular2
-                    ug.cobranza_telefono_1 = cobtelefono1
-                    ug.cobranza_telefono_2 = cobtelefono2
-                    ug.cobranza_telefono_nombre_1 = cobntelefono1
-                    ug.cobranza_telefono_nombre_2 = cobntelefono2
-                    ug.cobranza_email_1 = cobemail1
-                    ug.cobranza_email_2 = cobemail2
-                    ug.cobranza_email_nombre_1 = cobnemail1
-                    ug.cobranza_email_nombre_2 = cobnemail2
-                    usuariogestor.Add("user", ug)
+                    cliente.ClienteId = cli.ID
+                    cliente.ClienteCaravanas = cli.CARAVANAS
+                    cliente.ClienteCodFigaro = cli.CODIGOFIGARO
+                    cliente.ClienteContrato = cli.CONTRATO
+                    cliente.ClienteDicose = cli.DICOSE
+                    cliente.ClienteDirDepto = cli.DIRECCION
+                    cliente.ClienteDireccion = cli.DIRECCION
+                    cliente.ClienteNombre = cli.NOMBRE
+                    cliente.ClientePassword = cli.USUARIO_WEB
+                    cliente.ClienteProlesaMatricula = cli.PROLESAMAT
+                    cliente.ClienteSocio = cli.SOCIO
+                    cliente.ClienteTipoId = cli.TIPOUSUARIO
+                    cliente.ClienteUsuario = cli.USUARIO_WEB
 
-                    Dim parameters As String = JsonConvert.SerializeObject(usuariogestor, Formatting.None)
+                    Dim tec1 As New Tecnico
+                    tec1.ClienteTecnicoId = tecnico1.ID
 
-                    Dim status As HttpStatusCode = HttpStatusCode.ExpectationFailed
-                    Dim response As Byte() = PostResponse("http://colaveco-gestor.herokuapp.com/users", "POST", parameters, status)
+                    Dim tec2 As New Tecnico
+                    tec2.ClienteTecnicoId = tecnico2.ID
 
-                    '****************************************************************************************************************************
+                    cliente.Tecnico.Add(tec1)
+                    cliente.Tecnico.Add(tec2)
 
+                    EnviarClienteAGeneXus(cliente)
 
-
-                    crearcarpetas_com()
                     MsgBox("cliente guardado", MsgBoxStyle.Information, "Atención")
-                    'limpiar()
-                    'cargarLista()
+                  
                 Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                 End If
             End If
@@ -3003,4 +2755,114 @@ Public Class FormClientes
         End If
        
     End Sub
+
+    Public Sub EnviarClienteAGeneXus(cli As SDTCliente)
+        Try
+            Dim url As String = "https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/Clientes/InsertCliente"
+            Dim metodo As String = "POST"
+            Dim statusCode As HttpStatusCode = HttpStatusCode.OK
+
+            ' Envolver el cliente en un objeto anónimo con el nodo "sdtCliente"
+            Dim wrapper As New Dictionary(Of String, Object)
+            wrapper.Add("sdtCliente", cli)
+
+            ' Convertir a JSON
+            Dim jsonData As String = JsonConvert.SerializeObject(wrapper)
+
+            ' Enviar POST
+            Dim respuesta As Byte() = PostResponse(url, metodo, jsonData, statusCode)
+
+            ' Mostrar resultado
+            If statusCode = HttpStatusCode.OK Or statusCode = HttpStatusCode.Created Then
+                MsgBox("Cliente enviado correctamente a la API", MsgBoxStyle.Information, "API")
+            Else
+                MsgBox("Error al enviar cliente a la API. Código HTTP: " & statusCode.ToString(), MsgBoxStyle.Critical, "API")
+            End If
+
+        Catch ex As Exception
+            MsgBox("Error al conectar con la API: " & ex.Message, MsgBoxStyle.Critical, "API")
+        End Try
+    End Sub
+
+    Public Sub ModificarClienteAGeneXus(cli As SDTCliente)
+        Try
+            Dim url As String = "https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/Clientes/UpdateCliente"
+            Dim metodo As String = "PUT"
+            Dim statusCode As HttpStatusCode = HttpStatusCode.OK
+
+            ' Envolver el cliente en un objeto anónimo con el nodo "sdtCliente"
+            Dim wrapper As New Dictionary(Of String, Object)
+            wrapper.Add("sdtCliente", cli)
+
+            ' Convertir a JSON
+            Dim jsonData As String = JsonConvert.SerializeObject(wrapper)
+
+            ' Enviar POST
+            Dim respuesta As Byte() = PostResponse(url, metodo, jsonData, statusCode)
+
+            ' Mostrar resultado
+            If statusCode = HttpStatusCode.OK Or statusCode = HttpStatusCode.Created Then
+                MsgBox("Cliente enviado correctamente a la API", MsgBoxStyle.Information, "API")
+            Else
+                MsgBox("Error al enviar cliente a la API. Código HTTP: " & statusCode.ToString(), MsgBoxStyle.Critical, "API")
+            End If
+
+        Catch ex As Exception
+            MsgBox("Error al conectar con la API: " & ex.Message, MsgBoxStyle.Critical, "API")
+        End Try
+    End Sub
+
+    Public Sub EliminarClienteAGeneXus(clienteId As Integer)
+        Try
+            Dim url As String = "https://colavecoresults.ddns.net:8080/LabColJavaEnvironment/Clientes/DeleteCliente"
+            Dim metodo As String = "POST"
+            Dim statusCode As HttpStatusCode = HttpStatusCode.OK
+
+            ' Crear el JSON solo con el ClienteId
+            Dim datos As New Dictionary(Of String, Object)
+            datos.Add("ClienteId", clienteId)
+
+            ' Convertir a JSON
+            Dim jsonData As String = JsonConvert.SerializeObject(datos)
+
+            ' Enviar POST
+            Dim respuesta As Byte() = PostResponse(url, metodo, jsonData, statusCode)
+
+            ' Mostrar resultado
+            If statusCode = HttpStatusCode.OK Or statusCode = HttpStatusCode.Created Then
+                MsgBox("Cliente eliminado correctamente desde la API", MsgBoxStyle.Information, "API")
+            Else
+                MsgBox("Error al eliminar cliente en la API. Código HTTP: " & statusCode.ToString(), MsgBoxStyle.Critical, "API")
+            End If
+
+        Catch ex As Exception
+            MsgBox("Error al conectar con la API: " & ex.Message, MsgBoxStyle.Critical, "API")
+        End Try
+    End Sub
+
+End Class
+
+Public Class Tecnico
+    Public Property ClienteTecnicoId As Integer
+    Public Property ClienteTecnicoNombre As String
+    Public Property ClienteTecnicoApellido As String
+End Class
+
+Public Class SDTCliente
+    Public Property ClienteId As Integer
+    Public Property ClienteNombre As String
+    Public Property ClienteApellido As String
+    Public Property ClienteUsuario As String
+    Public Property ClientePassword As String
+    Public Property ClienteCodFigaro As String
+    Public Property ClienteTipoId As Integer
+    Public Property ClienteDicose As String
+    Public Property ClienteContrato As String
+    Public Property ClienteSocio As String
+    Public Property ClienteCaravanas As String
+    Public Property ClienteProlesaMatricula As Integer
+    Public Property ProlesaId As Nullable(Of Integer)
+    Public Property ClienteDireccion As String
+    Public Property ClienteDirDepto As String
+    Public Property Tecnico As List(Of Tecnico)
 End Class

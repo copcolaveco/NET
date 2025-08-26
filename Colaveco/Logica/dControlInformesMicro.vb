@@ -179,9 +179,13 @@
         Dim c As New pControlInformesMicro
         Return c.listar
     End Function
-    Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+    Public Overrides Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
         Dim c As New pControlInformesMicro
         Return c.listarxfecha(desde, hasta)
+    End Function
+    Public Overrides Function lstConNom(ByVal Ficha As Long) As dControlBase
+        Dim c As New pControlInformesMicro
+        Return c.lstConNom(FICHA)
     End Function
     Public Overrides Function listarxtipoxfecha(ByVal tipo As String, ByVal desde As String, ByVal hasta As String, ByVal ficha As Long) As ArrayList
         Dim c As New pControlInformesMicro
@@ -195,7 +199,7 @@
         Dim c As New pControlInformesMicro
         Return c.listarxfechaom(desde, hasta)
     End Function
-    Public Function marcarresultado(ByVal usuario As dUsuario) As Boolean
+    Public Overrides Function marcarresultado(ByVal usuario As dUsuario) As Boolean
         Dim ci As New pControlInformesMicro
         Return ci.marcarresultado(Me, usuario)
     End Function
@@ -235,6 +239,5 @@
         Dim ci As New pControlInformesMicro
         Return ci.guardarobservaciones(Me, usuario, obs)
     End Function
-
   
 End Class

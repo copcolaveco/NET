@@ -766,16 +766,7 @@ Public Class FormImportacionArchivos
                         Dim sa2 As New dSolicitudAnalisis With {.ID = ficha3}
                         sa2.actualizarfechaproceso(fecha)
 
-                        ' Preinforme
-                        Dim pi As New dPreinformes With {.FICHA = ficha3}
-                        If pi.buscar() Is Nothing Then
-                            Dim pi2 As New dPreinformes With {.FICHA = ficha3, .TIPO = 1, .CREADO = 0, .FECHA = fecha}
-                            pi2.guardar()
-                        End If
-
-                        ' Estado
-                        Dim est As New dEstados With {.FICHA = ficha3, .ESTADO = 4, .FECHA = fecha}
-                        est.guardar2()
+                        
                     End If
                 End If
                 linea += 1
@@ -783,6 +774,16 @@ Public Class FormImportacionArchivos
             objReader.Close()
         End If
 
+        ' Preinforme
+        Dim pi As New dPreinformes With {.FICHA = ficha3}
+        pi.buscar()
+        Dim pi2 As New dPreinformes With {.FICHA = ficha3, .TIPO = 1, .CREADO = 0, .FECHA = Today}
+        pi2.guardar()
+
+
+        ' Estado
+        Dim est As New dEstados With {.FICHA = ficha3, .ESTADO = 4, .FECHA = Today}
+        est.guardar2()
         ' Mover archivo
         'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 

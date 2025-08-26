@@ -760,6 +760,7 @@
     <Compile Include="Logica\ArchivoSeleccionado.vb" />
     <Compile Include="Logica\dAnalisisConDescripcion.vb" />
     <Compile Include="Logica\dControlBase.vb" />
+    <Compile Include="Logica\dControlInformesDetalle.vb" />
     <Compile Include="Logica\dCredenciales.vb" />
     <Compile Include="Logica\dInformeAnalisis.vb" />
     <Compile Include="Logica\dInformeGestor.vb" />
@@ -996,6 +997,7 @@
     <Compile Include="Persistencia\pComunicacionTecnica.vb" />
     <Compile Include="Persistencia\pConclusiones.vb" />
     <Compile Include="Persistencia\pControlGrasaProteina.vb" />
+    <Compile Include="Persistencia\pControlInformesDetalle.vb" />
     <Compile Include="Persistencia\pControlInformesEfluentes.vb" />
     <Compile Include="Persistencia\pControlInformesFQ.vb" />
     <Compile Include="Persistencia\pControlInformesMicro.vb" />

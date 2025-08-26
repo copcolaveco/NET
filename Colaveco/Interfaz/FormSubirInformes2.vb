@@ -907,6 +907,21 @@ Public Class FormSubirInformes2
                     .ControlResultado = 0
                 }
                 controlGestor.guardar()
+
+                Dim controlDeInformes As New dControldeInformes
+                With controlDeInformes
+                    .FECHACONTROL = ""
+                    .FICHA = Informe
+                    .FECHA = fechaActual
+                    .TIPO = tipoinforme
+                    .RESULTADO = 0
+                    .COINCIDE = 0
+                    .OBSERVACIONES = ""
+                    .CONTROLADOR = 100
+                    .CONTROLADO = 0
+                    .guardar(Usuario)
+                End With
+
             Catch ex As Exception
                 ' Podrías agregar log aquí para registrar el error
             End Try

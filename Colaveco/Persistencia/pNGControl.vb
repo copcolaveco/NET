@@ -27,4 +27,28 @@
         lista.Add(sql)
         Return EjecutarTransaccion(lista)
     End Function
+
+    Public Function resultadoControl(ByVal o As Object) As Boolean
+        Dim obj As dNGControl = CType(o, dNGControl)
+        Dim sql As String = "UPDATE Control SET ControlResultado =" & obj.ControlResultado & "  WHERE InformeId = " & obj.InformeId & ""
+        Dim lista As New ArrayList
+        lista.Add(sql)
+        Return EjecutarTransaccion(lista)
+    End Function
+
+    Public Function opcionMejoraControl(ByVal o As Object) As Boolean
+        Dim obj As dNGControl = CType(o, dNGControl)
+        Dim sql As String = "UPDATE Control SET ControlOpcMejora =" & obj.ControlOpcMejora & "  WHERE InformeId = " & obj.InformeId & ""
+        Dim lista As New ArrayList
+        lista.Add(sql)
+        Return EjecutarTransaccion(lista)
+    End Function
+
+    Public Function noConformidadControl(ByVal o As Object) As Boolean
+        Dim obj As dNGControl = CType(o, dNGControl)
+        Dim sql As String = "UPDATE Control SET ControlNoConformidad =" & obj.ControlNoConformidad & "  WHERE InformeId = " & obj.InformeId & ""
+        Dim lista As New ArrayList
+        lista.Add(sql)
+        Return EjecutarTransaccion(lista)
+    End Function
 End Class

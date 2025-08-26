@@ -250,4 +250,8 @@
         Dim ci As New pControldeInformes
         Return ci.guardarobservaciones(Me, usuario, obs)
     End Function
+    Public Function listarIngenieria_Grilla(ByVal fechad As String, ByVal fechah As String, ByVal tipoinforme As Integer, ByVal controlador As Integer) As DataTable
+        Dim ci As New pControldeInformes
+        Return ci.listarIngenieria_Grilla(fechad, fechah, tipoinforme, controlador)
+    End Function
 End Class

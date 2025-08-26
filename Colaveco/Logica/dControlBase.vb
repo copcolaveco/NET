@@ -13,6 +13,9 @@
     Private m_observaciones As String
     Private m_controlador As Integer
     Private m_controlado As Integer
+    Private m_controladoTecnico As String
+    Private m_controladoString As String
+    Private m_tiponombre As String
 #End Region
 
 #Region "Getters y Setters"
@@ -113,6 +116,33 @@
         End Set
     End Property
 
+    Public Property CONTROLADOTECNICO() As String
+        Get
+            Return m_controladoTecnico
+        End Get
+        Set(ByVal value As String)
+            m_controladoTecnico = value
+        End Set
+    End Property
+
+    Public Property CONTROLADOString() As Integer
+        Get
+            Return m_controladoString
+        End Get
+        Set(ByVal value As Integer)
+            m_controladoString = value
+        End Set
+    End Property
+
+    Public Property TIPONOMBRE() As String
+        Get
+            Return m_tiponombre
+        End Get
+        Set(ByVal value As String)
+            m_tiponombre = value
+        End Set
+    End Property
+
 #End Region
 
 #Region "Constructores"
@@ -129,8 +159,11 @@
         m_observaciones = ""
         m_controlador = 0
         m_controlado = 0
+        m_controladoTecnico = ""
+        m_controladoString = ""
+        m_tiponombre = ""
     End Sub
-    Public Sub New(ByVal id As Long, ByVal fechacontrol As String, ByVal ficha As Long, ByVal fecha As String, ByVal tipo As Integer, ByVal resultado As Integer, ByVal coincide As Integer, ByVal om As Integer, ByVal nc As Integer, ByVal observaciones As String, ByVal controlador As Integer, ByVal controlado As Integer)
+    Public Sub New(ByVal id As Long, ByVal fechacontrol As String, ByVal ficha As Long, ByVal fecha As String, ByVal tipo As Integer, ByVal resultado As Integer, ByVal coincide As Integer, ByVal om As Integer, ByVal nc As Integer, ByVal observaciones As String, ByVal controlador As Integer, ByVal controlado As Integer, ByVal controladoTec As String, ByVal controladoString As String, ByVal tiponombre As String)
         m_id = id
         m_fechacontrol = fechacontrol
         m_ficha = ficha
@@ -143,11 +176,21 @@
         m_observaciones = observaciones
         m_controlador = controlador
         m_controlado = controlado
+        m_controladoTecnico = controladoTec
+        m_controladoString = controladoString
+        m_tiponombre = tiponombre
     End Sub
 #End Region
+
+    Public MustOverride Function listarxfecha(fechaDesde As String, fechaHasta As String) As ArrayList
 
     Public MustOverride Function listarxtipoxfecha(tipo As String, fechad As String, fechah As String, ByVal ficha As Long) As ArrayList
 
     Public MustOverride Function guardar() As Boolean
+
+    Public MustOverride Function marcarresultado(ByVal usuario As dUsuario) As Boolean
+
+    Public MustOverride Function lstConNom(ByVal ficha As Long) As dControlBase
+
 
 End Class

@@ -142,38 +142,88 @@
             Return Nothing
         End Try
     End Function
+    'Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+    '    Dim sql As String = ("select id, fechacontrol, ficha, fecha, tipo, resultado, coincide,opcionmejora, noconformidad, observaciones,  controlador, controlado FROM controlinformesefluentes WHERE fecha >='" & desde & "' and fecha <='" & hasta & "' AND controlado = 1 order by tipo asc")
+    '    Try
+    '        Dim Lista As New ArrayList
+    '        Dim Ds As New DataSet
+    '        Ds = Me.EjecutarSQL(sql)
+    '        If Ds.Tables(0).Rows.Count = 0 Then
+    '            Return Nothing
+    '        Else
+    '            Dim unaFila As DataRow
+    '            For Each unaFila In Ds.Tables(0).Rows
+    '                Dim c As New dControlInformesEfluentes
+    '                c.ID = CType(unaFila.Item(0), Long)
+    '                c.FECHACONTROL = CType(unaFila.Item(1), String)
+    '                c.FICHA = CType(unaFila.Item(2), Long)
+    '                c.FECHA = CType(unaFila.Item(3), String)
+    '                c.TIPO = CType(unaFila.Item(4), Integer)
+    '                c.RESULTADO = CType(unaFila.Item(5), Integer)
+    '                c.COINCIDE = CType(unaFila.Item(6), Integer)
+    '                c.OM = CType(unaFila.Item(7), Integer)
+    '                c.NC = CType(unaFila.Item(8), Integer)
+    '                c.OBSERVACIONES = CType(unaFila.Item(9), String)
+    '                c.CONTROLADOR = CType(unaFila.Item(10), Integer)
+    '                c.CONTROLADO = CType(unaFila.Item(11), Integer)
+    '                Lista.Add(c)
+    '            Next
+    '            Return Lista
+    '        End If
+    '    Catch ex As Exception
+    '        Return Nothing
+    '    End Try
+    'End Function
+
     Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
-        Dim sql As String = ("select id, fechacontrol, ficha, fecha, tipo, resultado, coincide,opcionmejora, noconformidad, observaciones,  controlador, controlado FROM controlinformesefluentes WHERE fecha >='" & desde & "' and fecha <='" & hasta & "' AND controlado = 1 order by tipo asc")
+        Dim sql As String = _
+            "SELECT m.id, m.fechacontrol, m.ficha, m.fecha, " & _
+            "       m.tipo, ti.nombre AS tiponombre, " & _
+            "       m.resultado, m.coincide, m.opcionmejora, m.noconformidad, " & _
+            "       m.observaciones, m.controlador, m.controlado " & _
+            "FROM controlinformesefluentes m " & _
+            "LEFT JOIN tipoinforme ti ON ti.id = m.tipo " & _
+            "WHERE m.fecha >= '" & desde & "' AND m.fecha <= '" & hasta & "' " & _
+            "  AND m.controlado = 1 " & _
+            "ORDER BY m.tipo ASC"
+
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
             Ds = Me.EjecutarSQL(sql)
-            If Ds.Tables(0).Rows.Count = 0 Then
+
+            If Ds Is Nothing OrElse Ds.Tables.Count = 0 OrElse Ds.Tables(0).Rows.Count = 0 Then
                 Return Nothing
-            Else
-                Dim unaFila As DataRow
-                For Each unaFila In Ds.Tables(0).Rows
-                    Dim c As New dControlInformesEfluentes
-                    c.ID = CType(unaFila.Item(0), Long)
-                    c.FECHACONTROL = CType(unaFila.Item(1), String)
-                    c.FICHA = CType(unaFila.Item(2), Long)
-                    c.FECHA = CType(unaFila.Item(3), String)
-                    c.TIPO = CType(unaFila.Item(4), Integer)
-                    c.RESULTADO = CType(unaFila.Item(5), Integer)
-                    c.COINCIDE = CType(unaFila.Item(6), Integer)
-                    c.OM = CType(unaFila.Item(7), Integer)
-                    c.NC = CType(unaFila.Item(8), Integer)
-                    c.OBSERVACIONES = CType(unaFila.Item(9), String)
-                    c.CONTROLADOR = CType(unaFila.Item(10), Integer)
-                    c.CONTROLADO = CType(unaFila.Item(11), Integer)
-                    Lista.Add(c)
-                Next
-                Return Lista
             End If
+
+            For Each unaFila As DataRow In Ds.Tables(0).Rows
+                Dim c As New dControlInformesEfluentes
+                c.ID = CType(unaFila.Item(0), Long)
+                c.FECHACONTROL = CType(unaFila.Item(1), String)
+                c.FICHA = CType(unaFila.Item(2), Long)
+                c.FECHA = CType(unaFila.Item(3), String)
+
+                ' OJO: ahora vienen "tipo" (ID) y "tiponombre" (texto)
+                c.TIPO = CType(unaFila.Item(4), Integer)
+                c.TIPONOMBRE = CType(unaFila.Item(5), String)
+
+                c.RESULTADO = CType(unaFila.Item(6), Integer)
+                c.COINCIDE = CType(unaFila.Item(7), Integer)
+                c.OM = CType(unaFila.Item(8), Integer)
+                c.NC = CType(unaFila.Item(9), Integer)
+                c.OBSERVACIONES = CType(unaFila.Item(10), String)
+                c.CONTROLADOR = CType(unaFila.Item(11), Integer)
+                c.CONTROLADO = CType(unaFila.Item(12), Integer)
+
+                Lista.Add(c)
+            Next
+
+            Return Lista
         Catch ex As Exception
             Return Nothing
         End Try
     End Function
+
     Public Function listarxtipoxfecha(ByVal tipo As Integer, ByVal desde As String, ByVal hasta As String, ByVal ficha As Long) As ArrayList
         Dim sql As String = "SELECT id, fechacontrol, ficha, fecha, tipo, resultado, coincide, opcionmejora, noconformidad, observaciones, controlador, controlado " &
                             "FROM controlinformesefluentes " &
@@ -364,5 +414,34 @@
         lista.Add(sql)
 
         Return EjecutarTransaccion(lista)
+    End Function
+    Public Function lstConNom(ByVal ficha As Long) As dControlBase
+        Dim sql As String = "SELECT u.nombre AS controlador_nombre, " &
+                            "       CASE WHEN ci.controlado = 1 THEN 'SI' ELSE 'NO' END AS controlado " &
+                            "FROM dControlInformesEfluentes ci " &
+                            "INNER JOIN usuario u ON u.id = ci.controlador " &
+                            "WHERE ci.ficha = " & ficha
+
+        Try
+            Dim Lista As New ArrayList
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+            Dim c As New dControlInformesEfluentes
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            Else
+                For Each unaFila As DataRow In Ds.Tables(0).Rows
+
+                    ' Ahora CONTROLADOR va a tener el nombre
+                    c.CONTROLADOR = CType(unaFila.Item("controlador_nombre"), String)
+                    ' Y CONTROLADO va a ser "SI"/"NO"
+                    c.CONTROLADOTECNICO = CType(unaFila.Item("controlado"), String)
+
+                Next
+                Return c
+            End If
+        Catch ex As Exception
+            Return Nothing
+        End Try
     End Function
 End Class
