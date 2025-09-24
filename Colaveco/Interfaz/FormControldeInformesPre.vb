@@ -278,29 +278,32 @@ Public Class FormControldeInformesPre
         dt.Columns.Add("Observaciones", GetType(String))
         dt.Columns.Add("Controlador", GetType(String))
 
-        For Each obj As dControlBase In lista
-            ' Buscar nombre del controlador
-            Dim u As New dUsuario
-            u.ID = obj.CONTROLADOR
-            u = u.buscar()
-            Dim nombreControlador As String = If(u IsNot Nothing, u.NOMBRE, "")
+        If Not lista Is Nothing Then
+            For Each obj As dControlBase In lista
+                ' Buscar nombre del controlador
+                Dim u As New dUsuario
+                u.ID = obj.CONTROLADOR
+                u = u.buscar()
+                Dim nombreControlador As String = If(u IsNot Nothing, u.NOMBRE, "")
 
-            ' Convertir 1/0 a True/False
-            dt.Rows.Add(
-                obj.ID,
-                obj.FICHA,
-                obj.FECHA,
-                obj.TIPONOMBRE,
-                (obj.RESULTADO = 1),
-                (obj.COINCIDE = 1),
-                (obj.OM = 1),
-                (obj.NC = 1),
-                obj.OBSERVACIONES,
-                nombreControlador
-            )
-        Next
+                ' Convertir 1/0 a True/False
+                dt.Rows.Add(
+                    obj.ID,
+                    obj.FICHA,
+                    obj.FECHA,
+                    obj.TIPONOMBRE,
+                    (obj.RESULTADO = 1),
+                    (obj.COINCIDE = 1),
+                    (obj.OM = 1),
+                    (obj.NC = 1),
+                    obj.OBSERVACIONES,
+                    nombreControlador
+                )
+            Next
 
-        DataGridView2.DataSource = dt
+            DataGridView2.DataSource = dt
+        End If
+        
     End Sub
 
     ' Este evento fuerza a que se registre el cambio de checkbox inmediatamente

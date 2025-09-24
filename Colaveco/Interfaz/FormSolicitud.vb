@@ -6,7 +6,9 @@ Imports System.Collections
 Imports System.Net.FtpWebRequest
 Imports System.Net
 Imports Newtonsoft.Json
+
 Public Class FormSolicitud
+
     Private productorweb_com As String
     Private idproductorweb_com As Long
     Private idficha As String
@@ -28,6 +30,8 @@ Public Class FormSolicitud
     Private solicitudModificada As Boolean = False
     Private productorId As Long = 0
     Private brucelosisPositiva As Boolean = False
+    Dim listCaja As New ArrayList
+    Dim listCajaAux As New ArrayList
 
     Public Property Usuario() As dUsuario
         Get
@@ -218,6 +222,146 @@ Public Class FormSolicitud
         DataGridView1.Rows.Clear()
         DataGridView2.Rows.Clear()
     End Sub
+
+    ' Rellena d.Analisis (string) y d.Detalle (String()) a partir de n2.listarporficha(ficha)
+    Public Sub CompletarAnalisisDesdeN2(ByRef d As DatosPopupInforme, ByVal ficha As Long)
+        Dim n2 As New dNuevoAnalisis
+        Dim n2List As ArrayList = n2.listarporid(ficha)
+
+        d.Analisis = ""
+        d.Detalle = New String() {}
+
+        If n2List Is Nothing OrElse n2List.Count = 0 Then Exit Sub
+
+        Dim nombres As New List(Of String)()
+        Dim detalle As New List(Of String)()
+        Dim cache As New Dictionary(Of Integer, String)() ' evita buscar NOMBRE múltiples veces
+
+        For Each obj In n2List
+            Dim item As dNuevoAnalisis = TryCast(obj, dNuevoAnalisis)
+            If item Is Nothing Then Continue For
+
+            Dim idAnalisis As Integer = 0
+            Try
+                idAnalisis = CInt(CallByName(item, "ANALISIS", CallType.Get))
+            Catch
+                ' si el nombre de la propiedad difiere, ajustalo aquí
+                Continue For
+            End Try
+
+            ' ID de muestra (usa IDMUESTRA; si no existe, intenta MUESTRA)
+            Dim idMuestra As String = ""
+            Try
+                idMuestra = CStr(CallByName(item, "IDMUESTRA", CallType.Get))
+            Catch
+                Try
+                    idMuestra = CStr(CallByName(item, "MUESTRA", CallType.Get))
+                Catch
+                    idMuestra = ""
+                End Try
+            End Try
+
+            ' Obtener nombre del análisis (cacheado)
+            Dim nombreAna As String = ""
+            If idAnalisis > 0 Then
+                If Not cache.TryGetValue(idAnalisis, nombreAna) Then
+                    Dim lp As New dListaPrecios
+                    lp.ID = idAnalisis
+                    lp = lp.buscar()
+                    If lp IsNot Nothing Then
+                        Try
+                            nombreAna = CStr(CallByName(lp, "NOMBRE", CallType.Get))
+                        Catch
+                            ' fallback si tu modelo usa DESCRIPCION
+                            Try
+                                nombreAna = CStr(CallByName(lp, "DESCRIPCION", CallType.Get))
+                            Catch
+                                nombreAna = ""
+                            End Try
+                        End Try
+                    End If
+                    cache(idAnalisis) = nombreAna
+                End If
+            End If
+
+            If Not String.IsNullOrEmpty(nombreAna) Then
+                nombres.Add(nombreAna)
+            End If
+
+            ' Línea de detalle "IDMUESTRA||ANALISIS"
+            If Not String.IsNullOrEmpty(idMuestra) OrElse Not String.IsNullOrEmpty(nombreAna) Then
+                detalle.Add(idMuestra & "||" & nombreAna)
+            End If
+        Next
+
+        ' Unir análisis únicos con " + "
+        Dim analisisUnicos = nombres.Distinct().ToArray()
+        d.Analisis = String.Join(" + ", analisisUnicos)
+
+        d.Detalle = detalle.ToArray()
+    End Sub
+
+    ' Devuelve las cajas pendientes del cliente como arreglo de strings
+    Private Function ObtenerCajasPendientesCliente() As String()
+        'Dim sc As New dRelSolicitudCajas
+        'Dim lista As ArrayList = sc.listarCajasPendientesCliente(idCliente)
+
+        If listCajaAux Is Nothing OrElse listCajaAux.Count = 0 Then
+            Return New String() {}
+        End If
+
+        Dim setUnicos As New HashSet(Of String)(StringComparer.OrdinalIgnoreCase)
+
+        For Each it As Object In listCajaAux
+            Dim codigo As String = ""
+
+            ' Caso 1: el item ya es dEnvioCajas (o similar)
+            Dim ec As dEnvioCajas = TryCast(it, dEnvioCajas)
+            If ec IsNot Nothing Then
+                ' Intentar propiedades típicas: idcaja / IDCaja / Codigo / codigo
+                codigo = TryGetStringProperty(ec, "idcaja", "IDCaja", "Codigo", "codigo")
+            Else
+                ' Caso 2: puede venir como string/int o como otro tipo con propiedad idcaja
+                If TypeOf it Is String Then
+                    codigo = CStr(it)
+                ElseIf TypeOf it Is Integer OrElse TypeOf it Is Long Then
+                    codigo = Convert.ToString(it)
+                Else
+                    codigo = TryGetStringProperty(it, "idcaja", "IDCaja", "Codigo", "codigo")
+                End If
+            End If
+
+            If Not String.IsNullOrEmpty(codigo) Then
+                setUnicos.Add(codigo.Trim())
+            End If
+        Next
+
+        ' Pasar a array y ordenar (opcional)
+        Dim arr As String() = New List(Of String)(setUnicos).ToArray()
+        Array.Sort(arr, StringComparer.OrdinalIgnoreCase)
+        Return arr
+    End Function
+
+    ' Helper para leer una propiedad string por nombre (sin romper si no existe)
+    Private Function TryGetStringProperty(obj As Object, ParamArray names As String()) As String
+        For Each n As String In names
+            Try
+                Dim v = CallByName(obj, n, CallType.Get)
+                If v IsNot Nothing Then Return v.ToString()
+            Catch
+                ' ignorar y probar el siguiente nombre
+            End Try
+        Next
+        Return ""
+    End Function
+
+    ' Completa d.Cajas con las cajas pendientes del cliente
+    Private Sub CompletarCajasDesdeCliente(ByRef d As DatosPopupInforme)
+        d.Cajas = ObtenerCajasPendientesCliente()
+    End Sub
+
+
+
     Private Sub guardar2()
         tipoinforme = ComboTipoInforme.Text
         If TextId.Text.Trim.Length = 0 Then MsgBox("No se ha ingresado el número de ficha", MsgBoxStyle.Exclamation, "Atención") : TextId.Focus() : Exit Sub
@@ -365,7 +509,7 @@ Public Class FormSolicitud
                 solTecnMuestreo.ID_TECNICOMUESTREO = idTecnicoMuestreo
                 'solTecnMuestreo.guardar()
             End If
-            
+
 
             un = un.buscar
             Dim fecing As String
@@ -429,100 +573,140 @@ Public Class FormSolicitud
 
                     ' Ahora chequeamos si autorizó correctamente
                     If formSupervisor.AutorizadoCorrecto = True Then
-                        ' ACA PONES TU BLOQUE DE CÓDIGO QUE MODIFICA Y GUARDA
 
-                        If (sol.modificar(Usuario)) Then
-                            If ultimaficha > un.FICHAS Then
-                                un.FICHAS = ultimaficha
-                                un.modificar()
-                            End If
+                        'Previsualizacion SOLIT-473
 
-                            solicitudModificada = True
+                        Dim cliente As New dCliente
+                        cliente = cliente.buscarPorId2(sol.IDPRODUCTOR)
 
-                            '---------------GestorGX
-                            ' tiene que modificar y esta creando
-                            Dim gestorNuevo As New dNuevoGestor
-                            gestorNuevo.ID = sol.ID
-                            gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
-                            gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
-                            gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
-                            gestorNuevo.NMUESTRAS = sol.NMUESTRAS
-                            gestorNuevo.IDMUESTRA = idmuestra.ID
-                            gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
-                            gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
-                            gestorNuevo.TEMPERATURA = sol.TEMPERATURA
-                            gestorNuevo.DERRAMADAS = sol.DERRAMADAS
-                            gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
-                            gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
-                            gestorNuevo.FECHAENVIO = sol.FECHAENVIO
-                            gestorNuevo.guardarNuevoGestor(Usuario)
+                        Dim TipoMuestra As New dMuestras
+                        TipoMuestra.ID = sol.IDMUESTRA
+                        TipoMuestra = TipoMuestra.buscar
 
-                            '-----------------------------------
+                        Dim TipoInforme As New dTipoInforme
+                        TipoInforme.ID = sol.IDTIPOINFORME
+                        TipoInforme = TipoInforme.buscar
 
-                            'sw.guardar(Usuario)
-                            MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
-                            imprimir_solicitud()
-                            btnImprimir.Visible = True
-                            Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
-                            If result2 = DialogResult.Cancel Then
-                                guardar_ticket()
-                            ElseIf result2 = DialogResult.No Then
-                                guardar_ticket()
-                            ElseIf result2 = DialogResult.Yes Then
-                                Dim result5 = MessageBox.Show("Desea imprimir un ticket para el cliente con usuario y contraseña?", "Atención!", MessageBoxButtons.YesNoCancel)
-                                If result5 = DialogResult.Cancel Then
-                                    imprimir_ticket()
-                                ElseIf result5 = DialogResult.No Then
-                                    imprimir_ticket()
-                                Else
-                                    imprimir_ticket_datos()
+                        Dim n2 As New dNuevoAnalisis
+                        Dim n2List As New ArrayList
+                        n2List = n2.listarporficha(ficha)
+
+                        Dim d As New DatosPopupInforme With {
+                          .Ficha = sol.ID,
+                          .Cliente = cliente.NOMBRE,
+                          .TipoMuestras = TipoInforme.NOMBRE,
+                          .ObservacionesInternas = sol.OBSINTERNAS,
+                          .ObservacionesInforme = sol.OBSERVACIONES,
+                          .CantidadMuestras = sol.NMUESTRAS.ToString,
+                          .Temperatura = sol.TEMPERATURA.ToString,
+                          .TipoLeche = TipoMuestra.NOMBRE,
+                          .Cajas = New String() {"C6050", "C6051", "C6052"}
+                      }
+
+                        ' Completar Analisis y Detalle desde n2List
+                        CompletarAnalisisDesdeN2(d, d.Ficha)
+                        CompletarCajasDesdeCliente(d)
+
+                        Dim dr As DialogResult = MostrarPopupInforme(d, Me)
+                        If dr = DialogResult.OK Then
+                            If (sol.modificar(Usuario)) Then
+                                If ultimaficha > un.FICHAS Then
+                                    un.FICHAS = ultimaficha
+                                    un.modificar()
                                 End If
-                            End If
-                            If idsubinforme.ID = 22 Then
-                                Dim r As New dRosaBengalaDescarte
-                                r.FICHA = id
-                                r.FECHA = fecing
-                                r.DESCARTADA = 0
-                                r.FECHAD = fecing
-                                r.MARCADA = 0
-                                r.FECHAM = fecing
-                                r.guardar(Usuario)
-                            End If
-                            If idproductor = 4870 Then
-                                Dim result = MessageBox.Show("Enviar e-mail a PULSA S.A. con la solicitud de análisis? (Antes de enviar debe cerrar excel)", "Atención!", MessageBoxButtons.YesNoCancel)
-                                If result = DialogResult.Cancel Then
-                                ElseIf result = DialogResult.No Then
-                                ElseIf result = DialogResult.Yes Then
-                                    'enviomailpulsa()
+
+                                solicitudModificada = True
+
+                                '---------------GestorGX
+                                ' tiene que modificar y esta creando
+                                Dim gestorNuevo As New dNuevoGestor
+                                gestorNuevo.ID = sol.ID
+                                gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
+                                gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
+                                gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
+                                gestorNuevo.NMUESTRAS = sol.NMUESTRAS
+                                gestorNuevo.IDMUESTRA = idmuestra.ID
+                                gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
+                                gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
+                                gestorNuevo.TEMPERATURA = sol.TEMPERATURA
+                                gestorNuevo.DERRAMADAS = sol.DERRAMADAS
+                                gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
+                                gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
+                                gestorNuevo.FECHAENVIO = sol.FECHAENVIO
+                                gestorNuevo.guardarNuevoGestor(Usuario)
+
+                                '-----------------------------------
+
+                                'sw.guardar(Usuario)
+                                MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
+                                imprimir_solicitud()
+                                btnImprimir.Visible = True
+                                Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
+                                If result2 = DialogResult.Cancel Then
+                                    guardar_ticket()
+                                ElseIf result2 = DialogResult.No Then
+                                    guardar_ticket()
+                                ElseIf result2 = DialogResult.Yes Then
+                                    Dim result5 = MessageBox.Show("Desea imprimir un ticket para el cliente con usuario y contraseña?", "Atención!", MessageBoxButtons.YesNoCancel)
+                                    If result5 = DialogResult.Cancel Then
+                                        imprimir_ticket()
+                                    ElseIf result5 = DialogResult.No Then
+                                        imprimir_ticket()
+                                    Else
+                                        imprimir_ticket_datos()
+                                    End If
                                 End If
+                                If idsubinforme.ID = 22 Then
+                                    Dim r As New dRosaBengalaDescarte
+                                    r.FICHA = id
+                                    r.FECHA = fecing
+                                    r.DESCARTADA = 0
+                                    r.FECHAD = fecing
+                                    r.MARCADA = 0
+                                    r.FECHAM = fecing
+                                    r.guardar(Usuario)
+                                End If
+                                If idproductor = 4870 Then
+                                    Dim result = MessageBox.Show("Enviar e-mail a PULSA S.A. con la solicitud de análisis? (Antes de enviar debe cerrar excel)", "Atención!", MessageBoxButtons.YesNoCancel)
+                                    If result = DialogResult.Cancel Then
+                                    ElseIf result = DialogResult.No Then
+                                    ElseIf result = DialogResult.Yes Then
+                                        'enviomailpulsa()
+                                    End If
+                                End If
+
+                                'modificarRegistro(id)
+                                enviomail()
+
+                                'Mail a supervisor
+                                ProcesarPocoFrecuentesPorFicha(sol.ID, True)
+
+                                ' Grabar estado de la ficha
+                                Dim est As New dEstados
+                                est.FICHA = id
+                                est.ESTADO = 1
+                                est.FECHA = fecing
+                                est.guardar(Usuario)
+                                est = Nothing
+                                'enviar_notificacion_solicitud(id)
+
+                                limpiar()
+                                limpiar2()
+                                '****************************
+                            Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+
                             End If
-
-                            'modificarRegistro(id)
-                            enviomail()
-                            
-                            ' Grabar estado de la ficha
-                            Dim est As New dEstados
-                            est.FICHA = id
-                            est.ESTADO = 1
-                            est.FECHA = fecing
-                            est.guardar(Usuario)
-                            est = Nothing
-                            'enviar_notificacion_solicitud(id)
-
-                            limpiar()
-                            limpiar2()
-                            '****************************
-                        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
-
+                        ElseIf dr = DialogResult.Cancel Then
+                            ' canceló → abortar/volver
                         End If
+                    Else
+                        MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                    End If
                 Else
-                    MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                    ' No autorizado, no continúa
+                    MsgBox("Acceso no autorizado, operación cancelada.", MsgBoxStyle.Exclamation, "Atención")
                 End If
             Else
-                ' No autorizado, no continúa
-                MsgBox("Acceso no autorizado, operación cancelada.", MsgBoxStyle.Exclamation, "Atención")
-            End If
-        Else
                 If TextIdProductor.Text.Trim.Length > 0 Then
                     Dim sol2 As New dSolicitudAnalisis()
                     Dim un2 As New dUltimoNumero
@@ -568,65 +752,105 @@ Public Class FormSolicitud
                     fecmuestreo2 = Format(fechamuestreo, "yyyy-MM-dd")
                     sol2.FECHAMUESTREO = fecmuestreo
 
-                    If (sol2.guardar(Usuario)) Then
-                        If ultimaficha > un.FICHAS Then
-                            un2.FICHAS = ultimaficha
-                            un2.modificar()
-                        End If
+                    Dim cliente As New dCliente
+                    cliente = cliente.buscarPorId2(sol2.IDPRODUCTOR)
 
-                        '---------------GestorGX
-                        Dim gestorNuevo As New dNuevoGestor
-                        gestorNuevo.ID = sol.ID
-                        gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
-                        gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
-                        gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
-                        gestorNuevo.NMUESTRAS = sol.NMUESTRAS
-                        gestorNuevo.IDMUESTRA = idmuestra.ID
-                        gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
-                        gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
-                        gestorNuevo.TEMPERATURA = sol.TEMPERATURA
-                        gestorNuevo.DERRAMADAS = sol.DERRAMADAS
-                        gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
-                        gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
-                        gestorNuevo.FECHAENVIO = sol.FECHAENVIO
-                        gestorNuevo.guardarNuevoGestor(Usuario)
-                        '----------------------------------------------------
+                    Dim TipoMuestra As New dMuestras
+                    TipoMuestra.ID = sol2.IDMUESTRA
+                    TipoMuestra = TipoMuestra.buscar
+
+                    Dim TipoInforme As New dTipoInforme
+                    TipoInforme.ID = sol2.IDTIPOINFORME
+                    TipoInforme = TipoInforme.buscar
+
+                    Dim n2 As New dNuevoAnalisis
+                    Dim n2List As New ArrayList
+                    n2List = n2.listarporficha(ficha)
+
+                    Dim d As New DatosPopupInforme With {
+                      .Ficha = sol2.ID,
+                      .Cliente = cliente.NOMBRE,
+                      .TipoMuestras = TipoInforme.NOMBRE,
+                      .ObservacionesInternas = sol2.OBSINTERNAS,
+                      .ObservacionesInforme = sol2.OBSERVACIONES,
+                      .CantidadMuestras = sol2.NMUESTRAS.ToString,
+                      .Temperatura = sol2.TEMPERATURA.ToString,
+                      .TipoLeche = TipoMuestra.NOMBRE,
+                      .Cajas = New String() {"C6050", "C6051", "C6052"}
+                  }
+
+                    ' Completar Analisis y Detalle desde n2List
+                    CompletarAnalisisDesdeN2(d, d.Ficha)
+                    CompletarCajasDesdeCliente(d)
+
+                    Dim dr As DialogResult = MostrarPopupInforme(d, Me)
+                    If dr = DialogResult.OK Then
+                        If (sol2.guardar(Usuario)) Then
+                            If ultimaficha > un.FICHAS Then
+                                un2.FICHAS = ultimaficha
+                                un2.modificar()
+                            End If
+
+                            '---------------GestorGX
+                            Dim gestorNuevo As New dNuevoGestor
+                            gestorNuevo.ID = sol.ID
+                            gestorNuevo.IDPRODUCTOR = sol.IDPRODUCTOR
+                            gestorNuevo.IDSUBINFORME = sol.IDSUBINFORME
+                            gestorNuevo.OBSERVACIONES = sol.OBSERVACIONES
+                            gestorNuevo.NMUESTRAS = sol.NMUESTRAS
+                            gestorNuevo.IDMUESTRA = idmuestra.ID
+                            gestorNuevo.SINCOLICITUD = sol.SINCOLICITUD
+                            gestorNuevo.SINCONSERVANTE = sol.SINCONSERVANTE
+                            gestorNuevo.TEMPERATURA = sol.TEMPERATURA
+                            gestorNuevo.DERRAMADAS = sol.DERRAMADAS
+                            gestorNuevo.DESVIOAUTORIZADO = sol.DESVIOAUTORIZADO
+                            gestorNuevo.FECHAINGRESO = sol.FECHAINGRESO
+                            gestorNuevo.FECHAENVIO = sol.FECHAENVIO
+                            gestorNuevo.guardarNuevoGestor(Usuario)
+                            '----------------------------------------------------
 
 
-                        MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
-                        '***IMPRESIÓN DE SOLICITUD Y TICKETS **************************************************************************************
-                        imprimir_solicitud()
-                        Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
-                        If result2 = DialogResult.Cancel Then
-                        ElseIf result2 = DialogResult.No Then
-                        ElseIf result2 = DialogResult.Yes Then
-                            imprimir_ticket()
+                            MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
+                            '***IMPRESIÓN DE SOLICITUD Y TICKETS **************************************************************************************
+                            imprimir_solicitud()
+                            Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
+                            If result2 = DialogResult.Cancel Then
+                            ElseIf result2 = DialogResult.No Then
+                            ElseIf result2 = DialogResult.Yes Then
+                                imprimir_ticket()
+                            End If
+                            '*****************************************************************************************************************************
+                            If idsubinforme.ID = 22 Then
+                                Dim r As New dRosaBengalaDescarte
+                                r.FICHA = id
+                                r.FECHA = fecing
+                                r.DESCARTADA = 0
+                                r.FECHAD = fecing
+                                r.MARCADA = 0
+                                r.FECHAM = fecing
+                                r.guardar(Usuario)
+                            End If
+
+                            ' Grabar estado de la ficha
+                            Dim est As New dEstados
+                            est.FICHA = id
+                            est.ESTADO = 1
+                            est.FECHA = fecing
+                            est.guardar(Usuario)
+                            '****************************
+                            'modificarRegistro(id)
+                            enviomail()
+
+                            'Email a supervisor
+                            ProcesarPocoFrecuentesPorFicha(sol.ID, True)
+
+                            'enviar_notificacion_solicitud(id)
+                            limpiar()
+                            limpiar2()
+                        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                         End If
-                        '*****************************************************************************************************************************
-                        If idsubinforme.ID = 22 Then
-                            Dim r As New dRosaBengalaDescarte
-                            r.FICHA = id
-                            r.FECHA = fecing
-                            r.DESCARTADA = 0
-                            r.FECHAD = fecing
-                            r.MARCADA = 0
-                            r.FECHAM = fecing
-                            r.guardar(Usuario)
-                        End If
-                       
-                        ' Grabar estado de la ficha
-                        Dim est As New dEstados
-                        est.FICHA = id
-                        est.ESTADO = 1
-                        est.FECHA = fecing
-                        est.guardar(Usuario)
-                        '****************************
-                        'modificarRegistro(id)
-                        enviomail()
-                        'enviar_notificacion_solicitud(id)
-                        limpiar()
-                        limpiar2()
-                    Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
+                    ElseIf dr = DialogResult.Cancel Then
+                        ' canceló → abortar/volver
                     End If
                 End If
             End If
@@ -635,6 +859,48 @@ Public Class FormSolicitud
         agregar_registro_facturacion()
         buscarultimaficha()
     End Sub
+
+
+    ' Llama al popup pasando el objeto de datos
+    Public Function MostrarPopupInforme(datos As DatosPopupInforme,
+                                        Optional owner As IWin32Window = Nothing) As DialogResult
+        Using f As New FrmPopupInforme(datos)
+            If owner Is Nothing Then
+                Return f.ShowDialog()
+            Else
+                Return f.ShowDialog(owner)
+            End If
+        End Using
+    End Function
+
+    ' OVERLOAD opcional: construye el objeto y muestra
+    Public Function MostrarPopupInforme(ficha As Long,
+                                        cliente As String,
+                                        tipoMuestras As String,
+                                        analisis As String,
+                                        obsInternas As String,
+                                        obsInforme As String,
+                                        cantMuestras As Integer,
+                                        temperatura As String,
+                                        tipoLeche As String,
+                                        cajas As String(),
+                                        detalle As String(),
+                                        Optional owner As IWin32Window = Nothing) As DialogResult
+        Dim d As New DatosPopupInforme With {
+            .Ficha = ficha,
+            .Cliente = cliente,
+            .TipoMuestras = tipoMuestras,
+            .Analisis = analisis,
+            .ObservacionesInternas = obsInternas,
+            .ObservacionesInforme = obsInforme,
+            .CantidadMuestras = cantMuestras,
+            .Temperatura = temperatura,
+            .TipoLeche = tipoLeche,
+            .Cajas = cajas,
+            .Detalle = detalle
+        }
+        Return MostrarPopupInforme(d, owner)
+    End Function
 
     Public Sub modificarRegistro(ByVal id As Integer)
         'Dim idnet As Long = 0
@@ -2072,45 +2338,83 @@ Public Class FormSolicitud
                 End If
             End If
 
-            For Each t In ListCajas.Items
+            For Each t As Object In ListCajas.Items
 
-                Dim caja As New dCajas
-                Dim lista As New ArrayList
-                lista = caja.buscarPorCodigo(t.CODIGO)
-                cajasImp = cajasImp + Format$(t.CODIGO) & " - "
-
-                If lista IsNot Nothing Then
-                    If lista.Count > 0 Then
-
-                        Dim env2 As New dEnvioCajas()
-                        env2.IDCAJA = lista(0).CODIGO
-                        env2 = env2.buscarultimoenvioxcaja()
-
-
-                        Dim agenciaPed As dEmpresaT = CType(ComboAgencia.SelectedItem, dEmpresaT)
-                        Dim reciboPed As String = TextRemito.Text.Trim
-                        Dim clientePEd As Long = TextIdProductor.Text
-                        Dim observacionesPed As String = TextObservaciones.Text.Trim
-                        Dim fec As String
-                        fec = Format(System.DateTime.Now, "yyyy-MM-dd")
-                        If Not agenciaPed Is Nothing Then
-                            env2.IDAGENCIA = agenciaPed.ID
+                ' --- Capturar el código de la caja t.CODIGO (t puede ser objeto o string/numérico) ---
+                Dim cod As String = ""
+                If t IsNot Nothing Then
+                    Try
+                        ' Si t tiene propiedad CODIGO
+                        cod = Convert.ToString(CallByName(t, "CODIGO", CallType.Get))
+                    Catch
+                        ' Si t es string o numérico
+                        If TypeOf t Is String Then
+                            cod = CStr(t)
+                        ElseIf TypeOf t Is Integer OrElse TypeOf t Is Long Then
+                            cod = Convert.ToString(t)
                         Else
-                            env2.IDAGENCIA = 8
+                            cod = ""
                         End If
-                        env2.FECHARECIBO = fec
-                        env2.CLIENTE = clientePEd
-                        env2.OBSRECIBO = observacionesPed
-                        env2.RECIBIDO = 1
-                        env2.CARGADA = 0
+                    End Try
+                End If
 
-                        If (env2.marcarrecibido(Usuario)) Then
+                If Not String.IsNullOrEmpty(cod) Then
+                    ' Guardar en la lista auxiliar (evitá duplicados si querés)
+                    If Not listCajaAux.Contains(cod) Then
+                        listCajaAux.Add(cod.Trim())
+                    End If
+                    ' Concatenar al string (si lo usás)
+                    cajasImp &= cod & " - "
+                End If
 
-                        Else : MsgBox("Error", MsgBoxStyle.Critical, "Atención")
-                        End If
+                ' --- Tu lógica existente ---
+                Dim caja As New dCajas
+                Dim lista As ArrayList = caja.buscarPorCodigo(cod)
+
+                If lista IsNot Nothing AndAlso lista.Count > 0 Then
+                    Dim env2 As New dEnvioCajas()
+                    env2.IDCAJA = lista(0).CODIGO
+                    env2 = env2.buscarultimoenvioxcaja()
+
+                    Dim agenciaPed As dEmpresaT = TryCast(ComboAgencia.SelectedItem, dEmpresaT)
+                    Dim reciboPed As String = TextRemito.Text.Trim
+                    Dim clientePEd As Long = CLng(Val(TextIdProductor.Text))
+                    Dim observacionesPed As String = TextObservaciones.Text.Trim
+                    Dim fec As String = Format(System.DateTime.Now, "yyyy-MM-dd")
+
+                    If Not agenciaPed Is Nothing Then
+                        env2.IDAGENCIA = agenciaPed.ID
+                    Else
+                        env2.IDAGENCIA = 8
+                    End If
+                    env2.FECHARECIBO = fec
+                    env2.CLIENTE = clientePEd
+                    env2.OBSRECIBO = observacionesPed
+                    env2.RECIBIDO = 1
+                    env2.CARGADA = 0
+
+                    If Not env2.marcarrecibido(Usuario) Then
+                        MsgBox("Error", MsgBoxStyle.Critical, "Atención")
                     End If
                 End If
             Next
+
+            ' Limpieza del string si quedó con " - " al final
+            If cajasImp.EndsWith(" - ") Then
+                cajasImp = cajasImp.Substring(0, cajasImp.Length - 3)
+            End If
+
+            ' Si querés pasar esto a DatosPopupInforme.Cajas (String()):
+            Dim d As New DatosPopupInforme()
+            If listCajaAux.Count > 0 Then
+                Dim arr(listCajaAux.Count - 1) As String
+                For i As Integer = 0 To listCajaAux.Count - 1
+                    arr(i) = CStr(listCajaAux(i))
+                Next
+                d.Cajas = arr
+            Else
+                d.Cajas = New String() {}
+            End If
 
             If tipoinforme = 10 Then
                 limpio_tabla_csm()
@@ -2120,7 +2424,7 @@ Public Class FormSolicitud
         guardar2()
         ListCajas.Items.Clear()
     End Sub
-   
+
 
     Private Sub ComboTipoInforme_SelectedIndexChanged_1(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles ComboTipoInforme.SelectedIndexChanged
         Dim idtipoinforme As dTipoInforme = CType(ComboTipoInforme.SelectedItem, dTipoInforme)
@@ -5606,7 +5910,7 @@ Public Class FormSolicitud
             Dim lista As New ArrayList
             Dim id As Integer = TextId.Text.Trim
             p.ID = id
-           
+
             'Agregando lectores de codifos 31/7/2023
 
             If txtCajasTipeables.Text <> "" Then
@@ -5669,7 +5973,7 @@ Public Class FormSolicitud
 
             If txtCajasTipeables.Text <> "" Then
                 Dim caja As New dCajas
-                Dim listCaja As New ArrayList
+
                 listCaja = caja.buscarPorCodigo(txtCajasTipeables.Text)
 
                 If listCaja IsNot Nothing Then
@@ -5722,4 +6026,227 @@ Public Class FormSolicitud
             End If
         End If
     End Sub
+
+    Public Function AgruparPocoFrecuentesPorSector(items As List(Of PocoFrecuenteItem)) As List(Of SectorMailPayload)
+        Dim dict As New Dictionary(Of Integer, SectorMailPayload)()
+
+        For Each it In items
+            Dim payload As SectorMailPayload = Nothing
+            If Not dict.TryGetValue(it.SectorId, payload) Then
+                payload = New SectorMailPayload() With {
+                    .SectorId = it.SectorId,
+                    .Sector = it.Sector,
+                    .Email = it.Email,
+                    .Ficha = it.Ficha,
+                    .Detalles = New List(Of AnalisisDetalle)()
+                }
+                dict.Add(it.SectorId, payload)
+            End If
+
+            payload.Detalles.Add(New AnalisisDetalle() With {
+                .Muestra = it.Muestra,
+                .AnalisisId = it.AnalisisId,
+                .AnalisisNombre = it.AnalisisNombre,
+                .TipoInforme = it.TipoInforme,
+                .Orden = it.Orden
+            })
+        Next
+
+        ' Ordená los detalles por Orden (y luego por Muestra) para cada sector
+        For Each p In dict.Values
+            p.Detalles.Sort(Function(a, b)
+                                Dim cmp = a.Orden.CompareTo(b.Orden)
+                                If cmp <> 0 Then Return cmp
+                                Return String.Compare(If(a.Muestra, ""), If(b.Muestra, ""), StringComparison.OrdinalIgnoreCase)
+                            End Function)
+        Next
+
+        ' Devolver como lista
+        Return New List(Of SectorMailPayload)(dict.Values)
+    End Function
+
+    Public Function PrepararMailsPocoFrecuentes(ficha As Long) As List(Of MailDraft)
+        Dim na As New dNuevoAnalisis
+        Dim items As List(Of PocoFrecuenteItem) = na.ObtenerPocoFrecuentesPorFicha(ficha)
+        Dim dict As New Dictionary(Of Integer, SectorMailPayload)()
+
+        ' Agrupar por sector
+        For Each it In items
+            Dim p As SectorMailPayload = Nothing
+            If Not dict.TryGetValue(it.SectorId, p) Then
+                p = New SectorMailPayload() With {
+                    .SectorId = it.SectorId,
+                    .Sector = it.Sector,
+                    .Email = it.Email,
+                    .Ficha = it.Ficha,
+                    .Detalles = New List(Of AnalisisDetalle)()
+                }
+                dict.Add(it.SectorId, p)
+            End If
+
+            p.Detalles.Add(New AnalisisDetalle() With {
+                .Muestra = it.Muestra,
+                .AnalisisId = it.AnalisisId,
+                .AnalisisNombre = it.AnalisisNombre,
+                .TipoInforme = it.TipoInforme,
+                .Orden = it.Orden
+            })
+        Next
+
+        ' Ordenar detalles dentro de cada sector
+        For Each p In dict.Values
+            p.Detalles.Sort(Function(a, b)
+                                Dim cmp = a.Orden.CompareTo(b.Orden)
+                                If cmp <> 0 Then Return cmp
+                                Return String.Compare(If(a.Muestra, ""), If(b.Muestra, ""), StringComparison.OrdinalIgnoreCase)
+                            End Function)
+        Next
+
+        ' Construir borradores
+        Dim drafts As New List(Of MailDraft)()
+        For Each p In dict.Values
+            If p.Email Is Nothing OrElse p.Email.Trim().Length = 0 Then Continue For
+
+            Dim asunto As String = "[Colaveco] Análisis poco frecuentes - Ficha " & p.Ficha & " - " & p.Sector
+
+            Dim sb As New System.Text.StringBuilder()
+            sb.AppendLine("Buenas,")
+            sb.AppendLine()
+            sb.AppendLine("Se detectaron análisis marcados como poco frecuentes para la ficha " & p.Ficha & " en el sector " & p.Sector & ":")
+            sb.AppendLine()
+            For Each d In p.Detalles
+                sb.AppendLine(" - Muestra " & d.Muestra &
+                              " | Tipo: " & d.TipoInforme &
+                              " | Análisis: " & d.AnalisisNombre & " (#" & d.AnalisisId & ")")
+            Next
+            sb.AppendLine()
+            sb.AppendLine("Saludos,")
+            sb.AppendLine("Sistema ColavecoNET")
+
+            drafts.Add(New MailDraft() With {
+                .Email = p.Email,
+                .Asunto = asunto,
+                .Cuerpo = sb.ToString(),
+                .SectorId = p.SectorId,
+                .Sector = p.Sector,
+                .Ficha = p.Ficha
+            })
+        Next
+
+        Return drafts
+    End Function
+
+
+    Public Function ConstruirCuerpoTexto(detalles As List(Of AnalisisDetalle), ficha As Long) As String
+        Dim sb As New System.Text.StringBuilder()
+        sb.AppendLine("Ficha " & ficha & ":")
+        For Each d In detalles
+            sb.AppendLine(" - Muestra " & d.Muestra &
+                          " | Tipo: " & d.TipoInforme &
+                          " | Análisis: " & d.AnalisisNombre & " (#" & d.AnalisisId & ")")
+        Next
+        Return sb.ToString()
+    End Function
+
+    Public Sub ProcesarPocoFrecuentesPorFicha(ByVal ficha As Long, Optional ByVal enviar As Boolean = False)
+        Dim borradores As List(Of MailDraft) = PrepararMailsPocoFrecuentes(ficha)
+
+        ' Previsualización (Debug/Consola/Log)
+        For Each md As MailDraft In borradores
+            Debug.WriteLine("Sector: " & md.Sector & " -> " & md.Email)
+            Debug.WriteLine(md.Asunto)
+            Debug.WriteLine(md.Cuerpo)
+            Debug.WriteLine("-----")
+        Next
+
+        ' Envío opcional
+        If enviar Then
+            For Each md As MailDraft In borradores
+                If Not (md.Email Is Nothing OrElse md.Email.Trim().Length = 0) Then
+                    EnviarMailNotificaciones(md.Email, md.Asunto, md.Cuerpo)
+                End If
+            Next
+        End If
+    End Sub
+
+    Public Sub ProcesarPocoFrecuentesDesdeForm(Optional ByVal enviar As Boolean = False)
+        Dim ficha As Long
+        If Not Long.TryParse(TextId.Text, ficha) Then
+            MsgBox("Ficha inválida.", MsgBoxStyle.Exclamation, "Atención")
+            Exit Sub
+        End If
+        ProcesarPocoFrecuentesPorFicha(ficha, enviar)
+    End Sub
+
+    Public Sub EnviarMailNotificaciones(destinatario As String, asunto As String, cuerpo As String)
+        Dim _Message As New System.Net.Mail.MailMessage()
+        Dim _SMTP As New System.Net.Mail.SmtpClient
+
+        ' Credenciales desde tu tabla (como en tu ejemplo)
+        Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+        _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
+        _SMTP.Host = objetoCredenciales.CredencialesHost
+        _SMTP.Port = 25
+        _SMTP.EnableSsl = False
+
+        _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+        _Message.[To].Add(LTrim(destinatario))
+        _Message.[To].Add(LTrim("envios@colaveco.com.uy")) ' si querés copia fija
+        _Message.Subject = asunto
+        _Message.SubjectEncoding = System.Text.Encoding.UTF8
+        _Message.Body = cuerpo
+        _Message.BodyEncoding = System.Text.Encoding.UTF8
+        _Message.Priority = System.Net.Mail.MailPriority.Normal
+        _Message.IsBodyHtml = False
+
+        Try
+            _SMTP.Send(_Message)
+        Catch ex As System.Net.Mail.SmtpException
+            ' log
+            Debug.WriteLine("SMTP error: " & ex.Message)
+        End Try
+    End Sub
+
+
+
+End Class
+
+' 1 fila de la consulta (detalle)
+Public Class PocoFrecuenteItem
+    Public Property SectorId As Integer
+    Public Property Sector As String
+    Public Property Email As String
+    Public Property Ficha As Long
+    Public Property Muestra As String
+    Public Property TipoInforme As Integer
+    Public Property AnalisisNombre As String
+    Public Property AnalisisId As Integer
+    Public Property Orden As Integer
+End Class
+
+' Detalle por análisis (para el payload agrupado)
+Public Class AnalisisDetalle
+    Public Property Muestra As String
+    Public Property AnalisisId As Integer
+    Public Property AnalisisNombre As String
+    Public Property TipoInforme As String
+    Public Property Orden As Integer
+End Class
+
+' Payload por sector (lo que vas a “enviar”/procesar por sector)
+Public Class SectorMailPayload
+    Public Property SectorId As Integer
+    Public Property Sector As String
+    Public Property Email As String
+    Public Property Ficha As Long
+    Public Property Detalles As List(Of AnalisisDetalle)
+End Class
+
+Public Class MailDraft
+    Public Property Email As String
+    Public Property Asunto As String
+    Public Property Cuerpo As String
+    Public Property SectorId As Integer
+    Public Property Sector As String
+    Public Property Ficha As Long
 End Class

@@ -317,7 +317,7 @@ Public Class FormSubirInformes2
                 }
             Case 19
                 Return New ParametrosSubirInforme With {
-                    .Carpeta = EnumCarpetaInforme.TOXICOLOGIA,
+                    .Carpeta = EnumCarpetaInforme.SUELOS,
                     .TipoInforme = EnumTipoInforme.Foliares
                 }
             Case 20

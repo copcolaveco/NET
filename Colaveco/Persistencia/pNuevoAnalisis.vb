@@ -1086,4 +1086,50 @@
             Return Nothing
         End Try
     End Function
+
+    Public Function ObtenerPocoFrecuentesPorFicha(ficha As Long) As List(Of PocoFrecuenteItem)
+        Dim sql As New System.Text.StringBuilder()
+        sql.AppendLine("SELECT")
+        sql.AppendLine("  s.id  AS sector_id,")
+        sql.AppendLine("  s.nombre AS sector,")
+        sql.AppendLine("  s.email AS email,")
+        sql.AppendLine("  na.ficha AS ficha,")
+        sql.AppendLine("  na.muestra AS muestra,")
+        sql.AppendLine("  na.tipoinforme AS tipo_informe,")
+        sql.AppendLine("  na.analisis AS analisis_nombre,")
+        sql.AppendLine("  na.analisis AS analisis_id,")
+        sql.AppendLine("  na.orden")
+        sql.AppendLine("FROM nuevoanalisis na")
+        sql.AppendLine("JOIN analisis_sector ase")
+        sql.AppendLine("  ON ase.analisis_id = na.analisis AND ase.flag_poco_frecuente = 1")
+        sql.AppendLine("JOIN sectores s")
+        sql.AppendLine("  ON s.id = ase.sector_id AND s.eliminado = 0")
+        sql.AppendLine("LEFT JOIN listadeprecios lp ON lp.id = na.analisis")
+        sql.AppendLine("LEFT JOIN tipoinforme ti    ON ti.id = na.tipoinforme")
+        sql.AppendLine("WHERE na.ficha = " & ficha)
+        sql.AppendLine("ORDER BY s.nombre, na.orden;")
+
+        Dim ds As DataSet = Me.EjecutarSQL(sql.ToString())
+        Dim lista As New List(Of PocoFrecuenteItem)()
+        If ds Is Nothing OrElse ds.Tables.Count = 0 OrElse ds.Tables(0).Rows.Count = 0 Then
+            Return lista
+        End If
+
+        For Each r As DataRow In ds.Tables(0).Rows
+            Dim it As New PocoFrecuenteItem()
+            it.SectorId = If(IsDBNull(r("sector_id")), 0, CInt(r("sector_id")))
+            it.Sector = If(IsDBNull(r("sector")), "", CStr(r("sector")))
+            it.Email = If(IsDBNull(r("email")), "", CStr(r("email")))
+            it.Ficha = If(IsDBNull(r("ficha")), 0, CLng(r("ficha")))
+            it.Muestra = If(IsDBNull(r("muestra")), "", CStr(r("muestra")))
+            it.TipoInforme = If(IsDBNull(r("tipo_informe")), "", CStr(r("tipo_informe")))
+            it.AnalisisNombre = If(IsDBNull(r("analisis_nombre")), "", CStr(r("analisis_nombre")))
+            it.AnalisisId = If(IsDBNull(r("analisis_id")), 0, CInt(r("analisis_id")))
+            it.Orden = If(IsDBNull(r("orden")), 0, CInt(r("orden")))
+            lista.Add(it)
+        Next
+
+        Return lista
+    End Function
+
 End Class

@@ -186,8 +186,9 @@ Public Class pControlInformesFQ
             "       m.observaciones, m.controlador, m.controlado " & _
             "FROM controlinformesfq m " & _
             "LEFT JOIN tipoinforme ti ON ti.id = m.tipo " & _
+            "LEFT JOIN solicitudanalisis sa  ON sa.id = m.ficha " & _
             "WHERE m.fecha >= '" & desde & "' AND m.fecha <= '" & hasta & "' " & _
-            "  AND m.controlado = 1 " & _
+            "  AND m.controlado = 0  and sa.marca=0 " & _
             "ORDER BY m.tipo ASC"
 
         Try

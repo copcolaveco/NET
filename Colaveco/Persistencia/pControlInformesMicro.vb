@@ -177,15 +177,17 @@
     'End Function
 
     Public Function listarxfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
+
         Dim sql As String = _
-            "SELECT m.id, m.fechacontrol, m.ficha, m.fecha, " & _
+         "SELECT m.id, m.fechacontrol, m.ficha, m.fecha, " & _
             "       m.tipo, ti.nombre AS tiponombre, " & _
             "       m.resultado, m.coincide, m.opcionmejora, m.noconformidad, " & _
             "       m.observaciones, m.controlador, m.controlado " & _
             "FROM controlinformesmicro m " & _
             "LEFT JOIN tipoinforme ti ON ti.id = m.tipo " & _
+            "LEFT JOIN solicitudanalisis sa  ON sa.id = m.ficha " & _
             "WHERE m.fecha >= '" & desde & "' AND m.fecha <= '" & hasta & "' " & _
-            "  AND m.controlado = 1 " & _
+            "  AND m.controlado = 0  and sa.marca=0 " & _
             "ORDER BY m.tipo ASC"
 
         Try

@@ -373,4 +373,9 @@
         Dim n As New pNuevoAnalisis
         Return n.listarxfecha(desde, hasta, idmuestra)
     End Function
+    Public Function ObtenerPocoFrecuentesPorFicha(ficha As Long) As List(Of PocoFrecuenteItem)
+        Dim n As New pNuevoAnalisis
+        Return n.ObtenerPocoFrecuentesPorFicha(ficha)
+    End Function
+
 End Class

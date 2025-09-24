@@ -254,6 +254,7 @@
     <Compile Include="Conexion_BD\ConexionMySQL_tools_com.vb" />
     <Compile Include="Conexion_BD\ConexionMySQL_uy.vb" />
     <Compile Include="Conexion_BD\ConexionMySQLGestor.vb" />
+    <Compile Include="DatosPopupInforme.vb" />
     <Compile Include="Enumerados\EnumCarpetaInforme.vb" />
     <Compile Include="Enumerados\EnumEstadoGestor.vb" />
     <Compile Include="Enumerados\EnumTipoInforme.vb" />
@@ -264,6 +265,9 @@
     <Compile Include="Facturacion\pFactur.vb" />
     <Compile Include="Facturacion\pMovCte.vb" />
     <Compile Include="Facturacion\pMovCte2.vb" />
+    <Compile Include="FrmPopupInforme.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="Gestor\dClienteGestor.vb" />
     <Compile Include="Gestor\dNGControl.vb" />
     <Compile Include="Gestor\NuevoGestor.vb" />
@@ -358,6 +362,12 @@
       <DependentUpon>FormPreinformeEdit.vb</DependentUpon>
     </Compile>
     <Compile Include="Interfaz\FormPreinformeEdit.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Interfaz\FormPrevisualizacion.Designer.vb">
+      <DependentUpon>FormPrevisualizacion.vb</DependentUpon>
+    </Compile>
+    <Compile Include="Interfaz\FormPrevisualizacion.vb">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Interfaz\FormReporteEstadoInforme.Designer.vb">
@@ -3392,6 +3402,9 @@
     <EmbeddedResource Include="Interfaz\FormPresentaciones.resx">
       <DependentUpon>FormPresentaciones.vb</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Interfaz\FormPrevisualizacion.resx">
+      <DependentUpon>FormPrevisualizacion.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Interfaz\FormProductor.resx">
       <DependentUpon>FormProductor.vb</DependentUpon>
