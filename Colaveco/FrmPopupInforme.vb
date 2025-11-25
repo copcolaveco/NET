@@ -12,21 +12,46 @@ Public Class FrmPopupInforme
     Private lstCajas As ListBox
     Private dgvDetalle As DataGridView
     Private btnAceptar As Button
+    Private txtLeyenda As TextBox
+
 
     Public Sub New(datos As DatosPopupInforme)
         Me._datos = datos
         Me.Text = "Resumen de Informe"
-        Me.StartPosition = FormStartPosition.CenterParent
-        Me.FormBorderStyle = FormBorderStyle.FixedDialog
+        Me.StartPosition = FormStartPosition.Manual      ' ← Manual para posicionar nosotros
+        Me.FormBorderStyle = FormBorderStyle.FixedDialog  ' (podés usar Sizable si querés permitir redimensionar)
         Me.MinimizeBox = False
         Me.MaximizeBox = False
         Me.ShowInTaskbar = False
-        Me.Width = 900
-        Me.Height = 650
+        Me.AutoScaleMode = AutoScaleMode.Font
+
+        ' Ajusta la ventana al ~92% del área de trabajo del monitor activo
+        SetAlmostFullscreen(0.92)
 
         ConstruirUI()
         CargarDatos()
     End Sub
+
+    Private Sub SetAlmostFullscreen(Optional ByVal ratio As Double = 0.92)
+        ' ratio entre 0.80 y 0.95 suele verse bien
+        Dim scr As Screen
+        If Me.Owner IsNot Nothing Then
+            scr = Screen.FromControl(Me.Owner)
+        Else
+            scr = Screen.FromPoint(Cursor.Position)
+        End If
+
+        Dim wa As Rectangle = scr.WorkingArea ' área sin taskbar
+        Dim w As Integer = CInt(Math.Max(800, wa.Width * ratio))   ' mínimo opcional 800x600
+        Dim h As Integer = CInt(Math.Max(600, wa.Height * ratio))
+
+        Dim x As Integer = wa.Left + (wa.Width - w) \ 2
+        Dim y As Integer = wa.Top + (wa.Height - h) \ 2
+
+        Me.Bounds = New Rectangle(x, y, w, h)
+    End Sub
+
+
 
     Private Sub ConstruirUI()
         ' Layout simple con TableLayoutPanel arriba y panel para grilla abajo
@@ -98,6 +123,28 @@ Public Class FrmPopupInforme
             .RowHeadersVisible = False
         }
 
+        ' --- Panel de leyenda (abajo, sobre los botones) ---
+        Dim panelLeyenda As New Panel() With {
+            .Dock = DockStyle.Bottom,
+            .Height = 90,
+            .Padding = New Padding(12)
+        }
+        Dim lblLeyenda As New Label() With {
+            .Text = "Análisis solicitado:",
+            .AutoSize = True,
+            .Font = New Font("Segoe UI", 9.0!, FontStyle.Bold),
+            .Dock = DockStyle.Top
+        }
+        txtLeyenda = New TextBox() With {
+            .Dock = DockStyle.Fill,
+            .Multiline = True,
+            .ReadOnly = True,
+            .ScrollBars = ScrollBars.Vertical
+        }
+        panelLeyenda.Controls.Add(txtLeyenda)
+        panelLeyenda.Controls.Add(lblLeyenda)
+
+
         ' Panel inferior con botón Aceptar
         Dim panelBotones As New FlowLayoutPanel() With {
             .Dock = DockStyle.Bottom,
@@ -112,6 +159,7 @@ Public Class FrmPopupInforme
 
         ' Agrego a la ventana
         Me.Controls.Add(dgvDetalle)
+        Me.Controls.Add(panelLeyenda)
         Me.Controls.Add(panelBotones)
         Me.Controls.Add(tl)
     End Sub
@@ -129,7 +177,11 @@ Public Class FrmPopupInforme
         lblAnalisisVal.Text = _datos.Analisis
         lblCantMuestrasVal.Text = _datos.CantidadMuestras.ToString()
         lblTempVal.Text = _datos.Temperatura
+
         lblTipoLecheVal.Text = _datos.TipoLeche
+        lblTipoLecheVal.ForeColor = Color.Red
+        lblTipoLecheVal.AutoSize = True
+
         txtObsInternas.Text = _datos.ObservacionesInternas
         txtObsInforme.Text = _datos.ObservacionesInforme
 
@@ -146,6 +198,12 @@ Public Class FrmPopupInforme
         If dgvDetalle.Columns.Contains("Análisis") Then
             dgvDetalle.Columns("Análisis").AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill
         End If
+
+        ' Leyenda “Análisis solicitado”
+        ' Si tenés el subtipoinforme disponible en el form, pasalo. Si no, podés pasar String.Empty.
+        Dim subtipoinf As String = ""  ' ← reemplazá si lo tenés a mano
+        txtLeyenda.Text = ConstruirLeyendaAnalisis(_datos.Ficha, subtipoinf)
+
     End Sub
 
     Private Function BuildDetalleTable(detalle As String()) As DataTable
@@ -184,4 +242,80 @@ Public Class FrmPopupInforme
         Me.DialogResult = DialogResult.OK
         Me.Close()
     End Sub
+
+    ' Construye la leyenda “Análisis solicitado” para la ficha
+    Private Function ConstruirLeyendaAnalisis(ByVal ficha As Long, Optional ByVal subtipoinforme As String = "") As String
+        Dim sb As New System.Text.StringBuilder()
+        Dim na As New dNuevoAnalisis
+        Dim listana As New ArrayList
+        Dim listaanalisis As String = ""
+        Dim listaanalisis2 As String = ""
+        listana = na.listardistintosanalisis(ficha)
+
+        If Not listana Is Nothing Then
+            For Each na In listana
+
+                Dim cantidad As Integer = 0
+                Dim listacant As New ArrayList
+                listacant = na.listarxfichaxanalisis(ficha, na.ANALISIS)
+                cantidad = listacant.Count
+                Dim lp As New dListaPrecios
+                lp.ID = na.ANALISIS
+                lp = lp.buscar
+                listaanalisis = lp.ABREVIATURA & " ___/___/___ - _____ " & vbCrLf
+                listaanalisis2 = listaanalisis2 & cantidad & " " & lp.ABREVIATURA & " - "
+
+
+            Next
+            If subtipoinforme = "Semen y Venereas" Then
+                listaanalisis = "Evaluación biológica básica"
+            End If
+        Else
+            If subtipoinforme = "Brucelosis" Then
+                listaanalisis = "Brucelosis"
+            End If
+        End If
+
+        '***  LISTADO DE ANALISIS TERCERIZADOS *********************************************************************
+        Dim at As New dAnalisisTercerizado
+        Dim listanat As New ArrayList
+        Dim listaanalisist As String = ""
+        listanat = at.listardistintosanalisis(ficha)
+        If Not listanat Is Nothing Then
+            Dim dep1 As Integer = 0
+            Dim dep2 As Integer = 0
+            For Each at In listanat
+                Dim att As New dAnalisisTercerizadoTipo
+                att.ID = at.ANALISIS
+                att = att.buscar
+                If att.DEPENDE <> 0 Then
+                    dep1 = att.DEPENDE
+                    Dim at2 As New dAnalisisTercerizadoTipo
+                    at2.ID = att.DEPENDE
+                    at2 = at2.buscar
+                    If dep1 <> dep2 Then
+                        listaanalisist = listaanalisist & at2.NOMBRE & " - "
+                        at2 = Nothing
+                    End If
+                    dep2 = att.DEPENDE
+                Else
+                    listaanalisist = listaanalisist & att.NOMBRE & " - "
+                End If
+            Next
+        End If
+        If listaanalisist <> "" Then
+            listaanalisis = listaanalisis & " / OTROS LABORATORIOS: " & listaanalisist
+        End If
+        sb.AppendLine(listaanalisis)
+        sb.AppendLine(listaanalisis2)
+        Return sb.ToString().TrimEnd()
+    End Function
+
+    Private Function QuitarSufijo(ByVal s As String, ByVal suf As String) As String
+        If String.IsNullOrEmpty(s) OrElse String.IsNullOrEmpty(suf) Then Return s
+        If s.EndsWith(suf) Then
+            Return s.Substring(0, s.Length - suf.Length)
+        End If
+        Return s
+    End Function
 End Class

@@ -27,8 +27,6 @@ Partial Class FormImportacionArchivos
         Me.dgvArchivos = New System.Windows.Forms.DataGridView()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.btnInsertar = New System.Windows.Forms.Button()
-        Me.tbxCliente = New System.Windows.Forms.TextBox()
-        Me.Label3 = New System.Windows.Forms.Label()
         Me.tbxTipoInforme = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
         Me.tbxFechaIngreso = New System.Windows.Forms.TextBox()
@@ -82,25 +80,9 @@ Partial Class FormImportacionArchivos
         Me.btnInsertar.Text = "Insertar archivos"
         Me.btnInsertar.UseVisualStyleBackColor = True
         '
-        'tbxCliente
-        '
-        Me.tbxCliente.Location = New System.Drawing.Point(13, 76)
-        Me.tbxCliente.Name = "tbxCliente"
-        Me.tbxCliente.Size = New System.Drawing.Size(264, 22)
-        Me.tbxCliente.TabIndex = 6
-        '
-        'Label3
-        '
-        Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(12, 55)
-        Me.Label3.Name = "Label3"
-        Me.Label3.Size = New System.Drawing.Size(51, 17)
-        Me.Label3.TabIndex = 5
-        Me.Label3.Text = "Cliente"
-        '
         'tbxTipoInforme
         '
-        Me.tbxTipoInforme.Location = New System.Drawing.Point(13, 122)
+        Me.tbxTipoInforme.Location = New System.Drawing.Point(13, 99)
         Me.tbxTipoInforme.Name = "tbxTipoInforme"
         Me.tbxTipoInforme.Size = New System.Drawing.Size(264, 22)
         Me.tbxTipoInforme.TabIndex = 8
@@ -108,7 +90,7 @@ Partial Class FormImportacionArchivos
         'Label4
         '
         Me.Label4.AutoSize = True
-        Me.Label4.Location = New System.Drawing.Point(12, 101)
+        Me.Label4.Location = New System.Drawing.Point(12, 78)
         Me.Label4.Name = "Label4"
         Me.Label4.Size = New System.Drawing.Size(107, 17)
         Me.Label4.TabIndex = 7
@@ -169,8 +151,6 @@ Partial Class FormImportacionArchivos
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.tbxTipoInforme)
         Me.Controls.Add(Me.Label4)
-        Me.Controls.Add(Me.tbxCliente)
-        Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.btnInsertar)
         Me.Controls.Add(Me.Label2)
         Me.Controls.Add(Me.dgvArchivos)
@@ -188,8 +168,6 @@ Partial Class FormImportacionArchivos
     Friend WithEvents dgvArchivos As System.Windows.Forms.DataGridView
     Friend WithEvents Label2 As System.Windows.Forms.Label
     Friend WithEvents btnInsertar As System.Windows.Forms.Button
-    Friend WithEvents tbxCliente As System.Windows.Forms.TextBox
-    Friend WithEvents Label3 As System.Windows.Forms.Label
     Friend WithEvents tbxTipoInforme As System.Windows.Forms.TextBox
     Friend WithEvents Label4 As System.Windows.Forms.Label
     Friend WithEvents tbxFechaIngreso As System.Windows.Forms.TextBox

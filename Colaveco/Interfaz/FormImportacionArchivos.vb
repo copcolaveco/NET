@@ -103,13 +103,11 @@ Public Class FormImportacionArchivos
 
         If datos IsNot Nothing Then
             tbxFechaIngreso.Text = datos("fechaingreso").ToString()
-            tbxCliente.Text = datos("cliente").ToString()
             tbxTipoInforme.Text = datos("tipoinforme").ToString()
         Else
             MsgBox("Ficha no encontrada.", MsgBoxStyle.Information)
         End If
 
-        tbxCliente.ReadOnly = True
         tbxTipoInforme.ReadOnly = True
         tbxFechaIngreso.ReadOnly = True
     End Sub
@@ -117,7 +115,6 @@ Public Class FormImportacionArchivos
     Private Sub btnLimpiar_Click(sender As Object, e As EventArgs) Handles btnLimpiar.Click
         ' Limpiar campos de texto
         tbxFicha.Text = ""
-        tbxCliente.Text = ""
         tbxTipoInforme.Text = ""
         tbxFechaIngreso.Text = ""
 
@@ -126,94 +123,9 @@ Public Class FormImportacionArchivos
             dgvArchivos.Rows.Clear()
         End If
 
-        tbxCliente.ReadOnly = True
         tbxTipoInforme.ReadOnly = True
         tbxFechaIngreso.ReadOnly = True
     End Sub
-
-    'Private Sub btnImportar_Click(sender As Object, e As EventArgs) Handles btnImportar.Click
-
-    '     ficha = tbxFicha.Text
-    '     Dim tipoInforme As String = tbxTipoInforme.Text.Trim().ToUpper()
-
-    '     'Elimina los registros dependiendo el tipo de informe que sea de la tabla control/calidad
-    '     RestablecerEstadoFicha(ficha, tipoInforme)
-
-    '     For Each row As DataGridViewRow In dgvArchivos.Rows
-    '         If Convert.ToBoolean(row.Cells("Seleccionar").Value) Then
-    '             Dim rutaArchivo As String = Convert.ToString(row.Cells("Ruta").Value)
-    '             Dim nombreArchivo As String = Convert.ToString(row.Cells("Nombre").Value)
-    '             Dim origenArchivo As String = Convert.ToString(row.Cells("Origen").Value).Trim().ToUpper()
-    '             Dim extension As String = IO.Path.GetExtension(nombreArchivo).ToLower().Replace(".", "")
-
-    '             Select Case origenArchivo
-    '                 Case "DELTA600"
-    '                     Select Case tipoInforme
-    '                         Case "CONTROL LECHERO"
-    '                             Select Case extension
-    '                                 Case "csv"
-    '                                     ProcesarArchivoControlCsv(rutaArchivo, nombreArchivo)
-    '                                 Case "xls", "xlsx"
-    '                                     ProcesarArchivoControlXls(rutaArchivo, nombreArchivo)
-    '                                 Case Else
-    '                                     errores.Add("Error moviendo archivo " & nombreArchivo & " Extensión {extension} no soportada para CONTROL desde Delta600.")
-    '                             End Select
-
-    '                         Case "CALIDAD"
-    '                             Select Case extension
-    '                                 Case "fat"
-    '                                     ProcesarArchivoCalidadFat(rutaArchivo, nombreArchivo)
-    '                                 Case "xls", "xlsx", "csv"
-    '                                     ProcesarArchivoCalidadXlsCsv(rutaArchivo, nombreArchivo)
-    '                                 Case Else
-    '                                     errores.Add("Error moviendo archivo " & nombreArchivo & " Extensión {extension} no soportada para CALIDAD desde Delta600.")
-    '                             End Select
-
-    '                         Case Else
-    '                             errores.Add(nombreArchivo & " Tipo de informe no reconocido (esperado CALIDAD o CONTROL).")
-    '                     End Select
-
-    '                 Case "BENTLEY600"
-    '                     Select Case tipoInforme
-    '                         Case "CONTROL LECHERO"
-    '                             ProcesarArchivoControlB6(rutaArchivo, nombreArchivo)
-    '                         Case "CALIDAD"
-    '                             ProcesarArchivoCalidadB6Csv(rutaArchivo, nombreArchivo)
-    '                         Case Else
-    '                             errores.Add("Error moviendo archivo " & nombreArchivo & " Tipo de informe no reconocido (esperado CALIDAD o CONTROL).")
-    '                     End Select
-
-    '                 Case Else
-    '                     errores.Add(nombreArchivo & " Origen no reconocido. Debe ser 'Delta600' o 'Bentley600'.")
-    '             End Select
-    '         End If
-    '     Next
-
-    '     ' Mostrar resumen final
-    '     If exitos.Count > 0 Then
-    '         MessageBox.Show("Archivos procesados correctamente:" & Environment.NewLine & String.Join(Environment.NewLine, exitos.ToArray()), "Éxito", MessageBoxButtons.OK, MessageBoxIcon.Information)
-
-    '         tbxFicha.Text = ""
-    '         tbxCliente.Text = ""
-    '         tbxTipoInforme.Text = ""
-    '         tbxFechaIngreso.Text = ""
-
-    '         ' Limpiar la grilla de archivos
-    '         If dgvArchivos.Columns.Count > 0 Then
-    '             dgvArchivos.Rows.Clear()
-    '         End If
-
-    '         tbxCliente.ReadOnly = True
-    '         tbxTipoInforme.ReadOnly = True
-    '         tbxFechaIngreso.ReadOnly = True
-
-    '     End If
-
-    '     If errores.Count > 0 Then
-    '         MessageBox.Show("Se encontraron errores:" & Environment.NewLine & String.Join(Environment.NewLine, errores.ToArray()), "Errores", MessageBoxButtons.OK, MessageBoxIcon.Warning)
-    '     End If
-
-    ' End Sub
 
     Private Sub btnImportar_Click(sender As Object, e As EventArgs) Handles btnImportar.Click
         ficha = tbxFicha.Text
@@ -241,7 +153,6 @@ Public Class FormImportacionArchivos
 
         ' Limpieza y reseteo
         tbxFicha.Clear()
-        tbxCliente.Clear()
         tbxTipoInforme.Clear()
         tbxFechaIngreso.Clear()
 
@@ -249,7 +160,6 @@ Public Class FormImportacionArchivos
             dgvArchivos.Rows.Clear()
         End If
 
-        tbxCliente.ReadOnly = True
         tbxTipoInforme.ReadOnly = True
         tbxFechaIngreso.ReadOnly = True
     End Sub
@@ -283,7 +193,7 @@ Public Class FormImportacionArchivos
                                     PrepararYGenerarExcelControl(ficha)
                                 End If
 
-                            Case "CALIDAD"
+                            Case "CALIDAD DE LECHE"
                                 Select Case extension
                                     Case "fat"
                                         ProcesarArchivoCalidadFat(archivo.Ruta, archivo.Nombre)
@@ -310,10 +220,10 @@ Public Class FormImportacionArchivos
                                 '    PrepararYGenerarExcelControl(ficha)
                                 'End If
 
-                            Case "CALIDAD"
+                            Case "CALIDAD DE LECHE"
                                 ProcesarArchivoCalidadB6Csv(archivo.Ruta, archivo.Nombre)
                                 procesadoCorrectamente = True
-                                
+
                                 'If procesadoCorrectamente Then
                                 '    If VerificarDatosCalidad(ficha) Then
                                 '        GenerarExcelCalidad(archivo)
@@ -360,6 +270,36 @@ Public Class FormImportacionArchivos
         Dim lactosa As Double = 0
         Dim st As Double = 0
         Dim rc As Integer = 0
+
+        ' ----- Perfil de ácidos grasos -----
+        Dim SFA As Double = 0
+        Dim UFA As Double = 0
+        Dim MUFA As Double = 0
+        Dim PUFA As Double = 0
+
+        Dim C16_0 As Double = 0
+        Dim C18_0 As Double = 0
+        Dim C18_1C9 As Double = 0
+
+        ' ----- Otros metabolitos -----
+        Dim Acetona As Double = 0
+
+        ' ----- Grasas especiales -----
+        Dim CisFat As Double = 0
+        Dim TransFat As Double = 0
+
+        ' ----- Fracciones FA -----
+        Dim DenovoFA As Double = 0
+        Dim MixedFA As Double = 0
+        Dim PreformedFA As Double = 0
+
+        Dim DenovoRel As Double = 0
+        Dim MixedRel As Double = 0
+        Dim PreformedRel As Double = 0
+
+        ' ----- Final -----
+        Dim NEFA As Double = 0
+
         Dim ficha As String = ""
         Dim ficha2 As String = ""
         Dim ficha3 As String = ""
@@ -400,12 +340,42 @@ Public Class FormImportacionArchivos
                     Double.TryParse(Trim(Mid(Texto, 45, 9)), st)
                     Integer.TryParse(Trim(Mid(Texto, 54, 10)), rc)
 
+                    ' --- Perfil de ácidos grasos ---
+                    Double.TryParse(Texto(23), SFA)
+                    Double.TryParse(Texto(24), UFA)
+                    Double.TryParse(Texto(25), MUFA)
+                    Double.TryParse(Texto(26), PUFA)
+
+                    Double.TryParse(Texto(27), C16_0)
+                    Double.TryParse(Texto(28), C18_0)
+                    Double.TryParse(Texto(29), C18_1C9)
+
+                    ' --- Otros metabolitos ---
+                    Double.TryParse(Texto(31), Acetona)
+
+                    ' --- Grasas especiales ---
+                    Double.TryParse(Texto(32), CisFat)
+                    Double.TryParse(Texto(33), TransFat)
+
+                    ' --- Fracciones FA ---
+                    Double.TryParse(Texto(34), DenovoFA)
+                    Double.TryParse(Texto(35), MixedFA)
+                    Double.TryParse(Texto(36), PreformedFA)
+
+                    Double.TryParse(Texto(37), DenovoRel)
+                    Double.TryParse(Texto(38), MixedRel)
+                    Double.TryParse(Texto(39), PreformedRel)
+
+                    ' --- Final ---
+                    Double.TryParse(Texto(40), NEFA)
+
                     Dim c As New dImpCalidad()
                     c.FICHA = ficha3
                     c.FECHA = fecha
                     c.EQUIPO = "bentley"
                     c.PRODUCTO = "leche"
                     c.MUESTRA = matricula
+
                     c.RC = rc
                     c.GRASA = grasa
                     c.PROTEINA = proteina
@@ -417,6 +387,33 @@ Public Class FormImportacionArchivos
                     c.CASEINA = -1
                     c.DENSIDAD = -1
                     c.PH = -1
+
+                    ' -------------------
+                    ' Nuevos campos:
+                    ' -------------------
+                    c.SFA = SFA
+                    c.UFA = UFA
+                    c.MUFA = MUFA
+                    c.PUFA = PUFA
+
+                    c.C16_0 = C16_0
+                    c.C18_0 = C18_0
+                    c.C18_1C9 = C18_1C9
+
+                    c.Acetona = Acetona
+                    c.CisFat = CisFat
+                    c.TransFat = TransFat
+
+                    c.DenovoFA = DenovoFA
+                    c.MixedFA = MixedFA
+                    c.PreformedFA = PreformedFA
+
+                    c.DenovoRel = DenovoRel
+                    c.MixedRel = MixedRel
+                    c.PreformedRel = PreformedRel
+
+                    c.NEFA = NEFA
+
                     c.guardar()
 
                     cuentalinea += 1
@@ -506,11 +503,41 @@ Public Class FormImportacionArchivos
             Dim densidad As Double = 0
             Dim ph As Double = 0
 
+            ' ----- Perfil de ácidos grasos -----
+            Dim SFA As Double = 0
+            Dim UFA As Double = 0
+            Dim MUFA As Double = 0
+            Dim PUFA As Double = 0
+
+            Dim C16_0 As Double = 0
+            Dim C18_0 As Double = 0
+            Dim C18_1C9 As Double = 0
+
+            ' ----- Otros metabolitos -----
+            Dim Acetona As Double = 0
+
+            ' ----- Grasas especiales -----
+            Dim CisFat As Double = 0
+            Dim TransFat As Double = 0
+
+            ' ----- Fracciones FA -----
+            Dim DenovoFA As Double = 0
+            Dim MixedFA As Double = 0
+            Dim PreformedFA As Double = 0
+
+            Dim DenovoRel As Double = 0
+            Dim MixedRel As Double = 0
+            Dim PreformedRel As Double = 0
+
+            ' ----- Final -----
+            Dim NEFA As Double = 0
+
+
             If extension = "csv" Or extension = "CSV" Then
                 Dim c As New dImpCalidad()
                 Do
                     sLine = objReader.ReadLine()
-                    If sLine <> " " And sLine <> "" Then
+                    If sLine IsNot Nothing AndAlso Trim(sLine) <> "" Then
                         If linea = 3 Then
                             arraytext = Split(sLine, ";")
                             If arraytext.Length < 11 Then arraytext = Split(sLine, ";")
@@ -553,6 +580,75 @@ Public Class FormImportacionArchivos
                                     If arraytext.Length > 22 Then
                                         If Trim(arraytext(22)) <> "" AndAlso Trim(arraytext(22)) <> "-" Then ph = arraytext(22)
                                     End If
+
+                                    If arraytext.Length > 23 Then
+                                        If Trim(arraytext(23)) <> "" AndAlso Trim(arraytext(23)) <> "-" Then SFA = arraytext(23)
+                                    End If
+
+                                    If arraytext.Length > 24 Then
+                                        If Trim(arraytext(24)) <> "" AndAlso Trim(arraytext(24)) <> "-" Then UFA = arraytext(24)
+                                    End If
+
+                                    If arraytext.Length > 25 Then
+                                        If Trim(arraytext(25)) <> "" AndAlso Trim(arraytext(24)) <> "-" Then MUFA = arraytext(25)
+                                    End If
+
+                                    If arraytext.Length > 26 Then
+                                        If Trim(arraytext(26)) <> "" AndAlso Trim(arraytext(26)) <> "-" Then PUFA = arraytext(26)
+                                    End If
+
+                                    If arraytext.Length > 27 Then
+                                        If Trim(arraytext(27)) <> "" AndAlso Trim(arraytext(27)) <> "-" Then C16_0 = arraytext(27)
+                                    End If
+
+                                    If arraytext.Length > 28 Then
+                                        If Trim(arraytext(28)) <> "" AndAlso Trim(arraytext(27)) <> "-" Then C18_0 = arraytext(28)
+                                    End If
+
+                                    If arraytext.Length > 29 Then
+                                        If Trim(arraytext(29)) <> "" AndAlso Trim(arraytext(27)) <> "-" Then C18_1C9 = arraytext(29)
+                                    End If
+
+                                    If arraytext.Length > 31 Then
+                                        If Trim(arraytext(31)) <> "" AndAlso Trim(arraytext(31)) <> "-" Then Acetona = arraytext(31)
+                                    End If
+
+                                    If arraytext.Length > 32 Then
+                                        If Trim(arraytext(32)) <> "" AndAlso Trim(arraytext(32)) <> "-" Then CisFat = arraytext(32)
+                                    End If
+
+                                    If arraytext.Length > 33 Then
+                                        If Trim(arraytext(33)) <> "" AndAlso Trim(arraytext(33)) <> "-" Then TransFat = arraytext(33)
+                                    End If
+
+                                    If arraytext.Length > 34 Then
+                                        If Trim(arraytext(34)) <> "" AndAlso Trim(arraytext(34)) <> "-" Then DenovoFA = arraytext(34)
+                                    End If
+
+                                    If arraytext.Length > 35 Then
+                                        If Trim(arraytext(35)) <> "" AndAlso Trim(arraytext(35)) <> "-" Then MixedFA = arraytext(35)
+                                    End If
+
+                                    If arraytext.Length > 36 Then
+                                        If Trim(arraytext(36)) <> "" AndAlso Trim(arraytext(36)) <> "-" Then PreformedFA = arraytext(36)
+                                    End If
+
+                                    If arraytext.Length > 37 Then
+                                        If Trim(arraytext(37)) <> "" AndAlso Trim(arraytext(37)) <> "-" Then DenovoRel = arraytext(37)
+                                    End If
+
+                                    If arraytext.Length > 38 Then
+                                        If Trim(arraytext(38)) <> "" AndAlso Trim(arraytext(38)) <> "-" Then MixedRel = arraytext(38)
+                                    End If
+
+                                    If arraytext.Length > 39 Then
+                                        If Trim(arraytext(39)) <> "" AndAlso Trim(arraytext(39)) <> "-" Then PreformedRel = arraytext(39)
+                                    End If
+
+                                    If arraytext.Length > 40 Then
+                                        If Trim(arraytext(40)) <> "" AndAlso Trim(arraytext(40)) <> "-" Then NEFA = arraytext(40)
+                                    End If
+
                                 Catch ex As Exception
                                     MsgBox("Error en archivo: " & nombrearchivo & ", línea: " & linea)
                                     Exit Sub
@@ -576,20 +672,49 @@ Public Class FormImportacionArchivos
                                 Dim fecha As String = Format(Now(), "yyyy-MM-dd")
                                 c.FICHA = ficha3
                                 c.FECHA = fecha
+
                                 c.EQUIPO = "delta2"
-                                c.PRODUCTO = producto
+                                c.PRODUCTO = "leche"
                                 c.MUESTRA = matricula
+
                                 c.RC = rc
                                 c.GRASA = grasa
                                 c.PROTEINA = proteina
                                 c.LACTOSA = lactosa
                                 c.ST = st
-                                c.CRIOSCOPIA = crioscopia
-                                c.UREA = urea
-                                c.PROTEINAV = proteinav
-                                c.CASEINA = caseina
-                                c.DENSIDAD = densidad
-                                c.PH = ph
+                                c.CRIOSCOPIA = -1
+                                c.UREA = -1
+                                c.PROTEINAV = -1
+                                c.CASEINA = -1
+                                c.DENSIDAD = -1
+                                c.PH = -1
+
+                                ' -------------------
+                                ' Nuevos campos:
+                                ' -------------------
+                                c.SFA = SFA
+                                c.UFA = UFA
+                                c.MUFA = MUFA
+                                c.PUFA = PUFA
+
+                                c.C16_0 = C16_0
+                                c.C18_0 = C18_0
+                                c.C18_1C9 = C18_1C9
+
+                                c.Acetona = Acetona
+                                c.CisFat = CisFat
+                                c.TransFat = TransFat
+
+                                c.DenovoFA = DenovoFA
+                                c.MixedFA = MixedFA
+                                c.PreformedFA = PreformedFA
+
+                                c.DenovoRel = DenovoRel
+                                c.MixedRel = MixedRel
+                                c.PreformedRel = PreformedRel
+
+                                c.NEFA = NEFA
+
                                 c.guardar()
 
                                 ' Verifica si actualizar fecha proceso
@@ -610,7 +735,7 @@ Public Class FormImportacionArchivos
                         End If
                     End If
                     linea += 1
-                Loop
+                Loop While sLine IsNot Nothing
                 objReader.Close()
 
                 'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
@@ -685,6 +810,37 @@ Public Class FormImportacionArchivos
         Dim ph As Double = 0
         Dim bhb As Double = 0
 
+        ' ----- Perfil de ácidos grasos -----
+        Dim SFA As Double = 0
+        Dim UFA As Double = 0
+        Dim MUFA As Double = 0
+        Dim PUFA As Double = 0
+
+        Dim C16_0 As Double = 0
+        Dim C18_0 As Double = 0
+        Dim C18_1C9 As Double = 0
+
+        ' ----- Otros metabolitos -----
+        Dim Acetona As Double = 0
+
+        ' ----- Grasas especiales -----
+        Dim CisFat As Double = 0
+        Dim TransFat As Double = 0
+
+        ' ----- Fracciones FA -----
+        Dim DenovoFA As Double = 0
+        Dim MixedFA As Double = 0
+        Dim PreformedFA As Double = 0
+
+        Dim DenovoRel As Double = 0
+        Dim MixedRel As Double = 0
+        Dim PreformedRel As Double = 0
+
+        ' ----- Final -----
+        Dim NEFA As Double = 0
+
+
+
         If extension = "csv" Or extension = "CSV" Then
             Dim c As New dImpControl()
             Do
@@ -719,6 +875,31 @@ Public Class FormImportacionArchivos
                             ph = ValOrDefault(arraytext(22))
                             bhb = ValOrDefault(arraytext(30))
                         End If
+
+                        SFA = ValOrDefault(arraytext(23))
+                        UFA = ValOrDefault(arraytext(24))
+                        MUFA = ValOrDefault(arraytext(25))
+                        PUFA = ValOrDefault(arraytext(26))
+
+                        C16_0 = ValOrDefault(arraytext(27))
+                        C18_0 = ValOrDefault(arraytext(28))
+                        C18_1C9 = ValOrDefault(arraytext(29))
+
+                        Acetona = ValOrDefault(arraytext(31))
+
+                        CisFat = ValOrDefault(arraytext(32))
+                        TransFat = ValOrDefault(arraytext(33))
+
+                        DenovoFA = ValOrDefault(arraytext(34))
+                        MixedFA = ValOrDefault(arraytext(35))
+                        PreformedFA = ValOrDefault(arraytext(36))
+
+                        DenovoRel = ValOrDefault(arraytext(37))
+                        MixedRel = ValOrDefault(arraytext(38))
+                        PreformedRel = ValOrDefault(arraytext(39))
+
+                        NEFA = ValOrDefault(arraytext(40))
+
 
                         ficha2 = Mid(nombreArchivo, Len(nombreArchivo) - 21, 1)
                         ficha3 = Mid(nombreArchivo, 1, 1)
@@ -760,8 +941,33 @@ Public Class FormImportacionArchivos
                             .DENSIDAD = densidad
                             .PH = ph
                             .BHB = bhb
+
+                            .SFA = SFA
+                            .UFA = UFA
+                            .MUFA = MUFA
+                            .PUFA = PUFA
+
+                            .C16_0 = C16_0
+                            .C18_0 = C18_0
+                            .C18_1C9 = C18_1C9
+
+                            .Acetona = Acetona
+                            .CisFat = CisFat
+                            .TransFat = TransFat
+
+                            .DenovoFA = DenovoFA
+                            .MixedFA = MixedFA
+                            .PreformedFA = PreformedFA
+
+                            .DenovoRel = DenovoRel
+                            .MixedRel = MixedRel
+                            .PreformedRel = PreformedRel
+
+                            .NEFA = NEFA
+
                             .guardar()
                         End With
+
 
                         Dim sa2 As New dSolicitudAnalisis With {.ID = ficha3}
                         sa2.actualizarfechaproceso(fecha)
@@ -816,6 +1022,35 @@ Public Class FormImportacionArchivos
         Dim ficha2 As String = ""
         Dim ficha3 As String = ""
         Dim bandera As Integer = 0
+
+        ' ----- Perfil de ácidos grasos -----
+        Dim SFA As Double = 0
+        Dim UFA As Double = 0
+        Dim MUFA As Double = 0
+        Dim PUFA As Double = 0
+
+        Dim C16_0 As Double = 0
+        Dim C18_0 As Double = 0
+        Dim C18_1C9 As Double = 0
+
+        ' ----- Otros metabolitos -----
+        Dim Acetona As Double = 0
+
+        ' ----- Grasas especiales -----
+        Dim CisFat As Double = 0
+        Dim TransFat As Double = 0
+
+        ' ----- Fracciones FA -----
+        Dim DenovoFA As Double = 0
+        Dim MixedFA As Double = 0
+        Dim PreformedFA As Double = 0
+
+        Dim DenovoRel As Double = 0
+        Dim MixedRel As Double = 0
+        Dim PreformedRel As Double = 0
+
+        ' ----- Final -----
+        Dim NEFA As Double = 0
 
         Try
             Dim Arch As String = Path.Combine(rutaArchivo, nombreArchivo)
@@ -876,6 +1111,132 @@ Public Class FormImportacionArchivos
                 Catch
                     bandera = 2
                 End Try
+
+                ' ---- SFA ----
+                Try
+                    SFA = If(Trim(x1hoja.Cells(i, 23).formula) <> "", CDbl(x1hoja.Cells(i, 23).value), -1)
+                Catch
+                    SFA = -1
+                End Try
+
+                ' ---- UFA ----
+                Try
+                    UFA = If(Trim(x1hoja.Cells(i, 24).formula) <> "", CDbl(x1hoja.Cells(i, 24).value), -1)
+                Catch
+                    UFA = -1
+                End Try
+
+                ' ---- MUFA ----
+                Try
+                    MUFA = If(Trim(x1hoja.Cells(i, 25).formula) <> "", CDbl(x1hoja.Cells(i, 25).value), -1)
+                Catch
+                    MUFA = -1
+                End Try
+
+                ' ---- PUFA ----
+                Try
+                    PUFA = If(Trim(x1hoja.Cells(i, 26).formula) <> "", CDbl(x1hoja.Cells(i, 26).value), -1)
+                Catch
+                    PUFA = -1
+                End Try
+
+
+                ' ---- C16:0 ----
+                Try
+                    C16_0 = If(Trim(x1hoja.Cells(i, 27).formula) <> "", CDbl(x1hoja.Cells(i, 27).value), -1)
+                Catch
+                    C16_0 = -1
+                End Try
+
+                ' ---- C18:0 ----
+                Try
+                    C18_0 = If(Trim(x1hoja.Cells(i, 28).formula) <> "", CDbl(x1hoja.Cells(i, 28).value), -1)
+                Catch
+                    C18_0 = -1
+                End Try
+
+                ' ---- C18:1C9 ----
+                Try
+                    C18_1C9 = If(Trim(x1hoja.Cells(i, 29).formula) <> "", CDbl(x1hoja.Cells(i, 29).value), -1)
+                Catch
+                    C18_1C9 = -1
+                End Try
+
+
+                ' ---- Acetona ----
+                Try
+                    Acetona = If(Trim(x1hoja.Cells(i, 30).formula) <> "", CDbl(x1hoja.Cells(i, 30).value), -1)
+                Catch
+                    Acetona = -1
+                End Try
+
+
+                ' ---- Cis Fat ----
+                Try
+                    CisFat = If(Trim(x1hoja.Cells(i, 31).formula) <> "", CDbl(x1hoja.Cells(i, 31).value), -1)
+                Catch
+                    CisFat = -1
+                End Try
+
+                ' ---- Trans Fat ----
+                Try
+                    TransFat = If(Trim(x1hoja.Cells(i, 32).formula) <> "", CDbl(x1hoja.Cells(i, 32).value), -1)
+                Catch
+                    TransFat = -1
+                End Try
+
+
+                ' ---- Denovo FA ----
+                Try
+                    DenovoFA = If(Trim(x1hoja.Cells(i, 33).formula) <> "", CDbl(x1hoja.Cells(i, 33).value), -1)
+                Catch
+                    DenovoFA = -1
+                End Try
+
+                ' ---- Mixed FA ----
+                Try
+                    MixedFA = If(Trim(x1hoja.Cells(i, 34).formula) <> "", CDbl(x1hoja.Cells(i, 34).value), -1)
+                Catch
+                    MixedFA = -1
+                End Try
+
+                ' ---- Preformed FA ----
+                Try
+                    PreformedFA = If(Trim(x1hoja.Cells(i, 35).formula) <> "", CDbl(x1hoja.Cells(i, 35).value), -1)
+                Catch
+                    PreformedFA = -1
+                End Try
+
+
+                ' ---- Denovo Rel ----
+                Try
+                    DenovoRel = If(Trim(x1hoja.Cells(i, 37).formula) <> "", CDbl(x1hoja.Cells(i, 37).value), -1)
+                Catch
+                    DenovoRel = -1
+                End Try
+
+                ' ---- Mixed Rel ----
+                Try
+                    MixedRel = If(Trim(x1hoja.Cells(i, 38).formula) <> "", CDbl(x1hoja.Cells(i, 38).value), -1)
+                Catch
+                    MixedRel = -1
+                End Try
+
+                ' ---- Preformed Rel ----
+                Try
+                    PreformedRel = If(Trim(x1hoja.Cells(i, 39).formula) <> "", CDbl(x1hoja.Cells(i, 39).value), -1)
+                Catch
+                    PreformedRel = -1
+                End Try
+
+
+                ' ---- NEFA ----
+                Try
+                    NEFA = If(Trim(x1hoja.Cells(i, 40).formula) <> "", CDbl(x1hoja.Cells(i, 40).value), -1)
+                Catch
+                    NEFA = -1
+                End Try
+
 
                 ' Guardar según bandera
                 If bandera = 0 Then
@@ -1027,7 +1388,6 @@ Public Class FormImportacionArchivos
         MsgBox(mensajeFinal, MsgBoxStyle.Information, "Resultado final")
     End Sub
 
-
     ' Método para liberar objetos COM:
     Private Sub ReleaseComObject(ByRef obj As Object)
         Try
@@ -1053,17 +1413,14 @@ Public Class FormImportacionArchivos
         If extension.ToLower() = "csv" Then
             Dim objReader As New StreamReader(rutaArchivo + "\" + nombreArchivo)
             Dim sLine As String = ""
-            Dim arraytext() As String
+
+
             Dim matricula As String = ""
             Dim grasa As Double = 0
             Dim proteina As Double = 0
             Dim lactosa As Double = 0
             Dim st As Double = 0
             Dim rc As Integer = 0
-            Dim ficha As String = ""
-            Dim ficha2 As String = ""
-            Dim ficha3 As String = ""
-            Dim equipo As String = ""
             Dim producto As String = ""
             Dim crioscopia As Integer = 0
             Dim urea As Integer = 0
@@ -1071,7 +1428,43 @@ Public Class FormImportacionArchivos
             Dim caseina As Double = 0
             Dim densidad As Double = 0
             Dim ph As Double = 0
+            Dim bhb As Double = 0
 
+            ' ----- Perfil de ácidos grasos -----
+            Dim SFA As Double = 0
+            Dim UFA As Double = 0
+            Dim MUFA As Double = 0
+            Dim PUFA As Double = 0
+
+            Dim C16_0 As Double = 0
+            Dim C18_0 As Double = 0
+            Dim C18_1C9 As Double = 0
+
+            ' ----- Otros metabolitos -----
+            Dim Acetone As Double = 0
+
+            ' ----- Grasas especiales -----
+            Dim CisFat As Double = 0
+            Dim TransFat As Double = 0
+
+            ' ----- Fracciones FA -----
+            Dim DenovoFA As Double = 0
+            Dim MixedFA As Double = 0
+            Dim PreformedFA As Double = 0
+
+            Dim DenovoRel As Double = 0
+            Dim MixedRel As Double = 0
+            Dim PreformedRel As Double = 0
+
+            ' ----- Final -----
+            Dim NEFA As Double = 0
+
+            Dim arraytext() As String
+         
+            Dim ficha As String = ""
+            Dim ficha2 As String = ""
+            Dim ficha3 As String = ""
+            Dim equipo As String = ""
             Dim c As New dImpCalidad()
 
             Do
@@ -1116,6 +1509,12 @@ Public Class FormImportacionArchivos
                             caseina = -1
                             densidad = -1
                             ph = -1
+                            SFA = -1 : UFA = -1 : MUFA = -1 : PUFA = -1
+                            C16_0 = -1 : C18_0 = -1 : C18_1C9 = -1
+                            bhb = -1 : Acetone = -1 : CisFat = -1 : TransFat = -1
+                            DenovoFA = -1 : MixedFA = -1 : PreformedFA = -1
+                            DenovoRel = -1 : MixedRel = -1 : PreformedRel = -1
+                            NEFA = -1
                         Else
                             If Trim(arraytext(11)) = "" Or Trim(arraytext(11)) = "-" Then
                                 grasa = -1
@@ -1231,6 +1630,115 @@ Public Class FormImportacionArchivos
                                     End Try
                                 End If
                             End If
+
+                            If arraytext.Length > 23 Then
+                                SFA = If(Trim(arraytext(23)) = "" Or Trim(arraytext(23)) = "-", -1, ValOrDefault(arraytext(23)))
+                            Else
+                                SFA = -1
+                            End If
+
+                            If arraytext.Length > 24 Then
+                                UFA = If(Trim(arraytext(24)) = "" Or Trim(arraytext(24)) = "-", -1, ValOrDefault(arraytext(24)))
+                            Else
+                                UFA = -1
+                            End If
+
+                            If arraytext.Length > 25 Then
+                                MUFA = If(Trim(arraytext(25)) = "" Or Trim(arraytext(25)) = "-", -1, ValOrDefault(arraytext(25)))
+                            Else
+                                MUFA = -1
+                            End If
+
+                            If arraytext.Length > 26 Then
+                                PUFA = If(Trim(arraytext(26)) = "" Or Trim(arraytext(26)) = "-", -1, ValOrDefault(arraytext(26)))
+                            Else
+                                PUFA = -1
+                            End If
+
+                            If arraytext.Length > 27 Then
+                                C16_0 = If(Trim(arraytext(27)) = "" Or Trim(arraytext(27)) = "-", -1, ValOrDefault(arraytext(27)))
+                            Else
+                                C16_0 = -1
+                            End If
+
+                            If arraytext.Length > 28 Then
+                                C18_0 = If(Trim(arraytext(28)) = "" Or Trim(arraytext(28)) = "-", -1, ValOrDefault(arraytext(28)))
+                            Else
+                                C18_0 = -1
+                            End If
+
+                            If arraytext.Length > 29 Then
+                                C18_1C9 = If(Trim(arraytext(29)) = "" Or Trim(arraytext(29)) = "-", -1, ValOrDefault(arraytext(29)))
+                            Else
+                                C18_1C9 = -1
+                            End If
+
+                            If arraytext.Length > 30 Then
+                                bhb = If(Trim(arraytext(30)) = "" Or Trim(arraytext(30)) = "-", -1, ValOrDefault(arraytext(30)))
+                            Else
+                                bhb = -1
+                            End If
+
+                            If arraytext.Length > 31 Then
+                                Acetone = If(Trim(arraytext(31)) = "" Or Trim(arraytext(31)) = "-", -1, ValOrDefault(arraytext(31)))
+                            Else
+                                Acetone = -1
+                            End If
+
+                            If arraytext.Length > 32 Then
+                                CisFat = If(Trim(arraytext(32)) = "" Or Trim(arraytext(32)) = "-", -1, ValOrDefault(arraytext(32)))
+                            Else
+                                CisFat = -1
+                            End If
+
+                            If arraytext.Length > 33 Then
+                                TransFat = If(Trim(arraytext(33)) = "" Or Trim(arraytext(33)) = "-", -1, ValOrDefault(arraytext(33)))
+                            Else
+                                TransFat = -1
+                            End If
+
+                            If arraytext.Length > 34 Then
+                                DenovoFA = If(Trim(arraytext(34)) = "" Or Trim(arraytext(34)) = "-", -1, ValOrDefault(arraytext(34)))
+                            Else
+                                DenovoFA = -1
+                            End If
+
+                            If arraytext.Length > 35 Then
+                                MixedFA = If(Trim(arraytext(35)) = "" Or Trim(arraytext(35)) = "-", -1, ValOrDefault(arraytext(35)))
+                            Else
+                                MixedFA = -1
+                            End If
+
+                            If arraytext.Length > 36 Then
+                                PreformedFA = If(Trim(arraytext(36)) = "" Or Trim(arraytext(36)) = "-", -1, ValOrDefault(arraytext(36)))
+                            Else
+                                PreformedFA = -1
+                            End If
+
+                            If arraytext.Length > 37 Then
+                                DenovoRel = If(Trim(arraytext(37)) = "" Or Trim(arraytext(37)) = "-", -1, ValOrDefault(arraytext(37)))
+                            Else
+                                DenovoRel = -1
+                            End If
+
+                            If arraytext.Length > 38 Then
+                                MixedRel = If(Trim(arraytext(38)) = "" Or Trim(arraytext(38)) = "-", -1, ValOrDefault(arraytext(38)))
+                            Else
+                                MixedRel = -1
+                            End If
+
+                            If arraytext.Length > 39 Then
+                                PreformedRel = If(Trim(arraytext(39)) = "" Or Trim(arraytext(39)) = "-", -1, ValOrDefault(arraytext(39)))
+                            Else
+                                PreformedRel = -1
+                            End If
+
+                            If arraytext.Length > 40 Then
+                                NEFA = If(Trim(arraytext(40)) = "" Or Trim(arraytext(40)) = "-", -1, ValOrDefault(arraytext(40)))
+                            Else
+                                NEFA = -1
+                            End If
+
                         End If
 
                         ficha2 = Mid(nombreArchivo, Len(nombreArchivo) - 21, 1)
@@ -1275,24 +1783,50 @@ Public Class FormImportacionArchivos
                         Dim fechaoriginal As Date = Now()
                         Dim fecha As String = Format(fechaoriginal, "yyyy-MM-dd")
 
-                        c.FICHA = ficha3
-                        c.FECHA = fecha
-                        c.EQUIPO = "Bentley600"
-                        c.PRODUCTO = producto
-                        c.MUESTRA = matricula
-                        c.RC = rc
-                        c.GRASA = grasa
-                        c.PROTEINA = proteina
-                        c.LACTOSA = lactosa
-                        c.ST = st
-                        c.CRIOSCOPIA = crioscopia
-                        c.UREA = urea
-                        c.PROTEINAV = proteinav
-                        c.CASEINA = caseina
-                        c.DENSIDAD = densidad
-                        c.PH = ph
+                        With c
+                            .FICHA = ficha3
+                            .FECHA = fecha
+                            .EQUIPO = "Bentley600"
+                            .PRODUCTO = producto
+                            .MUESTRA = matricula
+                            .RC = rc
+                            .GRASA = grasa
+                            .PROTEINA = proteina
+                            .LACTOSA = lactosa
+                            .ST = st
+                            .CRIOSCOPIA = crioscopia
+                            .UREA = urea
+                            .PROTEINAV = proteinav
+                            .CASEINA = caseina
+                            .DENSIDAD = densidad
+                            .PH = ph
+                            .BHB = bhb
 
-                        c.guardar()
+                            .SFA = SFA
+                            .UFA = UFA
+                            .MUFA = MUFA
+                            .PUFA = PUFA
+
+                            .C16_0 = C16_0
+                            .C18_0 = C18_0
+                            .C18_1C9 = C18_1C9
+
+                            .Acetona = Acetone
+                            .CisFat = CisFat
+                            .TransFat = TransFat
+
+                            .DenovoFA = DenovoFA
+                            .MixedFA = MixedFA
+                            .PreformedFA = PreformedFA
+
+                            .DenovoRel = DenovoRel
+                            .MixedRel = MixedRel
+                            .PreformedRel = PreformedRel
+
+                            .NEFA = NEFA
+
+                            .guardar()
+                        End With
 
                         Dim csm As New dCalidadSolicitudMuestra
                         Dim listacsm As New ArrayList
@@ -1414,6 +1948,35 @@ Public Class FormImportacionArchivos
             Dim ph As Double = 0
             Dim bhb As Double = 0
 
+            ' ----- Perfil de ácidos grasos -----
+            Dim SFA As Double = 0
+            Dim UFA As Double = 0
+            Dim MUFA As Double = 0
+            Dim PUFA As Double = 0
+
+            Dim C16_0 As Double = 0
+            Dim C18_0 As Double = 0
+            Dim C18_1C9 As Double = 0
+
+            ' ----- Otros metabolitos -----
+            Dim Acetone As Double = 0
+
+            ' ----- Grasas especiales -----
+            Dim CisFat As Double = 0
+            Dim TransFat As Double = 0
+
+            ' ----- Fracciones FA -----
+            Dim DenovoFA As Double = 0
+            Dim MixedFA As Double = 0
+            Dim PreformedFA As Double = 0
+
+            Dim DenovoRel As Double = 0
+            Dim MixedRel As Double = 0
+            Dim PreformedRel As Double = 0
+
+            ' ----- Final -----
+            Dim NEFA As Double = 0
+
             Dim c As New dImpControl()
 
             Do
@@ -1456,6 +2019,114 @@ Public Class FormImportacionArchivos
                             Try : ph = If(Trim(arraytext(22)) = "" Or Trim(arraytext(22)) = "-", -1, CDbl(arraytext(22))) : Catch : ph = -1 : End Try
                             Try : bhb = If(Trim(arraytext(30)) = "" Or Trim(arraytext(30)) = "-", -1, CDbl(arraytext(30))) : Catch : bhb = -1 : End Try
 
+                            If arraytext.Length > 23 Then
+                                SFA = If(Trim(arraytext(23)) = "" Or Trim(arraytext(23)) = "-", -1, ValOrDefault(arraytext(23)))
+                            Else
+                                SFA = -1
+                            End If
+
+                            If arraytext.Length > 24 Then
+                                UFA = If(Trim(arraytext(24)) = "" Or Trim(arraytext(24)) = "-", -1, ValOrDefault(arraytext(24)))
+                            Else
+                                UFA = -1
+                            End If
+
+                            If arraytext.Length > 25 Then
+                                MUFA = If(Trim(arraytext(25)) = "" Or Trim(arraytext(25)) = "-", -1, ValOrDefault(arraytext(25)))
+                            Else
+                                MUFA = -1
+                            End If
+
+                            If arraytext.Length > 26 Then
+                                PUFA = If(Trim(arraytext(26)) = "" Or Trim(arraytext(26)) = "-", -1, ValOrDefault(arraytext(26)))
+                            Else
+                                PUFA = -1
+                            End If
+
+                            If arraytext.Length > 27 Then
+                                C16_0 = If(Trim(arraytext(27)) = "" Or Trim(arraytext(27)) = "-", -1, ValOrDefault(arraytext(27)))
+                            Else
+                                C16_0 = -1
+                            End If
+
+                            If arraytext.Length > 28 Then
+                                C18_0 = If(Trim(arraytext(28)) = "" Or Trim(arraytext(28)) = "-", -1, ValOrDefault(arraytext(28)))
+                            Else
+                                C18_0 = -1
+                            End If
+
+                            If arraytext.Length > 29 Then
+                                C18_1C9 = If(Trim(arraytext(29)) = "" Or Trim(arraytext(29)) = "-", -1, ValOrDefault(arraytext(29)))
+                            Else
+                                C18_1C9 = -1
+                            End If
+
+                            If arraytext.Length > 30 Then
+                                bhb = If(Trim(arraytext(30)) = "" Or Trim(arraytext(30)) = "-", -1, ValOrDefault(arraytext(30)))
+                            Else
+                                bhb = -1
+                            End If
+
+                            If arraytext.Length > 31 Then
+                                Acetone = If(Trim(arraytext(31)) = "" Or Trim(arraytext(31)) = "-", -1, ValOrDefault(arraytext(31)))
+                            Else
+                                Acetone = -1
+                            End If
+
+                            If arraytext.Length > 32 Then
+                                CisFat = If(Trim(arraytext(32)) = "" Or Trim(arraytext(32)) = "-", -1, ValOrDefault(arraytext(32)))
+                            Else
+                                CisFat = -1
+                            End If
+
+                            If arraytext.Length > 33 Then
+                                TransFat = If(Trim(arraytext(33)) = "" Or Trim(arraytext(33)) = "-", -1, ValOrDefault(arraytext(33)))
+                            Else
+                                TransFat = -1
+                            End If
+
+                            If arraytext.Length > 34 Then
+                                DenovoFA = If(Trim(arraytext(34)) = "" Or Trim(arraytext(34)) = "-", -1, ValOrDefault(arraytext(34)))
+                            Else
+                                DenovoFA = -1
+                            End If
+
+                            If arraytext.Length > 35 Then
+                                MixedFA = If(Trim(arraytext(35)) = "" Or Trim(arraytext(35)) = "-", -1, ValOrDefault(arraytext(35)))
+                            Else
+                                MixedFA = -1
+                            End If
+
+                            If arraytext.Length > 36 Then
+                                PreformedFA = If(Trim(arraytext(36)) = "" Or Trim(arraytext(36)) = "-", -1, ValOrDefault(arraytext(36)))
+                            Else
+                                PreformedFA = -1
+                            End If
+
+                            If arraytext.Length > 37 Then
+                                DenovoRel = If(Trim(arraytext(37)) = "" Or Trim(arraytext(37)) = "-", -1, ValOrDefault(arraytext(37)))
+                            Else
+                                DenovoRel = -1
+                            End If
+
+                            If arraytext.Length > 38 Then
+                                MixedRel = If(Trim(arraytext(38)) = "" Or Trim(arraytext(38)) = "-", -1, ValOrDefault(arraytext(38)))
+                            Else
+                                MixedRel = -1
+                            End If
+
+                            If arraytext.Length > 39 Then
+                                PreformedRel = If(Trim(arraytext(39)) = "" Or Trim(arraytext(39)) = "-", -1, ValOrDefault(arraytext(39)))
+                            Else
+                                PreformedRel = -1
+                            End If
+
+                            If arraytext.Length > 40 Then
+                                NEFA = If(Trim(arraytext(40)) = "" Or Trim(arraytext(40)) = "-", -1, ValOrDefault(arraytext(40)))
+                            Else
+                                NEFA = -1
+                            End If
+
                             ficha2 = Mid(nombreArchivo, Len(nombreArchivo) - 21, 1)
                             ficha3 = Mid(nombreArchivo, 1, 1)
 
@@ -1491,24 +2162,52 @@ Public Class FormImportacionArchivos
 
                             Dim fechaoriginal As Date = Now()
                             Dim fecha As String = Format(fechaoriginal, "yyyy-MM-dd")
-                            c.FICHA = ficha3
-                            c.FECHA = fecha
-                            c.EQUIPO = "B6"
-                            c.PRODUCTO = producto
-                            c.MUESTRA = matricula
-                            c.RC = rc
-                            c.GRASA = grasa
-                            c.PROTEINA = proteina
-                            c.LACTOSA = lactosa
-                            c.ST = st
-                            c.CRIOSCOPIA = crioscopia
-                            c.UREA = urea
-                            c.PROTEINAV = proteinav
-                            c.CASEINA = caseina
-                            c.DENSIDAD = densidad
-                            c.PH = ph
-                            c.BHB = bhb
-                            c.guardar()
+                            
+
+                            With c
+                                .FICHA = ficha3
+                                .FECHA = fecha
+                                .EQUIPO = "delta"
+                                .PRODUCTO = producto
+                                .MUESTRA = matricula
+                                .RC = rc
+                                .GRASA = grasa
+                                .PROTEINA = proteina
+                                .LACTOSA = lactosa
+                                .ST = st
+                                .CRIOSCOPIA = crioscopia
+                                .UREA = urea
+                                .PROTEINAV = proteinav
+                                .CASEINA = caseina
+                                .DENSIDAD = densidad
+                                .PH = ph
+                                .BHB = bhb
+
+                                .SFA = SFA
+                                .UFA = UFA
+                                .MUFA = MUFA
+                                .PUFA = PUFA
+
+                                .C16_0 = C16_0
+                                .C18_0 = C18_0
+                                .C18_1C9 = C18_1C9
+
+                                .Acetona = Acetone
+                                .CisFat = CisFat
+                                .TransFat = TransFat
+
+                                .DenovoFA = DenovoFA
+                                .MixedFA = MixedFA
+                                .PreformedFA = PreformedFA
+
+                                .DenovoRel = DenovoRel
+                                .MixedRel = MixedRel
+                                .PreformedRel = PreformedRel
+
+                                .NEFA = NEFA
+
+                                .guardar()
+                            End With
 
                             Dim sa2 As New dSolicitudAnalisis
                             sa2.ID = ficha3
@@ -1555,7 +2254,7 @@ Public Class FormImportacionArchivos
             Dim c As New dControl()
             c.FICHA = ficha
             c.eliminarxficha()
-        ElseIf tipoInforme.ToUpper() = "CALIDAD" Then
+        ElseIf tipoInforme.ToUpper() = "CALIDAD DE LECHE" Then
             Dim cal As New dCalidad()
             cal.FICHA = ficha
             cal.eliminarxficha()

@@ -12466,7 +12466,7 @@ Public Class FormCrearInformes
         fila = fila + 1
         x1hoja.Range("A" & fila, "M" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-        x1hoja.Cells(fila, columna).Formula = "INFORME DE ALIMENTOS E INDICADORES"
+        x1hoja.Cells(fila, columna).Formula = "SUPLEMENTO INFORME DE ALIMENTOS E INDICADORES"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 12
         fila = fila + 1

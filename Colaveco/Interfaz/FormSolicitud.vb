@@ -6,6 +6,7 @@ Imports System.Collections
 Imports System.Net.FtpWebRequest
 Imports System.Net
 Imports Newtonsoft.Json
+Imports MySql.Data.MySqlClient
 
 Public Class FormSolicitud
 
@@ -60,6 +61,7 @@ Public Class FormSolicitud
         cbxTecnicoMuestreo.Visible = False
         cbxTecnicoSueloNutri.Visible = False
         btnImprimir.Visible = False
+        btnImpTicket.Visible = False
         If idprod <> 0 Then
             Dim pro As New dCliente
             pro.ID = idprod
@@ -600,7 +602,7 @@ Public Class FormSolicitud
                           .CantidadMuestras = sol.NMUESTRAS.ToString,
                           .Temperatura = sol.TEMPERATURA.ToString,
                           .TipoLeche = TipoMuestra.NOMBRE,
-                          .Cajas = New String() {"C6050", "C6051", "C6052"}
+                          .Cajas = New String() {}
                       }
 
                         ' Completar Analisis y Detalle desde n2List
@@ -641,6 +643,7 @@ Public Class FormSolicitud
                                 MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
                                 imprimir_solicitud()
                                 btnImprimir.Visible = True
+                                btnImpTicket.Visible = True
                                 Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
                                 If result2 = DialogResult.Cancel Then
                                     guardar_ticket()
@@ -679,7 +682,7 @@ Public Class FormSolicitud
                                 enviomail()
 
                                 'Mail a supervisor
-                                ProcesarPocoFrecuentesPorFicha(sol.ID, True)
+                                'ProcesarPocoFrecuentesPorFicha(sol.ID, True)
 
                                 ' Grabar estado de la ficha
                                 Dim est As New dEstados
@@ -776,7 +779,7 @@ Public Class FormSolicitud
                       .CantidadMuestras = sol2.NMUESTRAS.ToString,
                       .Temperatura = sol2.TEMPERATURA.ToString,
                       .TipoLeche = TipoMuestra.NOMBRE,
-                      .Cajas = New String() {"C6050", "C6051", "C6052"}
+                      .Cajas = New String() {}
                   }
 
                     ' Completar Analisis y Detalle desde n2List
@@ -813,11 +816,22 @@ Public Class FormSolicitud
                             MsgBox("Solicitud guardada", MsgBoxStyle.Information, "Atención")
                             '***IMPRESIÓN DE SOLICITUD Y TICKETS **************************************************************************************
                             imprimir_solicitud()
+                            btnImprimir.Visible = True
+                            btnImpTicket.Visible = True
                             Dim result2 = MessageBox.Show("Desea imprimir un ticket para el cliente?", "Atención!", MessageBoxButtons.YesNoCancel)
                             If result2 = DialogResult.Cancel Then
+                                guardar_ticket()
                             ElseIf result2 = DialogResult.No Then
+                                guardar_ticket()
                             ElseIf result2 = DialogResult.Yes Then
-                                imprimir_ticket()
+                                Dim result5 = MessageBox.Show("Desea imprimir un ticket para el cliente con usuario y contraseña?", "Atención!", MessageBoxButtons.YesNoCancel)
+                                If result5 = DialogResult.Cancel Then
+                                    imprimir_ticket()
+                                ElseIf result5 = DialogResult.No Then
+                                    imprimir_ticket()
+                                Else
+                                    imprimir_ticket_datos()
+                                End If
                             End If
                             '*****************************************************************************************************************************
                             If idsubinforme.ID = 22 Then
@@ -842,7 +856,7 @@ Public Class FormSolicitud
                             enviomail()
 
                             'Email a supervisor
-                            ProcesarPocoFrecuentesPorFicha(sol.ID, True)
+                            'ProcesarPocoFrecuentesPorFicha(sol.ID, True)
 
                             'enviar_notificacion_solicitud(id)
                             limpiar()
@@ -3062,6 +3076,17 @@ Public Class FormSolicitud
             Next
         End If
 
+        Dim fechaServidor As Date
+
+        Using cn As New MySqlConnection("Server=192.168.1.20;Database=colaveco;Uid=root;Pwd=root;Convert Zero Datetime=True")
+            cn.Open()
+            Using cmd As New MySqlCommand("SELECT NOW()", cn)
+                fechaServidor = CType(cmd.ExecuteScalar(), Date)
+            End Using
+        End Using
+
+        Dim fechaServidorStr As String = fechaServidor.ToString("yyyy-MM-dd HH:mm:ss")
+
         Dim x1app As Microsoft.Office.Interop.Excel.Application
         Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
         Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet
@@ -3073,7 +3098,7 @@ Public Class FormSolicitud
         'x1hoja.PageSetup.RightMargin = x1app.CentimetersToPoints(0.5)
         'x1hoja.PageSetup.BottomMargin = x1app.CentimetersToPoints(2)
         Dim ficha As String = TextId.Text.Trim
-        Dim fecha As Date = DateFechaIngreso.Value
+        Dim fecha As Date = fechaServidorStr
         Dim fechamuestreo As Date = DateMuestreo.Value
         Dim nmuestras As Integer
         If TextNMuestras.Text <> "" Then
@@ -3843,6 +3868,7 @@ Public Class FormSolicitud
                 CheckDesvio.Checked = False
             End If
             btnImprimir.Visible = True
+            btnImpTicket.Visible = True
 
         End If
         If TextId.Text <> "" Then
@@ -5041,17 +5067,17 @@ Public Class FormSolicitud
             If email <> "" Then
                 'CONFIGURACIÓN DEL STMP 
                 ' Llamamos al método buscar para obtener el objeto Credenciales
-                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("notificaciones")
+                Dim objetoCredenciales As dCredenciales = dCredenciales.buscar("informes")
 
                 _SMTP.Credentials = New System.Net.NetworkCredential(objetoCredenciales.CredencialesUsuario, objetoCredenciales.CredencialesPassword)
                 _SMTP.Host = objetoCredenciales.CredencialesHost
                 _SMTP.Port = 25
                 _SMTP.EnableSsl = False
 
-                _Message.From = New System.Net.Mail.MailAddress("notificaciones@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
+                _Message.From = New System.Net.Mail.MailAddress("informes@colaveco.com.uy", "COLAVECO", System.Text.Encoding.UTF8)
                 ' CONFIGURACION DEL MENSAJE 
                 _Message.[To].Add(LTrim(email))
-                _Message.[To].Add(LTrim("envios@colaveco.com.uy"))
+                _Message.[To].Add(LTrim("avisos@colaveco.com.uy"))
                 'Quien lo envía 
                 _Message.Subject = "Solicitud de análisis"
                 'Sujeto del e-mail 
@@ -6175,7 +6201,7 @@ Public Class FormSolicitud
             MsgBox("Ficha inválida.", MsgBoxStyle.Exclamation, "Atención")
             Exit Sub
         End If
-        ProcesarPocoFrecuentesPorFicha(ficha, enviar)
+        'ProcesarPocoFrecuentesPorFicha(ficha, enviar)
     End Sub
 
     Public Sub EnviarMailNotificaciones(destinatario As String, asunto As String, cuerpo As String)
@@ -6207,8 +6233,9 @@ Public Class FormSolicitud
         End Try
     End Sub
 
-
-
+    Private Sub btnImpTicket_Click_1(sender As Object, e As EventArgs) Handles btnImpTicket.Click
+        guardar_ticket()
+    End Sub
 End Class
 
 ' 1 fila de la consulta (detalle)

@@ -24,6 +24,9 @@ Partial Class FormSolicitud
     Private Sub InitializeComponent()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage1 = New System.Windows.Forms.TabPage()
+        Me.btnImpTicket = New System.Windows.Forms.Button()
+        Me.AgregarALista = New System.Windows.Forms.Button()
+        Me.EliminarDeLista = New System.Windows.Forms.Button()
         Me.txtCajasTipeables = New System.Windows.Forms.TextBox()
         Me.btnImprimir = New System.Windows.Forms.Button()
         Me.cbxTecnicoSueloNutri = New System.Windows.Forms.CheckBox()
@@ -113,8 +116,6 @@ Partial Class FormSolicitud
         Me.Id = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.Analisis = New System.Windows.Forms.DataGridViewTextBoxColumn()
         Me.X = New System.Windows.Forms.DataGridViewCheckBoxColumn()
-        Me.EliminarDeLista = New System.Windows.Forms.Button()
-        Me.AgregarALista = New System.Windows.Forms.Button()
         Me.TabControl1.SuspendLayout()
         Me.TabPage1.SuspendLayout()
         CType(Me.PictureImagen, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -136,6 +137,7 @@ Partial Class FormSolicitud
         '
         'TabPage1
         '
+        Me.TabPage1.Controls.Add(Me.btnImpTicket)
         Me.TabPage1.Controls.Add(Me.AgregarALista)
         Me.TabPage1.Controls.Add(Me.EliminarDeLista)
         Me.TabPage1.Controls.Add(Me.txtCajasTipeables)
@@ -219,6 +221,36 @@ Partial Class FormSolicitud
         Me.TabPage1.Text = "Ingreso"
         Me.TabPage1.UseVisualStyleBackColor = True
         '
+        'btnImpTicket
+        '
+        Me.btnImpTicket.Location = New System.Drawing.Point(519, 624)
+        Me.btnImpTicket.Margin = New System.Windows.Forms.Padding(4)
+        Me.btnImpTicket.Name = "btnImpTicket"
+        Me.btnImpTicket.Size = New System.Drawing.Size(133, 28)
+        Me.btnImpTicket.TabIndex = 165
+        Me.btnImpTicket.Text = "Imp. Ticket"
+        Me.btnImpTicket.UseVisualStyleBackColor = True
+        '
+        'AgregarALista
+        '
+        Me.AgregarALista.Location = New System.Drawing.Point(972, 177)
+        Me.AgregarALista.Margin = New System.Windows.Forms.Padding(4)
+        Me.AgregarALista.Name = "AgregarALista"
+        Me.AgregarALista.Size = New System.Drawing.Size(188, 28)
+        Me.AgregarALista.TabIndex = 164
+        Me.AgregarALista.Text = "Agregar"
+        Me.AgregarALista.UseVisualStyleBackColor = True
+        '
+        'EliminarDeLista
+        '
+        Me.EliminarDeLista.Location = New System.Drawing.Point(972, 213)
+        Me.EliminarDeLista.Margin = New System.Windows.Forms.Padding(4)
+        Me.EliminarDeLista.Name = "EliminarDeLista"
+        Me.EliminarDeLista.Size = New System.Drawing.Size(188, 28)
+        Me.EliminarDeLista.TabIndex = 163
+        Me.EliminarDeLista.Text = "Eliminar"
+        Me.EliminarDeLista.UseVisualStyleBackColor = True
+        '
         'txtCajasTipeables
         '
         Me.txtCajasTipeables.Location = New System.Drawing.Point(652, 138)
@@ -229,12 +261,12 @@ Partial Class FormSolicitud
         '
         'btnImprimir
         '
-        Me.btnImprimir.Location = New System.Drawing.Point(509, 624)
+        Me.btnImprimir.Location = New System.Drawing.Point(378, 624)
         Me.btnImprimir.Margin = New System.Windows.Forms.Padding(4)
         Me.btnImprimir.Name = "btnImprimir"
         Me.btnImprimir.Size = New System.Drawing.Size(133, 28)
         Me.btnImprimir.TabIndex = 161
-        Me.btnImprimir.Text = "Imprimir Sol."
+        Me.btnImprimir.Text = "Imp. Solicitud"
         Me.btnImprimir.UseVisualStyleBackColor = True
         '
         'cbxTecnicoSueloNutri
@@ -550,7 +582,7 @@ Partial Class FormSolicitud
         '
         'ButtonBuscar
         '
-        Me.ButtonBuscar.Location = New System.Drawing.Point(386, 624)
+        Me.ButtonBuscar.Location = New System.Drawing.Point(270, 624)
         Me.ButtonBuscar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonBuscar.Name = "ButtonBuscar"
         Me.ButtonBuscar.Size = New System.Drawing.Size(100, 28)
@@ -710,7 +742,7 @@ Partial Class FormSolicitud
         '
         'ButtonGuardar
         '
-        Me.ButtonGuardar.Location = New System.Drawing.Point(262, 624)
+        Me.ButtonGuardar.Location = New System.Drawing.Point(162, 624)
         Me.ButtonGuardar.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonGuardar.Name = "ButtonGuardar"
         Me.ButtonGuardar.Size = New System.Drawing.Size(100, 28)
@@ -746,7 +778,7 @@ Partial Class FormSolicitud
         '
         'ButtonNuevo
         '
-        Me.ButtonNuevo.Location = New System.Drawing.Point(135, 624)
+        Me.ButtonNuevo.Location = New System.Drawing.Point(54, 624)
         Me.ButtonNuevo.Margin = New System.Windows.Forms.Padding(4)
         Me.ButtonNuevo.Name = "ButtonNuevo"
         Me.ButtonNuevo.Size = New System.Drawing.Size(100, 28)
@@ -1069,26 +1101,6 @@ Partial Class FormSolicitud
         Me.X.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic
         Me.X.Width = 40
         '
-        'EliminarDeLista
-        '
-        Me.EliminarDeLista.Location = New System.Drawing.Point(972, 213)
-        Me.EliminarDeLista.Margin = New System.Windows.Forms.Padding(4)
-        Me.EliminarDeLista.Name = "EliminarDeLista"
-        Me.EliminarDeLista.Size = New System.Drawing.Size(188, 28)
-        Me.EliminarDeLista.TabIndex = 163
-        Me.EliminarDeLista.Text = "Eliminar"
-        Me.EliminarDeLista.UseVisualStyleBackColor = True
-        '
-        'AgregarALista
-        '
-        Me.AgregarALista.Location = New System.Drawing.Point(972, 177)
-        Me.AgregarALista.Margin = New System.Windows.Forms.Padding(4)
-        Me.AgregarALista.Name = "AgregarALista"
-        Me.AgregarALista.Size = New System.Drawing.Size(188, 28)
-        Me.AgregarALista.TabIndex = 164
-        Me.AgregarALista.Text = "Agregar"
-        Me.AgregarALista.UseVisualStyleBackColor = True
-        '
         'FormSolicitud
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
@@ -1203,4 +1215,5 @@ Partial Class FormSolicitud
     Friend WithEvents txtCajasTipeables As System.Windows.Forms.TextBox
     Friend WithEvents EliminarDeLista As System.Windows.Forms.Button
     Friend WithEvents AgregarALista As System.Windows.Forms.Button
+    Friend WithEvents btnImpTicket As System.Windows.Forms.Button
 End Class

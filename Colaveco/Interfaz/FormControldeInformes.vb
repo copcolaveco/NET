@@ -1024,11 +1024,11 @@ Public Class FormControldeInformes
             End If
         End If
     End Sub
-   
+
 
     Private Sub DataGridView1_CellContentClick(ByVal sender As System.Object, ByVal e As System.Windows.Forms.DataGridViewCellEventArgs) Handles DataGridView1.CellContentClick
         Dim Arch1 As String, Arch2 As String, Arch3 As String, Arch4 As String, Arch5 As String, Arch6 As String, Arch7 As String
-       
+
 
         If DataGridView1.Columns(e.ColumnIndex).Name = "resultado" Then
             If check_resultado = 0 Then
@@ -1420,7 +1420,7 @@ Public Class FormControldeInformes
         fechad = Format(fechadesde, "yyyy-MM-dd")
         fechah = Format(fechahasta, "yyyy-MM-dd")
         Dim lista As New ArrayList
-        
+
         Dim fechacontrol As Date = Now
         Dim fechacontrol2 As String = Format(fechacontrol, "yyyy-MM-dd")
         Dim ficha As Long = 0

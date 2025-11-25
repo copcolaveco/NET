@@ -2,24 +2,75 @@
     Inherits Conectoras.ConexionMySQL
     Public Function guardar(ByVal o As Object) As Boolean
         Dim obj As dImpCalidad = CType(o, dImpCalidad)
-        Dim sql As String = "INSERT INTO calidad (id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, proteinav, caseina, densidad, ph) VALUES (" & obj.ID & ", '" & obj.FICHA & "','" & obj.FECHA & "', '" & obj.EQUIPO & "', '" & obj.PRODUCTO & "', '" & obj.MUESTRA & "'," & obj.RC & ", " & obj.GRASA & ", " & obj.PROTEINA & ", " & obj.LACTOSA & ", " & obj.ST & ", " & obj.CRIOSCOPIA & ", " & obj.UREA & "," & obj.PROTEINAV & "," & obj.CASEINA & "," & obj.DENSIDAD & "," & obj.PH & ")"
+
+        Dim sql As String = "INSERT INTO calidad (" &
+            "id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, " &
+            "proteinav, caseina, densidad, ph, bhb, " &
+            "sfa, ufa, mufa, pufa, c16, c180, c181, acetone, cisfat, transfat, " &
+            "denovofa, mixedfa, preformedfa, denovofa2, mixedfa2, preformedfa2, nefa) VALUES (" &
+            obj.ID & ", '" & obj.FICHA & "','" & obj.FECHA & "', '" & obj.EQUIPO & "', '" & obj.PRODUCTO & "', '" &
+            obj.MUESTRA & "'," & obj.RC & ", " & obj.GRASA & ", " & obj.PROTEINA & ", " & obj.LACTOSA & ", " &
+            obj.ST & ", " & obj.CRIOSCOPIA & ", " & obj.UREA & ", " & obj.PROTEINAV & ", " & obj.CASEINA & ", " &
+            obj.DENSIDAD & ", " & obj.PH & ", " & obj.BHB & ", " &
+            obj.SFA & ", " & obj.UFA & ", " & obj.MUFA & ", " & obj.PUFA & ", " &
+            obj.C16_0 & ", " & obj.C18_0 & ", " & obj.C18_1C9 & ", " & obj.Acetona & ", " &
+            obj.CisFat & ", " & obj.TransFat & ", " &
+            obj.DenovoFA & ", " & obj.MixedFA & ", " & obj.PreformedFA & ", " &
+            obj.DenovoRel & ", " & obj.MixedRel & ", " & obj.PreformedRel & ", " &
+            obj.NEFA & ")"
 
         Dim lista As New ArrayList
         lista.Add(sql)
 
-
         Return EjecutarTransaccion(lista)
     End Function
+
     Public Function modificar(ByVal o As Object) As Boolean
         Dim obj As dImpCalidad = CType(o, dImpCalidad)
-        Dim sql As String = "UPDATE calidad SET ficha = '" & obj.FICHA & "',  fecha ='" & obj.FECHA & "', equipo='" & obj.EQUIPO & "',producto='" & obj.PRODUCTO & "',muestra='" & obj.MUESTRA & "',rc=" & obj.RC & ",grasa=" & obj.GRASA & ", proteina=" & obj.PROTEINA & ", lactosa=" & obj.LACTOSA & ", st=" & obj.ST & ", crioscopia=" & obj.CRIOSCOPIA & ",urea=" & obj.UREA & ",proteinav=" & obj.PROTEINAV & ", caseina=" & obj.CASEINA & ",densidad=" & obj.DENSIDAD & ",ph=" & obj.PH & " WHERE ID = " & obj.ID
+
+        Dim sql As String = "UPDATE calidad SET " &
+            "ficha = '" & obj.FICHA & "', " &
+            "fecha = '" & obj.FECHA & "', " &
+            "equipo = '" & obj.EQUIPO & "', " &
+            "producto = '" & obj.PRODUCTO & "', " &
+            "muestra = '" & obj.MUESTRA & "', " &
+            "rc = " & obj.RC & ", " &
+            "grasa = " & obj.GRASA & ", " &
+            "proteina = " & obj.PROTEINA & ", " &
+            "lactosa = " & obj.LACTOSA & ", " &
+            "st = " & obj.ST & ", " &
+            "crioscopia = " & obj.CRIOSCOPIA & ", " &
+            "urea = " & obj.UREA & ", " &
+            "proteinav = " & obj.PROTEINAV & ", " &
+            "caseina = " & obj.CASEINA & ", " &
+            "densidad = " & obj.DENSIDAD & ", " &
+            "ph = " & obj.PH & ", " &
+            "bhb = " & obj.BHB & ", " &
+            "sfa = " & obj.SFA & ", " &
+            "ufa = " & obj.UFA & ", " &
+            "mufa = " & obj.MUFA & ", " &
+            "pufa = " & obj.PUFA & ", " &
+            "c16 = " & obj.C16_0 & ", " &
+            "c180 = " & obj.C18_0 & ", " &
+            "c181 = " & obj.C18_1C9 & ", " &
+            "acetone = " & obj.Acetona & ", " &
+            "cisfat = " & obj.CisFat & ", " &
+            "transfat = " & obj.TransFat & ", " &
+            "denovofa = " & obj.DenovoFA & ", " &
+            "mixedfa = " & obj.MixedFA & ", " &
+            "preformedfa = " & obj.PreformedFA & ", " &
+            "denovofa2 = " & obj.DenovoRel & ", " &
+            "mixedfa2 = " & obj.MixedRel & ", " &
+            "preformedfa2 = " & obj.PreformedRel & ", " &
+            "nefa = " & obj.NEFA &
+            " WHERE id = " & obj.ID
 
         Dim lista As New ArrayList
         lista.Add(sql)
 
-
         Return EjecutarTransaccion(lista)
     End Function
+
     Public Function eliminar(ByVal o As Object) As Boolean
         Dim obj As dImpCalidad = CType(o, dImpCalidad)
         Dim sql As String = "DELETE FROM calidad WHERE ID = " & obj.ID
@@ -30,16 +81,23 @@
 
         Return EjecutarTransaccion(lista)
     End Function
+
     Public Function buscar(ByVal o As Object) As dImpCalidad
-        Dim obj As dImpCalidad = CType(o, dImpCalidad)
+        Dim obj As dImpControl = CType(o, dImpControl)
         Dim c As New dImpCalidad
         Try
             Dim Ds As New DataSet
-            Ds = Me.EjecutarSQL("SELECT id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, proteinav, caseina, densidad, ph FROM calidad WHERE ficha = " & obj.ID)
+
+            Ds = Me.EjecutarSQL(
+                "SELECT id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, " &
+                "proteinav, caseina, densidad, ph, bhb, " &
+                "sfa, ufa, mufa, pufa, c16, c180, c181, acetone, cisfat, transfat, " &
+                "denovofa, mixedfa, preformedfa, denovofa2, mixedfa2, preformedfa2, nefa " &
+                "FROM control WHERE ficha = '" & obj.FICHA & "'")
 
             If Ds.Tables(0).Rows.Count > 0 Then
-                Dim unaFila As DataRow
-                unaFila = Ds.Tables(0).Rows(0)
+                Dim unaFila As DataRow = Ds.Tables(0).Rows(0)
+
                 c.ID = CType(unaFila.Item(0), Long)
                 c.FICHA = CType(unaFila.Item(1), String)
                 c.FECHA = CType(unaFila.Item(2), String)
@@ -57,8 +115,32 @@
                 c.CASEINA = CType(unaFila.Item(14), Double)
                 c.DENSIDAD = CType(unaFila.Item(15), Double)
                 c.PH = CType(unaFila.Item(16), Double)
+                c.BHB = CType(unaFila.Item(17), Double)
+
+                c.SFA = CType(unaFila.Item(18), Double)
+                c.UFA = CType(unaFila.Item(19), Double)
+                c.MUFA = CType(unaFila.Item(20), Double)
+                c.PUFA = CType(unaFila.Item(21), Double)
+                c.C16_0 = CType(unaFila.Item(22), Double)
+                c.C18_0 = CType(unaFila.Item(23), Double)
+                c.C18_1C9 = CType(unaFila.Item(24), Double)
+                c.Acetona = CType(unaFila.Item(25), Double)
+                c.CisFat = CType(unaFila.Item(26), Double)
+                c.TransFat = CType(unaFila.Item(27), Double)
+
+                c.DenovoFA = CType(unaFila.Item(28), Double)
+                c.MixedFA = CType(unaFila.Item(29), Double)
+                c.PreformedFA = CType(unaFila.Item(30), Double)
+
+                c.DenovoRel = CType(unaFila.Item(31), Double)
+                c.MixedRel = CType(unaFila.Item(32), Double)
+                c.PreformedRel = CType(unaFila.Item(33), Double)
+
+                c.NEFA = CType(unaFila.Item(34), Double)
+
                 Return c
             End If
+
             Return Nothing
         Catch ex As Exception
             Return Nothing
@@ -66,17 +148,24 @@
     End Function
 
     Public Function listar() As ArrayList
-        Dim sql As String = "SELECT id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, proteinav, caseina, densidad, ph FROM calidad order by id desc"
+        Dim sql As String =
+            "SELECT id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, " &
+            "proteinav, caseina, densidad, ph, bhb, " &
+            "sfa, ufa, mufa, pufa, c16, c180, c181, acetone, cisfat, transfat, " &
+            "denovofa, mixedfa, preformedfa, denovofa2, mixedfa2, preformedfa2, nefa " &
+            "FROM calidad ORDER BY id DESC"
+
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
             Ds = Me.EjecutarSQL(sql)
+
             If Ds.Tables(0).Rows.Count = 0 Then
                 Return Nothing
             Else
-                Dim unaFila As DataRow
-                For Each unaFila In Ds.Tables(0).Rows
-                    Dim c As New dImpCalidad
+                For Each unaFila As DataRow In Ds.Tables(0).Rows
+                    Dim c As New dImpControl
+
                     c.ID = CType(unaFila.Item(0), Long)
                     c.FICHA = CType(unaFila.Item(1), String)
                     c.FECHA = CType(unaFila.Item(2), String)
@@ -94,27 +183,59 @@
                     c.CASEINA = CType(unaFila.Item(14), Double)
                     c.DENSIDAD = CType(unaFila.Item(15), Double)
                     c.PH = CType(unaFila.Item(16), Double)
+                    c.BHB = CType(unaFila.Item(17), Double)
+
+                    c.SFA = CType(unaFila.Item(18), Double)
+                    c.UFA = CType(unaFila.Item(19), Double)
+                    c.MUFA = CType(unaFila.Item(20), Double)
+                    c.PUFA = CType(unaFila.Item(21), Double)
+                    c.C16_0 = CType(unaFila.Item(22), Double)
+                    c.C18_0 = CType(unaFila.Item(23), Double)
+                    c.C18_1C9 = CType(unaFila.Item(24), Double)
+                    c.Acetona = CType(unaFila.Item(25), Double)
+                    c.CisFat = CType(unaFila.Item(26), Double)
+                    c.TransFat = CType(unaFila.Item(27), Double)
+
+                    c.DenovoFA = CType(unaFila.Item(28), Double)
+                    c.MixedFA = CType(unaFila.Item(29), Double)
+                    c.PreformedFA = CType(unaFila.Item(30), Double)
+
+                    c.DenovoRel = CType(unaFila.Item(31), Double)
+                    c.MixedRel = CType(unaFila.Item(32), Double)
+                    c.PreformedRel = CType(unaFila.Item(33), Double)
+
+                    c.NEFA = CType(unaFila.Item(34), Double)
+
                     Lista.Add(c)
                 Next
+
                 Return Lista
             End If
+
         Catch ex As Exception
             Return Nothing
         End Try
     End Function
 
     Public Function listarporid(ByVal texto As Long) As ArrayList
-        Dim sql As String = ("SELECT id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, proteinav, caseina, densidad, ph FROM calidad where ficha = " & texto)
+        Dim sql As String =
+            "SELECT id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, " &
+            "proteinav, caseina, densidad, ph, bhb, " &
+            "sfa, ufa, mufa, pufa, c16, c180, c181, acetone, cisfat, transfat, " &
+            "denovofa, mixedfa, preformedfa, denovofa2, mixedfa2, preformedfa2, nefa " &
+            "FROM calidad WHERE ficha = " & texto
+
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
             Ds = Me.EjecutarSQL(sql)
+
             If Ds.Tables(0).Rows.Count = 0 Then
                 Return Nothing
             Else
-                Dim unaFila As DataRow
-                For Each unaFila In Ds.Tables(0).Rows
-                    Dim c As New dImpCalidad
+                For Each unaFila As DataRow In Ds.Tables(0).Rows
+                    Dim c As New dImpControl
+
                     c.ID = CType(unaFila.Item(0), Long)
                     c.FICHA = CType(unaFila.Item(1), String)
                     c.FECHA = CType(unaFila.Item(2), String)
@@ -132,28 +253,61 @@
                     c.CASEINA = CType(unaFila.Item(14), Double)
                     c.DENSIDAD = CType(unaFila.Item(15), Double)
                     c.PH = CType(unaFila.Item(16), Double)
+                    c.BHB = CType(unaFila.Item(17), Double)
+
+                    c.SFA = CType(unaFila.Item(18), Double)
+                    c.UFA = CType(unaFila.Item(19), Double)
+                    c.MUFA = CType(unaFila.Item(20), Double)
+                    c.PUFA = CType(unaFila.Item(21), Double)
+
+                    c.C16_0 = CType(unaFila.Item(22), Double)
+                    c.C18_0 = CType(unaFila.Item(23), Double)
+                    c.C18_1C9 = CType(unaFila.Item(24), Double)
+
+                    c.Acetona = CType(unaFila.Item(25), Double)
+                    c.CisFat = CType(unaFila.Item(26), Double)
+                    c.TransFat = CType(unaFila.Item(27), Double)
+
+                    c.DenovoFA = CType(unaFila.Item(28), Double)
+                    c.MixedFA = CType(unaFila.Item(29), Double)
+                    c.PreformedFA = CType(unaFila.Item(30), Double)
+
+                    c.DenovoRel = CType(unaFila.Item(31), Double)
+                    c.MixedRel = CType(unaFila.Item(32), Double)
+                    c.PreformedRel = CType(unaFila.Item(33), Double)
+
+                    c.NEFA = CType(unaFila.Item(34), Double)
+
                     Lista.Add(c)
                 Next
+
                 Return Lista
             End If
+
         Catch ex As Exception
             Return Nothing
         End Try
     End Function
 
-
     Public Function listarporsolicitud(ByVal texto As Long) As ArrayList
-        Dim sql As String = ("SELECT id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, proteinav, caseina, densidad, ph FROM calidad where ficha = " & texto)
+        Dim sql As String =
+            "SELECT id, ficha, fecha, equipo, producto, muestra, rc, grasa, proteina, lactosa, st, crioscopia, urea, " &
+            "proteinav, caseina, densidad, ph, bhb, " &
+            "sfa, ufa, mufa, pufa, c16, c180, c181, acetone, cisfat, transfat, " &
+            "denovofa, mixedfa, preformedfa, denovofa2, mixedfa2, preformedfa2, nefa " &
+            "FROM calidad WHERE ficha = " & texto
+
         Try
             Dim Lista As New ArrayList
             Dim Ds As New DataSet
             Ds = Me.EjecutarSQL(sql)
+
             If Ds.Tables(0).Rows.Count = 0 Then
                 Return Nothing
             Else
-                Dim unaFila As DataRow
-                For Each unaFila In Ds.Tables(0).Rows
-                    Dim c As New dImpCalidad
+                For Each unaFila As DataRow In Ds.Tables(0).Rows
+                    Dim c As New dImpControl
+
                     c.ID = CType(unaFila.Item(0), Long)
                     c.FICHA = CType(unaFila.Item(1), String)
                     c.FECHA = CType(unaFila.Item(2), String)
@@ -171,10 +325,37 @@
                     c.CASEINA = CType(unaFila.Item(14), Double)
                     c.DENSIDAD = CType(unaFila.Item(15), Double)
                     c.PH = CType(unaFila.Item(16), Double)
+                    c.BHB = CType(unaFila.Item(17), Double)
+
+                    c.SFA = CType(unaFila.Item(18), Double)
+                    c.UFA = CType(unaFila.Item(19), Double)
+                    c.MUFA = CType(unaFila.Item(20), Double)
+                    c.PUFA = CType(unaFila.Item(21), Double)
+
+                    c.C16_0 = CType(unaFila.Item(22), Double)
+                    c.C18_0 = CType(unaFila.Item(23), Double)
+                    c.C18_1C9 = CType(unaFila.Item(24), Double)
+
+                    c.Acetona = CType(unaFila.Item(25), Double)
+                    c.CisFat = CType(unaFila.Item(26), Double)
+                    c.TransFat = CType(unaFila.Item(27), Double)
+
+                    c.DenovoFA = CType(unaFila.Item(28), Double)
+                    c.MixedFA = CType(unaFila.Item(29), Double)
+                    c.PreformedFA = CType(unaFila.Item(30), Double)
+
+                    c.DenovoRel = CType(unaFila.Item(31), Double)
+                    c.MixedRel = CType(unaFila.Item(32), Double)
+                    c.PreformedRel = CType(unaFila.Item(33), Double)
+
+                    c.NEFA = CType(unaFila.Item(34), Double)
+
                     Lista.Add(c)
                 Next
+
                 Return Lista
             End If
+
         Catch ex As Exception
             Return Nothing
         End Try

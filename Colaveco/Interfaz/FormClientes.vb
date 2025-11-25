@@ -906,6 +906,7 @@ Public Class FormClientes
                     cliente.ClienteSocio = If(cli.SOCIO = 1, "1", "0")
                     cliente.ClienteTipoId = cli.TIPOUSUARIO
                     cliente.ClienteUsuario = cli.USUARIO_WEB
+                    cliente.ClienteDirCiudad = ""
                     cliente.ProlesaId = If(cli.PROLESA = 0, 1, cli.PROLESA)
 
                     Dim tec1 As New Tecnico
@@ -913,14 +914,19 @@ Public Class FormClientes
                     tec1.ClienteTecnicoNombre = ""
                     tec1.ClienteTecnicoApellido = ""
 
-                    Dim tec2 As New Tecnico
-                    tec2.ClienteTecnicoId = cli.TECNICO2
-                    tec2.ClienteTecnicoNombre = ""
-                    tec2.ClienteTecnicoApellido = ""
+                    If tecnico2 Is Nothing Then
+
+                    Else
+                        Dim tec2 As New Tecnico
+                        tec2.ClienteTecnicoId = cli.TECNICO2
+                        tec2.ClienteTecnicoNombre = ""
+                        tec2.ClienteTecnicoApellido = ""
+                        cliente.Tecnico.Add(tec2)
+
+                    End If
 
                     cliente.Tecnico.Add(tec1)
-                    cliente.Tecnico.Add(tec2)
-
+                    
                     EnviarClienteAGeneXus(cliente)
 
                     MsgBox("Cliente guardado", MsgBoxStyle.Information, "Atención")
@@ -1892,20 +1898,20 @@ Public Class FormClientes
             Next
             ComboTecnico1.SelectedItem = Nothing
             Dim t As dCliente
-            For Each t In ComboTecnico1.Items
-                If t.ID = cli.TECNICO1 Then
-                    ComboTecnico1.SelectedItem = t
-                    Exit For
-                End If
-            Next
-            ComboTecnico2.SelectedItem = Nothing
-            Dim t2 As dCliente
-            For Each t2 In ComboTecnico2.Items
-                If t2.ID = cli.TECNICO2 Then
-                    ComboTecnico2.SelectedItem = t2
-                    Exit For
-                End If
-            Next
+            'For Each t In ComboTecnico1.Items
+            '    If t.ID = cli.TECNICO1 Then
+            '        ComboTecnico1.SelectedItem = t
+            '        Exit For
+            '    End If
+            'Next
+            'ComboTecnico2.SelectedItem = Nothing
+            'Dim t2 As dCliente
+            'For Each t2 In ComboTecnico2.Items
+            '    If t2.ID = cli.TECNICO2 Then
+            '        ComboTecnico2.SelectedItem = t2
+            '        Exit For
+            '    End If
+            'Next
             ComboAgencia.SelectedItem = Nothing
             Dim a As dEmpresaT
             For Each a In ComboAgencia.Items
@@ -2462,11 +2468,7 @@ Public Class FormClientes
                 Else
                     cli.TECNICO1 = tecnico1.ID
                 End If
-                If tecnico2 Is Nothing Then
-                    cli.TECNICO2 = 3197
-                Else
-                    cli.TECNICO2 = tecnico2.ID
-                End If
+                
                 If Not agencia Is Nothing Then
                     cli.IDAGENCIA = agencia.ID
                 End If
@@ -2545,6 +2547,7 @@ Public Class FormClientes
                     cliente.ClienteSocio = cli.SOCIO
                     cliente.ClienteTipoId = cli.TIPOUSUARIO
                     cliente.ClienteUsuario = cli.USUARIO_WEB
+                    cliente.ClienteDirCiudad = ""
 
                     Dim tec1 As New Tecnico
                     tec1.ClienteTecnicoId = tecnico1.ID
@@ -2693,6 +2696,7 @@ Public Class FormClientes
                     cliente.ClienteSocio = cli.SOCIO
                     cliente.ClienteTipoId = cli.TIPOUSUARIO
                     cliente.ClienteUsuario = cli.USUARIO_WEB
+                    cliente.ClienteDirCiudad = ""
 
                     Dim tec1 As New Tecnico
                     tec1.ClienteTecnicoId = tecnico1.ID
@@ -2840,6 +2844,37 @@ Public Class FormClientes
         End Try
     End Sub
 
+    Private Sub ComboTecnico1_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboTecnico1.SelectedIndexChanged
+        If ComboTecnico1.SelectedItem Is Nothing OrElse ComboTecnico2.Items.Count = 0 Then Exit Sub
+
+        Dim seleccionado1 As dCliente = CType(ComboTecnico1.SelectedItem, dCliente)
+
+        ' Si el técnico seleccionado en Combo1 también está seleccionado en Combo2
+        If ComboTecnico2.SelectedItem IsNot Nothing Then
+            Dim seleccionado2 As dCliente = CType(ComboTecnico2.SelectedItem, dCliente)
+            If seleccionado1.ID = seleccionado2.ID Then
+                MessageBox.Show("Este técnico ya fue seleccionado en el otro combo.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                ComboTecnico1.SelectedItem = Nothing
+                Exit Sub
+            End If
+        End If
+    End Sub
+
+    Private Sub ComboTecnico2_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboTecnico2.SelectedIndexChanged
+        If ComboTecnico2.SelectedItem Is Nothing OrElse ComboTecnico1.Items.Count = 0 Then Exit Sub
+
+        Dim seleccionado2 As dCliente = CType(ComboTecnico2.SelectedItem, dCliente)
+
+        ' Si el técnico seleccionado en Combo2 también está seleccionado en Combo1
+        If ComboTecnico1.SelectedItem IsNot Nothing Then
+            Dim seleccionado1 As dCliente = CType(ComboTecnico1.SelectedItem, dCliente)
+            If seleccionado2.ID = seleccionado1.ID Then
+                MessageBox.Show("Este técnico ya fue seleccionado en el otro combo.", "Atención", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                ComboTecnico2.SelectedItem = Nothing
+                Exit Sub
+            End If
+        End If
+    End Sub
 End Class
 
 Public Class Tecnico
@@ -2864,5 +2899,6 @@ Public Class SDTCliente
     Public Property ProlesaId As Nullable(Of Integer)
     Public Property ClienteDireccion As String
     Public Property ClienteDirDepto As String
+    Public Property ClienteDirCiudad As String
     Public Property Tecnico As List(Of Tecnico)
 End Class
