@@ -108,4 +108,21 @@
         Dim pe As New pProductorEmpresa
         Return pe.buscarproductorempresa(empresa, matricula)
     End Function
+
+#Region "Métodos de búsqueda por relación"
+
+    ' Busca la relación productorempresa por idproductor
+    Public Function buscarPorProductor() As dProductorEmpresa
+        Dim p As New pProductorEmpresa
+        Return p.buscarPorProductor(Me.IDPRODUCTOR)
+    End Function
+
+    ' Busca la relación productorempresa por matrícula
+    Public Function buscarPorMatricula() As dProductorEmpresa
+        Dim p As New pProductorEmpresa
+        Return p.buscarPorMatricula(Me.MATRICULA)
+    End Function
+
+#End Region
+
 End Class

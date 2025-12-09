@@ -211,7 +211,59 @@
         Return resultados
     End Function
 
+    '------------------------------------------------------------------
+    '   BUSCAR POR PRODUCTOR (idproductor)
+    '   Devuelve un objeto dProductorEmpresa con la asociación encontrada
+    '------------------------------------------------------------------
+    Public Function buscarPorProductor(ByVal idproductor As Long) As dProductorEmpresa
+        Dim sql As String = "SELECT idproductor, matricula, idempresa FROM productorempresa " &
+                            "WHERE idproductor = " & idproductor & " LIMIT 1"
+        Try
+            Dim ds As DataSet = EjecutarSQL(sql)
+            If ds IsNot Nothing AndAlso ds.Tables.Count > 0 AndAlso ds.Tables(0).Rows.Count > 0 Then
+                Dim fila As DataRow = ds.Tables(0).Rows(0)
+                Dim obj As New dProductorEmpresa
 
+                obj.IDPRODUCTOR = If(IsDBNull(fila.Item("idproductor")), 0, CLng(fila.Item("idproductor")))
+                obj.MATRICULA = If(IsDBNull(fila.Item("matricula")), "", fila.Item("matricula").ToString())
+                obj.IDEMPRESA = If(IsDBNull(fila.Item("idempresa")), 0, CLng(fila.Item("idempresa")))
+
+                Return obj
+            Else
+                Return Nothing
+            End If
+        Catch ex As Exception
+            MsgBox("Error en buscarPorProductor pProductorEmpresa: " & ex.Message)
+            Return Nothing
+        End Try
+    End Function
+
+    '------------------------------------------------------------------
+    '   BUSCAR POR MATRICULA
+    '   Devuelve un objeto dProductorEmpresa (primer match)
+    '------------------------------------------------------------------
+    Public Function buscarPorMatricula(ByVal matricula As String) As dProductorEmpresa
+        Dim sql As String = "SELECT idproductor, matricula, idempresa FROM productorempresa " &
+                            "WHERE matricula = '" & matricula.Replace("'", "''") & "' LIMIT 1"
+        Try
+            Dim ds As DataSet = EjecutarSQL(sql)
+            If ds IsNot Nothing AndAlso ds.Tables.Count > 0 AndAlso ds.Tables(0).Rows.Count > 0 Then
+                Dim fila As DataRow = ds.Tables(0).Rows(0)
+                Dim obj As New dProductorEmpresa
+
+                obj.IDPRODUCTOR = If(IsDBNull(fila.Item("idproductor")), 0, CLng(fila.Item("idproductor")))
+                obj.MATRICULA = If(IsDBNull(fila.Item("matricula")), "", fila.Item("matricula").ToString())
+                obj.IDEMPRESA = If(IsDBNull(fila.Item("idempresa")), 0, CLng(fila.Item("idempresa")))
+
+                Return obj
+            Else
+                Return Nothing
+            End If
+        Catch ex As Exception
+            MsgBox("Error en buscarPorMatricula pProductorEmpresa: " & ex.Message)
+            Return Nothing
+        End Try
+    End Function
 
 
 End Class

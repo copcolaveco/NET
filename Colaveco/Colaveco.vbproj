@@ -774,6 +774,7 @@
     <Compile Include="Logica\dCredenciales.vb" />
     <Compile Include="Logica\dInformeAnalisis.vb" />
     <Compile Include="Logica\dInformeGestor.vb" />
+    <Compile Include="Logica\dIniaAvisoControl.vb" />
     <Compile Include="Logica\dNuevoGestor.vb" />
     <Compile Include="Logica\dAccionCorrectiva.vb" />
     <Compile Include="Logica\dAcreditacion.vb" />
@@ -1029,6 +1030,7 @@
     <Compile Include="Persistencia\pFacturacion.vb" />
     <Compile Include="Persistencia\pGiro.vb" />
     <Compile Include="Persistencia\pInhibidoresControl.vb" />
+    <Compile Include="Persistencia\pIniaAvisoControl.vb" />
     <Compile Include="Persistencia\pListaMetodos.vb" />
     <Compile Include="Persistencia\pListaPrecios.vb" />
     <Compile Include="Persistencia\pMeses.vb" />

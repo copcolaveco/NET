@@ -1449,6 +1449,9 @@ Public Class FormCrearInformes
             Dim desde As Double = 0
             Dim hasta As Double = 0
             Dim a As New dAcreditacion
+            Dim flagAcidosGrasosTQ As New Boolean
+            flagAcidosGrasosTQ = False
+
             If Not listacsm Is Nothing Then
                 If listacsm.Count > 0 Then
                     For Each csm In listacsm
@@ -1456,6 +1459,9 @@ Public Class FormCrearInformes
                         c.FICHA = nroficha
                         c.MUESTRA = Trim(csm.MUESTRA)
                         c = c.buscarxfichaxmuestra
+
+                        
+
                         If csm.MUESTRA <> "" Then
                             x1hoja.Cells(fila, columna).formula = Trim(csm.MUESTRA)
                             x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
@@ -1823,6 +1829,13 @@ Public Class FormCrearInformes
                         columna = 1
                         fila = fila + 1
                     Next
+
+                    'Acidos grasos VI, Acidos grasos TQ
+
+
+
+
+
                     'Referencias
                     fila = fila + 1
                     columna = 1
@@ -12466,7 +12479,7 @@ Public Class FormCrearInformes
         fila = fila + 1
         x1hoja.Range("A" & fila, "M" & fila).Merge()
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-        x1hoja.Cells(fila, columna).Formula = "SUPLEMENTO INFORME DE ALIMENTOS E INDICADORES"
+        x1hoja.Cells(fila, columna).Formula = "INFORME DE ALIMENTOS E INDICADORES"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 12
         fila = fila + 1
@@ -14208,6 +14221,26 @@ Public Class FormCrearInformes
                             End If
                         End If
                     End If
+
+                    'Perfil acidos grasos
+                    If c.DenovoRel = -1 Or c.DenovoRel = 0 Then
+                        Linea = Linea & "-" & Chr(9)
+                    Else
+                        Linea = Linea & c.DenovoRel & Chr(9)
+                    End If
+
+                    If c.MixedRel = -1 Or c.MixedRel = 0 Then
+                        Linea = Linea & "-" & Chr(9)
+                    Else
+                        Linea = Linea & c.MixedRel & Chr(9)
+                    End If
+
+                    If c.PreformedRel = -1 Or c.PreformedRel = 0 Then
+                        Linea = Linea & "-" & Chr(9)
+                    Else
+                        Linea = Linea & c.PreformedRel & Chr(9)
+                    End If
+
                     oSW.WriteLine(Linea)
                     Linea = ""
                     secuencial = secuencial + 1

@@ -3087,6 +3087,60 @@ Public Class FormSolicitud
 
         Dim fechaServidorStr As String = fechaServidor.ToString("yyyy-MM-dd HH:mm:ss")
 
+        '==============================
+        ' 1) --- PROCESO AVISO INIA ---
+        '==============================
+
+        Dim clienteId As Integer = CLng(Val(TextIdProductor.Text)) ' productor/cliente
+        Dim mes As Integer = fechaServidor.Month
+        Dim anio As Integer = fechaServidor.Year
+
+        Dim aviso As New dIniaAvisoControl()
+
+        ' Verifica si ya existe registro en el mes
+        Dim existe As Boolean = aviso.ExisteRegistroMes(clienteId, mes, anio)
+
+        Dim MostrarAvisoINIA As Boolean = False
+
+        If Not existe Then
+
+            'Si no existe registro mensual, debemos registrar el ingreso INIA
+
+            'Detectamos si es empresa o productor
+            Dim cliente As New dCliente
+            cliente.ID = clienteId
+            cliente = cliente.buscar() 'Funcion existente pCliente → buscar()
+
+            If cliente IsNot Nothing Then
+
+                If cliente.TIPOUSUARIO = 2 Then
+                    ' Empresa
+                    aviso.MATRICULAID = 0
+                    aviso.EMPRESAID = clienteId
+
+                ElseIf cliente.TIPOUSUARIO = 1 Then
+                    ' Productor — buscamos empresa asociada
+                    Dim pe As New dProductorEmpresa
+                    pe.IDPRODUCTOR = clienteId
+                    pe = pe.buscarPorProductor()
+
+                    aviso.MATRICULAID = clienteId
+                    aviso.EMPRESAID = pe.IDEMPRESA
+                End If
+
+                aviso.MES = mes
+                aviso.ANIO = anio
+                aviso.FECHAREGISTRO = fechaServidor
+
+                'Registramos en BD
+                If aviso.guardar(Usuario) Then
+                    MostrarAvisoINIA = True
+                End If
+            End If
+
+        End If
+
+
         Dim x1app As Microsoft.Office.Interop.Excel.Application
         Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
         Dim x1hoja As Microsoft.Office.Interop.Excel.Worksheet
@@ -3570,6 +3624,17 @@ Public Class FormSolicitud
             x1hoja.Cells(fila, columna).Font.Size = 14
             fila = fila + 1
 
+        End If
+
+        '----------------------------------------------
+        ' 🔔 Inserción del mensaje INIA – NO TIRAR
+        '----------------------------------------------
+        If MostrarAvisoINIA Then ' ← usa tu variable o función ahí
+            x1hoja.Cells(fila, columna).formula = "⚠ INIA - NO TIRAR"
+            x1hoja.Cells(fila, columna).Font.Bold = True
+            x1hoja.Cells(fila, columna).Font.Size = 20
+            x1hoja.Cells(fila, columna).Font.Color = RGB(255, 128, 0) 'Naranja
+            fila = fila + 2
         End If
 
 
