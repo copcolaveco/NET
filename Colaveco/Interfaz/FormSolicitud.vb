@@ -3124,6 +3124,11 @@ Public Class FormSolicitud
                     pe.IDPRODUCTOR = clienteId
                     pe = pe.buscarPorProductor()
 
+                    If pe Is Nothing Then
+                        MsgBox("El productor no tiene empresa vinculada para INIA.", MsgBoxStyle.Exclamation)
+                        GoTo ContinuarImpresion
+                    End If
+
                     aviso.MATRICULAID = clienteId
                     aviso.EMPRESAID = pe.IDEMPRESA
                 End If
@@ -3140,6 +3145,7 @@ Public Class FormSolicitud
 
         End If
 
+ContinuarImpresion:
 
         Dim x1app As Microsoft.Office.Interop.Excel.Application
         Dim x1libro As Microsoft.Office.Interop.Excel.Workbook

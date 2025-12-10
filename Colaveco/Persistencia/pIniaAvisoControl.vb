@@ -127,29 +127,29 @@ Public Class pIniaAvisoControl
                "   SELECT 1 " &
                "   FROM IniaAvisoControl iac " &
                "   WHERE iac.Mes = " & Mes & " AND iac.Anio = " & Anio & " " &
-               "   AND ( " &
-               "       (iac.EmpresaId = " & ClienteId & " AND (SELECT tipousuario FROM Cliente WHERE id = " & ClienteId & ") = 2) " &
+               "   AND (" &
+               "       (iac.EmpresaId = " & ClienteId & " AND (SELECT tipousuario FROM Cliente WHERE id = " & ClienteId & ") = 2)" &
                "       OR " &
-               "       (iac.EmpresaId = (SELECT pe.idempresa FROM ProductorEmpresa pe WHERE pe.idproductor = " & ClienteId & ") " &
-               "        AND iac.MatriculaId = " & ClienteId & " AND (SELECT tipousuario FROM Cliente WHERE id = " & ClienteId & ") = 1) " &
-               "   ) " &
-               "   AND EXISTS ( " &
-               "       SELECT 1 " &
-               "       FROM solicitudanalisis sa " &
-               "       JOIN nuevoanalisis na ON na.ficha = sa.id " &
-               "       WHERE sa.idproductor = " & ClienteId & " " &
+               "       (iac.MatriculaId = " & ClienteId & " AND iac.EmpresaId = (SELECT idempresa FROM ProductorEmpresa WHERE idproductor = " & ClienteId & "))" &
+               "   )" &
+               "   AND EXISTS (" &
+               "       SELECT 1 FROM solicitudanalisis sa" &
+               "       JOIN nuevoanalisis na ON na.ficha = sa.id" &
+               "       WHERE sa.idproductor = " & ClienteId &
                "       AND sa.idtipoinforme = 10 " &
-               "       AND na.analisis IN (SELECT AnalisisId FROM IniaAnalisisPermitidos WHERE Activo = 1)" &
+               "       AND na.analisis IN (SELECT analisisid FROM IniaAnalisisPermitidos WHERE permitido = 1 AND activo = 1)" &
                "   )" &
                ") THEN 1 ELSE 0 END AS Existe"
 
-        Dim tabla As DataSet = EjecutarSQL(sql)  'Usando el acceso que ya tenés
+        Dim tabla As DataSet = EjecutarSQL(sql)
+
         If tabla IsNot Nothing AndAlso tabla.Tables.Count > 0 AndAlso tabla.Tables(0).Rows.Count > 0 Then
             Return CInt(tabla.Tables(0).Rows(0).Item(0)) = 1
         End If
 
         Return False
     End Function
+
 
 
 End Class
