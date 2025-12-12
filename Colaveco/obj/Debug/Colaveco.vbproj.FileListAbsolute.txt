@@ -321,3 +321,4 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormPrevisualizacion.resou
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\office.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Microsoft.Vbe.Interop.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\office.xml
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.vbprojResolveAssemblyReference.cache

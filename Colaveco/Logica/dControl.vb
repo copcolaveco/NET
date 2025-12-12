@@ -530,5 +530,9 @@
         Dim c As New pControl
         Return c.listarporrc(texto)
     End Function
+    Public Function TieneAcidosGrasos(ByVal texto As Long) As Boolean
+        Dim c As New pControl
+        Return c.TieneAcidosGrasos(texto)
+    End Function
 
 End Class

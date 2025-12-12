@@ -540,4 +540,10 @@
         Dim c As New pCalidad
         Return c.listarxfechaxempresa(desde, hasta, idempresa)
     End Function
+    Public Function ListarPerfilAG(ByVal ficha As Long) As ArrayList
+        Dim c As New pCalidad
+        Return c.ListarPerfilAG(ficha)
+    End Function
+
+
 End Class
