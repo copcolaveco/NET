@@ -530,9 +530,14 @@
         Dim c As New pControl
         Return c.listarporrc(texto)
     End Function
-    Public Function TieneAcidosGrasos(ByVal texto As Long) As Boolean
+    Public Function TieneAcidosGrasos(ByVal texto As Long, ByVal tipo As EnumTipoInforme) As Boolean
         Dim c As New pControl
-        Return c.TieneAcidosGrasos(texto)
+        Return c.TieneAcidosGrasos(texto, tipo)
     End Function
+    Public Function ListarPerfilAG(ByVal ficha As Long) As ArrayList
+        Dim c As New pControl
+        Return c.ListarPerfilAG(ficha)
+    End Function
+
 
 End Class

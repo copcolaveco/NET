@@ -589,7 +589,7 @@
                 "   c.denovofa " &
                 "FROM calidad c " &
                 "INNER JOIN nuevoanalisis na ON na.ficha = c.ficha " &
-                "WHERE c.ficha = " & ficha & " AND na.analisis = 701 " &
+                "WHERE c.ficha = " & ficha & " AND na.analisis = 700 " &
                 "GROUP BY c.muestra, c.grasa, c.sfa, c.ufa, c.mufa, c.pufa, c.c181, c.denovofa " &
                 "ORDER BY c.muestra ASC"
 

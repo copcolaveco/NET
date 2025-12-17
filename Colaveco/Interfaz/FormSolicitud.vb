@@ -3124,10 +3124,6 @@ Public Class FormSolicitud
                     pe.IDPRODUCTOR = clienteId
                     pe = pe.buscarPorProductor()
 
-                    If pe Is Nothing Then
-                        MsgBox("El productor no tiene empresa vinculada para INIA.", MsgBoxStyle.Exclamation)
-                        GoTo ContinuarImpresion
-                    End If
 
                     aviso.MATRICULAID = clienteId
                     aviso.EMPRESAID = pe.IDEMPRESA

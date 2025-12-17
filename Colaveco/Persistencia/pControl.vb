@@ -536,24 +536,33 @@
         End Try
     End Function
 
-    Public Function TieneAcidosGrasos(ByVal ficha As Long) As Boolean
+    Public Function TieneAcidosGrasos(ByVal ficha As Long, ByVal tipo As EnumTipoInforme) As Boolean
         Try
+            Dim analisis As Integer
+
+            ' Determinar análisis según tipo
+            Select Case tipo
+                Case 1
+                    analisis = 701
+                Case 10
+                    analisis = 700
+                Case Else
+                    Return False ' no aplica
+            End Select
+
             Dim sql As String =
                 "SELECT COUNT(*) AS Cantidad " &
                 "FROM solicitudanalisis sa " &
                 "INNER JOIN nuevoanalisis na ON na.ficha = sa.id " &
                 "WHERE sa.id = " & ficha &
-                " AND sa.idtipoinforme = 1 " &
-                " AND na.analisis = 701"
+                " AND sa.idtipoinforme = " & tipo &
+                " AND na.analisis = " & analisis
 
-            Dim Ds As New DataSet
-            Ds = Me.EjecutarSQL(sql)
+            Dim Ds As DataSet = Me.EjecutarSQL(sql)
 
-            If Ds.Tables(0).Rows.Count > 0 Then
-                Dim cantidad As Integer = CType(Ds.Tables(0).Rows(0).Item("Cantidad"), Integer)
-                If cantidad > 0 Then
-                    Return True
-                End If
+            If Ds.Tables.Count > 0 AndAlso Ds.Tables(0).Rows.Count > 0 Then
+                Dim cantidad As Integer = CInt(Ds.Tables(0).Rows(0)("Cantidad"))
+                Return cantidad > 0
             End If
 
             Return False
@@ -562,6 +571,7 @@
             Return False
         End Try
     End Function
+
 
 
     Public Function listarporfecha(ByVal desde As String, ByVal hasta As String) As ArrayList
@@ -759,4 +769,48 @@
         End Try
     End Function
 
+    Public Function ListarPerfilAG(ByVal ficha As Long) As ArrayList
+        Try
+            Dim sql As String =
+                "SELECT " &
+                "   MIN(c.id), " &
+                "   c.muestra, " &
+                "   c.grasa, " &
+                "   c.denovofa, " &
+                "   c.mixedfa, " &
+                "   c.preformedfa " &
+                "FROM control c " &
+                "INNER JOIN nuevoanalisis na ON na.ficha = c.ficha " &
+                "WHERE c.ficha = " & ficha & " AND na.analisis = 701 " &
+                "GROUP BY c.muestra, c.grasa, c.denovofa, c.mixedfa, c.preformedfa " &
+                "ORDER BY c.muestra ASC"
+
+            Dim Ds As New DataSet
+            Ds = Me.EjecutarSQL(sql)
+
+            If Ds.Tables(0).Rows.Count = 0 Then
+                Return Nothing
+            End If
+
+            Dim lista As New ArrayList
+
+            For Each fila As DataRow In Ds.Tables(0).Rows
+                Dim c As New dCalidad
+
+                c.ID = CType(fila.Item(0), Long)
+                c.MUESTRA = CType(fila.Item(1), String)
+                c.GRASA = CType(fila.Item(2), Double)
+                c.DenovoFA = CType(fila.Item(3), Double)
+                c.MixedFA = CType(fila.Item(4), Double)
+                c.PreformedFA = CType(fila.Item(5), Double)
+
+                lista.Add(c)
+            Next
+
+            Return lista
+
+        Catch ex As Exception
+            Return Nothing
+        End Try
+    End Function
 End Class

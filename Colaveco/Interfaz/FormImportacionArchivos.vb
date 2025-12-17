@@ -654,13 +654,25 @@ Public Class FormImportacionArchivos
                                     Exit Sub
                                 End Try
 
-                                ficha2 = Mid(nombrearchivo, Len(nombrearchivo) - 21, 1)
-                                ficha3 = If("ABCDEFGHIJKLabcdefghijkl".Contains(ficha2), Mid(nombrearchivo, 1, Len(nombrearchivo) - 22), Mid(nombrearchivo, 1, Len(nombrearchivo) - 21))
-                                If Mid(ficha3, 1, 1).ToLower() = "l" Then ficha3 = ficha3.TrimStart("l"c, "L"c)
+                                Dim nombreSinExt As String = System.IO.Path.GetFileNameWithoutExtension(nombrearchivo)
+                                Dim soloNumeros As String = ""
+
+                                For Each ch As Char In nombreSinExt
+                                    If Char.IsDigit(ch) Then
+                                        soloNumeros &= ch
+                                    End If
+                                Next
+
+                                If soloNumeros <> "" Then
+                                    ficha2 = CLng(soloNumeros)
+                                Else
+                                    Throw New Exception("No se pudo obtener la ficha desde el nombre del archivo: " & nombrearchivo)
+                                End If
+
 
                                 ' Control de crioscopía
                                 Dim cc As New dCrioscopia_Control
-                                cc.FICHA = ficha3
+                                cc.FICHA = ficha2
                                 cc.MUESTRA = matricula
                                 cc = cc.buscarxfichaxmuestra
                                 If Not cc Is Nothing Then
@@ -670,7 +682,7 @@ Public Class FormImportacionArchivos
 
                                 ' Guardar datos
                                 Dim fecha As String = Format(Now(), "yyyy-MM-dd")
-                                c.FICHA = ficha3
+                                c.FICHA = ficha2
                                 c.FECHA = fecha
 
                                 c.EQUIPO = "delta2"
@@ -719,7 +731,7 @@ Public Class FormImportacionArchivos
 
                                 ' Verifica si actualizar fecha proceso
                                 Dim csm As New dCalidadSolicitudMuestra
-                                Dim listacsm As ArrayList = csm.listarporsolicitud(ficha3)
+                                Dim listacsm As ArrayList = csm.listarporsolicitud(ficha2)
                                 Dim noactualizafecha As Integer = 0
                                 If Not listacsm Is Nothing Then
                                     For Each csm In listacsm
@@ -728,7 +740,7 @@ Public Class FormImportacionArchivos
                                 End If
                                 If noactualizafecha = 0 Then
                                     Dim sa As New dSolicitudAnalisis
-                                    sa.ID = ficha3
+                                    sa.ID = ficha2
                                     sa.actualizarfechaproceso(fecha)
                                 End If
                             End If
@@ -743,11 +755,11 @@ Public Class FormImportacionArchivos
                 ' Preinforme
                 Dim pi As New dPreinformes
                 Dim _fecha As String = Format(Now(), "yyyy-MM-dd")
-                pi.FICHA = ficha3
+                pi.FICHA = ficha2
                 pi = pi.buscar
                 If pi Is Nothing Then
                     Dim pi2 As New dPreinformes
-                    pi2.FICHA = ficha3
+                    pi2.FICHA = ficha2
                     pi2.TIPO = 10
                     pi2.CREADO = 0
                     pi2.FECHA = _fecha
@@ -756,7 +768,7 @@ Public Class FormImportacionArchivos
 
                 ' Estado
                 Dim est As New dEstados
-                est.FICHA = ficha3
+                est.FICHA = ficha2
                 est.ESTADO = 4
                 est.FECHA = _fecha
                 est.guardar2()
@@ -901,18 +913,27 @@ Public Class FormImportacionArchivos
                         NEFA = ValOrDefault(arraytext(40))
 
 
-                        ficha2 = Mid(nombreArchivo, Len(nombreArchivo) - 21, 1)
-                        ficha3 = Mid(nombreArchivo, 1, 1)
-                        ficha = If("ABCDEFGHIJKLabcdefghijkL".Contains(ficha2), Mid(nombreArchivo, 1, Len(nombreArchivo) - 22), Mid(nombreArchivo, 1, Len(nombreArchivo) - 21))
+                        Dim nombreSinExt As String = System.IO.Path.GetFileNameWithoutExtension(nombreArchivo)
+                        Dim soloNumeros As String = ""
 
-                        If ficha.StartsWith("L", StringComparison.OrdinalIgnoreCase) Then
-                            ficha3 = ficha.TrimStart("l"c, "L"c)
+                        Dim cee As New dControl   ' o dCalidad, etc
+
+                        For Each ce As Char In nombreSinExt
+                            If Char.IsDigit(ce) Then
+                                soloNumeros &= ce
+                            End If
+                        Next
+
+
+                        If soloNumeros <> "" Then
+                            ficha2 = CLng(soloNumeros)
                         Else
-                            ficha3 = ficha
+                            Throw New Exception("No se pudo obtener la ficha desde el nombre del archivo: " & nombreArchivo)
                         End If
 
+
                         ' Cargar crioscopia desde tabla si difiere más de 5
-                        Dim cc As New dCrioscopia_Control With {.FICHA = ficha3, .MUESTRA = matricula}
+                        Dim cc As New dCrioscopia_Control With {.FICHA = ficha2, .MUESTRA = matricula}
                         cc = cc.buscarxfichaxmuestra
                         If cc IsNot Nothing Then
                             Dim diferencia = Math.Abs(cc.DELTA - cc.CRIOSCOPO)
@@ -924,7 +945,7 @@ Public Class FormImportacionArchivos
                         Dim fecha As String = Format(fechaactual, "yyyy-MM-dd")
 
                         With c
-                            .FICHA = ficha3
+                            .FICHA = ficha2
                             .FECHA = fecha
                             .EQUIPO = "delta"
                             .PRODUCTO = producto
@@ -969,7 +990,7 @@ Public Class FormImportacionArchivos
                         End With
 
 
-                        Dim sa2 As New dSolicitudAnalisis With {.ID = ficha3}
+                        Dim sa2 As New dSolicitudAnalisis With {.ID = ficha2}
                         sa2.actualizarfechaproceso(fecha)
 
                         
@@ -981,14 +1002,14 @@ Public Class FormImportacionArchivos
         End If
 
         ' Preinforme
-        Dim pi As New dPreinformes With {.FICHA = ficha3}
+        Dim pi As New dPreinformes With {.FICHA = ficha2}
         pi.buscar()
-        Dim pi2 As New dPreinformes With {.FICHA = ficha3, .TIPO = 1, .CREADO = 0, .FECHA = Today}
+        Dim pi2 As New dPreinformes With {.FICHA = ficha2, .TIPO = 1, .CREADO = 0, .FECHA = Today}
         pi2.guardar()
 
 
         ' Estado
-        Dim est As New dEstados With {.FICHA = ficha3, .ESTADO = 4, .FECHA = Today}
+        Dim est As New dEstados With {.FICHA = ficha2, .ESTADO = 4, .FECHA = Today}
         est.guardar2()
         ' Mover archivo
         'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
@@ -1741,18 +1762,21 @@ Public Class FormImportacionArchivos
 
                         End If
 
-                        ficha2 = Mid(nombreArchivo, Len(nombreArchivo) - 21, 1)
-                        ficha3 = Mid(nombreArchivo, 1, 1)
-                        If "abcdefghijkABCDEFGHJK".IndexOf(ficha2) >= 0 Then
-                            ficha = Mid(nombreArchivo, 1, Len(nombreArchivo) - 22)
+                        Dim nombreSinExt As String = System.IO.Path.GetFileNameWithoutExtension(nombreArchivo)
+                        Dim soloNumeros As String = ""
+
+                        For Each ch As Char In nombreSinExt
+                            If Char.IsDigit(ch) Then
+                                soloNumeros &= ch
+                            End If
+                        Next
+
+                        If soloNumeros <> "" Then
+                            ficha2 = CLng(soloNumeros)
                         Else
-                            ficha = Mid(nombreArchivo, 1, Len(nombreArchivo) - 21)
+                            Throw New Exception("No se pudo obtener la ficha desde el nombre del archivo: " & nombreArchivo)
                         End If
-                        If Mid(ficha, 1, 1).ToLower() = "l" Then
-                            ficha3 = ficha.TrimStart("l"c, "L"c)
-                        Else
-                            ficha3 = ficha
-                        End If
+
 
                         ' Control de crioscopia
                         Dim cc As New dCrioscopia_Control
@@ -1761,7 +1785,7 @@ Public Class FormImportacionArchivos
                         Dim res_delta As Integer = 0
                         Dim res_crioscopo As Integer = 0
                         Dim diferencia_cc As Integer = 0
-                        ficha_cc = ficha3
+                        ficha_cc = ficha2
                         muestra_cc = matricula
                         cc.FICHA = ficha_cc
                         cc.MUESTRA = muestra_cc
@@ -1784,7 +1808,7 @@ Public Class FormImportacionArchivos
                         Dim fecha As String = Format(fechaoriginal, "yyyy-MM-dd")
 
                         With c
-                            .FICHA = ficha3
+                            .FICHA = ficha2
                             .FECHA = fecha
                             .EQUIPO = "Bentley600"
                             .PRODUCTO = producto
@@ -1832,7 +1856,7 @@ Public Class FormImportacionArchivos
                         Dim listacsm As New ArrayList
                         Dim noactualizafecha As Integer = 0
 
-                        listacsm = csm.listarporsolicitud(ficha3)
+                        listacsm = csm.listarporsolicitud(ficha2)
                         If Not listacsm Is Nothing Then
                             For Each csm In listacsm
                                 If csm.RB = 1 Then
@@ -1843,7 +1867,7 @@ Public Class FormImportacionArchivos
 
                         If noactualizafecha = 0 Then
                             Dim sa As New dSolicitudAnalisis
-                            sa.ID = ficha3
+                            sa.ID = ficha2
                             sa.actualizarfechaproceso(fecha)
                             sa = Nothing
                         End If
@@ -1860,19 +1884,19 @@ Public Class FormImportacionArchivos
             Dim pi As New dPreinformes
             Dim fechaactual As Date = Now()
             Dim _fecha As String = Format(fechaactual, "yyyy-MM-dd")
-            pi.FICHA = ficha3
+            pi.FICHA = ficha2
             pi = pi.buscar
 
             If pi Is Nothing Then
                 Dim pi2 As New dPreinformes
                 Dim sa As New dSolicitudAnalisis
                 Dim tipof As Integer = 0
-                sa.ID = ficha3
+                sa.ID = ficha2
                 sa = sa.buscar
                 If Not sa Is Nothing Then
                     tipof = sa.IDTIPOINFORME
                 End If
-                pi2.FICHA = ficha3
+                pi2.FICHA = ficha2
                 pi2.TIPO = tipof
                 pi2.CREADO = 0
                 pi2.FECHA = _fecha
@@ -1885,7 +1909,7 @@ Public Class FormImportacionArchivos
 
             ' Grabar estado de la ficha
             Dim est As New dEstados
-            est.FICHA = ficha3
+            est.FICHA = ficha2
             est.ESTADO = 4
             est.FECHA = _fecha
             est.guardar2()

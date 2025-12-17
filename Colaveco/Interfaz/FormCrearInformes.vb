@@ -423,6 +423,17 @@ Public Class FormCrearInformes
             x1libro2 = CType(x1app2.Workbooks.Open(Arch2), Microsoft.Office.Interop.Excel.Workbook)
             x1hoja2 = CType(x1libro2.Worksheets(1), Microsoft.Office.Interop.Excel.Worksheet)
         End If
+
+        Dim fila As Integer
+        Dim columna As Integer
+
+        Dim ultimaFila As Integer
+
+        With x1hoja
+            ultimaFila = .Cells(.Rows.Count, 1).End(Excel.XlDirection.xlUp).Row
+        End With
+        Dim filaInicioDatos As Integer = ultimaFila + 1
+
         '***********************************************************************************************
         x1hoja.Unprotect(Password:="1582782")
         'x1hoja.PageSetup.Orientation = (Excel.XlPageOrientation.xlLandscape)
@@ -445,8 +456,10 @@ Public Class FormCrearInformes
         lista = na.listarporfichamuestra(nroficha)
         lista3 = na3.listarporficha3(nroficha)
         '*****************************
-        Dim fila As Integer
-        Dim columna As Integer
+
+        fila += 1
+
+
         fila = 1
         columna = 1
         columna = 2
@@ -766,6 +779,106 @@ Public Class FormCrearInformes
         '*************************************************************************************************
         fila = fila + 2
         columna = 1
+
+        '*******Asidos grasos**************************************************************************
+
+        If TieneAcidosGrasos(sa.ID, EnumTipoInforme.ControlLechero) Then
+
+            Dim dControl As New dControl
+            Dim resultados As ArrayList = dControl.ListarPerfilAG(sa.ID)
+
+            ' ===== Encabezado =====
+            x1hoja.Range("A" & fila, "E" & fila).Merge()
+            x1hoja.Cells(fila, columna).Formula = "Perfil de ácidos grasos"
+            x1hoja.Cells(fila, columna).Font.Size = 10
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+            fila = fila + 1
+
+            ' ===== Títulos =====
+            Dim titulos() As String = {
+                "Ident",
+                "Gr(%)",
+                "DeRel(%)",
+                "MiRel(%)",
+                "PrRel(%)"
+            }
+
+            For i As Integer = 0 To titulos.Length - 1
+                x1hoja.Cells(fila, columna).Formula = titulos(i)
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter  
+                columna += 1
+            Next
+            With x1hoja.Rows(fila)
+                .WrapText = True
+                .VerticalAlignment = XlVAlign.xlVAlignCenter
+            End With
+
+            ' ===== Datos =====
+            For Each calidad As dCalidad In resultados
+
+                fila = fila + 1
+                columna = 1
+
+                'Ident
+                x1hoja.Cells(fila, columna).Formula = Trim(calidad.MUESTRA)
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                columna += 1
+
+                ' Grasa
+                If calidad.GRASA > 0 Then
+                    x1hoja.Cells(fila, columna).Formula = Trim(calidad.GRASA)
+                Else
+                    x1hoja.Cells(fila, columna).Formula = "-"
+                End If
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                columna += 1
+
+                ' ===== Cálculos =====
+                Dim denovoFA As Double = Val(calidad.DenovoFA)
+                Dim mixedFA As Double = Val(calidad.MixedFA)
+                Dim preformedFA As Double = Val(calidad.PreformedFA)
+
+                Dim totalFA As Double = denovoFA + mixedFA + preformedFA
+
+                Dim denovoRel As String = "-"
+                Dim mixedRel As String = "-"
+                Dim preformedRel As String = "-"
+
+                If totalFA > 0 Then
+                    denovoRel = Format((denovoFA / totalFA) * 100, "0.00")
+                    mixedRel = Format((mixedFA / totalFA) * 100, "0.00")
+                    preformedRel = Format((preformedFA / totalFA) * 100, "0.00")
+                End If
+
+                ' Denovo FA Relativo
+                x1hoja.Cells(fila, columna).Formula = denovoRel
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                columna += 1
+
+                ' Mixed FA Relativo
+                x1hoja.Cells(fila, columna).Formula = mixedRel
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                columna += 1
+
+                ' Preformed FA Relativo
+                x1hoja.Cells(fila, columna).Formula = preformedRel
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+
+            Next
+        End If
+
+        fila = fila + 2
+        columna = 1
+
         x1hoja.Cells(fila, columna).Formula = "Referencias:"
         x1hoja.Cells(fila, columna).Font.Bold = True
         fila = fila + 1
@@ -1830,171 +1943,114 @@ Public Class FormCrearInformes
                         fila = fila + 1
                     Next
 
-                    ' Perfil de acidos grasos en Calidad de leche
+                    fila = fila + 1
+                    columna = 1
 
-                    
-                    If TieneAcidosGrasos(sa.ID) Then
-                        fila = fila + 2
+                    '*******Asidos grasos**************************************************************************
+
+                    If TieneAcidosGrasos(sa.ID, EnumTipoInforme.CalidadLeche) Then
+
                         Dim dCalidad As New dCalidad
-                        Dim resultados As ArrayList = dCalidad.ListarPerfilAG(csm.FICHA)
+                        Dim resultados As ArrayList = dCalidad.ListarPerfilAG(sa.ID)
 
-                        ' Encabezados
-                        x1hoja.Range("A" & fila, "G" & fila).Merge()
+                        ' ===== Encabezado =====
+                        x1hoja.Range("A" & fila, "E" & fila).Merge()
                         x1hoja.Cells(fila, columna).Formula = "Perfil de ácidos grasos"
-                        x1hoja.Cells(fila, columna).Font.Bold = False
                         x1hoja.Cells(fila, columna).Font.Size = 10
-                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
                         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         fila = fila + 1
-                        x1hoja.Cells(fila, columna).Formula = "+Grasa"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        columna = columna + 1
 
-                        x1hoja.Cells(fila, columna).Formula = "SFA"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        columna = columna + 1
+                        ' ===== Títulos =====
+                        Dim titulos() As String = {
+                            "Ident",
+                            "Gr(%)",
+                            "SFA(%)",
+                            "UFA(%)",
+                            "MUFA(%)",
+                            "PUFA(%)",
+                            "C18:1C9",
+                            "DenovoFA(%)"
+                        }
 
-                        x1hoja.Cells(fila, columna).Formula = "UFA"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        columna = columna + 1
+                        For i As Integer = 0 To titulos.Length - 1
+                            x1hoja.Cells(fila, columna).Formula = titulos(i)
+                            x1hoja.Cells(fila, columna).Font.Bold = True
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                            x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            columna += 1
+                        Next
+                        With x1hoja.Rows(fila)
+                            .WrapText = True
+                            .VerticalAlignment = XlVAlign.xlVAlignCenter
+                        End With
 
-                        x1hoja.Cells(fila, columna).Formula = "MUFA"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Formula = "PUFA"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Formula = "C18:1C9"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        columna = columna + 1
-
-                        x1hoja.Cells(fila, columna).Formula = "Denovo FA"
-                        x1hoja.Cells(fila, columna).Font.Bold = True
-                        x1hoja.Cells(fila, columna).Font.Size = 8
-                        x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
-                        x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
-                        x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                        fila = fila + 1
-                        columna = 1
-
+                        ' ===== Datos =====
                         For Each calidad As dCalidad In resultados
 
-                            If calidad.GRASA > 0 Then
-                                x1hoja.Cells(fila, columna).formula = Trim(calidad.GRASA)
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            End If
-
-                            If calidad.SFA > 0 Then
-                                x1hoja.Cells(fila, columna).formula = Trim(calidad.SFA)
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            End If
-
-                            If calidad.UFA > 0 Then
-                                x1hoja.Cells(fila, columna).formula = Trim(calidad.UFA)
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            End If
-
-                            If calidad.MUFA > 0 Then
-                                x1hoja.Cells(fila, columna).formula = Trim(calidad.MUFA)
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            End If
-
-                            If calidad.PUFA > 0 Then
-                                x1hoja.Cells(fila, columna).formula = Trim(calidad.PUFA)
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            End If
-
-                            If calidad.C18_1C9 > 0 Then
-                                x1hoja.Cells(fila, columna).formula = Trim(calidad.C18_1C9)
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            End If
-
-                            If calidad.DenovoFA > 0 Then
-                                x1hoja.Cells(fila, columna).formula = Trim(calidad.DenovoFA)
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                                columna = columna + 1
-                            Else
-                                x1hoja.Cells(fila, columna).formula = "-"
-                                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                x1hoja.Cells(fila, columna).Font.Size = 8
-                            End If
-                            columna = 1
                             fila = fila + 1
+                            columna = 1
+
+                            'Ident
+                            x1hoja.Cells(fila, columna).Formula = Trim(calidad.MUESTRA)
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            columna += 1
+
+                            ' Grasa
+                            If calidad.GRASA > 0 Then
+                                x1hoja.Cells(fila, columna).Formula = Trim(calidad.GRASA)
+                            Else
+                                x1hoja.Cells(fila, columna).Formula = "-"
+                            End If
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            columna += 1
+
+                            ' SFA
+                            x1hoja.Cells(fila, columna).Formula = Trim(calidad.SFA)
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            columna += 1
+
+                            ' UFA
+                            x1hoja.Cells(fila, columna).Formula = Trim(calidad.UFA)
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            columna += 1
+
+                            ' MUFA
+                            x1hoja.Cells(fila, columna).Formula = Trim(calidad.MUFA)
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            columna += 1
+
+                            ' PUFA
+                            x1hoja.Cells(fila, columna).Formula = Trim(calidad.PUFA)
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            columna += 1
+
+                            ' C18:1C9
+                            x1hoja.Cells(fila, columna).Formula = Trim(calidad.C18_1C9)
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                            columna += 1
+
+                            ' DenovoFA
+                            x1hoja.Cells(fila, columna).Formula = Trim(calidad.DenovoFA)
+                            x1hoja.Cells(fila, columna).Font.Size = 8
+                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+
                         Next
                     End If
 
-                    'Referencias
-                    fila = fila + 1
+                    fila = fila + 2
                     columna = 1
+
+                    'Referencias
+                   
                     '*******************************************************************************************************
                     x1hoja.Cells(fila, columna).rowheight = 3
                     fila = fila + 1
@@ -2090,9 +2146,7 @@ Public Class FormCrearInformes
                  Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 470, 42)
                     End If
                     '********************************************************************
-                    'If idparatecnico1 = 1 Then
-                    '    nombre_paratecnico = nombre_paratecnico + "Diego Arenas - "
-                    'End If
+                   
                     If idparatecnico2 = 1 Then
                         nombre_paratecnico = nombre_paratecnico + "Lorena Nidegger - "
                     End If
@@ -2124,7 +2178,6 @@ Public Class FormCrearInformes
                     Dim rangeFirma As String = "A" + fila.ToString
                     x1libro.ActiveSheet.Range(rangeFirma).select()
                     InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
-                    'InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                     x1libro.Worksheets(1).cells(2, 1).select()
                     fila = fila - 1
                     'RANGOS ACREDITADOS******************************************************************
@@ -19351,9 +19404,9 @@ Public Class FormCrearInformes
 
     End Sub
 
-    Private Function TieneAcidosGrasos(ByVal ficha As Long) As Boolean
+    Private Function TieneAcidosGrasos(ByVal ficha As Long, ByVal tipo As EnumTipoInforme) As Boolean
         Dim dControl As New dControl
-        Dim tieneAG As Boolean = dControl.TieneAcidosGrasos(ficha)
+        Dim tieneAG As Boolean = dControl.TieneAcidosGrasos(ficha, tipo)
 
         If tieneAG Then
             Return True
