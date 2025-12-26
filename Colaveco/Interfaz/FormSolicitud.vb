@@ -3113,30 +3113,41 @@ Public Class FormSolicitud
 
             If cliente IsNot Nothing Then
 
-                If cliente.TIPOUSUARIO = 2 Then
-                    ' Empresa
-                    aviso.MATRICULAID = 0
-                    aviso.EMPRESAID = clienteId
+                If cliente IsNot Nothing Then
 
-                ElseIf cliente.TIPOUSUARIO = 1 Then
-                    ' Productor — buscamos empresa asociada
-                    Dim pe As New dProductorEmpresa
-                    pe.IDPRODUCTOR = clienteId
-                    pe = pe.buscarPorProductor()
+                    If cliente.TIPOUSUARIO = 2 Then
+                        ' Empresa
+                        aviso.MATRICULAID = 0
+                        aviso.EMPRESAID = clienteId
 
+                    ElseIf cliente.TIPOUSUARIO = 1 Then
+                        ' Productor — buscamos empresa asociada
+                        Dim pe As dProductorEmpresa
+                        pe = New dProductorEmpresa With {.IDPRODUCTOR = clienteId}
+                        pe = pe.buscarPorProductor()
 
-                    aviso.MATRICULAID = clienteId
-                    aviso.EMPRESAID = pe.IDEMPRESA
+                        aviso.MATRICULAID = clienteId
+
+                        If pe IsNot Nothing Then
+                            aviso.EMPRESAID = pe.IDEMPRESA
+                        Else
+                            ' ⚠️ No tiene empresa asociada
+                            aviso.EMPRESAID = 0   ' o Nothing / DBNull según tu modelo
+                            ' Opcional: log o mensaje
+                            ' Throw New Exception("El productor no tiene empresa asociada")
+                        End If
+                    End If
+
+                    aviso.MES = mes
+                    aviso.ANIO = anio
+                    aviso.FECHAREGISTRO = fechaServidor
+
+                    ' Registramos en BD
+                    If aviso.guardar(Usuario) Then
+                        MostrarAvisoINIA = True
+                    End If
                 End If
 
-                aviso.MES = mes
-                aviso.ANIO = anio
-                aviso.FECHAREGISTRO = fechaServidor
-
-                'Registramos en BD
-                If aviso.guardar(Usuario) Then
-                    MostrarAvisoINIA = True
-                End If
             End If
 
         End If
@@ -6302,6 +6313,61 @@ ContinuarImpresion:
 
     Private Sub btnImpTicket_Click_1(sender As Object, e As EventArgs) Handles btnImpTicket.Click
         guardar_ticket()
+    End Sub
+
+  Private Sub DataGridView1_CurrentCellDirtyStateChanged(
+      sender As Object,
+      e As EventArgs
+  ) Handles DataGridView1.CurrentCellDirtyStateChanged
+
+        If TypeOf DataGridView1.CurrentCell Is DataGridViewCheckBoxCell Then
+            DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
+        End If
+
+    End Sub
+
+
+    Private Sub DataGridView1_CellValueChanged(
+    sender As Object,
+    e As DataGridViewCellEventArgs
+) Handles DataGridView1.CellValueChanged
+
+        ' Validaciones
+        If e.RowIndex < 0 Then Exit Sub
+        If e.ColumnIndex <> 2 Then Exit Sub ' columna CHECK
+
+        Dim filaActual As DataGridViewRow = DataGridView1.Rows(e.RowIndex)
+
+        ' Estado del check
+        If filaActual.Cells(2).Value Is Nothing Then Exit Sub
+        Dim marcado As Boolean = CBool(filaActual.Cells(2).Value)
+
+        If Not marcado Then Exit Sub
+
+        ' ID del análisis
+        Dim idAnalisis As Integer = CInt(filaActual.Cells(0).Value)
+
+        ' Si se marca el análisis 701
+        If idAnalisis = 701 Then
+
+            For Each fila As DataGridViewRow In DataGridView1.Rows
+                If fila.IsNewRow Then Continue For
+
+                ' Marcar automáticamente el análisis 116
+                If CInt(fila.Cells(0).Value) = 116 Then
+                    fila.Cells(2).Value = True
+                    Exit For
+                End If
+            Next
+
+        End If
+
+    End Sub
+
+
+
+    Private Sub TextId_TextChanged(sender As Object, e As EventArgs) Handles TextId.TextChanged
+
     End Sub
 End Class
 

@@ -5,6 +5,7 @@ Imports Microsoft.Office.Interop
 Imports Microsoft.Office.Interop.Excel
 Imports System.Runtime.InteropServices
 Imports System.Threading
+Imports System.Text.RegularExpressions
 
 
 Public Class FormImportacionArchivos
@@ -450,16 +451,33 @@ Public Class FormImportacionArchivos
                     Dim pi2 As New dPreinformes
                     Dim sa As New dSolicitudAnalisis
                     Dim tipof As Integer = 0
-                    sa.ID = ficha3
-                    sa = sa.buscar()
-                    If sa IsNot Nothing Then
+                    sa.ID = ficha2
+                    sa = sa.buscar
+                    If Not sa Is Nothing Then
                         tipof = sa.IDTIPOINFORME
                     End If
-                    pi2.FICHA = ficha3
+                    pi2.FICHA = ficha2
                     pi2.TIPO = tipof
                     pi2.CREADO = 0
                     pi2.FECHA = _fecha
                     pi2.guardar()
+                    pi2 = Nothing
+                    sa = Nothing
+                Else
+                    Dim pi2 As New dPreinformes
+                    Dim sa As New dSolicitudAnalisis
+                    Dim tipof As Integer = 0
+                    sa.ID = ficha2
+                    sa = sa.buscar
+                    If Not sa Is Nothing Then
+                        tipof = sa.IDTIPOINFORME
+                    End If
+                    pi2.ID = pi.ID
+                    pi2.FICHA = ficha2
+                    pi2.TIPO = tipof
+                    pi2.CREADO = 0
+                    pi2.FECHA = _fecha
+                    pi2.modificar()
                     pi2 = Nothing
                     sa = Nothing
                 End If
@@ -752,19 +770,46 @@ Public Class FormImportacionArchivos
 
                 'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 
-                ' Preinforme
+                ' Insertar en preinformes
                 Dim pi As New dPreinformes
                 Dim _fecha As String = Format(Now(), "yyyy-MM-dd")
-                pi.FICHA = ficha2
-                pi = pi.buscar
+                pi.FICHA = ficha3
+                pi = pi.buscar()
                 If pi Is Nothing Then
                     Dim pi2 As New dPreinformes
+                    Dim sa As New dSolicitudAnalisis
+                    Dim tipof As Integer = 0
+                    sa.ID = ficha2
+                    sa = sa.buscar
+                    If Not sa Is Nothing Then
+                        tipof = sa.IDTIPOINFORME
+                    End If
                     pi2.FICHA = ficha2
-                    pi2.TIPO = 10
+                    pi2.TIPO = tipof
                     pi2.CREADO = 0
                     pi2.FECHA = _fecha
                     pi2.guardar()
+                    pi2 = Nothing
+                    sa = Nothing
+                Else
+                    Dim pi2 As New dPreinformes
+                    Dim sa As New dSolicitudAnalisis
+                    Dim tipof As Integer = 0
+                    sa.ID = ficha2
+                    sa = sa.buscar
+                    If Not sa Is Nothing Then
+                        tipof = sa.IDTIPOINFORME
+                    End If
+                    pi2.ID = pi.ID
+                    pi2.FICHA = ficha2
+                    pi2.TIPO = tipof
+                    pi2.CREADO = 0
+                    pi2.FECHA = _fecha
+                    pi2.modificar()
+                    pi2 = Nothing
+                    sa = Nothing
                 End If
+                pi = Nothing
 
                 ' Estado
                 Dim est As New dEstados
@@ -914,22 +959,15 @@ Public Class FormImportacionArchivos
 
 
                         Dim nombreSinExt As String = System.IO.Path.GetFileNameWithoutExtension(nombreArchivo)
-                        Dim soloNumeros As String = ""
 
-                        Dim cee As New dControl   ' o dCalidad, etc
+                        Dim match As Match = Regex.Match(nombreSinExt, "^\d{1,6}")
 
-                        For Each ce As Char In nombreSinExt
-                            If Char.IsDigit(ce) Then
-                                soloNumeros &= ce
-                            End If
-                        Next
-
-
-                        If soloNumeros <> "" Then
-                            ficha2 = CLng(soloNumeros)
+                        If match.Success Then
+                            ficha2 = CLng(match.Value)
                         Else
                             Throw New Exception("No se pudo obtener la ficha desde el nombre del archivo: " & nombreArchivo)
                         End If
+
 
 
                         ' Cargar crioscopia desde tabla si difiere más de 5
@@ -993,7 +1031,7 @@ Public Class FormImportacionArchivos
                         Dim sa2 As New dSolicitudAnalisis With {.ID = ficha2}
                         sa2.actualizarfechaproceso(fecha)
 
-                        
+
                     End If
                 End If
                 linea += 1
@@ -1001,11 +1039,46 @@ Public Class FormImportacionArchivos
             objReader.Close()
         End If
 
-        ' Preinforme
-        Dim pi As New dPreinformes With {.FICHA = ficha2}
-        pi.buscar()
-        Dim pi2 As New dPreinformes With {.FICHA = ficha2, .TIPO = 1, .CREADO = 0, .FECHA = Today}
-        pi2.guardar()
+        ' Insertar en preinformes
+        Dim pi As New dPreinformes
+        Dim _fecha As String = Format(Now(), "yyyy-MM-dd")
+        pi.FICHA = ficha3
+        pi = pi.buscar()
+        If pi Is Nothing Then
+            Dim pi2 As New dPreinformes
+            Dim sa As New dSolicitudAnalisis
+            Dim tipof As Integer = 0
+            sa.ID = ficha2
+            sa = sa.buscar
+            If Not sa Is Nothing Then
+                tipof = sa.IDTIPOINFORME
+            End If
+            pi2.FICHA = ficha2
+            pi2.TIPO = tipof
+            pi2.CREADO = 0
+            pi2.FECHA = _fecha
+            pi2.guardar()
+            pi2 = Nothing
+            sa = Nothing
+        Else
+            Dim pi2 As New dPreinformes
+            Dim sa As New dSolicitudAnalisis
+            Dim tipof As Integer = 0
+            sa.ID = ficha2
+            sa = sa.buscar
+            If Not sa Is Nothing Then
+                tipof = sa.IDTIPOINFORME
+            End If
+            pi2.ID = pi.ID
+            pi2.FICHA = ficha2
+            pi2.TIPO = tipof
+            pi2.CREADO = 0
+            pi2.FECHA = _fecha
+            pi2.modificar()
+            pi2 = Nothing
+            sa = Nothing
+        End If
+        pi = Nothing
 
 
         ' Estado
@@ -1342,16 +1415,33 @@ Public Class FormImportacionArchivos
                 Dim pi2 As New dPreinformes
                 Dim sa As New dSolicitudAnalisis
                 Dim tipof As Integer = 0
-                sa.ID = ficha3
-                sa = sa.buscar()
-                If sa IsNot Nothing Then
+                sa.ID = ficha2
+                sa = sa.buscar
+                If Not sa Is Nothing Then
                     tipof = sa.IDTIPOINFORME
                 End If
-                pi2.FICHA = ficha3
+                pi2.FICHA = ficha2
                 pi2.TIPO = tipof
                 pi2.CREADO = 0
                 pi2.FECHA = _fecha
                 pi2.guardar()
+                pi2 = Nothing
+                sa = Nothing
+            Else
+                Dim pi2 As New dPreinformes
+                Dim sa As New dSolicitudAnalisis
+                Dim tipof As Integer = 0
+                sa.ID = ficha2
+                sa = sa.buscar
+                If Not sa Is Nothing Then
+                    tipof = sa.IDTIPOINFORME
+                End If
+                pi2.ID = pi.ID
+                pi2.FICHA = ficha2
+                pi2.TIPO = tipof
+                pi2.CREADO = 0
+                pi2.FECHA = _fecha
+                pi2.modificar()
                 pi2 = Nothing
                 sa = Nothing
             End If
@@ -1481,7 +1571,7 @@ Public Class FormImportacionArchivos
             Dim NEFA As Double = 0
 
             Dim arraytext() As String
-         
+
             Dim ficha As String = ""
             Dim ficha2 As String = ""
             Dim ficha3 As String = ""
@@ -1762,20 +1852,18 @@ Public Class FormImportacionArchivos
 
                         End If
 
+
+
                         Dim nombreSinExt As String = System.IO.Path.GetFileNameWithoutExtension(nombreArchivo)
-                        Dim soloNumeros As String = ""
 
-                        For Each ch As Char In nombreSinExt
-                            If Char.IsDigit(ch) Then
-                                soloNumeros &= ch
-                            End If
-                        Next
+                        Dim match As Match = Regex.Match(nombreSinExt, "^\d{1,6}")
 
-                        If soloNumeros <> "" Then
-                            ficha2 = CLng(soloNumeros)
+                        If match.Success Then
+                            ficha2 = CLng(match.Value)
                         Else
                             Throw New Exception("No se pudo obtener la ficha desde el nombre del archivo: " & nombreArchivo)
                         End If
+
 
 
                         ' Control de crioscopia
@@ -1903,8 +1991,24 @@ Public Class FormImportacionArchivos
                 pi2.guardar()
                 pi2 = Nothing
                 sa = Nothing
+            Else
+                Dim pi2 As New dPreinformes
+                Dim sa As New dSolicitudAnalisis
+                Dim tipof As Integer = 0
+                sa.ID = ficha2
+                sa = sa.buscar
+                If Not sa Is Nothing Then
+                    tipof = sa.IDTIPOINFORME
+                End If
+                pi2.ID = pi.ID
+                pi2.FICHA = ficha2
+                pi2.TIPO = tipof
+                pi2.CREADO = 0
+                pi2.FECHA = _fecha
+                pi2.modificar()
+                pi2 = Nothing
+                sa = Nothing
             End If
-
             pi = Nothing
 
             ' Grabar estado de la ficha
@@ -2186,7 +2290,7 @@ Public Class FormImportacionArchivos
 
                             Dim fechaoriginal As Date = Now()
                             Dim fecha As String = Format(fechaoriginal, "yyyy-MM-dd")
-                            
+
 
                             With c
                                 .FICHA = ficha3
@@ -2258,6 +2362,15 @@ Public Class FormImportacionArchivos
                 pi2.CREADO = 0
                 pi2.FECHA = _fecha
                 pi2.guardar()
+                pi2 = Nothing
+            Else
+                Dim pi2 As New dPreinformes
+                pi2.FICHA = ficha3
+                pi2.ID = pi.ID
+                pi2.TIPO = 1
+                pi2.CREADO = 0
+                pi2.FECHA = _fecha
+                pi2.modificar()
                 pi2 = Nothing
             End If
             pi = Nothing

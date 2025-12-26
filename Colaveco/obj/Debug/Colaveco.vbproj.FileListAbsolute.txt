@@ -6,7 +6,10 @@ C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Colaveco.pdb
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Colaveco.xml
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Microsoft.Office.Interop.Excel.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\System.Windows.Forms.DataVisualization.dll
+C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\office.dll
+C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Microsoft.Vbe.Interop.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Microsoft.Office.Interop.Excel.xml
+C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\office.xml
 C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Interop.IasHelperLib.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Interop.IasHelperLib.dll
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.vbproj.ResolveComReference.cache
@@ -105,6 +108,7 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormCompletoUnidad2.resour
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormCompras.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormComprasInformes.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormComunicacionTecnica.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormConfSupervisor.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormContadorAnalisisEmpresas.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormContadorAnalisisEmpresas2.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormControldeInformes.resources
@@ -149,6 +153,9 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormFrascosDevueltos.resou
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormFrascosRotos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormFrascosSangreSinFacturar.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistorialCaja.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoCajasIngresoManual.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoSolicitudesAutorizadas.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormImportacionArchivos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformeAgua.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformeAntibiograma.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformeBrucelosis.resources
@@ -168,6 +175,7 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformeRCRB.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformesCajas.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformesCapacitacion.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformesPendientes.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformesPendientesUsuario.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformesSubidos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformeSubproductos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformeSuelos.resources
@@ -227,6 +235,7 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormPlanillaCapacitacion.r
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormPreInforme.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormPreinformeEdit.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormPresentaciones.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormPrevisualizacion.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormProductor.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormProductorEmpresa.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormProductos.resources
@@ -236,6 +245,7 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormPsicrotrofos.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormRangoAcreditacion.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormRecibirCompra.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormReferencias.resources
+C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormReporteEstadoInforme.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormReproducibilidad.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormRgLab101.resources
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormRgLab31.resources
@@ -311,14 +321,3 @@ C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.application
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.exe
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.xml
 C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.pdb
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoCajasIngresoManual.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormConfSupervisor.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormHistoricoSolicitudesAutorizadas.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormInformesPendientesUsuario.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormImportacionArchivos.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormReporteEstadoInforme.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.FormPrevisualizacion.resources
-C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\office.dll
-C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\Microsoft.Vbe.Interop.dll
-C:\Users\Pepo\Desktop\NET\Colaveco\bin\Debug\office.xml
-C:\Users\Pepo\Desktop\NET\Colaveco\obj\Debug\Colaveco.vbprojResolveAssemblyReference.cache
