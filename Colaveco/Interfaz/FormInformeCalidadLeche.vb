@@ -1752,7 +1752,7 @@ Public Class FormInformeCalidadLeche
                 columna = 1
                 fila = fila + 2
 
-                x1hoja.Cells(fila, columna).formula = "Laboratorio habilitado RNL 0029 - MGAP" '&" - Certificado vigente al 18/11/2026"
+                x1hoja.Cells(fila, columna).formula = "Laboratorio habilitado RNL 0029 - MGAP" '&" - Certificado vigente al 09/07/2025"
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
                 x1hoja.Cells(fila, columna).Font.Size = 10
                 x1hoja.Cells(fila, columna).Font.Bold = True

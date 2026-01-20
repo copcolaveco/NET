@@ -362,7 +362,7 @@ Public Class FormImportador
                     est.FICHA = ficha3
                     est.ESTADO = 4
                     est.FECHA = _fecha
-                    'est.guardar2()
+                    est.guardar2()
                     est = Nothing
                     '****************************
 
@@ -724,7 +724,7 @@ Public Class FormImportador
                     est.FICHA = ficha3
                     est.ESTADO = 4
                     est.FECHA = _fecha
-                    'est.guardar2()
+                    est.guardar2()
                     est = Nothing
                     '****************************
                 End If 'fin de control archivo delta nuevo
@@ -1056,7 +1056,7 @@ Public Class FormImportador
                     est.FICHA = ficha3
                     est.ESTADO = 4
                     est.FECHA = _fecha
-                    'est.guardar2()
+                    est.guardar2()
                     est = Nothing
                     '****************************
                 End If 'fin de control archivo delta nuevo
@@ -1301,7 +1301,7 @@ Public Class FormImportador
             est.FICHA = ficha3
             est.ESTADO = 4
             est.FECHA = _fecha
-            'est.guardar2()
+            est.guardar2()
             est = Nothing
             '****************************
 
@@ -1517,7 +1517,7 @@ Public Class FormImportador
             est.FICHA = ficha3
             est.ESTADO = 4
             est.FECHA = _fecha
-            'est.guardar2()
+            est.guardar2()
             est = Nothing
             '****************************
 
@@ -1691,7 +1691,7 @@ Public Class FormImportador
                     est.FICHA = ficha3
                     est.ESTADO = 3
                     est.FECHA = fecha2
-                    'est.guardar2()
+                    est.guardar2()
                     est = Nothing
                     '****************************
 
@@ -1741,11 +1741,11 @@ Public Class FormImportador
             End If
             pi = Nothing
 
-
+         
 
         End If
         '***********************************************************************************
-
+       
 
 
     End Sub
@@ -2093,7 +2093,7 @@ Public Class FormImportador
                 est.FICHA = ficha3
                 est.ESTADO = 4
                 est.FECHA = _fecha
-                'est.guardar2()
+                est.guardar2()
                 est = Nothing
                 '****************************
 
@@ -2152,7 +2152,7 @@ Public Class FormImportador
             Dim caseina As Double = 0
             Dim densidad As Double = 0
             Dim ph As Double = 0
-
+           
             ' *** SI EL ARCHIVO ES XLS **************************************************************************************
             If extension = "xls" Or extension = "XLS" Then
                 Dim c As New dImpControl()
@@ -2417,7 +2417,7 @@ Public Class FormImportador
             est.FICHA = ficha3
             est.ESTADO = 4
             est.FECHA = _fecha
-            'est.guardar2()
+            est.guardar2()
             est = Nothing
             '****************************
 
@@ -2475,7 +2475,7 @@ Public Class FormImportador
             Dim caseina As Double = 0
             Dim densidad As Double = 0
             Dim ph As Double = 0
-
+           
             ' *** SI EL ARCHIVO ES FAT **************************************************************************************
             If extension = "fat" Or extension = "FAT" Then
                 Dim c As New dImpControl()
@@ -2607,14 +2607,14 @@ Public Class FormImportador
                         ca.RC = rc
                         ca.TAMBO = sa.TAMBO
                         ca.guardar()
-
+                   
                     End If
 
                     cuentalinea = cuentalinea + 1
                 Loop Until sLine Is Nothing
                 objReader.Close()
             End If
-
+           
 
             '*** MOVER ARCHIVO ***********************************************************************
             'Dim sArchivoOrigen As String = "d:\documentos\secretaria\analisis\leche\bentley-delta\pasados\control lechero\" & nombrearchivo
@@ -2658,7 +2658,7 @@ Public Class FormImportador
             est.FICHA = ficha3
             est.ESTADO = 4
             est.FECHA = _fecha
-            'est.guardar2()
+            est.guardar2()
             est = Nothing
             '****************************
 

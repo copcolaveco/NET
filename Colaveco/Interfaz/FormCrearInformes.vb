@@ -792,45 +792,32 @@ Public Class FormCrearInformes
             ' ===== Encabezado =====
             x1hoja.Range("A" & fila, "E" & fila).Merge()
             x1hoja.Cells(fila, columna).Formula = "Perfil de ácidos grasos"
-            x1hoja.Cells(fila, columna).Font.Size = 8
-            'x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+            x1hoja.Cells(fila, columna).Font.Size = 10
+            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
             fila = fila + 1
 
             ' ===== Títulos =====
             Dim titulos() As String = {
-    "Ident",
-    "Gr(%)",
-    "DeN-Rel%",
-    "Mix-Rel%",
-    "Pref-Rel%"
-}
-
-
-            Dim colInicio As Integer = columna
+                "Ident",
+                "Gr(%)",
+                "DeRel(%)",
+                "MiRel(%)",
+                "PrRel(%)"
+            }
 
             For i As Integer = 0 To titulos.Length - 1
-                With x1hoja.Cells(fila, columna)
-                    .Value = titulos(i)
-                    .Font.Bold = True
-                    .Font.Size = 8
-                    .Interior.Color = RGB(192, 192, 192)
-                    .Borders.Color = RGB(0, 0, 0)
-                    '.HorizontalAlignment = XlHAlign.xlHAlignCenter
-                    '.VerticalAlignment = XlVAlign.xlVAlignCenter
-                    '.WrapText = True
-                End With
+                x1hoja.Cells(fila, columna).Formula = titulos(i)
+                x1hoja.Cells(fila, columna).Font.Bold = True
+                x1hoja.Cells(fila, columna).Font.Size = 8
+                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
+                x1hoja.Cells(fila, columna).Borders.Color = RGB(0, 0, 0)
+                x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter  
                 columna += 1
             Next
-
-
-            ' Ajustar altura de la fila de títulos
-            'x1hoja.Rows(fila).AutoFit()
-
-            '            x1hoja.Range(
-            '    x1hoja.Cells(fila, colInicio + 2),
-            '    x1hoja.Cells(fila, colInicio + 4)
-            ').EntireColumn.ColumnWidth = 20
-
+            With x1hoja.Rows(fila)
+                .WrapText = True
+                .VerticalAlignment = XlVAlign.xlVAlignCenter
+            End With
 
             ' ===== Datos =====
             For Each calidad As dCalidad In resultados
@@ -855,34 +842,21 @@ Public Class FormCrearInformes
                 columna += 1
 
                 ' ===== Cálculos =====
-                Dim denovoFA As Decimal = CDec(Val(calidad.DenovoFA))
-                Dim mixedFA As Decimal = CDec(Val(calidad.MixedFA))
-                Dim preformedFA As Decimal = CDec(Val(calidad.PreformedFA))
+                Dim denovoFA As Double = Val(calidad.DenovoFA)
+                Dim mixedFA As Double = Val(calidad.MixedFA)
+                Dim preformedFA As Double = Val(calidad.PreformedFA)
 
-                Dim totalFA As Decimal = denovoFA + mixedFA + preformedFA
+                Dim totalFA As Double = denovoFA + mixedFA + preformedFA
 
                 Dim denovoRel As String = "-"
                 Dim mixedRel As String = "-"
                 Dim preformedRel As String = "-"
 
                 If totalFA > 0 Then
-
-                    Dim paso As Decimal = 0.08D
-
-                    Dim denovoCalc As Decimal = (denovoFA / totalFA) * 100D
-                    Dim mixedCalc As Decimal = (mixedFA / totalFA) * 100D
-                    Dim preformedCalc As Decimal = (preformedFA / totalFA) * 100D
-
-                    denovoCalc = RedondearArribaPaso(denovoCalc, paso)
-                    mixedCalc = RedondearArribaPaso(mixedCalc, paso)
-                    preformedCalc = RedondearArribaPaso(preformedCalc, paso)
-
-                    denovoRel = denovoCalc.ToString("0.00")
-                    mixedRel = mixedCalc.ToString("0.00")
-                    preformedRel = preformedCalc.ToString("0.00")
-
+                    denovoRel = Format((denovoFA / totalFA) * 100, "0.00")
+                    mixedRel = Format((mixedFA / totalFA) * 100, "0.00")
+                    preformedRel = Format((preformedFA / totalFA) * 100, "0.00")
                 End If
-
 
                 ' Denovo FA Relativo
                 x1hoja.Cells(fila, columna).Formula = denovoRel
@@ -1087,7 +1061,7 @@ Public Class FormCrearInformes
 
         x1libro.Worksheets(1).cells(2, 1).select()
         fila = fila + 6
-        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 18/11/2026"
+        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
         x1hoja.Cells(fila, columna).Font.Bold = True
         x1hoja.Cells(fila, columna).Font.Size = 9
         fila = fila + 1
@@ -1120,11 +1094,6 @@ Public Class FormCrearInformes
             x1app2.Visible = True
         End If
     End Sub
-
-    Private Function RedondearArribaPaso(valor As Decimal, paso As Decimal) As Decimal
-        Return Math.Ceiling(valor / paso) * paso
-    End Function
-
     Private Sub informe_calidad()
         Dim x1app As Microsoft.Office.Interop.Excel.Application
         Dim x1libro As Microsoft.Office.Interop.Excel.Workbook
@@ -1409,7 +1378,7 @@ Public Class FormCrearInformes
                 x1hoja.Cells(fila, columna).BORDERS.color = RGB(0, 0, 0)
                 x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                 columna = columna + 1
-                x1hoja.Cells(fila, columna).Formula = "Lac"
+                x1hoja.Cells(fila, columna).Formula = "Lac*"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 8
                 x1hoja.Cells(fila, columna).interior.color = RGB(192, 192, 192)
@@ -1775,35 +1744,10 @@ Public Class FormCrearInformes
                             End If
                             If csm.COMPOSICION = 1 Or csm.COMPOSICIONSUERO = 1 Then
                                 If Not c Is Nothing Then
-
-                                    Dim valLactosa As Double = Val(c.LACTOSA)
-                                    a.ANALISIS = 3  'COMPOSICION (Grasa-proteina-lactosa-st)
-                                    a = a.buscar
-                                    If Not a Is Nothing Then
-                                        If sa.IDMUESTRA = 39 _
-                                            OrElse sa.IDMUESTRA = 62 _
-                                            OrElse sa.IDMUESTRA = 70 _
-                                            OrElse sa.IDMUESTRA = 85 _
-                                            OrElse sa.IDMUESTRA = 90 _
-                                            OrElse sa.IDMUESTRA = 105 Then
-
-                                            desde = a.DESDE
-                                            hasta = a.HASTA
-                                            If valLactosa <= desde Or valLactosa >= hasta Then
-                                                x1hoja.Cells(fila, columna).Interior.Color = RGB(192, 192, 192)
-                                            End If
-
-                                            x1hoja.Cells(fila, columna).formula = FormatNumber(c.LACTOSA, 2)
-                                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                            x1hoja.Cells(fila, columna).Font.Size = 8
-                                            columna = columna + 1
-                                        Else
-                                            x1hoja.Cells(fila, columna).formula = "-"
-                                            x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
-                                            x1hoja.Cells(fila, columna).Font.Size = 8
-                                            columna = columna + 1
-                                        End If
-                                    End If
+                                    x1hoja.Cells(fila, columna).formula = FormatNumber(c.LACTOSA, 2)
+                                    x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
+                                    x1hoja.Cells(fila, columna).Font.Size = 8
+                                    columna = columna + 1
                                 Else
                                     x1hoja.Cells(fila, columna).formula = "-"
                                     x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
@@ -2048,12 +1992,12 @@ Public Class FormCrearInformes
                             Dim titulos() As String = {
                                 "Ident",
                                 "Gr(%)",
-                                "SFA %",
-                                "UFA %",
-                                "MUFA %",
-                                "PUFA %",
-                                "C18:1C9" & vbLf & "Oleic acid",
-                                "Denovo %"
+                                "SFA(%)",
+                                "UFA(%)",
+                                "MUFA(%)",
+                                "PUFA(%)",
+                                "C18:1C9",
+                                "DenovoFA(%)"
                             }
 
                             For i As Integer = 0 To titulos.Length - 1
@@ -2407,7 +2351,7 @@ Public Class FormCrearInformes
                         x1hoja.Cells(fila, columna).Font.Size = 7
                         fila = fila + 1
                         columna = 1
-                        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 18/11/2026"
+                        x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
                         x1hoja.Cells(fila, columna).Font.Bold = True
                         x1hoja.Cells(fila, columna).Font.Size = 9
                         fila = fila + 1
@@ -2465,13 +2409,13 @@ Public Class FormCrearInformes
                     ' ===== Títulos =====
                     Dim titulos() As String = {
                         "Ident",
-                                "Gr(%)",
-                                "SFA %",
-                                "UFA %",
-                                "MUFA %",
-                                "PUFA %",
-                                "C18:1C9" & vbLf & "Oleic acid",
-                                "Denovo %"
+                        "Gr(%)",
+                        "SFA(%)",
+                        "UFA(%)",
+                        "MUFA(%)",
+                        "PUFA(%)",
+                        "C18:1C9",
+                        "DenovoFA(%)"
                     }
 
                     For i As Integer = 0 To titulos.Length - 1
@@ -2483,10 +2427,10 @@ Public Class FormCrearInformes
                         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignCenter
                         columna += 1
                     Next
-                    'With x1hoja.Rows(fila)
-                    '    .WrapText = True
-                    '    .VerticalAlignment = XlVAlign.xlVAlignCenter
-                    'End With
+                    With x1hoja.Rows(fila)
+                        .WrapText = True
+                        .VerticalAlignment = XlVAlign.xlVAlignCenter
+                    End With
 
                     ' ===== Datos =====
                     For Each calidad As dCalidad In resultados
@@ -2681,8 +2625,7 @@ Public Class FormCrearInformes
                 x1libro.ActiveSheet.Range(rangeFirma).select()
                 InsertImageToDeclaredVariable(x1libro, rangeFirma, "c:\Debug\cecilia.jpg")
                 x1libro.Worksheets(1).cells(2, 1).select()
-
-
+                fila = fila - 1
                 'RANGOS ACREDITADOS******************************************************************
                 columna = columna + 4
                 x1hoja.Cells(fila, columna).Formula = " RANGOS ACREDITADOS"
@@ -2729,13 +2672,7 @@ Public Class FormCrearInformes
                 x1hoja.Cells(fila, columna).Formula = "ST = 10.5 a 14.0 g/100mL"
                 x1hoja.Cells(fila, columna).Font.Bold = False
                 x1hoja.Cells(fila, columna).Font.Size = 7
-                fila = fila + 1
-                x1hoja.Cells(fila, columna).Formula = "Lac = 4.16 a 5.57 g/100mL"
-                x1hoja.Cells(fila, columna).Font.Bold = False
-                x1hoja.Cells(fila, columna).Font.Size = 7
-
-
-                fila = fila - 7
+                fila = fila - 6
                 'ABREVIATURAS************************************************************************
                 columna = columna + 4
                 x1hoja.Cells(fila, columna).Formula = "                                                   ABREVIATURAS"
@@ -2832,7 +2769,7 @@ Public Class FormCrearInformes
                 x1hoja.Cells(fila, columna).Font.Size = 7
                 fila = fila + 1
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 18/11/2026"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -3842,7 +3779,7 @@ Public Class FormCrearInformes
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 18/11/2026"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -4204,7 +4141,7 @@ Public Class FormCrearInformes
                 x1libro.Worksheets(1).cells(2, 1).select()
                 fila = fila + 6
                 columna = 1
-                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 18/11/2026"
+                x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
                 x1hoja.Cells(fila, columna).Font.Bold = True
                 x1hoja.Cells(fila, columna).Font.Size = 9
                 fila = fila + 1
@@ -11348,7 +11285,7 @@ Public Class FormCrearInformes
 
             '*** PIE DE PAGINA ******************************************************
             x1hoja.Cells(fila, columna).rowheight = 25
-            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 18/11/2026"
+            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
             x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
             x1hoja.Range("A" & fila, "G" & fila).WrapText = True
             x1hoja.Range("A" & fila, "G" & fila).Merge()
@@ -12243,7 +12180,7 @@ Public Class FormCrearInformes
 
             '*** PIE DE PAGINA ******************************************************
             x1hoja.Cells(fila, columna).rowheight = 25
-            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 18/11/2026"
+            x1hoja.Cells(fila, columna).Formula = "Laboratorio habilitado RNL 0029 - MGAP" & " - Certificado vigente al 09/07/2025"
             x1hoja.Cells(fila, columna).Formula = "Este informe no podra ser reproducido total o parcialmente sin la autorización escrita de COLAVECO. Los resultados consignados se refieren exclusivamente a la muestra recibida.COLAVECO declina toda responsabilidad por el uso indebido o incorrecto que se hiciere a este informe, asi como el plan, procedimientos de muestreo e información brindada por el cliente. Dra. Cecilia Abelenda (DT)"
             x1hoja.Range("A" & fila, "G" & fila).WrapText = True
             x1hoja.Range("A" & fila, "G" & fila).Merge()
@@ -12416,7 +12353,7 @@ Public Class FormCrearInformes
         columna = columna + 5
         x1hoja.Range("H9", "N9").Merge()
         x1hoja.Range("H9", "N9").Borders.Color = RGB(0, 0, 0)
-        x1hoja.Cells(fila, columna).formula = "Gr, Pr, Lc % peso/vol.(Mét. IR - ISO 9622 - IDF 141:2013)"
+        x1hoja.Cells(fila, columna).formula = "Gr, Pr, Lc* % peso/vol.(Mét. IR - ISO 9622 - IDF 141:2013)"
         x1hoja.Cells(fila, columna).HorizontalAlignment = XlHAlign.xlHAlignLeft
         x1hoja.Cells(fila, columna).Font.Size = 8
         fila = fila + 1
@@ -14942,24 +14879,24 @@ Public Class FormCrearInformes
                         End If
                     End If
 
-                    ''Perfil acidos grasos
-                    'If c.DenovoRel = -1 Or c.DenovoRel = 0 Then
-                    '    Linea = Linea & "-" & Chr(9)
-                    'Else
-                    '    Linea = Linea & c.DenovoRel & Chr(9)
-                    'End If
+                    'Perfil acidos grasos
+                    If c.DenovoRel = -1 Or c.DenovoRel = 0 Then
+                        Linea = Linea & "-" & Chr(9)
+                    Else
+                        Linea = Linea & c.DenovoRel & Chr(9)
+                    End If
 
-                    'If c.MixedRel = -1 Or c.MixedRel = 0 Then
-                    '    Linea = Linea & "-" & Chr(9)
-                    'Else
-                    '    Linea = Linea & c.MixedRel & Chr(9)
-                    'End If
+                    If c.MixedRel = -1 Or c.MixedRel = 0 Then
+                        Linea = Linea & "-" & Chr(9)
+                    Else
+                        Linea = Linea & c.MixedRel & Chr(9)
+                    End If
 
-                    'If c.PreformedRel = -1 Or c.PreformedRel = 0 Then
-                    '    Linea = Linea & "-" & Chr(9)
-                    'Else
-                    '    Linea = Linea & c.PreformedRel & Chr(9)
-                    'End If
+                    If c.PreformedRel = -1 Or c.PreformedRel = 0 Then
+                        Linea = Linea & "-" & Chr(9)
+                    Else
+                        Linea = Linea & c.PreformedRel & Chr(9)
+                    End If
 
                     oSW.WriteLine(Linea)
                     Linea = ""
@@ -15357,7 +15294,7 @@ Public Class FormCrearInformes
         fila = fila + 2
         columna = 1
         End If
-        x1hoja.Shapes.AddPicture("c:\Debug\encabezado_con_oua2.png", _
+        x1hoja.Shapes.AddPicture("c:\Debug\encabezado_sin_oua2.png", _
  Microsoft.Office.Core.MsoTriState.msoFalse, _
  Microsoft.Office.Core.MsoTriState.msoCTrue, 0, 0, 700, 50)
         'ANALISIS TERCERIZADOS***************************************************
@@ -19914,6 +19851,7 @@ Public Class FormCrearInformes
         End Try
 
     End Sub
+
     Private Function TieneAcidosGrasos(ByVal ficha As Long, ByVal tipo As EnumTipoInforme) As Boolean
         Dim dControl As New dControl
         Dim tieneAG As Boolean = dControl.TieneAcidosGrasos(ficha, tipo)

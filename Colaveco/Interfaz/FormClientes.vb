@@ -2875,14 +2875,6 @@ Public Class FormClientes
             End If
         End If
     End Sub
-
-    Private Sub ComboProlesa_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboProlesa.SelectedIndexChanged
-
-    End Sub
-
-    Private Sub ComboAgencia_SelectedIndexChanged(sender As Object, e As EventArgs) Handles ComboAgencia.SelectedIndexChanged
-
-    End Sub
 End Class
 
 Public Class Tecnico

@@ -3093,7 +3093,7 @@ controlpdf:
                     est.FICHA = idficha
                     est.ESTADO = 8
                     est.FECHA = fecenv
-                    'est.guardar2()
+                    est.guardar2()
                     est = Nothing
                     '****************************
                 Next
@@ -3182,7 +3182,7 @@ controlcsv2:
                     est.FICHA = idficha
                     est.ESTADO = 8
                     est.FECHA = fecenv
-                    'est.guardar2()
+                    est.guardar2()
                     est = Nothing
                     '****************************
                 Next
@@ -3298,7 +3298,7 @@ controltxt:
                                 est.FICHA = idficha
                                 est.ESTADO = 8
                                 est.FECHA = fecenv
-                                'est.guardar2()
+                                est.guardar2()
                                 est = Nothing
                                 '****************************
                             End If
@@ -3561,7 +3561,7 @@ controltxt:
                                 est.FICHA = idficha
                                 est.ESTADO = 8
                                 est.FECHA = fecenv
-                                'est.guardar2()
+                                est.guardar2()
                                 est = Nothing
                                 '****************************
                             End If
@@ -3665,7 +3665,7 @@ controltxt2:
                             est.FICHA = idficha
                             est.ESTADO = 8
                             est.FECHA = fecenv
-                            'est.guardar2()
+                            est.guardar2()
                             est = Nothing
                             '****************************
                         End If
@@ -3784,7 +3784,7 @@ controltxt:
                                 est.FICHA = idficha
                                 est.ESTADO = 8
                                 est.FECHA = fecenv
-                                'est.guardar2()
+                                est.guardar2()
                                 est = Nothing
                                 '****************************
                             End If
@@ -3884,7 +3884,7 @@ controltxt2:
                             est.FICHA = idficha
                             est.ESTADO = 8
                             est.FECHA = fecenv
-                            'est.guardar2()
+                            est.guardar2()
                             est = Nothing
                             '****************************
                         End If
@@ -4003,7 +4003,7 @@ controltxt:
                                 est.FICHA = idficha
                                 est.ESTADO = 8
                                 est.FECHA = fecenv
-                                'est.guardar2()
+                                est.guardar2()
                                 est = Nothing
                                 '****************************
                             End If
@@ -4103,7 +4103,7 @@ controltxt2:
                             est.FICHA = idficha
                             est.ESTADO = 8
                             est.FECHA = fecenv
-                            'est.guardar2()
+                            est.guardar2()
                             est = Nothing
                             '****************************
                         End If
@@ -4223,7 +4223,7 @@ controltxt:
                                 est.FICHA = idficha
                                 est.ESTADO = 8
                                 est.FECHA = fecenv
-                                'est.guardar2()
+                                est.guardar2()
                                 est = Nothing
                                 '****************************
                             End If
@@ -4325,7 +4325,7 @@ controltxt2:
                             est.FICHA = idficha
                             est.ESTADO = 8
                             est.FECHA = fecenv
-                            'est.guardar2()
+                            est.guardar2()
                             est = Nothing
                             '****************************
                         End If
@@ -4467,7 +4467,7 @@ controltxt:
                             est.FICHA = idficha
                             est.ESTADO = 8
                             est.FECHA = fecenv
-                            'est.guardar2()
+                            est.guardar2()
                             est = Nothing
                             '****************************
                         End If
@@ -4581,7 +4581,7 @@ controltxt:
                         est.FICHA = idficha
                         est.ESTADO = 8
                         est.FECHA = fecenv
-                        'est.guardar2()
+                        est.guardar2()
                         est = Nothing
                         '****************************
                     End If
