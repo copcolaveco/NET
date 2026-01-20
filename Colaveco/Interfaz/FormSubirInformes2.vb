@@ -801,7 +801,7 @@ Public Class FormSubirInformes2
     '            est.FICHA = Informe
     '            est.ESTADO = 6
     '            est.FECHA = fechad
-    '            est.guardar2()
+    '            'est.guardar2()
     '            est = Nothing
     '            '****************************
     '        End If
@@ -843,7 +843,7 @@ Public Class FormSubirInformes2
     '        est.FICHA = Informe
     '        est.ESTADO = 6
     '        est.FECHA = fechad
-    '        est.guardar2()
+    '        'est.guardar2()
     '        est = Nothing
     '        '****************************
     '    End If
@@ -932,7 +932,7 @@ Public Class FormSubirInformes2
                 .ESTADO = 6,
                 .FECHA = fechaActual
             }
-            est.guardar2()
+            'est.guardar2()
         Else
             MsgBox("Ya existen 6 o más controles para este tipo en la fecha actual.", MsgBoxStyle.Information, "Información")
         End If

@@ -959,7 +959,7 @@ controltxt:
             est.FICHA = idficha
             est.ESTADO = 8
             est.FECHA = fecenv
-            est.guardar2()
+            'est.guardar2()
             est = Nothing
             '****************************
         End If
@@ -1037,7 +1037,7 @@ controltxt:
             est.FICHA = idficha
             est.ESTADO = 8
             est.FECHA = fecenv
-            est.guardar2()
+            'est.guardar2()
             est = Nothing
             '****************************
         End If
@@ -2158,46 +2158,46 @@ controltxt:
     End Sub
     Private Sub subir_fichas()
         Dim s As New dSolicitudAnalisis
-            s.ID = idficha
-            s = s.buscar
-            If Not s Is Nothing Then
-                If s.IDTIPOINFORME = 1 Then
-                    tipoinforme = 1
-                ElseIf s.IDTIPOINFORME = 3 Then
-                    tipoinforme = 3
-                ElseIf s.IDTIPOINFORME = 4 Then
-                    tipoinforme = 4
-                ElseIf s.IDTIPOINFORME = 6 Then
-                    tipoinforme = 6
-                ElseIf s.IDTIPOINFORME = 7 Then
-                    tipoinforme = 7
-                ElseIf s.IDTIPOINFORME = 8 Then
-                    tipoinforme = 8
-                ElseIf s.IDTIPOINFORME = 9 Then
-                    tipoinforme = 9
-                ElseIf s.IDTIPOINFORME = 10 Then
-                    tipoinforme = 10
-                ElseIf s.IDTIPOINFORME = 11 Then
-                    tipoinforme = 11
-                ElseIf s.IDTIPOINFORME = 13 Then
-                    tipoinforme = 13
-                ElseIf s.IDTIPOINFORME = 14 Then
-                    tipoinforme = 14
-                ElseIf s.IDTIPOINFORME = 15 Then
-                    tipoinforme = 15
-                ElseIf s.IDTIPOINFORME = 16 Then
-                    tipoinforme = 16
-                ElseIf s.IDTIPOINFORME = 17 Then
-                    tipoinforme = 17
-                ElseIf s.IDTIPOINFORME = 18 Then
-                    tipoinforme = 18
-                ElseIf s.IDTIPOINFORME = 19 Then
-                    tipoinforme = 19
-                ElseIf s.IDTIPOINFORME = 20 Then
-                    tipoinforme = 20
-                End If
-                subir_informes()
+        s.ID = idficha
+        s = s.buscar
+        If Not s Is Nothing Then
+            If s.IDTIPOINFORME = 1 Then
+                tipoinforme = 1
+            ElseIf s.IDTIPOINFORME = 3 Then
+                tipoinforme = 3
+            ElseIf s.IDTIPOINFORME = 4 Then
+                tipoinforme = 4
+            ElseIf s.IDTIPOINFORME = 6 Then
+                tipoinforme = 6
+            ElseIf s.IDTIPOINFORME = 7 Then
+                tipoinforme = 7
+            ElseIf s.IDTIPOINFORME = 8 Then
+                tipoinforme = 8
+            ElseIf s.IDTIPOINFORME = 9 Then
+                tipoinforme = 9
+            ElseIf s.IDTIPOINFORME = 10 Then
+                tipoinforme = 10
+            ElseIf s.IDTIPOINFORME = 11 Then
+                tipoinforme = 11
+            ElseIf s.IDTIPOINFORME = 13 Then
+                tipoinforme = 13
+            ElseIf s.IDTIPOINFORME = 14 Then
+                tipoinforme = 14
+            ElseIf s.IDTIPOINFORME = 15 Then
+                tipoinforme = 15
+            ElseIf s.IDTIPOINFORME = 16 Then
+                tipoinforme = 16
+            ElseIf s.IDTIPOINFORME = 17 Then
+                tipoinforme = 17
+            ElseIf s.IDTIPOINFORME = 18 Then
+                tipoinforme = 18
+            ElseIf s.IDTIPOINFORME = 19 Then
+                tipoinforme = 19
+            ElseIf s.IDTIPOINFORME = 20 Then
+                tipoinforme = 20
             End If
+            subir_informes()
+        End If
     End Sub
 
     Private Sub SubirInformes_Click(sender As Object, e As EventArgs) Handles SubirInformes.Click
@@ -2306,7 +2306,7 @@ controltxt:
             est.FICHA = idficha
             est.ESTADO = 8
             est.FECHA = fecenv
-            est.guardar2()
+            'est.guardar2()
             est = Nothing
             '****************************
         End If

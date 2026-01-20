@@ -488,7 +488,7 @@ Public Class FormImportacionArchivos
                 est.FICHA = ficha3
                 est.ESTADO = 4
                 est.FECHA = _fecha
-                est.guardar2()
+                'est.guardar2()
                 est = Nothing
             End Using
         Catch
@@ -816,7 +816,7 @@ Public Class FormImportacionArchivos
                 est.FICHA = ficha2
                 est.ESTADO = 4
                 est.FECHA = _fecha
-                est.guardar2()
+                'est.guardar2()
             End If
         End If
     End Sub
@@ -838,7 +838,7 @@ Public Class FormImportacionArchivos
         est.FICHA = ficha
         est.ESTADO = 4
         est.FECHA = fecha
-        est.guardar2()
+        'est.guardar2()
     End Sub
 
     Private Sub ProcesarArchivoControlCsv(rutaArchivo As String, nombreArchivo As String)
@@ -1042,7 +1042,7 @@ Public Class FormImportacionArchivos
         ' Insertar en preinformes
         Dim pi As New dPreinformes
         Dim _fecha As String = Format(Now(), "yyyy-MM-dd")
-        pi.FICHA = ficha3
+        pi.FICHA = ficha2
         pi = pi.buscar()
         If pi Is Nothing Then
             Dim pi2 As New dPreinformes
@@ -1083,7 +1083,7 @@ Public Class FormImportacionArchivos
 
         ' Estado
         Dim est As New dEstados With {.FICHA = ficha2, .ESTADO = 4, .FECHA = Today}
-        est.guardar2()
+        'est.guardar2()
         ' Mover archivo
         'MoverArchivoProcesado(rutaArchivo, nombreArchivo) ' muestra MsgBox
 
@@ -1452,7 +1452,7 @@ Public Class FormImportacionArchivos
             est.FICHA = ficha3
             est.ESTADO = 4
             est.FECHA = _fecha
-            est.guardar2()
+            'est.guardar2()
             est = Nothing
 
         Catch
@@ -2016,7 +2016,7 @@ Public Class FormImportacionArchivos
             est.FICHA = ficha2
             est.ESTADO = 4
             est.FECHA = _fecha
-            est.guardar2()
+            'est.guardar2()
             est = Nothing
 
         End If
@@ -2379,7 +2379,7 @@ Public Class FormImportacionArchivos
             est.FICHA = ficha3
             est.ESTADO = 4
             est.FECHA = _fecha
-            est.guardar2()
+            'est.guardar2()
             est = Nothing
 
         End If
@@ -2775,7 +2775,7 @@ Public Class FormImportacionArchivos
         lista = c.listarporsolicitud(idficha)
 
         ' Obtener resultados ordenados por RC
-        lista2 = c.listarporrc(idficha)
+        lista2 = c.listarxficha(idficha)
 
         ' Verificar si tiene BHB asociado
         Dim na As New dNuevoAnalisis

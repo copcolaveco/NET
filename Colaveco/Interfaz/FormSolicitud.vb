@@ -3642,13 +3642,13 @@ ContinuarImpresion:
         '----------------------------------------------
         ' 🔔 Inserción del mensaje INIA – NO TIRAR
         '----------------------------------------------
-        If MostrarAvisoINIA Then ' ← usa tu variable o función ahí
-            x1hoja.Cells(fila, columna).formula = "⚠ INIA - NO TIRAR"
-            x1hoja.Cells(fila, columna).Font.Bold = True
-            x1hoja.Cells(fila, columna).Font.Size = 20
-            x1hoja.Cells(fila, columna).Font.Color = RGB(255, 128, 0) 'Naranja
-            fila = fila + 2
-        End If
+        'If MostrarAvisoINIA Then ' ← usa tu variable o función ahí
+        '    x1hoja.Cells(fila, columna).formula = "⚠ INIA - NO TIRAR"
+        '    x1hoja.Cells(fila, columna).Font.Bold = True
+        '    x1hoja.Cells(fila, columna).Font.Size = 20
+        '    x1hoja.Cells(fila, columna).Font.Color = RGB(255, 128, 0) 'Naranja
+        '    fila = fila + 2
+        'End If
 
 
         'CONTROLA SI EL CLIENTE TIENE ALGUN CONVENIO*****************************************
@@ -6315,10 +6315,10 @@ ContinuarImpresion:
         guardar_ticket()
     End Sub
 
-  Private Sub DataGridView1_CurrentCellDirtyStateChanged(
-      sender As Object,
-      e As EventArgs
-  ) Handles DataGridView1.CurrentCellDirtyStateChanged
+    Private Sub DataGridView1_CurrentCellDirtyStateChanged(
+        sender As Object,
+        e As EventArgs
+    ) Handles DataGridView1.CurrentCellDirtyStateChanged
 
         If TypeOf DataGridView1.CurrentCell Is DataGridViewCheckBoxCell Then
             DataGridView1.CommitEdit(DataGridViewDataErrorContexts.Commit)
